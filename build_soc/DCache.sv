@@ -67,25 +67,31 @@
 `endif // not def PRINTF_COND_
 
 module DCache(	// cache/src/zaqal/cache/DCache.scala:19:7
-  input         clock,	// cache/src/zaqal/cache/DCache.scala:19:7
-                reset,	// cache/src/zaqal/cache/DCache.scala:19:7
-  output        io_req_ready,	// cache/src/zaqal/cache/DCache.scala:20:14
-  input         io_req_valid,	// cache/src/zaqal/cache/DCache.scala:20:14
-  input  [63:0] io_req_bits_addr,	// cache/src/zaqal/cache/DCache.scala:20:14
-                io_req_bits_data,	// cache/src/zaqal/cache/DCache.scala:20:14
-  input         io_req_bits_is_write,	// cache/src/zaqal/cache/DCache.scala:20:14
-  input  [7:0]  io_req_bits_load_id,	// cache/src/zaqal/cache/DCache.scala:20:14
-  output        io_resp_valid,	// cache/src/zaqal/cache/DCache.scala:20:14
-  output [63:0] io_resp_bits_data,	// cache/src/zaqal/cache/DCache.scala:20:14
-  output [7:0]  io_resp_bits_load_id,	// cache/src/zaqal/cache/DCache.scala:20:14
-  input         io_pf_train_valid,	// cache/src/zaqal/cache/DCache.scala:20:14
-  input  [63:0] io_pf_train_bits_pc,	// cache/src/zaqal/cache/DCache.scala:20:14
-                io_pf_train_bits_addr,	// cache/src/zaqal/cache/DCache.scala:20:14
-  input         io_branch_signal_valid,	// cache/src/zaqal/cache/DCache.scala:20:14
-  input  [63:0] io_branch_signal_bits_pc,	// cache/src/zaqal/cache/DCache.scala:20:14
-                io_branch_signal_bits_target,	// cache/src/zaqal/cache/DCache.scala:20:14
-  input         io_branch_signal_bits_taken,	// cache/src/zaqal/cache/DCache.scala:20:14
-                io_flush	// cache/src/zaqal/cache/DCache.scala:20:14
+  input          clock,	// cache/src/zaqal/cache/DCache.scala:19:7
+                 reset,	// cache/src/zaqal/cache/DCache.scala:19:7
+  output         io_req_ready,	// cache/src/zaqal/cache/DCache.scala:20:14
+  input          io_req_valid,	// cache/src/zaqal/cache/DCache.scala:20:14
+  input  [63:0]  io_req_bits_addr,	// cache/src/zaqal/cache/DCache.scala:20:14
+                 io_req_bits_data,	// cache/src/zaqal/cache/DCache.scala:20:14
+  input          io_req_bits_is_write,	// cache/src/zaqal/cache/DCache.scala:20:14
+  input  [7:0]   io_req_bits_load_id,	// cache/src/zaqal/cache/DCache.scala:20:14
+  output         io_resp_valid,	// cache/src/zaqal/cache/DCache.scala:20:14
+  output [63:0]  io_resp_bits_data,	// cache/src/zaqal/cache/DCache.scala:20:14
+  output [7:0]   io_resp_bits_load_id,	// cache/src/zaqal/cache/DCache.scala:20:14
+  input          io_tl_a_ready,	// cache/src/zaqal/cache/DCache.scala:20:14
+  output         io_tl_a_valid,	// cache/src/zaqal/cache/DCache.scala:20:14
+  output [63:0]  io_tl_a_bits_address,	// cache/src/zaqal/cache/DCache.scala:20:14
+  output         io_tl_d_ready,	// cache/src/zaqal/cache/DCache.scala:20:14
+  input          io_tl_d_valid,	// cache/src/zaqal/cache/DCache.scala:20:14
+  input  [255:0] io_tl_d_bits_data,	// cache/src/zaqal/cache/DCache.scala:20:14
+  input          io_pf_train_valid,	// cache/src/zaqal/cache/DCache.scala:20:14
+  input  [63:0]  io_pf_train_bits_pc,	// cache/src/zaqal/cache/DCache.scala:20:14
+                 io_pf_train_bits_addr,	// cache/src/zaqal/cache/DCache.scala:20:14
+  input          io_branch_signal_valid,	// cache/src/zaqal/cache/DCache.scala:20:14
+  input  [63:0]  io_branch_signal_bits_pc,	// cache/src/zaqal/cache/DCache.scala:20:14
+                 io_branch_signal_bits_target,	// cache/src/zaqal/cache/DCache.scala:20:14
+  input          io_branch_signal_bits_taken,	// cache/src/zaqal/cache/DCache.scala:20:14
+                 io_flush	// cache/src/zaqal/cache/DCache.scala:20:14
 );
 
   wire              _prefetcher_io_prefetch_req_valid;	// cache/src/zaqal/cache/DCache.scala:84:26
@@ -94,6 +100,7 @@ module DCache(	// cache/src/zaqal/cache/DCache.scala:19:7
   wire              _tl_mshr_io_alloc_ready;	// cache/src/zaqal/cache/DCache.scala:73:23
   wire              _tl_mshr_io_refill_out_valid;	// cache/src/zaqal/cache/DCache.scala:73:23
   wire [63:0]       _tl_mshr_io_refill_out_bits_addr;	// cache/src/zaqal/cache/DCache.scala:73:23
+  wire [255:0]      _tl_mshr_io_refill_out_bits_data;	// cache/src/zaqal/cache/DCache.scala:73:23
   wire [63:0]       _tl_mshr_io_refill_out_bits_write_data;	// cache/src/zaqal/cache/DCache.scala:73:23
   wire [7:0]        _tl_mshr_io_refill_out_bits_load_id;	// cache/src/zaqal/cache/DCache.scala:73:23
   wire              _tl_mshr_io_refill_out_bits_is_write;	// cache/src/zaqal/cache/DCache.scala:73:23
@@ -1025,7 +1032,8 @@ module DCache(	// cache/src/zaqal/cache/DCache.scala:19:7
     _tl_mshr_io_refill_out_valid & ~_tl_mshr_io_refill_out_bits_is_prefetch
     & ~_tl_mshr_io_refill_out_bits_is_write;	// cache/src/zaqal/cache/DCache.scala:73:23, :115:22, :160:36, :189:{10,53,91}, :190:21
   wire [255:0]      _io_resp_bits_data_T_1 =
-    256'h0 >> {248'h0, _tl_mshr_io_refill_out_bits_addr[4:3], 6'h0};	// cache/src/zaqal/cache/DCache.scala:73:23, :119:45, :163:60, :192:60
+    _tl_mshr_io_refill_out_bits_data
+    >> {248'h0, _tl_mshr_io_refill_out_bits_addr[4:3], 6'h0};	// cache/src/zaqal/cache/DCache.scala:73:23, :119:45, :163:60, :192:60
   wire              _GEN_12 = io_req_bits_addr[10:5] == 6'h0;	// cache/src/zaqal/cache/DCache.scala:60:40, :119:45
   wire              _GEN_13 = io_req_bits_addr[10:5] == 6'h1;	// cache/src/zaqal/cache/DCache.scala:60:40, :119:45
   wire              _GEN_14 = io_req_bits_addr[10:5] == 6'h2;	// cache/src/zaqal/cache/DCache.scala:60:40, :119:45
@@ -1285,23 +1293,31 @@ module DCache(	// cache/src/zaqal/cache/DCache.scala:19:7
     _tl_mshr_io_refill_out_valid & ~_tl_mshr_io_refill_out_bits_sink_is_l2
     & (&(_tl_mshr_io_refill_out_bits_addr[10:5]));	// cache/src/zaqal/cache/DCache.scala:52:27, :73:23, :160:36, :161:60, :165:{10,50}, :166:31
   wire [63:0]       _GEN_205 =
-    _tl_mshr_io_refill_out_bits_is_write & _tl_mshr_io_refill_out_bits_addr[4:3] == 2'h0
-      ? _tl_mshr_io_refill_out_bits_write_data
-      : 64'h0;	// cache/src/zaqal/cache/DCache.scala:55:35, :73:23, :115:22, :163:60, :174:{20,43}, :175:39, :177:{39,73}, :183:71
+    _tl_mshr_io_refill_out_bits_is_write
+      ? (_tl_mshr_io_refill_out_bits_addr[4:3] == 2'h0
+           ? _tl_mshr_io_refill_out_bits_write_data
+           : _tl_mshr_io_refill_out_bits_data[63:0])
+      : _tl_mshr_io_refill_out_bits_data[63:0];	// cache/src/zaqal/cache/DCache.scala:55:35, :73:23, :115:22, :163:60, :174:{20,43}, :175:39, :177:{39,73}, :183:{37,71}
   wire              _GEN_206 =
     _tl_mshr_io_refill_out_valid & ~_tl_mshr_io_refill_out_bits_sink_is_l2;	// cache/src/zaqal/cache/DCache.scala:73:23, :115:22, :160:36, :165:{10,50}, :170:49
   wire [63:0]       _GEN_207 =
-    _tl_mshr_io_refill_out_bits_is_write & _tl_mshr_io_refill_out_bits_addr[4:3] == 2'h1
-      ? _tl_mshr_io_refill_out_bits_write_data
-      : 64'h0;	// cache/src/zaqal/cache/DCache.scala:73:23, :115:22, :160:36, :163:60, :174:{20,43}, :175:39, :177:{39,73}, :183:71, :225:32
+    _tl_mshr_io_refill_out_bits_is_write
+      ? (_tl_mshr_io_refill_out_bits_addr[4:3] == 2'h1
+           ? _tl_mshr_io_refill_out_bits_write_data
+           : _tl_mshr_io_refill_out_bits_data[127:64])
+      : _tl_mshr_io_refill_out_bits_data[127:64];	// cache/src/zaqal/cache/DCache.scala:73:23, :115:22, :160:36, :163:60, :174:{20,43}, :175:39, :177:{39,73}, :183:{37,71}, :225:32
   wire [63:0]       _GEN_208 =
-    _tl_mshr_io_refill_out_bits_is_write & _tl_mshr_io_refill_out_bits_addr[4:3] == 2'h2
-      ? _tl_mshr_io_refill_out_bits_write_data
-      : 64'h0;	// cache/src/zaqal/cache/DCache.scala:73:23, :115:22, :163:60, :168:37, :174:{20,43}, :175:39, :177:{39,73}, :183:71
+    _tl_mshr_io_refill_out_bits_is_write
+      ? (_tl_mshr_io_refill_out_bits_addr[4:3] == 2'h2
+           ? _tl_mshr_io_refill_out_bits_write_data
+           : _tl_mshr_io_refill_out_bits_data[191:128])
+      : _tl_mshr_io_refill_out_bits_data[191:128];	// cache/src/zaqal/cache/DCache.scala:73:23, :115:22, :163:60, :168:37, :174:{20,43}, :175:39, :177:{39,73}, :183:{37,71}
   wire [63:0]       _GEN_209 =
-    _tl_mshr_io_refill_out_bits_is_write & (&(_tl_mshr_io_refill_out_bits_addr[4:3]))
-      ? _tl_mshr_io_refill_out_bits_write_data
-      : 64'h0;	// cache/src/zaqal/cache/DCache.scala:73:23, :115:22, :163:60, :174:{20,43}, :175:39, :177:{39,73}, :183:71
+    _tl_mshr_io_refill_out_bits_is_write
+      ? ((&(_tl_mshr_io_refill_out_bits_addr[4:3]))
+           ? _tl_mshr_io_refill_out_bits_write_data
+           : _tl_mshr_io_refill_out_bits_data[255:192])
+      : _tl_mshr_io_refill_out_bits_data[255:192];	// cache/src/zaqal/cache/DCache.scala:73:23, :115:22, :163:60, :174:{20,43}, :175:39, :177:{39,73}, :183:{37,71}
   always @(posedge clock) begin	// cache/src/zaqal/cache/DCache.scala:19:7
     if (reset) begin	// cache/src/zaqal/cache/DCache.scala:19:7
       validArray_0 <= 1'h0;	// cache/src/zaqal/cache/DCache.scala:19:7, :20:14, :52:27, :73:23, :160:36, :221:23, :222:22, :223:{31,54}, :225:32, :226:28, :230:30, :231:36, :240:28, :241:34, :242:34, :244:28, :248:30, :249:36
@@ -1496,262 +1512,262 @@ module DCache(	// cache/src/zaqal/cache/DCache.scala:19:7
       tagArray_61 <= 53'h0;	// cache/src/zaqal/cache/DCache.scala:56:{27,35}
       tagArray_62 <= 53'h0;	// cache/src/zaqal/cache/DCache.scala:56:{27,35}
       tagArray_63 <= 53'h0;	// cache/src/zaqal/cache/DCache.scala:56:{27,35}
-      dataArray_0_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_0_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_0_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_0_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_1_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_1_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_1_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_1_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_2_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_2_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_2_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_2_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_3_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_3_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_3_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_3_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_4_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_4_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_4_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_4_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_5_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_5_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_5_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_5_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_6_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_6_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_6_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_6_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_7_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_7_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_7_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_7_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_8_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_8_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_8_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_8_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_9_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_9_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_9_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_9_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_10_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_10_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_10_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_10_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_11_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_11_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_11_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_11_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_12_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_12_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_12_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_12_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_13_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_13_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_13_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_13_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_14_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_14_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_14_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_14_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_15_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_15_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_15_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_15_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_16_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_16_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_16_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_16_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_17_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_17_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_17_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_17_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_18_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_18_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_18_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_18_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_19_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_19_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_19_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_19_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_20_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_20_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_20_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_20_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_21_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_21_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_21_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_21_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_22_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_22_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_22_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_22_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_23_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_23_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_23_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_23_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_24_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_24_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_24_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_24_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_25_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_25_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_25_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_25_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_26_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_26_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_26_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_26_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_27_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_27_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_27_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_27_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_28_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_28_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_28_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_28_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_29_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_29_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_29_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_29_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_30_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_30_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_30_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_30_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_31_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_31_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_31_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_31_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_32_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_32_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_32_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_32_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_33_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_33_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_33_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_33_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_34_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_34_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_34_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_34_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_35_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_35_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_35_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_35_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_36_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_36_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_36_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_36_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_37_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_37_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_37_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_37_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_38_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_38_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_38_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_38_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_39_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_39_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_39_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_39_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_40_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_40_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_40_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_40_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_41_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_41_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_41_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_41_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_42_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_42_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_42_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_42_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_43_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_43_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_43_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_43_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_44_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_44_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_44_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_44_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_45_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_45_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_45_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_45_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_46_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_46_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_46_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_46_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_47_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_47_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_47_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_47_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_48_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_48_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_48_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_48_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_49_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_49_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_49_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_49_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_50_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_50_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_50_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_50_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_51_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_51_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_51_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_51_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_52_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_52_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_52_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_52_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_53_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_53_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_53_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_53_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_54_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_54_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_54_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_54_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_55_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_55_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_55_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_55_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_56_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_56_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_56_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_56_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_57_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_57_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_57_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_57_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_58_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_58_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_58_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_58_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_59_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_59_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_59_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_59_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_60_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_60_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_60_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_60_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_61_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_61_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_61_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_61_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_62_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_62_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_62_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_62_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_63_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_63_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_63_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
-      dataArray_63_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:27, :177:73, :183:71
+      dataArray_0_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_0_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_0_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_0_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_1_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_1_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_1_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_1_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_2_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_2_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_2_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_2_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_3_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_3_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_3_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_3_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_4_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_4_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_4_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_4_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_5_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_5_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_5_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_5_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_6_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_6_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_6_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_6_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_7_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_7_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_7_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_7_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_8_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_8_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_8_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_8_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_9_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_9_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_9_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_9_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_10_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_10_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_10_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_10_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_11_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_11_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_11_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_11_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_12_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_12_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_12_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_12_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_13_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_13_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_13_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_13_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_14_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_14_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_14_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_14_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_15_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_15_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_15_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_15_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_16_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_16_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_16_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_16_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_17_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_17_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_17_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_17_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_18_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_18_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_18_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_18_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_19_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_19_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_19_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_19_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_20_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_20_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_20_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_20_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_21_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_21_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_21_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_21_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_22_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_22_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_22_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_22_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_23_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_23_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_23_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_23_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_24_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_24_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_24_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_24_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_25_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_25_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_25_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_25_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_26_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_26_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_26_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_26_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_27_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_27_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_27_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_27_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_28_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_28_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_28_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_28_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_29_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_29_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_29_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_29_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_30_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_30_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_30_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_30_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_31_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_31_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_31_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_31_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_32_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_32_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_32_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_32_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_33_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_33_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_33_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_33_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_34_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_34_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_34_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_34_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_35_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_35_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_35_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_35_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_36_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_36_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_36_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_36_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_37_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_37_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_37_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_37_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_38_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_38_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_38_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_38_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_39_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_39_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_39_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_39_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_40_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_40_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_40_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_40_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_41_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_41_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_41_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_41_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_42_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_42_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_42_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_42_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_43_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_43_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_43_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_43_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_44_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_44_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_44_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_44_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_45_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_45_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_45_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_45_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_46_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_46_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_46_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_46_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_47_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_47_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_47_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_47_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_48_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_48_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_48_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_48_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_49_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_49_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_49_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_49_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_50_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_50_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_50_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_50_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_51_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_51_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_51_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_51_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_52_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_52_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_52_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_52_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_53_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_53_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_53_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_53_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_54_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_54_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_54_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_54_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_55_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_55_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_55_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_55_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_56_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_56_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_56_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_56_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_57_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_57_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_57_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_57_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_58_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_58_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_58_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_58_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_59_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_59_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_59_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_59_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_60_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_60_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_60_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_60_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_61_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_61_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_61_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_61_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_62_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_62_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_62_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_62_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_63_0 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_63_1 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_63_2 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
+      dataArray_63_3 <= 64'h0;	// cache/src/zaqal/cache/DCache.scala:57:{27,61}
     end
     else begin	// cache/src/zaqal/cache/DCache.scala:19:7
       validArray_0 <= _GEN_79 | validArray_0;	// cache/src/zaqal/cache/DCache.scala:52:27, :160:36, :165:50, :166:31
@@ -2075,10 +2091,10 @@ module DCache(	// cache/src/zaqal/cache/DCache.scala:19:7
         tagArray_63 <= _tl_mshr_io_refill_out_bits_addr[63:11];	// cache/src/zaqal/cache/DCache.scala:56:27, :73:23, :162:60
       end
       if (_GEN_206 & _GEN_78) begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :166:31, :170:49
-        dataArray_0_0 <= _GEN_205;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_0_1 <= _GEN_207;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_0_2 <= _GEN_208;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_0_3 <= _GEN_209;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
+        dataArray_0_0 <= _GEN_205;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_0_1 <= _GEN_207;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_0_2 <= _GEN_208;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_0_3 <= _GEN_209;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
       end
       else begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :170:49
         if (io_req_valid & isHit & io_req_bits_is_write & _GEN_12 & _GEN_75)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
@@ -2092,10 +2108,10 @@ module DCache(	// cache/src/zaqal/cache/DCache.scala:19:7
           dataArray_0_3 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
       end
       if (_GEN_206 & _GEN_80) begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :166:31, :170:49
-        dataArray_1_0 <= _GEN_205;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_1_1 <= _GEN_207;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_1_2 <= _GEN_208;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_1_3 <= _GEN_209;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
+        dataArray_1_0 <= _GEN_205;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_1_1 <= _GEN_207;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_1_2 <= _GEN_208;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_1_3 <= _GEN_209;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
       end
       else begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :170:49
         if (io_req_valid & isHit & io_req_bits_is_write & _GEN_13 & _GEN_75)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
@@ -2109,10 +2125,10 @@ module DCache(	// cache/src/zaqal/cache/DCache.scala:19:7
           dataArray_1_3 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
       end
       if (_GEN_206 & _GEN_82) begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :166:31, :170:49
-        dataArray_2_0 <= _GEN_205;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_2_1 <= _GEN_207;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_2_2 <= _GEN_208;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_2_3 <= _GEN_209;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
+        dataArray_2_0 <= _GEN_205;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_2_1 <= _GEN_207;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_2_2 <= _GEN_208;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_2_3 <= _GEN_209;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
       end
       else begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :170:49
         if (io_req_valid & isHit & io_req_bits_is_write & _GEN_14 & _GEN_75)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
@@ -2126,10 +2142,10 @@ module DCache(	// cache/src/zaqal/cache/DCache.scala:19:7
           dataArray_2_3 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
       end
       if (_GEN_206 & _GEN_84) begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :166:31, :170:49
-        dataArray_3_0 <= _GEN_205;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_3_1 <= _GEN_207;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_3_2 <= _GEN_208;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_3_3 <= _GEN_209;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
+        dataArray_3_0 <= _GEN_205;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_3_1 <= _GEN_207;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_3_2 <= _GEN_208;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_3_3 <= _GEN_209;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
       end
       else begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :170:49
         if (io_req_valid & isHit & io_req_bits_is_write & _GEN_15 & _GEN_75)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
@@ -2143,10 +2159,10 @@ module DCache(	// cache/src/zaqal/cache/DCache.scala:19:7
           dataArray_3_3 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
       end
       if (_GEN_206 & _GEN_86) begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :166:31, :170:49
-        dataArray_4_0 <= _GEN_205;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_4_1 <= _GEN_207;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_4_2 <= _GEN_208;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_4_3 <= _GEN_209;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
+        dataArray_4_0 <= _GEN_205;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_4_1 <= _GEN_207;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_4_2 <= _GEN_208;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_4_3 <= _GEN_209;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
       end
       else begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :170:49
         if (io_req_valid & isHit & io_req_bits_is_write & _GEN_16 & _GEN_75)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
@@ -2160,10 +2176,10 @@ module DCache(	// cache/src/zaqal/cache/DCache.scala:19:7
           dataArray_4_3 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
       end
       if (_GEN_206 & _GEN_88) begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :166:31, :170:49
-        dataArray_5_0 <= _GEN_205;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_5_1 <= _GEN_207;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_5_2 <= _GEN_208;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_5_3 <= _GEN_209;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
+        dataArray_5_0 <= _GEN_205;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_5_1 <= _GEN_207;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_5_2 <= _GEN_208;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_5_3 <= _GEN_209;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
       end
       else begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :170:49
         if (io_req_valid & isHit & io_req_bits_is_write & _GEN_17 & _GEN_75)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
@@ -2177,10 +2193,10 @@ module DCache(	// cache/src/zaqal/cache/DCache.scala:19:7
           dataArray_5_3 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
       end
       if (_GEN_206 & _GEN_90) begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :166:31, :170:49
-        dataArray_6_0 <= _GEN_205;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_6_1 <= _GEN_207;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_6_2 <= _GEN_208;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_6_3 <= _GEN_209;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
+        dataArray_6_0 <= _GEN_205;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_6_1 <= _GEN_207;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_6_2 <= _GEN_208;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_6_3 <= _GEN_209;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
       end
       else begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :170:49
         if (io_req_valid & isHit & io_req_bits_is_write & _GEN_18 & _GEN_75)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
@@ -2194,10 +2210,10 @@ module DCache(	// cache/src/zaqal/cache/DCache.scala:19:7
           dataArray_6_3 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
       end
       if (_GEN_206 & _GEN_92) begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :166:31, :170:49
-        dataArray_7_0 <= _GEN_205;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_7_1 <= _GEN_207;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_7_2 <= _GEN_208;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_7_3 <= _GEN_209;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
+        dataArray_7_0 <= _GEN_205;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_7_1 <= _GEN_207;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_7_2 <= _GEN_208;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_7_3 <= _GEN_209;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
       end
       else begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :170:49
         if (io_req_valid & isHit & io_req_bits_is_write & _GEN_19 & _GEN_75)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
@@ -2211,10 +2227,10 @@ module DCache(	// cache/src/zaqal/cache/DCache.scala:19:7
           dataArray_7_3 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
       end
       if (_GEN_206 & _GEN_94) begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :166:31, :170:49
-        dataArray_8_0 <= _GEN_205;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_8_1 <= _GEN_207;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_8_2 <= _GEN_208;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_8_3 <= _GEN_209;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
+        dataArray_8_0 <= _GEN_205;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_8_1 <= _GEN_207;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_8_2 <= _GEN_208;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_8_3 <= _GEN_209;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
       end
       else begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :170:49
         if (io_req_valid & isHit & io_req_bits_is_write & _GEN_20 & _GEN_75)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
@@ -2228,10 +2244,10 @@ module DCache(	// cache/src/zaqal/cache/DCache.scala:19:7
           dataArray_8_3 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
       end
       if (_GEN_206 & _GEN_96) begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :166:31, :170:49
-        dataArray_9_0 <= _GEN_205;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_9_1 <= _GEN_207;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_9_2 <= _GEN_208;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_9_3 <= _GEN_209;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
+        dataArray_9_0 <= _GEN_205;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_9_1 <= _GEN_207;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_9_2 <= _GEN_208;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_9_3 <= _GEN_209;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
       end
       else begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :170:49
         if (io_req_valid & isHit & io_req_bits_is_write & _GEN_21 & _GEN_75)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
@@ -2245,10 +2261,10 @@ module DCache(	// cache/src/zaqal/cache/DCache.scala:19:7
           dataArray_9_3 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
       end
       if (_GEN_206 & _GEN_98) begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :166:31, :170:49
-        dataArray_10_0 <= _GEN_205;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_10_1 <= _GEN_207;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_10_2 <= _GEN_208;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_10_3 <= _GEN_209;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
+        dataArray_10_0 <= _GEN_205;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_10_1 <= _GEN_207;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_10_2 <= _GEN_208;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_10_3 <= _GEN_209;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
       end
       else begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :170:49
         if (io_req_valid & isHit & io_req_bits_is_write & _GEN_22 & _GEN_75)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
@@ -2262,10 +2278,10 @@ module DCache(	// cache/src/zaqal/cache/DCache.scala:19:7
           dataArray_10_3 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
       end
       if (_GEN_206 & _GEN_100) begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :166:31, :170:49
-        dataArray_11_0 <= _GEN_205;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_11_1 <= _GEN_207;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_11_2 <= _GEN_208;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_11_3 <= _GEN_209;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
+        dataArray_11_0 <= _GEN_205;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_11_1 <= _GEN_207;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_11_2 <= _GEN_208;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_11_3 <= _GEN_209;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
       end
       else begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :170:49
         if (io_req_valid & isHit & io_req_bits_is_write & _GEN_23 & _GEN_75)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
@@ -2279,10 +2295,10 @@ module DCache(	// cache/src/zaqal/cache/DCache.scala:19:7
           dataArray_11_3 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
       end
       if (_GEN_206 & _GEN_102) begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :166:31, :170:49
-        dataArray_12_0 <= _GEN_205;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_12_1 <= _GEN_207;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_12_2 <= _GEN_208;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_12_3 <= _GEN_209;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
+        dataArray_12_0 <= _GEN_205;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_12_1 <= _GEN_207;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_12_2 <= _GEN_208;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_12_3 <= _GEN_209;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
       end
       else begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :170:49
         if (io_req_valid & isHit & io_req_bits_is_write & _GEN_24 & _GEN_75)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
@@ -2296,10 +2312,10 @@ module DCache(	// cache/src/zaqal/cache/DCache.scala:19:7
           dataArray_12_3 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
       end
       if (_GEN_206 & _GEN_104) begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :166:31, :170:49
-        dataArray_13_0 <= _GEN_205;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_13_1 <= _GEN_207;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_13_2 <= _GEN_208;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_13_3 <= _GEN_209;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
+        dataArray_13_0 <= _GEN_205;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_13_1 <= _GEN_207;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_13_2 <= _GEN_208;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_13_3 <= _GEN_209;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
       end
       else begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :170:49
         if (io_req_valid & isHit & io_req_bits_is_write & _GEN_25 & _GEN_75)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
@@ -2313,10 +2329,10 @@ module DCache(	// cache/src/zaqal/cache/DCache.scala:19:7
           dataArray_13_3 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
       end
       if (_GEN_206 & _GEN_106) begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :166:31, :170:49
-        dataArray_14_0 <= _GEN_205;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_14_1 <= _GEN_207;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_14_2 <= _GEN_208;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_14_3 <= _GEN_209;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
+        dataArray_14_0 <= _GEN_205;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_14_1 <= _GEN_207;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_14_2 <= _GEN_208;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_14_3 <= _GEN_209;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
       end
       else begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :170:49
         if (io_req_valid & isHit & io_req_bits_is_write & _GEN_26 & _GEN_75)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
@@ -2330,10 +2346,10 @@ module DCache(	// cache/src/zaqal/cache/DCache.scala:19:7
           dataArray_14_3 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
       end
       if (_GEN_206 & _GEN_108) begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :166:31, :170:49
-        dataArray_15_0 <= _GEN_205;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_15_1 <= _GEN_207;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_15_2 <= _GEN_208;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_15_3 <= _GEN_209;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
+        dataArray_15_0 <= _GEN_205;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_15_1 <= _GEN_207;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_15_2 <= _GEN_208;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_15_3 <= _GEN_209;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
       end
       else begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :170:49
         if (io_req_valid & isHit & io_req_bits_is_write & _GEN_27 & _GEN_75)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
@@ -2347,10 +2363,10 @@ module DCache(	// cache/src/zaqal/cache/DCache.scala:19:7
           dataArray_15_3 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
       end
       if (_GEN_206 & _GEN_110) begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :166:31, :170:49
-        dataArray_16_0 <= _GEN_205;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_16_1 <= _GEN_207;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_16_2 <= _GEN_208;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_16_3 <= _GEN_209;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
+        dataArray_16_0 <= _GEN_205;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_16_1 <= _GEN_207;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_16_2 <= _GEN_208;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_16_3 <= _GEN_209;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
       end
       else begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :170:49
         if (io_req_valid & isHit & io_req_bits_is_write & _GEN_28 & _GEN_75)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
@@ -2364,10 +2380,10 @@ module DCache(	// cache/src/zaqal/cache/DCache.scala:19:7
           dataArray_16_3 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
       end
       if (_GEN_206 & _GEN_112) begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :166:31, :170:49
-        dataArray_17_0 <= _GEN_205;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_17_1 <= _GEN_207;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_17_2 <= _GEN_208;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_17_3 <= _GEN_209;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
+        dataArray_17_0 <= _GEN_205;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_17_1 <= _GEN_207;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_17_2 <= _GEN_208;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_17_3 <= _GEN_209;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
       end
       else begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :170:49
         if (io_req_valid & isHit & io_req_bits_is_write & _GEN_29 & _GEN_75)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
@@ -2381,10 +2397,10 @@ module DCache(	// cache/src/zaqal/cache/DCache.scala:19:7
           dataArray_17_3 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
       end
       if (_GEN_206 & _GEN_114) begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :166:31, :170:49
-        dataArray_18_0 <= _GEN_205;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_18_1 <= _GEN_207;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_18_2 <= _GEN_208;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_18_3 <= _GEN_209;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
+        dataArray_18_0 <= _GEN_205;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_18_1 <= _GEN_207;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_18_2 <= _GEN_208;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_18_3 <= _GEN_209;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
       end
       else begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :170:49
         if (io_req_valid & isHit & io_req_bits_is_write & _GEN_30 & _GEN_75)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
@@ -2398,10 +2414,10 @@ module DCache(	// cache/src/zaqal/cache/DCache.scala:19:7
           dataArray_18_3 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
       end
       if (_GEN_206 & _GEN_116) begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :166:31, :170:49
-        dataArray_19_0 <= _GEN_205;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_19_1 <= _GEN_207;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_19_2 <= _GEN_208;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_19_3 <= _GEN_209;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
+        dataArray_19_0 <= _GEN_205;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_19_1 <= _GEN_207;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_19_2 <= _GEN_208;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_19_3 <= _GEN_209;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
       end
       else begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :170:49
         if (io_req_valid & isHit & io_req_bits_is_write & _GEN_31 & _GEN_75)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
@@ -2415,10 +2431,10 @@ module DCache(	// cache/src/zaqal/cache/DCache.scala:19:7
           dataArray_19_3 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
       end
       if (_GEN_206 & _GEN_118) begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :166:31, :170:49
-        dataArray_20_0 <= _GEN_205;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_20_1 <= _GEN_207;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_20_2 <= _GEN_208;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_20_3 <= _GEN_209;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
+        dataArray_20_0 <= _GEN_205;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_20_1 <= _GEN_207;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_20_2 <= _GEN_208;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_20_3 <= _GEN_209;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
       end
       else begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :170:49
         if (io_req_valid & isHit & io_req_bits_is_write & _GEN_32 & _GEN_75)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
@@ -2432,10 +2448,10 @@ module DCache(	// cache/src/zaqal/cache/DCache.scala:19:7
           dataArray_20_3 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
       end
       if (_GEN_206 & _GEN_120) begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :166:31, :170:49
-        dataArray_21_0 <= _GEN_205;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_21_1 <= _GEN_207;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_21_2 <= _GEN_208;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_21_3 <= _GEN_209;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
+        dataArray_21_0 <= _GEN_205;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_21_1 <= _GEN_207;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_21_2 <= _GEN_208;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_21_3 <= _GEN_209;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
       end
       else begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :170:49
         if (io_req_valid & isHit & io_req_bits_is_write & _GEN_33 & _GEN_75)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
@@ -2449,10 +2465,10 @@ module DCache(	// cache/src/zaqal/cache/DCache.scala:19:7
           dataArray_21_3 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
       end
       if (_GEN_206 & _GEN_122) begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :166:31, :170:49
-        dataArray_22_0 <= _GEN_205;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_22_1 <= _GEN_207;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_22_2 <= _GEN_208;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_22_3 <= _GEN_209;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
+        dataArray_22_0 <= _GEN_205;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_22_1 <= _GEN_207;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_22_2 <= _GEN_208;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_22_3 <= _GEN_209;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
       end
       else begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :170:49
         if (io_req_valid & isHit & io_req_bits_is_write & _GEN_34 & _GEN_75)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
@@ -2466,10 +2482,10 @@ module DCache(	// cache/src/zaqal/cache/DCache.scala:19:7
           dataArray_22_3 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
       end
       if (_GEN_206 & _GEN_124) begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :166:31, :170:49
-        dataArray_23_0 <= _GEN_205;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_23_1 <= _GEN_207;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_23_2 <= _GEN_208;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_23_3 <= _GEN_209;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
+        dataArray_23_0 <= _GEN_205;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_23_1 <= _GEN_207;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_23_2 <= _GEN_208;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_23_3 <= _GEN_209;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
       end
       else begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :170:49
         if (io_req_valid & isHit & io_req_bits_is_write & _GEN_35 & _GEN_75)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
@@ -2483,10 +2499,10 @@ module DCache(	// cache/src/zaqal/cache/DCache.scala:19:7
           dataArray_23_3 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
       end
       if (_GEN_206 & _GEN_126) begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :166:31, :170:49
-        dataArray_24_0 <= _GEN_205;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_24_1 <= _GEN_207;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_24_2 <= _GEN_208;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_24_3 <= _GEN_209;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
+        dataArray_24_0 <= _GEN_205;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_24_1 <= _GEN_207;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_24_2 <= _GEN_208;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_24_3 <= _GEN_209;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
       end
       else begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :170:49
         if (io_req_valid & isHit & io_req_bits_is_write & _GEN_36 & _GEN_75)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
@@ -2500,10 +2516,10 @@ module DCache(	// cache/src/zaqal/cache/DCache.scala:19:7
           dataArray_24_3 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
       end
       if (_GEN_206 & _GEN_128) begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :166:31, :170:49
-        dataArray_25_0 <= _GEN_205;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_25_1 <= _GEN_207;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_25_2 <= _GEN_208;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_25_3 <= _GEN_209;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
+        dataArray_25_0 <= _GEN_205;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_25_1 <= _GEN_207;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_25_2 <= _GEN_208;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_25_3 <= _GEN_209;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
       end
       else begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :170:49
         if (io_req_valid & isHit & io_req_bits_is_write & _GEN_37 & _GEN_75)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
@@ -2517,10 +2533,10 @@ module DCache(	// cache/src/zaqal/cache/DCache.scala:19:7
           dataArray_25_3 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
       end
       if (_GEN_206 & _GEN_130) begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :166:31, :170:49
-        dataArray_26_0 <= _GEN_205;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_26_1 <= _GEN_207;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_26_2 <= _GEN_208;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_26_3 <= _GEN_209;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
+        dataArray_26_0 <= _GEN_205;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_26_1 <= _GEN_207;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_26_2 <= _GEN_208;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_26_3 <= _GEN_209;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
       end
       else begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :170:49
         if (io_req_valid & isHit & io_req_bits_is_write & _GEN_38 & _GEN_75)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
@@ -2534,10 +2550,10 @@ module DCache(	// cache/src/zaqal/cache/DCache.scala:19:7
           dataArray_26_3 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
       end
       if (_GEN_206 & _GEN_132) begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :166:31, :170:49
-        dataArray_27_0 <= _GEN_205;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_27_1 <= _GEN_207;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_27_2 <= _GEN_208;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_27_3 <= _GEN_209;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
+        dataArray_27_0 <= _GEN_205;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_27_1 <= _GEN_207;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_27_2 <= _GEN_208;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_27_3 <= _GEN_209;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
       end
       else begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :170:49
         if (io_req_valid & isHit & io_req_bits_is_write & _GEN_39 & _GEN_75)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
@@ -2551,10 +2567,10 @@ module DCache(	// cache/src/zaqal/cache/DCache.scala:19:7
           dataArray_27_3 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
       end
       if (_GEN_206 & _GEN_134) begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :166:31, :170:49
-        dataArray_28_0 <= _GEN_205;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_28_1 <= _GEN_207;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_28_2 <= _GEN_208;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_28_3 <= _GEN_209;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
+        dataArray_28_0 <= _GEN_205;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_28_1 <= _GEN_207;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_28_2 <= _GEN_208;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_28_3 <= _GEN_209;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
       end
       else begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :170:49
         if (io_req_valid & isHit & io_req_bits_is_write & _GEN_40 & _GEN_75)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
@@ -2568,10 +2584,10 @@ module DCache(	// cache/src/zaqal/cache/DCache.scala:19:7
           dataArray_28_3 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
       end
       if (_GEN_206 & _GEN_136) begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :166:31, :170:49
-        dataArray_29_0 <= _GEN_205;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_29_1 <= _GEN_207;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_29_2 <= _GEN_208;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_29_3 <= _GEN_209;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
+        dataArray_29_0 <= _GEN_205;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_29_1 <= _GEN_207;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_29_2 <= _GEN_208;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_29_3 <= _GEN_209;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
       end
       else begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :170:49
         if (io_req_valid & isHit & io_req_bits_is_write & _GEN_41 & _GEN_75)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
@@ -2585,10 +2601,10 @@ module DCache(	// cache/src/zaqal/cache/DCache.scala:19:7
           dataArray_29_3 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
       end
       if (_GEN_206 & _GEN_138) begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :166:31, :170:49
-        dataArray_30_0 <= _GEN_205;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_30_1 <= _GEN_207;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_30_2 <= _GEN_208;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_30_3 <= _GEN_209;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
+        dataArray_30_0 <= _GEN_205;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_30_1 <= _GEN_207;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_30_2 <= _GEN_208;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_30_3 <= _GEN_209;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
       end
       else begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :170:49
         if (io_req_valid & isHit & io_req_bits_is_write & _GEN_42 & _GEN_75)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
@@ -2602,10 +2618,10 @@ module DCache(	// cache/src/zaqal/cache/DCache.scala:19:7
           dataArray_30_3 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
       end
       if (_GEN_206 & _GEN_140) begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :166:31, :170:49
-        dataArray_31_0 <= _GEN_205;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_31_1 <= _GEN_207;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_31_2 <= _GEN_208;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_31_3 <= _GEN_209;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
+        dataArray_31_0 <= _GEN_205;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_31_1 <= _GEN_207;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_31_2 <= _GEN_208;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_31_3 <= _GEN_209;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
       end
       else begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :170:49
         if (io_req_valid & isHit & io_req_bits_is_write & _GEN_43 & _GEN_75)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
@@ -2619,10 +2635,10 @@ module DCache(	// cache/src/zaqal/cache/DCache.scala:19:7
           dataArray_31_3 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
       end
       if (_GEN_206 & _GEN_142) begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :166:31, :170:49
-        dataArray_32_0 <= _GEN_205;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_32_1 <= _GEN_207;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_32_2 <= _GEN_208;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_32_3 <= _GEN_209;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
+        dataArray_32_0 <= _GEN_205;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_32_1 <= _GEN_207;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_32_2 <= _GEN_208;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_32_3 <= _GEN_209;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
       end
       else begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :170:49
         if (io_req_valid & isHit & io_req_bits_is_write & _GEN_44 & _GEN_75)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
@@ -2636,10 +2652,10 @@ module DCache(	// cache/src/zaqal/cache/DCache.scala:19:7
           dataArray_32_3 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
       end
       if (_GEN_206 & _GEN_144) begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :166:31, :170:49
-        dataArray_33_0 <= _GEN_205;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_33_1 <= _GEN_207;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_33_2 <= _GEN_208;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_33_3 <= _GEN_209;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
+        dataArray_33_0 <= _GEN_205;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_33_1 <= _GEN_207;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_33_2 <= _GEN_208;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_33_3 <= _GEN_209;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
       end
       else begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :170:49
         if (io_req_valid & isHit & io_req_bits_is_write & _GEN_45 & _GEN_75)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
@@ -2653,10 +2669,10 @@ module DCache(	// cache/src/zaqal/cache/DCache.scala:19:7
           dataArray_33_3 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
       end
       if (_GEN_206 & _GEN_146) begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :166:31, :170:49
-        dataArray_34_0 <= _GEN_205;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_34_1 <= _GEN_207;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_34_2 <= _GEN_208;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_34_3 <= _GEN_209;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
+        dataArray_34_0 <= _GEN_205;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_34_1 <= _GEN_207;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_34_2 <= _GEN_208;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_34_3 <= _GEN_209;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
       end
       else begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :170:49
         if (io_req_valid & isHit & io_req_bits_is_write & _GEN_46 & _GEN_75)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
@@ -2670,10 +2686,10 @@ module DCache(	// cache/src/zaqal/cache/DCache.scala:19:7
           dataArray_34_3 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
       end
       if (_GEN_206 & _GEN_148) begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :166:31, :170:49
-        dataArray_35_0 <= _GEN_205;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_35_1 <= _GEN_207;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_35_2 <= _GEN_208;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_35_3 <= _GEN_209;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
+        dataArray_35_0 <= _GEN_205;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_35_1 <= _GEN_207;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_35_2 <= _GEN_208;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_35_3 <= _GEN_209;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
       end
       else begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :170:49
         if (io_req_valid & isHit & io_req_bits_is_write & _GEN_47 & _GEN_75)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
@@ -2687,10 +2703,10 @@ module DCache(	// cache/src/zaqal/cache/DCache.scala:19:7
           dataArray_35_3 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
       end
       if (_GEN_206 & _GEN_150) begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :166:31, :170:49
-        dataArray_36_0 <= _GEN_205;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_36_1 <= _GEN_207;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_36_2 <= _GEN_208;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_36_3 <= _GEN_209;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
+        dataArray_36_0 <= _GEN_205;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_36_1 <= _GEN_207;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_36_2 <= _GEN_208;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_36_3 <= _GEN_209;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
       end
       else begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :170:49
         if (io_req_valid & isHit & io_req_bits_is_write & _GEN_48 & _GEN_75)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
@@ -2704,10 +2720,10 @@ module DCache(	// cache/src/zaqal/cache/DCache.scala:19:7
           dataArray_36_3 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
       end
       if (_GEN_206 & _GEN_152) begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :166:31, :170:49
-        dataArray_37_0 <= _GEN_205;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_37_1 <= _GEN_207;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_37_2 <= _GEN_208;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_37_3 <= _GEN_209;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
+        dataArray_37_0 <= _GEN_205;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_37_1 <= _GEN_207;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_37_2 <= _GEN_208;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_37_3 <= _GEN_209;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
       end
       else begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :170:49
         if (io_req_valid & isHit & io_req_bits_is_write & _GEN_49 & _GEN_75)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
@@ -2721,10 +2737,10 @@ module DCache(	// cache/src/zaqal/cache/DCache.scala:19:7
           dataArray_37_3 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
       end
       if (_GEN_206 & _GEN_154) begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :166:31, :170:49
-        dataArray_38_0 <= _GEN_205;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_38_1 <= _GEN_207;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_38_2 <= _GEN_208;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_38_3 <= _GEN_209;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
+        dataArray_38_0 <= _GEN_205;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_38_1 <= _GEN_207;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_38_2 <= _GEN_208;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_38_3 <= _GEN_209;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
       end
       else begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :170:49
         if (io_req_valid & isHit & io_req_bits_is_write & _GEN_50 & _GEN_75)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
@@ -2738,10 +2754,10 @@ module DCache(	// cache/src/zaqal/cache/DCache.scala:19:7
           dataArray_38_3 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
       end
       if (_GEN_206 & _GEN_156) begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :166:31, :170:49
-        dataArray_39_0 <= _GEN_205;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_39_1 <= _GEN_207;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_39_2 <= _GEN_208;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_39_3 <= _GEN_209;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
+        dataArray_39_0 <= _GEN_205;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_39_1 <= _GEN_207;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_39_2 <= _GEN_208;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_39_3 <= _GEN_209;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
       end
       else begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :170:49
         if (io_req_valid & isHit & io_req_bits_is_write & _GEN_51 & _GEN_75)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
@@ -2755,10 +2771,10 @@ module DCache(	// cache/src/zaqal/cache/DCache.scala:19:7
           dataArray_39_3 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
       end
       if (_GEN_206 & _GEN_158) begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :166:31, :170:49
-        dataArray_40_0 <= _GEN_205;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_40_1 <= _GEN_207;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_40_2 <= _GEN_208;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_40_3 <= _GEN_209;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
+        dataArray_40_0 <= _GEN_205;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_40_1 <= _GEN_207;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_40_2 <= _GEN_208;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_40_3 <= _GEN_209;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
       end
       else begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :170:49
         if (io_req_valid & isHit & io_req_bits_is_write & _GEN_52 & _GEN_75)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
@@ -2772,10 +2788,10 @@ module DCache(	// cache/src/zaqal/cache/DCache.scala:19:7
           dataArray_40_3 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
       end
       if (_GEN_206 & _GEN_160) begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :166:31, :170:49
-        dataArray_41_0 <= _GEN_205;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_41_1 <= _GEN_207;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_41_2 <= _GEN_208;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_41_3 <= _GEN_209;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
+        dataArray_41_0 <= _GEN_205;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_41_1 <= _GEN_207;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_41_2 <= _GEN_208;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_41_3 <= _GEN_209;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
       end
       else begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :170:49
         if (io_req_valid & isHit & io_req_bits_is_write & _GEN_53 & _GEN_75)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
@@ -2789,10 +2805,10 @@ module DCache(	// cache/src/zaqal/cache/DCache.scala:19:7
           dataArray_41_3 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
       end
       if (_GEN_206 & _GEN_162) begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :166:31, :170:49
-        dataArray_42_0 <= _GEN_205;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_42_1 <= _GEN_207;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_42_2 <= _GEN_208;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_42_3 <= _GEN_209;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
+        dataArray_42_0 <= _GEN_205;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_42_1 <= _GEN_207;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_42_2 <= _GEN_208;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_42_3 <= _GEN_209;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
       end
       else begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :170:49
         if (io_req_valid & isHit & io_req_bits_is_write & _GEN_54 & _GEN_75)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
@@ -2806,10 +2822,10 @@ module DCache(	// cache/src/zaqal/cache/DCache.scala:19:7
           dataArray_42_3 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
       end
       if (_GEN_206 & _GEN_164) begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :166:31, :170:49
-        dataArray_43_0 <= _GEN_205;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_43_1 <= _GEN_207;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_43_2 <= _GEN_208;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_43_3 <= _GEN_209;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
+        dataArray_43_0 <= _GEN_205;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_43_1 <= _GEN_207;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_43_2 <= _GEN_208;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_43_3 <= _GEN_209;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
       end
       else begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :170:49
         if (io_req_valid & isHit & io_req_bits_is_write & _GEN_55 & _GEN_75)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
@@ -2823,10 +2839,10 @@ module DCache(	// cache/src/zaqal/cache/DCache.scala:19:7
           dataArray_43_3 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
       end
       if (_GEN_206 & _GEN_166) begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :166:31, :170:49
-        dataArray_44_0 <= _GEN_205;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_44_1 <= _GEN_207;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_44_2 <= _GEN_208;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_44_3 <= _GEN_209;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
+        dataArray_44_0 <= _GEN_205;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_44_1 <= _GEN_207;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_44_2 <= _GEN_208;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_44_3 <= _GEN_209;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
       end
       else begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :170:49
         if (io_req_valid & isHit & io_req_bits_is_write & _GEN_56 & _GEN_75)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
@@ -2840,10 +2856,10 @@ module DCache(	// cache/src/zaqal/cache/DCache.scala:19:7
           dataArray_44_3 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
       end
       if (_GEN_206 & _GEN_168) begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :166:31, :170:49
-        dataArray_45_0 <= _GEN_205;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_45_1 <= _GEN_207;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_45_2 <= _GEN_208;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_45_3 <= _GEN_209;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
+        dataArray_45_0 <= _GEN_205;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_45_1 <= _GEN_207;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_45_2 <= _GEN_208;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_45_3 <= _GEN_209;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
       end
       else begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :170:49
         if (io_req_valid & isHit & io_req_bits_is_write & _GEN_57 & _GEN_75)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
@@ -2857,10 +2873,10 @@ module DCache(	// cache/src/zaqal/cache/DCache.scala:19:7
           dataArray_45_3 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
       end
       if (_GEN_206 & _GEN_170) begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :166:31, :170:49
-        dataArray_46_0 <= _GEN_205;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_46_1 <= _GEN_207;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_46_2 <= _GEN_208;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_46_3 <= _GEN_209;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
+        dataArray_46_0 <= _GEN_205;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_46_1 <= _GEN_207;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_46_2 <= _GEN_208;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_46_3 <= _GEN_209;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
       end
       else begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :170:49
         if (io_req_valid & isHit & io_req_bits_is_write & _GEN_58 & _GEN_75)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
@@ -2874,10 +2890,10 @@ module DCache(	// cache/src/zaqal/cache/DCache.scala:19:7
           dataArray_46_3 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
       end
       if (_GEN_206 & _GEN_172) begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :166:31, :170:49
-        dataArray_47_0 <= _GEN_205;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_47_1 <= _GEN_207;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_47_2 <= _GEN_208;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_47_3 <= _GEN_209;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
+        dataArray_47_0 <= _GEN_205;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_47_1 <= _GEN_207;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_47_2 <= _GEN_208;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_47_3 <= _GEN_209;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
       end
       else begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :170:49
         if (io_req_valid & isHit & io_req_bits_is_write & _GEN_59 & _GEN_75)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
@@ -2891,10 +2907,10 @@ module DCache(	// cache/src/zaqal/cache/DCache.scala:19:7
           dataArray_47_3 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
       end
       if (_GEN_206 & _GEN_174) begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :166:31, :170:49
-        dataArray_48_0 <= _GEN_205;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_48_1 <= _GEN_207;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_48_2 <= _GEN_208;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_48_3 <= _GEN_209;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
+        dataArray_48_0 <= _GEN_205;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_48_1 <= _GEN_207;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_48_2 <= _GEN_208;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_48_3 <= _GEN_209;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
       end
       else begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :170:49
         if (io_req_valid & isHit & io_req_bits_is_write & _GEN_60 & _GEN_75)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
@@ -2908,10 +2924,10 @@ module DCache(	// cache/src/zaqal/cache/DCache.scala:19:7
           dataArray_48_3 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
       end
       if (_GEN_206 & _GEN_176) begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :166:31, :170:49
-        dataArray_49_0 <= _GEN_205;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_49_1 <= _GEN_207;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_49_2 <= _GEN_208;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_49_3 <= _GEN_209;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
+        dataArray_49_0 <= _GEN_205;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_49_1 <= _GEN_207;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_49_2 <= _GEN_208;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_49_3 <= _GEN_209;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
       end
       else begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :170:49
         if (io_req_valid & isHit & io_req_bits_is_write & _GEN_61 & _GEN_75)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
@@ -2925,10 +2941,10 @@ module DCache(	// cache/src/zaqal/cache/DCache.scala:19:7
           dataArray_49_3 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
       end
       if (_GEN_206 & _GEN_178) begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :166:31, :170:49
-        dataArray_50_0 <= _GEN_205;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_50_1 <= _GEN_207;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_50_2 <= _GEN_208;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_50_3 <= _GEN_209;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
+        dataArray_50_0 <= _GEN_205;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_50_1 <= _GEN_207;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_50_2 <= _GEN_208;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_50_3 <= _GEN_209;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
       end
       else begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :170:49
         if (io_req_valid & isHit & io_req_bits_is_write & _GEN_62 & _GEN_75)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
@@ -2942,10 +2958,10 @@ module DCache(	// cache/src/zaqal/cache/DCache.scala:19:7
           dataArray_50_3 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
       end
       if (_GEN_206 & _GEN_180) begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :166:31, :170:49
-        dataArray_51_0 <= _GEN_205;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_51_1 <= _GEN_207;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_51_2 <= _GEN_208;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_51_3 <= _GEN_209;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
+        dataArray_51_0 <= _GEN_205;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_51_1 <= _GEN_207;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_51_2 <= _GEN_208;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_51_3 <= _GEN_209;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
       end
       else begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :170:49
         if (io_req_valid & isHit & io_req_bits_is_write & _GEN_63 & _GEN_75)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
@@ -2959,10 +2975,10 @@ module DCache(	// cache/src/zaqal/cache/DCache.scala:19:7
           dataArray_51_3 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
       end
       if (_GEN_206 & _GEN_182) begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :166:31, :170:49
-        dataArray_52_0 <= _GEN_205;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_52_1 <= _GEN_207;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_52_2 <= _GEN_208;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_52_3 <= _GEN_209;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
+        dataArray_52_0 <= _GEN_205;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_52_1 <= _GEN_207;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_52_2 <= _GEN_208;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_52_3 <= _GEN_209;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
       end
       else begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :170:49
         if (io_req_valid & isHit & io_req_bits_is_write & _GEN_64 & _GEN_75)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
@@ -2976,10 +2992,10 @@ module DCache(	// cache/src/zaqal/cache/DCache.scala:19:7
           dataArray_52_3 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
       end
       if (_GEN_206 & _GEN_184) begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :166:31, :170:49
-        dataArray_53_0 <= _GEN_205;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_53_1 <= _GEN_207;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_53_2 <= _GEN_208;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_53_3 <= _GEN_209;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
+        dataArray_53_0 <= _GEN_205;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_53_1 <= _GEN_207;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_53_2 <= _GEN_208;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_53_3 <= _GEN_209;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
       end
       else begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :170:49
         if (io_req_valid & isHit & io_req_bits_is_write & _GEN_65 & _GEN_75)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
@@ -2993,10 +3009,10 @@ module DCache(	// cache/src/zaqal/cache/DCache.scala:19:7
           dataArray_53_3 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
       end
       if (_GEN_206 & _GEN_186) begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :166:31, :170:49
-        dataArray_54_0 <= _GEN_205;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_54_1 <= _GEN_207;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_54_2 <= _GEN_208;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_54_3 <= _GEN_209;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
+        dataArray_54_0 <= _GEN_205;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_54_1 <= _GEN_207;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_54_2 <= _GEN_208;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_54_3 <= _GEN_209;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
       end
       else begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :170:49
         if (io_req_valid & isHit & io_req_bits_is_write & _GEN_66 & _GEN_75)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
@@ -3010,10 +3026,10 @@ module DCache(	// cache/src/zaqal/cache/DCache.scala:19:7
           dataArray_54_3 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
       end
       if (_GEN_206 & _GEN_188) begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :166:31, :170:49
-        dataArray_55_0 <= _GEN_205;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_55_1 <= _GEN_207;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_55_2 <= _GEN_208;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_55_3 <= _GEN_209;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
+        dataArray_55_0 <= _GEN_205;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_55_1 <= _GEN_207;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_55_2 <= _GEN_208;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_55_3 <= _GEN_209;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
       end
       else begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :170:49
         if (io_req_valid & isHit & io_req_bits_is_write & _GEN_67 & _GEN_75)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
@@ -3027,10 +3043,10 @@ module DCache(	// cache/src/zaqal/cache/DCache.scala:19:7
           dataArray_55_3 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
       end
       if (_GEN_206 & _GEN_190) begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :166:31, :170:49
-        dataArray_56_0 <= _GEN_205;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_56_1 <= _GEN_207;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_56_2 <= _GEN_208;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_56_3 <= _GEN_209;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
+        dataArray_56_0 <= _GEN_205;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_56_1 <= _GEN_207;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_56_2 <= _GEN_208;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_56_3 <= _GEN_209;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
       end
       else begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :170:49
         if (io_req_valid & isHit & io_req_bits_is_write & _GEN_68 & _GEN_75)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
@@ -3044,10 +3060,10 @@ module DCache(	// cache/src/zaqal/cache/DCache.scala:19:7
           dataArray_56_3 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
       end
       if (_GEN_206 & _GEN_192) begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :166:31, :170:49
-        dataArray_57_0 <= _GEN_205;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_57_1 <= _GEN_207;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_57_2 <= _GEN_208;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_57_3 <= _GEN_209;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
+        dataArray_57_0 <= _GEN_205;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_57_1 <= _GEN_207;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_57_2 <= _GEN_208;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_57_3 <= _GEN_209;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
       end
       else begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :170:49
         if (io_req_valid & isHit & io_req_bits_is_write & _GEN_69 & _GEN_75)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
@@ -3061,10 +3077,10 @@ module DCache(	// cache/src/zaqal/cache/DCache.scala:19:7
           dataArray_57_3 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
       end
       if (_GEN_206 & _GEN_194) begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :166:31, :170:49
-        dataArray_58_0 <= _GEN_205;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_58_1 <= _GEN_207;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_58_2 <= _GEN_208;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_58_3 <= _GEN_209;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
+        dataArray_58_0 <= _GEN_205;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_58_1 <= _GEN_207;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_58_2 <= _GEN_208;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_58_3 <= _GEN_209;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
       end
       else begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :170:49
         if (io_req_valid & isHit & io_req_bits_is_write & _GEN_70 & _GEN_75)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
@@ -3078,10 +3094,10 @@ module DCache(	// cache/src/zaqal/cache/DCache.scala:19:7
           dataArray_58_3 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
       end
       if (_GEN_206 & _GEN_196) begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :166:31, :170:49
-        dataArray_59_0 <= _GEN_205;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_59_1 <= _GEN_207;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_59_2 <= _GEN_208;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_59_3 <= _GEN_209;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
+        dataArray_59_0 <= _GEN_205;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_59_1 <= _GEN_207;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_59_2 <= _GEN_208;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_59_3 <= _GEN_209;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
       end
       else begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :170:49
         if (io_req_valid & isHit & io_req_bits_is_write & _GEN_71 & _GEN_75)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
@@ -3095,10 +3111,10 @@ module DCache(	// cache/src/zaqal/cache/DCache.scala:19:7
           dataArray_59_3 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
       end
       if (_GEN_206 & _GEN_198) begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :166:31, :170:49
-        dataArray_60_0 <= _GEN_205;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_60_1 <= _GEN_207;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_60_2 <= _GEN_208;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_60_3 <= _GEN_209;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
+        dataArray_60_0 <= _GEN_205;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_60_1 <= _GEN_207;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_60_2 <= _GEN_208;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_60_3 <= _GEN_209;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
       end
       else begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :170:49
         if (io_req_valid & isHit & io_req_bits_is_write & _GEN_72 & _GEN_75)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
@@ -3112,10 +3128,10 @@ module DCache(	// cache/src/zaqal/cache/DCache.scala:19:7
           dataArray_60_3 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
       end
       if (_GEN_206 & _GEN_200) begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :166:31, :170:49
-        dataArray_61_0 <= _GEN_205;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_61_1 <= _GEN_207;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_61_2 <= _GEN_208;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_61_3 <= _GEN_209;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
+        dataArray_61_0 <= _GEN_205;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_61_1 <= _GEN_207;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_61_2 <= _GEN_208;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_61_3 <= _GEN_209;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
       end
       else begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :170:49
         if (io_req_valid & isHit & io_req_bits_is_write & _GEN_73 & _GEN_75)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
@@ -3129,10 +3145,10 @@ module DCache(	// cache/src/zaqal/cache/DCache.scala:19:7
           dataArray_61_3 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
       end
       if (_GEN_206 & _GEN_202) begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :166:31, :170:49
-        dataArray_62_0 <= _GEN_205;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_62_1 <= _GEN_207;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_62_2 <= _GEN_208;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_62_3 <= _GEN_209;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
+        dataArray_62_0 <= _GEN_205;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_62_1 <= _GEN_207;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_62_2 <= _GEN_208;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_62_3 <= _GEN_209;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
       end
       else begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :170:49
         if (io_req_valid & isHit & io_req_bits_is_write & _GEN_74 & _GEN_75)	// cache/src/zaqal/cache/DCache.scala:57:27, :69:32, :115:22, :116:17, :118:34, :119:45
@@ -3146,10 +3162,10 @@ module DCache(	// cache/src/zaqal/cache/DCache.scala:19:7
           dataArray_62_3 <= io_req_bits_data;	// cache/src/zaqal/cache/DCache.scala:57:27
       end
       if (_GEN_206 & (&(_tl_mshr_io_refill_out_bits_addr[10:5]))) begin	// cache/src/zaqal/cache/DCache.scala:73:23, :115:22, :160:36, :161:60, :165:50, :166:31, :170:49
-        dataArray_63_0 <= _GEN_205;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_63_1 <= _GEN_207;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_63_2 <= _GEN_208;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
-        dataArray_63_3 <= _GEN_209;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39
+        dataArray_63_0 <= _GEN_205;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_63_1 <= _GEN_207;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_63_2 <= _GEN_208;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
+        dataArray_63_3 <= _GEN_209;	// cache/src/zaqal/cache/DCache.scala:57:27, :115:22, :174:43, :175:39, :177:39, :183:37
       end
       else begin	// cache/src/zaqal/cache/DCache.scala:115:22, :160:36, :165:50, :170:49
         if (io_req_valid & isHit & io_req_bits_is_write & (&(io_req_bits_addr[10:5]))
@@ -3641,15 +3657,22 @@ module DCache(	// cache/src/zaqal/cache/DCache.scala:19:7
     .io_alloc_valid                 (io_req_valid ? ~isHit : _GEN_9),	// cache/src/zaqal/cache/DCache.scala:52:35, :69:32, :81:24, :104:26, :115:22, :116:17, :129:30, :140:44, :141:21
     .io_alloc_bits_addr
       (_GEN_10 ? io_req_bits_addr : _prefetcher_io_prefetch_req_bits_addr),	// cache/src/zaqal/cache/DCache.scala:84:26, :115:22, :116:17, :140:44
-    .io_alloc_bits_data             (_GEN_10 ? io_req_bits_data : 64'h0),	// cache/src/zaqal/cache/DCache.scala:115:22, :116:17, :140:44, :177:73, :183:71
+    .io_alloc_bits_data             (_GEN_10 ? io_req_bits_data : 64'h0),	// cache/src/zaqal/cache/DCache.scala:57:61, :115:22, :116:17, :140:44
     .io_alloc_bits_load_id          (_GEN_10 ? io_req_bits_load_id : 8'h0),	// cache/src/zaqal/cache/DCache.scala:80:39, :115:22, :116:17, :140:44
     .io_alloc_bits_is_write         (_GEN_10 & io_req_bits_is_write),	// cache/src/zaqal/cache/DCache.scala:115:22, :116:17, :140:44
     .io_alloc_bits_is_prefetch      (~io_req_valid & _GEN_9),	// cache/src/zaqal/cache/DCache.scala:102:36, :104:26, :115:22, :116:17, :140:44, :141:21
     .io_alloc_bits_sink_is_l2
       (~io_req_valid & _prefetcher_io_prefetch_req_valid & ~isPfHit
        & _tl_mshr_io_alloc_ready & _prefetcher_io_prefetch_req_bits_sink_is_l2),	// cache/src/zaqal/cache/DCache.scala:73:23, :84:26, :95:37, :102:36, :104:26, :115:22, :116:17, :140:44, :141:21, :144:38
+    .io_tl_a_ready                  (io_tl_a_ready),
+    .io_tl_a_valid                  (io_tl_a_valid),
+    .io_tl_a_bits_address           (io_tl_a_bits_address),
+    .io_tl_d_ready                  (io_tl_d_ready),
+    .io_tl_d_valid                  (io_tl_d_valid),
+    .io_tl_d_bits_data              (io_tl_d_bits_data),
     .io_refill_out_valid            (_tl_mshr_io_refill_out_valid),
     .io_refill_out_bits_addr        (_tl_mshr_io_refill_out_bits_addr),
+    .io_refill_out_bits_data        (_tl_mshr_io_refill_out_bits_data),
     .io_refill_out_bits_write_data  (_tl_mshr_io_refill_out_bits_write_data),
     .io_refill_out_bits_load_id     (_tl_mshr_io_refill_out_bits_load_id),
     .io_refill_out_bits_is_write    (_tl_mshr_io_refill_out_bits_is_write),
@@ -3673,6 +3696,7 @@ module DCache(	// cache/src/zaqal/cache/DCache.scala:19:7
     .io_prefetch_req_bits_addr       (_prefetcher_io_prefetch_req_bits_addr),
     .io_prefetch_req_bits_sink_is_l2 (_prefetcher_io_prefetch_req_bits_sink_is_l2),
     .io_mshr_busy                    (~_tl_mshr_io_alloc_ready),	// cache/src/zaqal/cache/DCache.scala:73:23, :87:30
+    .io_bus_ready                    (io_tl_a_ready),
     .io_demand_miss_active           (io_req_valid & ~isHit),	// cache/src/zaqal/cache/DCache.scala:69:32, :89:{52,55}
     .io_flush                        (io_flush)
   );
@@ -3681,7 +3705,7 @@ module DCache(	// cache/src/zaqal/cache/DCache.scala:19:7
   assign io_resp_bits_data =
     _GEN_11
       ? _io_resp_bits_data_T_1[63:0]
-      : _GEN_8 ? 64'h0 : _GEN_7[io_req_bits_addr[4:3]];	// cache/src/zaqal/cache/DCache.scala:19:7, :62:40, :100:21, :115:22, :116:17, :118:34, :123:27, :160:36, :177:73, :183:71, :189:91, :190:21, :192:{25,60}
+      : _GEN_8 ? 64'h0 : _GEN_7[io_req_bits_addr[4:3]];	// cache/src/zaqal/cache/DCache.scala:19:7, :57:61, :62:40, :100:21, :115:22, :116:17, :118:34, :123:27, :160:36, :189:91, :190:21, :192:{25,60}
   assign io_resp_bits_load_id =
     _GEN_11 ? _tl_mshr_io_refill_out_bits_load_id : _GEN_8 ? 8'h0 : io_req_bits_load_id;	// cache/src/zaqal/cache/DCache.scala:19:7, :73:23, :80:39, :100:21, :101:24, :115:22, :116:17, :118:34, :160:36, :189:91, :190:21, :193:28
 endmodule

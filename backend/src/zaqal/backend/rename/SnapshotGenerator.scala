@@ -8,7 +8,7 @@ import zaqal.common._
 class SnapshotGeneratorIO[T <: Data](dataType: T)(implicit val p: Parameters) extends Bundle with HasZaqalParameter {
   val enq = Input(Bool())
   val enqData = Input(dataType.cloneType)
-  val deq = Input(Bool())
+  val deqCount = Input(UInt(log2Up(decodeWidth + 1).W))
   val redirect = Input(Bool())
   val useSnapshot = Input(Bool())
   val redirect_idx = Input(UInt(log2Up(renameSnapshotNum).W))
@@ -37,11 +37,10 @@ class SnapshotGenerator[T <: Data](dataType: T)(implicit val p: Parameters) exte
 
   def ptrAdd(ptr: UInt, add: UInt): UInt = {
     val next = ptr +& add
-    Mux(next >= renameSnapshotNum.U, next - renameSnapshotNum.U, next)
+    Mux(next >= renameSnapshotNum.U, next - renameSnapshotNum.U, next)(log2Up(renameSnapshotNum) - 1, 0)
   }
 
-  val isFull = snptValids(snptEnqPtr) && (snptEnqPtr === snptDeqPtr)
-  val isEmpty = !snptValids(snptDeqPtr)
+  val isFull = snptValids(snptEnqPtr)
   io.isFull := isFull
 
   when(!isFull && io.enq) {
@@ -50,9 +49,14 @@ class SnapshotGenerator[T <: Data](dataType: T)(implicit val p: Parameters) exte
     snptEnqPtr := ptrAdd(snptEnqPtr, 1.U)
   }
 
-  when(!io.redirect && io.deq) {
-    snptValids(snptDeqPtr) := false.B
-    snptDeqPtr := ptrAdd(snptDeqPtr, 1.U)
+  when(io.deqCount > 0.U && (!io.redirect || io.useSnapshot)) {
+    for (d <- 0 until decodeWidth) {
+      when(d.U < io.deqCount) {
+        val deqIdx = ptrAdd(snptDeqPtr, d.U)
+        snptValids(deqIdx) := false.B
+      }
+    }
+    snptDeqPtr := ptrAdd(snptDeqPtr, io.deqCount)
   }
 
   // Flushing logic

@@ -66,6 +66,8 @@
   `endif // PRINTF_COND
 `endif // not def PRINTF_COND_
 
+// external module DataMemDpi
+
 // external module DifftestInstrCommit
 
 // external module DifftestTrapEvent

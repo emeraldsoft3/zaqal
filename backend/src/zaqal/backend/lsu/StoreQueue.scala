@@ -108,8 +108,8 @@ class StoreQueue(val numEntries: Int = 16)(implicit val p: Parameters) extends M
   }
 
   // ---------------- 1. ALLOCATION (DISPATCH) ----------------
-  val canEnq = (numEntries.U - currentCount) >= decodeWidth.U
-  val enqFires = io.enq.map(_.fire)
+  val canEnq = (numEntries.U - currentCount) >= decodeWidth.U && !io.redirect.valid
+  val enqFires = io.enq.map(e => e.valid && canEnq)
 
   for (i <- 0 until decodeWidth) {
     io.enq(i).ready := canEnq
@@ -117,7 +117,7 @@ class StoreQueue(val numEntries: Int = 16)(implicit val p: Parameters) extends M
     val targetPtr = enqPtr + allocOffset
     io.enq_indices(i) := targetPtr
 
-    when(io.enq(i).fire) {
+    when(enqFires(i)) {
       entries(targetPtr).valid       := true.B
       entries(targetPtr).committed   := false.B
       entries(targetPtr).addr_valid  := false.B
@@ -131,7 +131,9 @@ class StoreQueue(val numEntries: Int = 16)(implicit val p: Parameters) extends M
   }
 
   val totalEnq = PopCount(enqFires)
-  enqPtr := enqPtr + totalEnq
+  when(!io.redirect.valid) {
+    enqPtr := enqPtr + totalEnq
+  }
 
   // ---------------- 2. EXECUTION / WRITE UPDATE ----------------
   when(io.write.valid) {
@@ -236,8 +238,10 @@ class StoreQueue(val numEntries: Int = 16)(implicit val p: Parameters) extends M
 
   val drained = canDrain && io.drain_ready
   when(drained) {
-    headEntry.valid     := false.B
-    headEntry.committed := false.B
+    headEntry.valid      := false.B
+    headEntry.committed  := false.B
+    headEntry.addr_valid := false.B
+    headEntry.data_valid := false.B
     deqPtr := deqPtr + 1.U
   } .elsewhen(!headEntry.valid && (currentCount =/= 0.U)) {
     deqPtr := deqPtr + 1.U
@@ -247,25 +251,26 @@ class StoreQueue(val numEntries: Int = 16)(implicit val p: Parameters) extends M
 
   // ---------------- 6. FLUSH & REDIRECTION HANDLING ----------------
   when(io.redirect.valid) {
-    when(io.redirect.is_exception) {
-      for (i <- 0 until numEntries) {
-        when(!entries(i).committed) {
-          entries(i).valid      := false.B
-          entries(i).addr_valid := false.B
-          entries(i).data_valid := false.B
-        }
-      }
-      enqPtr := deqPtr
-    } .otherwise {
-      for (i <- 0 until numEntries) {
-        val distA = Mux(entries(i).robIdx >= io.robHeadPtr, entries(i).robIdx - io.robHeadPtr, entries(i).robIdx + 128.U - io.robHeadPtr)
-        val distB = Mux(io.redirect.robIdx >= io.robHeadPtr, io.redirect.robIdx - io.robHeadPtr, io.redirect.robIdx + 128.U - io.robHeadPtr)
-        when(entries(i).valid && !entries(i).committed && (distA > distB)) {
-          entries(i).valid      := false.B
-          entries(i).addr_valid := false.B
-          entries(i).data_valid := false.B
-        }
+    val rem_valids = Wire(Vec(numEntries, Bool()))
+    for (i <- 0 until numEntries) {
+      val distA = Mux(entries(i).robIdx >= io.robHeadPtr, entries(i).robIdx - io.robHeadPtr, entries(i).robIdx + 128.U - io.robHeadPtr)
+      val distB = Mux(io.redirect.robIdx >= io.robHeadPtr, io.redirect.robIdx - io.robHeadPtr, io.redirect.robIdx + 128.U - io.robHeadPtr)
+      val should_flush = !entries(i).committed && (io.redirect.is_exception || (distA > distB))
+
+      when(should_flush) {
+        entries(i).valid      := false.B
+        entries(i).committed  := false.B
+        entries(i).addr_valid := false.B
+        entries(i).data_valid := false.B
+        rem_valids(i) := false.B
+      } .otherwise {
+        val is_draining = drained && (i.U === deqPtr)
+        rem_valids(i) := entries(i).valid && !is_draining
       }
     }
+
+    val remainingCount = PopCount(rem_valids)
+    val nextDeqPtr = deqPtr + Mux(drained, 1.U, 0.U)
+    enqPtr := nextDeqPtr + remainingCount
   }
 }

@@ -141,3 +141,10 @@ extern "C" void difftest_ArchRegs (
 ) {
   // Full architectural register snapshot comparison
 }
+
+extern "C" __attribute__((weak)) uint64_t ram_read_dword(uint64_t addr) {
+  return 0ULL;
+}
+
+extern "C" __attribute__((weak)) void ram_write_byte(uint64_t addr, uint8_t byte) {
+}

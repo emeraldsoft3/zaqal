@@ -29,7 +29,7 @@ class RenameTable(val numLogicalRegs: Int, val isFP: Boolean = false, val isVec:
     // Checkpoint IO
     val snptEnq        = Input(Bool())
     val snptEnqIdx     = Input(UInt(log2Up(decodeWidth + 1).W))
-    val snptDeq        = Input(Bool())
+    val snptDeqCount   = Input(UInt(log2Up(decodeWidth + 1).W))
     val snptFlushVec   = Input(Vec(renameSnapshotNum, Bool()))
     val snptRestoreIdx = Input(UInt(log2Up(renameSnapshotNum).W))
     val snptEnqPtr     = Output(UInt(log2Up(renameSnapshotNum).W))
@@ -79,7 +79,7 @@ class RenameTable(val numLogicalRegs: Int, val isFP: Boolean = false, val isVec:
 
   snapshots.io.enq := io.snptEnq
   snapshots.io.enqData := curr_spec_table(io.snptEnqIdx)
-  snapshots.io.deq := io.snptDeq
+  snapshots.io.deqCount := io.snptDeqCount
   snapshots.io.redirect := io.redirect
   snapshots.io.useSnapshot := io.useSnapshot
   snapshots.io.redirect_idx := io.snptRestoreIdx

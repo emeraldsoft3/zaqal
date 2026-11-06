@@ -141,6 +141,9 @@ VM_CLASSES_FAST += \
   VZaqalSoCTop___024root__DepSet_h69af0f82__110 \
   VZaqalSoCTop___024root__DepSet_h69af0f82__111 \
   VZaqalSoCTop___024root__DepSet_h69af0f82__112 \
+  VZaqalSoCTop___024root__DepSet_h69af0f82__113 \
+  VZaqalSoCTop___024root__DepSet_h69af0f82__114 \
+  VZaqalSoCTop___024root__DepSet_h69af0f82__115 \
   VZaqalSoCTop___024unit__DepSet_hf12383c8__0 \
 
 # Generated module classes, non-fast-path, compile with low/medium optimization
@@ -209,6 +212,8 @@ VM_CLASSES_SLOW += \
   VZaqalSoCTop___024root__DepSet_h69af0f82__58__Slow \
   VZaqalSoCTop___024root__DepSet_h69af0f82__59__Slow \
   VZaqalSoCTop___024root__DepSet_h69af0f82__60__Slow \
+  VZaqalSoCTop___024root__DepSet_h69af0f82__61__Slow \
+  VZaqalSoCTop___024root__DepSet_h69af0f82__62__Slow \
   VZaqalSoCTop___024unit__Slow \
   VZaqalSoCTop___024unit__DepSet_h514c7b8d__0__Slow \
 
@@ -238,7 +243,6 @@ VM_SUPPORT_FAST += \
   VZaqalSoCTop__Trace__20 \
   VZaqalSoCTop__Trace__21 \
   VZaqalSoCTop__Trace__22 \
-  VZaqalSoCTop__Trace__23 \
 
 # Generated support classes, non-fast-path, compile with low/medium optimization
 VM_SUPPORT_SLOW += \

@@ -37,15 +37,6 @@ class ZaqalSoCTop(val hartId: Int = 0)(implicit val p: Parameters) extends Modul
   io.success := core.io.success
   core.io.plic_ext_irq := io.plic_ext_irq
 
-  // Tie off TileLink-C ports (since AXI4 handles the system memory interconnect)
-  core.io.tl_d.a.ready := true.B
-  core.io.tl_d.b.valid := false.B
-  core.io.tl_d.b.bits  := DontCare
-  core.io.tl_d.c.ready := true.B
-  core.io.tl_d.d.valid := false.B
-  core.io.tl_d.d.bits  := DontCare
-  core.io.tl_d.e.ready := true.B
-
   // 2. Bus Configurations
   val coreAxiConfig   = AXI4Config(addrWidth = 64, dataWidth = 64, idWidth = 4)
   val xbarSlaveConfig = AXI4Config(addrWidth = 64, dataWidth = 64, idWidth = 6) // extra ID bits for master index
@@ -63,7 +54,34 @@ class ZaqalSoCTop(val hartId: Int = 0)(implicit val p: Parameters) extends Modul
     memDataWidth = 256,
     axiConfig    = coreAxiConfig
   ))
-  dcache_bridge.io.mem <> core.io.mem_d
+
+  // Connect TileLink-C D-Cache Miss Handler to AXI4 MemoryBus
+  dcache_bridge.io.mem.req.valid         := core.io.tl_d.a.valid
+  dcache_bridge.io.mem.req.bits.addr     := core.io.tl_d.a.bits.address
+  dcache_bridge.io.mem.req.bits.burstLen := 1.U
+  dcache_bridge.io.mem.req.bits.isWrite  := false.B
+  core.io.tl_d.a.ready                   := dcache_bridge.io.mem.req.ready
+
+  core.io.tl_d.d.valid        := dcache_bridge.io.mem.resp.valid
+  core.io.tl_d.d.bits.opcode  := TLMessages.GrantData
+  core.io.tl_d.d.bits.param   := TLPermissions.toT
+  core.io.tl_d.d.bits.size    := 5.U
+  core.io.tl_d.d.bits.source  := 0.U
+  core.io.tl_d.d.bits.sink    := 0.U
+  core.io.tl_d.d.bits.denied  := false.B
+  core.io.tl_d.d.bits.data    := dcache_bridge.io.mem.resp.bits.data
+  core.io.tl_d.d.bits.corrupt := false.B
+  dcache_bridge.io.mem.resp.ready := core.io.tl_d.d.ready
+
+  core.io.tl_d.e.ready := true.B
+
+  core.io.tl_d.b.valid := false.B
+  core.io.tl_d.b.bits  := 0.U.asTypeOf(new TLBundleB(core.tlBundleParams))
+  core.io.tl_d.c.ready := true.B
+
+  core.io.mem_d.req.ready  := true.B
+  core.io.mem_d.resp.valid := false.B
+  core.io.mem_d.resp.bits  := DontCare
 
   // 4. Address Map for SoC Peripherals & Memories
   val romRange  = AddressRange(base = BigInt("00000000", 16), size = BigInt("100000", 16))    // 64KB Boot ROM

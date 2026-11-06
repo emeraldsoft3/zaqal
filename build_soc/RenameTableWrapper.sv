@@ -229,6 +229,7 @@ module RenameTableWrapper(	// backend/src/zaqal/backend/rename/RenameTableWrappe
   input        io_useSnapshot,	// backend/src/zaqal/backend/rename/RenameTableWrapper.scala:9:14
                io_snptEnq,	// backend/src/zaqal/backend/rename/RenameTableWrapper.scala:9:14
   input  [2:0] io_snptEnqIdx,	// backend/src/zaqal/backend/rename/RenameTableWrapper.scala:9:14
+               io_snptDeqCount,	// backend/src/zaqal/backend/rename/RenameTableWrapper.scala:9:14
   input        io_snptFlushVec_0,	// backend/src/zaqal/backend/rename/RenameTableWrapper.scala:9:14
                io_snptFlushVec_1,	// backend/src/zaqal/backend/rename/RenameTableWrapper.scala:9:14
                io_snptFlushVec_2,	// backend/src/zaqal/backend/rename/RenameTableWrapper.scala:9:14
@@ -743,7 +744,8 @@ module RenameTableWrapper(	// backend/src/zaqal/backend/rename/RenameTableWrappe
                io_snptValids_252,	// backend/src/zaqal/backend/rename/RenameTableWrapper.scala:9:14
                io_snptValids_253,	// backend/src/zaqal/backend/rename/RenameTableWrapper.scala:9:14
                io_snptValids_254,	// backend/src/zaqal/backend/rename/RenameTableWrapper.scala:9:14
-               io_snptValids_255	// backend/src/zaqal/backend/rename/RenameTableWrapper.scala:9:14
+               io_snptValids_255,	// backend/src/zaqal/backend/rename/RenameTableWrapper.scala:9:14
+               io_isFull	// backend/src/zaqal/backend/rename/RenameTableWrapper.scala:9:14
 );
 
   wire [7:0] _vecRat_io_readPorts_0_0_data;	// backend/src/zaqal/backend/rename/RenameTableWrapper.scala:43:22
@@ -915,6 +917,7 @@ module RenameTableWrapper(	// backend/src/zaqal/backend/rename/RenameTableWrappe
     .io_useSnapshot        (io_useSnapshot),
     .io_snptEnq            (io_snptEnq),
     .io_snptEnqIdx         (io_snptEnqIdx),
+    .io_snptDeqCount       (io_snptDeqCount),
     .io_snptFlushVec_0     (io_snptFlushVec_0),
     .io_snptFlushVec_1     (io_snptFlushVec_1),
     .io_snptFlushVec_2     (io_snptFlushVec_2),
@@ -1429,7 +1432,8 @@ module RenameTableWrapper(	// backend/src/zaqal/backend/rename/RenameTableWrappe
     .io_snptValids_252     (io_snptValids_252),
     .io_snptValids_253     (io_snptValids_253),
     .io_snptValids_254     (io_snptValids_254),
-    .io_snptValids_255     (io_snptValids_255)
+    .io_snptValids_255     (io_snptValids_255),
+    .io_isFull             (io_isFull)
   );
   RenameTable_1 fpRat (	// backend/src/zaqal/backend/rename/RenameTableWrapper.scala:42:22
     .clock                 (clock),
@@ -1516,6 +1520,7 @@ module RenameTableWrapper(	// backend/src/zaqal/backend/rename/RenameTableWrappe
     .io_useSnapshot        (io_useSnapshot),
     .io_snptEnq            (io_snptEnq),
     .io_snptEnqIdx         (io_snptEnqIdx),
+    .io_snptDeqCount       (io_snptDeqCount),
     .io_snptFlushVec_0     (io_snptFlushVec_0),
     .io_snptFlushVec_1     (io_snptFlushVec_1),
     .io_snptFlushVec_2     (io_snptFlushVec_2),
@@ -1859,6 +1864,7 @@ module RenameTableWrapper(	// backend/src/zaqal/backend/rename/RenameTableWrappe
     .io_useSnapshot        (io_useSnapshot),
     .io_snptEnq            (io_snptEnq),
     .io_snptEnqIdx         (io_snptEnqIdx),
+    .io_snptDeqCount       (io_snptDeqCount),
     .io_snptFlushVec_0     (io_snptFlushVec_0),
     .io_snptFlushVec_1     (io_snptFlushVec_1),
     .io_snptFlushVec_2     (io_snptFlushVec_2),

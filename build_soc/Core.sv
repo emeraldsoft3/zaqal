@@ -75,6 +75,12 @@ module Core(	// zaqal/src/zaqal/Core.scala:13:7
   output         io_mem_resp_ready,	// zaqal/src/zaqal/Core.scala:14:14
   input          io_mem_resp_valid,	// zaqal/src/zaqal/Core.scala:14:14
   input  [255:0] io_mem_resp_bits_data,	// zaqal/src/zaqal/Core.scala:14:14
+  input          io_tl_d_a_ready,	// zaqal/src/zaqal/Core.scala:14:14
+  output         io_tl_d_a_valid,	// zaqal/src/zaqal/Core.scala:14:14
+  output [63:0]  io_tl_d_a_bits_address,	// zaqal/src/zaqal/Core.scala:14:14
+  output         io_tl_d_d_ready,	// zaqal/src/zaqal/Core.scala:14:14
+  input          io_tl_d_d_valid,	// zaqal/src/zaqal/Core.scala:14:14
+  input  [255:0] io_tl_d_d_bits_data,	// zaqal/src/zaqal/Core.scala:14:14
   output         io_uart_tx_valid,	// zaqal/src/zaqal/Core.scala:14:14
   output [7:0]   io_uart_tx_char,	// zaqal/src/zaqal/Core.scala:14:14
   input  [31:0]  io_plic_ext_irq	// zaqal/src/zaqal/Core.scala:14:14
@@ -655,6 +661,12 @@ module Core(	// zaqal/src/zaqal/Core.scala:13:7
     .io_commits_info_5_is_call             (_backend_io_commits_info_5_is_call),
     .io_commits_info_5_is_ret              (_backend_io_commits_info_5_is_ret),
     .io_commits_info_5_pc                  (_backend_io_commits_info_5_pc),
+    .io_tl_d_a_ready                       (io_tl_d_a_ready),
+    .io_tl_d_a_valid                       (io_tl_d_a_valid),
+    .io_tl_d_a_bits_address                (io_tl_d_a_bits_address),
+    .io_tl_d_d_ready                       (io_tl_d_d_ready),
+    .io_tl_d_d_valid                       (io_tl_d_d_valid),
+    .io_tl_d_d_bits_data                   (io_tl_d_d_bits_data),
     .io_branch_signal_valid                (_frontend_io_branch_signal_valid),	// zaqal/src/zaqal/Core.scala:73:24
     .io_branch_signal_bits_pc              (_frontend_io_branch_signal_bits_pc),	// zaqal/src/zaqal/Core.scala:73:24
     .io_branch_signal_bits_target          (_frontend_io_branch_signal_bits_target),	// zaqal/src/zaqal/Core.scala:73:24

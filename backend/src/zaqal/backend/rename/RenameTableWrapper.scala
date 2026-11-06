@@ -24,7 +24,7 @@ class RenameTableWrapper(implicit val p: Parameters) extends Module with HasZaqa
     val useSnapshot    = Input(Bool())
     val snptEnq        = Input(Bool())
     val snptEnqIdx     = Input(UInt(log2Up(decodeWidth + 1).W))
-    val snptDeq        = Input(Bool())
+    val snptDeqCount   = Input(UInt(log2Up(decodeWidth + 1).W))
     val snptFlushVec   = Input(Vec(renameSnapshotNum, Bool()))
     val snptRestoreIdx = Input(UInt(log2Up(renameSnapshotNum).W))
     val snptEnqPtr     = Output(UInt(log2Up(renameSnapshotNum).W))
@@ -52,19 +52,19 @@ class RenameTableWrapper(implicit val p: Parameters) extends Module with HasZaqa
 
   intRat.io.snptEnq := io.snptEnq
   intRat.io.snptEnqIdx := io.snptEnqIdx
-  intRat.io.snptDeq := io.snptDeq
+  intRat.io.snptDeqCount := io.snptDeqCount
   intRat.io.snptFlushVec := io.snptFlushVec
   intRat.io.snptRestoreIdx := io.snptRestoreIdx
 
   fpRat.io.snptEnq := io.snptEnq
   fpRat.io.snptEnqIdx := io.snptEnqIdx
-  fpRat.io.snptDeq := io.snptDeq
+  fpRat.io.snptDeqCount := io.snptDeqCount
   fpRat.io.snptFlushVec := io.snptFlushVec
   fpRat.io.snptRestoreIdx := io.snptRestoreIdx
 
   vecRat.io.snptEnq := io.snptEnq
   vecRat.io.snptEnqIdx := io.snptEnqIdx
-  vecRat.io.snptDeq := io.snptDeq
+  vecRat.io.snptDeqCount := io.snptDeqCount
   vecRat.io.snptFlushVec := io.snptFlushVec
   vecRat.io.snptRestoreIdx := io.snptRestoreIdx
 

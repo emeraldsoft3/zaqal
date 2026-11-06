@@ -151,6 +151,7 @@ module RenameTable_1(	// backend/src/zaqal/backend/rename/RenameTable.scala:19:7
                io_useSnapshot,	// backend/src/zaqal/backend/rename/RenameTable.scala:20:14
                io_snptEnq,	// backend/src/zaqal/backend/rename/RenameTable.scala:20:14
   input  [2:0] io_snptEnqIdx,	// backend/src/zaqal/backend/rename/RenameTable.scala:20:14
+               io_snptDeqCount,	// backend/src/zaqal/backend/rename/RenameTable.scala:20:14
   input        io_snptFlushVec_0,	// backend/src/zaqal/backend/rename/RenameTable.scala:20:14
                io_snptFlushVec_1,	// backend/src/zaqal/backend/rename/RenameTable.scala:20:14
                io_snptFlushVec_2,	// backend/src/zaqal/backend/rename/RenameTable.scala:20:14
@@ -19136,6 +19137,7 @@ module RenameTable_1(	// backend/src/zaqal/backend/rename/RenameTable.scala:19:7
     .io_enqData_29       (_GEN_226[io_snptEnqIdx]),	// backend/src/zaqal/backend/rename/RenameTable.scala:81:24
     .io_enqData_30       (_GEN_227[io_snptEnqIdx]),	// backend/src/zaqal/backend/rename/RenameTable.scala:81:24
     .io_enqData_31       (_GEN_228[io_snptEnqIdx]),	// backend/src/zaqal/backend/rename/RenameTable.scala:81:24
+    .io_deqCount         (io_snptDeqCount),
     .io_redirect         (io_redirect),
     .io_useSnapshot      (io_useSnapshot),
     .io_redirect_idx     (io_snptRestoreIdx),
@@ -27844,7 +27846,8 @@ module RenameTable_1(	// backend/src/zaqal/backend/rename/RenameTable.scala:19:7
     .io_valids_252       (/* unused */),
     .io_valids_253       (/* unused */),
     .io_valids_254       (/* unused */),
-    .io_valids_255       (/* unused */)
+    .io_valids_255       (/* unused */),
+    .io_isFull           (/* unused */)
   );
   assign io_readPorts_0_0_data = _GEN[io_readPorts_0_0_addr];	// backend/src/zaqal/backend/rename/RenameTable.scala:19:7, :60:31
   assign io_readPorts_0_1_data = _GEN[io_readPorts_0_1_addr];	// backend/src/zaqal/backend/rename/RenameTable.scala:19:7, :60:31, :61:31

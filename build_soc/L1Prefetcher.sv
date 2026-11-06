@@ -81,6 +81,7 @@ module L1Prefetcher(	// cache/src/zaqal/cache/prefetch/L1Prefetcher.scala:13:7
   output [63:0] io_prefetch_req_bits_addr,	// cache/src/zaqal/cache/prefetch/L1Prefetcher.scala:14:14
   output        io_prefetch_req_bits_sink_is_l2,	// cache/src/zaqal/cache/prefetch/L1Prefetcher.scala:14:14
   input         io_mshr_busy,	// cache/src/zaqal/cache/prefetch/L1Prefetcher.scala:14:14
+                io_bus_ready,	// cache/src/zaqal/cache/prefetch/L1Prefetcher.scala:14:14
                 io_demand_miss_active,	// cache/src/zaqal/cache/prefetch/L1Prefetcher.scala:14:14
                 io_flush	// cache/src/zaqal/cache/prefetch/L1Prefetcher.scala:14:14
 );
@@ -164,6 +165,7 @@ module L1Prefetcher(	// cache/src/zaqal/cache/prefetch/L1Prefetcher.scala:13:7
     .io_in_stride_bits_addr       (_stridePrefetcher_io_prefetch_req_bits_addr),	// cache/src/zaqal/cache/prefetch/L1Prefetcher.scala:28:32
     .io_in_stride_bits_confidence (_stridePrefetcher_io_prefetch_req_bits_confidence),	// cache/src/zaqal/cache/prefetch/L1Prefetcher.scala:28:32
     .io_mshr_busy                 (io_mshr_busy),
+    .io_bus_ready                 (io_bus_ready),
     .io_demand_miss_active        (io_demand_miss_active),
     .io_flush                     (io_flush),
     .io_out_req_valid             (_coordinator_io_out_req_valid),

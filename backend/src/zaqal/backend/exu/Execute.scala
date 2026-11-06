@@ -1146,9 +1146,8 @@ class Execute(val hartId: Int = 0)(implicit val p: Parameters) extends Module wi
     val r_wu_mem_pdest = RegNext(io.mem_in(i).bits.pdest, 0.U)
     val r_wu_mem_fload = RegNext(decMem(i).is_fload, false.B)
 
-    val dcache_wu_val = io.dcache_resp.valid && io.dcache_resp.bits.load_id =/= 0.U
-    io.wakeup(4 + i).valid := Mux(dcache_wu_val, true.B, r_wu_mem_val)
-    io.wakeup(4 + i).pdest := Mux(dcache_wu_val, io.dcache_resp.bits.load_id, r_wu_mem_pdest)
+    io.wakeup(4 + i).valid := r_wu_mem_val
+    io.wakeup(4 + i).pdest := r_wu_mem_pdest
     io.wakeup(4 + i).is_fp := r_wu_mem_fload
   }
 
@@ -1383,8 +1382,10 @@ class Execute(val hartId: Int = 0)(implicit val p: Parameters) extends Module wi
   io.wakeup(12).pdest := r_wu_fpdiv_pdest
   io.wakeup(12).is_fp := true.B
 
-  io.wakeup(13).valid := false.B
-  io.wakeup(13).pdest := 0.U
+  // D-Cache Refill Response Wakeup (Port 13)
+  val dcache_wu_val = io.dcache_resp.valid && io.dcache_resp.bits.load_id =/= 0.U
+  io.wakeup(13).valid := dcache_wu_val
+  io.wakeup(13).pdest := io.dcache_resp.bits.load_id
   io.wakeup(13).is_fp := false.B
 
   io.debug_regs := regFile.io.debug_regs

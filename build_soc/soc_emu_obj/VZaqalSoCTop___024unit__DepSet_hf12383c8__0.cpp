@@ -6,6 +6,30 @@
 #include "VZaqalSoCTop__Syms.h"
 #include "VZaqalSoCTop___024unit.h"
 
+extern "C" long long ram_read_dword(long long addr);
+
+VL_INLINE_OPT void VZaqalSoCTop___024unit____Vdpiimwrap_ram_read_dword_TOP____024unit(QData/*63:0*/ addr, QData/*63:0*/ &ram_read_dword__Vfuncrtn) {
+    VL_DEBUG_IF(VL_DBG_MSGF("+        VZaqalSoCTop___024unit____Vdpiimwrap_ram_read_dword_TOP____024unit\n"); );
+    // Body
+    long long addr__Vcvt;
+    addr__Vcvt = addr;
+    long long ram_read_dword__Vfuncrtn__Vcvt;
+    ram_read_dword__Vfuncrtn__Vcvt = ram_read_dword(addr__Vcvt);
+    ram_read_dword__Vfuncrtn = ram_read_dword__Vfuncrtn__Vcvt;
+}
+
+extern "C" void ram_write_byte(long long addr, char data);
+
+VL_INLINE_OPT void VZaqalSoCTop___024unit____Vdpiimwrap_ram_write_byte_TOP____024unit(QData/*63:0*/ addr, CData/*7:0*/ data) {
+    VL_DEBUG_IF(VL_DBG_MSGF("+        VZaqalSoCTop___024unit____Vdpiimwrap_ram_write_byte_TOP____024unit\n"); );
+    // Body
+    long long addr__Vcvt;
+    addr__Vcvt = addr;
+    char data__Vcvt;
+    data__Vcvt = data;
+    ram_write_byte(addr__Vcvt, data__Vcvt);
+}
+
 extern "C" void difftest_InstrCommit(char coreid, char index, svBit valid, long long pc, int instr, svBit skip, svBit isRVC, svBit rfwen, svBit fpwen, svBit vecwen, char wdest, long long data);
 
 VL_INLINE_OPT void VZaqalSoCTop___024unit____Vdpiimwrap_difftest_InstrCommit_TOP____024unit(CData/*7:0*/ coreid, CData/*7:0*/ index, CData/*0:0*/ valid, QData/*63:0*/ pc, IData/*31:0*/ instr, CData/*0:0*/ skip, CData/*0:0*/ isRVC, CData/*0:0*/ rfwen, CData/*0:0*/ fpwen, CData/*0:0*/ vecwen, CData/*7:0*/ wdest, QData/*63:0*/ data) {

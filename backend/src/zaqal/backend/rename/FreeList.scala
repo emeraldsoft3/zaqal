@@ -5,9 +5,8 @@ import chisel3.util._
 import org.chipsalliance.cde.config.Parameters
 import zaqal.common._
 
-class FreeListSnapshot(val ptrWidth: Int, val countWidth: Int) extends Bundle {
-  val headPtr   = UInt(ptrWidth.W)
-  val freeCount = UInt(countWidth.W)
+class FreeListSnapshot(val ptrWidth: Int) extends Bundle {
+  val headPtr = UInt(ptrWidth.W)
 }
 
 /**
@@ -34,9 +33,10 @@ class FreeList(val numPhyRegs: Int, val numLogicalRegs: Int)(implicit val p: Par
     val useSnapshot    = Input(Bool())
     val snptEnq        = Input(Bool())
     val snptEnqIdx     = Input(UInt(log2Up(decodeWidth + 1).W))
-    val snptDeq        = Input(Bool())
+    val snptDeqCount   = Input(UInt(log2Up(decodeWidth + 1).W))
     val snptFlushVec   = Input(Vec(renameSnapshotNum, Bool()))
     val snptRestoreIdx = Input(UInt(log2Up(renameSnapshotNum).W))
+    val isFull         = Output(Bool())
   })
 
   val size = numPhyRegs - numLogicalRegs
@@ -50,15 +50,16 @@ class FreeList(val numPhyRegs: Int, val numLogicalRegs: Int)(implicit val p: Par
   val headPtr = RegInit(0.U(log2Up(size).W))   // Speculative allocation pointer
   val tailPtr = RegInit(0.U(log2Up(size).W))   // Reclaim/Free pointer (where new free regs are put)
   
-  // Available count tracking
-  val freeCount = RegInit(size.U(log2Up(size + 1).W))
-
-  val snapshots = Module(new SnapshotGenerator(new FreeListSnapshot(log2Up(size), log2Up(size + 1))))
+  val snapshots = Module(new SnapshotGenerator(new FreeListSnapshot(log2Up(size))))
 
   def wrapAdd(ptr: UInt, add: UInt): UInt = {
     val next = ptr +& add
     Mux(next >= size.U, next - size.U, next)(log2Up(size) - 1, 0)
   }
+
+  // Exact in-flight tracking: distance from tailPtr (last committed reclaim) to headPtr (latest speculative allocation)
+  val inFlight = Mux(headPtr >= tailPtr, headPtr - tailPtr, size.U - (tailPtr - headPtr))
+  val freeCount = size.U - inFlight
 
   // 1. Speculative Allocation
   val numAllocReq = PopCount(io.allocateReq)
@@ -70,40 +71,42 @@ class FreeList(val numPhyRegs: Int, val numLogicalRegs: Int)(implicit val p: Par
   }
 
   // 2. Architectural Freeing
-  val numFree = PopCount(io.freeReq)
+  val effectiveFreeReq = Wire(Vec(decodeWidth, Bool()))
   for (i <- 0 until decodeWidth) {
-    val offset = PopCount(io.freeReq.take(i))
-    when (io.freeReq(i)) {
+    effectiveFreeReq(i) := io.freeReq(i) && (io.freePhyReg(i) =/= 0.U)
+  }
+  val numFree = PopCount(effectiveFreeReq)
+  for (i <- 0 until decodeWidth) {
+    val offset = PopCount(effectiveFreeReq.take(i))
+    when (effectiveFreeReq(i)) {
       freeList(wrapAdd(tailPtr, offset)) := io.freePhyReg(i)
     }
   }
 
   val allocMask = (1.U(decodeWidth.W) << io.snptEnqIdx) - 1.U
   val numAllocPre = PopCount(io.allocateReq.asUInt & allocMask)
-  val snpt_data = Wire(new FreeListSnapshot(log2Up(size), log2Up(size + 1)))
-  snpt_data.headPtr   := wrapAdd(headPtr, numAllocPre)
-  snpt_data.freeCount := freeCount - numAllocPre
+  val snpt_data = Wire(new FreeListSnapshot(log2Up(size)))
+  snpt_data.headPtr := wrapAdd(headPtr, numAllocPre)
 
   snapshots.io.enq := io.snptEnq
   snapshots.io.enqData := snpt_data
-  snapshots.io.deq := io.snptDeq
+  snapshots.io.deqCount := io.snptDeqCount
   snapshots.io.redirect := io.redirect
   snapshots.io.useSnapshot := io.useSnapshot
   snapshots.io.redirect_idx := io.snptRestoreIdx
   snapshots.io.flushVec := io.snptFlushVec
+  io.isFull := snapshots.io.isFull
 
   // 3. State Update with Fast One-Hot Multiplexing (Mux1H)
   tailPtr := wrapAdd(tailPtr, numFree)
   when (io.redirect) {
-    // Restore speculative state from architectural state or snapshot
+    // Restore speculative headPtr from snapshot or reset to tailPtr
     val restoreOH = UIntToOH(io.snptRestoreIdx, renameSnapshotNum)
     val restoredSnpt = Mux1H(restoreOH, snapshots.io.snapshots)
-    headPtr   := Mux(io.useSnapshot, restoredSnpt.headPtr, tailPtr)
-    freeCount := Mux(io.useSnapshot, restoredSnpt.freeCount, size.U) + numFree
+    headPtr := Mux(io.useSnapshot, restoredSnpt.headPtr, tailPtr)
   } .otherwise {
     val numFiredReq = PopCount(io.allocateFire)
     val actualAlloc = Mux(io.doAllocate && io.canAllocate, numFiredReq, 0.U)
     headPtr := wrapAdd(headPtr, actualAlloc)
-    freeCount := freeCount - actualAlloc + numFree
   }
 }

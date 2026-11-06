@@ -2,9 +2,101 @@ package zaqal.backend.exu
 
 import chisel3._
 import chisel3.util._
+import chisel3.util.HasBlackBoxInline
 import org.chipsalliance.cde.config.Parameters
 import zaqal.common._
 import zaqal.backend.devices.{CLINT, PLIC}
+
+class DataMemDpi extends BlackBox with HasBlackBoxInline {
+  val io = IO(new Bundle {
+    val clock        = Input(Clock())
+    val raddr0       = Input(UInt(64.W))
+    val rdata0_lo    = Output(UInt(64.W))
+    val rdata0_hi    = Output(UInt(64.W))
+
+    val raddr1       = Input(UInt(64.W))
+    val rdata1_lo    = Output(UInt(64.W))
+    val rdata1_hi    = Output(UInt(64.W))
+
+    val ptw_raddr    = Input(UInt(64.W))
+    val ptw_rdata    = Output(UInt(64.W))
+
+    val waddr        = Input(UInt(64.W))
+    val wdata_lo     = Output(UInt(64.W))
+    val wdata_hi     = Output(UInt(64.W))
+
+    val wen          = Input(Bool())
+    val store_addr   = Input(UInt(64.W))
+    val store_wdata_lo = Input(UInt(64.W))
+    val store_wdata_hi = Input(UInt(64.W))
+    val store_wmask  = Input(UInt(16.W))
+  })
+
+  setInline("DataMemDpi.v",
+    s"""
+       |import "DPI-C" function longint ram_read_dword (input longint addr);
+       |import "DPI-C" function void ram_write_byte (input longint addr, input byte data);
+       |
+       |module DataMemDpi (
+       |  input             clock,
+       |  input      [63:0] raddr0,
+       |  output reg [63:0] rdata0_lo,
+       |  output reg [63:0] rdata0_hi,
+       |  input      [63:0] raddr1,
+       |  output reg [63:0] rdata1_lo,
+       |  output reg [63:0] rdata1_hi,
+       |  input      [63:0] ptw_raddr,
+       |  output reg [63:0] ptw_rdata,
+       |  input      [63:0] waddr,
+       |  output reg [63:0] wdata_lo,
+       |  output reg [63:0] wdata_hi,
+       |  input             wen,
+       |  input      [63:0] store_addr,
+       |  input      [63:0] store_wdata_lo,
+       |  input      [63:0] store_wdata_hi,
+       |  input      [15:0] store_wmask
+       |);
+       |
+       |`ifndef SYNTHESIS
+       |  always @* begin
+       |    rdata0_lo = ram_read_dword(raddr0 & 64'hfffffffffffffff8);
+       |    rdata0_hi = ram_read_dword((raddr0 & 64'hfffffffffffffff8) + 64'd8);
+       |    rdata1_lo = ram_read_dword(raddr1 & 64'hfffffffffffffff8);
+       |    rdata1_hi = ram_read_dword((raddr1 & 64'hfffffffffffffff8) + 64'd8);
+       |    ptw_rdata = ram_read_dword(ptw_raddr & 64'hfffffffffffffff8);
+       |    wdata_lo  = ram_read_dword(waddr & 64'hfffffffffffffff8);
+       |    wdata_hi  = ram_read_dword((waddr & 64'hfffffffffffffff8) + 64'd8);
+       |  end
+       |
+       |  always @(posedge clock) begin
+       |    if (wen) begin
+       |      for (int i = 0; i < 8; i = i + 1) begin
+       |        if (store_wmask[i]) begin
+       |          ram_write_byte((store_addr & 64'hfffffffffffffff8) + i, store_wdata_lo[i*8 +: 8]);
+       |        end
+       |      end
+       |      for (int i = 0; i < 8; i = i + 1) begin
+       |        if (store_wmask[i + 8]) begin
+       |          ram_write_byte((store_addr & 64'hfffffffffffffff8) + 8 + i, store_wdata_hi[i*8 +: 8]);
+       |        end
+       |      end
+       |    end
+       |  end
+       |`else
+       |  always @* begin
+       |    rdata0_lo = 64'd0;
+       |    rdata0_hi = 64'd0;
+       |    rdata1_lo = 64'd0;
+       |    rdata1_hi = 64'd0;
+       |    ptw_rdata = 64'd0;
+       |    wdata_lo  = 64'd0;
+       |    wdata_hi  = 64'd0;
+       |  end
+       |`endif
+       |endmodule
+       |""".stripMargin
+  )
+}
 
 class DataMem(implicit val p: Parameters) extends Module with HasZaqalParameter {
   val io = IO(new Bundle {
@@ -107,6 +199,21 @@ class DataMem(implicit val p: Parameters) extends Module with HasZaqalParameter 
   val memInit = Seq.fill(2048)(0.U(64.W))
   val mem = RegInit(VecInit(memInit))
 
+  // UART registers, CLINT, PLIC and DRAM DPI-C Backing
+  val dpi = Module(new DataMemDpi)
+  dpi.io.clock := clock
+  dpi.io.raddr0 := io.raddr(0)
+  dpi.io.raddr1 := io.raddr(1)
+  dpi.io.ptw_raddr := io.ptw_raddr
+  dpi.io.waddr := io.addr
+
+  val is_dram_write = io.wen && (io.addr >= "h80000000".U)
+  dpi.io.wen := is_dram_write
+  dpi.io.store_addr := io.addr
+  dpi.io.store_wdata_lo := io.wdata(63, 0)
+  dpi.io.store_wdata_hi := io.wdata(127, 64)
+  dpi.io.store_wmask := io.wmask
+
   for (p <- 0 until 2) {
     clint.io.raddr(p) := io.raddr(p)
     plic.io.raddr(p)  := io.raddr(p)
@@ -114,6 +221,7 @@ class DataMem(implicit val p: Parameters) extends Module with HasZaqalParameter 
     val is_uart_read  = io.raddr(p) >= "h10000000".U && io.raddr(p) < "h10000100".U
     val is_clint_read = clint.io.rvalid(p)
     val is_plic_read  = plic.io.rvalid(p)
+    val is_dram_read  = io.raddr(p) >= "h80000000".U
 
     val uart_r_offset = io.raddr(p)(7, 0)
     val uart_r_byte = MuxLookup(uart_r_offset, 0.U(8.W))(Seq(
@@ -130,19 +238,24 @@ class DataMem(implicit val p: Parameters) extends Module with HasZaqalParameter 
     val idx = io.raddr(p)(13, 3)
     val idx_next = Mux(idx === 2047.U, 0.U, idx + 1.U)
     val sram_r_data = Cat(mem(idx_next), mem(idx))
+    val dram_rdata = if (p == 0) Cat(dpi.io.rdata0_hi, dpi.io.rdata0_lo) else Cat(dpi.io.rdata1_hi, dpi.io.rdata1_lo)
 
     io.rdata(p) := Mux(is_uart_read, uart_r_data,
                    Mux(is_clint_read, clint.io.rdata(p),
-                   Mux(is_plic_read,  plic.io.rdata(p), sram_r_data)))
+                   Mux(is_plic_read,  plic.io.rdata(p),
+                   Mux(is_dram_read,  dram_rdata, sram_r_data))))
   }
 
   // Basic address decoding using bits (13, 3) for 2048 doubleword capacity (16KB)
   val index = io.addr(13, 3) 
   val index_next = Mux(index === 2047.U, 0.U, index + 1.U)
-  io.data := Cat(mem(index_next), mem(index))
+  val is_store_dram = io.addr >= "h80000000".U
+  val dram_wdata = Cat(dpi.io.wdata_hi, dpi.io.wdata_lo)
+  io.data := Mux(is_store_dram, dram_wdata, Cat(mem(index_next), mem(index)))
 
   // Dedicated PTW port read
-  io.ptw_rdata := mem(io.ptw_raddr(13, 3))
+  val is_ptw_dram = io.ptw_raddr >= "h80000000".U
+  io.ptw_rdata := Mux(is_ptw_dram, dpi.io.ptw_rdata, mem(io.ptw_raddr(13, 3)))
 
   // Masked Write Implementation (16-bit) - Protected against MMIO address space
   val bitMask = Cat(Seq.tabulate(16)(i => Fill(8, io.wmask(i))).reverse)
@@ -150,14 +263,10 @@ class DataMem(implicit val p: Parameters) extends Module with HasZaqalParameter 
                       (io.addr >= "h02000000".U && io.addr < "h02010000".U) || 
                       (io.addr >= "h0C000000".U && io.addr < "h0C400000".U)
   
-  when(io.wen && !is_mmio_write) {
+  when(io.wen && !is_mmio_write && !is_dram_write) {
     val fullData = (io.data & ~bitMask) | (io.wdata & bitMask)
     mem(index)      := fullData(63, 0)
     mem(index_next) := fullData(127, 64)
-    
-    // printf(p"DATA MEM WRITE: addr=${Hexadecimal(io.addr)} index=$index wmask=${Binary(io.wmask)}\n")
-    // printf(p"                index=${index} data=${Hexadecimal(fullData(63,0))}\n")
-    // printf(p"                index=${index_next} data=${Hexadecimal(fullData(127,64))}\n")
   }
 
   // Dedicated AMX Port Read (128-bit)

@@ -18,6 +18,25 @@ static const char *vcd_path = nullptr;
 
 extern uint64_t g_commit_count;
 
+static VZaqalSoCTop *g_soc_top = nullptr;
+
+extern "C" uint64_t ram_read_dword(uint64_t addr) {
+  if (g_soc_top && addr >= DRAM_BASE && (addr - DRAM_BASE) < (DRAM_WORDS * 8)) {
+    return g_soc_top->rootp->ZaqalSoCTop__DOT__dram__DOT__mem_ext__DOT__Memory[(addr - DRAM_BASE) / 8];
+  }
+  return 0ULL;
+}
+
+extern "C" void ram_write_byte(uint64_t addr, uint8_t byte) {
+  if (g_soc_top && addr >= DRAM_BASE && (addr - DRAM_BASE) < (DRAM_WORDS * 8)) {
+    uint64_t idx = (addr - DRAM_BASE) / 8;
+    uint32_t shift = (addr & 7) * 8;
+    uint64_t mask = ~(0xFFULL << shift);
+    g_soc_top->rootp->ZaqalSoCTop__DOT__dram__DOT__mem_ext__DOT__Memory[idx] =
+      (g_soc_top->rootp->ZaqalSoCTop__DOT__dram__DOT__mem_ext__DOT__Memory[idx] & mask) | (((uint64_t)byte) << shift);
+  }
+}
+
 void print_help(const char *prog) {
   std::cout << "Usage: " << prog << " [options] [image.bin]\n"
             << "Options:\n"
@@ -63,6 +82,7 @@ int main(int argc, char **argv) {
   }
 
   VZaqalSoCTop *top = new VZaqalSoCTop;
+  g_soc_top = top;
   VerilatedVcdC *tfp = nullptr;
 
   if (vcd_path) {
@@ -127,6 +147,17 @@ int main(int argc, char **argv) {
       std::cout << ch << std::flush;
       uart_chars++;
     }
+
+    static uint64_t last_commit = 0;
+    static uint64_t last_commit_cycle = 0;
+    if (g_commit_count != last_commit) {
+      last_commit = g_commit_count;
+      last_commit_cycle = cycle;
+    } else if (cycle - last_commit_cycle > 3000 && cycle > 500) {
+      std::cout << "\n\033[1;31m[STALL DETECTED]\033[0m No instructions committed for 3000 cycles at cycle " 
+                << cycle << "! Last commit #" << g_commit_count << "\n";
+      break;
+    }
   }
 
   std::cout << "\n---------------------------------------------------------------\n";
@@ -144,6 +175,7 @@ int main(int argc, char **argv) {
     tfp->close();
     delete tfp;
   }
+  g_soc_top = nullptr;
   delete top;
   return 0;
 }

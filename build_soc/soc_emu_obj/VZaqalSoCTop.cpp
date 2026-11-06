@@ -11,13 +11,13 @@ VZaqalSoCTop::VZaqalSoCTop(VerilatedContext* _vcontextp__, const char* _vcname__
     : VerilatedModel{*_vcontextp__}
     , vlSymsp{new VZaqalSoCTop__Syms(contextp(), _vcname__, this)}
     , reset{vlSymsp->TOP.reset}
+    , io_plic_ext_irq{vlSymsp->TOP.io_plic_ext_irq}
     , io_spi_miso{vlSymsp->TOP.io_spi_miso}
-    , io_uart_tx_valid{vlSymsp->TOP.io_uart_tx_valid}
-    , io_uart_tx_char{vlSymsp->TOP.io_uart_tx_char}
     , io_spi_sck{vlSymsp->TOP.io_spi_sck}
     , io_spi_mosi{vlSymsp->TOP.io_spi_mosi}
     , io_spi_cs_n{vlSymsp->TOP.io_spi_cs_n}
-    , io_plic_ext_irq{vlSymsp->TOP.io_plic_ext_irq}
+    , io_uart_tx_valid{vlSymsp->TOP.io_uart_tx_valid}
+    , io_uart_tx_char{vlSymsp->TOP.io_uart_tx_char}
     , clock{vlSymsp->TOP.clock}
     , io_success{vlSymsp->TOP.io_success}
     , __PVT____024unit{vlSymsp->TOP.__PVT____024unit}

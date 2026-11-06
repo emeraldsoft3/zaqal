@@ -99,15 +99,15 @@ class LoadQueue(val numEntries: Int = 16)(implicit val p: Parameters) extends Mo
   }
 
   // 1. Allocation (Dispatch)
-  val canEnq = (numEntries.U - currentCount) >= decodeWidth.U
-  val enqFires = io.enq.map(_.fire)
+  val canEnq = (numEntries.U - currentCount) >= decodeWidth.U && !io.redirect.valid
+  val enqFires = io.enq.map(e => e.valid && canEnq)
 
   for (i <- 0 until decodeWidth) {
     io.enq(i).ready := canEnq
     val allocOffset = if (i == 0) 0.U else PopCount(enqFires.take(i))
     val targetPtr = enqPtr + allocOffset
 
-    when(io.enq(i).fire) {
+    when(enqFires(i)) {
       entries(targetPtr).valid       := true.B
       entries(targetPtr).executed    := false.B
       entries(targetPtr).robIdx      := io.enq(i).bits.robIdx
@@ -119,7 +119,9 @@ class LoadQueue(val numEntries: Int = 16)(implicit val p: Parameters) extends Mo
   }
 
   val totalEnq = PopCount(enqFires)
-  enqPtr := enqPtr + totalEnq
+  when(!io.redirect.valid) {
+    enqPtr := enqPtr + totalEnq
+  }
 
   // 2. Execution Update
   for (u <- 0 until 2) {
@@ -177,7 +179,7 @@ class LoadQueue(val numEntries: Int = 16)(implicit val p: Parameters) extends Mo
       for (i <- 0 until numEntries) {
         val distA = Mux(entries(i).robIdx >= io.robHeadPtr, entries(i).robIdx - io.robHeadPtr, entries(i).robIdx + 128.U - io.robHeadPtr)
         val distB = Mux(io.redirect.robIdx >= io.robHeadPtr, io.redirect.robIdx - io.robHeadPtr, io.redirect.robIdx + 128.U - io.robHeadPtr)
-        when(entries(i).valid && (distA > distB)) {
+        when(distA > distB) {
           entries(i).valid    := false.B
           entries(i).executed := false.B
         }

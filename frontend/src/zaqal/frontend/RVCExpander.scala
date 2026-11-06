@@ -173,8 +173,12 @@ class RVCExpander(implicit val p: Parameters) extends Module with HasZaqalParame
           expanded := Cat(uimm.pad(12)(11, 5), rs2(4, 0), 2.U(5.W), 2.U(3.W), uimm(4, 0), "b0100011".U(7.W))
         }
         is("b101".U) { // c.fsdsp
-          val uimm = Cat(inst(8, 7), inst(12, 9), 0.U(3.W))
+          val uimm = Cat(inst(9, 7), inst(12, 10), 0.U(3.W))
           expanded := Cat(uimm.pad(12)(11, 5), rs2(4, 0), 2.U(5.W), 3.U(3.W), uimm(4, 0), "b0100111".U(7.W))
+        }
+        is("b111".U) { // c.sdsp (RV64)
+          val uimm = Cat(inst(9, 7), inst(12, 10), 0.U(3.W))
+          expanded := Cat(uimm.pad(12)(11, 5), rs2(4, 0), 2.U(5.W), 3.U(3.W), uimm(4, 0), "b0100011".U(7.W))
         }
       }
     }

@@ -82,6 +82,7 @@ module PrefetchCoordinator(	// cache/src/zaqal/cache/prefetch/PrefetchCoordinato
   input  [63:0] io_in_stride_bits_addr,	// cache/src/zaqal/cache/prefetch/PrefetchCoordinator.scala:21:14
   input  [1:0]  io_in_stride_bits_confidence,	// cache/src/zaqal/cache/prefetch/PrefetchCoordinator.scala:21:14
   input         io_mshr_busy,	// cache/src/zaqal/cache/prefetch/PrefetchCoordinator.scala:21:14
+                io_bus_ready,	// cache/src/zaqal/cache/prefetch/PrefetchCoordinator.scala:21:14
                 io_demand_miss_active,	// cache/src/zaqal/cache/prefetch/PrefetchCoordinator.scala:21:14
                 io_flush,	// cache/src/zaqal/cache/prefetch/PrefetchCoordinator.scala:21:14
   output        io_out_req_valid,	// cache/src/zaqal/cache/prefetch/PrefetchCoordinator.scala:21:14
@@ -99,7 +100,8 @@ module PrefetchCoordinator(	// cache/src/zaqal/cache/prefetch/PrefetchCoordinato
   reg  [63:0] outBitsReg_addr;	// cache/src/zaqal/cache/prefetch/PrefetchCoordinator.scala:111:24
   reg  [1:0]  outBitsReg_confidence;	// cache/src/zaqal/cache/prefetch/PrefetchCoordinator.scala:111:24
   reg         outBitsReg_sink_is_l2;	// cache/src/zaqal/cache/prefetch/PrefetchCoordinator.scala:111:24
-  wire [1:0]  throttleState = io_demand_miss_active ? 2'h2 : {1'h0, io_mshr_busy};	// cache/src/zaqal/cache/prefetch/PrefetchCoordinator.scala:21:14, :49:34, :52:15, :53:19, :54:24, :55:19, :57:19
+  wire [1:0]  throttleState =
+    io_demand_miss_active ? 2'h2 : {1'h0, io_mshr_busy | ~io_bus_ready};	// cache/src/zaqal/cache/prefetch/PrefetchCoordinator.scala:49:{31,34}, :52:15, :53:19, :54:24, :55:19, :57:19
   wire [63:0] candBits_addr =
     io_in_fdp_valid
       ? io_in_fdp_bits_addr
@@ -125,7 +127,7 @@ module PrefetchCoordinator(	// cache/src/zaqal/cache/prefetch/PrefetchCoordinato
       recentAddrs_2 <= 64'h0;	// cache/src/zaqal/cache/prefetch/PrefetchCoordinator.scala:75:{28,36}
       recentAddrs_3 <= 64'h0;	// cache/src/zaqal/cache/prefetch/PrefetchCoordinator.scala:75:{28,36}
       histPtr <= 2'h0;	// cache/src/zaqal/cache/prefetch/PrefetchCoordinator.scala:76:28
-      outValidReg <= 1'h0;	// cache/src/zaqal/cache/prefetch/PrefetchCoordinator.scala:21:14, :49:34, :110:28
+      outValidReg <= 1'h0;	// cache/src/zaqal/cache/prefetch/PrefetchCoordinator.scala:49:34, :110:28
     end
     else begin	// cache/src/zaqal/cache/prefetch/PrefetchCoordinator.scala:20:7
       if (io_flush) begin	// cache/src/zaqal/cache/prefetch/PrefetchCoordinator.scala:21:14

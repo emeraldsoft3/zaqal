@@ -20,6 +20,10 @@ extern "C" {
     extern void difftest_InstrCommit(char coreid, char index, svBit valid, long long pc, int instr, svBit skip, svBit isRVC, svBit rfwen, svBit fpwen, svBit vecwen, char wdest, long long data);
     // DPI import at /home/emerald/zaqal/build_soc/DifftestTrapEvent.v:2:30
     extern void difftest_TrapEvent(char coreid, svBit valid, char code, long long pc, long long cycle);
+    // DPI import at /home/emerald/zaqal/build_soc/DataMemDpi.v:2:33
+    extern long long ram_read_dword(long long addr);
+    // DPI import at /home/emerald/zaqal/build_soc/DataMemDpi.v:3:30
+    extern void ram_write_byte(long long addr, char data);
 
 #ifdef __cplusplus
 }

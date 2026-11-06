@@ -125,6 +125,7 @@ class Backend(val hartId: Int = 0)(implicit val p: Parameters) extends Module wi
   for (i <- 0 until decodeWidth) {
     cfi_mask(i) := io.dispatch(i).valid && (decoded_uops(i).decode.is_branch || decoded_uops(i).decode.is_jalr || decoded_uops(i).decode.is_jal)
   }
+  val has_incoming_cfi = cfi_mask.asUInt.orR
   val has_older_cfi = Wire(Vec(decodeWidth, Bool()))
   for (i <- 0 until decodeWidth) {
     has_older_cfi(i) := (if (i == 0) false.B else (0 until i).map(cfi_mask(_)).reduce(_ || _))
@@ -204,7 +205,7 @@ class Backend(val hartId: Int = 0)(implicit val p: Parameters) extends Module wi
 
   }
 
-  val can_allocate_all = intFreeList.io.canAllocate && fpFreeList.io.canAllocate && vecFreeList.io.canAllocate
+  val free_lists_can_allocate = intFreeList.io.canAllocate && fpFreeList.io.canAllocate && vecFreeList.io.canAllocate
 
   val is_shadow_vec = Wire(Vec(decodeWidth, Bool()))
   for (j <- 0 until decodeWidth) {
@@ -287,6 +288,7 @@ class Backend(val hartId: Int = 0)(implicit val p: Parameters) extends Module wi
   val memIq = Module(new IssueQueue(16, decodeWidth, 3, 14, isMem = true))
   val fpIq = Module(new IssueQueue(16, decodeWidth, 4, 14))
   val rob = Module(new zaqal.backend.rob.Rob(numWb = 14))
+  val can_allocate_all = free_lists_can_allocate && !rob.io.robFull && !(has_incoming_cfi && rat.io.isFull)
   intBusyTable.io.flushedPorts <> rob.io.flushed_pdest
   for (i <- 0 until 128) {
     fpBusyTable.io.flushedPorts(i).valid := false.B
@@ -312,11 +314,11 @@ class Backend(val hartId: Int = 0)(implicit val p: Parameters) extends Module wi
     rat.io.commit_is_fp(i) := rob.io.commits.info(i).fpWen
     rat.io.commit_is_vec(i) := rob.io.commits.info(i).vecWen
     
-    intFreeList.io.freeReq(i) := rob.io.commits.commitValid(i) && rob.io.commits.info(i).rfWen
+    intFreeList.io.freeReq(i) := rob.io.commits.commitValid(i) && rob.io.commits.info(i).rfWen && (rob.io.commits.info(i).old_pdest =/= 0.U)
     intFreeList.io.freePhyReg(i) := rob.io.commits.info(i).old_pdest
-    fpFreeList.io.freeReq(i) := rob.io.commits.commitValid(i) && rob.io.commits.info(i).fpWen
+    fpFreeList.io.freeReq(i) := rob.io.commits.commitValid(i) && rob.io.commits.info(i).fpWen && (rob.io.commits.info(i).old_pdest =/= 0.U)
     fpFreeList.io.freePhyReg(i) := rob.io.commits.info(i).old_pdest
-    vecFreeList.io.freeReq(i) := rob.io.commits.commitValid(i) && rob.io.commits.info(i).vecWen
+    vecFreeList.io.freeReq(i) := rob.io.commits.commitValid(i) && rob.io.commits.info(i).vecWen && (rob.io.commits.info(i).old_pdest =/= 0.U)
     vecFreeList.io.freePhyReg(i) := rob.io.commits.info(i).old_pdest
   }
 
@@ -387,10 +389,11 @@ class Backend(val hartId: Int = 0)(implicit val p: Parameters) extends Module wi
   restore_idx := exec.io.redirect.snapshotIdx
   use_snapshot := !exec.io.redirect.is_exception
 
-  rat.io.snptDeq := false.B
-  intFreeList.io.snptDeq := false.B
-  fpFreeList.io.snptDeq := false.B
-  vecFreeList.io.snptDeq := false.B
+  val num_cfi_commit = PopCount((0 until decodeWidth).map(i => rob.io.commits.commitValid(i) && rob.io.commits.info(i).is_cfi))
+  rat.io.snptDeqCount := num_cfi_commit
+  intFreeList.io.snptDeqCount := num_cfi_commit
+  fpFreeList.io.snptDeqCount := num_cfi_commit
+  vecFreeList.io.snptDeqCount := num_cfi_commit
 
   intIq.io.redirect_valid := redirect_valid
   intIq.io.redirect_restore_idx := restore_idx
@@ -425,25 +428,25 @@ class Backend(val hartId: Int = 0)(implicit val p: Parameters) extends Module wi
   storeSet.io.update := exec.io.memPredUpdate
 
   for (i <- 0 until decodeWidth) {
-    intIq.io.enq(i).valid := dispatch.io.aluOut(i).valid || dispatch.io.bruOut(i).valid
+    intIq.io.enq(i).valid := (dispatch.io.aluOut(i).valid || dispatch.io.bruOut(i).valid) && !redirect_valid
     intIq.io.enq(i).bits := Mux(dispatch.io.aluOut(i).valid, dispatch.io.aluOut(i).bits, dispatch.io.bruOut(i).bits)
-    dispatch.io.aluOut(i).ready := intIq.io.enq(i).ready
-    dispatch.io.bruOut(i).ready := intIq.io.enq(i).ready
+    dispatch.io.aluOut(i).ready := intIq.io.enq(i).ready && !redirect_valid
+    dispatch.io.bruOut(i).ready := intIq.io.enq(i).ready && !redirect_valid
 
     val is_store = dispatch.io.memOut(i).bits.decode.is_store || dispatch.io.memOut(i).bits.decode.is_fstore
     val is_load  = dispatch.io.memOut(i).bits.decode.is_load || dispatch.io.memOut(i).bits.decode.is_fload
 
     // Store Set LFST Query & Allocation
-    storeSet.io.dispatch_req(i).valid        := dispatch.io.memOut(i).valid && dispatch.io.memOut(i).bits.ssid_valid && (is_store || is_load)
+    storeSet.io.dispatch_req(i).valid        := dispatch.io.memOut(i).valid && dispatch.io.memOut(i).bits.ssid_valid && (is_store || is_load) && !redirect_valid
     storeSet.io.dispatch_req(i).bits.isStore := is_store
     storeSet.io.dispatch_req(i).bits.ssid    := dispatch.io.memOut(i).bits.ssid
     storeSet.io.dispatch_req(i).bits.robIdx  := dispatch.io.memOut(i).bits.robIdx
 
-    exec.io.sq_enq(i).valid := dispatch.io.memOut(i).valid && is_store && memIq.io.enq(i).ready
+    exec.io.sq_enq(i).valid := dispatch.io.memOut(i).valid && is_store && memIq.io.enq(i).ready && !redirect_valid
     exec.io.sq_enq(i).bits.robIdx := dispatch.io.memOut(i).bits.robIdx
     exec.io.sq_enq(i).bits.snapshotIdx := dispatch.io.memOut(i).bits.snapshotIdx
 
-    exec.io.lq_enq(i).valid := dispatch.io.memOut(i).valid && is_load && memIq.io.enq(i).ready
+    exec.io.lq_enq(i).valid := dispatch.io.memOut(i).valid && is_load && memIq.io.enq(i).ready && !redirect_valid
     exec.io.lq_enq(i).bits.robIdx := dispatch.io.memOut(i).bits.robIdx
     exec.io.lq_enq(i).bits.snapshotIdx := dispatch.io.memOut(i).bits.snapshotIdx
     exec.io.lq_enq(i).bits.pc := dispatch.io.memOut(i).bits.uop.pc
@@ -461,13 +464,13 @@ class Backend(val hartId: Int = 0)(implicit val p: Parameters) extends Module wi
       }
     }
 
-    memIq.io.enq(i).valid := dispatch.io.memOut(i).valid && lsq_ready
+    memIq.io.enq(i).valid := dispatch.io.memOut(i).valid && lsq_ready && !redirect_valid
     memIq.io.enq(i).bits := mem_uop
-    dispatch.io.memOut(i).ready := memIq.io.enq(i).ready && lsq_ready
+    dispatch.io.memOut(i).ready := memIq.io.enq(i).ready && lsq_ready && !redirect_valid
 
-    fpIq.io.enq(i).valid := dispatch.io.fpuOut(i).valid
+    fpIq.io.enq(i).valid := dispatch.io.fpuOut(i).valid && !redirect_valid
     fpIq.io.enq(i).bits := dispatch.io.fpuOut(i).bits
-    dispatch.io.fpuOut(i).ready := fpIq.io.enq(i).ready
+    dispatch.io.fpuOut(i).ready := fpIq.io.enq(i).ready && !redirect_valid
   }
 
   val vecDispatchQueue = Module(new zaqal.backend.dispatch.VectorDispatchQueue(numEntries = 16))
@@ -485,10 +488,10 @@ class Backend(val hartId: Int = 0)(implicit val p: Parameters) extends Module wi
     val is_load  = dispatch.io.memOut(i).bits.decode.is_load || dispatch.io.memOut(i).bits.decode.is_fload
     val lsq_ready = Mux(is_store, exec.io.sq_enq(i).ready, Mux(is_load, exec.io.lq_enq(i).ready, true.B))
 
-    dispatch.io.aluReady(i) := intIq.io.enq(i).ready
-    dispatch.io.bruReady(i) := intIq.io.enq(i).ready
-    dispatch.io.memReady(i) := memIq.io.enq(i).ready && lsq_ready
-    dispatch.io.fpuReady(i) := fpIq.io.enq(i).ready
+    dispatch.io.aluReady(i) := intIq.io.enq(i).ready && !redirect_valid
+    dispatch.io.bruReady(i) := intIq.io.enq(i).ready && !redirect_valid
+    dispatch.io.memReady(i) := memIq.io.enq(i).ready && lsq_ready && !redirect_valid
+    dispatch.io.fpuReady(i) := fpIq.io.enq(i).ready && !redirect_valid
   }
 
   val int0_arb = Module(new Arbiter(new DecodedMicroOp, 2))

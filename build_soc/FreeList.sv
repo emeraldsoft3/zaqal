@@ -66,816 +66,561 @@
   `endif // PRINTF_COND
 `endif // not def PRINTF_COND_
 
-module FreeList(	// backend/src/zaqal/backend/rename/FreeList.scala:17:7
-  input        clock,	// backend/src/zaqal/backend/rename/FreeList.scala:17:7
-               reset,	// backend/src/zaqal/backend/rename/FreeList.scala:17:7
-               io_allocateReq_0,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_allocateReq_1,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_allocateReq_2,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_allocateReq_3,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_allocateReq_4,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_allocateReq_5,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_allocateFire_0,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_allocateFire_1,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_allocateFire_2,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_allocateFire_3,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_allocateFire_4,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_allocateFire_5,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-  output [7:0] io_allocatePhyReg_0,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_allocatePhyReg_1,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_allocatePhyReg_2,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_allocatePhyReg_3,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_allocatePhyReg_4,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_allocatePhyReg_5,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-  output       io_canAllocate,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-  input        io_doAllocate,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_freeReq_0,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_freeReq_1,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_freeReq_2,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_freeReq_3,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_freeReq_4,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_freeReq_5,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-  input  [7:0] io_freePhyReg_0,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_freePhyReg_1,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_freePhyReg_2,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_freePhyReg_3,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_freePhyReg_4,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_freePhyReg_5,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-  input        io_redirect,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_useSnapshot,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptEnq,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-  input  [2:0] io_snptEnqIdx,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-  input        io_snptFlushVec_0,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_1,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_2,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_3,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_4,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_5,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_6,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_7,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_8,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_9,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_10,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_11,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_12,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_13,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_14,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_15,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_16,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_17,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_18,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_19,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_20,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_21,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_22,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_23,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_24,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_25,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_26,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_27,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_28,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_29,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_30,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_31,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_32,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_33,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_34,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_35,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_36,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_37,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_38,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_39,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_40,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_41,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_42,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_43,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_44,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_45,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_46,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_47,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_48,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_49,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_50,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_51,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_52,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_53,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_54,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_55,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_56,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_57,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_58,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_59,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_60,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_61,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_62,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_63,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_64,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_65,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_66,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_67,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_68,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_69,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_70,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_71,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_72,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_73,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_74,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_75,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_76,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_77,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_78,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_79,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_80,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_81,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_82,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_83,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_84,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_85,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_86,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_87,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_88,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_89,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_90,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_91,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_92,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_93,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_94,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_95,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_96,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_97,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_98,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_99,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_100,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_101,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_102,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_103,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_104,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_105,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_106,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_107,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_108,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_109,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_110,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_111,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_112,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_113,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_114,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_115,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_116,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_117,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_118,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_119,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_120,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_121,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_122,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_123,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_124,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_125,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_126,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_127,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_128,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_129,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_130,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_131,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_132,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_133,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_134,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_135,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_136,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_137,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_138,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_139,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_140,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_141,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_142,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_143,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_144,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_145,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_146,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_147,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_148,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_149,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_150,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_151,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_152,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_153,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_154,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_155,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_156,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_157,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_158,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_159,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_160,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_161,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_162,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_163,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_164,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_165,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_166,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_167,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_168,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_169,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_170,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_171,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_172,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_173,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_174,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_175,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_176,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_177,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_178,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_179,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_180,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_181,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_182,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_183,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_184,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_185,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_186,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_187,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_188,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_189,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_190,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_191,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_192,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_193,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_194,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_195,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_196,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_197,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_198,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_199,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_200,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_201,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_202,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_203,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_204,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_205,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_206,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_207,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_208,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_209,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_210,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_211,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_212,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_213,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_214,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_215,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_216,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_217,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_218,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_219,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_220,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_221,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_222,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_223,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_224,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_225,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_226,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_227,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_228,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_229,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_230,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_231,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_232,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_233,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_234,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_235,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_236,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_237,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_238,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_239,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_240,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_241,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_242,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_243,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_244,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_245,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_246,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_247,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_248,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_249,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_250,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_251,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_252,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_253,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_254,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-               io_snptFlushVec_255,	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-  input  [7:0] io_snptRestoreIdx	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
+module FreeList(	// backend/src/zaqal/backend/rename/FreeList.scala:16:7
+  input        clock,	// backend/src/zaqal/backend/rename/FreeList.scala:16:7
+               reset,	// backend/src/zaqal/backend/rename/FreeList.scala:16:7
+               io_allocateReq_0,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_allocateReq_1,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_allocateReq_2,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_allocateReq_3,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_allocateReq_4,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_allocateReq_5,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_allocateFire_0,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_allocateFire_1,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_allocateFire_2,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_allocateFire_3,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_allocateFire_4,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_allocateFire_5,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+  output [7:0] io_allocatePhyReg_0,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_allocatePhyReg_1,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_allocatePhyReg_2,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_allocatePhyReg_3,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_allocatePhyReg_4,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_allocatePhyReg_5,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+  output       io_canAllocate,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+  input        io_doAllocate,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_freeReq_0,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_freeReq_1,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_freeReq_2,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_freeReq_3,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_freeReq_4,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_freeReq_5,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+  input  [7:0] io_freePhyReg_0,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_freePhyReg_1,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_freePhyReg_2,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_freePhyReg_3,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_freePhyReg_4,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_freePhyReg_5,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+  input        io_redirect,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_useSnapshot,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptEnq,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+  input  [2:0] io_snptEnqIdx,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptDeqCount,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+  input        io_snptFlushVec_0,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_1,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_2,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_3,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_4,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_5,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_6,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_7,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_8,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_9,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_10,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_11,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_12,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_13,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_14,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_15,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_16,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_17,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_18,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_19,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_20,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_21,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_22,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_23,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_24,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_25,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_26,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_27,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_28,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_29,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_30,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_31,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_32,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_33,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_34,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_35,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_36,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_37,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_38,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_39,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_40,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_41,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_42,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_43,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_44,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_45,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_46,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_47,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_48,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_49,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_50,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_51,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_52,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_53,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_54,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_55,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_56,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_57,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_58,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_59,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_60,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_61,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_62,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_63,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_64,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_65,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_66,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_67,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_68,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_69,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_70,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_71,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_72,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_73,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_74,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_75,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_76,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_77,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_78,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_79,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_80,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_81,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_82,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_83,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_84,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_85,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_86,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_87,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_88,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_89,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_90,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_91,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_92,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_93,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_94,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_95,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_96,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_97,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_98,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_99,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_100,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_101,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_102,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_103,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_104,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_105,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_106,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_107,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_108,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_109,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_110,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_111,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_112,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_113,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_114,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_115,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_116,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_117,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_118,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_119,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_120,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_121,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_122,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_123,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_124,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_125,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_126,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_127,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_128,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_129,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_130,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_131,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_132,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_133,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_134,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_135,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_136,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_137,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_138,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_139,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_140,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_141,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_142,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_143,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_144,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_145,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_146,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_147,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_148,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_149,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_150,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_151,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_152,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_153,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_154,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_155,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_156,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_157,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_158,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_159,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_160,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_161,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_162,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_163,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_164,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_165,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_166,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_167,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_168,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_169,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_170,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_171,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_172,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_173,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_174,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_175,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_176,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_177,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_178,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_179,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_180,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_181,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_182,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_183,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_184,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_185,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_186,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_187,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_188,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_189,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_190,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_191,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_192,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_193,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_194,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_195,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_196,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_197,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_198,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_199,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_200,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_201,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_202,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_203,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_204,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_205,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_206,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_207,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_208,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_209,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_210,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_211,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_212,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_213,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_214,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_215,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_216,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_217,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_218,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_219,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_220,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_221,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_222,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_223,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_224,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_225,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_226,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_227,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_228,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_229,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_230,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_231,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_232,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_233,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_234,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_235,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_236,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_237,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_238,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_239,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_240,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_241,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_242,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_243,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_244,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_245,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_246,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_247,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_248,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_249,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_250,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_251,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_252,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_253,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_254,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+               io_snptFlushVec_255,	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+  input  [7:0] io_snptRestoreIdx	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
 );
 
-  wire [7:0]        _snapshots_io_snapshots_0_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_0_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_1_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_1_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_2_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_2_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_3_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_3_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_4_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_4_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_5_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_5_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_6_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_6_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_7_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_7_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_8_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_8_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_9_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_9_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_10_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_10_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_11_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_11_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_12_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_12_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_13_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_13_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_14_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_14_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_15_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_15_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_16_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_16_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_17_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_17_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_18_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_18_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_19_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_19_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_20_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_20_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_21_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_21_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_22_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_22_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_23_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_23_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_24_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_24_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_25_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_25_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_26_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_26_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_27_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_27_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_28_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_28_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_29_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_29_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_30_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_30_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_31_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_31_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_32_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_32_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_33_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_33_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_34_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_34_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_35_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_35_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_36_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_36_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_37_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_37_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_38_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_38_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_39_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_39_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_40_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_40_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_41_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_41_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_42_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_42_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_43_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_43_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_44_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_44_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_45_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_45_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_46_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_46_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_47_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_47_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_48_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_48_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_49_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_49_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_50_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_50_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_51_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_51_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_52_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_52_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_53_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_53_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_54_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_54_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_55_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_55_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_56_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_56_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_57_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_57_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_58_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_58_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_59_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_59_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_60_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_60_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_61_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_61_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_62_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_62_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_63_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_63_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_64_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_64_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_65_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_65_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_66_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_66_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_67_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_67_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_68_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_68_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_69_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_69_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_70_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_70_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_71_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_71_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_72_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_72_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_73_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_73_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_74_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_74_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_75_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_75_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_76_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_76_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_77_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_77_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_78_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_78_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_79_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_79_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_80_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_80_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_81_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_81_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_82_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_82_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_83_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_83_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_84_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_84_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_85_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_85_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_86_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_86_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_87_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_87_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_88_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_88_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_89_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_89_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_90_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_90_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_91_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_91_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_92_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_92_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_93_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_93_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_94_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_94_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_95_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_95_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_96_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_96_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_97_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_97_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_98_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_98_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_99_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_99_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_100_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_100_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_101_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_101_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_102_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_102_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_103_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_103_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_104_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_104_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_105_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_105_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_106_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_106_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_107_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_107_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_108_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_108_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_109_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_109_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_110_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_110_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_111_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_111_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_112_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_112_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_113_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_113_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_114_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_114_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_115_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_115_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_116_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_116_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_117_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_117_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_118_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_118_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_119_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_119_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_120_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_120_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_121_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_121_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_122_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_122_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_123_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_123_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_124_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_124_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_125_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_125_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_126_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_126_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_127_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_127_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_128_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_128_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_129_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_129_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_130_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_130_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_131_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_131_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_132_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_132_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_133_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_133_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_134_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_134_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_135_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_135_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_136_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_136_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_137_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_137_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_138_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_138_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_139_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_139_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_140_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_140_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_141_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_141_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_142_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_142_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_143_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_143_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_144_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_144_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_145_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_145_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_146_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_146_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_147_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_147_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_148_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_148_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_149_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_149_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_150_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_150_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_151_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_151_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_152_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_152_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_153_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_153_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_154_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_154_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_155_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_155_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_156_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_156_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_157_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_157_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_158_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_158_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_159_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_159_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_160_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_160_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_161_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_161_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_162_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_162_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_163_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_163_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_164_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_164_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_165_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_165_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_166_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_166_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_167_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_167_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_168_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_168_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_169_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_169_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_170_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_170_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_171_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_171_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_172_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_172_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_173_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_173_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_174_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_174_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_175_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_175_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_176_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_176_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_177_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_177_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_178_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_178_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_179_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_179_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_180_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_180_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_181_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_181_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_182_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_182_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_183_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_183_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_184_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_184_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_185_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_185_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_186_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_186_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_187_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_187_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_188_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_188_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_189_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_189_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_190_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_190_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_191_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_191_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_192_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_192_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_193_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_193_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_194_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_194_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_195_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_195_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_196_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_196_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_197_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_197_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_198_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_198_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_199_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_199_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_200_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_200_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_201_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_201_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_202_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_202_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_203_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_203_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_204_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_204_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_205_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_205_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_206_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_206_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_207_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_207_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_208_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_208_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_209_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_209_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_210_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_210_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_211_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_211_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_212_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_212_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_213_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_213_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_214_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_214_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_215_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_215_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_216_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_216_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_217_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_217_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_218_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_218_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_219_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_219_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_220_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_220_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_221_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_221_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_222_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_222_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_223_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_223_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_224_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_224_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_225_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_225_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_226_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_226_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_227_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_227_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_228_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_228_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_229_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_229_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_230_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_230_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_231_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_231_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_232_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_232_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_233_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_233_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_234_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_234_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_235_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_235_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_236_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_236_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_237_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_237_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_238_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_238_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_239_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_239_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_240_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_240_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_241_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_241_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_242_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_242_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_243_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_243_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_244_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_244_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_245_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_245_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_246_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_246_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_247_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_247_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_248_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_248_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_249_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_249_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_250_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_250_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_251_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_251_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_252_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_252_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_253_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_253_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_254_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_254_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_255_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-  wire [7:0]        _snapshots_io_snapshots_255_freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
+  wire [7:0]        _snapshots_io_snapshots_0_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_1_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_2_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_3_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_4_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_5_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_6_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_7_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_8_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_9_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_10_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_11_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_12_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_13_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_14_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_15_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_16_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_17_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_18_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_19_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_20_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_21_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_22_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_23_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_24_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_25_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_26_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_27_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_28_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_29_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_30_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_31_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_32_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_33_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_34_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_35_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_36_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_37_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_38_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_39_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_40_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_41_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_42_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_43_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_44_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_45_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_46_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_47_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_48_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_49_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_50_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_51_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_52_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_53_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_54_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_55_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_56_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_57_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_58_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_59_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_60_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_61_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_62_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_63_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_64_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_65_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_66_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_67_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_68_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_69_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_70_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_71_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_72_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_73_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_74_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_75_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_76_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_77_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_78_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_79_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_80_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_81_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_82_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_83_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_84_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_85_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_86_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_87_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_88_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_89_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_90_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_91_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_92_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_93_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_94_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_95_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_96_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_97_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_98_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_99_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_100_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_101_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_102_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_103_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_104_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_105_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_106_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_107_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_108_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_109_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_110_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_111_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_112_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_113_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_114_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_115_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_116_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_117_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_118_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_119_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_120_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_121_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_122_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_123_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_124_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_125_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_126_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_127_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_128_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_129_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_130_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_131_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_132_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_133_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_134_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_135_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_136_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_137_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_138_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_139_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_140_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_141_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_142_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_143_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_144_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_145_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_146_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_147_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_148_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_149_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_150_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_151_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_152_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_153_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_154_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_155_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_156_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_157_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_158_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_159_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_160_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_161_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_162_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_163_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_164_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_165_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_166_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_167_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_168_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_169_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_170_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_171_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_172_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_173_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_174_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_175_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_176_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_177_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_178_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_179_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_180_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_181_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_182_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_183_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_184_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_185_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_186_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_187_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_188_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_189_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_190_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_191_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_192_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_193_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_194_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_195_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_196_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_197_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_198_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_199_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_200_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_201_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_202_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_203_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_204_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_205_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_206_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_207_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_208_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_209_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_210_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_211_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_212_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_213_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_214_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_215_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_216_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_217_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_218_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_219_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_220_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_221_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_222_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_223_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_224_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_225_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_226_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_227_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_228_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_229_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_230_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_231_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_232_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_233_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_234_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_235_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_236_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_237_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_238_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_239_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_240_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_241_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_242_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_243_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_244_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_245_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_246_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_247_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_248_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_249_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_250_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_251_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_252_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_253_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_254_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+  wire [7:0]        _snapshots_io_snapshots_255_headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
   reg  [7:0]        freeList_0;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
   reg  [7:0]        freeList_1;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
   reg  [7:0]        freeList_2;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
@@ -1038,18 +783,22 @@ module FreeList(	// backend/src/zaqal/backend/rename/FreeList.scala:17:7
   reg  [7:0]        freeList_159;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
   reg  [7:0]        headPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:50:24
   reg  [7:0]        tailPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:51:24
-  reg  [7:0]        freeCount;	// backend/src/zaqal/backend/rename/FreeList.scala:54:26
-  wire [1:0]        _GEN = {1'h0, io_allocateReq_1};	// backend/src/zaqal/backend/rename/FreeList.scala:64:29
-  wire [1:0]        _GEN_0 = {1'h0, io_allocateReq_2};	// backend/src/zaqal/backend/rename/FreeList.scala:64:29
-  wire [1:0]        _offset_T_2 = _GEN + _GEN_0;	// backend/src/zaqal/backend/rename/FreeList.scala:64:29
-  wire [1:0]        _GEN_1 = {1'h0, io_allocateReq_0};	// backend/src/zaqal/backend/rename/FreeList.scala:64:29
-  wire [1:0]        _GEN_2 = {1'h0, io_allocateReq_4};	// backend/src/zaqal/backend/rename/FreeList.scala:64:29
-  wire [1:0]        _GEN_3 = {1'h0, io_allocateReq_3};	// backend/src/zaqal/backend/rename/FreeList.scala:64:29
+  wire [8:0]        _GEN = {1'h0, headPtr};	// backend/src/zaqal/backend/rename/FreeList.scala:50:24, :61:50
+  wire [1:0]        _GEN_0 = {1'h0, io_allocateReq_1};	// backend/src/zaqal/backend/rename/FreeList.scala:61:50, :65:29
+  wire [1:0]        _GEN_1 = {1'h0, io_allocateReq_2};	// backend/src/zaqal/backend/rename/FreeList.scala:61:50, :65:29
+  wire [1:0]        _offset_T_2 = _GEN_0 + _GEN_1;	// backend/src/zaqal/backend/rename/FreeList.scala:65:29
+  wire [1:0]        _GEN_2 = {1'h0, io_allocateReq_0};	// backend/src/zaqal/backend/rename/FreeList.scala:61:50, :65:29
+  wire [1:0]        _GEN_3 = {1'h0, io_allocateReq_4};	// backend/src/zaqal/backend/rename/FreeList.scala:61:50, :65:29
+  wire [1:0]        _GEN_4 = {1'h0, io_allocateReq_3};	// backend/src/zaqal/backend/rename/FreeList.scala:61:50, :65:29
   wire              io_canAllocate_0 =
-    freeCount >= {5'h0,
-                  {1'h0, _GEN_1 + _offset_T_2}
-                    + {1'h0, _GEN_3 + _GEN_2 + {1'h0, io_allocateReq_5}}};	// backend/src/zaqal/backend/rename/FreeList.scala:54:26, :64:29, :65:31
-  wire [8:0]        _GEN_4 = {1'h0, headPtr};	// backend/src/zaqal/backend/rename/FreeList.scala:50:24, :59:20, :64:29
+    8'hA0
+    - (headPtr >= tailPtr
+         ? headPtr - tailPtr
+         : 8'hA0
+           - (tailPtr
+              - headPtr)) >= {5'h0,
+                              {1'h0, _GEN_2 + _offset_T_2}
+                                + {1'h0, _GEN_4 + _GEN_3 + {1'h0, io_allocateReq_5}}};	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :50:24, :51:24, :61:{21,30,50,68,79}, :62:26, :65:29, :66:31
   wire [255:0][7:0] _GEN_5 =
     {{freeList_0},
      {freeList_0},
@@ -1306,17 +1055,17 @@ module FreeList(	// backend/src/zaqal/backend/rename/FreeList.scala:17:7
      {freeList_3},
      {freeList_2},
      {freeList_1},
-     {freeList_0}};	// backend/src/zaqal/backend/rename/FreeList.scala:46:25, :69:26
-  wire [8:0]        io_allocatePhyReg_1_next = _GEN_4 + {8'h0, io_allocateReq_0};	// backend/src/zaqal/backend/rename/FreeList.scala:50:24, :59:20
-  wire [1:0]        offset = _GEN_1 + _GEN;	// backend/src/zaqal/backend/rename/FreeList.scala:64:29, :68:26
-  wire [8:0]        io_allocatePhyReg_2_next = _GEN_4 + {7'h0, offset};	// backend/src/zaqal/backend/rename/FreeList.scala:59:20, :68:26
-  wire [8:0]        io_allocatePhyReg_3_next = _GEN_4 + {7'h0, _GEN_1 + _offset_T_2};	// backend/src/zaqal/backend/rename/FreeList.scala:59:20, :64:29, :68:26
-  wire [2:0]        _GEN_6 = {1'h0, offset};	// backend/src/zaqal/backend/rename/FreeList.scala:64:29, :68:26
+     {freeList_0}};	// backend/src/zaqal/backend/rename/FreeList.scala:46:25, :70:26
+  wire [8:0]        io_allocatePhyReg_1_next = _GEN + {8'h0, io_allocateReq_0};	// backend/src/zaqal/backend/rename/FreeList.scala:50:24, :56:20, :61:50
+  wire [1:0]        offset = _GEN_2 + _GEN_0;	// backend/src/zaqal/backend/rename/FreeList.scala:65:29, :69:26
+  wire [8:0]        io_allocatePhyReg_2_next = _GEN + {7'h0, offset};	// backend/src/zaqal/backend/rename/FreeList.scala:56:20, :61:50, :69:26
+  wire [8:0]        io_allocatePhyReg_3_next = _GEN + {7'h0, _GEN_2 + _offset_T_2};	// backend/src/zaqal/backend/rename/FreeList.scala:56:20, :61:50, :65:29, :69:26
+  wire [2:0]        _GEN_6 = {1'h0, offset};	// backend/src/zaqal/backend/rename/FreeList.scala:61:50, :69:26
   wire [8:0]        io_allocatePhyReg_4_next =
-    _GEN_4 + {6'h0, _GEN_6 + {1'h0, _GEN_0 + _GEN_3}};	// backend/src/zaqal/backend/rename/FreeList.scala:17:7, :59:20, :64:29, :68:26
+    _GEN + {6'h0, _GEN_6 + {1'h0, _GEN_1 + _GEN_4}};	// backend/src/zaqal/backend/rename/FreeList.scala:16:7, :56:20, :61:50, :65:29, :69:26
   wire [8:0]        io_allocatePhyReg_5_next =
-    _GEN_4 + {6'h0, _GEN_6 + {1'h0, _GEN_0 + _GEN_3 + _GEN_2}};	// backend/src/zaqal/backend/rename/FreeList.scala:17:7, :59:20, :64:29, :68:26
-  wire [12:0]       _allocMask_T = 13'h1 << io_snptEnqIdx;	// backend/src/zaqal/backend/rename/FreeList.scala:81:39
+    _GEN + {6'h0, _GEN_6 + {1'h0, _GEN_1 + _GEN_4 + _GEN_3}};	// backend/src/zaqal/backend/rename/FreeList.scala:16:7, :56:20, :61:50, :65:29, :69:26
+  wire [12:0]       _allocMask_T = 13'h1 << io_snptEnqIdx;	// backend/src/zaqal/backend/rename/FreeList.scala:86:39
   wire [5:0]        _GEN_7 =
     _allocMask_T[5:0] - 6'h1
     & {io_allocateReq_5,
@@ -1324,819 +1073,315 @@ module FreeList(	// backend/src/zaqal/backend/rename/FreeList.scala:17:7
        io_allocateReq_3,
        io_allocateReq_2,
        io_allocateReq_1,
-       io_allocateReq_0};	// backend/src/zaqal/backend/rename/FreeList.scala:81:{39,57}, :82:{45,52}
-  wire [2:0]        _numAllocPre_T_24 =
-    {1'h0, {1'h0, _GEN_7[0]} + {1'h0, _GEN_7[1]} + {1'h0, _GEN_7[2]}}
-    + {1'h0, {1'h0, _GEN_7[3]} + {1'h0, _GEN_7[4]} + {1'h0, _GEN_7[5]}};	// backend/src/zaqal/backend/rename/FreeList.scala:64:29, :82:{29,52}
-  wire [8:0]        snpt_data_headPtr_next = _GEN_4 + {6'h0, _numAllocPre_T_24};	// backend/src/zaqal/backend/rename/FreeList.scala:17:7, :59:20, :82:29
-  wire              _restoredSnpt_T = io_snptRestoreIdx == 8'h0;	// backend/src/zaqal/backend/rename/FreeList.scala:50:24, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_1 = io_snptRestoreIdx == 8'h1;	// backend/src/zaqal/backend/rename/FreeList.scala:77:42, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_2 = io_snptRestoreIdx == 8'h2;	// backend/src/zaqal/backend/rename/FreeList.scala:77:42, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_3 = io_snptRestoreIdx == 8'h3;	// backend/src/zaqal/backend/rename/FreeList.scala:77:42, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_4 = io_snptRestoreIdx == 8'h4;	// backend/src/zaqal/backend/rename/FreeList.scala:77:42, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_5 = io_snptRestoreIdx == 8'h5;	// backend/src/zaqal/backend/rename/FreeList.scala:77:42, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_6 = io_snptRestoreIdx == 8'h6;	// backend/src/zaqal/backend/rename/FreeList.scala:77:42, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_7 = io_snptRestoreIdx == 8'h7;	// backend/src/zaqal/backend/rename/FreeList.scala:77:42, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_8 = io_snptRestoreIdx == 8'h8;	// backend/src/zaqal/backend/rename/FreeList.scala:77:42, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_9 = io_snptRestoreIdx == 8'h9;	// backend/src/zaqal/backend/rename/FreeList.scala:77:42, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_10 = io_snptRestoreIdx == 8'hA;	// backend/src/zaqal/backend/rename/FreeList.scala:77:42, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_11 = io_snptRestoreIdx == 8'hB;	// backend/src/zaqal/backend/rename/FreeList.scala:77:42, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_12 = io_snptRestoreIdx == 8'hC;	// backend/src/zaqal/backend/rename/FreeList.scala:77:42, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_13 = io_snptRestoreIdx == 8'hD;	// backend/src/zaqal/backend/rename/FreeList.scala:77:42, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_14 = io_snptRestoreIdx == 8'hE;	// backend/src/zaqal/backend/rename/FreeList.scala:77:42, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_15 = io_snptRestoreIdx == 8'hF;	// backend/src/zaqal/backend/rename/FreeList.scala:77:42, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_16 = io_snptRestoreIdx == 8'h10;	// backend/src/zaqal/backend/rename/FreeList.scala:77:42, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_17 = io_snptRestoreIdx == 8'h11;	// backend/src/zaqal/backend/rename/FreeList.scala:77:42, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_18 = io_snptRestoreIdx == 8'h12;	// backend/src/zaqal/backend/rename/FreeList.scala:77:42, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_19 = io_snptRestoreIdx == 8'h13;	// backend/src/zaqal/backend/rename/FreeList.scala:77:42, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_20 = io_snptRestoreIdx == 8'h14;	// backend/src/zaqal/backend/rename/FreeList.scala:77:42, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_21 = io_snptRestoreIdx == 8'h15;	// backend/src/zaqal/backend/rename/FreeList.scala:77:42, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_22 = io_snptRestoreIdx == 8'h16;	// backend/src/zaqal/backend/rename/FreeList.scala:77:42, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_23 = io_snptRestoreIdx == 8'h17;	// backend/src/zaqal/backend/rename/FreeList.scala:77:42, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_24 = io_snptRestoreIdx == 8'h18;	// backend/src/zaqal/backend/rename/FreeList.scala:77:42, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_25 = io_snptRestoreIdx == 8'h19;	// backend/src/zaqal/backend/rename/FreeList.scala:77:42, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_26 = io_snptRestoreIdx == 8'h1A;	// backend/src/zaqal/backend/rename/FreeList.scala:77:42, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_27 = io_snptRestoreIdx == 8'h1B;	// backend/src/zaqal/backend/rename/FreeList.scala:77:42, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_28 = io_snptRestoreIdx == 8'h1C;	// backend/src/zaqal/backend/rename/FreeList.scala:77:42, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_29 = io_snptRestoreIdx == 8'h1D;	// backend/src/zaqal/backend/rename/FreeList.scala:77:42, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_30 = io_snptRestoreIdx == 8'h1E;	// backend/src/zaqal/backend/rename/FreeList.scala:77:42, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_31 = io_snptRestoreIdx == 8'h1F;	// backend/src/zaqal/backend/rename/FreeList.scala:77:42, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_32 = io_snptRestoreIdx == 8'h20;	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_33 = io_snptRestoreIdx == 8'h21;	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_34 = io_snptRestoreIdx == 8'h22;	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_35 = io_snptRestoreIdx == 8'h23;	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_36 = io_snptRestoreIdx == 8'h24;	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_37 = io_snptRestoreIdx == 8'h25;	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_38 = io_snptRestoreIdx == 8'h26;	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_39 = io_snptRestoreIdx == 8'h27;	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_40 = io_snptRestoreIdx == 8'h28;	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_41 = io_snptRestoreIdx == 8'h29;	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_42 = io_snptRestoreIdx == 8'h2A;	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_43 = io_snptRestoreIdx == 8'h2B;	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_44 = io_snptRestoreIdx == 8'h2C;	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_45 = io_snptRestoreIdx == 8'h2D;	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_46 = io_snptRestoreIdx == 8'h2E;	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_47 = io_snptRestoreIdx == 8'h2F;	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_48 = io_snptRestoreIdx == 8'h30;	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_49 = io_snptRestoreIdx == 8'h31;	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_50 = io_snptRestoreIdx == 8'h32;	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_51 = io_snptRestoreIdx == 8'h33;	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_52 = io_snptRestoreIdx == 8'h34;	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_53 = io_snptRestoreIdx == 8'h35;	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_54 = io_snptRestoreIdx == 8'h36;	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_55 = io_snptRestoreIdx == 8'h37;	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_56 = io_snptRestoreIdx == 8'h38;	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_57 = io_snptRestoreIdx == 8'h39;	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_58 = io_snptRestoreIdx == 8'h3A;	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_59 = io_snptRestoreIdx == 8'h3B;	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_60 = io_snptRestoreIdx == 8'h3C;	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_61 = io_snptRestoreIdx == 8'h3D;	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_62 = io_snptRestoreIdx == 8'h3E;	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_63 = io_snptRestoreIdx == 8'h3F;	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_64 = io_snptRestoreIdx == 8'h40;	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_65 = io_snptRestoreIdx == 8'h41;	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_66 = io_snptRestoreIdx == 8'h42;	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_67 = io_snptRestoreIdx == 8'h43;	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_68 = io_snptRestoreIdx == 8'h44;	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_69 = io_snptRestoreIdx == 8'h45;	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_70 = io_snptRestoreIdx == 8'h46;	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_71 = io_snptRestoreIdx == 8'h47;	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_72 = io_snptRestoreIdx == 8'h48;	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_73 = io_snptRestoreIdx == 8'h49;	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_74 = io_snptRestoreIdx == 8'h4A;	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_75 = io_snptRestoreIdx == 8'h4B;	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_76 = io_snptRestoreIdx == 8'h4C;	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_77 = io_snptRestoreIdx == 8'h4D;	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_78 = io_snptRestoreIdx == 8'h4E;	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_79 = io_snptRestoreIdx == 8'h4F;	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_80 = io_snptRestoreIdx == 8'h50;	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_81 = io_snptRestoreIdx == 8'h51;	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_82 = io_snptRestoreIdx == 8'h52;	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_83 = io_snptRestoreIdx == 8'h53;	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_84 = io_snptRestoreIdx == 8'h54;	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_85 = io_snptRestoreIdx == 8'h55;	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_86 = io_snptRestoreIdx == 8'h56;	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_87 = io_snptRestoreIdx == 8'h57;	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_88 = io_snptRestoreIdx == 8'h58;	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_89 = io_snptRestoreIdx == 8'h59;	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_90 = io_snptRestoreIdx == 8'h5A;	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_91 = io_snptRestoreIdx == 8'h5B;	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_92 = io_snptRestoreIdx == 8'h5C;	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_93 = io_snptRestoreIdx == 8'h5D;	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_94 = io_snptRestoreIdx == 8'h5E;	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_95 = io_snptRestoreIdx == 8'h5F;	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_96 = io_snptRestoreIdx == 8'h60;	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_97 = io_snptRestoreIdx == 8'h61;	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_98 = io_snptRestoreIdx == 8'h62;	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_99 = io_snptRestoreIdx == 8'h63;	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_100 = io_snptRestoreIdx == 8'h64;	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_101 = io_snptRestoreIdx == 8'h65;	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_102 = io_snptRestoreIdx == 8'h66;	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_103 = io_snptRestoreIdx == 8'h67;	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_104 = io_snptRestoreIdx == 8'h68;	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_105 = io_snptRestoreIdx == 8'h69;	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_106 = io_snptRestoreIdx == 8'h6A;	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_107 = io_snptRestoreIdx == 8'h6B;	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_108 = io_snptRestoreIdx == 8'h6C;	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_109 = io_snptRestoreIdx == 8'h6D;	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_110 = io_snptRestoreIdx == 8'h6E;	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_111 = io_snptRestoreIdx == 8'h6F;	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_112 = io_snptRestoreIdx == 8'h70;	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_113 = io_snptRestoreIdx == 8'h71;	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_114 = io_snptRestoreIdx == 8'h72;	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_115 = io_snptRestoreIdx == 8'h73;	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_116 = io_snptRestoreIdx == 8'h74;	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_117 = io_snptRestoreIdx == 8'h75;	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_118 = io_snptRestoreIdx == 8'h76;	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_119 = io_snptRestoreIdx == 8'h77;	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_120 = io_snptRestoreIdx == 8'h78;	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_121 = io_snptRestoreIdx == 8'h79;	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_122 = io_snptRestoreIdx == 8'h7A;	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_123 = io_snptRestoreIdx == 8'h7B;	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_124 = io_snptRestoreIdx == 8'h7C;	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_125 = io_snptRestoreIdx == 8'h7D;	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_126 = io_snptRestoreIdx == 8'h7E;	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_127 = io_snptRestoreIdx == 8'h7F;	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_128 = io_snptRestoreIdx == 8'h80;	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_129 = io_snptRestoreIdx == 8'h81;	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_130 = io_snptRestoreIdx == 8'h82;	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_131 = io_snptRestoreIdx == 8'h83;	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_132 = io_snptRestoreIdx == 8'h84;	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_133 = io_snptRestoreIdx == 8'h85;	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_134 = io_snptRestoreIdx == 8'h86;	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_135 = io_snptRestoreIdx == 8'h87;	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_136 = io_snptRestoreIdx == 8'h88;	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_137 = io_snptRestoreIdx == 8'h89;	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_138 = io_snptRestoreIdx == 8'h8A;	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_139 = io_snptRestoreIdx == 8'h8B;	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_140 = io_snptRestoreIdx == 8'h8C;	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_141 = io_snptRestoreIdx == 8'h8D;	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_142 = io_snptRestoreIdx == 8'h8E;	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_143 = io_snptRestoreIdx == 8'h8F;	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_144 = io_snptRestoreIdx == 8'h90;	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_145 = io_snptRestoreIdx == 8'h91;	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_146 = io_snptRestoreIdx == 8'h92;	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_147 = io_snptRestoreIdx == 8'h93;	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_148 = io_snptRestoreIdx == 8'h94;	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_149 = io_snptRestoreIdx == 8'h95;	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_150 = io_snptRestoreIdx == 8'h96;	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_151 = io_snptRestoreIdx == 8'h97;	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_152 = io_snptRestoreIdx == 8'h98;	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_153 = io_snptRestoreIdx == 8'h99;	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_154 = io_snptRestoreIdx == 8'h9A;	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_155 = io_snptRestoreIdx == 8'h9B;	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_156 = io_snptRestoreIdx == 8'h9C;	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_157 = io_snptRestoreIdx == 8'h9D;	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_158 = io_snptRestoreIdx == 8'h9E;	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_159 = io_snptRestoreIdx == 8'h9F;	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_160 = io_snptRestoreIdx == 8'hA0;	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_161 = io_snptRestoreIdx == 8'hA1;	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_162 = io_snptRestoreIdx == 8'hA2;	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_163 = io_snptRestoreIdx == 8'hA3;	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_164 = io_snptRestoreIdx == 8'hA4;	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_165 = io_snptRestoreIdx == 8'hA5;	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_166 = io_snptRestoreIdx == 8'hA6;	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_167 = io_snptRestoreIdx == 8'hA7;	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_168 = io_snptRestoreIdx == 8'hA8;	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_169 = io_snptRestoreIdx == 8'hA9;	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_170 = io_snptRestoreIdx == 8'hAA;	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_171 = io_snptRestoreIdx == 8'hAB;	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_172 = io_snptRestoreIdx == 8'hAC;	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_173 = io_snptRestoreIdx == 8'hAD;	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_174 = io_snptRestoreIdx == 8'hAE;	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_175 = io_snptRestoreIdx == 8'hAF;	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_176 = io_snptRestoreIdx == 8'hB0;	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_177 = io_snptRestoreIdx == 8'hB1;	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_178 = io_snptRestoreIdx == 8'hB2;	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_179 = io_snptRestoreIdx == 8'hB3;	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_180 = io_snptRestoreIdx == 8'hB4;	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_181 = io_snptRestoreIdx == 8'hB5;	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_182 = io_snptRestoreIdx == 8'hB6;	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_183 = io_snptRestoreIdx == 8'hB7;	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_184 = io_snptRestoreIdx == 8'hB8;	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_185 = io_snptRestoreIdx == 8'hB9;	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_186 = io_snptRestoreIdx == 8'hBA;	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_187 = io_snptRestoreIdx == 8'hBB;	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_188 = io_snptRestoreIdx == 8'hBC;	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_189 = io_snptRestoreIdx == 8'hBD;	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_190 = io_snptRestoreIdx == 8'hBE;	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_191 = io_snptRestoreIdx == 8'hBF;	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, src/main/scala/chisel3/util/Mux.scala:32:36
-  wire              _restoredSnpt_T_192 = io_snptRestoreIdx == 8'hC0;	// src/main/scala/chisel3/util/Mux.scala:32:36, src/main/scala/chisel3/util/OneHot.scala:65:12
-  wire              _restoredSnpt_T_193 = io_snptRestoreIdx == 8'hC1;	// src/main/scala/chisel3/util/Mux.scala:32:36, src/main/scala/chisel3/util/OneHot.scala:65:12
-  wire              _restoredSnpt_T_194 = io_snptRestoreIdx == 8'hC2;	// src/main/scala/chisel3/util/Mux.scala:32:36, src/main/scala/chisel3/util/OneHot.scala:65:12
-  wire              _restoredSnpt_T_195 = io_snptRestoreIdx == 8'hC3;	// src/main/scala/chisel3/util/Mux.scala:32:36, src/main/scala/chisel3/util/OneHot.scala:65:12
-  wire              _restoredSnpt_T_196 = io_snptRestoreIdx == 8'hC4;	// src/main/scala/chisel3/util/Mux.scala:32:36, src/main/scala/chisel3/util/OneHot.scala:65:12
-  wire              _restoredSnpt_T_197 = io_snptRestoreIdx == 8'hC5;	// src/main/scala/chisel3/util/Mux.scala:32:36, src/main/scala/chisel3/util/OneHot.scala:65:12
-  wire              _restoredSnpt_T_198 = io_snptRestoreIdx == 8'hC6;	// src/main/scala/chisel3/util/Mux.scala:32:36, src/main/scala/chisel3/util/OneHot.scala:65:12
-  wire              _restoredSnpt_T_199 = io_snptRestoreIdx == 8'hC7;	// src/main/scala/chisel3/util/Mux.scala:32:36, src/main/scala/chisel3/util/OneHot.scala:65:12
-  wire              _restoredSnpt_T_200 = io_snptRestoreIdx == 8'hC8;	// src/main/scala/chisel3/util/Mux.scala:32:36, src/main/scala/chisel3/util/OneHot.scala:65:12
-  wire              _restoredSnpt_T_201 = io_snptRestoreIdx == 8'hC9;	// src/main/scala/chisel3/util/Mux.scala:32:36, src/main/scala/chisel3/util/OneHot.scala:65:12
-  wire              _restoredSnpt_T_202 = io_snptRestoreIdx == 8'hCA;	// src/main/scala/chisel3/util/Mux.scala:32:36, src/main/scala/chisel3/util/OneHot.scala:65:12
-  wire              _restoredSnpt_T_203 = io_snptRestoreIdx == 8'hCB;	// src/main/scala/chisel3/util/Mux.scala:32:36, src/main/scala/chisel3/util/OneHot.scala:65:12
-  wire              _restoredSnpt_T_204 = io_snptRestoreIdx == 8'hCC;	// src/main/scala/chisel3/util/Mux.scala:32:36, src/main/scala/chisel3/util/OneHot.scala:65:12
-  wire              _restoredSnpt_T_205 = io_snptRestoreIdx == 8'hCD;	// src/main/scala/chisel3/util/Mux.scala:32:36, src/main/scala/chisel3/util/OneHot.scala:65:12
-  wire              _restoredSnpt_T_206 = io_snptRestoreIdx == 8'hCE;	// src/main/scala/chisel3/util/Mux.scala:32:36, src/main/scala/chisel3/util/OneHot.scala:65:12
-  wire              _restoredSnpt_T_207 = io_snptRestoreIdx == 8'hCF;	// src/main/scala/chisel3/util/Mux.scala:32:36, src/main/scala/chisel3/util/OneHot.scala:65:12
-  wire              _restoredSnpt_T_208 = io_snptRestoreIdx == 8'hD0;	// src/main/scala/chisel3/util/Mux.scala:32:36, src/main/scala/chisel3/util/OneHot.scala:65:12
-  wire              _restoredSnpt_T_209 = io_snptRestoreIdx == 8'hD1;	// src/main/scala/chisel3/util/Mux.scala:32:36, src/main/scala/chisel3/util/OneHot.scala:65:12
-  wire              _restoredSnpt_T_210 = io_snptRestoreIdx == 8'hD2;	// src/main/scala/chisel3/util/Mux.scala:32:36, src/main/scala/chisel3/util/OneHot.scala:65:12
-  wire              _restoredSnpt_T_211 = io_snptRestoreIdx == 8'hD3;	// src/main/scala/chisel3/util/Mux.scala:32:36, src/main/scala/chisel3/util/OneHot.scala:65:12
-  wire              _restoredSnpt_T_212 = io_snptRestoreIdx == 8'hD4;	// src/main/scala/chisel3/util/Mux.scala:32:36, src/main/scala/chisel3/util/OneHot.scala:65:12
-  wire              _restoredSnpt_T_213 = io_snptRestoreIdx == 8'hD5;	// src/main/scala/chisel3/util/Mux.scala:32:36, src/main/scala/chisel3/util/OneHot.scala:65:12
-  wire              _restoredSnpt_T_214 = io_snptRestoreIdx == 8'hD6;	// src/main/scala/chisel3/util/Mux.scala:32:36, src/main/scala/chisel3/util/OneHot.scala:65:12
-  wire              _restoredSnpt_T_215 = io_snptRestoreIdx == 8'hD7;	// src/main/scala/chisel3/util/Mux.scala:32:36, src/main/scala/chisel3/util/OneHot.scala:65:12
-  wire              _restoredSnpt_T_216 = io_snptRestoreIdx == 8'hD8;	// src/main/scala/chisel3/util/Mux.scala:32:36, src/main/scala/chisel3/util/OneHot.scala:65:12
-  wire              _restoredSnpt_T_217 = io_snptRestoreIdx == 8'hD9;	// src/main/scala/chisel3/util/Mux.scala:32:36, src/main/scala/chisel3/util/OneHot.scala:65:12
-  wire              _restoredSnpt_T_218 = io_snptRestoreIdx == 8'hDA;	// src/main/scala/chisel3/util/Mux.scala:32:36, src/main/scala/chisel3/util/OneHot.scala:65:12
-  wire              _restoredSnpt_T_219 = io_snptRestoreIdx == 8'hDB;	// src/main/scala/chisel3/util/Mux.scala:32:36, src/main/scala/chisel3/util/OneHot.scala:65:12
-  wire              _restoredSnpt_T_220 = io_snptRestoreIdx == 8'hDC;	// src/main/scala/chisel3/util/Mux.scala:32:36, src/main/scala/chisel3/util/OneHot.scala:65:12
-  wire              _restoredSnpt_T_221 = io_snptRestoreIdx == 8'hDD;	// src/main/scala/chisel3/util/Mux.scala:32:36, src/main/scala/chisel3/util/OneHot.scala:65:12
-  wire              _restoredSnpt_T_222 = io_snptRestoreIdx == 8'hDE;	// src/main/scala/chisel3/util/Mux.scala:32:36, src/main/scala/chisel3/util/OneHot.scala:65:12
-  wire              _restoredSnpt_T_223 = io_snptRestoreIdx == 8'hDF;	// src/main/scala/chisel3/util/Mux.scala:32:36, src/main/scala/chisel3/util/OneHot.scala:65:12
-  wire              _restoredSnpt_T_224 = io_snptRestoreIdx == 8'hE0;	// src/main/scala/chisel3/util/Mux.scala:32:36, src/main/scala/chisel3/util/OneHot.scala:65:12
-  wire              _restoredSnpt_T_225 = io_snptRestoreIdx == 8'hE1;	// src/main/scala/chisel3/util/Mux.scala:32:36, src/main/scala/chisel3/util/OneHot.scala:65:12
-  wire              _restoredSnpt_T_226 = io_snptRestoreIdx == 8'hE2;	// src/main/scala/chisel3/util/Mux.scala:32:36, src/main/scala/chisel3/util/OneHot.scala:65:12
-  wire              _restoredSnpt_T_227 = io_snptRestoreIdx == 8'hE3;	// src/main/scala/chisel3/util/Mux.scala:32:36, src/main/scala/chisel3/util/OneHot.scala:65:12
-  wire              _restoredSnpt_T_228 = io_snptRestoreIdx == 8'hE4;	// src/main/scala/chisel3/util/Mux.scala:32:36, src/main/scala/chisel3/util/OneHot.scala:65:12
-  wire              _restoredSnpt_T_229 = io_snptRestoreIdx == 8'hE5;	// src/main/scala/chisel3/util/Mux.scala:32:36, src/main/scala/chisel3/util/OneHot.scala:65:12
-  wire              _restoredSnpt_T_230 = io_snptRestoreIdx == 8'hE6;	// src/main/scala/chisel3/util/Mux.scala:32:36, src/main/scala/chisel3/util/OneHot.scala:65:12
-  wire              _restoredSnpt_T_231 = io_snptRestoreIdx == 8'hE7;	// src/main/scala/chisel3/util/Mux.scala:32:36, src/main/scala/chisel3/util/OneHot.scala:65:12
-  wire              _restoredSnpt_T_232 = io_snptRestoreIdx == 8'hE8;	// src/main/scala/chisel3/util/Mux.scala:32:36, src/main/scala/chisel3/util/OneHot.scala:65:12
-  wire              _restoredSnpt_T_233 = io_snptRestoreIdx == 8'hE9;	// src/main/scala/chisel3/util/Mux.scala:32:36, src/main/scala/chisel3/util/OneHot.scala:65:12
-  wire              _restoredSnpt_T_234 = io_snptRestoreIdx == 8'hEA;	// src/main/scala/chisel3/util/Mux.scala:32:36, src/main/scala/chisel3/util/OneHot.scala:65:12
-  wire              _restoredSnpt_T_235 = io_snptRestoreIdx == 8'hEB;	// src/main/scala/chisel3/util/Mux.scala:32:36, src/main/scala/chisel3/util/OneHot.scala:65:12
-  wire              _restoredSnpt_T_236 = io_snptRestoreIdx == 8'hEC;	// src/main/scala/chisel3/util/Mux.scala:32:36, src/main/scala/chisel3/util/OneHot.scala:65:12
-  wire              _restoredSnpt_T_237 = io_snptRestoreIdx == 8'hED;	// src/main/scala/chisel3/util/Mux.scala:32:36, src/main/scala/chisel3/util/OneHot.scala:65:12
-  wire              _restoredSnpt_T_238 = io_snptRestoreIdx == 8'hEE;	// src/main/scala/chisel3/util/Mux.scala:32:36, src/main/scala/chisel3/util/OneHot.scala:65:12
-  wire              _restoredSnpt_T_239 = io_snptRestoreIdx == 8'hEF;	// src/main/scala/chisel3/util/Mux.scala:32:36, src/main/scala/chisel3/util/OneHot.scala:65:12
-  wire              _restoredSnpt_T_240 = io_snptRestoreIdx == 8'hF0;	// src/main/scala/chisel3/util/Mux.scala:32:36, src/main/scala/chisel3/util/OneHot.scala:65:12
-  wire              _restoredSnpt_T_241 = io_snptRestoreIdx == 8'hF1;	// src/main/scala/chisel3/util/Mux.scala:32:36, src/main/scala/chisel3/util/OneHot.scala:65:12
-  wire              _restoredSnpt_T_242 = io_snptRestoreIdx == 8'hF2;	// src/main/scala/chisel3/util/Mux.scala:32:36, src/main/scala/chisel3/util/OneHot.scala:65:12
-  wire              _restoredSnpt_T_243 = io_snptRestoreIdx == 8'hF3;	// src/main/scala/chisel3/util/Mux.scala:32:36, src/main/scala/chisel3/util/OneHot.scala:65:12
-  wire              _restoredSnpt_T_244 = io_snptRestoreIdx == 8'hF4;	// src/main/scala/chisel3/util/Mux.scala:32:36, src/main/scala/chisel3/util/OneHot.scala:65:12
-  wire              _restoredSnpt_T_245 = io_snptRestoreIdx == 8'hF5;	// src/main/scala/chisel3/util/Mux.scala:32:36, src/main/scala/chisel3/util/OneHot.scala:65:12
-  wire              _restoredSnpt_T_246 = io_snptRestoreIdx == 8'hF6;	// src/main/scala/chisel3/util/Mux.scala:32:36, src/main/scala/chisel3/util/OneHot.scala:65:12
-  wire              _restoredSnpt_T_247 = io_snptRestoreIdx == 8'hF7;	// src/main/scala/chisel3/util/Mux.scala:32:36, src/main/scala/chisel3/util/OneHot.scala:65:12
-  wire              _restoredSnpt_T_248 = io_snptRestoreIdx == 8'hF8;	// src/main/scala/chisel3/util/Mux.scala:32:36, src/main/scala/chisel3/util/OneHot.scala:65:12
-  wire              _restoredSnpt_T_249 = io_snptRestoreIdx == 8'hF9;	// src/main/scala/chisel3/util/Mux.scala:32:36, src/main/scala/chisel3/util/OneHot.scala:65:12
-  wire              _restoredSnpt_T_250 = io_snptRestoreIdx == 8'hFA;	// src/main/scala/chisel3/util/Mux.scala:32:36, src/main/scala/chisel3/util/OneHot.scala:65:12
-  wire              _restoredSnpt_T_251 = io_snptRestoreIdx == 8'hFB;	// src/main/scala/chisel3/util/Mux.scala:32:36, src/main/scala/chisel3/util/OneHot.scala:65:12
-  wire              _restoredSnpt_T_252 = io_snptRestoreIdx == 8'hFC;	// src/main/scala/chisel3/util/Mux.scala:32:36, src/main/scala/chisel3/util/OneHot.scala:65:12
-  wire              _restoredSnpt_T_253 = io_snptRestoreIdx == 8'hFD;	// src/main/scala/chisel3/util/Mux.scala:32:36, src/main/scala/chisel3/util/OneHot.scala:65:12
-  wire              _restoredSnpt_T_254 = io_snptRestoreIdx == 8'hFE;	// src/main/scala/chisel3/util/Mux.scala:32:36, src/main/scala/chisel3/util/OneHot.scala:65:12
+       io_allocateReq_0};	// backend/src/zaqal/backend/rename/FreeList.scala:86:{39,57}, :87:{45,52}
+  wire [8:0]        snpt_data_headPtr_next =
+    _GEN
+    + {6'h0,
+       {1'h0, {1'h0, _GEN_7[0]} + {1'h0, _GEN_7[1]} + {1'h0, _GEN_7[2]}}
+         + {1'h0, {1'h0, _GEN_7[3]} + {1'h0, _GEN_7[4]} + {1'h0, _GEN_7[5]}}};	// backend/src/zaqal/backend/rename/FreeList.scala:16:7, :56:20, :61:50, :87:{29,52}
   wire [7:0]        _GEN_8 =
-    (_restoredSnpt_T ? _snapshots_io_snapshots_0_headPtr : 8'h0)
-    | (_restoredSnpt_T_1 ? _snapshots_io_snapshots_1_headPtr : 8'h0)
-    | (_restoredSnpt_T_2 ? _snapshots_io_snapshots_2_headPtr : 8'h0)
-    | (_restoredSnpt_T_3 ? _snapshots_io_snapshots_3_headPtr : 8'h0)
-    | (_restoredSnpt_T_4 ? _snapshots_io_snapshots_4_headPtr : 8'h0)
-    | (_restoredSnpt_T_5 ? _snapshots_io_snapshots_5_headPtr : 8'h0)
-    | (_restoredSnpt_T_6 ? _snapshots_io_snapshots_6_headPtr : 8'h0)
-    | (_restoredSnpt_T_7 ? _snapshots_io_snapshots_7_headPtr : 8'h0)
-    | (_restoredSnpt_T_8 ? _snapshots_io_snapshots_8_headPtr : 8'h0)
-    | (_restoredSnpt_T_9 ? _snapshots_io_snapshots_9_headPtr : 8'h0)
-    | (_restoredSnpt_T_10 ? _snapshots_io_snapshots_10_headPtr : 8'h0)
-    | (_restoredSnpt_T_11 ? _snapshots_io_snapshots_11_headPtr : 8'h0)
-    | (_restoredSnpt_T_12 ? _snapshots_io_snapshots_12_headPtr : 8'h0)
-    | (_restoredSnpt_T_13 ? _snapshots_io_snapshots_13_headPtr : 8'h0)
-    | (_restoredSnpt_T_14 ? _snapshots_io_snapshots_14_headPtr : 8'h0)
-    | (_restoredSnpt_T_15 ? _snapshots_io_snapshots_15_headPtr : 8'h0)
-    | (_restoredSnpt_T_16 ? _snapshots_io_snapshots_16_headPtr : 8'h0)
-    | (_restoredSnpt_T_17 ? _snapshots_io_snapshots_17_headPtr : 8'h0)
-    | (_restoredSnpt_T_18 ? _snapshots_io_snapshots_18_headPtr : 8'h0)
-    | (_restoredSnpt_T_19 ? _snapshots_io_snapshots_19_headPtr : 8'h0)
-    | (_restoredSnpt_T_20 ? _snapshots_io_snapshots_20_headPtr : 8'h0)
-    | (_restoredSnpt_T_21 ? _snapshots_io_snapshots_21_headPtr : 8'h0)
-    | (_restoredSnpt_T_22 ? _snapshots_io_snapshots_22_headPtr : 8'h0)
-    | (_restoredSnpt_T_23 ? _snapshots_io_snapshots_23_headPtr : 8'h0)
-    | (_restoredSnpt_T_24 ? _snapshots_io_snapshots_24_headPtr : 8'h0)
-    | (_restoredSnpt_T_25 ? _snapshots_io_snapshots_25_headPtr : 8'h0)
-    | (_restoredSnpt_T_26 ? _snapshots_io_snapshots_26_headPtr : 8'h0)
-    | (_restoredSnpt_T_27 ? _snapshots_io_snapshots_27_headPtr : 8'h0)
-    | (_restoredSnpt_T_28 ? _snapshots_io_snapshots_28_headPtr : 8'h0)
-    | (_restoredSnpt_T_29 ? _snapshots_io_snapshots_29_headPtr : 8'h0)
-    | (_restoredSnpt_T_30 ? _snapshots_io_snapshots_30_headPtr : 8'h0)
-    | (_restoredSnpt_T_31 ? _snapshots_io_snapshots_31_headPtr : 8'h0)
-    | (_restoredSnpt_T_32 ? _snapshots_io_snapshots_32_headPtr : 8'h0)
-    | (_restoredSnpt_T_33 ? _snapshots_io_snapshots_33_headPtr : 8'h0)
-    | (_restoredSnpt_T_34 ? _snapshots_io_snapshots_34_headPtr : 8'h0)
-    | (_restoredSnpt_T_35 ? _snapshots_io_snapshots_35_headPtr : 8'h0)
-    | (_restoredSnpt_T_36 ? _snapshots_io_snapshots_36_headPtr : 8'h0)
-    | (_restoredSnpt_T_37 ? _snapshots_io_snapshots_37_headPtr : 8'h0)
-    | (_restoredSnpt_T_38 ? _snapshots_io_snapshots_38_headPtr : 8'h0)
-    | (_restoredSnpt_T_39 ? _snapshots_io_snapshots_39_headPtr : 8'h0)
-    | (_restoredSnpt_T_40 ? _snapshots_io_snapshots_40_headPtr : 8'h0)
-    | (_restoredSnpt_T_41 ? _snapshots_io_snapshots_41_headPtr : 8'h0)
-    | (_restoredSnpt_T_42 ? _snapshots_io_snapshots_42_headPtr : 8'h0)
-    | (_restoredSnpt_T_43 ? _snapshots_io_snapshots_43_headPtr : 8'h0)
-    | (_restoredSnpt_T_44 ? _snapshots_io_snapshots_44_headPtr : 8'h0)
-    | (_restoredSnpt_T_45 ? _snapshots_io_snapshots_45_headPtr : 8'h0)
-    | (_restoredSnpt_T_46 ? _snapshots_io_snapshots_46_headPtr : 8'h0)
-    | (_restoredSnpt_T_47 ? _snapshots_io_snapshots_47_headPtr : 8'h0)
-    | (_restoredSnpt_T_48 ? _snapshots_io_snapshots_48_headPtr : 8'h0)
-    | (_restoredSnpt_T_49 ? _snapshots_io_snapshots_49_headPtr : 8'h0)
-    | (_restoredSnpt_T_50 ? _snapshots_io_snapshots_50_headPtr : 8'h0)
-    | (_restoredSnpt_T_51 ? _snapshots_io_snapshots_51_headPtr : 8'h0)
-    | (_restoredSnpt_T_52 ? _snapshots_io_snapshots_52_headPtr : 8'h0)
-    | (_restoredSnpt_T_53 ? _snapshots_io_snapshots_53_headPtr : 8'h0)
-    | (_restoredSnpt_T_54 ? _snapshots_io_snapshots_54_headPtr : 8'h0)
-    | (_restoredSnpt_T_55 ? _snapshots_io_snapshots_55_headPtr : 8'h0)
-    | (_restoredSnpt_T_56 ? _snapshots_io_snapshots_56_headPtr : 8'h0)
-    | (_restoredSnpt_T_57 ? _snapshots_io_snapshots_57_headPtr : 8'h0)
-    | (_restoredSnpt_T_58 ? _snapshots_io_snapshots_58_headPtr : 8'h0)
-    | (_restoredSnpt_T_59 ? _snapshots_io_snapshots_59_headPtr : 8'h0)
-    | (_restoredSnpt_T_60 ? _snapshots_io_snapshots_60_headPtr : 8'h0)
-    | (_restoredSnpt_T_61 ? _snapshots_io_snapshots_61_headPtr : 8'h0)
-    | (_restoredSnpt_T_62 ? _snapshots_io_snapshots_62_headPtr : 8'h0)
-    | (_restoredSnpt_T_63 ? _snapshots_io_snapshots_63_headPtr : 8'h0)
-    | (_restoredSnpt_T_64 ? _snapshots_io_snapshots_64_headPtr : 8'h0)
-    | (_restoredSnpt_T_65 ? _snapshots_io_snapshots_65_headPtr : 8'h0)
-    | (_restoredSnpt_T_66 ? _snapshots_io_snapshots_66_headPtr : 8'h0)
-    | (_restoredSnpt_T_67 ? _snapshots_io_snapshots_67_headPtr : 8'h0)
-    | (_restoredSnpt_T_68 ? _snapshots_io_snapshots_68_headPtr : 8'h0)
-    | (_restoredSnpt_T_69 ? _snapshots_io_snapshots_69_headPtr : 8'h0)
-    | (_restoredSnpt_T_70 ? _snapshots_io_snapshots_70_headPtr : 8'h0)
-    | (_restoredSnpt_T_71 ? _snapshots_io_snapshots_71_headPtr : 8'h0)
-    | (_restoredSnpt_T_72 ? _snapshots_io_snapshots_72_headPtr : 8'h0)
-    | (_restoredSnpt_T_73 ? _snapshots_io_snapshots_73_headPtr : 8'h0)
-    | (_restoredSnpt_T_74 ? _snapshots_io_snapshots_74_headPtr : 8'h0)
-    | (_restoredSnpt_T_75 ? _snapshots_io_snapshots_75_headPtr : 8'h0)
-    | (_restoredSnpt_T_76 ? _snapshots_io_snapshots_76_headPtr : 8'h0)
-    | (_restoredSnpt_T_77 ? _snapshots_io_snapshots_77_headPtr : 8'h0)
-    | (_restoredSnpt_T_78 ? _snapshots_io_snapshots_78_headPtr : 8'h0)
-    | (_restoredSnpt_T_79 ? _snapshots_io_snapshots_79_headPtr : 8'h0)
-    | (_restoredSnpt_T_80 ? _snapshots_io_snapshots_80_headPtr : 8'h0)
-    | (_restoredSnpt_T_81 ? _snapshots_io_snapshots_81_headPtr : 8'h0)
-    | (_restoredSnpt_T_82 ? _snapshots_io_snapshots_82_headPtr : 8'h0)
-    | (_restoredSnpt_T_83 ? _snapshots_io_snapshots_83_headPtr : 8'h0)
-    | (_restoredSnpt_T_84 ? _snapshots_io_snapshots_84_headPtr : 8'h0)
-    | (_restoredSnpt_T_85 ? _snapshots_io_snapshots_85_headPtr : 8'h0)
-    | (_restoredSnpt_T_86 ? _snapshots_io_snapshots_86_headPtr : 8'h0)
-    | (_restoredSnpt_T_87 ? _snapshots_io_snapshots_87_headPtr : 8'h0)
-    | (_restoredSnpt_T_88 ? _snapshots_io_snapshots_88_headPtr : 8'h0)
-    | (_restoredSnpt_T_89 ? _snapshots_io_snapshots_89_headPtr : 8'h0)
-    | (_restoredSnpt_T_90 ? _snapshots_io_snapshots_90_headPtr : 8'h0)
-    | (_restoredSnpt_T_91 ? _snapshots_io_snapshots_91_headPtr : 8'h0)
-    | (_restoredSnpt_T_92 ? _snapshots_io_snapshots_92_headPtr : 8'h0)
-    | (_restoredSnpt_T_93 ? _snapshots_io_snapshots_93_headPtr : 8'h0)
-    | (_restoredSnpt_T_94 ? _snapshots_io_snapshots_94_headPtr : 8'h0)
-    | (_restoredSnpt_T_95 ? _snapshots_io_snapshots_95_headPtr : 8'h0)
-    | (_restoredSnpt_T_96 ? _snapshots_io_snapshots_96_headPtr : 8'h0)
-    | (_restoredSnpt_T_97 ? _snapshots_io_snapshots_97_headPtr : 8'h0)
-    | (_restoredSnpt_T_98 ? _snapshots_io_snapshots_98_headPtr : 8'h0)
-    | (_restoredSnpt_T_99 ? _snapshots_io_snapshots_99_headPtr : 8'h0)
-    | (_restoredSnpt_T_100 ? _snapshots_io_snapshots_100_headPtr : 8'h0)
-    | (_restoredSnpt_T_101 ? _snapshots_io_snapshots_101_headPtr : 8'h0)
-    | (_restoredSnpt_T_102 ? _snapshots_io_snapshots_102_headPtr : 8'h0)
-    | (_restoredSnpt_T_103 ? _snapshots_io_snapshots_103_headPtr : 8'h0)
-    | (_restoredSnpt_T_104 ? _snapshots_io_snapshots_104_headPtr : 8'h0)
-    | (_restoredSnpt_T_105 ? _snapshots_io_snapshots_105_headPtr : 8'h0)
-    | (_restoredSnpt_T_106 ? _snapshots_io_snapshots_106_headPtr : 8'h0)
-    | (_restoredSnpt_T_107 ? _snapshots_io_snapshots_107_headPtr : 8'h0)
-    | (_restoredSnpt_T_108 ? _snapshots_io_snapshots_108_headPtr : 8'h0)
-    | (_restoredSnpt_T_109 ? _snapshots_io_snapshots_109_headPtr : 8'h0)
-    | (_restoredSnpt_T_110 ? _snapshots_io_snapshots_110_headPtr : 8'h0)
-    | (_restoredSnpt_T_111 ? _snapshots_io_snapshots_111_headPtr : 8'h0)
-    | (_restoredSnpt_T_112 ? _snapshots_io_snapshots_112_headPtr : 8'h0)
-    | (_restoredSnpt_T_113 ? _snapshots_io_snapshots_113_headPtr : 8'h0)
-    | (_restoredSnpt_T_114 ? _snapshots_io_snapshots_114_headPtr : 8'h0)
-    | (_restoredSnpt_T_115 ? _snapshots_io_snapshots_115_headPtr : 8'h0)
-    | (_restoredSnpt_T_116 ? _snapshots_io_snapshots_116_headPtr : 8'h0)
-    | (_restoredSnpt_T_117 ? _snapshots_io_snapshots_117_headPtr : 8'h0)
-    | (_restoredSnpt_T_118 ? _snapshots_io_snapshots_118_headPtr : 8'h0)
-    | (_restoredSnpt_T_119 ? _snapshots_io_snapshots_119_headPtr : 8'h0)
-    | (_restoredSnpt_T_120 ? _snapshots_io_snapshots_120_headPtr : 8'h0)
-    | (_restoredSnpt_T_121 ? _snapshots_io_snapshots_121_headPtr : 8'h0)
-    | (_restoredSnpt_T_122 ? _snapshots_io_snapshots_122_headPtr : 8'h0)
-    | (_restoredSnpt_T_123 ? _snapshots_io_snapshots_123_headPtr : 8'h0)
-    | (_restoredSnpt_T_124 ? _snapshots_io_snapshots_124_headPtr : 8'h0)
-    | (_restoredSnpt_T_125 ? _snapshots_io_snapshots_125_headPtr : 8'h0)
-    | (_restoredSnpt_T_126 ? _snapshots_io_snapshots_126_headPtr : 8'h0)
-    | (_restoredSnpt_T_127 ? _snapshots_io_snapshots_127_headPtr : 8'h0);	// backend/src/zaqal/backend/rename/FreeList.scala:50:24, :56:25, src/main/scala/chisel3/util/Mux.scala:30:73, :32:36
+    (io_snptRestoreIdx == 8'h0 ? _snapshots_io_snapshots_0_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'h1 ? _snapshots_io_snapshots_1_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'h2 ? _snapshots_io_snapshots_2_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'h3 ? _snapshots_io_snapshots_3_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'h4 ? _snapshots_io_snapshots_4_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'h5 ? _snapshots_io_snapshots_5_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'h6 ? _snapshots_io_snapshots_6_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'h7 ? _snapshots_io_snapshots_7_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'h8 ? _snapshots_io_snapshots_8_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'h9 ? _snapshots_io_snapshots_9_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'hA ? _snapshots_io_snapshots_10_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'hB ? _snapshots_io_snapshots_11_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'hC ? _snapshots_io_snapshots_12_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'hD ? _snapshots_io_snapshots_13_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'hE ? _snapshots_io_snapshots_14_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'hF ? _snapshots_io_snapshots_15_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'h10 ? _snapshots_io_snapshots_16_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'h11 ? _snapshots_io_snapshots_17_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'h12 ? _snapshots_io_snapshots_18_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'h13 ? _snapshots_io_snapshots_19_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'h14 ? _snapshots_io_snapshots_20_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'h15 ? _snapshots_io_snapshots_21_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'h16 ? _snapshots_io_snapshots_22_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'h17 ? _snapshots_io_snapshots_23_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'h18 ? _snapshots_io_snapshots_24_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'h19 ? _snapshots_io_snapshots_25_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'h1A ? _snapshots_io_snapshots_26_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'h1B ? _snapshots_io_snapshots_27_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'h1C ? _snapshots_io_snapshots_28_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'h1D ? _snapshots_io_snapshots_29_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'h1E ? _snapshots_io_snapshots_30_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'h1F ? _snapshots_io_snapshots_31_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'h20 ? _snapshots_io_snapshots_32_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'h21 ? _snapshots_io_snapshots_33_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'h22 ? _snapshots_io_snapshots_34_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'h23 ? _snapshots_io_snapshots_35_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'h24 ? _snapshots_io_snapshots_36_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'h25 ? _snapshots_io_snapshots_37_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'h26 ? _snapshots_io_snapshots_38_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'h27 ? _snapshots_io_snapshots_39_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'h28 ? _snapshots_io_snapshots_40_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'h29 ? _snapshots_io_snapshots_41_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'h2A ? _snapshots_io_snapshots_42_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'h2B ? _snapshots_io_snapshots_43_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'h2C ? _snapshots_io_snapshots_44_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'h2D ? _snapshots_io_snapshots_45_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'h2E ? _snapshots_io_snapshots_46_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'h2F ? _snapshots_io_snapshots_47_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'h30 ? _snapshots_io_snapshots_48_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'h31 ? _snapshots_io_snapshots_49_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'h32 ? _snapshots_io_snapshots_50_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'h33 ? _snapshots_io_snapshots_51_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'h34 ? _snapshots_io_snapshots_52_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'h35 ? _snapshots_io_snapshots_53_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'h36 ? _snapshots_io_snapshots_54_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'h37 ? _snapshots_io_snapshots_55_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'h38 ? _snapshots_io_snapshots_56_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'h39 ? _snapshots_io_snapshots_57_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'h3A ? _snapshots_io_snapshots_58_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'h3B ? _snapshots_io_snapshots_59_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'h3C ? _snapshots_io_snapshots_60_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'h3D ? _snapshots_io_snapshots_61_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'h3E ? _snapshots_io_snapshots_62_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'h3F ? _snapshots_io_snapshots_63_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'h40 ? _snapshots_io_snapshots_64_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'h41 ? _snapshots_io_snapshots_65_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'h42 ? _snapshots_io_snapshots_66_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'h43 ? _snapshots_io_snapshots_67_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'h44 ? _snapshots_io_snapshots_68_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'h45 ? _snapshots_io_snapshots_69_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'h46 ? _snapshots_io_snapshots_70_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'h47 ? _snapshots_io_snapshots_71_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'h48 ? _snapshots_io_snapshots_72_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'h49 ? _snapshots_io_snapshots_73_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'h4A ? _snapshots_io_snapshots_74_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'h4B ? _snapshots_io_snapshots_75_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'h4C ? _snapshots_io_snapshots_76_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'h4D ? _snapshots_io_snapshots_77_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'h4E ? _snapshots_io_snapshots_78_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'h4F ? _snapshots_io_snapshots_79_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'h50 ? _snapshots_io_snapshots_80_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'h51 ? _snapshots_io_snapshots_81_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'h52 ? _snapshots_io_snapshots_82_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'h53 ? _snapshots_io_snapshots_83_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'h54 ? _snapshots_io_snapshots_84_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'h55 ? _snapshots_io_snapshots_85_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'h56 ? _snapshots_io_snapshots_86_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'h57 ? _snapshots_io_snapshots_87_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'h58 ? _snapshots_io_snapshots_88_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'h59 ? _snapshots_io_snapshots_89_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'h5A ? _snapshots_io_snapshots_90_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'h5B ? _snapshots_io_snapshots_91_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'h5C ? _snapshots_io_snapshots_92_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'h5D ? _snapshots_io_snapshots_93_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'h5E ? _snapshots_io_snapshots_94_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'h5F ? _snapshots_io_snapshots_95_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'h60 ? _snapshots_io_snapshots_96_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'h61 ? _snapshots_io_snapshots_97_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'h62 ? _snapshots_io_snapshots_98_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'h63 ? _snapshots_io_snapshots_99_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'h64 ? _snapshots_io_snapshots_100_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'h65 ? _snapshots_io_snapshots_101_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'h66 ? _snapshots_io_snapshots_102_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'h67 ? _snapshots_io_snapshots_103_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'h68 ? _snapshots_io_snapshots_104_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'h69 ? _snapshots_io_snapshots_105_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'h6A ? _snapshots_io_snapshots_106_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'h6B ? _snapshots_io_snapshots_107_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'h6C ? _snapshots_io_snapshots_108_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'h6D ? _snapshots_io_snapshots_109_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'h6E ? _snapshots_io_snapshots_110_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'h6F ? _snapshots_io_snapshots_111_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'h70 ? _snapshots_io_snapshots_112_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'h71 ? _snapshots_io_snapshots_113_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'h72 ? _snapshots_io_snapshots_114_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'h73 ? _snapshots_io_snapshots_115_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'h74 ? _snapshots_io_snapshots_116_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'h75 ? _snapshots_io_snapshots_117_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'h76 ? _snapshots_io_snapshots_118_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'h77 ? _snapshots_io_snapshots_119_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'h78 ? _snapshots_io_snapshots_120_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'h79 ? _snapshots_io_snapshots_121_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'h7A ? _snapshots_io_snapshots_122_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'h7B ? _snapshots_io_snapshots_123_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'h7C ? _snapshots_io_snapshots_124_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'h7D ? _snapshots_io_snapshots_125_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'h7E ? _snapshots_io_snapshots_126_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'h7F ? _snapshots_io_snapshots_127_headPtr : 8'h0);	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :50:24, :53:25, :82:42, src/main/scala/chisel3/util/Mux.scala:30:73, :32:36
   wire [7:0]        _GEN_9 =
-    (_restoredSnpt_T_128 ? _snapshots_io_snapshots_128_headPtr : 8'h0)
-    | (_restoredSnpt_T_129 ? _snapshots_io_snapshots_129_headPtr : 8'h0)
-    | (_restoredSnpt_T_130 ? _snapshots_io_snapshots_130_headPtr : 8'h0)
-    | (_restoredSnpt_T_131 ? _snapshots_io_snapshots_131_headPtr : 8'h0)
-    | (_restoredSnpt_T_132 ? _snapshots_io_snapshots_132_headPtr : 8'h0)
-    | (_restoredSnpt_T_133 ? _snapshots_io_snapshots_133_headPtr : 8'h0)
-    | (_restoredSnpt_T_134 ? _snapshots_io_snapshots_134_headPtr : 8'h0)
-    | (_restoredSnpt_T_135 ? _snapshots_io_snapshots_135_headPtr : 8'h0)
-    | (_restoredSnpt_T_136 ? _snapshots_io_snapshots_136_headPtr : 8'h0)
-    | (_restoredSnpt_T_137 ? _snapshots_io_snapshots_137_headPtr : 8'h0)
-    | (_restoredSnpt_T_138 ? _snapshots_io_snapshots_138_headPtr : 8'h0)
-    | (_restoredSnpt_T_139 ? _snapshots_io_snapshots_139_headPtr : 8'h0)
-    | (_restoredSnpt_T_140 ? _snapshots_io_snapshots_140_headPtr : 8'h0)
-    | (_restoredSnpt_T_141 ? _snapshots_io_snapshots_141_headPtr : 8'h0)
-    | (_restoredSnpt_T_142 ? _snapshots_io_snapshots_142_headPtr : 8'h0)
-    | (_restoredSnpt_T_143 ? _snapshots_io_snapshots_143_headPtr : 8'h0)
-    | (_restoredSnpt_T_144 ? _snapshots_io_snapshots_144_headPtr : 8'h0)
-    | (_restoredSnpt_T_145 ? _snapshots_io_snapshots_145_headPtr : 8'h0)
-    | (_restoredSnpt_T_146 ? _snapshots_io_snapshots_146_headPtr : 8'h0)
-    | (_restoredSnpt_T_147 ? _snapshots_io_snapshots_147_headPtr : 8'h0)
-    | (_restoredSnpt_T_148 ? _snapshots_io_snapshots_148_headPtr : 8'h0)
-    | (_restoredSnpt_T_149 ? _snapshots_io_snapshots_149_headPtr : 8'h0)
-    | (_restoredSnpt_T_150 ? _snapshots_io_snapshots_150_headPtr : 8'h0)
-    | (_restoredSnpt_T_151 ? _snapshots_io_snapshots_151_headPtr : 8'h0)
-    | (_restoredSnpt_T_152 ? _snapshots_io_snapshots_152_headPtr : 8'h0)
-    | (_restoredSnpt_T_153 ? _snapshots_io_snapshots_153_headPtr : 8'h0)
-    | (_restoredSnpt_T_154 ? _snapshots_io_snapshots_154_headPtr : 8'h0)
-    | (_restoredSnpt_T_155 ? _snapshots_io_snapshots_155_headPtr : 8'h0)
-    | (_restoredSnpt_T_156 ? _snapshots_io_snapshots_156_headPtr : 8'h0)
-    | (_restoredSnpt_T_157 ? _snapshots_io_snapshots_157_headPtr : 8'h0)
-    | (_restoredSnpt_T_158 ? _snapshots_io_snapshots_158_headPtr : 8'h0)
-    | (_restoredSnpt_T_159 ? _snapshots_io_snapshots_159_headPtr : 8'h0)
-    | (_restoredSnpt_T_160 ? _snapshots_io_snapshots_160_headPtr : 8'h0)
-    | (_restoredSnpt_T_161 ? _snapshots_io_snapshots_161_headPtr : 8'h0)
-    | (_restoredSnpt_T_162 ? _snapshots_io_snapshots_162_headPtr : 8'h0)
-    | (_restoredSnpt_T_163 ? _snapshots_io_snapshots_163_headPtr : 8'h0)
-    | (_restoredSnpt_T_164 ? _snapshots_io_snapshots_164_headPtr : 8'h0)
-    | (_restoredSnpt_T_165 ? _snapshots_io_snapshots_165_headPtr : 8'h0)
-    | (_restoredSnpt_T_166 ? _snapshots_io_snapshots_166_headPtr : 8'h0)
-    | (_restoredSnpt_T_167 ? _snapshots_io_snapshots_167_headPtr : 8'h0)
-    | (_restoredSnpt_T_168 ? _snapshots_io_snapshots_168_headPtr : 8'h0)
-    | (_restoredSnpt_T_169 ? _snapshots_io_snapshots_169_headPtr : 8'h0)
-    | (_restoredSnpt_T_170 ? _snapshots_io_snapshots_170_headPtr : 8'h0)
-    | (_restoredSnpt_T_171 ? _snapshots_io_snapshots_171_headPtr : 8'h0)
-    | (_restoredSnpt_T_172 ? _snapshots_io_snapshots_172_headPtr : 8'h0)
-    | (_restoredSnpt_T_173 ? _snapshots_io_snapshots_173_headPtr : 8'h0)
-    | (_restoredSnpt_T_174 ? _snapshots_io_snapshots_174_headPtr : 8'h0)
-    | (_restoredSnpt_T_175 ? _snapshots_io_snapshots_175_headPtr : 8'h0)
-    | (_restoredSnpt_T_176 ? _snapshots_io_snapshots_176_headPtr : 8'h0)
-    | (_restoredSnpt_T_177 ? _snapshots_io_snapshots_177_headPtr : 8'h0)
-    | (_restoredSnpt_T_178 ? _snapshots_io_snapshots_178_headPtr : 8'h0)
-    | (_restoredSnpt_T_179 ? _snapshots_io_snapshots_179_headPtr : 8'h0)
-    | (_restoredSnpt_T_180 ? _snapshots_io_snapshots_180_headPtr : 8'h0)
-    | (_restoredSnpt_T_181 ? _snapshots_io_snapshots_181_headPtr : 8'h0)
-    | (_restoredSnpt_T_182 ? _snapshots_io_snapshots_182_headPtr : 8'h0)
-    | (_restoredSnpt_T_183 ? _snapshots_io_snapshots_183_headPtr : 8'h0)
-    | (_restoredSnpt_T_184 ? _snapshots_io_snapshots_184_headPtr : 8'h0)
-    | (_restoredSnpt_T_185 ? _snapshots_io_snapshots_185_headPtr : 8'h0)
-    | (_restoredSnpt_T_186 ? _snapshots_io_snapshots_186_headPtr : 8'h0)
-    | (_restoredSnpt_T_187 ? _snapshots_io_snapshots_187_headPtr : 8'h0)
-    | (_restoredSnpt_T_188 ? _snapshots_io_snapshots_188_headPtr : 8'h0)
-    | (_restoredSnpt_T_189 ? _snapshots_io_snapshots_189_headPtr : 8'h0)
-    | (_restoredSnpt_T_190 ? _snapshots_io_snapshots_190_headPtr : 8'h0)
-    | (_restoredSnpt_T_191 ? _snapshots_io_snapshots_191_headPtr : 8'h0)
-    | (_restoredSnpt_T_192 ? _snapshots_io_snapshots_192_headPtr : 8'h0)
-    | (_restoredSnpt_T_193 ? _snapshots_io_snapshots_193_headPtr : 8'h0)
-    | (_restoredSnpt_T_194 ? _snapshots_io_snapshots_194_headPtr : 8'h0)
-    | (_restoredSnpt_T_195 ? _snapshots_io_snapshots_195_headPtr : 8'h0)
-    | (_restoredSnpt_T_196 ? _snapshots_io_snapshots_196_headPtr : 8'h0)
-    | (_restoredSnpt_T_197 ? _snapshots_io_snapshots_197_headPtr : 8'h0)
-    | (_restoredSnpt_T_198 ? _snapshots_io_snapshots_198_headPtr : 8'h0)
-    | (_restoredSnpt_T_199 ? _snapshots_io_snapshots_199_headPtr : 8'h0)
-    | (_restoredSnpt_T_200 ? _snapshots_io_snapshots_200_headPtr : 8'h0)
-    | (_restoredSnpt_T_201 ? _snapshots_io_snapshots_201_headPtr : 8'h0)
-    | (_restoredSnpt_T_202 ? _snapshots_io_snapshots_202_headPtr : 8'h0)
-    | (_restoredSnpt_T_203 ? _snapshots_io_snapshots_203_headPtr : 8'h0)
-    | (_restoredSnpt_T_204 ? _snapshots_io_snapshots_204_headPtr : 8'h0)
-    | (_restoredSnpt_T_205 ? _snapshots_io_snapshots_205_headPtr : 8'h0)
-    | (_restoredSnpt_T_206 ? _snapshots_io_snapshots_206_headPtr : 8'h0)
-    | (_restoredSnpt_T_207 ? _snapshots_io_snapshots_207_headPtr : 8'h0)
-    | (_restoredSnpt_T_208 ? _snapshots_io_snapshots_208_headPtr : 8'h0)
-    | (_restoredSnpt_T_209 ? _snapshots_io_snapshots_209_headPtr : 8'h0)
-    | (_restoredSnpt_T_210 ? _snapshots_io_snapshots_210_headPtr : 8'h0)
-    | (_restoredSnpt_T_211 ? _snapshots_io_snapshots_211_headPtr : 8'h0)
-    | (_restoredSnpt_T_212 ? _snapshots_io_snapshots_212_headPtr : 8'h0)
-    | (_restoredSnpt_T_213 ? _snapshots_io_snapshots_213_headPtr : 8'h0)
-    | (_restoredSnpt_T_214 ? _snapshots_io_snapshots_214_headPtr : 8'h0)
-    | (_restoredSnpt_T_215 ? _snapshots_io_snapshots_215_headPtr : 8'h0)
-    | (_restoredSnpt_T_216 ? _snapshots_io_snapshots_216_headPtr : 8'h0)
-    | (_restoredSnpt_T_217 ? _snapshots_io_snapshots_217_headPtr : 8'h0)
-    | (_restoredSnpt_T_218 ? _snapshots_io_snapshots_218_headPtr : 8'h0)
-    | (_restoredSnpt_T_219 ? _snapshots_io_snapshots_219_headPtr : 8'h0)
-    | (_restoredSnpt_T_220 ? _snapshots_io_snapshots_220_headPtr : 8'h0)
-    | (_restoredSnpt_T_221 ? _snapshots_io_snapshots_221_headPtr : 8'h0)
-    | (_restoredSnpt_T_222 ? _snapshots_io_snapshots_222_headPtr : 8'h0)
-    | (_restoredSnpt_T_223 ? _snapshots_io_snapshots_223_headPtr : 8'h0)
-    | (_restoredSnpt_T_224 ? _snapshots_io_snapshots_224_headPtr : 8'h0)
-    | (_restoredSnpt_T_225 ? _snapshots_io_snapshots_225_headPtr : 8'h0)
-    | (_restoredSnpt_T_226 ? _snapshots_io_snapshots_226_headPtr : 8'h0)
-    | (_restoredSnpt_T_227 ? _snapshots_io_snapshots_227_headPtr : 8'h0)
-    | (_restoredSnpt_T_228 ? _snapshots_io_snapshots_228_headPtr : 8'h0)
-    | (_restoredSnpt_T_229 ? _snapshots_io_snapshots_229_headPtr : 8'h0)
-    | (_restoredSnpt_T_230 ? _snapshots_io_snapshots_230_headPtr : 8'h0)
-    | (_restoredSnpt_T_231 ? _snapshots_io_snapshots_231_headPtr : 8'h0)
-    | (_restoredSnpt_T_232 ? _snapshots_io_snapshots_232_headPtr : 8'h0)
-    | (_restoredSnpt_T_233 ? _snapshots_io_snapshots_233_headPtr : 8'h0)
-    | (_restoredSnpt_T_234 ? _snapshots_io_snapshots_234_headPtr : 8'h0)
-    | (_restoredSnpt_T_235 ? _snapshots_io_snapshots_235_headPtr : 8'h0)
-    | (_restoredSnpt_T_236 ? _snapshots_io_snapshots_236_headPtr : 8'h0)
-    | (_restoredSnpt_T_237 ? _snapshots_io_snapshots_237_headPtr : 8'h0)
-    | (_restoredSnpt_T_238 ? _snapshots_io_snapshots_238_headPtr : 8'h0)
-    | (_restoredSnpt_T_239 ? _snapshots_io_snapshots_239_headPtr : 8'h0)
-    | (_restoredSnpt_T_240 ? _snapshots_io_snapshots_240_headPtr : 8'h0)
-    | (_restoredSnpt_T_241 ? _snapshots_io_snapshots_241_headPtr : 8'h0)
-    | (_restoredSnpt_T_242 ? _snapshots_io_snapshots_242_headPtr : 8'h0)
-    | (_restoredSnpt_T_243 ? _snapshots_io_snapshots_243_headPtr : 8'h0)
-    | (_restoredSnpt_T_244 ? _snapshots_io_snapshots_244_headPtr : 8'h0)
-    | (_restoredSnpt_T_245 ? _snapshots_io_snapshots_245_headPtr : 8'h0)
-    | (_restoredSnpt_T_246 ? _snapshots_io_snapshots_246_headPtr : 8'h0)
-    | (_restoredSnpt_T_247 ? _snapshots_io_snapshots_247_headPtr : 8'h0)
-    | (_restoredSnpt_T_248 ? _snapshots_io_snapshots_248_headPtr : 8'h0)
-    | (_restoredSnpt_T_249 ? _snapshots_io_snapshots_249_headPtr : 8'h0)
-    | (_restoredSnpt_T_250 ? _snapshots_io_snapshots_250_headPtr : 8'h0)
-    | (_restoredSnpt_T_251 ? _snapshots_io_snapshots_251_headPtr : 8'h0)
-    | (_restoredSnpt_T_252 ? _snapshots_io_snapshots_252_headPtr : 8'h0)
-    | (_restoredSnpt_T_253 ? _snapshots_io_snapshots_253_headPtr : 8'h0)
-    | (_restoredSnpt_T_254 ? _snapshots_io_snapshots_254_headPtr : 8'h0)
-    | ((&io_snptRestoreIdx) ? _snapshots_io_snapshots_255_headPtr : 8'h0);	// backend/src/zaqal/backend/rename/FreeList.scala:50:24, :56:25, src/main/scala/chisel3/util/Mux.scala:30:73, :32:36
-  wire [7:0]        _GEN_10 =
-    (_restoredSnpt_T ? _snapshots_io_snapshots_0_freeCount : 8'h0)
-    | (_restoredSnpt_T_1 ? _snapshots_io_snapshots_1_freeCount : 8'h0)
-    | (_restoredSnpt_T_2 ? _snapshots_io_snapshots_2_freeCount : 8'h0)
-    | (_restoredSnpt_T_3 ? _snapshots_io_snapshots_3_freeCount : 8'h0)
-    | (_restoredSnpt_T_4 ? _snapshots_io_snapshots_4_freeCount : 8'h0)
-    | (_restoredSnpt_T_5 ? _snapshots_io_snapshots_5_freeCount : 8'h0)
-    | (_restoredSnpt_T_6 ? _snapshots_io_snapshots_6_freeCount : 8'h0)
-    | (_restoredSnpt_T_7 ? _snapshots_io_snapshots_7_freeCount : 8'h0)
-    | (_restoredSnpt_T_8 ? _snapshots_io_snapshots_8_freeCount : 8'h0)
-    | (_restoredSnpt_T_9 ? _snapshots_io_snapshots_9_freeCount : 8'h0)
-    | (_restoredSnpt_T_10 ? _snapshots_io_snapshots_10_freeCount : 8'h0)
-    | (_restoredSnpt_T_11 ? _snapshots_io_snapshots_11_freeCount : 8'h0)
-    | (_restoredSnpt_T_12 ? _snapshots_io_snapshots_12_freeCount : 8'h0)
-    | (_restoredSnpt_T_13 ? _snapshots_io_snapshots_13_freeCount : 8'h0)
-    | (_restoredSnpt_T_14 ? _snapshots_io_snapshots_14_freeCount : 8'h0)
-    | (_restoredSnpt_T_15 ? _snapshots_io_snapshots_15_freeCount : 8'h0)
-    | (_restoredSnpt_T_16 ? _snapshots_io_snapshots_16_freeCount : 8'h0)
-    | (_restoredSnpt_T_17 ? _snapshots_io_snapshots_17_freeCount : 8'h0)
-    | (_restoredSnpt_T_18 ? _snapshots_io_snapshots_18_freeCount : 8'h0)
-    | (_restoredSnpt_T_19 ? _snapshots_io_snapshots_19_freeCount : 8'h0)
-    | (_restoredSnpt_T_20 ? _snapshots_io_snapshots_20_freeCount : 8'h0)
-    | (_restoredSnpt_T_21 ? _snapshots_io_snapshots_21_freeCount : 8'h0)
-    | (_restoredSnpt_T_22 ? _snapshots_io_snapshots_22_freeCount : 8'h0)
-    | (_restoredSnpt_T_23 ? _snapshots_io_snapshots_23_freeCount : 8'h0)
-    | (_restoredSnpt_T_24 ? _snapshots_io_snapshots_24_freeCount : 8'h0)
-    | (_restoredSnpt_T_25 ? _snapshots_io_snapshots_25_freeCount : 8'h0)
-    | (_restoredSnpt_T_26 ? _snapshots_io_snapshots_26_freeCount : 8'h0)
-    | (_restoredSnpt_T_27 ? _snapshots_io_snapshots_27_freeCount : 8'h0)
-    | (_restoredSnpt_T_28 ? _snapshots_io_snapshots_28_freeCount : 8'h0)
-    | (_restoredSnpt_T_29 ? _snapshots_io_snapshots_29_freeCount : 8'h0)
-    | (_restoredSnpt_T_30 ? _snapshots_io_snapshots_30_freeCount : 8'h0)
-    | (_restoredSnpt_T_31 ? _snapshots_io_snapshots_31_freeCount : 8'h0)
-    | (_restoredSnpt_T_32 ? _snapshots_io_snapshots_32_freeCount : 8'h0)
-    | (_restoredSnpt_T_33 ? _snapshots_io_snapshots_33_freeCount : 8'h0)
-    | (_restoredSnpt_T_34 ? _snapshots_io_snapshots_34_freeCount : 8'h0)
-    | (_restoredSnpt_T_35 ? _snapshots_io_snapshots_35_freeCount : 8'h0)
-    | (_restoredSnpt_T_36 ? _snapshots_io_snapshots_36_freeCount : 8'h0)
-    | (_restoredSnpt_T_37 ? _snapshots_io_snapshots_37_freeCount : 8'h0)
-    | (_restoredSnpt_T_38 ? _snapshots_io_snapshots_38_freeCount : 8'h0)
-    | (_restoredSnpt_T_39 ? _snapshots_io_snapshots_39_freeCount : 8'h0)
-    | (_restoredSnpt_T_40 ? _snapshots_io_snapshots_40_freeCount : 8'h0)
-    | (_restoredSnpt_T_41 ? _snapshots_io_snapshots_41_freeCount : 8'h0)
-    | (_restoredSnpt_T_42 ? _snapshots_io_snapshots_42_freeCount : 8'h0)
-    | (_restoredSnpt_T_43 ? _snapshots_io_snapshots_43_freeCount : 8'h0)
-    | (_restoredSnpt_T_44 ? _snapshots_io_snapshots_44_freeCount : 8'h0)
-    | (_restoredSnpt_T_45 ? _snapshots_io_snapshots_45_freeCount : 8'h0)
-    | (_restoredSnpt_T_46 ? _snapshots_io_snapshots_46_freeCount : 8'h0)
-    | (_restoredSnpt_T_47 ? _snapshots_io_snapshots_47_freeCount : 8'h0)
-    | (_restoredSnpt_T_48 ? _snapshots_io_snapshots_48_freeCount : 8'h0)
-    | (_restoredSnpt_T_49 ? _snapshots_io_snapshots_49_freeCount : 8'h0)
-    | (_restoredSnpt_T_50 ? _snapshots_io_snapshots_50_freeCount : 8'h0)
-    | (_restoredSnpt_T_51 ? _snapshots_io_snapshots_51_freeCount : 8'h0)
-    | (_restoredSnpt_T_52 ? _snapshots_io_snapshots_52_freeCount : 8'h0)
-    | (_restoredSnpt_T_53 ? _snapshots_io_snapshots_53_freeCount : 8'h0)
-    | (_restoredSnpt_T_54 ? _snapshots_io_snapshots_54_freeCount : 8'h0)
-    | (_restoredSnpt_T_55 ? _snapshots_io_snapshots_55_freeCount : 8'h0)
-    | (_restoredSnpt_T_56 ? _snapshots_io_snapshots_56_freeCount : 8'h0)
-    | (_restoredSnpt_T_57 ? _snapshots_io_snapshots_57_freeCount : 8'h0)
-    | (_restoredSnpt_T_58 ? _snapshots_io_snapshots_58_freeCount : 8'h0)
-    | (_restoredSnpt_T_59 ? _snapshots_io_snapshots_59_freeCount : 8'h0)
-    | (_restoredSnpt_T_60 ? _snapshots_io_snapshots_60_freeCount : 8'h0)
-    | (_restoredSnpt_T_61 ? _snapshots_io_snapshots_61_freeCount : 8'h0)
-    | (_restoredSnpt_T_62 ? _snapshots_io_snapshots_62_freeCount : 8'h0)
-    | (_restoredSnpt_T_63 ? _snapshots_io_snapshots_63_freeCount : 8'h0)
-    | (_restoredSnpt_T_64 ? _snapshots_io_snapshots_64_freeCount : 8'h0)
-    | (_restoredSnpt_T_65 ? _snapshots_io_snapshots_65_freeCount : 8'h0)
-    | (_restoredSnpt_T_66 ? _snapshots_io_snapshots_66_freeCount : 8'h0)
-    | (_restoredSnpt_T_67 ? _snapshots_io_snapshots_67_freeCount : 8'h0)
-    | (_restoredSnpt_T_68 ? _snapshots_io_snapshots_68_freeCount : 8'h0)
-    | (_restoredSnpt_T_69 ? _snapshots_io_snapshots_69_freeCount : 8'h0)
-    | (_restoredSnpt_T_70 ? _snapshots_io_snapshots_70_freeCount : 8'h0)
-    | (_restoredSnpt_T_71 ? _snapshots_io_snapshots_71_freeCount : 8'h0)
-    | (_restoredSnpt_T_72 ? _snapshots_io_snapshots_72_freeCount : 8'h0)
-    | (_restoredSnpt_T_73 ? _snapshots_io_snapshots_73_freeCount : 8'h0)
-    | (_restoredSnpt_T_74 ? _snapshots_io_snapshots_74_freeCount : 8'h0)
-    | (_restoredSnpt_T_75 ? _snapshots_io_snapshots_75_freeCount : 8'h0)
-    | (_restoredSnpt_T_76 ? _snapshots_io_snapshots_76_freeCount : 8'h0)
-    | (_restoredSnpt_T_77 ? _snapshots_io_snapshots_77_freeCount : 8'h0)
-    | (_restoredSnpt_T_78 ? _snapshots_io_snapshots_78_freeCount : 8'h0)
-    | (_restoredSnpt_T_79 ? _snapshots_io_snapshots_79_freeCount : 8'h0)
-    | (_restoredSnpt_T_80 ? _snapshots_io_snapshots_80_freeCount : 8'h0)
-    | (_restoredSnpt_T_81 ? _snapshots_io_snapshots_81_freeCount : 8'h0)
-    | (_restoredSnpt_T_82 ? _snapshots_io_snapshots_82_freeCount : 8'h0)
-    | (_restoredSnpt_T_83 ? _snapshots_io_snapshots_83_freeCount : 8'h0)
-    | (_restoredSnpt_T_84 ? _snapshots_io_snapshots_84_freeCount : 8'h0)
-    | (_restoredSnpt_T_85 ? _snapshots_io_snapshots_85_freeCount : 8'h0)
-    | (_restoredSnpt_T_86 ? _snapshots_io_snapshots_86_freeCount : 8'h0)
-    | (_restoredSnpt_T_87 ? _snapshots_io_snapshots_87_freeCount : 8'h0)
-    | (_restoredSnpt_T_88 ? _snapshots_io_snapshots_88_freeCount : 8'h0)
-    | (_restoredSnpt_T_89 ? _snapshots_io_snapshots_89_freeCount : 8'h0)
-    | (_restoredSnpt_T_90 ? _snapshots_io_snapshots_90_freeCount : 8'h0)
-    | (_restoredSnpt_T_91 ? _snapshots_io_snapshots_91_freeCount : 8'h0)
-    | (_restoredSnpt_T_92 ? _snapshots_io_snapshots_92_freeCount : 8'h0)
-    | (_restoredSnpt_T_93 ? _snapshots_io_snapshots_93_freeCount : 8'h0)
-    | (_restoredSnpt_T_94 ? _snapshots_io_snapshots_94_freeCount : 8'h0)
-    | (_restoredSnpt_T_95 ? _snapshots_io_snapshots_95_freeCount : 8'h0)
-    | (_restoredSnpt_T_96 ? _snapshots_io_snapshots_96_freeCount : 8'h0)
-    | (_restoredSnpt_T_97 ? _snapshots_io_snapshots_97_freeCount : 8'h0)
-    | (_restoredSnpt_T_98 ? _snapshots_io_snapshots_98_freeCount : 8'h0)
-    | (_restoredSnpt_T_99 ? _snapshots_io_snapshots_99_freeCount : 8'h0)
-    | (_restoredSnpt_T_100 ? _snapshots_io_snapshots_100_freeCount : 8'h0)
-    | (_restoredSnpt_T_101 ? _snapshots_io_snapshots_101_freeCount : 8'h0)
-    | (_restoredSnpt_T_102 ? _snapshots_io_snapshots_102_freeCount : 8'h0)
-    | (_restoredSnpt_T_103 ? _snapshots_io_snapshots_103_freeCount : 8'h0)
-    | (_restoredSnpt_T_104 ? _snapshots_io_snapshots_104_freeCount : 8'h0)
-    | (_restoredSnpt_T_105 ? _snapshots_io_snapshots_105_freeCount : 8'h0)
-    | (_restoredSnpt_T_106 ? _snapshots_io_snapshots_106_freeCount : 8'h0)
-    | (_restoredSnpt_T_107 ? _snapshots_io_snapshots_107_freeCount : 8'h0)
-    | (_restoredSnpt_T_108 ? _snapshots_io_snapshots_108_freeCount : 8'h0)
-    | (_restoredSnpt_T_109 ? _snapshots_io_snapshots_109_freeCount : 8'h0)
-    | (_restoredSnpt_T_110 ? _snapshots_io_snapshots_110_freeCount : 8'h0)
-    | (_restoredSnpt_T_111 ? _snapshots_io_snapshots_111_freeCount : 8'h0)
-    | (_restoredSnpt_T_112 ? _snapshots_io_snapshots_112_freeCount : 8'h0)
-    | (_restoredSnpt_T_113 ? _snapshots_io_snapshots_113_freeCount : 8'h0)
-    | (_restoredSnpt_T_114 ? _snapshots_io_snapshots_114_freeCount : 8'h0)
-    | (_restoredSnpt_T_115 ? _snapshots_io_snapshots_115_freeCount : 8'h0)
-    | (_restoredSnpt_T_116 ? _snapshots_io_snapshots_116_freeCount : 8'h0)
-    | (_restoredSnpt_T_117 ? _snapshots_io_snapshots_117_freeCount : 8'h0)
-    | (_restoredSnpt_T_118 ? _snapshots_io_snapshots_118_freeCount : 8'h0)
-    | (_restoredSnpt_T_119 ? _snapshots_io_snapshots_119_freeCount : 8'h0)
-    | (_restoredSnpt_T_120 ? _snapshots_io_snapshots_120_freeCount : 8'h0)
-    | (_restoredSnpt_T_121 ? _snapshots_io_snapshots_121_freeCount : 8'h0)
-    | (_restoredSnpt_T_122 ? _snapshots_io_snapshots_122_freeCount : 8'h0)
-    | (_restoredSnpt_T_123 ? _snapshots_io_snapshots_123_freeCount : 8'h0)
-    | (_restoredSnpt_T_124 ? _snapshots_io_snapshots_124_freeCount : 8'h0)
-    | (_restoredSnpt_T_125 ? _snapshots_io_snapshots_125_freeCount : 8'h0)
-    | (_restoredSnpt_T_126 ? _snapshots_io_snapshots_126_freeCount : 8'h0)
-    | (_restoredSnpt_T_127 ? _snapshots_io_snapshots_127_freeCount : 8'h0);	// backend/src/zaqal/backend/rename/FreeList.scala:50:24, :56:25, src/main/scala/chisel3/util/Mux.scala:30:73, :32:36
-  wire [7:0]        _GEN_11 =
-    (_restoredSnpt_T_128 ? _snapshots_io_snapshots_128_freeCount : 8'h0)
-    | (_restoredSnpt_T_129 ? _snapshots_io_snapshots_129_freeCount : 8'h0)
-    | (_restoredSnpt_T_130 ? _snapshots_io_snapshots_130_freeCount : 8'h0)
-    | (_restoredSnpt_T_131 ? _snapshots_io_snapshots_131_freeCount : 8'h0)
-    | (_restoredSnpt_T_132 ? _snapshots_io_snapshots_132_freeCount : 8'h0)
-    | (_restoredSnpt_T_133 ? _snapshots_io_snapshots_133_freeCount : 8'h0)
-    | (_restoredSnpt_T_134 ? _snapshots_io_snapshots_134_freeCount : 8'h0)
-    | (_restoredSnpt_T_135 ? _snapshots_io_snapshots_135_freeCount : 8'h0)
-    | (_restoredSnpt_T_136 ? _snapshots_io_snapshots_136_freeCount : 8'h0)
-    | (_restoredSnpt_T_137 ? _snapshots_io_snapshots_137_freeCount : 8'h0)
-    | (_restoredSnpt_T_138 ? _snapshots_io_snapshots_138_freeCount : 8'h0)
-    | (_restoredSnpt_T_139 ? _snapshots_io_snapshots_139_freeCount : 8'h0)
-    | (_restoredSnpt_T_140 ? _snapshots_io_snapshots_140_freeCount : 8'h0)
-    | (_restoredSnpt_T_141 ? _snapshots_io_snapshots_141_freeCount : 8'h0)
-    | (_restoredSnpt_T_142 ? _snapshots_io_snapshots_142_freeCount : 8'h0)
-    | (_restoredSnpt_T_143 ? _snapshots_io_snapshots_143_freeCount : 8'h0)
-    | (_restoredSnpt_T_144 ? _snapshots_io_snapshots_144_freeCount : 8'h0)
-    | (_restoredSnpt_T_145 ? _snapshots_io_snapshots_145_freeCount : 8'h0)
-    | (_restoredSnpt_T_146 ? _snapshots_io_snapshots_146_freeCount : 8'h0)
-    | (_restoredSnpt_T_147 ? _snapshots_io_snapshots_147_freeCount : 8'h0)
-    | (_restoredSnpt_T_148 ? _snapshots_io_snapshots_148_freeCount : 8'h0)
-    | (_restoredSnpt_T_149 ? _snapshots_io_snapshots_149_freeCount : 8'h0)
-    | (_restoredSnpt_T_150 ? _snapshots_io_snapshots_150_freeCount : 8'h0)
-    | (_restoredSnpt_T_151 ? _snapshots_io_snapshots_151_freeCount : 8'h0)
-    | (_restoredSnpt_T_152 ? _snapshots_io_snapshots_152_freeCount : 8'h0)
-    | (_restoredSnpt_T_153 ? _snapshots_io_snapshots_153_freeCount : 8'h0)
-    | (_restoredSnpt_T_154 ? _snapshots_io_snapshots_154_freeCount : 8'h0)
-    | (_restoredSnpt_T_155 ? _snapshots_io_snapshots_155_freeCount : 8'h0)
-    | (_restoredSnpt_T_156 ? _snapshots_io_snapshots_156_freeCount : 8'h0)
-    | (_restoredSnpt_T_157 ? _snapshots_io_snapshots_157_freeCount : 8'h0)
-    | (_restoredSnpt_T_158 ? _snapshots_io_snapshots_158_freeCount : 8'h0)
-    | (_restoredSnpt_T_159 ? _snapshots_io_snapshots_159_freeCount : 8'h0)
-    | (_restoredSnpt_T_160 ? _snapshots_io_snapshots_160_freeCount : 8'h0)
-    | (_restoredSnpt_T_161 ? _snapshots_io_snapshots_161_freeCount : 8'h0)
-    | (_restoredSnpt_T_162 ? _snapshots_io_snapshots_162_freeCount : 8'h0)
-    | (_restoredSnpt_T_163 ? _snapshots_io_snapshots_163_freeCount : 8'h0)
-    | (_restoredSnpt_T_164 ? _snapshots_io_snapshots_164_freeCount : 8'h0)
-    | (_restoredSnpt_T_165 ? _snapshots_io_snapshots_165_freeCount : 8'h0)
-    | (_restoredSnpt_T_166 ? _snapshots_io_snapshots_166_freeCount : 8'h0)
-    | (_restoredSnpt_T_167 ? _snapshots_io_snapshots_167_freeCount : 8'h0)
-    | (_restoredSnpt_T_168 ? _snapshots_io_snapshots_168_freeCount : 8'h0)
-    | (_restoredSnpt_T_169 ? _snapshots_io_snapshots_169_freeCount : 8'h0)
-    | (_restoredSnpt_T_170 ? _snapshots_io_snapshots_170_freeCount : 8'h0)
-    | (_restoredSnpt_T_171 ? _snapshots_io_snapshots_171_freeCount : 8'h0)
-    | (_restoredSnpt_T_172 ? _snapshots_io_snapshots_172_freeCount : 8'h0)
-    | (_restoredSnpt_T_173 ? _snapshots_io_snapshots_173_freeCount : 8'h0)
-    | (_restoredSnpt_T_174 ? _snapshots_io_snapshots_174_freeCount : 8'h0)
-    | (_restoredSnpt_T_175 ? _snapshots_io_snapshots_175_freeCount : 8'h0)
-    | (_restoredSnpt_T_176 ? _snapshots_io_snapshots_176_freeCount : 8'h0)
-    | (_restoredSnpt_T_177 ? _snapshots_io_snapshots_177_freeCount : 8'h0)
-    | (_restoredSnpt_T_178 ? _snapshots_io_snapshots_178_freeCount : 8'h0)
-    | (_restoredSnpt_T_179 ? _snapshots_io_snapshots_179_freeCount : 8'h0)
-    | (_restoredSnpt_T_180 ? _snapshots_io_snapshots_180_freeCount : 8'h0)
-    | (_restoredSnpt_T_181 ? _snapshots_io_snapshots_181_freeCount : 8'h0)
-    | (_restoredSnpt_T_182 ? _snapshots_io_snapshots_182_freeCount : 8'h0)
-    | (_restoredSnpt_T_183 ? _snapshots_io_snapshots_183_freeCount : 8'h0)
-    | (_restoredSnpt_T_184 ? _snapshots_io_snapshots_184_freeCount : 8'h0)
-    | (_restoredSnpt_T_185 ? _snapshots_io_snapshots_185_freeCount : 8'h0)
-    | (_restoredSnpt_T_186 ? _snapshots_io_snapshots_186_freeCount : 8'h0)
-    | (_restoredSnpt_T_187 ? _snapshots_io_snapshots_187_freeCount : 8'h0)
-    | (_restoredSnpt_T_188 ? _snapshots_io_snapshots_188_freeCount : 8'h0)
-    | (_restoredSnpt_T_189 ? _snapshots_io_snapshots_189_freeCount : 8'h0)
-    | (_restoredSnpt_T_190 ? _snapshots_io_snapshots_190_freeCount : 8'h0)
-    | (_restoredSnpt_T_191 ? _snapshots_io_snapshots_191_freeCount : 8'h0)
-    | (_restoredSnpt_T_192 ? _snapshots_io_snapshots_192_freeCount : 8'h0)
-    | (_restoredSnpt_T_193 ? _snapshots_io_snapshots_193_freeCount : 8'h0)
-    | (_restoredSnpt_T_194 ? _snapshots_io_snapshots_194_freeCount : 8'h0)
-    | (_restoredSnpt_T_195 ? _snapshots_io_snapshots_195_freeCount : 8'h0)
-    | (_restoredSnpt_T_196 ? _snapshots_io_snapshots_196_freeCount : 8'h0)
-    | (_restoredSnpt_T_197 ? _snapshots_io_snapshots_197_freeCount : 8'h0)
-    | (_restoredSnpt_T_198 ? _snapshots_io_snapshots_198_freeCount : 8'h0)
-    | (_restoredSnpt_T_199 ? _snapshots_io_snapshots_199_freeCount : 8'h0)
-    | (_restoredSnpt_T_200 ? _snapshots_io_snapshots_200_freeCount : 8'h0)
-    | (_restoredSnpt_T_201 ? _snapshots_io_snapshots_201_freeCount : 8'h0)
-    | (_restoredSnpt_T_202 ? _snapshots_io_snapshots_202_freeCount : 8'h0)
-    | (_restoredSnpt_T_203 ? _snapshots_io_snapshots_203_freeCount : 8'h0)
-    | (_restoredSnpt_T_204 ? _snapshots_io_snapshots_204_freeCount : 8'h0)
-    | (_restoredSnpt_T_205 ? _snapshots_io_snapshots_205_freeCount : 8'h0)
-    | (_restoredSnpt_T_206 ? _snapshots_io_snapshots_206_freeCount : 8'h0)
-    | (_restoredSnpt_T_207 ? _snapshots_io_snapshots_207_freeCount : 8'h0)
-    | (_restoredSnpt_T_208 ? _snapshots_io_snapshots_208_freeCount : 8'h0)
-    | (_restoredSnpt_T_209 ? _snapshots_io_snapshots_209_freeCount : 8'h0)
-    | (_restoredSnpt_T_210 ? _snapshots_io_snapshots_210_freeCount : 8'h0)
-    | (_restoredSnpt_T_211 ? _snapshots_io_snapshots_211_freeCount : 8'h0)
-    | (_restoredSnpt_T_212 ? _snapshots_io_snapshots_212_freeCount : 8'h0)
-    | (_restoredSnpt_T_213 ? _snapshots_io_snapshots_213_freeCount : 8'h0)
-    | (_restoredSnpt_T_214 ? _snapshots_io_snapshots_214_freeCount : 8'h0)
-    | (_restoredSnpt_T_215 ? _snapshots_io_snapshots_215_freeCount : 8'h0)
-    | (_restoredSnpt_T_216 ? _snapshots_io_snapshots_216_freeCount : 8'h0)
-    | (_restoredSnpt_T_217 ? _snapshots_io_snapshots_217_freeCount : 8'h0)
-    | (_restoredSnpt_T_218 ? _snapshots_io_snapshots_218_freeCount : 8'h0)
-    | (_restoredSnpt_T_219 ? _snapshots_io_snapshots_219_freeCount : 8'h0)
-    | (_restoredSnpt_T_220 ? _snapshots_io_snapshots_220_freeCount : 8'h0)
-    | (_restoredSnpt_T_221 ? _snapshots_io_snapshots_221_freeCount : 8'h0)
-    | (_restoredSnpt_T_222 ? _snapshots_io_snapshots_222_freeCount : 8'h0)
-    | (_restoredSnpt_T_223 ? _snapshots_io_snapshots_223_freeCount : 8'h0)
-    | (_restoredSnpt_T_224 ? _snapshots_io_snapshots_224_freeCount : 8'h0)
-    | (_restoredSnpt_T_225 ? _snapshots_io_snapshots_225_freeCount : 8'h0)
-    | (_restoredSnpt_T_226 ? _snapshots_io_snapshots_226_freeCount : 8'h0)
-    | (_restoredSnpt_T_227 ? _snapshots_io_snapshots_227_freeCount : 8'h0)
-    | (_restoredSnpt_T_228 ? _snapshots_io_snapshots_228_freeCount : 8'h0)
-    | (_restoredSnpt_T_229 ? _snapshots_io_snapshots_229_freeCount : 8'h0)
-    | (_restoredSnpt_T_230 ? _snapshots_io_snapshots_230_freeCount : 8'h0)
-    | (_restoredSnpt_T_231 ? _snapshots_io_snapshots_231_freeCount : 8'h0)
-    | (_restoredSnpt_T_232 ? _snapshots_io_snapshots_232_freeCount : 8'h0)
-    | (_restoredSnpt_T_233 ? _snapshots_io_snapshots_233_freeCount : 8'h0)
-    | (_restoredSnpt_T_234 ? _snapshots_io_snapshots_234_freeCount : 8'h0)
-    | (_restoredSnpt_T_235 ? _snapshots_io_snapshots_235_freeCount : 8'h0)
-    | (_restoredSnpt_T_236 ? _snapshots_io_snapshots_236_freeCount : 8'h0)
-    | (_restoredSnpt_T_237 ? _snapshots_io_snapshots_237_freeCount : 8'h0)
-    | (_restoredSnpt_T_238 ? _snapshots_io_snapshots_238_freeCount : 8'h0)
-    | (_restoredSnpt_T_239 ? _snapshots_io_snapshots_239_freeCount : 8'h0)
-    | (_restoredSnpt_T_240 ? _snapshots_io_snapshots_240_freeCount : 8'h0)
-    | (_restoredSnpt_T_241 ? _snapshots_io_snapshots_241_freeCount : 8'h0)
-    | (_restoredSnpt_T_242 ? _snapshots_io_snapshots_242_freeCount : 8'h0)
-    | (_restoredSnpt_T_243 ? _snapshots_io_snapshots_243_freeCount : 8'h0)
-    | (_restoredSnpt_T_244 ? _snapshots_io_snapshots_244_freeCount : 8'h0)
-    | (_restoredSnpt_T_245 ? _snapshots_io_snapshots_245_freeCount : 8'h0)
-    | (_restoredSnpt_T_246 ? _snapshots_io_snapshots_246_freeCount : 8'h0)
-    | (_restoredSnpt_T_247 ? _snapshots_io_snapshots_247_freeCount : 8'h0)
-    | (_restoredSnpt_T_248 ? _snapshots_io_snapshots_248_freeCount : 8'h0)
-    | (_restoredSnpt_T_249 ? _snapshots_io_snapshots_249_freeCount : 8'h0)
-    | (_restoredSnpt_T_250 ? _snapshots_io_snapshots_250_freeCount : 8'h0)
-    | (_restoredSnpt_T_251 ? _snapshots_io_snapshots_251_freeCount : 8'h0)
-    | (_restoredSnpt_T_252 ? _snapshots_io_snapshots_252_freeCount : 8'h0)
-    | (_restoredSnpt_T_253 ? _snapshots_io_snapshots_253_freeCount : 8'h0)
-    | (_restoredSnpt_T_254 ? _snapshots_io_snapshots_254_freeCount : 8'h0)
-    | ((&io_snptRestoreIdx) ? _snapshots_io_snapshots_255_freeCount : 8'h0);	// backend/src/zaqal/backend/rename/FreeList.scala:50:24, :56:25, src/main/scala/chisel3/util/Mux.scala:30:73, :32:36
-  wire [2:0]        actualAlloc =
-    io_doAllocate & io_canAllocate_0
-      ? {1'h0,
-         {1'h0, io_allocateFire_0} + {1'h0, io_allocateFire_1}
-           + {1'h0, io_allocateFire_2}}
-        + {1'h0,
-           {1'h0, io_allocateFire_3} + {1'h0, io_allocateFire_4}
-             + {1'h0, io_allocateFire_5}}
-      : 3'h0;	// backend/src/zaqal/backend/rename/FreeList.scala:64:29, :65:31, :104:31, :105:{26,41}
-  wire [8:0]        headPtr_next = _GEN_4 + {6'h0, actualAlloc};	// backend/src/zaqal/backend/rename/FreeList.scala:17:7, :59:20, :105:26
-  wire [1:0]        _GEN_12 = {1'h0, io_freeReq_1};	// backend/src/zaqal/backend/rename/FreeList.scala:64:29, :73:25
-  wire [1:0]        _GEN_13 = {1'h0, io_freeReq_2};	// backend/src/zaqal/backend/rename/FreeList.scala:64:29, :73:25
-  wire [1:0]        _offset_T_18 = _GEN_12 + _GEN_13;	// backend/src/zaqal/backend/rename/FreeList.scala:73:25
-  wire [1:0]        _GEN_14 = {1'h0, io_freeReq_0};	// backend/src/zaqal/backend/rename/FreeList.scala:64:29, :73:25
-  wire [1:0]        _GEN_15 = {1'h0, io_freeReq_4};	// backend/src/zaqal/backend/rename/FreeList.scala:64:29, :73:25
-  wire [1:0]        _GEN_16 = {1'h0, io_freeReq_3};	// backend/src/zaqal/backend/rename/FreeList.scala:64:29, :73:25
-  wire [2:0]        numFree =
-    {1'h0, _GEN_14 + _offset_T_18} + {1'h0, _GEN_16 + _GEN_15 + {1'h0, io_freeReq_5}};	// backend/src/zaqal/backend/rename/FreeList.scala:64:29, :73:25
-  wire [8:0]        _GEN_17 = {1'h0, tailPtr};	// backend/src/zaqal/backend/rename/FreeList.scala:51:24, :59:20, :64:29
-  wire [7:0]        _GEN_18 = _GEN_17 > 9'h9F ? tailPtr + 8'h60 : tailPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :51:24, :59:20, :60:{8,14,30}
-  wire [8:0]        next_1 = _GEN_17 + {8'h0, io_freeReq_0};	// backend/src/zaqal/backend/rename/FreeList.scala:50:24, :59:20
-  wire [7:0]        _GEN_19 = next_1 > 9'h9F ? next_1[7:0] + 8'h60 : next_1[7:0];	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :59:20, :60:{8,14,30}
-  wire [1:0]        offset_4 = _GEN_14 + _GEN_12;	// backend/src/zaqal/backend/rename/FreeList.scala:73:25, :75:26
-  wire [8:0]        next_2 = _GEN_17 + {7'h0, offset_4};	// backend/src/zaqal/backend/rename/FreeList.scala:59:20, :75:26
-  wire [7:0]        _GEN_20 = next_2 > 9'h9F ? next_2[7:0] + 8'h60 : next_2[7:0];	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :59:20, :60:{8,14,30}
-  wire [8:0]        next_3 = _GEN_17 + {7'h0, _GEN_14 + _offset_T_18};	// backend/src/zaqal/backend/rename/FreeList.scala:59:20, :73:25, :75:26
-  wire [7:0]        _GEN_21 = next_3 > 9'h9F ? next_3[7:0] + 8'h60 : next_3[7:0];	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :59:20, :60:{8,14,30}
-  wire [2:0]        _GEN_22 = {1'h0, offset_4};	// backend/src/zaqal/backend/rename/FreeList.scala:64:29, :75:26
-  wire [8:0]        next_4 = _GEN_17 + {6'h0, _GEN_22 + {1'h0, _GEN_13 + _GEN_16}};	// backend/src/zaqal/backend/rename/FreeList.scala:17:7, :59:20, :64:29, :73:25, :75:26
-  wire [7:0]        _GEN_23 = next_4 > 9'h9F ? next_4[7:0] + 8'h60 : next_4[7:0];	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :59:20, :60:{8,14,30}
+    (io_snptRestoreIdx == 8'h80 ? _snapshots_io_snapshots_128_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'h81 ? _snapshots_io_snapshots_129_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'h82 ? _snapshots_io_snapshots_130_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'h83 ? _snapshots_io_snapshots_131_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'h84 ? _snapshots_io_snapshots_132_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'h85 ? _snapshots_io_snapshots_133_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'h86 ? _snapshots_io_snapshots_134_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'h87 ? _snapshots_io_snapshots_135_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'h88 ? _snapshots_io_snapshots_136_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'h89 ? _snapshots_io_snapshots_137_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'h8A ? _snapshots_io_snapshots_138_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'h8B ? _snapshots_io_snapshots_139_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'h8C ? _snapshots_io_snapshots_140_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'h8D ? _snapshots_io_snapshots_141_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'h8E ? _snapshots_io_snapshots_142_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'h8F ? _snapshots_io_snapshots_143_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'h90 ? _snapshots_io_snapshots_144_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'h91 ? _snapshots_io_snapshots_145_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'h92 ? _snapshots_io_snapshots_146_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'h93 ? _snapshots_io_snapshots_147_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'h94 ? _snapshots_io_snapshots_148_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'h95 ? _snapshots_io_snapshots_149_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'h96 ? _snapshots_io_snapshots_150_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'h97 ? _snapshots_io_snapshots_151_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'h98 ? _snapshots_io_snapshots_152_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'h99 ? _snapshots_io_snapshots_153_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'h9A ? _snapshots_io_snapshots_154_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'h9B ? _snapshots_io_snapshots_155_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'h9C ? _snapshots_io_snapshots_156_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'h9D ? _snapshots_io_snapshots_157_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'h9E ? _snapshots_io_snapshots_158_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'h9F ? _snapshots_io_snapshots_159_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'hA0 ? _snapshots_io_snapshots_160_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'hA1 ? _snapshots_io_snapshots_161_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'hA2 ? _snapshots_io_snapshots_162_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'hA3 ? _snapshots_io_snapshots_163_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'hA4 ? _snapshots_io_snapshots_164_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'hA5 ? _snapshots_io_snapshots_165_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'hA6 ? _snapshots_io_snapshots_166_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'hA7 ? _snapshots_io_snapshots_167_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'hA8 ? _snapshots_io_snapshots_168_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'hA9 ? _snapshots_io_snapshots_169_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'hAA ? _snapshots_io_snapshots_170_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'hAB ? _snapshots_io_snapshots_171_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'hAC ? _snapshots_io_snapshots_172_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'hAD ? _snapshots_io_snapshots_173_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'hAE ? _snapshots_io_snapshots_174_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'hAF ? _snapshots_io_snapshots_175_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'hB0 ? _snapshots_io_snapshots_176_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'hB1 ? _snapshots_io_snapshots_177_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'hB2 ? _snapshots_io_snapshots_178_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'hB3 ? _snapshots_io_snapshots_179_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'hB4 ? _snapshots_io_snapshots_180_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'hB5 ? _snapshots_io_snapshots_181_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'hB6 ? _snapshots_io_snapshots_182_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'hB7 ? _snapshots_io_snapshots_183_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'hB8 ? _snapshots_io_snapshots_184_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'hB9 ? _snapshots_io_snapshots_185_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'hBA ? _snapshots_io_snapshots_186_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'hBB ? _snapshots_io_snapshots_187_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'hBC ? _snapshots_io_snapshots_188_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'hBD ? _snapshots_io_snapshots_189_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'hBE ? _snapshots_io_snapshots_190_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'hBF ? _snapshots_io_snapshots_191_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'hC0 ? _snapshots_io_snapshots_192_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'hC1 ? _snapshots_io_snapshots_193_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'hC2 ? _snapshots_io_snapshots_194_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'hC3 ? _snapshots_io_snapshots_195_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'hC4 ? _snapshots_io_snapshots_196_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'hC5 ? _snapshots_io_snapshots_197_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'hC6 ? _snapshots_io_snapshots_198_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'hC7 ? _snapshots_io_snapshots_199_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'hC8 ? _snapshots_io_snapshots_200_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'hC9 ? _snapshots_io_snapshots_201_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'hCA ? _snapshots_io_snapshots_202_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'hCB ? _snapshots_io_snapshots_203_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'hCC ? _snapshots_io_snapshots_204_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'hCD ? _snapshots_io_snapshots_205_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'hCE ? _snapshots_io_snapshots_206_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'hCF ? _snapshots_io_snapshots_207_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'hD0 ? _snapshots_io_snapshots_208_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'hD1 ? _snapshots_io_snapshots_209_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'hD2 ? _snapshots_io_snapshots_210_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'hD3 ? _snapshots_io_snapshots_211_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'hD4 ? _snapshots_io_snapshots_212_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'hD5 ? _snapshots_io_snapshots_213_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'hD6 ? _snapshots_io_snapshots_214_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'hD7 ? _snapshots_io_snapshots_215_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'hD8 ? _snapshots_io_snapshots_216_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'hD9 ? _snapshots_io_snapshots_217_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'hDA ? _snapshots_io_snapshots_218_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'hDB ? _snapshots_io_snapshots_219_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'hDC ? _snapshots_io_snapshots_220_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'hDD ? _snapshots_io_snapshots_221_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'hDE ? _snapshots_io_snapshots_222_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'hDF ? _snapshots_io_snapshots_223_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'hE0 ? _snapshots_io_snapshots_224_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'hE1 ? _snapshots_io_snapshots_225_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'hE2 ? _snapshots_io_snapshots_226_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'hE3 ? _snapshots_io_snapshots_227_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'hE4 ? _snapshots_io_snapshots_228_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'hE5 ? _snapshots_io_snapshots_229_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'hE6 ? _snapshots_io_snapshots_230_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'hE7 ? _snapshots_io_snapshots_231_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'hE8 ? _snapshots_io_snapshots_232_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'hE9 ? _snapshots_io_snapshots_233_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'hEA ? _snapshots_io_snapshots_234_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'hEB ? _snapshots_io_snapshots_235_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'hEC ? _snapshots_io_snapshots_236_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'hED ? _snapshots_io_snapshots_237_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'hEE ? _snapshots_io_snapshots_238_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'hEF ? _snapshots_io_snapshots_239_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'hF0 ? _snapshots_io_snapshots_240_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'hF1 ? _snapshots_io_snapshots_241_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'hF2 ? _snapshots_io_snapshots_242_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'hF3 ? _snapshots_io_snapshots_243_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'hF4 ? _snapshots_io_snapshots_244_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'hF5 ? _snapshots_io_snapshots_245_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'hF6 ? _snapshots_io_snapshots_246_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'hF7 ? _snapshots_io_snapshots_247_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'hF8 ? _snapshots_io_snapshots_248_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'hF9 ? _snapshots_io_snapshots_249_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'hFA ? _snapshots_io_snapshots_250_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'hFB ? _snapshots_io_snapshots_251_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'hFC ? _snapshots_io_snapshots_252_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'hFD ? _snapshots_io_snapshots_253_headPtr : 8'h0)
+    | (io_snptRestoreIdx == 8'hFE ? _snapshots_io_snapshots_254_headPtr : 8'h0)
+    | ((&io_snptRestoreIdx) ? _snapshots_io_snapshots_255_headPtr : 8'h0);	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :50:24, :53:25, src/main/scala/chisel3/util/Mux.scala:30:73, :32:36, src/main/scala/chisel3/util/OneHot.scala:65:12
+  wire [8:0]        headPtr_next =
+    _GEN
+    + {6'h0,
+       io_doAllocate & io_canAllocate_0
+         ? {1'h0,
+            {1'h0, io_allocateFire_0} + {1'h0, io_allocateFire_1}
+              + {1'h0, io_allocateFire_2}}
+           + {1'h0,
+              {1'h0, io_allocateFire_3} + {1'h0, io_allocateFire_4}
+                + {1'h0, io_allocateFire_5}}
+         : 3'h0};	// backend/src/zaqal/backend/rename/FreeList.scala:16:7, :56:20, :61:50, :66:31, :108:31, :109:{26,41}
+  wire [8:0]        _GEN_10 = {1'h0, tailPtr};	// backend/src/zaqal/backend/rename/FreeList.scala:51:24, :61:50
+  wire              effectiveFreeReq_0 = io_freeReq_0 & (|io_freePhyReg_0);	// backend/src/zaqal/backend/rename/FreeList.scala:76:{42,63}
+  wire              effectiveFreeReq_1 = io_freeReq_1 & (|io_freePhyReg_1);	// backend/src/zaqal/backend/rename/FreeList.scala:76:{42,63}
+  wire              effectiveFreeReq_2 = io_freeReq_2 & (|io_freePhyReg_2);	// backend/src/zaqal/backend/rename/FreeList.scala:76:{42,63}
+  wire              effectiveFreeReq_3 = io_freeReq_3 & (|io_freePhyReg_3);	// backend/src/zaqal/backend/rename/FreeList.scala:76:{42,63}
+  wire              effectiveFreeReq_4 = io_freeReq_4 & (|io_freePhyReg_4);	// backend/src/zaqal/backend/rename/FreeList.scala:76:{42,63}
+  wire              effectiveFreeReq_5 = io_freeReq_5 & (|io_freePhyReg_5);	// backend/src/zaqal/backend/rename/FreeList.scala:76:{42,63}
+  wire [1:0]        _GEN_11 = {1'h0, effectiveFreeReq_1};	// backend/src/zaqal/backend/rename/FreeList.scala:61:50, :76:42, :78:25
+  wire [1:0]        _GEN_12 = {1'h0, effectiveFreeReq_2};	// backend/src/zaqal/backend/rename/FreeList.scala:61:50, :76:42, :78:25
+  wire [1:0]        _offset_T_18 = _GEN_11 + _GEN_12;	// backend/src/zaqal/backend/rename/FreeList.scala:78:25
+  wire [1:0]        _GEN_13 = {1'h0, effectiveFreeReq_0};	// backend/src/zaqal/backend/rename/FreeList.scala:61:50, :76:42, :78:25
+  wire [1:0]        _GEN_14 = {1'h0, effectiveFreeReq_4};	// backend/src/zaqal/backend/rename/FreeList.scala:61:50, :76:42, :78:25
+  wire [1:0]        _GEN_15 = {1'h0, effectiveFreeReq_3};	// backend/src/zaqal/backend/rename/FreeList.scala:61:50, :76:42, :78:25
+  wire [7:0]        _GEN_16 = _GEN_10 > 9'h9F ? tailPtr + 8'h60 : tailPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :51:24, :56:20, :57:{8,14,30}, :61:50
+  wire [8:0]        next_1 = _GEN_10 + {8'h0, effectiveFreeReq_0};	// backend/src/zaqal/backend/rename/FreeList.scala:50:24, :56:20, :61:50, :76:42
+  wire [7:0]        _GEN_17 = next_1 > 9'h9F ? next_1[7:0] + 8'h60 : next_1[7:0];	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :56:20, :57:{8,14,30}
+  wire [1:0]        offset_4 = _GEN_13 + _GEN_11;	// backend/src/zaqal/backend/rename/FreeList.scala:78:25, :80:26
+  wire [8:0]        next_2 = _GEN_10 + {7'h0, offset_4};	// backend/src/zaqal/backend/rename/FreeList.scala:56:20, :61:50, :80:26
+  wire [7:0]        _GEN_18 = next_2 > 9'h9F ? next_2[7:0] + 8'h60 : next_2[7:0];	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :56:20, :57:{8,14,30}
+  wire [8:0]        next_3 = _GEN_10 + {7'h0, _GEN_13 + _offset_T_18};	// backend/src/zaqal/backend/rename/FreeList.scala:56:20, :61:50, :78:25, :80:26
+  wire [7:0]        _GEN_19 = next_3 > 9'h9F ? next_3[7:0] + 8'h60 : next_3[7:0];	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :56:20, :57:{8,14,30}
+  wire [2:0]        _GEN_20 = {1'h0, offset_4};	// backend/src/zaqal/backend/rename/FreeList.scala:61:50, :80:26
+  wire [8:0]        next_4 = _GEN_10 + {6'h0, _GEN_20 + {1'h0, _GEN_12 + _GEN_15}};	// backend/src/zaqal/backend/rename/FreeList.scala:16:7, :56:20, :61:50, :78:25, :80:26
+  wire [7:0]        _GEN_21 = next_4 > 9'h9F ? next_4[7:0] + 8'h60 : next_4[7:0];	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :56:20, :57:{8,14,30}
   wire [8:0]        next_5 =
-    _GEN_17 + {6'h0, _GEN_22 + {1'h0, _GEN_13 + _GEN_16 + _GEN_15}};	// backend/src/zaqal/backend/rename/FreeList.scala:17:7, :59:20, :64:29, :73:25, :75:26
-  wire [7:0]        _GEN_24 = next_5 > 9'h9F ? next_5[7:0] + 8'h60 : next_5[7:0];	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :59:20, :60:{8,14,30}
-  wire [8:0]        tailPtr_next = _GEN_17 + {6'h0, numFree};	// backend/src/zaqal/backend/rename/FreeList.scala:17:7, :59:20, :73:25
-  wire [7:0]        _GEN_25 = {5'h0, numFree};	// backend/src/zaqal/backend/rename/FreeList.scala:59:20, :65:31, :73:25
-  always @(posedge clock) begin	// backend/src/zaqal/backend/rename/FreeList.scala:17:7
-    if (reset) begin	// backend/src/zaqal/backend/rename/FreeList.scala:17:7
+    _GEN_10 + {6'h0, _GEN_20 + {1'h0, _GEN_12 + _GEN_15 + _GEN_14}};	// backend/src/zaqal/backend/rename/FreeList.scala:16:7, :56:20, :61:50, :78:25, :80:26
+  wire [7:0]        _GEN_22 = next_5 > 9'h9F ? next_5[7:0] + 8'h60 : next_5[7:0];	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :56:20, :57:{8,14,30}
+  wire [8:0]        tailPtr_next =
+    _GEN_10
+    + {6'h0,
+       {1'h0, _GEN_13 + _offset_T_18}
+         + {1'h0, _GEN_15 + _GEN_14 + {1'h0, effectiveFreeReq_5}}};	// backend/src/zaqal/backend/rename/FreeList.scala:16:7, :56:20, :61:50, :76:42, :78:25
+  always @(posedge clock) begin	// backend/src/zaqal/backend/rename/FreeList.scala:16:7
+    if (reset) begin	// backend/src/zaqal/backend/rename/FreeList.scala:16:7
       freeList_0 <= 8'h20;	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}
       freeList_1 <= 8'h21;	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}
       freeList_2 <= 8'h22;	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}
@@ -2299,2924 +1544,2662 @@ module FreeList(	// backend/src/zaqal/backend/rename/FreeList.scala:17:7
       freeList_159 <= 8'hBF;	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}
       headPtr <= 8'h0;	// backend/src/zaqal/backend/rename/FreeList.scala:50:24
       tailPtr <= 8'h0;	// backend/src/zaqal/backend/rename/FreeList.scala:50:24, :51:24
-      freeCount <= 8'hA0;	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :54:26
     end
-    else begin	// backend/src/zaqal/backend/rename/FreeList.scala:17:7
-      if (io_freeReq_5 & _GEN_24 == 8'h0)	// backend/src/zaqal/backend/rename/FreeList.scala:50:24, :60:8, :76:26, :77:42
+    else begin	// backend/src/zaqal/backend/rename/FreeList.scala:16:7
+      if (effectiveFreeReq_5 & _GEN_22 == 8'h0)	// backend/src/zaqal/backend/rename/FreeList.scala:50:24, :57:8, :76:42, :81:32, :82:42
         freeList_0 <= io_freePhyReg_5;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_4 & _GEN_23 == 8'h0)	// backend/src/zaqal/backend/rename/FreeList.scala:50:24, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_4 & _GEN_21 == 8'h0)	// backend/src/zaqal/backend/rename/FreeList.scala:50:24, :57:8, :76:42, :81:32, :82:42
         freeList_0 <= io_freePhyReg_4;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_3 & _GEN_21 == 8'h0)	// backend/src/zaqal/backend/rename/FreeList.scala:50:24, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_3 & _GEN_19 == 8'h0)	// backend/src/zaqal/backend/rename/FreeList.scala:50:24, :57:8, :76:42, :81:32, :82:42
         freeList_0 <= io_freePhyReg_3;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_2 & _GEN_20 == 8'h0)	// backend/src/zaqal/backend/rename/FreeList.scala:50:24, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_2 & _GEN_18 == 8'h0)	// backend/src/zaqal/backend/rename/FreeList.scala:50:24, :57:8, :76:42, :81:32, :82:42
         freeList_0 <= io_freePhyReg_2;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_1 & _GEN_19 == 8'h0)	// backend/src/zaqal/backend/rename/FreeList.scala:50:24, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_1 & _GEN_17 == 8'h0)	// backend/src/zaqal/backend/rename/FreeList.scala:50:24, :57:8, :76:42, :81:32, :82:42
         freeList_0 <= io_freePhyReg_1;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_0 & _GEN_18 == 8'h0)	// backend/src/zaqal/backend/rename/FreeList.scala:46:25, :50:24, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_0 & _GEN_16 == 8'h0)	// backend/src/zaqal/backend/rename/FreeList.scala:46:25, :50:24, :57:8, :76:42, :81:32, :82:42
         freeList_0 <= io_freePhyReg_0;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      if (io_freeReq_5 & _GEN_24 == 8'h1)	// backend/src/zaqal/backend/rename/FreeList.scala:60:8, :76:26, :77:42
+      if (effectiveFreeReq_5 & _GEN_22 == 8'h1)	// backend/src/zaqal/backend/rename/FreeList.scala:57:8, :76:42, :81:32, :82:42
         freeList_1 <= io_freePhyReg_5;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_4 & _GEN_23 == 8'h1)	// backend/src/zaqal/backend/rename/FreeList.scala:60:8, :76:26, :77:42
+      else if (effectiveFreeReq_4 & _GEN_21 == 8'h1)	// backend/src/zaqal/backend/rename/FreeList.scala:57:8, :76:42, :81:32, :82:42
         freeList_1 <= io_freePhyReg_4;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_3 & _GEN_21 == 8'h1)	// backend/src/zaqal/backend/rename/FreeList.scala:60:8, :76:26, :77:42
+      else if (effectiveFreeReq_3 & _GEN_19 == 8'h1)	// backend/src/zaqal/backend/rename/FreeList.scala:57:8, :76:42, :81:32, :82:42
         freeList_1 <= io_freePhyReg_3;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_2 & _GEN_20 == 8'h1)	// backend/src/zaqal/backend/rename/FreeList.scala:60:8, :76:26, :77:42
+      else if (effectiveFreeReq_2 & _GEN_18 == 8'h1)	// backend/src/zaqal/backend/rename/FreeList.scala:57:8, :76:42, :81:32, :82:42
         freeList_1 <= io_freePhyReg_2;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_1 & _GEN_19 == 8'h1)	// backend/src/zaqal/backend/rename/FreeList.scala:60:8, :76:26, :77:42
+      else if (effectiveFreeReq_1 & _GEN_17 == 8'h1)	// backend/src/zaqal/backend/rename/FreeList.scala:57:8, :76:42, :81:32, :82:42
         freeList_1 <= io_freePhyReg_1;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_0 & _GEN_18 == 8'h1)	// backend/src/zaqal/backend/rename/FreeList.scala:46:25, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_0 & _GEN_16 == 8'h1)	// backend/src/zaqal/backend/rename/FreeList.scala:46:25, :57:8, :76:42, :81:32, :82:42
         freeList_1 <= io_freePhyReg_0;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      if (io_freeReq_5 & _GEN_24 == 8'h2)	// backend/src/zaqal/backend/rename/FreeList.scala:60:8, :76:26, :77:42
+      if (effectiveFreeReq_5 & _GEN_22 == 8'h2)	// backend/src/zaqal/backend/rename/FreeList.scala:57:8, :76:42, :81:32, :82:42
         freeList_2 <= io_freePhyReg_5;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_4 & _GEN_23 == 8'h2)	// backend/src/zaqal/backend/rename/FreeList.scala:60:8, :76:26, :77:42
+      else if (effectiveFreeReq_4 & _GEN_21 == 8'h2)	// backend/src/zaqal/backend/rename/FreeList.scala:57:8, :76:42, :81:32, :82:42
         freeList_2 <= io_freePhyReg_4;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_3 & _GEN_21 == 8'h2)	// backend/src/zaqal/backend/rename/FreeList.scala:60:8, :76:26, :77:42
+      else if (effectiveFreeReq_3 & _GEN_19 == 8'h2)	// backend/src/zaqal/backend/rename/FreeList.scala:57:8, :76:42, :81:32, :82:42
         freeList_2 <= io_freePhyReg_3;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_2 & _GEN_20 == 8'h2)	// backend/src/zaqal/backend/rename/FreeList.scala:60:8, :76:26, :77:42
+      else if (effectiveFreeReq_2 & _GEN_18 == 8'h2)	// backend/src/zaqal/backend/rename/FreeList.scala:57:8, :76:42, :81:32, :82:42
         freeList_2 <= io_freePhyReg_2;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_1 & _GEN_19 == 8'h2)	// backend/src/zaqal/backend/rename/FreeList.scala:60:8, :76:26, :77:42
+      else if (effectiveFreeReq_1 & _GEN_17 == 8'h2)	// backend/src/zaqal/backend/rename/FreeList.scala:57:8, :76:42, :81:32, :82:42
         freeList_2 <= io_freePhyReg_1;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_0 & _GEN_18 == 8'h2)	// backend/src/zaqal/backend/rename/FreeList.scala:46:25, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_0 & _GEN_16 == 8'h2)	// backend/src/zaqal/backend/rename/FreeList.scala:46:25, :57:8, :76:42, :81:32, :82:42
         freeList_2 <= io_freePhyReg_0;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      if (io_freeReq_5 & _GEN_24 == 8'h3)	// backend/src/zaqal/backend/rename/FreeList.scala:60:8, :76:26, :77:42
+      if (effectiveFreeReq_5 & _GEN_22 == 8'h3)	// backend/src/zaqal/backend/rename/FreeList.scala:57:8, :76:42, :81:32, :82:42
         freeList_3 <= io_freePhyReg_5;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_4 & _GEN_23 == 8'h3)	// backend/src/zaqal/backend/rename/FreeList.scala:60:8, :76:26, :77:42
+      else if (effectiveFreeReq_4 & _GEN_21 == 8'h3)	// backend/src/zaqal/backend/rename/FreeList.scala:57:8, :76:42, :81:32, :82:42
         freeList_3 <= io_freePhyReg_4;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_3 & _GEN_21 == 8'h3)	// backend/src/zaqal/backend/rename/FreeList.scala:60:8, :76:26, :77:42
+      else if (effectiveFreeReq_3 & _GEN_19 == 8'h3)	// backend/src/zaqal/backend/rename/FreeList.scala:57:8, :76:42, :81:32, :82:42
         freeList_3 <= io_freePhyReg_3;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_2 & _GEN_20 == 8'h3)	// backend/src/zaqal/backend/rename/FreeList.scala:60:8, :76:26, :77:42
+      else if (effectiveFreeReq_2 & _GEN_18 == 8'h3)	// backend/src/zaqal/backend/rename/FreeList.scala:57:8, :76:42, :81:32, :82:42
         freeList_3 <= io_freePhyReg_2;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_1 & _GEN_19 == 8'h3)	// backend/src/zaqal/backend/rename/FreeList.scala:60:8, :76:26, :77:42
+      else if (effectiveFreeReq_1 & _GEN_17 == 8'h3)	// backend/src/zaqal/backend/rename/FreeList.scala:57:8, :76:42, :81:32, :82:42
         freeList_3 <= io_freePhyReg_1;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_0 & _GEN_18 == 8'h3)	// backend/src/zaqal/backend/rename/FreeList.scala:46:25, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_0 & _GEN_16 == 8'h3)	// backend/src/zaqal/backend/rename/FreeList.scala:46:25, :57:8, :76:42, :81:32, :82:42
         freeList_3 <= io_freePhyReg_0;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      if (io_freeReq_5 & _GEN_24 == 8'h4)	// backend/src/zaqal/backend/rename/FreeList.scala:60:8, :76:26, :77:42
+      if (effectiveFreeReq_5 & _GEN_22 == 8'h4)	// backend/src/zaqal/backend/rename/FreeList.scala:57:8, :76:42, :81:32, :82:42
         freeList_4 <= io_freePhyReg_5;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_4 & _GEN_23 == 8'h4)	// backend/src/zaqal/backend/rename/FreeList.scala:60:8, :76:26, :77:42
+      else if (effectiveFreeReq_4 & _GEN_21 == 8'h4)	// backend/src/zaqal/backend/rename/FreeList.scala:57:8, :76:42, :81:32, :82:42
         freeList_4 <= io_freePhyReg_4;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_3 & _GEN_21 == 8'h4)	// backend/src/zaqal/backend/rename/FreeList.scala:60:8, :76:26, :77:42
+      else if (effectiveFreeReq_3 & _GEN_19 == 8'h4)	// backend/src/zaqal/backend/rename/FreeList.scala:57:8, :76:42, :81:32, :82:42
         freeList_4 <= io_freePhyReg_3;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_2 & _GEN_20 == 8'h4)	// backend/src/zaqal/backend/rename/FreeList.scala:60:8, :76:26, :77:42
+      else if (effectiveFreeReq_2 & _GEN_18 == 8'h4)	// backend/src/zaqal/backend/rename/FreeList.scala:57:8, :76:42, :81:32, :82:42
         freeList_4 <= io_freePhyReg_2;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_1 & _GEN_19 == 8'h4)	// backend/src/zaqal/backend/rename/FreeList.scala:60:8, :76:26, :77:42
+      else if (effectiveFreeReq_1 & _GEN_17 == 8'h4)	// backend/src/zaqal/backend/rename/FreeList.scala:57:8, :76:42, :81:32, :82:42
         freeList_4 <= io_freePhyReg_1;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_0 & _GEN_18 == 8'h4)	// backend/src/zaqal/backend/rename/FreeList.scala:46:25, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_0 & _GEN_16 == 8'h4)	// backend/src/zaqal/backend/rename/FreeList.scala:46:25, :57:8, :76:42, :81:32, :82:42
         freeList_4 <= io_freePhyReg_0;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      if (io_freeReq_5 & _GEN_24 == 8'h5)	// backend/src/zaqal/backend/rename/FreeList.scala:60:8, :76:26, :77:42
+      if (effectiveFreeReq_5 & _GEN_22 == 8'h5)	// backend/src/zaqal/backend/rename/FreeList.scala:57:8, :76:42, :81:32, :82:42
         freeList_5 <= io_freePhyReg_5;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_4 & _GEN_23 == 8'h5)	// backend/src/zaqal/backend/rename/FreeList.scala:60:8, :76:26, :77:42
+      else if (effectiveFreeReq_4 & _GEN_21 == 8'h5)	// backend/src/zaqal/backend/rename/FreeList.scala:57:8, :76:42, :81:32, :82:42
         freeList_5 <= io_freePhyReg_4;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_3 & _GEN_21 == 8'h5)	// backend/src/zaqal/backend/rename/FreeList.scala:60:8, :76:26, :77:42
+      else if (effectiveFreeReq_3 & _GEN_19 == 8'h5)	// backend/src/zaqal/backend/rename/FreeList.scala:57:8, :76:42, :81:32, :82:42
         freeList_5 <= io_freePhyReg_3;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_2 & _GEN_20 == 8'h5)	// backend/src/zaqal/backend/rename/FreeList.scala:60:8, :76:26, :77:42
+      else if (effectiveFreeReq_2 & _GEN_18 == 8'h5)	// backend/src/zaqal/backend/rename/FreeList.scala:57:8, :76:42, :81:32, :82:42
         freeList_5 <= io_freePhyReg_2;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_1 & _GEN_19 == 8'h5)	// backend/src/zaqal/backend/rename/FreeList.scala:60:8, :76:26, :77:42
+      else if (effectiveFreeReq_1 & _GEN_17 == 8'h5)	// backend/src/zaqal/backend/rename/FreeList.scala:57:8, :76:42, :81:32, :82:42
         freeList_5 <= io_freePhyReg_1;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_0 & _GEN_18 == 8'h5)	// backend/src/zaqal/backend/rename/FreeList.scala:46:25, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_0 & _GEN_16 == 8'h5)	// backend/src/zaqal/backend/rename/FreeList.scala:46:25, :57:8, :76:42, :81:32, :82:42
         freeList_5 <= io_freePhyReg_0;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      if (io_freeReq_5 & _GEN_24 == 8'h6)	// backend/src/zaqal/backend/rename/FreeList.scala:60:8, :76:26, :77:42
+      if (effectiveFreeReq_5 & _GEN_22 == 8'h6)	// backend/src/zaqal/backend/rename/FreeList.scala:57:8, :76:42, :81:32, :82:42
         freeList_6 <= io_freePhyReg_5;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_4 & _GEN_23 == 8'h6)	// backend/src/zaqal/backend/rename/FreeList.scala:60:8, :76:26, :77:42
+      else if (effectiveFreeReq_4 & _GEN_21 == 8'h6)	// backend/src/zaqal/backend/rename/FreeList.scala:57:8, :76:42, :81:32, :82:42
         freeList_6 <= io_freePhyReg_4;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_3 & _GEN_21 == 8'h6)	// backend/src/zaqal/backend/rename/FreeList.scala:60:8, :76:26, :77:42
+      else if (effectiveFreeReq_3 & _GEN_19 == 8'h6)	// backend/src/zaqal/backend/rename/FreeList.scala:57:8, :76:42, :81:32, :82:42
         freeList_6 <= io_freePhyReg_3;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_2 & _GEN_20 == 8'h6)	// backend/src/zaqal/backend/rename/FreeList.scala:60:8, :76:26, :77:42
+      else if (effectiveFreeReq_2 & _GEN_18 == 8'h6)	// backend/src/zaqal/backend/rename/FreeList.scala:57:8, :76:42, :81:32, :82:42
         freeList_6 <= io_freePhyReg_2;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_1 & _GEN_19 == 8'h6)	// backend/src/zaqal/backend/rename/FreeList.scala:60:8, :76:26, :77:42
+      else if (effectiveFreeReq_1 & _GEN_17 == 8'h6)	// backend/src/zaqal/backend/rename/FreeList.scala:57:8, :76:42, :81:32, :82:42
         freeList_6 <= io_freePhyReg_1;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_0 & _GEN_18 == 8'h6)	// backend/src/zaqal/backend/rename/FreeList.scala:46:25, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_0 & _GEN_16 == 8'h6)	// backend/src/zaqal/backend/rename/FreeList.scala:46:25, :57:8, :76:42, :81:32, :82:42
         freeList_6 <= io_freePhyReg_0;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      if (io_freeReq_5 & _GEN_24 == 8'h7)	// backend/src/zaqal/backend/rename/FreeList.scala:60:8, :76:26, :77:42
+      if (effectiveFreeReq_5 & _GEN_22 == 8'h7)	// backend/src/zaqal/backend/rename/FreeList.scala:57:8, :76:42, :81:32, :82:42
         freeList_7 <= io_freePhyReg_5;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_4 & _GEN_23 == 8'h7)	// backend/src/zaqal/backend/rename/FreeList.scala:60:8, :76:26, :77:42
+      else if (effectiveFreeReq_4 & _GEN_21 == 8'h7)	// backend/src/zaqal/backend/rename/FreeList.scala:57:8, :76:42, :81:32, :82:42
         freeList_7 <= io_freePhyReg_4;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_3 & _GEN_21 == 8'h7)	// backend/src/zaqal/backend/rename/FreeList.scala:60:8, :76:26, :77:42
+      else if (effectiveFreeReq_3 & _GEN_19 == 8'h7)	// backend/src/zaqal/backend/rename/FreeList.scala:57:8, :76:42, :81:32, :82:42
         freeList_7 <= io_freePhyReg_3;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_2 & _GEN_20 == 8'h7)	// backend/src/zaqal/backend/rename/FreeList.scala:60:8, :76:26, :77:42
+      else if (effectiveFreeReq_2 & _GEN_18 == 8'h7)	// backend/src/zaqal/backend/rename/FreeList.scala:57:8, :76:42, :81:32, :82:42
         freeList_7 <= io_freePhyReg_2;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_1 & _GEN_19 == 8'h7)	// backend/src/zaqal/backend/rename/FreeList.scala:60:8, :76:26, :77:42
+      else if (effectiveFreeReq_1 & _GEN_17 == 8'h7)	// backend/src/zaqal/backend/rename/FreeList.scala:57:8, :76:42, :81:32, :82:42
         freeList_7 <= io_freePhyReg_1;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_0 & _GEN_18 == 8'h7)	// backend/src/zaqal/backend/rename/FreeList.scala:46:25, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_0 & _GEN_16 == 8'h7)	// backend/src/zaqal/backend/rename/FreeList.scala:46:25, :57:8, :76:42, :81:32, :82:42
         freeList_7 <= io_freePhyReg_0;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      if (io_freeReq_5 & _GEN_24 == 8'h8)	// backend/src/zaqal/backend/rename/FreeList.scala:60:8, :76:26, :77:42
+      if (effectiveFreeReq_5 & _GEN_22 == 8'h8)	// backend/src/zaqal/backend/rename/FreeList.scala:57:8, :76:42, :81:32, :82:42
         freeList_8 <= io_freePhyReg_5;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_4 & _GEN_23 == 8'h8)	// backend/src/zaqal/backend/rename/FreeList.scala:60:8, :76:26, :77:42
+      else if (effectiveFreeReq_4 & _GEN_21 == 8'h8)	// backend/src/zaqal/backend/rename/FreeList.scala:57:8, :76:42, :81:32, :82:42
         freeList_8 <= io_freePhyReg_4;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_3 & _GEN_21 == 8'h8)	// backend/src/zaqal/backend/rename/FreeList.scala:60:8, :76:26, :77:42
+      else if (effectiveFreeReq_3 & _GEN_19 == 8'h8)	// backend/src/zaqal/backend/rename/FreeList.scala:57:8, :76:42, :81:32, :82:42
         freeList_8 <= io_freePhyReg_3;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_2 & _GEN_20 == 8'h8)	// backend/src/zaqal/backend/rename/FreeList.scala:60:8, :76:26, :77:42
+      else if (effectiveFreeReq_2 & _GEN_18 == 8'h8)	// backend/src/zaqal/backend/rename/FreeList.scala:57:8, :76:42, :81:32, :82:42
         freeList_8 <= io_freePhyReg_2;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_1 & _GEN_19 == 8'h8)	// backend/src/zaqal/backend/rename/FreeList.scala:60:8, :76:26, :77:42
+      else if (effectiveFreeReq_1 & _GEN_17 == 8'h8)	// backend/src/zaqal/backend/rename/FreeList.scala:57:8, :76:42, :81:32, :82:42
         freeList_8 <= io_freePhyReg_1;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_0 & _GEN_18 == 8'h8)	// backend/src/zaqal/backend/rename/FreeList.scala:46:25, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_0 & _GEN_16 == 8'h8)	// backend/src/zaqal/backend/rename/FreeList.scala:46:25, :57:8, :76:42, :81:32, :82:42
         freeList_8 <= io_freePhyReg_0;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      if (io_freeReq_5 & _GEN_24 == 8'h9)	// backend/src/zaqal/backend/rename/FreeList.scala:60:8, :76:26, :77:42
+      if (effectiveFreeReq_5 & _GEN_22 == 8'h9)	// backend/src/zaqal/backend/rename/FreeList.scala:57:8, :76:42, :81:32, :82:42
         freeList_9 <= io_freePhyReg_5;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_4 & _GEN_23 == 8'h9)	// backend/src/zaqal/backend/rename/FreeList.scala:60:8, :76:26, :77:42
+      else if (effectiveFreeReq_4 & _GEN_21 == 8'h9)	// backend/src/zaqal/backend/rename/FreeList.scala:57:8, :76:42, :81:32, :82:42
         freeList_9 <= io_freePhyReg_4;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_3 & _GEN_21 == 8'h9)	// backend/src/zaqal/backend/rename/FreeList.scala:60:8, :76:26, :77:42
+      else if (effectiveFreeReq_3 & _GEN_19 == 8'h9)	// backend/src/zaqal/backend/rename/FreeList.scala:57:8, :76:42, :81:32, :82:42
         freeList_9 <= io_freePhyReg_3;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_2 & _GEN_20 == 8'h9)	// backend/src/zaqal/backend/rename/FreeList.scala:60:8, :76:26, :77:42
+      else if (effectiveFreeReq_2 & _GEN_18 == 8'h9)	// backend/src/zaqal/backend/rename/FreeList.scala:57:8, :76:42, :81:32, :82:42
         freeList_9 <= io_freePhyReg_2;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_1 & _GEN_19 == 8'h9)	// backend/src/zaqal/backend/rename/FreeList.scala:60:8, :76:26, :77:42
+      else if (effectiveFreeReq_1 & _GEN_17 == 8'h9)	// backend/src/zaqal/backend/rename/FreeList.scala:57:8, :76:42, :81:32, :82:42
         freeList_9 <= io_freePhyReg_1;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_0 & _GEN_18 == 8'h9)	// backend/src/zaqal/backend/rename/FreeList.scala:46:25, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_0 & _GEN_16 == 8'h9)	// backend/src/zaqal/backend/rename/FreeList.scala:46:25, :57:8, :76:42, :81:32, :82:42
         freeList_9 <= io_freePhyReg_0;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      if (io_freeReq_5 & _GEN_24 == 8'hA)	// backend/src/zaqal/backend/rename/FreeList.scala:60:8, :76:26, :77:42
+      if (effectiveFreeReq_5 & _GEN_22 == 8'hA)	// backend/src/zaqal/backend/rename/FreeList.scala:57:8, :76:42, :81:32, :82:42
         freeList_10 <= io_freePhyReg_5;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_4 & _GEN_23 == 8'hA)	// backend/src/zaqal/backend/rename/FreeList.scala:60:8, :76:26, :77:42
+      else if (effectiveFreeReq_4 & _GEN_21 == 8'hA)	// backend/src/zaqal/backend/rename/FreeList.scala:57:8, :76:42, :81:32, :82:42
         freeList_10 <= io_freePhyReg_4;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_3 & _GEN_21 == 8'hA)	// backend/src/zaqal/backend/rename/FreeList.scala:60:8, :76:26, :77:42
+      else if (effectiveFreeReq_3 & _GEN_19 == 8'hA)	// backend/src/zaqal/backend/rename/FreeList.scala:57:8, :76:42, :81:32, :82:42
         freeList_10 <= io_freePhyReg_3;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_2 & _GEN_20 == 8'hA)	// backend/src/zaqal/backend/rename/FreeList.scala:60:8, :76:26, :77:42
+      else if (effectiveFreeReq_2 & _GEN_18 == 8'hA)	// backend/src/zaqal/backend/rename/FreeList.scala:57:8, :76:42, :81:32, :82:42
         freeList_10 <= io_freePhyReg_2;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_1 & _GEN_19 == 8'hA)	// backend/src/zaqal/backend/rename/FreeList.scala:60:8, :76:26, :77:42
+      else if (effectiveFreeReq_1 & _GEN_17 == 8'hA)	// backend/src/zaqal/backend/rename/FreeList.scala:57:8, :76:42, :81:32, :82:42
         freeList_10 <= io_freePhyReg_1;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_0 & _GEN_18 == 8'hA)	// backend/src/zaqal/backend/rename/FreeList.scala:46:25, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_0 & _GEN_16 == 8'hA)	// backend/src/zaqal/backend/rename/FreeList.scala:46:25, :57:8, :76:42, :81:32, :82:42
         freeList_10 <= io_freePhyReg_0;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      if (io_freeReq_5 & _GEN_24 == 8'hB)	// backend/src/zaqal/backend/rename/FreeList.scala:60:8, :76:26, :77:42
+      if (effectiveFreeReq_5 & _GEN_22 == 8'hB)	// backend/src/zaqal/backend/rename/FreeList.scala:57:8, :76:42, :81:32, :82:42
         freeList_11 <= io_freePhyReg_5;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_4 & _GEN_23 == 8'hB)	// backend/src/zaqal/backend/rename/FreeList.scala:60:8, :76:26, :77:42
+      else if (effectiveFreeReq_4 & _GEN_21 == 8'hB)	// backend/src/zaqal/backend/rename/FreeList.scala:57:8, :76:42, :81:32, :82:42
         freeList_11 <= io_freePhyReg_4;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_3 & _GEN_21 == 8'hB)	// backend/src/zaqal/backend/rename/FreeList.scala:60:8, :76:26, :77:42
+      else if (effectiveFreeReq_3 & _GEN_19 == 8'hB)	// backend/src/zaqal/backend/rename/FreeList.scala:57:8, :76:42, :81:32, :82:42
         freeList_11 <= io_freePhyReg_3;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_2 & _GEN_20 == 8'hB)	// backend/src/zaqal/backend/rename/FreeList.scala:60:8, :76:26, :77:42
+      else if (effectiveFreeReq_2 & _GEN_18 == 8'hB)	// backend/src/zaqal/backend/rename/FreeList.scala:57:8, :76:42, :81:32, :82:42
         freeList_11 <= io_freePhyReg_2;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_1 & _GEN_19 == 8'hB)	// backend/src/zaqal/backend/rename/FreeList.scala:60:8, :76:26, :77:42
+      else if (effectiveFreeReq_1 & _GEN_17 == 8'hB)	// backend/src/zaqal/backend/rename/FreeList.scala:57:8, :76:42, :81:32, :82:42
         freeList_11 <= io_freePhyReg_1;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_0 & _GEN_18 == 8'hB)	// backend/src/zaqal/backend/rename/FreeList.scala:46:25, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_0 & _GEN_16 == 8'hB)	// backend/src/zaqal/backend/rename/FreeList.scala:46:25, :57:8, :76:42, :81:32, :82:42
         freeList_11 <= io_freePhyReg_0;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      if (io_freeReq_5 & _GEN_24 == 8'hC)	// backend/src/zaqal/backend/rename/FreeList.scala:60:8, :76:26, :77:42
+      if (effectiveFreeReq_5 & _GEN_22 == 8'hC)	// backend/src/zaqal/backend/rename/FreeList.scala:57:8, :76:42, :81:32, :82:42
         freeList_12 <= io_freePhyReg_5;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_4 & _GEN_23 == 8'hC)	// backend/src/zaqal/backend/rename/FreeList.scala:60:8, :76:26, :77:42
+      else if (effectiveFreeReq_4 & _GEN_21 == 8'hC)	// backend/src/zaqal/backend/rename/FreeList.scala:57:8, :76:42, :81:32, :82:42
         freeList_12 <= io_freePhyReg_4;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_3 & _GEN_21 == 8'hC)	// backend/src/zaqal/backend/rename/FreeList.scala:60:8, :76:26, :77:42
+      else if (effectiveFreeReq_3 & _GEN_19 == 8'hC)	// backend/src/zaqal/backend/rename/FreeList.scala:57:8, :76:42, :81:32, :82:42
         freeList_12 <= io_freePhyReg_3;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_2 & _GEN_20 == 8'hC)	// backend/src/zaqal/backend/rename/FreeList.scala:60:8, :76:26, :77:42
+      else if (effectiveFreeReq_2 & _GEN_18 == 8'hC)	// backend/src/zaqal/backend/rename/FreeList.scala:57:8, :76:42, :81:32, :82:42
         freeList_12 <= io_freePhyReg_2;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_1 & _GEN_19 == 8'hC)	// backend/src/zaqal/backend/rename/FreeList.scala:60:8, :76:26, :77:42
+      else if (effectiveFreeReq_1 & _GEN_17 == 8'hC)	// backend/src/zaqal/backend/rename/FreeList.scala:57:8, :76:42, :81:32, :82:42
         freeList_12 <= io_freePhyReg_1;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_0 & _GEN_18 == 8'hC)	// backend/src/zaqal/backend/rename/FreeList.scala:46:25, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_0 & _GEN_16 == 8'hC)	// backend/src/zaqal/backend/rename/FreeList.scala:46:25, :57:8, :76:42, :81:32, :82:42
         freeList_12 <= io_freePhyReg_0;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      if (io_freeReq_5 & _GEN_24 == 8'hD)	// backend/src/zaqal/backend/rename/FreeList.scala:60:8, :76:26, :77:42
+      if (effectiveFreeReq_5 & _GEN_22 == 8'hD)	// backend/src/zaqal/backend/rename/FreeList.scala:57:8, :76:42, :81:32, :82:42
         freeList_13 <= io_freePhyReg_5;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_4 & _GEN_23 == 8'hD)	// backend/src/zaqal/backend/rename/FreeList.scala:60:8, :76:26, :77:42
+      else if (effectiveFreeReq_4 & _GEN_21 == 8'hD)	// backend/src/zaqal/backend/rename/FreeList.scala:57:8, :76:42, :81:32, :82:42
         freeList_13 <= io_freePhyReg_4;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_3 & _GEN_21 == 8'hD)	// backend/src/zaqal/backend/rename/FreeList.scala:60:8, :76:26, :77:42
+      else if (effectiveFreeReq_3 & _GEN_19 == 8'hD)	// backend/src/zaqal/backend/rename/FreeList.scala:57:8, :76:42, :81:32, :82:42
         freeList_13 <= io_freePhyReg_3;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_2 & _GEN_20 == 8'hD)	// backend/src/zaqal/backend/rename/FreeList.scala:60:8, :76:26, :77:42
+      else if (effectiveFreeReq_2 & _GEN_18 == 8'hD)	// backend/src/zaqal/backend/rename/FreeList.scala:57:8, :76:42, :81:32, :82:42
         freeList_13 <= io_freePhyReg_2;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_1 & _GEN_19 == 8'hD)	// backend/src/zaqal/backend/rename/FreeList.scala:60:8, :76:26, :77:42
+      else if (effectiveFreeReq_1 & _GEN_17 == 8'hD)	// backend/src/zaqal/backend/rename/FreeList.scala:57:8, :76:42, :81:32, :82:42
         freeList_13 <= io_freePhyReg_1;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_0 & _GEN_18 == 8'hD)	// backend/src/zaqal/backend/rename/FreeList.scala:46:25, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_0 & _GEN_16 == 8'hD)	// backend/src/zaqal/backend/rename/FreeList.scala:46:25, :57:8, :76:42, :81:32, :82:42
         freeList_13 <= io_freePhyReg_0;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      if (io_freeReq_5 & _GEN_24 == 8'hE)	// backend/src/zaqal/backend/rename/FreeList.scala:60:8, :76:26, :77:42
+      if (effectiveFreeReq_5 & _GEN_22 == 8'hE)	// backend/src/zaqal/backend/rename/FreeList.scala:57:8, :76:42, :81:32, :82:42
         freeList_14 <= io_freePhyReg_5;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_4 & _GEN_23 == 8'hE)	// backend/src/zaqal/backend/rename/FreeList.scala:60:8, :76:26, :77:42
+      else if (effectiveFreeReq_4 & _GEN_21 == 8'hE)	// backend/src/zaqal/backend/rename/FreeList.scala:57:8, :76:42, :81:32, :82:42
         freeList_14 <= io_freePhyReg_4;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_3 & _GEN_21 == 8'hE)	// backend/src/zaqal/backend/rename/FreeList.scala:60:8, :76:26, :77:42
+      else if (effectiveFreeReq_3 & _GEN_19 == 8'hE)	// backend/src/zaqal/backend/rename/FreeList.scala:57:8, :76:42, :81:32, :82:42
         freeList_14 <= io_freePhyReg_3;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_2 & _GEN_20 == 8'hE)	// backend/src/zaqal/backend/rename/FreeList.scala:60:8, :76:26, :77:42
+      else if (effectiveFreeReq_2 & _GEN_18 == 8'hE)	// backend/src/zaqal/backend/rename/FreeList.scala:57:8, :76:42, :81:32, :82:42
         freeList_14 <= io_freePhyReg_2;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_1 & _GEN_19 == 8'hE)	// backend/src/zaqal/backend/rename/FreeList.scala:60:8, :76:26, :77:42
+      else if (effectiveFreeReq_1 & _GEN_17 == 8'hE)	// backend/src/zaqal/backend/rename/FreeList.scala:57:8, :76:42, :81:32, :82:42
         freeList_14 <= io_freePhyReg_1;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_0 & _GEN_18 == 8'hE)	// backend/src/zaqal/backend/rename/FreeList.scala:46:25, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_0 & _GEN_16 == 8'hE)	// backend/src/zaqal/backend/rename/FreeList.scala:46:25, :57:8, :76:42, :81:32, :82:42
         freeList_14 <= io_freePhyReg_0;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      if (io_freeReq_5 & _GEN_24 == 8'hF)	// backend/src/zaqal/backend/rename/FreeList.scala:60:8, :76:26, :77:42
+      if (effectiveFreeReq_5 & _GEN_22 == 8'hF)	// backend/src/zaqal/backend/rename/FreeList.scala:57:8, :76:42, :81:32, :82:42
         freeList_15 <= io_freePhyReg_5;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_4 & _GEN_23 == 8'hF)	// backend/src/zaqal/backend/rename/FreeList.scala:60:8, :76:26, :77:42
+      else if (effectiveFreeReq_4 & _GEN_21 == 8'hF)	// backend/src/zaqal/backend/rename/FreeList.scala:57:8, :76:42, :81:32, :82:42
         freeList_15 <= io_freePhyReg_4;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_3 & _GEN_21 == 8'hF)	// backend/src/zaqal/backend/rename/FreeList.scala:60:8, :76:26, :77:42
+      else if (effectiveFreeReq_3 & _GEN_19 == 8'hF)	// backend/src/zaqal/backend/rename/FreeList.scala:57:8, :76:42, :81:32, :82:42
         freeList_15 <= io_freePhyReg_3;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_2 & _GEN_20 == 8'hF)	// backend/src/zaqal/backend/rename/FreeList.scala:60:8, :76:26, :77:42
+      else if (effectiveFreeReq_2 & _GEN_18 == 8'hF)	// backend/src/zaqal/backend/rename/FreeList.scala:57:8, :76:42, :81:32, :82:42
         freeList_15 <= io_freePhyReg_2;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_1 & _GEN_19 == 8'hF)	// backend/src/zaqal/backend/rename/FreeList.scala:60:8, :76:26, :77:42
+      else if (effectiveFreeReq_1 & _GEN_17 == 8'hF)	// backend/src/zaqal/backend/rename/FreeList.scala:57:8, :76:42, :81:32, :82:42
         freeList_15 <= io_freePhyReg_1;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_0 & _GEN_18 == 8'hF)	// backend/src/zaqal/backend/rename/FreeList.scala:46:25, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_0 & _GEN_16 == 8'hF)	// backend/src/zaqal/backend/rename/FreeList.scala:46:25, :57:8, :76:42, :81:32, :82:42
         freeList_15 <= io_freePhyReg_0;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      if (io_freeReq_5 & _GEN_24 == 8'h10)	// backend/src/zaqal/backend/rename/FreeList.scala:60:8, :76:26, :77:42
+      if (effectiveFreeReq_5 & _GEN_22 == 8'h10)	// backend/src/zaqal/backend/rename/FreeList.scala:57:8, :76:42, :81:32, :82:42
         freeList_16 <= io_freePhyReg_5;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_4 & _GEN_23 == 8'h10)	// backend/src/zaqal/backend/rename/FreeList.scala:60:8, :76:26, :77:42
+      else if (effectiveFreeReq_4 & _GEN_21 == 8'h10)	// backend/src/zaqal/backend/rename/FreeList.scala:57:8, :76:42, :81:32, :82:42
         freeList_16 <= io_freePhyReg_4;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_3 & _GEN_21 == 8'h10)	// backend/src/zaqal/backend/rename/FreeList.scala:60:8, :76:26, :77:42
+      else if (effectiveFreeReq_3 & _GEN_19 == 8'h10)	// backend/src/zaqal/backend/rename/FreeList.scala:57:8, :76:42, :81:32, :82:42
         freeList_16 <= io_freePhyReg_3;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_2 & _GEN_20 == 8'h10)	// backend/src/zaqal/backend/rename/FreeList.scala:60:8, :76:26, :77:42
+      else if (effectiveFreeReq_2 & _GEN_18 == 8'h10)	// backend/src/zaqal/backend/rename/FreeList.scala:57:8, :76:42, :81:32, :82:42
         freeList_16 <= io_freePhyReg_2;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_1 & _GEN_19 == 8'h10)	// backend/src/zaqal/backend/rename/FreeList.scala:60:8, :76:26, :77:42
+      else if (effectiveFreeReq_1 & _GEN_17 == 8'h10)	// backend/src/zaqal/backend/rename/FreeList.scala:57:8, :76:42, :81:32, :82:42
         freeList_16 <= io_freePhyReg_1;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_0 & _GEN_18 == 8'h10)	// backend/src/zaqal/backend/rename/FreeList.scala:46:25, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_0 & _GEN_16 == 8'h10)	// backend/src/zaqal/backend/rename/FreeList.scala:46:25, :57:8, :76:42, :81:32, :82:42
         freeList_16 <= io_freePhyReg_0;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      if (io_freeReq_5 & _GEN_24 == 8'h11)	// backend/src/zaqal/backend/rename/FreeList.scala:60:8, :76:26, :77:42
+      if (effectiveFreeReq_5 & _GEN_22 == 8'h11)	// backend/src/zaqal/backend/rename/FreeList.scala:57:8, :76:42, :81:32, :82:42
         freeList_17 <= io_freePhyReg_5;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_4 & _GEN_23 == 8'h11)	// backend/src/zaqal/backend/rename/FreeList.scala:60:8, :76:26, :77:42
+      else if (effectiveFreeReq_4 & _GEN_21 == 8'h11)	// backend/src/zaqal/backend/rename/FreeList.scala:57:8, :76:42, :81:32, :82:42
         freeList_17 <= io_freePhyReg_4;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_3 & _GEN_21 == 8'h11)	// backend/src/zaqal/backend/rename/FreeList.scala:60:8, :76:26, :77:42
+      else if (effectiveFreeReq_3 & _GEN_19 == 8'h11)	// backend/src/zaqal/backend/rename/FreeList.scala:57:8, :76:42, :81:32, :82:42
         freeList_17 <= io_freePhyReg_3;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_2 & _GEN_20 == 8'h11)	// backend/src/zaqal/backend/rename/FreeList.scala:60:8, :76:26, :77:42
+      else if (effectiveFreeReq_2 & _GEN_18 == 8'h11)	// backend/src/zaqal/backend/rename/FreeList.scala:57:8, :76:42, :81:32, :82:42
         freeList_17 <= io_freePhyReg_2;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_1 & _GEN_19 == 8'h11)	// backend/src/zaqal/backend/rename/FreeList.scala:60:8, :76:26, :77:42
+      else if (effectiveFreeReq_1 & _GEN_17 == 8'h11)	// backend/src/zaqal/backend/rename/FreeList.scala:57:8, :76:42, :81:32, :82:42
         freeList_17 <= io_freePhyReg_1;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_0 & _GEN_18 == 8'h11)	// backend/src/zaqal/backend/rename/FreeList.scala:46:25, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_0 & _GEN_16 == 8'h11)	// backend/src/zaqal/backend/rename/FreeList.scala:46:25, :57:8, :76:42, :81:32, :82:42
         freeList_17 <= io_freePhyReg_0;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      if (io_freeReq_5 & _GEN_24 == 8'h12)	// backend/src/zaqal/backend/rename/FreeList.scala:60:8, :76:26, :77:42
+      if (effectiveFreeReq_5 & _GEN_22 == 8'h12)	// backend/src/zaqal/backend/rename/FreeList.scala:57:8, :76:42, :81:32, :82:42
         freeList_18 <= io_freePhyReg_5;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_4 & _GEN_23 == 8'h12)	// backend/src/zaqal/backend/rename/FreeList.scala:60:8, :76:26, :77:42
+      else if (effectiveFreeReq_4 & _GEN_21 == 8'h12)	// backend/src/zaqal/backend/rename/FreeList.scala:57:8, :76:42, :81:32, :82:42
         freeList_18 <= io_freePhyReg_4;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_3 & _GEN_21 == 8'h12)	// backend/src/zaqal/backend/rename/FreeList.scala:60:8, :76:26, :77:42
+      else if (effectiveFreeReq_3 & _GEN_19 == 8'h12)	// backend/src/zaqal/backend/rename/FreeList.scala:57:8, :76:42, :81:32, :82:42
         freeList_18 <= io_freePhyReg_3;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_2 & _GEN_20 == 8'h12)	// backend/src/zaqal/backend/rename/FreeList.scala:60:8, :76:26, :77:42
+      else if (effectiveFreeReq_2 & _GEN_18 == 8'h12)	// backend/src/zaqal/backend/rename/FreeList.scala:57:8, :76:42, :81:32, :82:42
         freeList_18 <= io_freePhyReg_2;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_1 & _GEN_19 == 8'h12)	// backend/src/zaqal/backend/rename/FreeList.scala:60:8, :76:26, :77:42
+      else if (effectiveFreeReq_1 & _GEN_17 == 8'h12)	// backend/src/zaqal/backend/rename/FreeList.scala:57:8, :76:42, :81:32, :82:42
         freeList_18 <= io_freePhyReg_1;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_0 & _GEN_18 == 8'h12)	// backend/src/zaqal/backend/rename/FreeList.scala:46:25, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_0 & _GEN_16 == 8'h12)	// backend/src/zaqal/backend/rename/FreeList.scala:46:25, :57:8, :76:42, :81:32, :82:42
         freeList_18 <= io_freePhyReg_0;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      if (io_freeReq_5 & _GEN_24 == 8'h13)	// backend/src/zaqal/backend/rename/FreeList.scala:60:8, :76:26, :77:42
+      if (effectiveFreeReq_5 & _GEN_22 == 8'h13)	// backend/src/zaqal/backend/rename/FreeList.scala:57:8, :76:42, :81:32, :82:42
         freeList_19 <= io_freePhyReg_5;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_4 & _GEN_23 == 8'h13)	// backend/src/zaqal/backend/rename/FreeList.scala:60:8, :76:26, :77:42
+      else if (effectiveFreeReq_4 & _GEN_21 == 8'h13)	// backend/src/zaqal/backend/rename/FreeList.scala:57:8, :76:42, :81:32, :82:42
         freeList_19 <= io_freePhyReg_4;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_3 & _GEN_21 == 8'h13)	// backend/src/zaqal/backend/rename/FreeList.scala:60:8, :76:26, :77:42
+      else if (effectiveFreeReq_3 & _GEN_19 == 8'h13)	// backend/src/zaqal/backend/rename/FreeList.scala:57:8, :76:42, :81:32, :82:42
         freeList_19 <= io_freePhyReg_3;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_2 & _GEN_20 == 8'h13)	// backend/src/zaqal/backend/rename/FreeList.scala:60:8, :76:26, :77:42
+      else if (effectiveFreeReq_2 & _GEN_18 == 8'h13)	// backend/src/zaqal/backend/rename/FreeList.scala:57:8, :76:42, :81:32, :82:42
         freeList_19 <= io_freePhyReg_2;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_1 & _GEN_19 == 8'h13)	// backend/src/zaqal/backend/rename/FreeList.scala:60:8, :76:26, :77:42
+      else if (effectiveFreeReq_1 & _GEN_17 == 8'h13)	// backend/src/zaqal/backend/rename/FreeList.scala:57:8, :76:42, :81:32, :82:42
         freeList_19 <= io_freePhyReg_1;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_0 & _GEN_18 == 8'h13)	// backend/src/zaqal/backend/rename/FreeList.scala:46:25, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_0 & _GEN_16 == 8'h13)	// backend/src/zaqal/backend/rename/FreeList.scala:46:25, :57:8, :76:42, :81:32, :82:42
         freeList_19 <= io_freePhyReg_0;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      if (io_freeReq_5 & _GEN_24 == 8'h14)	// backend/src/zaqal/backend/rename/FreeList.scala:60:8, :76:26, :77:42
+      if (effectiveFreeReq_5 & _GEN_22 == 8'h14)	// backend/src/zaqal/backend/rename/FreeList.scala:57:8, :76:42, :81:32, :82:42
         freeList_20 <= io_freePhyReg_5;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_4 & _GEN_23 == 8'h14)	// backend/src/zaqal/backend/rename/FreeList.scala:60:8, :76:26, :77:42
+      else if (effectiveFreeReq_4 & _GEN_21 == 8'h14)	// backend/src/zaqal/backend/rename/FreeList.scala:57:8, :76:42, :81:32, :82:42
         freeList_20 <= io_freePhyReg_4;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_3 & _GEN_21 == 8'h14)	// backend/src/zaqal/backend/rename/FreeList.scala:60:8, :76:26, :77:42
+      else if (effectiveFreeReq_3 & _GEN_19 == 8'h14)	// backend/src/zaqal/backend/rename/FreeList.scala:57:8, :76:42, :81:32, :82:42
         freeList_20 <= io_freePhyReg_3;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_2 & _GEN_20 == 8'h14)	// backend/src/zaqal/backend/rename/FreeList.scala:60:8, :76:26, :77:42
+      else if (effectiveFreeReq_2 & _GEN_18 == 8'h14)	// backend/src/zaqal/backend/rename/FreeList.scala:57:8, :76:42, :81:32, :82:42
         freeList_20 <= io_freePhyReg_2;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_1 & _GEN_19 == 8'h14)	// backend/src/zaqal/backend/rename/FreeList.scala:60:8, :76:26, :77:42
+      else if (effectiveFreeReq_1 & _GEN_17 == 8'h14)	// backend/src/zaqal/backend/rename/FreeList.scala:57:8, :76:42, :81:32, :82:42
         freeList_20 <= io_freePhyReg_1;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_0 & _GEN_18 == 8'h14)	// backend/src/zaqal/backend/rename/FreeList.scala:46:25, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_0 & _GEN_16 == 8'h14)	// backend/src/zaqal/backend/rename/FreeList.scala:46:25, :57:8, :76:42, :81:32, :82:42
         freeList_20 <= io_freePhyReg_0;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      if (io_freeReq_5 & _GEN_24 == 8'h15)	// backend/src/zaqal/backend/rename/FreeList.scala:60:8, :76:26, :77:42
+      if (effectiveFreeReq_5 & _GEN_22 == 8'h15)	// backend/src/zaqal/backend/rename/FreeList.scala:57:8, :76:42, :81:32, :82:42
         freeList_21 <= io_freePhyReg_5;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_4 & _GEN_23 == 8'h15)	// backend/src/zaqal/backend/rename/FreeList.scala:60:8, :76:26, :77:42
+      else if (effectiveFreeReq_4 & _GEN_21 == 8'h15)	// backend/src/zaqal/backend/rename/FreeList.scala:57:8, :76:42, :81:32, :82:42
         freeList_21 <= io_freePhyReg_4;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_3 & _GEN_21 == 8'h15)	// backend/src/zaqal/backend/rename/FreeList.scala:60:8, :76:26, :77:42
+      else if (effectiveFreeReq_3 & _GEN_19 == 8'h15)	// backend/src/zaqal/backend/rename/FreeList.scala:57:8, :76:42, :81:32, :82:42
         freeList_21 <= io_freePhyReg_3;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_2 & _GEN_20 == 8'h15)	// backend/src/zaqal/backend/rename/FreeList.scala:60:8, :76:26, :77:42
+      else if (effectiveFreeReq_2 & _GEN_18 == 8'h15)	// backend/src/zaqal/backend/rename/FreeList.scala:57:8, :76:42, :81:32, :82:42
         freeList_21 <= io_freePhyReg_2;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_1 & _GEN_19 == 8'h15)	// backend/src/zaqal/backend/rename/FreeList.scala:60:8, :76:26, :77:42
+      else if (effectiveFreeReq_1 & _GEN_17 == 8'h15)	// backend/src/zaqal/backend/rename/FreeList.scala:57:8, :76:42, :81:32, :82:42
         freeList_21 <= io_freePhyReg_1;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_0 & _GEN_18 == 8'h15)	// backend/src/zaqal/backend/rename/FreeList.scala:46:25, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_0 & _GEN_16 == 8'h15)	// backend/src/zaqal/backend/rename/FreeList.scala:46:25, :57:8, :76:42, :81:32, :82:42
         freeList_21 <= io_freePhyReg_0;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      if (io_freeReq_5 & _GEN_24 == 8'h16)	// backend/src/zaqal/backend/rename/FreeList.scala:60:8, :76:26, :77:42
+      if (effectiveFreeReq_5 & _GEN_22 == 8'h16)	// backend/src/zaqal/backend/rename/FreeList.scala:57:8, :76:42, :81:32, :82:42
         freeList_22 <= io_freePhyReg_5;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_4 & _GEN_23 == 8'h16)	// backend/src/zaqal/backend/rename/FreeList.scala:60:8, :76:26, :77:42
+      else if (effectiveFreeReq_4 & _GEN_21 == 8'h16)	// backend/src/zaqal/backend/rename/FreeList.scala:57:8, :76:42, :81:32, :82:42
         freeList_22 <= io_freePhyReg_4;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_3 & _GEN_21 == 8'h16)	// backend/src/zaqal/backend/rename/FreeList.scala:60:8, :76:26, :77:42
+      else if (effectiveFreeReq_3 & _GEN_19 == 8'h16)	// backend/src/zaqal/backend/rename/FreeList.scala:57:8, :76:42, :81:32, :82:42
         freeList_22 <= io_freePhyReg_3;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_2 & _GEN_20 == 8'h16)	// backend/src/zaqal/backend/rename/FreeList.scala:60:8, :76:26, :77:42
+      else if (effectiveFreeReq_2 & _GEN_18 == 8'h16)	// backend/src/zaqal/backend/rename/FreeList.scala:57:8, :76:42, :81:32, :82:42
         freeList_22 <= io_freePhyReg_2;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_1 & _GEN_19 == 8'h16)	// backend/src/zaqal/backend/rename/FreeList.scala:60:8, :76:26, :77:42
+      else if (effectiveFreeReq_1 & _GEN_17 == 8'h16)	// backend/src/zaqal/backend/rename/FreeList.scala:57:8, :76:42, :81:32, :82:42
         freeList_22 <= io_freePhyReg_1;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_0 & _GEN_18 == 8'h16)	// backend/src/zaqal/backend/rename/FreeList.scala:46:25, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_0 & _GEN_16 == 8'h16)	// backend/src/zaqal/backend/rename/FreeList.scala:46:25, :57:8, :76:42, :81:32, :82:42
         freeList_22 <= io_freePhyReg_0;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      if (io_freeReq_5 & _GEN_24 == 8'h17)	// backend/src/zaqal/backend/rename/FreeList.scala:60:8, :76:26, :77:42
+      if (effectiveFreeReq_5 & _GEN_22 == 8'h17)	// backend/src/zaqal/backend/rename/FreeList.scala:57:8, :76:42, :81:32, :82:42
         freeList_23 <= io_freePhyReg_5;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_4 & _GEN_23 == 8'h17)	// backend/src/zaqal/backend/rename/FreeList.scala:60:8, :76:26, :77:42
+      else if (effectiveFreeReq_4 & _GEN_21 == 8'h17)	// backend/src/zaqal/backend/rename/FreeList.scala:57:8, :76:42, :81:32, :82:42
         freeList_23 <= io_freePhyReg_4;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_3 & _GEN_21 == 8'h17)	// backend/src/zaqal/backend/rename/FreeList.scala:60:8, :76:26, :77:42
+      else if (effectiveFreeReq_3 & _GEN_19 == 8'h17)	// backend/src/zaqal/backend/rename/FreeList.scala:57:8, :76:42, :81:32, :82:42
         freeList_23 <= io_freePhyReg_3;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_2 & _GEN_20 == 8'h17)	// backend/src/zaqal/backend/rename/FreeList.scala:60:8, :76:26, :77:42
+      else if (effectiveFreeReq_2 & _GEN_18 == 8'h17)	// backend/src/zaqal/backend/rename/FreeList.scala:57:8, :76:42, :81:32, :82:42
         freeList_23 <= io_freePhyReg_2;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_1 & _GEN_19 == 8'h17)	// backend/src/zaqal/backend/rename/FreeList.scala:60:8, :76:26, :77:42
+      else if (effectiveFreeReq_1 & _GEN_17 == 8'h17)	// backend/src/zaqal/backend/rename/FreeList.scala:57:8, :76:42, :81:32, :82:42
         freeList_23 <= io_freePhyReg_1;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_0 & _GEN_18 == 8'h17)	// backend/src/zaqal/backend/rename/FreeList.scala:46:25, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_0 & _GEN_16 == 8'h17)	// backend/src/zaqal/backend/rename/FreeList.scala:46:25, :57:8, :76:42, :81:32, :82:42
         freeList_23 <= io_freePhyReg_0;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      if (io_freeReq_5 & _GEN_24 == 8'h18)	// backend/src/zaqal/backend/rename/FreeList.scala:60:8, :76:26, :77:42
+      if (effectiveFreeReq_5 & _GEN_22 == 8'h18)	// backend/src/zaqal/backend/rename/FreeList.scala:57:8, :76:42, :81:32, :82:42
         freeList_24 <= io_freePhyReg_5;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_4 & _GEN_23 == 8'h18)	// backend/src/zaqal/backend/rename/FreeList.scala:60:8, :76:26, :77:42
+      else if (effectiveFreeReq_4 & _GEN_21 == 8'h18)	// backend/src/zaqal/backend/rename/FreeList.scala:57:8, :76:42, :81:32, :82:42
         freeList_24 <= io_freePhyReg_4;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_3 & _GEN_21 == 8'h18)	// backend/src/zaqal/backend/rename/FreeList.scala:60:8, :76:26, :77:42
+      else if (effectiveFreeReq_3 & _GEN_19 == 8'h18)	// backend/src/zaqal/backend/rename/FreeList.scala:57:8, :76:42, :81:32, :82:42
         freeList_24 <= io_freePhyReg_3;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_2 & _GEN_20 == 8'h18)	// backend/src/zaqal/backend/rename/FreeList.scala:60:8, :76:26, :77:42
+      else if (effectiveFreeReq_2 & _GEN_18 == 8'h18)	// backend/src/zaqal/backend/rename/FreeList.scala:57:8, :76:42, :81:32, :82:42
         freeList_24 <= io_freePhyReg_2;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_1 & _GEN_19 == 8'h18)	// backend/src/zaqal/backend/rename/FreeList.scala:60:8, :76:26, :77:42
+      else if (effectiveFreeReq_1 & _GEN_17 == 8'h18)	// backend/src/zaqal/backend/rename/FreeList.scala:57:8, :76:42, :81:32, :82:42
         freeList_24 <= io_freePhyReg_1;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_0 & _GEN_18 == 8'h18)	// backend/src/zaqal/backend/rename/FreeList.scala:46:25, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_0 & _GEN_16 == 8'h18)	// backend/src/zaqal/backend/rename/FreeList.scala:46:25, :57:8, :76:42, :81:32, :82:42
         freeList_24 <= io_freePhyReg_0;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      if (io_freeReq_5 & _GEN_24 == 8'h19)	// backend/src/zaqal/backend/rename/FreeList.scala:60:8, :76:26, :77:42
+      if (effectiveFreeReq_5 & _GEN_22 == 8'h19)	// backend/src/zaqal/backend/rename/FreeList.scala:57:8, :76:42, :81:32, :82:42
         freeList_25 <= io_freePhyReg_5;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_4 & _GEN_23 == 8'h19)	// backend/src/zaqal/backend/rename/FreeList.scala:60:8, :76:26, :77:42
+      else if (effectiveFreeReq_4 & _GEN_21 == 8'h19)	// backend/src/zaqal/backend/rename/FreeList.scala:57:8, :76:42, :81:32, :82:42
         freeList_25 <= io_freePhyReg_4;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_3 & _GEN_21 == 8'h19)	// backend/src/zaqal/backend/rename/FreeList.scala:60:8, :76:26, :77:42
+      else if (effectiveFreeReq_3 & _GEN_19 == 8'h19)	// backend/src/zaqal/backend/rename/FreeList.scala:57:8, :76:42, :81:32, :82:42
         freeList_25 <= io_freePhyReg_3;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_2 & _GEN_20 == 8'h19)	// backend/src/zaqal/backend/rename/FreeList.scala:60:8, :76:26, :77:42
+      else if (effectiveFreeReq_2 & _GEN_18 == 8'h19)	// backend/src/zaqal/backend/rename/FreeList.scala:57:8, :76:42, :81:32, :82:42
         freeList_25 <= io_freePhyReg_2;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_1 & _GEN_19 == 8'h19)	// backend/src/zaqal/backend/rename/FreeList.scala:60:8, :76:26, :77:42
+      else if (effectiveFreeReq_1 & _GEN_17 == 8'h19)	// backend/src/zaqal/backend/rename/FreeList.scala:57:8, :76:42, :81:32, :82:42
         freeList_25 <= io_freePhyReg_1;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_0 & _GEN_18 == 8'h19)	// backend/src/zaqal/backend/rename/FreeList.scala:46:25, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_0 & _GEN_16 == 8'h19)	// backend/src/zaqal/backend/rename/FreeList.scala:46:25, :57:8, :76:42, :81:32, :82:42
         freeList_25 <= io_freePhyReg_0;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      if (io_freeReq_5 & _GEN_24 == 8'h1A)	// backend/src/zaqal/backend/rename/FreeList.scala:60:8, :76:26, :77:42
+      if (effectiveFreeReq_5 & _GEN_22 == 8'h1A)	// backend/src/zaqal/backend/rename/FreeList.scala:57:8, :76:42, :81:32, :82:42
         freeList_26 <= io_freePhyReg_5;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_4 & _GEN_23 == 8'h1A)	// backend/src/zaqal/backend/rename/FreeList.scala:60:8, :76:26, :77:42
+      else if (effectiveFreeReq_4 & _GEN_21 == 8'h1A)	// backend/src/zaqal/backend/rename/FreeList.scala:57:8, :76:42, :81:32, :82:42
         freeList_26 <= io_freePhyReg_4;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_3 & _GEN_21 == 8'h1A)	// backend/src/zaqal/backend/rename/FreeList.scala:60:8, :76:26, :77:42
+      else if (effectiveFreeReq_3 & _GEN_19 == 8'h1A)	// backend/src/zaqal/backend/rename/FreeList.scala:57:8, :76:42, :81:32, :82:42
         freeList_26 <= io_freePhyReg_3;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_2 & _GEN_20 == 8'h1A)	// backend/src/zaqal/backend/rename/FreeList.scala:60:8, :76:26, :77:42
+      else if (effectiveFreeReq_2 & _GEN_18 == 8'h1A)	// backend/src/zaqal/backend/rename/FreeList.scala:57:8, :76:42, :81:32, :82:42
         freeList_26 <= io_freePhyReg_2;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_1 & _GEN_19 == 8'h1A)	// backend/src/zaqal/backend/rename/FreeList.scala:60:8, :76:26, :77:42
+      else if (effectiveFreeReq_1 & _GEN_17 == 8'h1A)	// backend/src/zaqal/backend/rename/FreeList.scala:57:8, :76:42, :81:32, :82:42
         freeList_26 <= io_freePhyReg_1;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_0 & _GEN_18 == 8'h1A)	// backend/src/zaqal/backend/rename/FreeList.scala:46:25, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_0 & _GEN_16 == 8'h1A)	// backend/src/zaqal/backend/rename/FreeList.scala:46:25, :57:8, :76:42, :81:32, :82:42
         freeList_26 <= io_freePhyReg_0;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      if (io_freeReq_5 & _GEN_24 == 8'h1B)	// backend/src/zaqal/backend/rename/FreeList.scala:60:8, :76:26, :77:42
+      if (effectiveFreeReq_5 & _GEN_22 == 8'h1B)	// backend/src/zaqal/backend/rename/FreeList.scala:57:8, :76:42, :81:32, :82:42
         freeList_27 <= io_freePhyReg_5;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_4 & _GEN_23 == 8'h1B)	// backend/src/zaqal/backend/rename/FreeList.scala:60:8, :76:26, :77:42
+      else if (effectiveFreeReq_4 & _GEN_21 == 8'h1B)	// backend/src/zaqal/backend/rename/FreeList.scala:57:8, :76:42, :81:32, :82:42
         freeList_27 <= io_freePhyReg_4;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_3 & _GEN_21 == 8'h1B)	// backend/src/zaqal/backend/rename/FreeList.scala:60:8, :76:26, :77:42
+      else if (effectiveFreeReq_3 & _GEN_19 == 8'h1B)	// backend/src/zaqal/backend/rename/FreeList.scala:57:8, :76:42, :81:32, :82:42
         freeList_27 <= io_freePhyReg_3;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_2 & _GEN_20 == 8'h1B)	// backend/src/zaqal/backend/rename/FreeList.scala:60:8, :76:26, :77:42
+      else if (effectiveFreeReq_2 & _GEN_18 == 8'h1B)	// backend/src/zaqal/backend/rename/FreeList.scala:57:8, :76:42, :81:32, :82:42
         freeList_27 <= io_freePhyReg_2;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_1 & _GEN_19 == 8'h1B)	// backend/src/zaqal/backend/rename/FreeList.scala:60:8, :76:26, :77:42
+      else if (effectiveFreeReq_1 & _GEN_17 == 8'h1B)	// backend/src/zaqal/backend/rename/FreeList.scala:57:8, :76:42, :81:32, :82:42
         freeList_27 <= io_freePhyReg_1;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_0 & _GEN_18 == 8'h1B)	// backend/src/zaqal/backend/rename/FreeList.scala:46:25, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_0 & _GEN_16 == 8'h1B)	// backend/src/zaqal/backend/rename/FreeList.scala:46:25, :57:8, :76:42, :81:32, :82:42
         freeList_27 <= io_freePhyReg_0;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      if (io_freeReq_5 & _GEN_24 == 8'h1C)	// backend/src/zaqal/backend/rename/FreeList.scala:60:8, :76:26, :77:42
+      if (effectiveFreeReq_5 & _GEN_22 == 8'h1C)	// backend/src/zaqal/backend/rename/FreeList.scala:57:8, :76:42, :81:32, :82:42
         freeList_28 <= io_freePhyReg_5;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_4 & _GEN_23 == 8'h1C)	// backend/src/zaqal/backend/rename/FreeList.scala:60:8, :76:26, :77:42
+      else if (effectiveFreeReq_4 & _GEN_21 == 8'h1C)	// backend/src/zaqal/backend/rename/FreeList.scala:57:8, :76:42, :81:32, :82:42
         freeList_28 <= io_freePhyReg_4;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_3 & _GEN_21 == 8'h1C)	// backend/src/zaqal/backend/rename/FreeList.scala:60:8, :76:26, :77:42
+      else if (effectiveFreeReq_3 & _GEN_19 == 8'h1C)	// backend/src/zaqal/backend/rename/FreeList.scala:57:8, :76:42, :81:32, :82:42
         freeList_28 <= io_freePhyReg_3;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_2 & _GEN_20 == 8'h1C)	// backend/src/zaqal/backend/rename/FreeList.scala:60:8, :76:26, :77:42
+      else if (effectiveFreeReq_2 & _GEN_18 == 8'h1C)	// backend/src/zaqal/backend/rename/FreeList.scala:57:8, :76:42, :81:32, :82:42
         freeList_28 <= io_freePhyReg_2;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_1 & _GEN_19 == 8'h1C)	// backend/src/zaqal/backend/rename/FreeList.scala:60:8, :76:26, :77:42
+      else if (effectiveFreeReq_1 & _GEN_17 == 8'h1C)	// backend/src/zaqal/backend/rename/FreeList.scala:57:8, :76:42, :81:32, :82:42
         freeList_28 <= io_freePhyReg_1;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_0 & _GEN_18 == 8'h1C)	// backend/src/zaqal/backend/rename/FreeList.scala:46:25, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_0 & _GEN_16 == 8'h1C)	// backend/src/zaqal/backend/rename/FreeList.scala:46:25, :57:8, :76:42, :81:32, :82:42
         freeList_28 <= io_freePhyReg_0;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      if (io_freeReq_5 & _GEN_24 == 8'h1D)	// backend/src/zaqal/backend/rename/FreeList.scala:60:8, :76:26, :77:42
+      if (effectiveFreeReq_5 & _GEN_22 == 8'h1D)	// backend/src/zaqal/backend/rename/FreeList.scala:57:8, :76:42, :81:32, :82:42
         freeList_29 <= io_freePhyReg_5;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_4 & _GEN_23 == 8'h1D)	// backend/src/zaqal/backend/rename/FreeList.scala:60:8, :76:26, :77:42
+      else if (effectiveFreeReq_4 & _GEN_21 == 8'h1D)	// backend/src/zaqal/backend/rename/FreeList.scala:57:8, :76:42, :81:32, :82:42
         freeList_29 <= io_freePhyReg_4;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_3 & _GEN_21 == 8'h1D)	// backend/src/zaqal/backend/rename/FreeList.scala:60:8, :76:26, :77:42
+      else if (effectiveFreeReq_3 & _GEN_19 == 8'h1D)	// backend/src/zaqal/backend/rename/FreeList.scala:57:8, :76:42, :81:32, :82:42
         freeList_29 <= io_freePhyReg_3;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_2 & _GEN_20 == 8'h1D)	// backend/src/zaqal/backend/rename/FreeList.scala:60:8, :76:26, :77:42
+      else if (effectiveFreeReq_2 & _GEN_18 == 8'h1D)	// backend/src/zaqal/backend/rename/FreeList.scala:57:8, :76:42, :81:32, :82:42
         freeList_29 <= io_freePhyReg_2;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_1 & _GEN_19 == 8'h1D)	// backend/src/zaqal/backend/rename/FreeList.scala:60:8, :76:26, :77:42
+      else if (effectiveFreeReq_1 & _GEN_17 == 8'h1D)	// backend/src/zaqal/backend/rename/FreeList.scala:57:8, :76:42, :81:32, :82:42
         freeList_29 <= io_freePhyReg_1;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_0 & _GEN_18 == 8'h1D)	// backend/src/zaqal/backend/rename/FreeList.scala:46:25, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_0 & _GEN_16 == 8'h1D)	// backend/src/zaqal/backend/rename/FreeList.scala:46:25, :57:8, :76:42, :81:32, :82:42
         freeList_29 <= io_freePhyReg_0;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      if (io_freeReq_5 & _GEN_24 == 8'h1E)	// backend/src/zaqal/backend/rename/FreeList.scala:60:8, :76:26, :77:42
+      if (effectiveFreeReq_5 & _GEN_22 == 8'h1E)	// backend/src/zaqal/backend/rename/FreeList.scala:57:8, :76:42, :81:32, :82:42
         freeList_30 <= io_freePhyReg_5;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_4 & _GEN_23 == 8'h1E)	// backend/src/zaqal/backend/rename/FreeList.scala:60:8, :76:26, :77:42
+      else if (effectiveFreeReq_4 & _GEN_21 == 8'h1E)	// backend/src/zaqal/backend/rename/FreeList.scala:57:8, :76:42, :81:32, :82:42
         freeList_30 <= io_freePhyReg_4;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_3 & _GEN_21 == 8'h1E)	// backend/src/zaqal/backend/rename/FreeList.scala:60:8, :76:26, :77:42
+      else if (effectiveFreeReq_3 & _GEN_19 == 8'h1E)	// backend/src/zaqal/backend/rename/FreeList.scala:57:8, :76:42, :81:32, :82:42
         freeList_30 <= io_freePhyReg_3;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_2 & _GEN_20 == 8'h1E)	// backend/src/zaqal/backend/rename/FreeList.scala:60:8, :76:26, :77:42
+      else if (effectiveFreeReq_2 & _GEN_18 == 8'h1E)	// backend/src/zaqal/backend/rename/FreeList.scala:57:8, :76:42, :81:32, :82:42
         freeList_30 <= io_freePhyReg_2;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_1 & _GEN_19 == 8'h1E)	// backend/src/zaqal/backend/rename/FreeList.scala:60:8, :76:26, :77:42
+      else if (effectiveFreeReq_1 & _GEN_17 == 8'h1E)	// backend/src/zaqal/backend/rename/FreeList.scala:57:8, :76:42, :81:32, :82:42
         freeList_30 <= io_freePhyReg_1;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_0 & _GEN_18 == 8'h1E)	// backend/src/zaqal/backend/rename/FreeList.scala:46:25, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_0 & _GEN_16 == 8'h1E)	// backend/src/zaqal/backend/rename/FreeList.scala:46:25, :57:8, :76:42, :81:32, :82:42
         freeList_30 <= io_freePhyReg_0;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      if (io_freeReq_5 & _GEN_24 == 8'h1F)	// backend/src/zaqal/backend/rename/FreeList.scala:60:8, :76:26, :77:42
+      if (effectiveFreeReq_5 & _GEN_22 == 8'h1F)	// backend/src/zaqal/backend/rename/FreeList.scala:57:8, :76:42, :81:32, :82:42
         freeList_31 <= io_freePhyReg_5;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_4 & _GEN_23 == 8'h1F)	// backend/src/zaqal/backend/rename/FreeList.scala:60:8, :76:26, :77:42
+      else if (effectiveFreeReq_4 & _GEN_21 == 8'h1F)	// backend/src/zaqal/backend/rename/FreeList.scala:57:8, :76:42, :81:32, :82:42
         freeList_31 <= io_freePhyReg_4;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_3 & _GEN_21 == 8'h1F)	// backend/src/zaqal/backend/rename/FreeList.scala:60:8, :76:26, :77:42
+      else if (effectiveFreeReq_3 & _GEN_19 == 8'h1F)	// backend/src/zaqal/backend/rename/FreeList.scala:57:8, :76:42, :81:32, :82:42
         freeList_31 <= io_freePhyReg_3;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_2 & _GEN_20 == 8'h1F)	// backend/src/zaqal/backend/rename/FreeList.scala:60:8, :76:26, :77:42
+      else if (effectiveFreeReq_2 & _GEN_18 == 8'h1F)	// backend/src/zaqal/backend/rename/FreeList.scala:57:8, :76:42, :81:32, :82:42
         freeList_31 <= io_freePhyReg_2;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_1 & _GEN_19 == 8'h1F)	// backend/src/zaqal/backend/rename/FreeList.scala:60:8, :76:26, :77:42
+      else if (effectiveFreeReq_1 & _GEN_17 == 8'h1F)	// backend/src/zaqal/backend/rename/FreeList.scala:57:8, :76:42, :81:32, :82:42
         freeList_31 <= io_freePhyReg_1;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_0 & _GEN_18 == 8'h1F)	// backend/src/zaqal/backend/rename/FreeList.scala:46:25, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_0 & _GEN_16 == 8'h1F)	// backend/src/zaqal/backend/rename/FreeList.scala:46:25, :57:8, :76:42, :81:32, :82:42
         freeList_31 <= io_freePhyReg_0;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      if (io_freeReq_5 & _GEN_24 == 8'h20)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      if (effectiveFreeReq_5 & _GEN_22 == 8'h20)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_32 <= io_freePhyReg_5;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_4 & _GEN_23 == 8'h20)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_4 & _GEN_21 == 8'h20)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_32 <= io_freePhyReg_4;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_3 & _GEN_21 == 8'h20)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_3 & _GEN_19 == 8'h20)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_32 <= io_freePhyReg_3;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_2 & _GEN_20 == 8'h20)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_2 & _GEN_18 == 8'h20)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_32 <= io_freePhyReg_2;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_1 & _GEN_19 == 8'h20)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_1 & _GEN_17 == 8'h20)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_32 <= io_freePhyReg_1;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_0 & _GEN_18 == 8'h20)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_0 & _GEN_16 == 8'h20)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :57:8, :76:42, :81:32, :82:42
         freeList_32 <= io_freePhyReg_0;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      if (io_freeReq_5 & _GEN_24 == 8'h21)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      if (effectiveFreeReq_5 & _GEN_22 == 8'h21)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_33 <= io_freePhyReg_5;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_4 & _GEN_23 == 8'h21)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_4 & _GEN_21 == 8'h21)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_33 <= io_freePhyReg_4;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_3 & _GEN_21 == 8'h21)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_3 & _GEN_19 == 8'h21)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_33 <= io_freePhyReg_3;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_2 & _GEN_20 == 8'h21)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_2 & _GEN_18 == 8'h21)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_33 <= io_freePhyReg_2;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_1 & _GEN_19 == 8'h21)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_1 & _GEN_17 == 8'h21)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_33 <= io_freePhyReg_1;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_0 & _GEN_18 == 8'h21)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_0 & _GEN_16 == 8'h21)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :57:8, :76:42, :81:32, :82:42
         freeList_33 <= io_freePhyReg_0;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      if (io_freeReq_5 & _GEN_24 == 8'h22)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      if (effectiveFreeReq_5 & _GEN_22 == 8'h22)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_34 <= io_freePhyReg_5;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_4 & _GEN_23 == 8'h22)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_4 & _GEN_21 == 8'h22)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_34 <= io_freePhyReg_4;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_3 & _GEN_21 == 8'h22)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_3 & _GEN_19 == 8'h22)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_34 <= io_freePhyReg_3;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_2 & _GEN_20 == 8'h22)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_2 & _GEN_18 == 8'h22)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_34 <= io_freePhyReg_2;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_1 & _GEN_19 == 8'h22)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_1 & _GEN_17 == 8'h22)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_34 <= io_freePhyReg_1;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_0 & _GEN_18 == 8'h22)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_0 & _GEN_16 == 8'h22)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :57:8, :76:42, :81:32, :82:42
         freeList_34 <= io_freePhyReg_0;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      if (io_freeReq_5 & _GEN_24 == 8'h23)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      if (effectiveFreeReq_5 & _GEN_22 == 8'h23)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_35 <= io_freePhyReg_5;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_4 & _GEN_23 == 8'h23)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_4 & _GEN_21 == 8'h23)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_35 <= io_freePhyReg_4;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_3 & _GEN_21 == 8'h23)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_3 & _GEN_19 == 8'h23)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_35 <= io_freePhyReg_3;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_2 & _GEN_20 == 8'h23)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_2 & _GEN_18 == 8'h23)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_35 <= io_freePhyReg_2;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_1 & _GEN_19 == 8'h23)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_1 & _GEN_17 == 8'h23)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_35 <= io_freePhyReg_1;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_0 & _GEN_18 == 8'h23)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_0 & _GEN_16 == 8'h23)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :57:8, :76:42, :81:32, :82:42
         freeList_35 <= io_freePhyReg_0;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      if (io_freeReq_5 & _GEN_24 == 8'h24)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      if (effectiveFreeReq_5 & _GEN_22 == 8'h24)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_36 <= io_freePhyReg_5;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_4 & _GEN_23 == 8'h24)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_4 & _GEN_21 == 8'h24)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_36 <= io_freePhyReg_4;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_3 & _GEN_21 == 8'h24)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_3 & _GEN_19 == 8'h24)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_36 <= io_freePhyReg_3;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_2 & _GEN_20 == 8'h24)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_2 & _GEN_18 == 8'h24)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_36 <= io_freePhyReg_2;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_1 & _GEN_19 == 8'h24)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_1 & _GEN_17 == 8'h24)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_36 <= io_freePhyReg_1;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_0 & _GEN_18 == 8'h24)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_0 & _GEN_16 == 8'h24)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :57:8, :76:42, :81:32, :82:42
         freeList_36 <= io_freePhyReg_0;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      if (io_freeReq_5 & _GEN_24 == 8'h25)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      if (effectiveFreeReq_5 & _GEN_22 == 8'h25)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_37 <= io_freePhyReg_5;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_4 & _GEN_23 == 8'h25)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_4 & _GEN_21 == 8'h25)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_37 <= io_freePhyReg_4;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_3 & _GEN_21 == 8'h25)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_3 & _GEN_19 == 8'h25)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_37 <= io_freePhyReg_3;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_2 & _GEN_20 == 8'h25)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_2 & _GEN_18 == 8'h25)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_37 <= io_freePhyReg_2;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_1 & _GEN_19 == 8'h25)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_1 & _GEN_17 == 8'h25)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_37 <= io_freePhyReg_1;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_0 & _GEN_18 == 8'h25)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_0 & _GEN_16 == 8'h25)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :57:8, :76:42, :81:32, :82:42
         freeList_37 <= io_freePhyReg_0;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      if (io_freeReq_5 & _GEN_24 == 8'h26)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      if (effectiveFreeReq_5 & _GEN_22 == 8'h26)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_38 <= io_freePhyReg_5;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_4 & _GEN_23 == 8'h26)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_4 & _GEN_21 == 8'h26)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_38 <= io_freePhyReg_4;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_3 & _GEN_21 == 8'h26)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_3 & _GEN_19 == 8'h26)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_38 <= io_freePhyReg_3;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_2 & _GEN_20 == 8'h26)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_2 & _GEN_18 == 8'h26)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_38 <= io_freePhyReg_2;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_1 & _GEN_19 == 8'h26)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_1 & _GEN_17 == 8'h26)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_38 <= io_freePhyReg_1;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_0 & _GEN_18 == 8'h26)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_0 & _GEN_16 == 8'h26)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :57:8, :76:42, :81:32, :82:42
         freeList_38 <= io_freePhyReg_0;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      if (io_freeReq_5 & _GEN_24 == 8'h27)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      if (effectiveFreeReq_5 & _GEN_22 == 8'h27)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_39 <= io_freePhyReg_5;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_4 & _GEN_23 == 8'h27)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_4 & _GEN_21 == 8'h27)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_39 <= io_freePhyReg_4;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_3 & _GEN_21 == 8'h27)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_3 & _GEN_19 == 8'h27)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_39 <= io_freePhyReg_3;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_2 & _GEN_20 == 8'h27)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_2 & _GEN_18 == 8'h27)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_39 <= io_freePhyReg_2;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_1 & _GEN_19 == 8'h27)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_1 & _GEN_17 == 8'h27)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_39 <= io_freePhyReg_1;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_0 & _GEN_18 == 8'h27)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_0 & _GEN_16 == 8'h27)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :57:8, :76:42, :81:32, :82:42
         freeList_39 <= io_freePhyReg_0;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      if (io_freeReq_5 & _GEN_24 == 8'h28)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      if (effectiveFreeReq_5 & _GEN_22 == 8'h28)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_40 <= io_freePhyReg_5;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_4 & _GEN_23 == 8'h28)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_4 & _GEN_21 == 8'h28)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_40 <= io_freePhyReg_4;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_3 & _GEN_21 == 8'h28)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_3 & _GEN_19 == 8'h28)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_40 <= io_freePhyReg_3;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_2 & _GEN_20 == 8'h28)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_2 & _GEN_18 == 8'h28)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_40 <= io_freePhyReg_2;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_1 & _GEN_19 == 8'h28)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_1 & _GEN_17 == 8'h28)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_40 <= io_freePhyReg_1;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_0 & _GEN_18 == 8'h28)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_0 & _GEN_16 == 8'h28)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :57:8, :76:42, :81:32, :82:42
         freeList_40 <= io_freePhyReg_0;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      if (io_freeReq_5 & _GEN_24 == 8'h29)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      if (effectiveFreeReq_5 & _GEN_22 == 8'h29)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_41 <= io_freePhyReg_5;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_4 & _GEN_23 == 8'h29)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_4 & _GEN_21 == 8'h29)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_41 <= io_freePhyReg_4;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_3 & _GEN_21 == 8'h29)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_3 & _GEN_19 == 8'h29)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_41 <= io_freePhyReg_3;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_2 & _GEN_20 == 8'h29)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_2 & _GEN_18 == 8'h29)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_41 <= io_freePhyReg_2;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_1 & _GEN_19 == 8'h29)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_1 & _GEN_17 == 8'h29)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_41 <= io_freePhyReg_1;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_0 & _GEN_18 == 8'h29)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_0 & _GEN_16 == 8'h29)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :57:8, :76:42, :81:32, :82:42
         freeList_41 <= io_freePhyReg_0;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      if (io_freeReq_5 & _GEN_24 == 8'h2A)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      if (effectiveFreeReq_5 & _GEN_22 == 8'h2A)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_42 <= io_freePhyReg_5;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_4 & _GEN_23 == 8'h2A)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_4 & _GEN_21 == 8'h2A)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_42 <= io_freePhyReg_4;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_3 & _GEN_21 == 8'h2A)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_3 & _GEN_19 == 8'h2A)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_42 <= io_freePhyReg_3;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_2 & _GEN_20 == 8'h2A)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_2 & _GEN_18 == 8'h2A)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_42 <= io_freePhyReg_2;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_1 & _GEN_19 == 8'h2A)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_1 & _GEN_17 == 8'h2A)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_42 <= io_freePhyReg_1;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_0 & _GEN_18 == 8'h2A)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_0 & _GEN_16 == 8'h2A)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :57:8, :76:42, :81:32, :82:42
         freeList_42 <= io_freePhyReg_0;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      if (io_freeReq_5 & _GEN_24 == 8'h2B)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      if (effectiveFreeReq_5 & _GEN_22 == 8'h2B)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_43 <= io_freePhyReg_5;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_4 & _GEN_23 == 8'h2B)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_4 & _GEN_21 == 8'h2B)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_43 <= io_freePhyReg_4;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_3 & _GEN_21 == 8'h2B)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_3 & _GEN_19 == 8'h2B)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_43 <= io_freePhyReg_3;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_2 & _GEN_20 == 8'h2B)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_2 & _GEN_18 == 8'h2B)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_43 <= io_freePhyReg_2;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_1 & _GEN_19 == 8'h2B)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_1 & _GEN_17 == 8'h2B)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_43 <= io_freePhyReg_1;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_0 & _GEN_18 == 8'h2B)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_0 & _GEN_16 == 8'h2B)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :57:8, :76:42, :81:32, :82:42
         freeList_43 <= io_freePhyReg_0;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      if (io_freeReq_5 & _GEN_24 == 8'h2C)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      if (effectiveFreeReq_5 & _GEN_22 == 8'h2C)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_44 <= io_freePhyReg_5;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_4 & _GEN_23 == 8'h2C)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_4 & _GEN_21 == 8'h2C)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_44 <= io_freePhyReg_4;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_3 & _GEN_21 == 8'h2C)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_3 & _GEN_19 == 8'h2C)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_44 <= io_freePhyReg_3;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_2 & _GEN_20 == 8'h2C)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_2 & _GEN_18 == 8'h2C)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_44 <= io_freePhyReg_2;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_1 & _GEN_19 == 8'h2C)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_1 & _GEN_17 == 8'h2C)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_44 <= io_freePhyReg_1;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_0 & _GEN_18 == 8'h2C)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_0 & _GEN_16 == 8'h2C)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :57:8, :76:42, :81:32, :82:42
         freeList_44 <= io_freePhyReg_0;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      if (io_freeReq_5 & _GEN_24 == 8'h2D)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      if (effectiveFreeReq_5 & _GEN_22 == 8'h2D)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_45 <= io_freePhyReg_5;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_4 & _GEN_23 == 8'h2D)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_4 & _GEN_21 == 8'h2D)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_45 <= io_freePhyReg_4;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_3 & _GEN_21 == 8'h2D)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_3 & _GEN_19 == 8'h2D)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_45 <= io_freePhyReg_3;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_2 & _GEN_20 == 8'h2D)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_2 & _GEN_18 == 8'h2D)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_45 <= io_freePhyReg_2;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_1 & _GEN_19 == 8'h2D)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_1 & _GEN_17 == 8'h2D)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_45 <= io_freePhyReg_1;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_0 & _GEN_18 == 8'h2D)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_0 & _GEN_16 == 8'h2D)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :57:8, :76:42, :81:32, :82:42
         freeList_45 <= io_freePhyReg_0;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      if (io_freeReq_5 & _GEN_24 == 8'h2E)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      if (effectiveFreeReq_5 & _GEN_22 == 8'h2E)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_46 <= io_freePhyReg_5;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_4 & _GEN_23 == 8'h2E)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_4 & _GEN_21 == 8'h2E)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_46 <= io_freePhyReg_4;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_3 & _GEN_21 == 8'h2E)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_3 & _GEN_19 == 8'h2E)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_46 <= io_freePhyReg_3;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_2 & _GEN_20 == 8'h2E)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_2 & _GEN_18 == 8'h2E)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_46 <= io_freePhyReg_2;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_1 & _GEN_19 == 8'h2E)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_1 & _GEN_17 == 8'h2E)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_46 <= io_freePhyReg_1;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_0 & _GEN_18 == 8'h2E)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_0 & _GEN_16 == 8'h2E)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :57:8, :76:42, :81:32, :82:42
         freeList_46 <= io_freePhyReg_0;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      if (io_freeReq_5 & _GEN_24 == 8'h2F)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      if (effectiveFreeReq_5 & _GEN_22 == 8'h2F)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_47 <= io_freePhyReg_5;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_4 & _GEN_23 == 8'h2F)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_4 & _GEN_21 == 8'h2F)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_47 <= io_freePhyReg_4;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_3 & _GEN_21 == 8'h2F)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_3 & _GEN_19 == 8'h2F)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_47 <= io_freePhyReg_3;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_2 & _GEN_20 == 8'h2F)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_2 & _GEN_18 == 8'h2F)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_47 <= io_freePhyReg_2;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_1 & _GEN_19 == 8'h2F)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_1 & _GEN_17 == 8'h2F)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_47 <= io_freePhyReg_1;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_0 & _GEN_18 == 8'h2F)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_0 & _GEN_16 == 8'h2F)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :57:8, :76:42, :81:32, :82:42
         freeList_47 <= io_freePhyReg_0;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      if (io_freeReq_5 & _GEN_24 == 8'h30)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      if (effectiveFreeReq_5 & _GEN_22 == 8'h30)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_48 <= io_freePhyReg_5;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_4 & _GEN_23 == 8'h30)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_4 & _GEN_21 == 8'h30)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_48 <= io_freePhyReg_4;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_3 & _GEN_21 == 8'h30)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_3 & _GEN_19 == 8'h30)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_48 <= io_freePhyReg_3;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_2 & _GEN_20 == 8'h30)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_2 & _GEN_18 == 8'h30)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_48 <= io_freePhyReg_2;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_1 & _GEN_19 == 8'h30)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_1 & _GEN_17 == 8'h30)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_48 <= io_freePhyReg_1;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_0 & _GEN_18 == 8'h30)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_0 & _GEN_16 == 8'h30)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :57:8, :76:42, :81:32, :82:42
         freeList_48 <= io_freePhyReg_0;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      if (io_freeReq_5 & _GEN_24 == 8'h31)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      if (effectiveFreeReq_5 & _GEN_22 == 8'h31)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_49 <= io_freePhyReg_5;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_4 & _GEN_23 == 8'h31)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_4 & _GEN_21 == 8'h31)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_49 <= io_freePhyReg_4;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_3 & _GEN_21 == 8'h31)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_3 & _GEN_19 == 8'h31)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_49 <= io_freePhyReg_3;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_2 & _GEN_20 == 8'h31)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_2 & _GEN_18 == 8'h31)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_49 <= io_freePhyReg_2;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_1 & _GEN_19 == 8'h31)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_1 & _GEN_17 == 8'h31)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_49 <= io_freePhyReg_1;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_0 & _GEN_18 == 8'h31)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_0 & _GEN_16 == 8'h31)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :57:8, :76:42, :81:32, :82:42
         freeList_49 <= io_freePhyReg_0;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      if (io_freeReq_5 & _GEN_24 == 8'h32)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      if (effectiveFreeReq_5 & _GEN_22 == 8'h32)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_50 <= io_freePhyReg_5;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_4 & _GEN_23 == 8'h32)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_4 & _GEN_21 == 8'h32)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_50 <= io_freePhyReg_4;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_3 & _GEN_21 == 8'h32)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_3 & _GEN_19 == 8'h32)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_50 <= io_freePhyReg_3;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_2 & _GEN_20 == 8'h32)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_2 & _GEN_18 == 8'h32)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_50 <= io_freePhyReg_2;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_1 & _GEN_19 == 8'h32)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_1 & _GEN_17 == 8'h32)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_50 <= io_freePhyReg_1;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_0 & _GEN_18 == 8'h32)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_0 & _GEN_16 == 8'h32)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :57:8, :76:42, :81:32, :82:42
         freeList_50 <= io_freePhyReg_0;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      if (io_freeReq_5 & _GEN_24 == 8'h33)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      if (effectiveFreeReq_5 & _GEN_22 == 8'h33)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_51 <= io_freePhyReg_5;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_4 & _GEN_23 == 8'h33)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_4 & _GEN_21 == 8'h33)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_51 <= io_freePhyReg_4;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_3 & _GEN_21 == 8'h33)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_3 & _GEN_19 == 8'h33)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_51 <= io_freePhyReg_3;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_2 & _GEN_20 == 8'h33)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_2 & _GEN_18 == 8'h33)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_51 <= io_freePhyReg_2;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_1 & _GEN_19 == 8'h33)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_1 & _GEN_17 == 8'h33)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_51 <= io_freePhyReg_1;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_0 & _GEN_18 == 8'h33)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_0 & _GEN_16 == 8'h33)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :57:8, :76:42, :81:32, :82:42
         freeList_51 <= io_freePhyReg_0;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      if (io_freeReq_5 & _GEN_24 == 8'h34)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      if (effectiveFreeReq_5 & _GEN_22 == 8'h34)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_52 <= io_freePhyReg_5;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_4 & _GEN_23 == 8'h34)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_4 & _GEN_21 == 8'h34)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_52 <= io_freePhyReg_4;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_3 & _GEN_21 == 8'h34)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_3 & _GEN_19 == 8'h34)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_52 <= io_freePhyReg_3;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_2 & _GEN_20 == 8'h34)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_2 & _GEN_18 == 8'h34)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_52 <= io_freePhyReg_2;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_1 & _GEN_19 == 8'h34)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_1 & _GEN_17 == 8'h34)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_52 <= io_freePhyReg_1;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_0 & _GEN_18 == 8'h34)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_0 & _GEN_16 == 8'h34)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :57:8, :76:42, :81:32, :82:42
         freeList_52 <= io_freePhyReg_0;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      if (io_freeReq_5 & _GEN_24 == 8'h35)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      if (effectiveFreeReq_5 & _GEN_22 == 8'h35)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_53 <= io_freePhyReg_5;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_4 & _GEN_23 == 8'h35)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_4 & _GEN_21 == 8'h35)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_53 <= io_freePhyReg_4;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_3 & _GEN_21 == 8'h35)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_3 & _GEN_19 == 8'h35)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_53 <= io_freePhyReg_3;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_2 & _GEN_20 == 8'h35)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_2 & _GEN_18 == 8'h35)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_53 <= io_freePhyReg_2;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_1 & _GEN_19 == 8'h35)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_1 & _GEN_17 == 8'h35)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_53 <= io_freePhyReg_1;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_0 & _GEN_18 == 8'h35)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_0 & _GEN_16 == 8'h35)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :57:8, :76:42, :81:32, :82:42
         freeList_53 <= io_freePhyReg_0;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      if (io_freeReq_5 & _GEN_24 == 8'h36)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      if (effectiveFreeReq_5 & _GEN_22 == 8'h36)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_54 <= io_freePhyReg_5;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_4 & _GEN_23 == 8'h36)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_4 & _GEN_21 == 8'h36)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_54 <= io_freePhyReg_4;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_3 & _GEN_21 == 8'h36)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_3 & _GEN_19 == 8'h36)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_54 <= io_freePhyReg_3;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_2 & _GEN_20 == 8'h36)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_2 & _GEN_18 == 8'h36)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_54 <= io_freePhyReg_2;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_1 & _GEN_19 == 8'h36)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_1 & _GEN_17 == 8'h36)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_54 <= io_freePhyReg_1;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_0 & _GEN_18 == 8'h36)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_0 & _GEN_16 == 8'h36)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :57:8, :76:42, :81:32, :82:42
         freeList_54 <= io_freePhyReg_0;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      if (io_freeReq_5 & _GEN_24 == 8'h37)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      if (effectiveFreeReq_5 & _GEN_22 == 8'h37)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_55 <= io_freePhyReg_5;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_4 & _GEN_23 == 8'h37)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_4 & _GEN_21 == 8'h37)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_55 <= io_freePhyReg_4;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_3 & _GEN_21 == 8'h37)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_3 & _GEN_19 == 8'h37)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_55 <= io_freePhyReg_3;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_2 & _GEN_20 == 8'h37)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_2 & _GEN_18 == 8'h37)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_55 <= io_freePhyReg_2;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_1 & _GEN_19 == 8'h37)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_1 & _GEN_17 == 8'h37)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_55 <= io_freePhyReg_1;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_0 & _GEN_18 == 8'h37)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_0 & _GEN_16 == 8'h37)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :57:8, :76:42, :81:32, :82:42
         freeList_55 <= io_freePhyReg_0;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      if (io_freeReq_5 & _GEN_24 == 8'h38)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      if (effectiveFreeReq_5 & _GEN_22 == 8'h38)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_56 <= io_freePhyReg_5;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_4 & _GEN_23 == 8'h38)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_4 & _GEN_21 == 8'h38)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_56 <= io_freePhyReg_4;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_3 & _GEN_21 == 8'h38)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_3 & _GEN_19 == 8'h38)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_56 <= io_freePhyReg_3;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_2 & _GEN_20 == 8'h38)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_2 & _GEN_18 == 8'h38)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_56 <= io_freePhyReg_2;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_1 & _GEN_19 == 8'h38)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_1 & _GEN_17 == 8'h38)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_56 <= io_freePhyReg_1;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_0 & _GEN_18 == 8'h38)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_0 & _GEN_16 == 8'h38)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :57:8, :76:42, :81:32, :82:42
         freeList_56 <= io_freePhyReg_0;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      if (io_freeReq_5 & _GEN_24 == 8'h39)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      if (effectiveFreeReq_5 & _GEN_22 == 8'h39)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_57 <= io_freePhyReg_5;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_4 & _GEN_23 == 8'h39)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_4 & _GEN_21 == 8'h39)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_57 <= io_freePhyReg_4;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_3 & _GEN_21 == 8'h39)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_3 & _GEN_19 == 8'h39)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_57 <= io_freePhyReg_3;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_2 & _GEN_20 == 8'h39)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_2 & _GEN_18 == 8'h39)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_57 <= io_freePhyReg_2;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_1 & _GEN_19 == 8'h39)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_1 & _GEN_17 == 8'h39)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_57 <= io_freePhyReg_1;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_0 & _GEN_18 == 8'h39)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_0 & _GEN_16 == 8'h39)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :57:8, :76:42, :81:32, :82:42
         freeList_57 <= io_freePhyReg_0;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      if (io_freeReq_5 & _GEN_24 == 8'h3A)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      if (effectiveFreeReq_5 & _GEN_22 == 8'h3A)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_58 <= io_freePhyReg_5;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_4 & _GEN_23 == 8'h3A)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_4 & _GEN_21 == 8'h3A)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_58 <= io_freePhyReg_4;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_3 & _GEN_21 == 8'h3A)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_3 & _GEN_19 == 8'h3A)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_58 <= io_freePhyReg_3;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_2 & _GEN_20 == 8'h3A)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_2 & _GEN_18 == 8'h3A)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_58 <= io_freePhyReg_2;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_1 & _GEN_19 == 8'h3A)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_1 & _GEN_17 == 8'h3A)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_58 <= io_freePhyReg_1;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_0 & _GEN_18 == 8'h3A)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_0 & _GEN_16 == 8'h3A)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :57:8, :76:42, :81:32, :82:42
         freeList_58 <= io_freePhyReg_0;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      if (io_freeReq_5 & _GEN_24 == 8'h3B)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      if (effectiveFreeReq_5 & _GEN_22 == 8'h3B)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_59 <= io_freePhyReg_5;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_4 & _GEN_23 == 8'h3B)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_4 & _GEN_21 == 8'h3B)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_59 <= io_freePhyReg_4;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_3 & _GEN_21 == 8'h3B)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_3 & _GEN_19 == 8'h3B)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_59 <= io_freePhyReg_3;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_2 & _GEN_20 == 8'h3B)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_2 & _GEN_18 == 8'h3B)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_59 <= io_freePhyReg_2;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_1 & _GEN_19 == 8'h3B)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_1 & _GEN_17 == 8'h3B)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_59 <= io_freePhyReg_1;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_0 & _GEN_18 == 8'h3B)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_0 & _GEN_16 == 8'h3B)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :57:8, :76:42, :81:32, :82:42
         freeList_59 <= io_freePhyReg_0;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      if (io_freeReq_5 & _GEN_24 == 8'h3C)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      if (effectiveFreeReq_5 & _GEN_22 == 8'h3C)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_60 <= io_freePhyReg_5;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_4 & _GEN_23 == 8'h3C)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_4 & _GEN_21 == 8'h3C)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_60 <= io_freePhyReg_4;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_3 & _GEN_21 == 8'h3C)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_3 & _GEN_19 == 8'h3C)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_60 <= io_freePhyReg_3;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_2 & _GEN_20 == 8'h3C)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_2 & _GEN_18 == 8'h3C)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_60 <= io_freePhyReg_2;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_1 & _GEN_19 == 8'h3C)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_1 & _GEN_17 == 8'h3C)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_60 <= io_freePhyReg_1;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_0 & _GEN_18 == 8'h3C)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_0 & _GEN_16 == 8'h3C)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :57:8, :76:42, :81:32, :82:42
         freeList_60 <= io_freePhyReg_0;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      if (io_freeReq_5 & _GEN_24 == 8'h3D)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      if (effectiveFreeReq_5 & _GEN_22 == 8'h3D)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_61 <= io_freePhyReg_5;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_4 & _GEN_23 == 8'h3D)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_4 & _GEN_21 == 8'h3D)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_61 <= io_freePhyReg_4;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_3 & _GEN_21 == 8'h3D)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_3 & _GEN_19 == 8'h3D)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_61 <= io_freePhyReg_3;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_2 & _GEN_20 == 8'h3D)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_2 & _GEN_18 == 8'h3D)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_61 <= io_freePhyReg_2;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_1 & _GEN_19 == 8'h3D)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_1 & _GEN_17 == 8'h3D)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_61 <= io_freePhyReg_1;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_0 & _GEN_18 == 8'h3D)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_0 & _GEN_16 == 8'h3D)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :57:8, :76:42, :81:32, :82:42
         freeList_61 <= io_freePhyReg_0;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      if (io_freeReq_5 & _GEN_24 == 8'h3E)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      if (effectiveFreeReq_5 & _GEN_22 == 8'h3E)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_62 <= io_freePhyReg_5;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_4 & _GEN_23 == 8'h3E)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_4 & _GEN_21 == 8'h3E)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_62 <= io_freePhyReg_4;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_3 & _GEN_21 == 8'h3E)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_3 & _GEN_19 == 8'h3E)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_62 <= io_freePhyReg_3;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_2 & _GEN_20 == 8'h3E)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_2 & _GEN_18 == 8'h3E)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_62 <= io_freePhyReg_2;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_1 & _GEN_19 == 8'h3E)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_1 & _GEN_17 == 8'h3E)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_62 <= io_freePhyReg_1;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_0 & _GEN_18 == 8'h3E)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_0 & _GEN_16 == 8'h3E)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :57:8, :76:42, :81:32, :82:42
         freeList_62 <= io_freePhyReg_0;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      if (io_freeReq_5 & _GEN_24 == 8'h3F)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      if (effectiveFreeReq_5 & _GEN_22 == 8'h3F)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_63 <= io_freePhyReg_5;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_4 & _GEN_23 == 8'h3F)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_4 & _GEN_21 == 8'h3F)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_63 <= io_freePhyReg_4;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_3 & _GEN_21 == 8'h3F)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_3 & _GEN_19 == 8'h3F)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_63 <= io_freePhyReg_3;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_2 & _GEN_20 == 8'h3F)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_2 & _GEN_18 == 8'h3F)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_63 <= io_freePhyReg_2;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_1 & _GEN_19 == 8'h3F)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_1 & _GEN_17 == 8'h3F)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_63 <= io_freePhyReg_1;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_0 & _GEN_18 == 8'h3F)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_0 & _GEN_16 == 8'h3F)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :57:8, :76:42, :81:32, :82:42
         freeList_63 <= io_freePhyReg_0;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      if (io_freeReq_5 & _GEN_24 == 8'h40)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      if (effectiveFreeReq_5 & _GEN_22 == 8'h40)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_64 <= io_freePhyReg_5;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_4 & _GEN_23 == 8'h40)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_4 & _GEN_21 == 8'h40)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_64 <= io_freePhyReg_4;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_3 & _GEN_21 == 8'h40)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_3 & _GEN_19 == 8'h40)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_64 <= io_freePhyReg_3;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_2 & _GEN_20 == 8'h40)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_2 & _GEN_18 == 8'h40)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_64 <= io_freePhyReg_2;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_1 & _GEN_19 == 8'h40)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_1 & _GEN_17 == 8'h40)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_64 <= io_freePhyReg_1;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_0 & _GEN_18 == 8'h40)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_0 & _GEN_16 == 8'h40)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :57:8, :76:42, :81:32, :82:42
         freeList_64 <= io_freePhyReg_0;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      if (io_freeReq_5 & _GEN_24 == 8'h41)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      if (effectiveFreeReq_5 & _GEN_22 == 8'h41)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_65 <= io_freePhyReg_5;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_4 & _GEN_23 == 8'h41)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_4 & _GEN_21 == 8'h41)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_65 <= io_freePhyReg_4;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_3 & _GEN_21 == 8'h41)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_3 & _GEN_19 == 8'h41)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_65 <= io_freePhyReg_3;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_2 & _GEN_20 == 8'h41)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_2 & _GEN_18 == 8'h41)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_65 <= io_freePhyReg_2;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_1 & _GEN_19 == 8'h41)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_1 & _GEN_17 == 8'h41)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_65 <= io_freePhyReg_1;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_0 & _GEN_18 == 8'h41)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_0 & _GEN_16 == 8'h41)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :57:8, :76:42, :81:32, :82:42
         freeList_65 <= io_freePhyReg_0;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      if (io_freeReq_5 & _GEN_24 == 8'h42)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      if (effectiveFreeReq_5 & _GEN_22 == 8'h42)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_66 <= io_freePhyReg_5;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_4 & _GEN_23 == 8'h42)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_4 & _GEN_21 == 8'h42)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_66 <= io_freePhyReg_4;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_3 & _GEN_21 == 8'h42)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_3 & _GEN_19 == 8'h42)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_66 <= io_freePhyReg_3;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_2 & _GEN_20 == 8'h42)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_2 & _GEN_18 == 8'h42)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_66 <= io_freePhyReg_2;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_1 & _GEN_19 == 8'h42)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_1 & _GEN_17 == 8'h42)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_66 <= io_freePhyReg_1;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_0 & _GEN_18 == 8'h42)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_0 & _GEN_16 == 8'h42)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :57:8, :76:42, :81:32, :82:42
         freeList_66 <= io_freePhyReg_0;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      if (io_freeReq_5 & _GEN_24 == 8'h43)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      if (effectiveFreeReq_5 & _GEN_22 == 8'h43)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_67 <= io_freePhyReg_5;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_4 & _GEN_23 == 8'h43)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_4 & _GEN_21 == 8'h43)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_67 <= io_freePhyReg_4;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_3 & _GEN_21 == 8'h43)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_3 & _GEN_19 == 8'h43)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_67 <= io_freePhyReg_3;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_2 & _GEN_20 == 8'h43)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_2 & _GEN_18 == 8'h43)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_67 <= io_freePhyReg_2;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_1 & _GEN_19 == 8'h43)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_1 & _GEN_17 == 8'h43)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_67 <= io_freePhyReg_1;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_0 & _GEN_18 == 8'h43)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_0 & _GEN_16 == 8'h43)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :57:8, :76:42, :81:32, :82:42
         freeList_67 <= io_freePhyReg_0;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      if (io_freeReq_5 & _GEN_24 == 8'h44)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      if (effectiveFreeReq_5 & _GEN_22 == 8'h44)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_68 <= io_freePhyReg_5;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_4 & _GEN_23 == 8'h44)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_4 & _GEN_21 == 8'h44)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_68 <= io_freePhyReg_4;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_3 & _GEN_21 == 8'h44)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_3 & _GEN_19 == 8'h44)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_68 <= io_freePhyReg_3;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_2 & _GEN_20 == 8'h44)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_2 & _GEN_18 == 8'h44)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_68 <= io_freePhyReg_2;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_1 & _GEN_19 == 8'h44)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_1 & _GEN_17 == 8'h44)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_68 <= io_freePhyReg_1;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_0 & _GEN_18 == 8'h44)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_0 & _GEN_16 == 8'h44)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :57:8, :76:42, :81:32, :82:42
         freeList_68 <= io_freePhyReg_0;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      if (io_freeReq_5 & _GEN_24 == 8'h45)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      if (effectiveFreeReq_5 & _GEN_22 == 8'h45)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_69 <= io_freePhyReg_5;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_4 & _GEN_23 == 8'h45)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_4 & _GEN_21 == 8'h45)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_69 <= io_freePhyReg_4;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_3 & _GEN_21 == 8'h45)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_3 & _GEN_19 == 8'h45)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_69 <= io_freePhyReg_3;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_2 & _GEN_20 == 8'h45)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_2 & _GEN_18 == 8'h45)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_69 <= io_freePhyReg_2;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_1 & _GEN_19 == 8'h45)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_1 & _GEN_17 == 8'h45)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_69 <= io_freePhyReg_1;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_0 & _GEN_18 == 8'h45)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_0 & _GEN_16 == 8'h45)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :57:8, :76:42, :81:32, :82:42
         freeList_69 <= io_freePhyReg_0;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      if (io_freeReq_5 & _GEN_24 == 8'h46)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      if (effectiveFreeReq_5 & _GEN_22 == 8'h46)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_70 <= io_freePhyReg_5;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_4 & _GEN_23 == 8'h46)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_4 & _GEN_21 == 8'h46)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_70 <= io_freePhyReg_4;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_3 & _GEN_21 == 8'h46)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_3 & _GEN_19 == 8'h46)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_70 <= io_freePhyReg_3;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_2 & _GEN_20 == 8'h46)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_2 & _GEN_18 == 8'h46)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_70 <= io_freePhyReg_2;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_1 & _GEN_19 == 8'h46)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_1 & _GEN_17 == 8'h46)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_70 <= io_freePhyReg_1;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_0 & _GEN_18 == 8'h46)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_0 & _GEN_16 == 8'h46)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :57:8, :76:42, :81:32, :82:42
         freeList_70 <= io_freePhyReg_0;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      if (io_freeReq_5 & _GEN_24 == 8'h47)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      if (effectiveFreeReq_5 & _GEN_22 == 8'h47)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_71 <= io_freePhyReg_5;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_4 & _GEN_23 == 8'h47)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_4 & _GEN_21 == 8'h47)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_71 <= io_freePhyReg_4;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_3 & _GEN_21 == 8'h47)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_3 & _GEN_19 == 8'h47)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_71 <= io_freePhyReg_3;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_2 & _GEN_20 == 8'h47)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_2 & _GEN_18 == 8'h47)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_71 <= io_freePhyReg_2;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_1 & _GEN_19 == 8'h47)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_1 & _GEN_17 == 8'h47)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_71 <= io_freePhyReg_1;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_0 & _GEN_18 == 8'h47)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_0 & _GEN_16 == 8'h47)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :57:8, :76:42, :81:32, :82:42
         freeList_71 <= io_freePhyReg_0;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      if (io_freeReq_5 & _GEN_24 == 8'h48)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      if (effectiveFreeReq_5 & _GEN_22 == 8'h48)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_72 <= io_freePhyReg_5;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_4 & _GEN_23 == 8'h48)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_4 & _GEN_21 == 8'h48)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_72 <= io_freePhyReg_4;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_3 & _GEN_21 == 8'h48)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_3 & _GEN_19 == 8'h48)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_72 <= io_freePhyReg_3;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_2 & _GEN_20 == 8'h48)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_2 & _GEN_18 == 8'h48)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_72 <= io_freePhyReg_2;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_1 & _GEN_19 == 8'h48)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_1 & _GEN_17 == 8'h48)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_72 <= io_freePhyReg_1;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_0 & _GEN_18 == 8'h48)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_0 & _GEN_16 == 8'h48)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :57:8, :76:42, :81:32, :82:42
         freeList_72 <= io_freePhyReg_0;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      if (io_freeReq_5 & _GEN_24 == 8'h49)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      if (effectiveFreeReq_5 & _GEN_22 == 8'h49)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_73 <= io_freePhyReg_5;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_4 & _GEN_23 == 8'h49)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_4 & _GEN_21 == 8'h49)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_73 <= io_freePhyReg_4;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_3 & _GEN_21 == 8'h49)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_3 & _GEN_19 == 8'h49)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_73 <= io_freePhyReg_3;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_2 & _GEN_20 == 8'h49)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_2 & _GEN_18 == 8'h49)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_73 <= io_freePhyReg_2;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_1 & _GEN_19 == 8'h49)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_1 & _GEN_17 == 8'h49)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_73 <= io_freePhyReg_1;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_0 & _GEN_18 == 8'h49)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_0 & _GEN_16 == 8'h49)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :57:8, :76:42, :81:32, :82:42
         freeList_73 <= io_freePhyReg_0;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      if (io_freeReq_5 & _GEN_24 == 8'h4A)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      if (effectiveFreeReq_5 & _GEN_22 == 8'h4A)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_74 <= io_freePhyReg_5;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_4 & _GEN_23 == 8'h4A)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_4 & _GEN_21 == 8'h4A)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_74 <= io_freePhyReg_4;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_3 & _GEN_21 == 8'h4A)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_3 & _GEN_19 == 8'h4A)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_74 <= io_freePhyReg_3;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_2 & _GEN_20 == 8'h4A)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_2 & _GEN_18 == 8'h4A)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_74 <= io_freePhyReg_2;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_1 & _GEN_19 == 8'h4A)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_1 & _GEN_17 == 8'h4A)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_74 <= io_freePhyReg_1;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_0 & _GEN_18 == 8'h4A)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_0 & _GEN_16 == 8'h4A)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :57:8, :76:42, :81:32, :82:42
         freeList_74 <= io_freePhyReg_0;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      if (io_freeReq_5 & _GEN_24 == 8'h4B)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      if (effectiveFreeReq_5 & _GEN_22 == 8'h4B)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_75 <= io_freePhyReg_5;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_4 & _GEN_23 == 8'h4B)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_4 & _GEN_21 == 8'h4B)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_75 <= io_freePhyReg_4;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_3 & _GEN_21 == 8'h4B)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_3 & _GEN_19 == 8'h4B)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_75 <= io_freePhyReg_3;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_2 & _GEN_20 == 8'h4B)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_2 & _GEN_18 == 8'h4B)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_75 <= io_freePhyReg_2;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_1 & _GEN_19 == 8'h4B)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_1 & _GEN_17 == 8'h4B)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_75 <= io_freePhyReg_1;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_0 & _GEN_18 == 8'h4B)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_0 & _GEN_16 == 8'h4B)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :57:8, :76:42, :81:32, :82:42
         freeList_75 <= io_freePhyReg_0;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      if (io_freeReq_5 & _GEN_24 == 8'h4C)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      if (effectiveFreeReq_5 & _GEN_22 == 8'h4C)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_76 <= io_freePhyReg_5;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_4 & _GEN_23 == 8'h4C)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_4 & _GEN_21 == 8'h4C)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_76 <= io_freePhyReg_4;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_3 & _GEN_21 == 8'h4C)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_3 & _GEN_19 == 8'h4C)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_76 <= io_freePhyReg_3;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_2 & _GEN_20 == 8'h4C)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_2 & _GEN_18 == 8'h4C)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_76 <= io_freePhyReg_2;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_1 & _GEN_19 == 8'h4C)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_1 & _GEN_17 == 8'h4C)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_76 <= io_freePhyReg_1;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_0 & _GEN_18 == 8'h4C)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_0 & _GEN_16 == 8'h4C)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :57:8, :76:42, :81:32, :82:42
         freeList_76 <= io_freePhyReg_0;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      if (io_freeReq_5 & _GEN_24 == 8'h4D)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      if (effectiveFreeReq_5 & _GEN_22 == 8'h4D)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_77 <= io_freePhyReg_5;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_4 & _GEN_23 == 8'h4D)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_4 & _GEN_21 == 8'h4D)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_77 <= io_freePhyReg_4;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_3 & _GEN_21 == 8'h4D)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_3 & _GEN_19 == 8'h4D)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_77 <= io_freePhyReg_3;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_2 & _GEN_20 == 8'h4D)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_2 & _GEN_18 == 8'h4D)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_77 <= io_freePhyReg_2;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_1 & _GEN_19 == 8'h4D)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_1 & _GEN_17 == 8'h4D)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_77 <= io_freePhyReg_1;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_0 & _GEN_18 == 8'h4D)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_0 & _GEN_16 == 8'h4D)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :57:8, :76:42, :81:32, :82:42
         freeList_77 <= io_freePhyReg_0;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      if (io_freeReq_5 & _GEN_24 == 8'h4E)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      if (effectiveFreeReq_5 & _GEN_22 == 8'h4E)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_78 <= io_freePhyReg_5;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_4 & _GEN_23 == 8'h4E)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_4 & _GEN_21 == 8'h4E)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_78 <= io_freePhyReg_4;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_3 & _GEN_21 == 8'h4E)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_3 & _GEN_19 == 8'h4E)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_78 <= io_freePhyReg_3;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_2 & _GEN_20 == 8'h4E)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_2 & _GEN_18 == 8'h4E)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_78 <= io_freePhyReg_2;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_1 & _GEN_19 == 8'h4E)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_1 & _GEN_17 == 8'h4E)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_78 <= io_freePhyReg_1;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_0 & _GEN_18 == 8'h4E)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_0 & _GEN_16 == 8'h4E)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :57:8, :76:42, :81:32, :82:42
         freeList_78 <= io_freePhyReg_0;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      if (io_freeReq_5 & _GEN_24 == 8'h4F)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      if (effectiveFreeReq_5 & _GEN_22 == 8'h4F)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_79 <= io_freePhyReg_5;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_4 & _GEN_23 == 8'h4F)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_4 & _GEN_21 == 8'h4F)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_79 <= io_freePhyReg_4;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_3 & _GEN_21 == 8'h4F)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_3 & _GEN_19 == 8'h4F)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_79 <= io_freePhyReg_3;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_2 & _GEN_20 == 8'h4F)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_2 & _GEN_18 == 8'h4F)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_79 <= io_freePhyReg_2;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_1 & _GEN_19 == 8'h4F)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_1 & _GEN_17 == 8'h4F)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_79 <= io_freePhyReg_1;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_0 & _GEN_18 == 8'h4F)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_0 & _GEN_16 == 8'h4F)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :57:8, :76:42, :81:32, :82:42
         freeList_79 <= io_freePhyReg_0;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      if (io_freeReq_5 & _GEN_24 == 8'h50)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      if (effectiveFreeReq_5 & _GEN_22 == 8'h50)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_80 <= io_freePhyReg_5;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_4 & _GEN_23 == 8'h50)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_4 & _GEN_21 == 8'h50)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_80 <= io_freePhyReg_4;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_3 & _GEN_21 == 8'h50)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_3 & _GEN_19 == 8'h50)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_80 <= io_freePhyReg_3;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_2 & _GEN_20 == 8'h50)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_2 & _GEN_18 == 8'h50)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_80 <= io_freePhyReg_2;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_1 & _GEN_19 == 8'h50)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_1 & _GEN_17 == 8'h50)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_80 <= io_freePhyReg_1;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_0 & _GEN_18 == 8'h50)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_0 & _GEN_16 == 8'h50)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :57:8, :76:42, :81:32, :82:42
         freeList_80 <= io_freePhyReg_0;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      if (io_freeReq_5 & _GEN_24 == 8'h51)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      if (effectiveFreeReq_5 & _GEN_22 == 8'h51)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_81 <= io_freePhyReg_5;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_4 & _GEN_23 == 8'h51)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_4 & _GEN_21 == 8'h51)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_81 <= io_freePhyReg_4;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_3 & _GEN_21 == 8'h51)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_3 & _GEN_19 == 8'h51)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_81 <= io_freePhyReg_3;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_2 & _GEN_20 == 8'h51)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_2 & _GEN_18 == 8'h51)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_81 <= io_freePhyReg_2;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_1 & _GEN_19 == 8'h51)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_1 & _GEN_17 == 8'h51)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_81 <= io_freePhyReg_1;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_0 & _GEN_18 == 8'h51)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_0 & _GEN_16 == 8'h51)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :57:8, :76:42, :81:32, :82:42
         freeList_81 <= io_freePhyReg_0;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      if (io_freeReq_5 & _GEN_24 == 8'h52)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      if (effectiveFreeReq_5 & _GEN_22 == 8'h52)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_82 <= io_freePhyReg_5;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_4 & _GEN_23 == 8'h52)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_4 & _GEN_21 == 8'h52)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_82 <= io_freePhyReg_4;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_3 & _GEN_21 == 8'h52)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_3 & _GEN_19 == 8'h52)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_82 <= io_freePhyReg_3;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_2 & _GEN_20 == 8'h52)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_2 & _GEN_18 == 8'h52)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_82 <= io_freePhyReg_2;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_1 & _GEN_19 == 8'h52)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_1 & _GEN_17 == 8'h52)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_82 <= io_freePhyReg_1;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_0 & _GEN_18 == 8'h52)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_0 & _GEN_16 == 8'h52)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :57:8, :76:42, :81:32, :82:42
         freeList_82 <= io_freePhyReg_0;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      if (io_freeReq_5 & _GEN_24 == 8'h53)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      if (effectiveFreeReq_5 & _GEN_22 == 8'h53)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_83 <= io_freePhyReg_5;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_4 & _GEN_23 == 8'h53)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_4 & _GEN_21 == 8'h53)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_83 <= io_freePhyReg_4;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_3 & _GEN_21 == 8'h53)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_3 & _GEN_19 == 8'h53)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_83 <= io_freePhyReg_3;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_2 & _GEN_20 == 8'h53)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_2 & _GEN_18 == 8'h53)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_83 <= io_freePhyReg_2;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_1 & _GEN_19 == 8'h53)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_1 & _GEN_17 == 8'h53)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_83 <= io_freePhyReg_1;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_0 & _GEN_18 == 8'h53)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_0 & _GEN_16 == 8'h53)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :57:8, :76:42, :81:32, :82:42
         freeList_83 <= io_freePhyReg_0;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      if (io_freeReq_5 & _GEN_24 == 8'h54)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      if (effectiveFreeReq_5 & _GEN_22 == 8'h54)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_84 <= io_freePhyReg_5;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_4 & _GEN_23 == 8'h54)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_4 & _GEN_21 == 8'h54)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_84 <= io_freePhyReg_4;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_3 & _GEN_21 == 8'h54)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_3 & _GEN_19 == 8'h54)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_84 <= io_freePhyReg_3;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_2 & _GEN_20 == 8'h54)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_2 & _GEN_18 == 8'h54)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_84 <= io_freePhyReg_2;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_1 & _GEN_19 == 8'h54)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_1 & _GEN_17 == 8'h54)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_84 <= io_freePhyReg_1;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_0 & _GEN_18 == 8'h54)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_0 & _GEN_16 == 8'h54)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :57:8, :76:42, :81:32, :82:42
         freeList_84 <= io_freePhyReg_0;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      if (io_freeReq_5 & _GEN_24 == 8'h55)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      if (effectiveFreeReq_5 & _GEN_22 == 8'h55)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_85 <= io_freePhyReg_5;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_4 & _GEN_23 == 8'h55)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_4 & _GEN_21 == 8'h55)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_85 <= io_freePhyReg_4;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_3 & _GEN_21 == 8'h55)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_3 & _GEN_19 == 8'h55)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_85 <= io_freePhyReg_3;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_2 & _GEN_20 == 8'h55)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_2 & _GEN_18 == 8'h55)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_85 <= io_freePhyReg_2;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_1 & _GEN_19 == 8'h55)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_1 & _GEN_17 == 8'h55)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_85 <= io_freePhyReg_1;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_0 & _GEN_18 == 8'h55)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_0 & _GEN_16 == 8'h55)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :57:8, :76:42, :81:32, :82:42
         freeList_85 <= io_freePhyReg_0;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      if (io_freeReq_5 & _GEN_24 == 8'h56)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      if (effectiveFreeReq_5 & _GEN_22 == 8'h56)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_86 <= io_freePhyReg_5;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_4 & _GEN_23 == 8'h56)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_4 & _GEN_21 == 8'h56)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_86 <= io_freePhyReg_4;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_3 & _GEN_21 == 8'h56)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_3 & _GEN_19 == 8'h56)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_86 <= io_freePhyReg_3;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_2 & _GEN_20 == 8'h56)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_2 & _GEN_18 == 8'h56)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_86 <= io_freePhyReg_2;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_1 & _GEN_19 == 8'h56)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_1 & _GEN_17 == 8'h56)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_86 <= io_freePhyReg_1;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_0 & _GEN_18 == 8'h56)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_0 & _GEN_16 == 8'h56)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :57:8, :76:42, :81:32, :82:42
         freeList_86 <= io_freePhyReg_0;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      if (io_freeReq_5 & _GEN_24 == 8'h57)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      if (effectiveFreeReq_5 & _GEN_22 == 8'h57)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_87 <= io_freePhyReg_5;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_4 & _GEN_23 == 8'h57)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_4 & _GEN_21 == 8'h57)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_87 <= io_freePhyReg_4;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_3 & _GEN_21 == 8'h57)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_3 & _GEN_19 == 8'h57)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_87 <= io_freePhyReg_3;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_2 & _GEN_20 == 8'h57)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_2 & _GEN_18 == 8'h57)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_87 <= io_freePhyReg_2;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_1 & _GEN_19 == 8'h57)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_1 & _GEN_17 == 8'h57)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_87 <= io_freePhyReg_1;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_0 & _GEN_18 == 8'h57)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_0 & _GEN_16 == 8'h57)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :57:8, :76:42, :81:32, :82:42
         freeList_87 <= io_freePhyReg_0;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      if (io_freeReq_5 & _GEN_24 == 8'h58)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      if (effectiveFreeReq_5 & _GEN_22 == 8'h58)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_88 <= io_freePhyReg_5;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_4 & _GEN_23 == 8'h58)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_4 & _GEN_21 == 8'h58)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_88 <= io_freePhyReg_4;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_3 & _GEN_21 == 8'h58)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_3 & _GEN_19 == 8'h58)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_88 <= io_freePhyReg_3;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_2 & _GEN_20 == 8'h58)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_2 & _GEN_18 == 8'h58)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_88 <= io_freePhyReg_2;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_1 & _GEN_19 == 8'h58)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_1 & _GEN_17 == 8'h58)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_88 <= io_freePhyReg_1;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_0 & _GEN_18 == 8'h58)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_0 & _GEN_16 == 8'h58)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :57:8, :76:42, :81:32, :82:42
         freeList_88 <= io_freePhyReg_0;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      if (io_freeReq_5 & _GEN_24 == 8'h59)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      if (effectiveFreeReq_5 & _GEN_22 == 8'h59)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_89 <= io_freePhyReg_5;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_4 & _GEN_23 == 8'h59)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_4 & _GEN_21 == 8'h59)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_89 <= io_freePhyReg_4;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_3 & _GEN_21 == 8'h59)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_3 & _GEN_19 == 8'h59)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_89 <= io_freePhyReg_3;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_2 & _GEN_20 == 8'h59)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_2 & _GEN_18 == 8'h59)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_89 <= io_freePhyReg_2;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_1 & _GEN_19 == 8'h59)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_1 & _GEN_17 == 8'h59)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_89 <= io_freePhyReg_1;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_0 & _GEN_18 == 8'h59)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_0 & _GEN_16 == 8'h59)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :57:8, :76:42, :81:32, :82:42
         freeList_89 <= io_freePhyReg_0;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      if (io_freeReq_5 & _GEN_24 == 8'h5A)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      if (effectiveFreeReq_5 & _GEN_22 == 8'h5A)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_90 <= io_freePhyReg_5;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_4 & _GEN_23 == 8'h5A)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_4 & _GEN_21 == 8'h5A)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_90 <= io_freePhyReg_4;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_3 & _GEN_21 == 8'h5A)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_3 & _GEN_19 == 8'h5A)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_90 <= io_freePhyReg_3;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_2 & _GEN_20 == 8'h5A)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_2 & _GEN_18 == 8'h5A)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_90 <= io_freePhyReg_2;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_1 & _GEN_19 == 8'h5A)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_1 & _GEN_17 == 8'h5A)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_90 <= io_freePhyReg_1;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_0 & _GEN_18 == 8'h5A)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_0 & _GEN_16 == 8'h5A)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :57:8, :76:42, :81:32, :82:42
         freeList_90 <= io_freePhyReg_0;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      if (io_freeReq_5 & _GEN_24 == 8'h5B)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      if (effectiveFreeReq_5 & _GEN_22 == 8'h5B)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_91 <= io_freePhyReg_5;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_4 & _GEN_23 == 8'h5B)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_4 & _GEN_21 == 8'h5B)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_91 <= io_freePhyReg_4;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_3 & _GEN_21 == 8'h5B)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_3 & _GEN_19 == 8'h5B)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_91 <= io_freePhyReg_3;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_2 & _GEN_20 == 8'h5B)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_2 & _GEN_18 == 8'h5B)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_91 <= io_freePhyReg_2;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_1 & _GEN_19 == 8'h5B)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_1 & _GEN_17 == 8'h5B)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_91 <= io_freePhyReg_1;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_0 & _GEN_18 == 8'h5B)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_0 & _GEN_16 == 8'h5B)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :57:8, :76:42, :81:32, :82:42
         freeList_91 <= io_freePhyReg_0;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      if (io_freeReq_5 & _GEN_24 == 8'h5C)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      if (effectiveFreeReq_5 & _GEN_22 == 8'h5C)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_92 <= io_freePhyReg_5;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_4 & _GEN_23 == 8'h5C)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_4 & _GEN_21 == 8'h5C)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_92 <= io_freePhyReg_4;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_3 & _GEN_21 == 8'h5C)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_3 & _GEN_19 == 8'h5C)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_92 <= io_freePhyReg_3;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_2 & _GEN_20 == 8'h5C)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_2 & _GEN_18 == 8'h5C)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_92 <= io_freePhyReg_2;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_1 & _GEN_19 == 8'h5C)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_1 & _GEN_17 == 8'h5C)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_92 <= io_freePhyReg_1;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_0 & _GEN_18 == 8'h5C)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_0 & _GEN_16 == 8'h5C)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :57:8, :76:42, :81:32, :82:42
         freeList_92 <= io_freePhyReg_0;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      if (io_freeReq_5 & _GEN_24 == 8'h5D)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      if (effectiveFreeReq_5 & _GEN_22 == 8'h5D)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_93 <= io_freePhyReg_5;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_4 & _GEN_23 == 8'h5D)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_4 & _GEN_21 == 8'h5D)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_93 <= io_freePhyReg_4;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_3 & _GEN_21 == 8'h5D)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_3 & _GEN_19 == 8'h5D)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_93 <= io_freePhyReg_3;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_2 & _GEN_20 == 8'h5D)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_2 & _GEN_18 == 8'h5D)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_93 <= io_freePhyReg_2;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_1 & _GEN_19 == 8'h5D)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_1 & _GEN_17 == 8'h5D)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_93 <= io_freePhyReg_1;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_0 & _GEN_18 == 8'h5D)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_0 & _GEN_16 == 8'h5D)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :57:8, :76:42, :81:32, :82:42
         freeList_93 <= io_freePhyReg_0;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      if (io_freeReq_5 & _GEN_24 == 8'h5E)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      if (effectiveFreeReq_5 & _GEN_22 == 8'h5E)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_94 <= io_freePhyReg_5;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_4 & _GEN_23 == 8'h5E)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_4 & _GEN_21 == 8'h5E)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_94 <= io_freePhyReg_4;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_3 & _GEN_21 == 8'h5E)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_3 & _GEN_19 == 8'h5E)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_94 <= io_freePhyReg_3;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_2 & _GEN_20 == 8'h5E)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_2 & _GEN_18 == 8'h5E)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_94 <= io_freePhyReg_2;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_1 & _GEN_19 == 8'h5E)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_1 & _GEN_17 == 8'h5E)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_94 <= io_freePhyReg_1;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_0 & _GEN_18 == 8'h5E)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_0 & _GEN_16 == 8'h5E)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :57:8, :76:42, :81:32, :82:42
         freeList_94 <= io_freePhyReg_0;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      if (io_freeReq_5 & _GEN_24 == 8'h5F)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      if (effectiveFreeReq_5 & _GEN_22 == 8'h5F)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_95 <= io_freePhyReg_5;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_4 & _GEN_23 == 8'h5F)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_4 & _GEN_21 == 8'h5F)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_95 <= io_freePhyReg_4;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_3 & _GEN_21 == 8'h5F)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_3 & _GEN_19 == 8'h5F)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_95 <= io_freePhyReg_3;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_2 & _GEN_20 == 8'h5F)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_2 & _GEN_18 == 8'h5F)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_95 <= io_freePhyReg_2;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_1 & _GEN_19 == 8'h5F)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_1 & _GEN_17 == 8'h5F)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_95 <= io_freePhyReg_1;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_0 & _GEN_18 == 8'h5F)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_0 & _GEN_16 == 8'h5F)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :57:8, :76:42, :81:32, :82:42
         freeList_95 <= io_freePhyReg_0;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      if (io_freeReq_5 & _GEN_24 == 8'h60)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      if (effectiveFreeReq_5 & _GEN_22 == 8'h60)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_96 <= io_freePhyReg_5;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_4 & _GEN_23 == 8'h60)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_4 & _GEN_21 == 8'h60)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_96 <= io_freePhyReg_4;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_3 & _GEN_21 == 8'h60)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_3 & _GEN_19 == 8'h60)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_96 <= io_freePhyReg_3;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_2 & _GEN_20 == 8'h60)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_2 & _GEN_18 == 8'h60)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_96 <= io_freePhyReg_2;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_1 & _GEN_19 == 8'h60)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_1 & _GEN_17 == 8'h60)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_96 <= io_freePhyReg_1;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_0 & _GEN_18 == 8'h60)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_0 & _GEN_16 == 8'h60)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :57:8, :76:42, :81:32, :82:42
         freeList_96 <= io_freePhyReg_0;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      if (io_freeReq_5 & _GEN_24 == 8'h61)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      if (effectiveFreeReq_5 & _GEN_22 == 8'h61)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_97 <= io_freePhyReg_5;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_4 & _GEN_23 == 8'h61)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_4 & _GEN_21 == 8'h61)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_97 <= io_freePhyReg_4;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_3 & _GEN_21 == 8'h61)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_3 & _GEN_19 == 8'h61)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_97 <= io_freePhyReg_3;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_2 & _GEN_20 == 8'h61)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_2 & _GEN_18 == 8'h61)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_97 <= io_freePhyReg_2;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_1 & _GEN_19 == 8'h61)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_1 & _GEN_17 == 8'h61)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_97 <= io_freePhyReg_1;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_0 & _GEN_18 == 8'h61)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_0 & _GEN_16 == 8'h61)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :57:8, :76:42, :81:32, :82:42
         freeList_97 <= io_freePhyReg_0;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      if (io_freeReq_5 & _GEN_24 == 8'h62)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      if (effectiveFreeReq_5 & _GEN_22 == 8'h62)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_98 <= io_freePhyReg_5;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_4 & _GEN_23 == 8'h62)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_4 & _GEN_21 == 8'h62)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_98 <= io_freePhyReg_4;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_3 & _GEN_21 == 8'h62)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_3 & _GEN_19 == 8'h62)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_98 <= io_freePhyReg_3;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_2 & _GEN_20 == 8'h62)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_2 & _GEN_18 == 8'h62)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_98 <= io_freePhyReg_2;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_1 & _GEN_19 == 8'h62)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_1 & _GEN_17 == 8'h62)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_98 <= io_freePhyReg_1;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_0 & _GEN_18 == 8'h62)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_0 & _GEN_16 == 8'h62)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :57:8, :76:42, :81:32, :82:42
         freeList_98 <= io_freePhyReg_0;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      if (io_freeReq_5 & _GEN_24 == 8'h63)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      if (effectiveFreeReq_5 & _GEN_22 == 8'h63)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_99 <= io_freePhyReg_5;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_4 & _GEN_23 == 8'h63)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_4 & _GEN_21 == 8'h63)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_99 <= io_freePhyReg_4;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_3 & _GEN_21 == 8'h63)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_3 & _GEN_19 == 8'h63)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_99 <= io_freePhyReg_3;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_2 & _GEN_20 == 8'h63)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_2 & _GEN_18 == 8'h63)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_99 <= io_freePhyReg_2;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_1 & _GEN_19 == 8'h63)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_1 & _GEN_17 == 8'h63)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_99 <= io_freePhyReg_1;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_0 & _GEN_18 == 8'h63)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_0 & _GEN_16 == 8'h63)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :57:8, :76:42, :81:32, :82:42
         freeList_99 <= io_freePhyReg_0;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      if (io_freeReq_5 & _GEN_24 == 8'h64)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      if (effectiveFreeReq_5 & _GEN_22 == 8'h64)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_100 <= io_freePhyReg_5;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_4 & _GEN_23 == 8'h64)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_4 & _GEN_21 == 8'h64)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_100 <= io_freePhyReg_4;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_3 & _GEN_21 == 8'h64)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_3 & _GEN_19 == 8'h64)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_100 <= io_freePhyReg_3;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_2 & _GEN_20 == 8'h64)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_2 & _GEN_18 == 8'h64)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_100 <= io_freePhyReg_2;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_1 & _GEN_19 == 8'h64)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_1 & _GEN_17 == 8'h64)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_100 <= io_freePhyReg_1;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_0 & _GEN_18 == 8'h64)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_0 & _GEN_16 == 8'h64)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :57:8, :76:42, :81:32, :82:42
         freeList_100 <= io_freePhyReg_0;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      if (io_freeReq_5 & _GEN_24 == 8'h65)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      if (effectiveFreeReq_5 & _GEN_22 == 8'h65)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_101 <= io_freePhyReg_5;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_4 & _GEN_23 == 8'h65)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_4 & _GEN_21 == 8'h65)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_101 <= io_freePhyReg_4;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_3 & _GEN_21 == 8'h65)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_3 & _GEN_19 == 8'h65)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_101 <= io_freePhyReg_3;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_2 & _GEN_20 == 8'h65)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_2 & _GEN_18 == 8'h65)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_101 <= io_freePhyReg_2;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_1 & _GEN_19 == 8'h65)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_1 & _GEN_17 == 8'h65)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_101 <= io_freePhyReg_1;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_0 & _GEN_18 == 8'h65)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_0 & _GEN_16 == 8'h65)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :57:8, :76:42, :81:32, :82:42
         freeList_101 <= io_freePhyReg_0;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      if (io_freeReq_5 & _GEN_24 == 8'h66)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      if (effectiveFreeReq_5 & _GEN_22 == 8'h66)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_102 <= io_freePhyReg_5;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_4 & _GEN_23 == 8'h66)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_4 & _GEN_21 == 8'h66)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_102 <= io_freePhyReg_4;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_3 & _GEN_21 == 8'h66)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_3 & _GEN_19 == 8'h66)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_102 <= io_freePhyReg_3;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_2 & _GEN_20 == 8'h66)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_2 & _GEN_18 == 8'h66)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_102 <= io_freePhyReg_2;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_1 & _GEN_19 == 8'h66)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_1 & _GEN_17 == 8'h66)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_102 <= io_freePhyReg_1;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_0 & _GEN_18 == 8'h66)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_0 & _GEN_16 == 8'h66)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :57:8, :76:42, :81:32, :82:42
         freeList_102 <= io_freePhyReg_0;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      if (io_freeReq_5 & _GEN_24 == 8'h67)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      if (effectiveFreeReq_5 & _GEN_22 == 8'h67)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_103 <= io_freePhyReg_5;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_4 & _GEN_23 == 8'h67)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_4 & _GEN_21 == 8'h67)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_103 <= io_freePhyReg_4;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_3 & _GEN_21 == 8'h67)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_3 & _GEN_19 == 8'h67)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_103 <= io_freePhyReg_3;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_2 & _GEN_20 == 8'h67)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_2 & _GEN_18 == 8'h67)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_103 <= io_freePhyReg_2;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_1 & _GEN_19 == 8'h67)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_1 & _GEN_17 == 8'h67)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_103 <= io_freePhyReg_1;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_0 & _GEN_18 == 8'h67)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_0 & _GEN_16 == 8'h67)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :57:8, :76:42, :81:32, :82:42
         freeList_103 <= io_freePhyReg_0;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      if (io_freeReq_5 & _GEN_24 == 8'h68)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      if (effectiveFreeReq_5 & _GEN_22 == 8'h68)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_104 <= io_freePhyReg_5;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_4 & _GEN_23 == 8'h68)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_4 & _GEN_21 == 8'h68)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_104 <= io_freePhyReg_4;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_3 & _GEN_21 == 8'h68)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_3 & _GEN_19 == 8'h68)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_104 <= io_freePhyReg_3;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_2 & _GEN_20 == 8'h68)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_2 & _GEN_18 == 8'h68)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_104 <= io_freePhyReg_2;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_1 & _GEN_19 == 8'h68)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_1 & _GEN_17 == 8'h68)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_104 <= io_freePhyReg_1;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_0 & _GEN_18 == 8'h68)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_0 & _GEN_16 == 8'h68)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :57:8, :76:42, :81:32, :82:42
         freeList_104 <= io_freePhyReg_0;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      if (io_freeReq_5 & _GEN_24 == 8'h69)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      if (effectiveFreeReq_5 & _GEN_22 == 8'h69)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_105 <= io_freePhyReg_5;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_4 & _GEN_23 == 8'h69)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_4 & _GEN_21 == 8'h69)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_105 <= io_freePhyReg_4;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_3 & _GEN_21 == 8'h69)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_3 & _GEN_19 == 8'h69)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_105 <= io_freePhyReg_3;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_2 & _GEN_20 == 8'h69)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_2 & _GEN_18 == 8'h69)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_105 <= io_freePhyReg_2;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_1 & _GEN_19 == 8'h69)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_1 & _GEN_17 == 8'h69)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_105 <= io_freePhyReg_1;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_0 & _GEN_18 == 8'h69)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_0 & _GEN_16 == 8'h69)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :57:8, :76:42, :81:32, :82:42
         freeList_105 <= io_freePhyReg_0;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      if (io_freeReq_5 & _GEN_24 == 8'h6A)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      if (effectiveFreeReq_5 & _GEN_22 == 8'h6A)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_106 <= io_freePhyReg_5;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_4 & _GEN_23 == 8'h6A)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_4 & _GEN_21 == 8'h6A)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_106 <= io_freePhyReg_4;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_3 & _GEN_21 == 8'h6A)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_3 & _GEN_19 == 8'h6A)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_106 <= io_freePhyReg_3;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_2 & _GEN_20 == 8'h6A)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_2 & _GEN_18 == 8'h6A)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_106 <= io_freePhyReg_2;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_1 & _GEN_19 == 8'h6A)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_1 & _GEN_17 == 8'h6A)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_106 <= io_freePhyReg_1;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_0 & _GEN_18 == 8'h6A)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_0 & _GEN_16 == 8'h6A)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :57:8, :76:42, :81:32, :82:42
         freeList_106 <= io_freePhyReg_0;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      if (io_freeReq_5 & _GEN_24 == 8'h6B)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      if (effectiveFreeReq_5 & _GEN_22 == 8'h6B)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_107 <= io_freePhyReg_5;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_4 & _GEN_23 == 8'h6B)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_4 & _GEN_21 == 8'h6B)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_107 <= io_freePhyReg_4;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_3 & _GEN_21 == 8'h6B)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_3 & _GEN_19 == 8'h6B)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_107 <= io_freePhyReg_3;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_2 & _GEN_20 == 8'h6B)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_2 & _GEN_18 == 8'h6B)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_107 <= io_freePhyReg_2;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_1 & _GEN_19 == 8'h6B)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_1 & _GEN_17 == 8'h6B)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_107 <= io_freePhyReg_1;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_0 & _GEN_18 == 8'h6B)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_0 & _GEN_16 == 8'h6B)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :57:8, :76:42, :81:32, :82:42
         freeList_107 <= io_freePhyReg_0;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      if (io_freeReq_5 & _GEN_24 == 8'h6C)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      if (effectiveFreeReq_5 & _GEN_22 == 8'h6C)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_108 <= io_freePhyReg_5;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_4 & _GEN_23 == 8'h6C)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_4 & _GEN_21 == 8'h6C)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_108 <= io_freePhyReg_4;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_3 & _GEN_21 == 8'h6C)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_3 & _GEN_19 == 8'h6C)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_108 <= io_freePhyReg_3;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_2 & _GEN_20 == 8'h6C)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_2 & _GEN_18 == 8'h6C)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_108 <= io_freePhyReg_2;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_1 & _GEN_19 == 8'h6C)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_1 & _GEN_17 == 8'h6C)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_108 <= io_freePhyReg_1;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_0 & _GEN_18 == 8'h6C)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_0 & _GEN_16 == 8'h6C)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :57:8, :76:42, :81:32, :82:42
         freeList_108 <= io_freePhyReg_0;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      if (io_freeReq_5 & _GEN_24 == 8'h6D)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      if (effectiveFreeReq_5 & _GEN_22 == 8'h6D)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_109 <= io_freePhyReg_5;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_4 & _GEN_23 == 8'h6D)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_4 & _GEN_21 == 8'h6D)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_109 <= io_freePhyReg_4;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_3 & _GEN_21 == 8'h6D)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_3 & _GEN_19 == 8'h6D)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_109 <= io_freePhyReg_3;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_2 & _GEN_20 == 8'h6D)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_2 & _GEN_18 == 8'h6D)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_109 <= io_freePhyReg_2;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_1 & _GEN_19 == 8'h6D)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_1 & _GEN_17 == 8'h6D)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_109 <= io_freePhyReg_1;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_0 & _GEN_18 == 8'h6D)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_0 & _GEN_16 == 8'h6D)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :57:8, :76:42, :81:32, :82:42
         freeList_109 <= io_freePhyReg_0;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      if (io_freeReq_5 & _GEN_24 == 8'h6E)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      if (effectiveFreeReq_5 & _GEN_22 == 8'h6E)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_110 <= io_freePhyReg_5;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_4 & _GEN_23 == 8'h6E)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_4 & _GEN_21 == 8'h6E)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_110 <= io_freePhyReg_4;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_3 & _GEN_21 == 8'h6E)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_3 & _GEN_19 == 8'h6E)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_110 <= io_freePhyReg_3;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_2 & _GEN_20 == 8'h6E)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_2 & _GEN_18 == 8'h6E)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_110 <= io_freePhyReg_2;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_1 & _GEN_19 == 8'h6E)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_1 & _GEN_17 == 8'h6E)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_110 <= io_freePhyReg_1;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_0 & _GEN_18 == 8'h6E)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_0 & _GEN_16 == 8'h6E)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :57:8, :76:42, :81:32, :82:42
         freeList_110 <= io_freePhyReg_0;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      if (io_freeReq_5 & _GEN_24 == 8'h6F)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      if (effectiveFreeReq_5 & _GEN_22 == 8'h6F)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_111 <= io_freePhyReg_5;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_4 & _GEN_23 == 8'h6F)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_4 & _GEN_21 == 8'h6F)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_111 <= io_freePhyReg_4;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_3 & _GEN_21 == 8'h6F)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_3 & _GEN_19 == 8'h6F)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_111 <= io_freePhyReg_3;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_2 & _GEN_20 == 8'h6F)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_2 & _GEN_18 == 8'h6F)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_111 <= io_freePhyReg_2;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_1 & _GEN_19 == 8'h6F)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_1 & _GEN_17 == 8'h6F)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_111 <= io_freePhyReg_1;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_0 & _GEN_18 == 8'h6F)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_0 & _GEN_16 == 8'h6F)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :57:8, :76:42, :81:32, :82:42
         freeList_111 <= io_freePhyReg_0;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      if (io_freeReq_5 & _GEN_24 == 8'h70)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      if (effectiveFreeReq_5 & _GEN_22 == 8'h70)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_112 <= io_freePhyReg_5;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_4 & _GEN_23 == 8'h70)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_4 & _GEN_21 == 8'h70)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_112 <= io_freePhyReg_4;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_3 & _GEN_21 == 8'h70)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_3 & _GEN_19 == 8'h70)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_112 <= io_freePhyReg_3;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_2 & _GEN_20 == 8'h70)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_2 & _GEN_18 == 8'h70)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_112 <= io_freePhyReg_2;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_1 & _GEN_19 == 8'h70)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_1 & _GEN_17 == 8'h70)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_112 <= io_freePhyReg_1;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_0 & _GEN_18 == 8'h70)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_0 & _GEN_16 == 8'h70)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :57:8, :76:42, :81:32, :82:42
         freeList_112 <= io_freePhyReg_0;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      if (io_freeReq_5 & _GEN_24 == 8'h71)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      if (effectiveFreeReq_5 & _GEN_22 == 8'h71)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_113 <= io_freePhyReg_5;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_4 & _GEN_23 == 8'h71)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_4 & _GEN_21 == 8'h71)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_113 <= io_freePhyReg_4;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_3 & _GEN_21 == 8'h71)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_3 & _GEN_19 == 8'h71)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_113 <= io_freePhyReg_3;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_2 & _GEN_20 == 8'h71)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_2 & _GEN_18 == 8'h71)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_113 <= io_freePhyReg_2;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_1 & _GEN_19 == 8'h71)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_1 & _GEN_17 == 8'h71)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_113 <= io_freePhyReg_1;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_0 & _GEN_18 == 8'h71)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_0 & _GEN_16 == 8'h71)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :57:8, :76:42, :81:32, :82:42
         freeList_113 <= io_freePhyReg_0;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      if (io_freeReq_5 & _GEN_24 == 8'h72)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      if (effectiveFreeReq_5 & _GEN_22 == 8'h72)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_114 <= io_freePhyReg_5;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_4 & _GEN_23 == 8'h72)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_4 & _GEN_21 == 8'h72)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_114 <= io_freePhyReg_4;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_3 & _GEN_21 == 8'h72)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_3 & _GEN_19 == 8'h72)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_114 <= io_freePhyReg_3;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_2 & _GEN_20 == 8'h72)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_2 & _GEN_18 == 8'h72)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_114 <= io_freePhyReg_2;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_1 & _GEN_19 == 8'h72)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_1 & _GEN_17 == 8'h72)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_114 <= io_freePhyReg_1;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_0 & _GEN_18 == 8'h72)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_0 & _GEN_16 == 8'h72)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :57:8, :76:42, :81:32, :82:42
         freeList_114 <= io_freePhyReg_0;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      if (io_freeReq_5 & _GEN_24 == 8'h73)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      if (effectiveFreeReq_5 & _GEN_22 == 8'h73)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_115 <= io_freePhyReg_5;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_4 & _GEN_23 == 8'h73)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_4 & _GEN_21 == 8'h73)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_115 <= io_freePhyReg_4;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_3 & _GEN_21 == 8'h73)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_3 & _GEN_19 == 8'h73)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_115 <= io_freePhyReg_3;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_2 & _GEN_20 == 8'h73)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_2 & _GEN_18 == 8'h73)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_115 <= io_freePhyReg_2;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_1 & _GEN_19 == 8'h73)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_1 & _GEN_17 == 8'h73)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_115 <= io_freePhyReg_1;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_0 & _GEN_18 == 8'h73)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_0 & _GEN_16 == 8'h73)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :57:8, :76:42, :81:32, :82:42
         freeList_115 <= io_freePhyReg_0;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      if (io_freeReq_5 & _GEN_24 == 8'h74)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      if (effectiveFreeReq_5 & _GEN_22 == 8'h74)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_116 <= io_freePhyReg_5;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_4 & _GEN_23 == 8'h74)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_4 & _GEN_21 == 8'h74)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_116 <= io_freePhyReg_4;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_3 & _GEN_21 == 8'h74)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_3 & _GEN_19 == 8'h74)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_116 <= io_freePhyReg_3;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_2 & _GEN_20 == 8'h74)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_2 & _GEN_18 == 8'h74)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_116 <= io_freePhyReg_2;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_1 & _GEN_19 == 8'h74)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_1 & _GEN_17 == 8'h74)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_116 <= io_freePhyReg_1;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_0 & _GEN_18 == 8'h74)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_0 & _GEN_16 == 8'h74)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :57:8, :76:42, :81:32, :82:42
         freeList_116 <= io_freePhyReg_0;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      if (io_freeReq_5 & _GEN_24 == 8'h75)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      if (effectiveFreeReq_5 & _GEN_22 == 8'h75)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_117 <= io_freePhyReg_5;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_4 & _GEN_23 == 8'h75)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_4 & _GEN_21 == 8'h75)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_117 <= io_freePhyReg_4;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_3 & _GEN_21 == 8'h75)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_3 & _GEN_19 == 8'h75)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_117 <= io_freePhyReg_3;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_2 & _GEN_20 == 8'h75)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_2 & _GEN_18 == 8'h75)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_117 <= io_freePhyReg_2;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_1 & _GEN_19 == 8'h75)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_1 & _GEN_17 == 8'h75)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_117 <= io_freePhyReg_1;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_0 & _GEN_18 == 8'h75)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_0 & _GEN_16 == 8'h75)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :57:8, :76:42, :81:32, :82:42
         freeList_117 <= io_freePhyReg_0;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      if (io_freeReq_5 & _GEN_24 == 8'h76)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      if (effectiveFreeReq_5 & _GEN_22 == 8'h76)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_118 <= io_freePhyReg_5;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_4 & _GEN_23 == 8'h76)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_4 & _GEN_21 == 8'h76)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_118 <= io_freePhyReg_4;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_3 & _GEN_21 == 8'h76)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_3 & _GEN_19 == 8'h76)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_118 <= io_freePhyReg_3;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_2 & _GEN_20 == 8'h76)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_2 & _GEN_18 == 8'h76)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_118 <= io_freePhyReg_2;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_1 & _GEN_19 == 8'h76)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_1 & _GEN_17 == 8'h76)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_118 <= io_freePhyReg_1;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_0 & _GEN_18 == 8'h76)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_0 & _GEN_16 == 8'h76)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :57:8, :76:42, :81:32, :82:42
         freeList_118 <= io_freePhyReg_0;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      if (io_freeReq_5 & _GEN_24 == 8'h77)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      if (effectiveFreeReq_5 & _GEN_22 == 8'h77)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_119 <= io_freePhyReg_5;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_4 & _GEN_23 == 8'h77)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_4 & _GEN_21 == 8'h77)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_119 <= io_freePhyReg_4;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_3 & _GEN_21 == 8'h77)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_3 & _GEN_19 == 8'h77)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_119 <= io_freePhyReg_3;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_2 & _GEN_20 == 8'h77)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_2 & _GEN_18 == 8'h77)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_119 <= io_freePhyReg_2;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_1 & _GEN_19 == 8'h77)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_1 & _GEN_17 == 8'h77)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_119 <= io_freePhyReg_1;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_0 & _GEN_18 == 8'h77)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_0 & _GEN_16 == 8'h77)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :57:8, :76:42, :81:32, :82:42
         freeList_119 <= io_freePhyReg_0;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      if (io_freeReq_5 & _GEN_24 == 8'h78)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      if (effectiveFreeReq_5 & _GEN_22 == 8'h78)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_120 <= io_freePhyReg_5;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_4 & _GEN_23 == 8'h78)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_4 & _GEN_21 == 8'h78)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_120 <= io_freePhyReg_4;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_3 & _GEN_21 == 8'h78)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_3 & _GEN_19 == 8'h78)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_120 <= io_freePhyReg_3;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_2 & _GEN_20 == 8'h78)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_2 & _GEN_18 == 8'h78)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_120 <= io_freePhyReg_2;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_1 & _GEN_19 == 8'h78)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_1 & _GEN_17 == 8'h78)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_120 <= io_freePhyReg_1;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_0 & _GEN_18 == 8'h78)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_0 & _GEN_16 == 8'h78)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :57:8, :76:42, :81:32, :82:42
         freeList_120 <= io_freePhyReg_0;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      if (io_freeReq_5 & _GEN_24 == 8'h79)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      if (effectiveFreeReq_5 & _GEN_22 == 8'h79)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_121 <= io_freePhyReg_5;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_4 & _GEN_23 == 8'h79)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_4 & _GEN_21 == 8'h79)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_121 <= io_freePhyReg_4;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_3 & _GEN_21 == 8'h79)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_3 & _GEN_19 == 8'h79)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_121 <= io_freePhyReg_3;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_2 & _GEN_20 == 8'h79)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_2 & _GEN_18 == 8'h79)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_121 <= io_freePhyReg_2;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_1 & _GEN_19 == 8'h79)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_1 & _GEN_17 == 8'h79)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_121 <= io_freePhyReg_1;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_0 & _GEN_18 == 8'h79)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_0 & _GEN_16 == 8'h79)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :57:8, :76:42, :81:32, :82:42
         freeList_121 <= io_freePhyReg_0;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      if (io_freeReq_5 & _GEN_24 == 8'h7A)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      if (effectiveFreeReq_5 & _GEN_22 == 8'h7A)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_122 <= io_freePhyReg_5;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_4 & _GEN_23 == 8'h7A)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_4 & _GEN_21 == 8'h7A)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_122 <= io_freePhyReg_4;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_3 & _GEN_21 == 8'h7A)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_3 & _GEN_19 == 8'h7A)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_122 <= io_freePhyReg_3;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_2 & _GEN_20 == 8'h7A)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_2 & _GEN_18 == 8'h7A)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_122 <= io_freePhyReg_2;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_1 & _GEN_19 == 8'h7A)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_1 & _GEN_17 == 8'h7A)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_122 <= io_freePhyReg_1;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_0 & _GEN_18 == 8'h7A)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_0 & _GEN_16 == 8'h7A)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :57:8, :76:42, :81:32, :82:42
         freeList_122 <= io_freePhyReg_0;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      if (io_freeReq_5 & _GEN_24 == 8'h7B)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      if (effectiveFreeReq_5 & _GEN_22 == 8'h7B)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_123 <= io_freePhyReg_5;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_4 & _GEN_23 == 8'h7B)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_4 & _GEN_21 == 8'h7B)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_123 <= io_freePhyReg_4;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_3 & _GEN_21 == 8'h7B)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_3 & _GEN_19 == 8'h7B)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_123 <= io_freePhyReg_3;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_2 & _GEN_20 == 8'h7B)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_2 & _GEN_18 == 8'h7B)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_123 <= io_freePhyReg_2;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_1 & _GEN_19 == 8'h7B)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_1 & _GEN_17 == 8'h7B)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_123 <= io_freePhyReg_1;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_0 & _GEN_18 == 8'h7B)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_0 & _GEN_16 == 8'h7B)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :57:8, :76:42, :81:32, :82:42
         freeList_123 <= io_freePhyReg_0;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      if (io_freeReq_5 & _GEN_24 == 8'h7C)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      if (effectiveFreeReq_5 & _GEN_22 == 8'h7C)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_124 <= io_freePhyReg_5;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_4 & _GEN_23 == 8'h7C)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_4 & _GEN_21 == 8'h7C)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_124 <= io_freePhyReg_4;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_3 & _GEN_21 == 8'h7C)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_3 & _GEN_19 == 8'h7C)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_124 <= io_freePhyReg_3;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_2 & _GEN_20 == 8'h7C)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_2 & _GEN_18 == 8'h7C)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_124 <= io_freePhyReg_2;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_1 & _GEN_19 == 8'h7C)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_1 & _GEN_17 == 8'h7C)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_124 <= io_freePhyReg_1;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_0 & _GEN_18 == 8'h7C)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_0 & _GEN_16 == 8'h7C)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :57:8, :76:42, :81:32, :82:42
         freeList_124 <= io_freePhyReg_0;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      if (io_freeReq_5 & _GEN_24 == 8'h7D)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      if (effectiveFreeReq_5 & _GEN_22 == 8'h7D)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_125 <= io_freePhyReg_5;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_4 & _GEN_23 == 8'h7D)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_4 & _GEN_21 == 8'h7D)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_125 <= io_freePhyReg_4;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_3 & _GEN_21 == 8'h7D)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_3 & _GEN_19 == 8'h7D)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_125 <= io_freePhyReg_3;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_2 & _GEN_20 == 8'h7D)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_2 & _GEN_18 == 8'h7D)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_125 <= io_freePhyReg_2;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_1 & _GEN_19 == 8'h7D)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_1 & _GEN_17 == 8'h7D)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_125 <= io_freePhyReg_1;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_0 & _GEN_18 == 8'h7D)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_0 & _GEN_16 == 8'h7D)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :57:8, :76:42, :81:32, :82:42
         freeList_125 <= io_freePhyReg_0;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      if (io_freeReq_5 & _GEN_24 == 8'h7E)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      if (effectiveFreeReq_5 & _GEN_22 == 8'h7E)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_126 <= io_freePhyReg_5;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_4 & _GEN_23 == 8'h7E)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_4 & _GEN_21 == 8'h7E)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_126 <= io_freePhyReg_4;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_3 & _GEN_21 == 8'h7E)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_3 & _GEN_19 == 8'h7E)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_126 <= io_freePhyReg_3;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_2 & _GEN_20 == 8'h7E)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_2 & _GEN_18 == 8'h7E)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_126 <= io_freePhyReg_2;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_1 & _GEN_19 == 8'h7E)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_1 & _GEN_17 == 8'h7E)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_126 <= io_freePhyReg_1;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_0 & _GEN_18 == 8'h7E)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_0 & _GEN_16 == 8'h7E)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :57:8, :76:42, :81:32, :82:42
         freeList_126 <= io_freePhyReg_0;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      if (io_freeReq_5 & _GEN_24 == 8'h7F)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      if (effectiveFreeReq_5 & _GEN_22 == 8'h7F)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_127 <= io_freePhyReg_5;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_4 & _GEN_23 == 8'h7F)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_4 & _GEN_21 == 8'h7F)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_127 <= io_freePhyReg_4;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_3 & _GEN_21 == 8'h7F)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_3 & _GEN_19 == 8'h7F)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_127 <= io_freePhyReg_3;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_2 & _GEN_20 == 8'h7F)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_2 & _GEN_18 == 8'h7F)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_127 <= io_freePhyReg_2;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_1 & _GEN_19 == 8'h7F)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_1 & _GEN_17 == 8'h7F)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_127 <= io_freePhyReg_1;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_0 & _GEN_18 == 8'h7F)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_0 & _GEN_16 == 8'h7F)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :57:8, :76:42, :81:32, :82:42
         freeList_127 <= io_freePhyReg_0;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      if (io_freeReq_5 & _GEN_24 == 8'h80)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      if (effectiveFreeReq_5 & _GEN_22 == 8'h80)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_128 <= io_freePhyReg_5;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_4 & _GEN_23 == 8'h80)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_4 & _GEN_21 == 8'h80)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_128 <= io_freePhyReg_4;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_3 & _GEN_21 == 8'h80)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_3 & _GEN_19 == 8'h80)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_128 <= io_freePhyReg_3;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_2 & _GEN_20 == 8'h80)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_2 & _GEN_18 == 8'h80)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_128 <= io_freePhyReg_2;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_1 & _GEN_19 == 8'h80)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_1 & _GEN_17 == 8'h80)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_128 <= io_freePhyReg_1;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_0 & _GEN_18 == 8'h80)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_0 & _GEN_16 == 8'h80)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :57:8, :76:42, :81:32, :82:42
         freeList_128 <= io_freePhyReg_0;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      if (io_freeReq_5 & _GEN_24 == 8'h81)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      if (effectiveFreeReq_5 & _GEN_22 == 8'h81)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_129 <= io_freePhyReg_5;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_4 & _GEN_23 == 8'h81)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_4 & _GEN_21 == 8'h81)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_129 <= io_freePhyReg_4;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_3 & _GEN_21 == 8'h81)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_3 & _GEN_19 == 8'h81)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_129 <= io_freePhyReg_3;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_2 & _GEN_20 == 8'h81)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_2 & _GEN_18 == 8'h81)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_129 <= io_freePhyReg_2;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_1 & _GEN_19 == 8'h81)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_1 & _GEN_17 == 8'h81)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_129 <= io_freePhyReg_1;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_0 & _GEN_18 == 8'h81)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_0 & _GEN_16 == 8'h81)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :57:8, :76:42, :81:32, :82:42
         freeList_129 <= io_freePhyReg_0;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      if (io_freeReq_5 & _GEN_24 == 8'h82)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      if (effectiveFreeReq_5 & _GEN_22 == 8'h82)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_130 <= io_freePhyReg_5;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_4 & _GEN_23 == 8'h82)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_4 & _GEN_21 == 8'h82)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_130 <= io_freePhyReg_4;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_3 & _GEN_21 == 8'h82)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_3 & _GEN_19 == 8'h82)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_130 <= io_freePhyReg_3;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_2 & _GEN_20 == 8'h82)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_2 & _GEN_18 == 8'h82)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_130 <= io_freePhyReg_2;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_1 & _GEN_19 == 8'h82)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_1 & _GEN_17 == 8'h82)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_130 <= io_freePhyReg_1;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_0 & _GEN_18 == 8'h82)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_0 & _GEN_16 == 8'h82)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :57:8, :76:42, :81:32, :82:42
         freeList_130 <= io_freePhyReg_0;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      if (io_freeReq_5 & _GEN_24 == 8'h83)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      if (effectiveFreeReq_5 & _GEN_22 == 8'h83)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_131 <= io_freePhyReg_5;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_4 & _GEN_23 == 8'h83)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_4 & _GEN_21 == 8'h83)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_131 <= io_freePhyReg_4;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_3 & _GEN_21 == 8'h83)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_3 & _GEN_19 == 8'h83)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_131 <= io_freePhyReg_3;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_2 & _GEN_20 == 8'h83)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_2 & _GEN_18 == 8'h83)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_131 <= io_freePhyReg_2;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_1 & _GEN_19 == 8'h83)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_1 & _GEN_17 == 8'h83)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_131 <= io_freePhyReg_1;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_0 & _GEN_18 == 8'h83)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_0 & _GEN_16 == 8'h83)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :57:8, :76:42, :81:32, :82:42
         freeList_131 <= io_freePhyReg_0;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      if (io_freeReq_5 & _GEN_24 == 8'h84)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      if (effectiveFreeReq_5 & _GEN_22 == 8'h84)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_132 <= io_freePhyReg_5;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_4 & _GEN_23 == 8'h84)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_4 & _GEN_21 == 8'h84)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_132 <= io_freePhyReg_4;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_3 & _GEN_21 == 8'h84)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_3 & _GEN_19 == 8'h84)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_132 <= io_freePhyReg_3;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_2 & _GEN_20 == 8'h84)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_2 & _GEN_18 == 8'h84)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_132 <= io_freePhyReg_2;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_1 & _GEN_19 == 8'h84)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_1 & _GEN_17 == 8'h84)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_132 <= io_freePhyReg_1;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_0 & _GEN_18 == 8'h84)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_0 & _GEN_16 == 8'h84)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :57:8, :76:42, :81:32, :82:42
         freeList_132 <= io_freePhyReg_0;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      if (io_freeReq_5 & _GEN_24 == 8'h85)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      if (effectiveFreeReq_5 & _GEN_22 == 8'h85)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_133 <= io_freePhyReg_5;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_4 & _GEN_23 == 8'h85)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_4 & _GEN_21 == 8'h85)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_133 <= io_freePhyReg_4;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_3 & _GEN_21 == 8'h85)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_3 & _GEN_19 == 8'h85)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_133 <= io_freePhyReg_3;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_2 & _GEN_20 == 8'h85)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_2 & _GEN_18 == 8'h85)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_133 <= io_freePhyReg_2;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_1 & _GEN_19 == 8'h85)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_1 & _GEN_17 == 8'h85)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_133 <= io_freePhyReg_1;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_0 & _GEN_18 == 8'h85)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_0 & _GEN_16 == 8'h85)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :57:8, :76:42, :81:32, :82:42
         freeList_133 <= io_freePhyReg_0;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      if (io_freeReq_5 & _GEN_24 == 8'h86)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      if (effectiveFreeReq_5 & _GEN_22 == 8'h86)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_134 <= io_freePhyReg_5;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_4 & _GEN_23 == 8'h86)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_4 & _GEN_21 == 8'h86)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_134 <= io_freePhyReg_4;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_3 & _GEN_21 == 8'h86)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_3 & _GEN_19 == 8'h86)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_134 <= io_freePhyReg_3;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_2 & _GEN_20 == 8'h86)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_2 & _GEN_18 == 8'h86)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_134 <= io_freePhyReg_2;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_1 & _GEN_19 == 8'h86)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_1 & _GEN_17 == 8'h86)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_134 <= io_freePhyReg_1;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_0 & _GEN_18 == 8'h86)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_0 & _GEN_16 == 8'h86)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :57:8, :76:42, :81:32, :82:42
         freeList_134 <= io_freePhyReg_0;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      if (io_freeReq_5 & _GEN_24 == 8'h87)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      if (effectiveFreeReq_5 & _GEN_22 == 8'h87)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_135 <= io_freePhyReg_5;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_4 & _GEN_23 == 8'h87)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_4 & _GEN_21 == 8'h87)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_135 <= io_freePhyReg_4;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_3 & _GEN_21 == 8'h87)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_3 & _GEN_19 == 8'h87)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_135 <= io_freePhyReg_3;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_2 & _GEN_20 == 8'h87)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_2 & _GEN_18 == 8'h87)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_135 <= io_freePhyReg_2;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_1 & _GEN_19 == 8'h87)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_1 & _GEN_17 == 8'h87)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_135 <= io_freePhyReg_1;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_0 & _GEN_18 == 8'h87)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_0 & _GEN_16 == 8'h87)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :57:8, :76:42, :81:32, :82:42
         freeList_135 <= io_freePhyReg_0;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      if (io_freeReq_5 & _GEN_24 == 8'h88)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      if (effectiveFreeReq_5 & _GEN_22 == 8'h88)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_136 <= io_freePhyReg_5;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_4 & _GEN_23 == 8'h88)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_4 & _GEN_21 == 8'h88)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_136 <= io_freePhyReg_4;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_3 & _GEN_21 == 8'h88)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_3 & _GEN_19 == 8'h88)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_136 <= io_freePhyReg_3;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_2 & _GEN_20 == 8'h88)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_2 & _GEN_18 == 8'h88)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_136 <= io_freePhyReg_2;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_1 & _GEN_19 == 8'h88)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_1 & _GEN_17 == 8'h88)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_136 <= io_freePhyReg_1;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_0 & _GEN_18 == 8'h88)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_0 & _GEN_16 == 8'h88)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :57:8, :76:42, :81:32, :82:42
         freeList_136 <= io_freePhyReg_0;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      if (io_freeReq_5 & _GEN_24 == 8'h89)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      if (effectiveFreeReq_5 & _GEN_22 == 8'h89)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_137 <= io_freePhyReg_5;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_4 & _GEN_23 == 8'h89)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_4 & _GEN_21 == 8'h89)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_137 <= io_freePhyReg_4;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_3 & _GEN_21 == 8'h89)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_3 & _GEN_19 == 8'h89)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_137 <= io_freePhyReg_3;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_2 & _GEN_20 == 8'h89)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_2 & _GEN_18 == 8'h89)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_137 <= io_freePhyReg_2;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_1 & _GEN_19 == 8'h89)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_1 & _GEN_17 == 8'h89)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_137 <= io_freePhyReg_1;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_0 & _GEN_18 == 8'h89)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_0 & _GEN_16 == 8'h89)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :57:8, :76:42, :81:32, :82:42
         freeList_137 <= io_freePhyReg_0;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      if (io_freeReq_5 & _GEN_24 == 8'h8A)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      if (effectiveFreeReq_5 & _GEN_22 == 8'h8A)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_138 <= io_freePhyReg_5;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_4 & _GEN_23 == 8'h8A)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_4 & _GEN_21 == 8'h8A)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_138 <= io_freePhyReg_4;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_3 & _GEN_21 == 8'h8A)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_3 & _GEN_19 == 8'h8A)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_138 <= io_freePhyReg_3;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_2 & _GEN_20 == 8'h8A)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_2 & _GEN_18 == 8'h8A)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_138 <= io_freePhyReg_2;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_1 & _GEN_19 == 8'h8A)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_1 & _GEN_17 == 8'h8A)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_138 <= io_freePhyReg_1;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_0 & _GEN_18 == 8'h8A)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_0 & _GEN_16 == 8'h8A)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :57:8, :76:42, :81:32, :82:42
         freeList_138 <= io_freePhyReg_0;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      if (io_freeReq_5 & _GEN_24 == 8'h8B)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      if (effectiveFreeReq_5 & _GEN_22 == 8'h8B)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_139 <= io_freePhyReg_5;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_4 & _GEN_23 == 8'h8B)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_4 & _GEN_21 == 8'h8B)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_139 <= io_freePhyReg_4;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_3 & _GEN_21 == 8'h8B)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_3 & _GEN_19 == 8'h8B)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_139 <= io_freePhyReg_3;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_2 & _GEN_20 == 8'h8B)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_2 & _GEN_18 == 8'h8B)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_139 <= io_freePhyReg_2;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_1 & _GEN_19 == 8'h8B)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_1 & _GEN_17 == 8'h8B)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_139 <= io_freePhyReg_1;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_0 & _GEN_18 == 8'h8B)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_0 & _GEN_16 == 8'h8B)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :57:8, :76:42, :81:32, :82:42
         freeList_139 <= io_freePhyReg_0;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      if (io_freeReq_5 & _GEN_24 == 8'h8C)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      if (effectiveFreeReq_5 & _GEN_22 == 8'h8C)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_140 <= io_freePhyReg_5;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_4 & _GEN_23 == 8'h8C)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_4 & _GEN_21 == 8'h8C)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_140 <= io_freePhyReg_4;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_3 & _GEN_21 == 8'h8C)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_3 & _GEN_19 == 8'h8C)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_140 <= io_freePhyReg_3;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_2 & _GEN_20 == 8'h8C)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_2 & _GEN_18 == 8'h8C)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_140 <= io_freePhyReg_2;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_1 & _GEN_19 == 8'h8C)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_1 & _GEN_17 == 8'h8C)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_140 <= io_freePhyReg_1;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_0 & _GEN_18 == 8'h8C)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_0 & _GEN_16 == 8'h8C)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :57:8, :76:42, :81:32, :82:42
         freeList_140 <= io_freePhyReg_0;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      if (io_freeReq_5 & _GEN_24 == 8'h8D)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      if (effectiveFreeReq_5 & _GEN_22 == 8'h8D)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_141 <= io_freePhyReg_5;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_4 & _GEN_23 == 8'h8D)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_4 & _GEN_21 == 8'h8D)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_141 <= io_freePhyReg_4;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_3 & _GEN_21 == 8'h8D)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_3 & _GEN_19 == 8'h8D)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_141 <= io_freePhyReg_3;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_2 & _GEN_20 == 8'h8D)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_2 & _GEN_18 == 8'h8D)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_141 <= io_freePhyReg_2;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_1 & _GEN_19 == 8'h8D)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_1 & _GEN_17 == 8'h8D)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_141 <= io_freePhyReg_1;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_0 & _GEN_18 == 8'h8D)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_0 & _GEN_16 == 8'h8D)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :57:8, :76:42, :81:32, :82:42
         freeList_141 <= io_freePhyReg_0;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      if (io_freeReq_5 & _GEN_24 == 8'h8E)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      if (effectiveFreeReq_5 & _GEN_22 == 8'h8E)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_142 <= io_freePhyReg_5;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_4 & _GEN_23 == 8'h8E)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_4 & _GEN_21 == 8'h8E)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_142 <= io_freePhyReg_4;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_3 & _GEN_21 == 8'h8E)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_3 & _GEN_19 == 8'h8E)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_142 <= io_freePhyReg_3;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_2 & _GEN_20 == 8'h8E)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_2 & _GEN_18 == 8'h8E)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_142 <= io_freePhyReg_2;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_1 & _GEN_19 == 8'h8E)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_1 & _GEN_17 == 8'h8E)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_142 <= io_freePhyReg_1;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_0 & _GEN_18 == 8'h8E)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_0 & _GEN_16 == 8'h8E)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :57:8, :76:42, :81:32, :82:42
         freeList_142 <= io_freePhyReg_0;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      if (io_freeReq_5 & _GEN_24 == 8'h8F)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      if (effectiveFreeReq_5 & _GEN_22 == 8'h8F)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_143 <= io_freePhyReg_5;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_4 & _GEN_23 == 8'h8F)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_4 & _GEN_21 == 8'h8F)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_143 <= io_freePhyReg_4;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_3 & _GEN_21 == 8'h8F)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_3 & _GEN_19 == 8'h8F)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_143 <= io_freePhyReg_3;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_2 & _GEN_20 == 8'h8F)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_2 & _GEN_18 == 8'h8F)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_143 <= io_freePhyReg_2;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_1 & _GEN_19 == 8'h8F)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_1 & _GEN_17 == 8'h8F)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_143 <= io_freePhyReg_1;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_0 & _GEN_18 == 8'h8F)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_0 & _GEN_16 == 8'h8F)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :57:8, :76:42, :81:32, :82:42
         freeList_143 <= io_freePhyReg_0;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      if (io_freeReq_5 & _GEN_24 == 8'h90)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      if (effectiveFreeReq_5 & _GEN_22 == 8'h90)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_144 <= io_freePhyReg_5;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_4 & _GEN_23 == 8'h90)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_4 & _GEN_21 == 8'h90)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_144 <= io_freePhyReg_4;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_3 & _GEN_21 == 8'h90)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_3 & _GEN_19 == 8'h90)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_144 <= io_freePhyReg_3;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_2 & _GEN_20 == 8'h90)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_2 & _GEN_18 == 8'h90)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_144 <= io_freePhyReg_2;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_1 & _GEN_19 == 8'h90)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_1 & _GEN_17 == 8'h90)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_144 <= io_freePhyReg_1;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_0 & _GEN_18 == 8'h90)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_0 & _GEN_16 == 8'h90)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :57:8, :76:42, :81:32, :82:42
         freeList_144 <= io_freePhyReg_0;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      if (io_freeReq_5 & _GEN_24 == 8'h91)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      if (effectiveFreeReq_5 & _GEN_22 == 8'h91)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_145 <= io_freePhyReg_5;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_4 & _GEN_23 == 8'h91)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_4 & _GEN_21 == 8'h91)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_145 <= io_freePhyReg_4;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_3 & _GEN_21 == 8'h91)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_3 & _GEN_19 == 8'h91)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_145 <= io_freePhyReg_3;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_2 & _GEN_20 == 8'h91)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_2 & _GEN_18 == 8'h91)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_145 <= io_freePhyReg_2;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_1 & _GEN_19 == 8'h91)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_1 & _GEN_17 == 8'h91)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_145 <= io_freePhyReg_1;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_0 & _GEN_18 == 8'h91)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_0 & _GEN_16 == 8'h91)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :57:8, :76:42, :81:32, :82:42
         freeList_145 <= io_freePhyReg_0;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      if (io_freeReq_5 & _GEN_24 == 8'h92)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      if (effectiveFreeReq_5 & _GEN_22 == 8'h92)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_146 <= io_freePhyReg_5;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_4 & _GEN_23 == 8'h92)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_4 & _GEN_21 == 8'h92)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_146 <= io_freePhyReg_4;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_3 & _GEN_21 == 8'h92)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_3 & _GEN_19 == 8'h92)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_146 <= io_freePhyReg_3;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_2 & _GEN_20 == 8'h92)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_2 & _GEN_18 == 8'h92)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_146 <= io_freePhyReg_2;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_1 & _GEN_19 == 8'h92)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_1 & _GEN_17 == 8'h92)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_146 <= io_freePhyReg_1;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_0 & _GEN_18 == 8'h92)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_0 & _GEN_16 == 8'h92)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :57:8, :76:42, :81:32, :82:42
         freeList_146 <= io_freePhyReg_0;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      if (io_freeReq_5 & _GEN_24 == 8'h93)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      if (effectiveFreeReq_5 & _GEN_22 == 8'h93)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_147 <= io_freePhyReg_5;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_4 & _GEN_23 == 8'h93)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_4 & _GEN_21 == 8'h93)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_147 <= io_freePhyReg_4;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_3 & _GEN_21 == 8'h93)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_3 & _GEN_19 == 8'h93)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_147 <= io_freePhyReg_3;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_2 & _GEN_20 == 8'h93)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_2 & _GEN_18 == 8'h93)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_147 <= io_freePhyReg_2;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_1 & _GEN_19 == 8'h93)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_1 & _GEN_17 == 8'h93)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_147 <= io_freePhyReg_1;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_0 & _GEN_18 == 8'h93)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_0 & _GEN_16 == 8'h93)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :57:8, :76:42, :81:32, :82:42
         freeList_147 <= io_freePhyReg_0;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      if (io_freeReq_5 & _GEN_24 == 8'h94)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      if (effectiveFreeReq_5 & _GEN_22 == 8'h94)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_148 <= io_freePhyReg_5;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_4 & _GEN_23 == 8'h94)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_4 & _GEN_21 == 8'h94)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_148 <= io_freePhyReg_4;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_3 & _GEN_21 == 8'h94)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_3 & _GEN_19 == 8'h94)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_148 <= io_freePhyReg_3;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_2 & _GEN_20 == 8'h94)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_2 & _GEN_18 == 8'h94)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_148 <= io_freePhyReg_2;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_1 & _GEN_19 == 8'h94)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_1 & _GEN_17 == 8'h94)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_148 <= io_freePhyReg_1;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_0 & _GEN_18 == 8'h94)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_0 & _GEN_16 == 8'h94)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :57:8, :76:42, :81:32, :82:42
         freeList_148 <= io_freePhyReg_0;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      if (io_freeReq_5 & _GEN_24 == 8'h95)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      if (effectiveFreeReq_5 & _GEN_22 == 8'h95)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_149 <= io_freePhyReg_5;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_4 & _GEN_23 == 8'h95)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_4 & _GEN_21 == 8'h95)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_149 <= io_freePhyReg_4;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_3 & _GEN_21 == 8'h95)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_3 & _GEN_19 == 8'h95)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_149 <= io_freePhyReg_3;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_2 & _GEN_20 == 8'h95)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_2 & _GEN_18 == 8'h95)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_149 <= io_freePhyReg_2;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_1 & _GEN_19 == 8'h95)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_1 & _GEN_17 == 8'h95)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_149 <= io_freePhyReg_1;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_0 & _GEN_18 == 8'h95)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_0 & _GEN_16 == 8'h95)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :57:8, :76:42, :81:32, :82:42
         freeList_149 <= io_freePhyReg_0;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      if (io_freeReq_5 & _GEN_24 == 8'h96)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      if (effectiveFreeReq_5 & _GEN_22 == 8'h96)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_150 <= io_freePhyReg_5;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_4 & _GEN_23 == 8'h96)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_4 & _GEN_21 == 8'h96)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_150 <= io_freePhyReg_4;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_3 & _GEN_21 == 8'h96)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_3 & _GEN_19 == 8'h96)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_150 <= io_freePhyReg_3;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_2 & _GEN_20 == 8'h96)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_2 & _GEN_18 == 8'h96)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_150 <= io_freePhyReg_2;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_1 & _GEN_19 == 8'h96)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_1 & _GEN_17 == 8'h96)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_150 <= io_freePhyReg_1;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_0 & _GEN_18 == 8'h96)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_0 & _GEN_16 == 8'h96)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :57:8, :76:42, :81:32, :82:42
         freeList_150 <= io_freePhyReg_0;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      if (io_freeReq_5 & _GEN_24 == 8'h97)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      if (effectiveFreeReq_5 & _GEN_22 == 8'h97)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_151 <= io_freePhyReg_5;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_4 & _GEN_23 == 8'h97)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_4 & _GEN_21 == 8'h97)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_151 <= io_freePhyReg_4;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_3 & _GEN_21 == 8'h97)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_3 & _GEN_19 == 8'h97)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_151 <= io_freePhyReg_3;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_2 & _GEN_20 == 8'h97)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_2 & _GEN_18 == 8'h97)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_151 <= io_freePhyReg_2;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_1 & _GEN_19 == 8'h97)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_1 & _GEN_17 == 8'h97)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_151 <= io_freePhyReg_1;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_0 & _GEN_18 == 8'h97)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_0 & _GEN_16 == 8'h97)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :57:8, :76:42, :81:32, :82:42
         freeList_151 <= io_freePhyReg_0;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      if (io_freeReq_5 & _GEN_24 == 8'h98)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      if (effectiveFreeReq_5 & _GEN_22 == 8'h98)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_152 <= io_freePhyReg_5;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_4 & _GEN_23 == 8'h98)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_4 & _GEN_21 == 8'h98)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_152 <= io_freePhyReg_4;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_3 & _GEN_21 == 8'h98)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_3 & _GEN_19 == 8'h98)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_152 <= io_freePhyReg_3;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_2 & _GEN_20 == 8'h98)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_2 & _GEN_18 == 8'h98)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_152 <= io_freePhyReg_2;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_1 & _GEN_19 == 8'h98)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_1 & _GEN_17 == 8'h98)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_152 <= io_freePhyReg_1;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_0 & _GEN_18 == 8'h98)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_0 & _GEN_16 == 8'h98)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :57:8, :76:42, :81:32, :82:42
         freeList_152 <= io_freePhyReg_0;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      if (io_freeReq_5 & _GEN_24 == 8'h99)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      if (effectiveFreeReq_5 & _GEN_22 == 8'h99)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_153 <= io_freePhyReg_5;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_4 & _GEN_23 == 8'h99)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_4 & _GEN_21 == 8'h99)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_153 <= io_freePhyReg_4;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_3 & _GEN_21 == 8'h99)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_3 & _GEN_19 == 8'h99)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_153 <= io_freePhyReg_3;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_2 & _GEN_20 == 8'h99)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_2 & _GEN_18 == 8'h99)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_153 <= io_freePhyReg_2;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_1 & _GEN_19 == 8'h99)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_1 & _GEN_17 == 8'h99)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_153 <= io_freePhyReg_1;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_0 & _GEN_18 == 8'h99)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_0 & _GEN_16 == 8'h99)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :57:8, :76:42, :81:32, :82:42
         freeList_153 <= io_freePhyReg_0;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      if (io_freeReq_5 & _GEN_24 == 8'h9A)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      if (effectiveFreeReq_5 & _GEN_22 == 8'h9A)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_154 <= io_freePhyReg_5;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_4 & _GEN_23 == 8'h9A)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_4 & _GEN_21 == 8'h9A)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_154 <= io_freePhyReg_4;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_3 & _GEN_21 == 8'h9A)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_3 & _GEN_19 == 8'h9A)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_154 <= io_freePhyReg_3;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_2 & _GEN_20 == 8'h9A)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_2 & _GEN_18 == 8'h9A)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_154 <= io_freePhyReg_2;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_1 & _GEN_19 == 8'h9A)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_1 & _GEN_17 == 8'h9A)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_154 <= io_freePhyReg_1;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_0 & _GEN_18 == 8'h9A)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_0 & _GEN_16 == 8'h9A)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :57:8, :76:42, :81:32, :82:42
         freeList_154 <= io_freePhyReg_0;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      if (io_freeReq_5 & _GEN_24 == 8'h9B)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      if (effectiveFreeReq_5 & _GEN_22 == 8'h9B)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_155 <= io_freePhyReg_5;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_4 & _GEN_23 == 8'h9B)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_4 & _GEN_21 == 8'h9B)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_155 <= io_freePhyReg_4;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_3 & _GEN_21 == 8'h9B)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_3 & _GEN_19 == 8'h9B)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_155 <= io_freePhyReg_3;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_2 & _GEN_20 == 8'h9B)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_2 & _GEN_18 == 8'h9B)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_155 <= io_freePhyReg_2;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_1 & _GEN_19 == 8'h9B)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_1 & _GEN_17 == 8'h9B)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_155 <= io_freePhyReg_1;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_0 & _GEN_18 == 8'h9B)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_0 & _GEN_16 == 8'h9B)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :57:8, :76:42, :81:32, :82:42
         freeList_155 <= io_freePhyReg_0;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      if (io_freeReq_5 & _GEN_24 == 8'h9C)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      if (effectiveFreeReq_5 & _GEN_22 == 8'h9C)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_156 <= io_freePhyReg_5;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_4 & _GEN_23 == 8'h9C)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_4 & _GEN_21 == 8'h9C)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_156 <= io_freePhyReg_4;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_3 & _GEN_21 == 8'h9C)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_3 & _GEN_19 == 8'h9C)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_156 <= io_freePhyReg_3;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_2 & _GEN_20 == 8'h9C)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_2 & _GEN_18 == 8'h9C)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_156 <= io_freePhyReg_2;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_1 & _GEN_19 == 8'h9C)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_1 & _GEN_17 == 8'h9C)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_156 <= io_freePhyReg_1;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_0 & _GEN_18 == 8'h9C)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_0 & _GEN_16 == 8'h9C)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :57:8, :76:42, :81:32, :82:42
         freeList_156 <= io_freePhyReg_0;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      if (io_freeReq_5 & _GEN_24 == 8'h9D)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      if (effectiveFreeReq_5 & _GEN_22 == 8'h9D)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_157 <= io_freePhyReg_5;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_4 & _GEN_23 == 8'h9D)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_4 & _GEN_21 == 8'h9D)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_157 <= io_freePhyReg_4;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_3 & _GEN_21 == 8'h9D)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_3 & _GEN_19 == 8'h9D)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_157 <= io_freePhyReg_3;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_2 & _GEN_20 == 8'h9D)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_2 & _GEN_18 == 8'h9D)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_157 <= io_freePhyReg_2;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_1 & _GEN_19 == 8'h9D)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_1 & _GEN_17 == 8'h9D)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_157 <= io_freePhyReg_1;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_0 & _GEN_18 == 8'h9D)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_0 & _GEN_16 == 8'h9D)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :57:8, :76:42, :81:32, :82:42
         freeList_157 <= io_freePhyReg_0;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      if (io_freeReq_5 & _GEN_24 == 8'h9E)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      if (effectiveFreeReq_5 & _GEN_22 == 8'h9E)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_158 <= io_freePhyReg_5;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_4 & _GEN_23 == 8'h9E)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_4 & _GEN_21 == 8'h9E)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_158 <= io_freePhyReg_4;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_3 & _GEN_21 == 8'h9E)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_3 & _GEN_19 == 8'h9E)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_158 <= io_freePhyReg_3;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_2 & _GEN_20 == 8'h9E)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_2 & _GEN_18 == 8'h9E)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_158 <= io_freePhyReg_2;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_1 & _GEN_19 == 8'h9E)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_1 & _GEN_17 == 8'h9E)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_158 <= io_freePhyReg_1;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_0 & _GEN_18 == 8'h9E)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_0 & _GEN_16 == 8'h9E)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :57:8, :76:42, :81:32, :82:42
         freeList_158 <= io_freePhyReg_0;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      if (io_freeReq_5 & _GEN_24 == 8'h9F)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      if (effectiveFreeReq_5 & _GEN_22 == 8'h9F)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_159 <= io_freePhyReg_5;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_4 & _GEN_23 == 8'h9F)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_4 & _GEN_21 == 8'h9F)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_159 <= io_freePhyReg_4;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_3 & _GEN_21 == 8'h9F)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_3 & _GEN_19 == 8'h9F)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_159 <= io_freePhyReg_3;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_2 & _GEN_20 == 8'h9F)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_2 & _GEN_18 == 8'h9F)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_159 <= io_freePhyReg_2;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_1 & _GEN_19 == 8'h9F)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_1 & _GEN_17 == 8'h9F)	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :57:8, :76:42, :81:32, :82:42
         freeList_159 <= io_freePhyReg_1;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      else if (io_freeReq_0 & _GEN_18 == 8'h9F)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :60:8, :76:26, :77:42
+      else if (effectiveFreeReq_0 & _GEN_16 == 8'h9F)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :57:8, :76:42, :81:32, :82:42
         freeList_159 <= io_freePhyReg_0;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
-      if (io_redirect) begin	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-        headPtr <= io_useSnapshot ? _GEN_8 | _GEN_9 : tailPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:50:24, :51:24, :101:21, src/main/scala/chisel3/util/Mux.scala:30:73
-        freeCount <= (io_useSnapshot ? _GEN_10 | _GEN_11 : 8'hA0) + _GEN_25;	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :54:26, :59:20, :102:{21,70}, src/main/scala/chisel3/util/Mux.scala:30:73
-      end
-      else begin	// backend/src/zaqal/backend/rename/FreeList.scala:18:14
-        headPtr <= headPtr_next > 9'h9F ? headPtr_next[7:0] + 8'h60 : headPtr_next[7:0];	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :50:24, :59:20, :60:{8,14,30}
-        freeCount <= freeCount - {5'h0, actualAlloc} + _GEN_25;	// backend/src/zaqal/backend/rename/FreeList.scala:54:26, :59:20, :65:31, :105:26, :107:{28,42}
-      end
-      tailPtr <= tailPtr_next > 9'h9F ? tailPtr_next[7:0] + 8'h60 : tailPtr_next[7:0];	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :51:24, :59:20, :60:{8,14,30}
+      if (io_redirect)	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+        headPtr <= io_useSnapshot ? _GEN_8 | _GEN_9 : tailPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:50:24, :51:24, :106:19, src/main/scala/chisel3/util/Mux.scala:30:73
+      else	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
+        headPtr <= headPtr_next > 9'h9F ? headPtr_next[7:0] + 8'h60 : headPtr_next[7:0];	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :50:24, :56:20, :57:{8,14,30}
+      tailPtr <= tailPtr_next > 9'h9F ? tailPtr_next[7:0] + 8'h60 : tailPtr_next[7:0];	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :51:24, :56:20, :57:{8,14,30}
     end
   end // always @(posedge)
-  `ifdef ENABLE_INITIAL_REG_	// backend/src/zaqal/backend/rename/FreeList.scala:17:7
-    `ifdef FIRRTL_BEFORE_INITIAL	// backend/src/zaqal/backend/rename/FreeList.scala:17:7
-      `FIRRTL_BEFORE_INITIAL	// backend/src/zaqal/backend/rename/FreeList.scala:17:7
+  `ifdef ENABLE_INITIAL_REG_	// backend/src/zaqal/backend/rename/FreeList.scala:16:7
+    `ifdef FIRRTL_BEFORE_INITIAL	// backend/src/zaqal/backend/rename/FreeList.scala:16:7
+      `FIRRTL_BEFORE_INITIAL	// backend/src/zaqal/backend/rename/FreeList.scala:16:7
     `endif // FIRRTL_BEFORE_INITIAL
-    logic [31:0] _RANDOM[0:40];	// backend/src/zaqal/backend/rename/FreeList.scala:17:7
-    initial begin	// backend/src/zaqal/backend/rename/FreeList.scala:17:7
-      `ifdef INIT_RANDOM_PROLOG_	// backend/src/zaqal/backend/rename/FreeList.scala:17:7
-        `INIT_RANDOM_PROLOG_	// backend/src/zaqal/backend/rename/FreeList.scala:17:7
+    logic [31:0] _RANDOM[0:40];	// backend/src/zaqal/backend/rename/FreeList.scala:16:7
+    initial begin	// backend/src/zaqal/backend/rename/FreeList.scala:16:7
+      `ifdef INIT_RANDOM_PROLOG_	// backend/src/zaqal/backend/rename/FreeList.scala:16:7
+        `INIT_RANDOM_PROLOG_	// backend/src/zaqal/backend/rename/FreeList.scala:16:7
       `endif // INIT_RANDOM_PROLOG_
-      `ifdef RANDOMIZE_REG_INIT	// backend/src/zaqal/backend/rename/FreeList.scala:17:7
+      `ifdef RANDOMIZE_REG_INIT	// backend/src/zaqal/backend/rename/FreeList.scala:16:7
         for (logic [5:0] i = 6'h0; i < 6'h29; i += 6'h1) begin
-          _RANDOM[i] = `RANDOM;	// backend/src/zaqal/backend/rename/FreeList.scala:17:7
-        end	// backend/src/zaqal/backend/rename/FreeList.scala:17:7
-        freeList_0 = _RANDOM[6'h0][7:0];	// backend/src/zaqal/backend/rename/FreeList.scala:17:7, :46:25
-        freeList_1 = _RANDOM[6'h0][15:8];	// backend/src/zaqal/backend/rename/FreeList.scala:17:7, :46:25
-        freeList_2 = _RANDOM[6'h0][23:16];	// backend/src/zaqal/backend/rename/FreeList.scala:17:7, :46:25
-        freeList_3 = _RANDOM[6'h0][31:24];	// backend/src/zaqal/backend/rename/FreeList.scala:17:7, :46:25
-        freeList_4 = _RANDOM[6'h1][7:0];	// backend/src/zaqal/backend/rename/FreeList.scala:17:7, :46:25
-        freeList_5 = _RANDOM[6'h1][15:8];	// backend/src/zaqal/backend/rename/FreeList.scala:17:7, :46:25
-        freeList_6 = _RANDOM[6'h1][23:16];	// backend/src/zaqal/backend/rename/FreeList.scala:17:7, :46:25
-        freeList_7 = _RANDOM[6'h1][31:24];	// backend/src/zaqal/backend/rename/FreeList.scala:17:7, :46:25
-        freeList_8 = _RANDOM[6'h2][7:0];	// backend/src/zaqal/backend/rename/FreeList.scala:17:7, :46:25
-        freeList_9 = _RANDOM[6'h2][15:8];	// backend/src/zaqal/backend/rename/FreeList.scala:17:7, :46:25
-        freeList_10 = _RANDOM[6'h2][23:16];	// backend/src/zaqal/backend/rename/FreeList.scala:17:7, :46:25
-        freeList_11 = _RANDOM[6'h2][31:24];	// backend/src/zaqal/backend/rename/FreeList.scala:17:7, :46:25
-        freeList_12 = _RANDOM[6'h3][7:0];	// backend/src/zaqal/backend/rename/FreeList.scala:17:7, :46:25
-        freeList_13 = _RANDOM[6'h3][15:8];	// backend/src/zaqal/backend/rename/FreeList.scala:17:7, :46:25
-        freeList_14 = _RANDOM[6'h3][23:16];	// backend/src/zaqal/backend/rename/FreeList.scala:17:7, :46:25
-        freeList_15 = _RANDOM[6'h3][31:24];	// backend/src/zaqal/backend/rename/FreeList.scala:17:7, :46:25
-        freeList_16 = _RANDOM[6'h4][7:0];	// backend/src/zaqal/backend/rename/FreeList.scala:17:7, :46:25
-        freeList_17 = _RANDOM[6'h4][15:8];	// backend/src/zaqal/backend/rename/FreeList.scala:17:7, :46:25
-        freeList_18 = _RANDOM[6'h4][23:16];	// backend/src/zaqal/backend/rename/FreeList.scala:17:7, :46:25
-        freeList_19 = _RANDOM[6'h4][31:24];	// backend/src/zaqal/backend/rename/FreeList.scala:17:7, :46:25
-        freeList_20 = _RANDOM[6'h5][7:0];	// backend/src/zaqal/backend/rename/FreeList.scala:17:7, :46:25
-        freeList_21 = _RANDOM[6'h5][15:8];	// backend/src/zaqal/backend/rename/FreeList.scala:17:7, :46:25
-        freeList_22 = _RANDOM[6'h5][23:16];	// backend/src/zaqal/backend/rename/FreeList.scala:17:7, :46:25
-        freeList_23 = _RANDOM[6'h5][31:24];	// backend/src/zaqal/backend/rename/FreeList.scala:17:7, :46:25
-        freeList_24 = _RANDOM[6'h6][7:0];	// backend/src/zaqal/backend/rename/FreeList.scala:17:7, :46:25
-        freeList_25 = _RANDOM[6'h6][15:8];	// backend/src/zaqal/backend/rename/FreeList.scala:17:7, :46:25
-        freeList_26 = _RANDOM[6'h6][23:16];	// backend/src/zaqal/backend/rename/FreeList.scala:17:7, :46:25
-        freeList_27 = _RANDOM[6'h6][31:24];	// backend/src/zaqal/backend/rename/FreeList.scala:17:7, :46:25
-        freeList_28 = _RANDOM[6'h7][7:0];	// backend/src/zaqal/backend/rename/FreeList.scala:17:7, :46:25
-        freeList_29 = _RANDOM[6'h7][15:8];	// backend/src/zaqal/backend/rename/FreeList.scala:17:7, :46:25
-        freeList_30 = _RANDOM[6'h7][23:16];	// backend/src/zaqal/backend/rename/FreeList.scala:17:7, :46:25
-        freeList_31 = _RANDOM[6'h7][31:24];	// backend/src/zaqal/backend/rename/FreeList.scala:17:7, :46:25
-        freeList_32 = _RANDOM[6'h8][7:0];	// backend/src/zaqal/backend/rename/FreeList.scala:17:7, :46:25
-        freeList_33 = _RANDOM[6'h8][15:8];	// backend/src/zaqal/backend/rename/FreeList.scala:17:7, :46:25
-        freeList_34 = _RANDOM[6'h8][23:16];	// backend/src/zaqal/backend/rename/FreeList.scala:17:7, :46:25
-        freeList_35 = _RANDOM[6'h8][31:24];	// backend/src/zaqal/backend/rename/FreeList.scala:17:7, :46:25
-        freeList_36 = _RANDOM[6'h9][7:0];	// backend/src/zaqal/backend/rename/FreeList.scala:17:7, :46:25
-        freeList_37 = _RANDOM[6'h9][15:8];	// backend/src/zaqal/backend/rename/FreeList.scala:17:7, :46:25
-        freeList_38 = _RANDOM[6'h9][23:16];	// backend/src/zaqal/backend/rename/FreeList.scala:17:7, :46:25
-        freeList_39 = _RANDOM[6'h9][31:24];	// backend/src/zaqal/backend/rename/FreeList.scala:17:7, :46:25
-        freeList_40 = _RANDOM[6'hA][7:0];	// backend/src/zaqal/backend/rename/FreeList.scala:17:7, :46:25
-        freeList_41 = _RANDOM[6'hA][15:8];	// backend/src/zaqal/backend/rename/FreeList.scala:17:7, :46:25
-        freeList_42 = _RANDOM[6'hA][23:16];	// backend/src/zaqal/backend/rename/FreeList.scala:17:7, :46:25
-        freeList_43 = _RANDOM[6'hA][31:24];	// backend/src/zaqal/backend/rename/FreeList.scala:17:7, :46:25
-        freeList_44 = _RANDOM[6'hB][7:0];	// backend/src/zaqal/backend/rename/FreeList.scala:17:7, :46:25
-        freeList_45 = _RANDOM[6'hB][15:8];	// backend/src/zaqal/backend/rename/FreeList.scala:17:7, :46:25
-        freeList_46 = _RANDOM[6'hB][23:16];	// backend/src/zaqal/backend/rename/FreeList.scala:17:7, :46:25
-        freeList_47 = _RANDOM[6'hB][31:24];	// backend/src/zaqal/backend/rename/FreeList.scala:17:7, :46:25
-        freeList_48 = _RANDOM[6'hC][7:0];	// backend/src/zaqal/backend/rename/FreeList.scala:17:7, :46:25
-        freeList_49 = _RANDOM[6'hC][15:8];	// backend/src/zaqal/backend/rename/FreeList.scala:17:7, :46:25
-        freeList_50 = _RANDOM[6'hC][23:16];	// backend/src/zaqal/backend/rename/FreeList.scala:17:7, :46:25
-        freeList_51 = _RANDOM[6'hC][31:24];	// backend/src/zaqal/backend/rename/FreeList.scala:17:7, :46:25
-        freeList_52 = _RANDOM[6'hD][7:0];	// backend/src/zaqal/backend/rename/FreeList.scala:17:7, :46:25
-        freeList_53 = _RANDOM[6'hD][15:8];	// backend/src/zaqal/backend/rename/FreeList.scala:17:7, :46:25
-        freeList_54 = _RANDOM[6'hD][23:16];	// backend/src/zaqal/backend/rename/FreeList.scala:17:7, :46:25
-        freeList_55 = _RANDOM[6'hD][31:24];	// backend/src/zaqal/backend/rename/FreeList.scala:17:7, :46:25
-        freeList_56 = _RANDOM[6'hE][7:0];	// backend/src/zaqal/backend/rename/FreeList.scala:17:7, :46:25
-        freeList_57 = _RANDOM[6'hE][15:8];	// backend/src/zaqal/backend/rename/FreeList.scala:17:7, :46:25
-        freeList_58 = _RANDOM[6'hE][23:16];	// backend/src/zaqal/backend/rename/FreeList.scala:17:7, :46:25
-        freeList_59 = _RANDOM[6'hE][31:24];	// backend/src/zaqal/backend/rename/FreeList.scala:17:7, :46:25
-        freeList_60 = _RANDOM[6'hF][7:0];	// backend/src/zaqal/backend/rename/FreeList.scala:17:7, :46:25
-        freeList_61 = _RANDOM[6'hF][15:8];	// backend/src/zaqal/backend/rename/FreeList.scala:17:7, :46:25
-        freeList_62 = _RANDOM[6'hF][23:16];	// backend/src/zaqal/backend/rename/FreeList.scala:17:7, :46:25
-        freeList_63 = _RANDOM[6'hF][31:24];	// backend/src/zaqal/backend/rename/FreeList.scala:17:7, :46:25
-        freeList_64 = _RANDOM[6'h10][7:0];	// backend/src/zaqal/backend/rename/FreeList.scala:17:7, :46:25
-        freeList_65 = _RANDOM[6'h10][15:8];	// backend/src/zaqal/backend/rename/FreeList.scala:17:7, :46:25
-        freeList_66 = _RANDOM[6'h10][23:16];	// backend/src/zaqal/backend/rename/FreeList.scala:17:7, :46:25
-        freeList_67 = _RANDOM[6'h10][31:24];	// backend/src/zaqal/backend/rename/FreeList.scala:17:7, :46:25
-        freeList_68 = _RANDOM[6'h11][7:0];	// backend/src/zaqal/backend/rename/FreeList.scala:17:7, :46:25
-        freeList_69 = _RANDOM[6'h11][15:8];	// backend/src/zaqal/backend/rename/FreeList.scala:17:7, :46:25
-        freeList_70 = _RANDOM[6'h11][23:16];	// backend/src/zaqal/backend/rename/FreeList.scala:17:7, :46:25
-        freeList_71 = _RANDOM[6'h11][31:24];	// backend/src/zaqal/backend/rename/FreeList.scala:17:7, :46:25
-        freeList_72 = _RANDOM[6'h12][7:0];	// backend/src/zaqal/backend/rename/FreeList.scala:17:7, :46:25
-        freeList_73 = _RANDOM[6'h12][15:8];	// backend/src/zaqal/backend/rename/FreeList.scala:17:7, :46:25
-        freeList_74 = _RANDOM[6'h12][23:16];	// backend/src/zaqal/backend/rename/FreeList.scala:17:7, :46:25
-        freeList_75 = _RANDOM[6'h12][31:24];	// backend/src/zaqal/backend/rename/FreeList.scala:17:7, :46:25
-        freeList_76 = _RANDOM[6'h13][7:0];	// backend/src/zaqal/backend/rename/FreeList.scala:17:7, :46:25
-        freeList_77 = _RANDOM[6'h13][15:8];	// backend/src/zaqal/backend/rename/FreeList.scala:17:7, :46:25
-        freeList_78 = _RANDOM[6'h13][23:16];	// backend/src/zaqal/backend/rename/FreeList.scala:17:7, :46:25
-        freeList_79 = _RANDOM[6'h13][31:24];	// backend/src/zaqal/backend/rename/FreeList.scala:17:7, :46:25
-        freeList_80 = _RANDOM[6'h14][7:0];	// backend/src/zaqal/backend/rename/FreeList.scala:17:7, :46:25
-        freeList_81 = _RANDOM[6'h14][15:8];	// backend/src/zaqal/backend/rename/FreeList.scala:17:7, :46:25
-        freeList_82 = _RANDOM[6'h14][23:16];	// backend/src/zaqal/backend/rename/FreeList.scala:17:7, :46:25
-        freeList_83 = _RANDOM[6'h14][31:24];	// backend/src/zaqal/backend/rename/FreeList.scala:17:7, :46:25
-        freeList_84 = _RANDOM[6'h15][7:0];	// backend/src/zaqal/backend/rename/FreeList.scala:17:7, :46:25
-        freeList_85 = _RANDOM[6'h15][15:8];	// backend/src/zaqal/backend/rename/FreeList.scala:17:7, :46:25
-        freeList_86 = _RANDOM[6'h15][23:16];	// backend/src/zaqal/backend/rename/FreeList.scala:17:7, :46:25
-        freeList_87 = _RANDOM[6'h15][31:24];	// backend/src/zaqal/backend/rename/FreeList.scala:17:7, :46:25
-        freeList_88 = _RANDOM[6'h16][7:0];	// backend/src/zaqal/backend/rename/FreeList.scala:17:7, :46:25
-        freeList_89 = _RANDOM[6'h16][15:8];	// backend/src/zaqal/backend/rename/FreeList.scala:17:7, :46:25
-        freeList_90 = _RANDOM[6'h16][23:16];	// backend/src/zaqal/backend/rename/FreeList.scala:17:7, :46:25
-        freeList_91 = _RANDOM[6'h16][31:24];	// backend/src/zaqal/backend/rename/FreeList.scala:17:7, :46:25
-        freeList_92 = _RANDOM[6'h17][7:0];	// backend/src/zaqal/backend/rename/FreeList.scala:17:7, :46:25
-        freeList_93 = _RANDOM[6'h17][15:8];	// backend/src/zaqal/backend/rename/FreeList.scala:17:7, :46:25
-        freeList_94 = _RANDOM[6'h17][23:16];	// backend/src/zaqal/backend/rename/FreeList.scala:17:7, :46:25
-        freeList_95 = _RANDOM[6'h17][31:24];	// backend/src/zaqal/backend/rename/FreeList.scala:17:7, :46:25
-        freeList_96 = _RANDOM[6'h18][7:0];	// backend/src/zaqal/backend/rename/FreeList.scala:17:7, :46:25
-        freeList_97 = _RANDOM[6'h18][15:8];	// backend/src/zaqal/backend/rename/FreeList.scala:17:7, :46:25
-        freeList_98 = _RANDOM[6'h18][23:16];	// backend/src/zaqal/backend/rename/FreeList.scala:17:7, :46:25
-        freeList_99 = _RANDOM[6'h18][31:24];	// backend/src/zaqal/backend/rename/FreeList.scala:17:7, :46:25
-        freeList_100 = _RANDOM[6'h19][7:0];	// backend/src/zaqal/backend/rename/FreeList.scala:17:7, :46:25
-        freeList_101 = _RANDOM[6'h19][15:8];	// backend/src/zaqal/backend/rename/FreeList.scala:17:7, :46:25
-        freeList_102 = _RANDOM[6'h19][23:16];	// backend/src/zaqal/backend/rename/FreeList.scala:17:7, :46:25
-        freeList_103 = _RANDOM[6'h19][31:24];	// backend/src/zaqal/backend/rename/FreeList.scala:17:7, :46:25
-        freeList_104 = _RANDOM[6'h1A][7:0];	// backend/src/zaqal/backend/rename/FreeList.scala:17:7, :46:25
-        freeList_105 = _RANDOM[6'h1A][15:8];	// backend/src/zaqal/backend/rename/FreeList.scala:17:7, :46:25
-        freeList_106 = _RANDOM[6'h1A][23:16];	// backend/src/zaqal/backend/rename/FreeList.scala:17:7, :46:25
-        freeList_107 = _RANDOM[6'h1A][31:24];	// backend/src/zaqal/backend/rename/FreeList.scala:17:7, :46:25
-        freeList_108 = _RANDOM[6'h1B][7:0];	// backend/src/zaqal/backend/rename/FreeList.scala:17:7, :46:25
-        freeList_109 = _RANDOM[6'h1B][15:8];	// backend/src/zaqal/backend/rename/FreeList.scala:17:7, :46:25
-        freeList_110 = _RANDOM[6'h1B][23:16];	// backend/src/zaqal/backend/rename/FreeList.scala:17:7, :46:25
-        freeList_111 = _RANDOM[6'h1B][31:24];	// backend/src/zaqal/backend/rename/FreeList.scala:17:7, :46:25
-        freeList_112 = _RANDOM[6'h1C][7:0];	// backend/src/zaqal/backend/rename/FreeList.scala:17:7, :46:25
-        freeList_113 = _RANDOM[6'h1C][15:8];	// backend/src/zaqal/backend/rename/FreeList.scala:17:7, :46:25
-        freeList_114 = _RANDOM[6'h1C][23:16];	// backend/src/zaqal/backend/rename/FreeList.scala:17:7, :46:25
-        freeList_115 = _RANDOM[6'h1C][31:24];	// backend/src/zaqal/backend/rename/FreeList.scala:17:7, :46:25
-        freeList_116 = _RANDOM[6'h1D][7:0];	// backend/src/zaqal/backend/rename/FreeList.scala:17:7, :46:25
-        freeList_117 = _RANDOM[6'h1D][15:8];	// backend/src/zaqal/backend/rename/FreeList.scala:17:7, :46:25
-        freeList_118 = _RANDOM[6'h1D][23:16];	// backend/src/zaqal/backend/rename/FreeList.scala:17:7, :46:25
-        freeList_119 = _RANDOM[6'h1D][31:24];	// backend/src/zaqal/backend/rename/FreeList.scala:17:7, :46:25
-        freeList_120 = _RANDOM[6'h1E][7:0];	// backend/src/zaqal/backend/rename/FreeList.scala:17:7, :46:25
-        freeList_121 = _RANDOM[6'h1E][15:8];	// backend/src/zaqal/backend/rename/FreeList.scala:17:7, :46:25
-        freeList_122 = _RANDOM[6'h1E][23:16];	// backend/src/zaqal/backend/rename/FreeList.scala:17:7, :46:25
-        freeList_123 = _RANDOM[6'h1E][31:24];	// backend/src/zaqal/backend/rename/FreeList.scala:17:7, :46:25
-        freeList_124 = _RANDOM[6'h1F][7:0];	// backend/src/zaqal/backend/rename/FreeList.scala:17:7, :46:25
-        freeList_125 = _RANDOM[6'h1F][15:8];	// backend/src/zaqal/backend/rename/FreeList.scala:17:7, :46:25
-        freeList_126 = _RANDOM[6'h1F][23:16];	// backend/src/zaqal/backend/rename/FreeList.scala:17:7, :46:25
-        freeList_127 = _RANDOM[6'h1F][31:24];	// backend/src/zaqal/backend/rename/FreeList.scala:17:7, :46:25
-        freeList_128 = _RANDOM[6'h20][7:0];	// backend/src/zaqal/backend/rename/FreeList.scala:17:7, :46:25
-        freeList_129 = _RANDOM[6'h20][15:8];	// backend/src/zaqal/backend/rename/FreeList.scala:17:7, :46:25
-        freeList_130 = _RANDOM[6'h20][23:16];	// backend/src/zaqal/backend/rename/FreeList.scala:17:7, :46:25
-        freeList_131 = _RANDOM[6'h20][31:24];	// backend/src/zaqal/backend/rename/FreeList.scala:17:7, :46:25
-        freeList_132 = _RANDOM[6'h21][7:0];	// backend/src/zaqal/backend/rename/FreeList.scala:17:7, :46:25
-        freeList_133 = _RANDOM[6'h21][15:8];	// backend/src/zaqal/backend/rename/FreeList.scala:17:7, :46:25
-        freeList_134 = _RANDOM[6'h21][23:16];	// backend/src/zaqal/backend/rename/FreeList.scala:17:7, :46:25
-        freeList_135 = _RANDOM[6'h21][31:24];	// backend/src/zaqal/backend/rename/FreeList.scala:17:7, :46:25
-        freeList_136 = _RANDOM[6'h22][7:0];	// backend/src/zaqal/backend/rename/FreeList.scala:17:7, :46:25
-        freeList_137 = _RANDOM[6'h22][15:8];	// backend/src/zaqal/backend/rename/FreeList.scala:17:7, :46:25
-        freeList_138 = _RANDOM[6'h22][23:16];	// backend/src/zaqal/backend/rename/FreeList.scala:17:7, :46:25
-        freeList_139 = _RANDOM[6'h22][31:24];	// backend/src/zaqal/backend/rename/FreeList.scala:17:7, :46:25
-        freeList_140 = _RANDOM[6'h23][7:0];	// backend/src/zaqal/backend/rename/FreeList.scala:17:7, :46:25
-        freeList_141 = _RANDOM[6'h23][15:8];	// backend/src/zaqal/backend/rename/FreeList.scala:17:7, :46:25
-        freeList_142 = _RANDOM[6'h23][23:16];	// backend/src/zaqal/backend/rename/FreeList.scala:17:7, :46:25
-        freeList_143 = _RANDOM[6'h23][31:24];	// backend/src/zaqal/backend/rename/FreeList.scala:17:7, :46:25
-        freeList_144 = _RANDOM[6'h24][7:0];	// backend/src/zaqal/backend/rename/FreeList.scala:17:7, :46:25
-        freeList_145 = _RANDOM[6'h24][15:8];	// backend/src/zaqal/backend/rename/FreeList.scala:17:7, :46:25
-        freeList_146 = _RANDOM[6'h24][23:16];	// backend/src/zaqal/backend/rename/FreeList.scala:17:7, :46:25
-        freeList_147 = _RANDOM[6'h24][31:24];	// backend/src/zaqal/backend/rename/FreeList.scala:17:7, :46:25
-        freeList_148 = _RANDOM[6'h25][7:0];	// backend/src/zaqal/backend/rename/FreeList.scala:17:7, :46:25
-        freeList_149 = _RANDOM[6'h25][15:8];	// backend/src/zaqal/backend/rename/FreeList.scala:17:7, :46:25
-        freeList_150 = _RANDOM[6'h25][23:16];	// backend/src/zaqal/backend/rename/FreeList.scala:17:7, :46:25
-        freeList_151 = _RANDOM[6'h25][31:24];	// backend/src/zaqal/backend/rename/FreeList.scala:17:7, :46:25
-        freeList_152 = _RANDOM[6'h26][7:0];	// backend/src/zaqal/backend/rename/FreeList.scala:17:7, :46:25
-        freeList_153 = _RANDOM[6'h26][15:8];	// backend/src/zaqal/backend/rename/FreeList.scala:17:7, :46:25
-        freeList_154 = _RANDOM[6'h26][23:16];	// backend/src/zaqal/backend/rename/FreeList.scala:17:7, :46:25
-        freeList_155 = _RANDOM[6'h26][31:24];	// backend/src/zaqal/backend/rename/FreeList.scala:17:7, :46:25
-        freeList_156 = _RANDOM[6'h27][7:0];	// backend/src/zaqal/backend/rename/FreeList.scala:17:7, :46:25
-        freeList_157 = _RANDOM[6'h27][15:8];	// backend/src/zaqal/backend/rename/FreeList.scala:17:7, :46:25
-        freeList_158 = _RANDOM[6'h27][23:16];	// backend/src/zaqal/backend/rename/FreeList.scala:17:7, :46:25
-        freeList_159 = _RANDOM[6'h27][31:24];	// backend/src/zaqal/backend/rename/FreeList.scala:17:7, :46:25
-        headPtr = _RANDOM[6'h28][7:0];	// backend/src/zaqal/backend/rename/FreeList.scala:17:7, :50:24
-        tailPtr = _RANDOM[6'h28][15:8];	// backend/src/zaqal/backend/rename/FreeList.scala:17:7, :50:24, :51:24
-        freeCount = _RANDOM[6'h28][23:16];	// backend/src/zaqal/backend/rename/FreeList.scala:17:7, :50:24, :54:26
+          _RANDOM[i] = `RANDOM;	// backend/src/zaqal/backend/rename/FreeList.scala:16:7
+        end	// backend/src/zaqal/backend/rename/FreeList.scala:16:7
+        freeList_0 = _RANDOM[6'h0][7:0];	// backend/src/zaqal/backend/rename/FreeList.scala:16:7, :46:25
+        freeList_1 = _RANDOM[6'h0][15:8];	// backend/src/zaqal/backend/rename/FreeList.scala:16:7, :46:25
+        freeList_2 = _RANDOM[6'h0][23:16];	// backend/src/zaqal/backend/rename/FreeList.scala:16:7, :46:25
+        freeList_3 = _RANDOM[6'h0][31:24];	// backend/src/zaqal/backend/rename/FreeList.scala:16:7, :46:25
+        freeList_4 = _RANDOM[6'h1][7:0];	// backend/src/zaqal/backend/rename/FreeList.scala:16:7, :46:25
+        freeList_5 = _RANDOM[6'h1][15:8];	// backend/src/zaqal/backend/rename/FreeList.scala:16:7, :46:25
+        freeList_6 = _RANDOM[6'h1][23:16];	// backend/src/zaqal/backend/rename/FreeList.scala:16:7, :46:25
+        freeList_7 = _RANDOM[6'h1][31:24];	// backend/src/zaqal/backend/rename/FreeList.scala:16:7, :46:25
+        freeList_8 = _RANDOM[6'h2][7:0];	// backend/src/zaqal/backend/rename/FreeList.scala:16:7, :46:25
+        freeList_9 = _RANDOM[6'h2][15:8];	// backend/src/zaqal/backend/rename/FreeList.scala:16:7, :46:25
+        freeList_10 = _RANDOM[6'h2][23:16];	// backend/src/zaqal/backend/rename/FreeList.scala:16:7, :46:25
+        freeList_11 = _RANDOM[6'h2][31:24];	// backend/src/zaqal/backend/rename/FreeList.scala:16:7, :46:25
+        freeList_12 = _RANDOM[6'h3][7:0];	// backend/src/zaqal/backend/rename/FreeList.scala:16:7, :46:25
+        freeList_13 = _RANDOM[6'h3][15:8];	// backend/src/zaqal/backend/rename/FreeList.scala:16:7, :46:25
+        freeList_14 = _RANDOM[6'h3][23:16];	// backend/src/zaqal/backend/rename/FreeList.scala:16:7, :46:25
+        freeList_15 = _RANDOM[6'h3][31:24];	// backend/src/zaqal/backend/rename/FreeList.scala:16:7, :46:25
+        freeList_16 = _RANDOM[6'h4][7:0];	// backend/src/zaqal/backend/rename/FreeList.scala:16:7, :46:25
+        freeList_17 = _RANDOM[6'h4][15:8];	// backend/src/zaqal/backend/rename/FreeList.scala:16:7, :46:25
+        freeList_18 = _RANDOM[6'h4][23:16];	// backend/src/zaqal/backend/rename/FreeList.scala:16:7, :46:25
+        freeList_19 = _RANDOM[6'h4][31:24];	// backend/src/zaqal/backend/rename/FreeList.scala:16:7, :46:25
+        freeList_20 = _RANDOM[6'h5][7:0];	// backend/src/zaqal/backend/rename/FreeList.scala:16:7, :46:25
+        freeList_21 = _RANDOM[6'h5][15:8];	// backend/src/zaqal/backend/rename/FreeList.scala:16:7, :46:25
+        freeList_22 = _RANDOM[6'h5][23:16];	// backend/src/zaqal/backend/rename/FreeList.scala:16:7, :46:25
+        freeList_23 = _RANDOM[6'h5][31:24];	// backend/src/zaqal/backend/rename/FreeList.scala:16:7, :46:25
+        freeList_24 = _RANDOM[6'h6][7:0];	// backend/src/zaqal/backend/rename/FreeList.scala:16:7, :46:25
+        freeList_25 = _RANDOM[6'h6][15:8];	// backend/src/zaqal/backend/rename/FreeList.scala:16:7, :46:25
+        freeList_26 = _RANDOM[6'h6][23:16];	// backend/src/zaqal/backend/rename/FreeList.scala:16:7, :46:25
+        freeList_27 = _RANDOM[6'h6][31:24];	// backend/src/zaqal/backend/rename/FreeList.scala:16:7, :46:25
+        freeList_28 = _RANDOM[6'h7][7:0];	// backend/src/zaqal/backend/rename/FreeList.scala:16:7, :46:25
+        freeList_29 = _RANDOM[6'h7][15:8];	// backend/src/zaqal/backend/rename/FreeList.scala:16:7, :46:25
+        freeList_30 = _RANDOM[6'h7][23:16];	// backend/src/zaqal/backend/rename/FreeList.scala:16:7, :46:25
+        freeList_31 = _RANDOM[6'h7][31:24];	// backend/src/zaqal/backend/rename/FreeList.scala:16:7, :46:25
+        freeList_32 = _RANDOM[6'h8][7:0];	// backend/src/zaqal/backend/rename/FreeList.scala:16:7, :46:25
+        freeList_33 = _RANDOM[6'h8][15:8];	// backend/src/zaqal/backend/rename/FreeList.scala:16:7, :46:25
+        freeList_34 = _RANDOM[6'h8][23:16];	// backend/src/zaqal/backend/rename/FreeList.scala:16:7, :46:25
+        freeList_35 = _RANDOM[6'h8][31:24];	// backend/src/zaqal/backend/rename/FreeList.scala:16:7, :46:25
+        freeList_36 = _RANDOM[6'h9][7:0];	// backend/src/zaqal/backend/rename/FreeList.scala:16:7, :46:25
+        freeList_37 = _RANDOM[6'h9][15:8];	// backend/src/zaqal/backend/rename/FreeList.scala:16:7, :46:25
+        freeList_38 = _RANDOM[6'h9][23:16];	// backend/src/zaqal/backend/rename/FreeList.scala:16:7, :46:25
+        freeList_39 = _RANDOM[6'h9][31:24];	// backend/src/zaqal/backend/rename/FreeList.scala:16:7, :46:25
+        freeList_40 = _RANDOM[6'hA][7:0];	// backend/src/zaqal/backend/rename/FreeList.scala:16:7, :46:25
+        freeList_41 = _RANDOM[6'hA][15:8];	// backend/src/zaqal/backend/rename/FreeList.scala:16:7, :46:25
+        freeList_42 = _RANDOM[6'hA][23:16];	// backend/src/zaqal/backend/rename/FreeList.scala:16:7, :46:25
+        freeList_43 = _RANDOM[6'hA][31:24];	// backend/src/zaqal/backend/rename/FreeList.scala:16:7, :46:25
+        freeList_44 = _RANDOM[6'hB][7:0];	// backend/src/zaqal/backend/rename/FreeList.scala:16:7, :46:25
+        freeList_45 = _RANDOM[6'hB][15:8];	// backend/src/zaqal/backend/rename/FreeList.scala:16:7, :46:25
+        freeList_46 = _RANDOM[6'hB][23:16];	// backend/src/zaqal/backend/rename/FreeList.scala:16:7, :46:25
+        freeList_47 = _RANDOM[6'hB][31:24];	// backend/src/zaqal/backend/rename/FreeList.scala:16:7, :46:25
+        freeList_48 = _RANDOM[6'hC][7:0];	// backend/src/zaqal/backend/rename/FreeList.scala:16:7, :46:25
+        freeList_49 = _RANDOM[6'hC][15:8];	// backend/src/zaqal/backend/rename/FreeList.scala:16:7, :46:25
+        freeList_50 = _RANDOM[6'hC][23:16];	// backend/src/zaqal/backend/rename/FreeList.scala:16:7, :46:25
+        freeList_51 = _RANDOM[6'hC][31:24];	// backend/src/zaqal/backend/rename/FreeList.scala:16:7, :46:25
+        freeList_52 = _RANDOM[6'hD][7:0];	// backend/src/zaqal/backend/rename/FreeList.scala:16:7, :46:25
+        freeList_53 = _RANDOM[6'hD][15:8];	// backend/src/zaqal/backend/rename/FreeList.scala:16:7, :46:25
+        freeList_54 = _RANDOM[6'hD][23:16];	// backend/src/zaqal/backend/rename/FreeList.scala:16:7, :46:25
+        freeList_55 = _RANDOM[6'hD][31:24];	// backend/src/zaqal/backend/rename/FreeList.scala:16:7, :46:25
+        freeList_56 = _RANDOM[6'hE][7:0];	// backend/src/zaqal/backend/rename/FreeList.scala:16:7, :46:25
+        freeList_57 = _RANDOM[6'hE][15:8];	// backend/src/zaqal/backend/rename/FreeList.scala:16:7, :46:25
+        freeList_58 = _RANDOM[6'hE][23:16];	// backend/src/zaqal/backend/rename/FreeList.scala:16:7, :46:25
+        freeList_59 = _RANDOM[6'hE][31:24];	// backend/src/zaqal/backend/rename/FreeList.scala:16:7, :46:25
+        freeList_60 = _RANDOM[6'hF][7:0];	// backend/src/zaqal/backend/rename/FreeList.scala:16:7, :46:25
+        freeList_61 = _RANDOM[6'hF][15:8];	// backend/src/zaqal/backend/rename/FreeList.scala:16:7, :46:25
+        freeList_62 = _RANDOM[6'hF][23:16];	// backend/src/zaqal/backend/rename/FreeList.scala:16:7, :46:25
+        freeList_63 = _RANDOM[6'hF][31:24];	// backend/src/zaqal/backend/rename/FreeList.scala:16:7, :46:25
+        freeList_64 = _RANDOM[6'h10][7:0];	// backend/src/zaqal/backend/rename/FreeList.scala:16:7, :46:25
+        freeList_65 = _RANDOM[6'h10][15:8];	// backend/src/zaqal/backend/rename/FreeList.scala:16:7, :46:25
+        freeList_66 = _RANDOM[6'h10][23:16];	// backend/src/zaqal/backend/rename/FreeList.scala:16:7, :46:25
+        freeList_67 = _RANDOM[6'h10][31:24];	// backend/src/zaqal/backend/rename/FreeList.scala:16:7, :46:25
+        freeList_68 = _RANDOM[6'h11][7:0];	// backend/src/zaqal/backend/rename/FreeList.scala:16:7, :46:25
+        freeList_69 = _RANDOM[6'h11][15:8];	// backend/src/zaqal/backend/rename/FreeList.scala:16:7, :46:25
+        freeList_70 = _RANDOM[6'h11][23:16];	// backend/src/zaqal/backend/rename/FreeList.scala:16:7, :46:25
+        freeList_71 = _RANDOM[6'h11][31:24];	// backend/src/zaqal/backend/rename/FreeList.scala:16:7, :46:25
+        freeList_72 = _RANDOM[6'h12][7:0];	// backend/src/zaqal/backend/rename/FreeList.scala:16:7, :46:25
+        freeList_73 = _RANDOM[6'h12][15:8];	// backend/src/zaqal/backend/rename/FreeList.scala:16:7, :46:25
+        freeList_74 = _RANDOM[6'h12][23:16];	// backend/src/zaqal/backend/rename/FreeList.scala:16:7, :46:25
+        freeList_75 = _RANDOM[6'h12][31:24];	// backend/src/zaqal/backend/rename/FreeList.scala:16:7, :46:25
+        freeList_76 = _RANDOM[6'h13][7:0];	// backend/src/zaqal/backend/rename/FreeList.scala:16:7, :46:25
+        freeList_77 = _RANDOM[6'h13][15:8];	// backend/src/zaqal/backend/rename/FreeList.scala:16:7, :46:25
+        freeList_78 = _RANDOM[6'h13][23:16];	// backend/src/zaqal/backend/rename/FreeList.scala:16:7, :46:25
+        freeList_79 = _RANDOM[6'h13][31:24];	// backend/src/zaqal/backend/rename/FreeList.scala:16:7, :46:25
+        freeList_80 = _RANDOM[6'h14][7:0];	// backend/src/zaqal/backend/rename/FreeList.scala:16:7, :46:25
+        freeList_81 = _RANDOM[6'h14][15:8];	// backend/src/zaqal/backend/rename/FreeList.scala:16:7, :46:25
+        freeList_82 = _RANDOM[6'h14][23:16];	// backend/src/zaqal/backend/rename/FreeList.scala:16:7, :46:25
+        freeList_83 = _RANDOM[6'h14][31:24];	// backend/src/zaqal/backend/rename/FreeList.scala:16:7, :46:25
+        freeList_84 = _RANDOM[6'h15][7:0];	// backend/src/zaqal/backend/rename/FreeList.scala:16:7, :46:25
+        freeList_85 = _RANDOM[6'h15][15:8];	// backend/src/zaqal/backend/rename/FreeList.scala:16:7, :46:25
+        freeList_86 = _RANDOM[6'h15][23:16];	// backend/src/zaqal/backend/rename/FreeList.scala:16:7, :46:25
+        freeList_87 = _RANDOM[6'h15][31:24];	// backend/src/zaqal/backend/rename/FreeList.scala:16:7, :46:25
+        freeList_88 = _RANDOM[6'h16][7:0];	// backend/src/zaqal/backend/rename/FreeList.scala:16:7, :46:25
+        freeList_89 = _RANDOM[6'h16][15:8];	// backend/src/zaqal/backend/rename/FreeList.scala:16:7, :46:25
+        freeList_90 = _RANDOM[6'h16][23:16];	// backend/src/zaqal/backend/rename/FreeList.scala:16:7, :46:25
+        freeList_91 = _RANDOM[6'h16][31:24];	// backend/src/zaqal/backend/rename/FreeList.scala:16:7, :46:25
+        freeList_92 = _RANDOM[6'h17][7:0];	// backend/src/zaqal/backend/rename/FreeList.scala:16:7, :46:25
+        freeList_93 = _RANDOM[6'h17][15:8];	// backend/src/zaqal/backend/rename/FreeList.scala:16:7, :46:25
+        freeList_94 = _RANDOM[6'h17][23:16];	// backend/src/zaqal/backend/rename/FreeList.scala:16:7, :46:25
+        freeList_95 = _RANDOM[6'h17][31:24];	// backend/src/zaqal/backend/rename/FreeList.scala:16:7, :46:25
+        freeList_96 = _RANDOM[6'h18][7:0];	// backend/src/zaqal/backend/rename/FreeList.scala:16:7, :46:25
+        freeList_97 = _RANDOM[6'h18][15:8];	// backend/src/zaqal/backend/rename/FreeList.scala:16:7, :46:25
+        freeList_98 = _RANDOM[6'h18][23:16];	// backend/src/zaqal/backend/rename/FreeList.scala:16:7, :46:25
+        freeList_99 = _RANDOM[6'h18][31:24];	// backend/src/zaqal/backend/rename/FreeList.scala:16:7, :46:25
+        freeList_100 = _RANDOM[6'h19][7:0];	// backend/src/zaqal/backend/rename/FreeList.scala:16:7, :46:25
+        freeList_101 = _RANDOM[6'h19][15:8];	// backend/src/zaqal/backend/rename/FreeList.scala:16:7, :46:25
+        freeList_102 = _RANDOM[6'h19][23:16];	// backend/src/zaqal/backend/rename/FreeList.scala:16:7, :46:25
+        freeList_103 = _RANDOM[6'h19][31:24];	// backend/src/zaqal/backend/rename/FreeList.scala:16:7, :46:25
+        freeList_104 = _RANDOM[6'h1A][7:0];	// backend/src/zaqal/backend/rename/FreeList.scala:16:7, :46:25
+        freeList_105 = _RANDOM[6'h1A][15:8];	// backend/src/zaqal/backend/rename/FreeList.scala:16:7, :46:25
+        freeList_106 = _RANDOM[6'h1A][23:16];	// backend/src/zaqal/backend/rename/FreeList.scala:16:7, :46:25
+        freeList_107 = _RANDOM[6'h1A][31:24];	// backend/src/zaqal/backend/rename/FreeList.scala:16:7, :46:25
+        freeList_108 = _RANDOM[6'h1B][7:0];	// backend/src/zaqal/backend/rename/FreeList.scala:16:7, :46:25
+        freeList_109 = _RANDOM[6'h1B][15:8];	// backend/src/zaqal/backend/rename/FreeList.scala:16:7, :46:25
+        freeList_110 = _RANDOM[6'h1B][23:16];	// backend/src/zaqal/backend/rename/FreeList.scala:16:7, :46:25
+        freeList_111 = _RANDOM[6'h1B][31:24];	// backend/src/zaqal/backend/rename/FreeList.scala:16:7, :46:25
+        freeList_112 = _RANDOM[6'h1C][7:0];	// backend/src/zaqal/backend/rename/FreeList.scala:16:7, :46:25
+        freeList_113 = _RANDOM[6'h1C][15:8];	// backend/src/zaqal/backend/rename/FreeList.scala:16:7, :46:25
+        freeList_114 = _RANDOM[6'h1C][23:16];	// backend/src/zaqal/backend/rename/FreeList.scala:16:7, :46:25
+        freeList_115 = _RANDOM[6'h1C][31:24];	// backend/src/zaqal/backend/rename/FreeList.scala:16:7, :46:25
+        freeList_116 = _RANDOM[6'h1D][7:0];	// backend/src/zaqal/backend/rename/FreeList.scala:16:7, :46:25
+        freeList_117 = _RANDOM[6'h1D][15:8];	// backend/src/zaqal/backend/rename/FreeList.scala:16:7, :46:25
+        freeList_118 = _RANDOM[6'h1D][23:16];	// backend/src/zaqal/backend/rename/FreeList.scala:16:7, :46:25
+        freeList_119 = _RANDOM[6'h1D][31:24];	// backend/src/zaqal/backend/rename/FreeList.scala:16:7, :46:25
+        freeList_120 = _RANDOM[6'h1E][7:0];	// backend/src/zaqal/backend/rename/FreeList.scala:16:7, :46:25
+        freeList_121 = _RANDOM[6'h1E][15:8];	// backend/src/zaqal/backend/rename/FreeList.scala:16:7, :46:25
+        freeList_122 = _RANDOM[6'h1E][23:16];	// backend/src/zaqal/backend/rename/FreeList.scala:16:7, :46:25
+        freeList_123 = _RANDOM[6'h1E][31:24];	// backend/src/zaqal/backend/rename/FreeList.scala:16:7, :46:25
+        freeList_124 = _RANDOM[6'h1F][7:0];	// backend/src/zaqal/backend/rename/FreeList.scala:16:7, :46:25
+        freeList_125 = _RANDOM[6'h1F][15:8];	// backend/src/zaqal/backend/rename/FreeList.scala:16:7, :46:25
+        freeList_126 = _RANDOM[6'h1F][23:16];	// backend/src/zaqal/backend/rename/FreeList.scala:16:7, :46:25
+        freeList_127 = _RANDOM[6'h1F][31:24];	// backend/src/zaqal/backend/rename/FreeList.scala:16:7, :46:25
+        freeList_128 = _RANDOM[6'h20][7:0];	// backend/src/zaqal/backend/rename/FreeList.scala:16:7, :46:25
+        freeList_129 = _RANDOM[6'h20][15:8];	// backend/src/zaqal/backend/rename/FreeList.scala:16:7, :46:25
+        freeList_130 = _RANDOM[6'h20][23:16];	// backend/src/zaqal/backend/rename/FreeList.scala:16:7, :46:25
+        freeList_131 = _RANDOM[6'h20][31:24];	// backend/src/zaqal/backend/rename/FreeList.scala:16:7, :46:25
+        freeList_132 = _RANDOM[6'h21][7:0];	// backend/src/zaqal/backend/rename/FreeList.scala:16:7, :46:25
+        freeList_133 = _RANDOM[6'h21][15:8];	// backend/src/zaqal/backend/rename/FreeList.scala:16:7, :46:25
+        freeList_134 = _RANDOM[6'h21][23:16];	// backend/src/zaqal/backend/rename/FreeList.scala:16:7, :46:25
+        freeList_135 = _RANDOM[6'h21][31:24];	// backend/src/zaqal/backend/rename/FreeList.scala:16:7, :46:25
+        freeList_136 = _RANDOM[6'h22][7:0];	// backend/src/zaqal/backend/rename/FreeList.scala:16:7, :46:25
+        freeList_137 = _RANDOM[6'h22][15:8];	// backend/src/zaqal/backend/rename/FreeList.scala:16:7, :46:25
+        freeList_138 = _RANDOM[6'h22][23:16];	// backend/src/zaqal/backend/rename/FreeList.scala:16:7, :46:25
+        freeList_139 = _RANDOM[6'h22][31:24];	// backend/src/zaqal/backend/rename/FreeList.scala:16:7, :46:25
+        freeList_140 = _RANDOM[6'h23][7:0];	// backend/src/zaqal/backend/rename/FreeList.scala:16:7, :46:25
+        freeList_141 = _RANDOM[6'h23][15:8];	// backend/src/zaqal/backend/rename/FreeList.scala:16:7, :46:25
+        freeList_142 = _RANDOM[6'h23][23:16];	// backend/src/zaqal/backend/rename/FreeList.scala:16:7, :46:25
+        freeList_143 = _RANDOM[6'h23][31:24];	// backend/src/zaqal/backend/rename/FreeList.scala:16:7, :46:25
+        freeList_144 = _RANDOM[6'h24][7:0];	// backend/src/zaqal/backend/rename/FreeList.scala:16:7, :46:25
+        freeList_145 = _RANDOM[6'h24][15:8];	// backend/src/zaqal/backend/rename/FreeList.scala:16:7, :46:25
+        freeList_146 = _RANDOM[6'h24][23:16];	// backend/src/zaqal/backend/rename/FreeList.scala:16:7, :46:25
+        freeList_147 = _RANDOM[6'h24][31:24];	// backend/src/zaqal/backend/rename/FreeList.scala:16:7, :46:25
+        freeList_148 = _RANDOM[6'h25][7:0];	// backend/src/zaqal/backend/rename/FreeList.scala:16:7, :46:25
+        freeList_149 = _RANDOM[6'h25][15:8];	// backend/src/zaqal/backend/rename/FreeList.scala:16:7, :46:25
+        freeList_150 = _RANDOM[6'h25][23:16];	// backend/src/zaqal/backend/rename/FreeList.scala:16:7, :46:25
+        freeList_151 = _RANDOM[6'h25][31:24];	// backend/src/zaqal/backend/rename/FreeList.scala:16:7, :46:25
+        freeList_152 = _RANDOM[6'h26][7:0];	// backend/src/zaqal/backend/rename/FreeList.scala:16:7, :46:25
+        freeList_153 = _RANDOM[6'h26][15:8];	// backend/src/zaqal/backend/rename/FreeList.scala:16:7, :46:25
+        freeList_154 = _RANDOM[6'h26][23:16];	// backend/src/zaqal/backend/rename/FreeList.scala:16:7, :46:25
+        freeList_155 = _RANDOM[6'h26][31:24];	// backend/src/zaqal/backend/rename/FreeList.scala:16:7, :46:25
+        freeList_156 = _RANDOM[6'h27][7:0];	// backend/src/zaqal/backend/rename/FreeList.scala:16:7, :46:25
+        freeList_157 = _RANDOM[6'h27][15:8];	// backend/src/zaqal/backend/rename/FreeList.scala:16:7, :46:25
+        freeList_158 = _RANDOM[6'h27][23:16];	// backend/src/zaqal/backend/rename/FreeList.scala:16:7, :46:25
+        freeList_159 = _RANDOM[6'h27][31:24];	// backend/src/zaqal/backend/rename/FreeList.scala:16:7, :46:25
+        headPtr = _RANDOM[6'h28][7:0];	// backend/src/zaqal/backend/rename/FreeList.scala:16:7, :50:24
+        tailPtr = _RANDOM[6'h28][15:8];	// backend/src/zaqal/backend/rename/FreeList.scala:16:7, :50:24, :51:24
       `endif // RANDOMIZE_REG_INIT
     end // initial
-    `ifdef FIRRTL_AFTER_INITIAL	// backend/src/zaqal/backend/rename/FreeList.scala:17:7
-      `FIRRTL_AFTER_INITIAL	// backend/src/zaqal/backend/rename/FreeList.scala:17:7
+    `ifdef FIRRTL_AFTER_INITIAL	// backend/src/zaqal/backend/rename/FreeList.scala:16:7
+      `FIRRTL_AFTER_INITIAL	// backend/src/zaqal/backend/rename/FreeList.scala:16:7
     `endif // FIRRTL_AFTER_INITIAL
   `endif // ENABLE_INITIAL_REG_
-  SnapshotGenerator_3 snapshots (	// backend/src/zaqal/backend/rename/FreeList.scala:56:25
-    .clock                      (clock),
-    .reset                      (reset),
-    .io_enq                     (io_snptEnq),
+  SnapshotGenerator_3 snapshots (	// backend/src/zaqal/backend/rename/FreeList.scala:53:25
+    .clock                    (clock),
+    .reset                    (reset),
+    .io_enq                   (io_snptEnq),
     .io_enqData_headPtr
       (snpt_data_headPtr_next > 9'h9F
          ? snpt_data_headPtr_next[7:0] + 8'h60
-         : snpt_data_headPtr_next[7:0]),	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :59:20, :60:{8,14,30}
-    .io_enqData_freeCount       (freeCount - {5'h0, _numAllocPre_T_24}),	// backend/src/zaqal/backend/rename/FreeList.scala:54:26, :59:20, :65:31, :82:29, :85:36
-    .io_redirect                (io_redirect),
-    .io_useSnapshot             (io_useSnapshot),
-    .io_redirect_idx            (io_snptRestoreIdx),
-    .io_flushVec_0              (io_snptFlushVec_0),
-    .io_flushVec_1              (io_snptFlushVec_1),
-    .io_flushVec_2              (io_snptFlushVec_2),
-    .io_flushVec_3              (io_snptFlushVec_3),
-    .io_flushVec_4              (io_snptFlushVec_4),
-    .io_flushVec_5              (io_snptFlushVec_5),
-    .io_flushVec_6              (io_snptFlushVec_6),
-    .io_flushVec_7              (io_snptFlushVec_7),
-    .io_flushVec_8              (io_snptFlushVec_8),
-    .io_flushVec_9              (io_snptFlushVec_9),
-    .io_flushVec_10             (io_snptFlushVec_10),
-    .io_flushVec_11             (io_snptFlushVec_11),
-    .io_flushVec_12             (io_snptFlushVec_12),
-    .io_flushVec_13             (io_snptFlushVec_13),
-    .io_flushVec_14             (io_snptFlushVec_14),
-    .io_flushVec_15             (io_snptFlushVec_15),
-    .io_flushVec_16             (io_snptFlushVec_16),
-    .io_flushVec_17             (io_snptFlushVec_17),
-    .io_flushVec_18             (io_snptFlushVec_18),
-    .io_flushVec_19             (io_snptFlushVec_19),
-    .io_flushVec_20             (io_snptFlushVec_20),
-    .io_flushVec_21             (io_snptFlushVec_21),
-    .io_flushVec_22             (io_snptFlushVec_22),
-    .io_flushVec_23             (io_snptFlushVec_23),
-    .io_flushVec_24             (io_snptFlushVec_24),
-    .io_flushVec_25             (io_snptFlushVec_25),
-    .io_flushVec_26             (io_snptFlushVec_26),
-    .io_flushVec_27             (io_snptFlushVec_27),
-    .io_flushVec_28             (io_snptFlushVec_28),
-    .io_flushVec_29             (io_snptFlushVec_29),
-    .io_flushVec_30             (io_snptFlushVec_30),
-    .io_flushVec_31             (io_snptFlushVec_31),
-    .io_flushVec_32             (io_snptFlushVec_32),
-    .io_flushVec_33             (io_snptFlushVec_33),
-    .io_flushVec_34             (io_snptFlushVec_34),
-    .io_flushVec_35             (io_snptFlushVec_35),
-    .io_flushVec_36             (io_snptFlushVec_36),
-    .io_flushVec_37             (io_snptFlushVec_37),
-    .io_flushVec_38             (io_snptFlushVec_38),
-    .io_flushVec_39             (io_snptFlushVec_39),
-    .io_flushVec_40             (io_snptFlushVec_40),
-    .io_flushVec_41             (io_snptFlushVec_41),
-    .io_flushVec_42             (io_snptFlushVec_42),
-    .io_flushVec_43             (io_snptFlushVec_43),
-    .io_flushVec_44             (io_snptFlushVec_44),
-    .io_flushVec_45             (io_snptFlushVec_45),
-    .io_flushVec_46             (io_snptFlushVec_46),
-    .io_flushVec_47             (io_snptFlushVec_47),
-    .io_flushVec_48             (io_snptFlushVec_48),
-    .io_flushVec_49             (io_snptFlushVec_49),
-    .io_flushVec_50             (io_snptFlushVec_50),
-    .io_flushVec_51             (io_snptFlushVec_51),
-    .io_flushVec_52             (io_snptFlushVec_52),
-    .io_flushVec_53             (io_snptFlushVec_53),
-    .io_flushVec_54             (io_snptFlushVec_54),
-    .io_flushVec_55             (io_snptFlushVec_55),
-    .io_flushVec_56             (io_snptFlushVec_56),
-    .io_flushVec_57             (io_snptFlushVec_57),
-    .io_flushVec_58             (io_snptFlushVec_58),
-    .io_flushVec_59             (io_snptFlushVec_59),
-    .io_flushVec_60             (io_snptFlushVec_60),
-    .io_flushVec_61             (io_snptFlushVec_61),
-    .io_flushVec_62             (io_snptFlushVec_62),
-    .io_flushVec_63             (io_snptFlushVec_63),
-    .io_flushVec_64             (io_snptFlushVec_64),
-    .io_flushVec_65             (io_snptFlushVec_65),
-    .io_flushVec_66             (io_snptFlushVec_66),
-    .io_flushVec_67             (io_snptFlushVec_67),
-    .io_flushVec_68             (io_snptFlushVec_68),
-    .io_flushVec_69             (io_snptFlushVec_69),
-    .io_flushVec_70             (io_snptFlushVec_70),
-    .io_flushVec_71             (io_snptFlushVec_71),
-    .io_flushVec_72             (io_snptFlushVec_72),
-    .io_flushVec_73             (io_snptFlushVec_73),
-    .io_flushVec_74             (io_snptFlushVec_74),
-    .io_flushVec_75             (io_snptFlushVec_75),
-    .io_flushVec_76             (io_snptFlushVec_76),
-    .io_flushVec_77             (io_snptFlushVec_77),
-    .io_flushVec_78             (io_snptFlushVec_78),
-    .io_flushVec_79             (io_snptFlushVec_79),
-    .io_flushVec_80             (io_snptFlushVec_80),
-    .io_flushVec_81             (io_snptFlushVec_81),
-    .io_flushVec_82             (io_snptFlushVec_82),
-    .io_flushVec_83             (io_snptFlushVec_83),
-    .io_flushVec_84             (io_snptFlushVec_84),
-    .io_flushVec_85             (io_snptFlushVec_85),
-    .io_flushVec_86             (io_snptFlushVec_86),
-    .io_flushVec_87             (io_snptFlushVec_87),
-    .io_flushVec_88             (io_snptFlushVec_88),
-    .io_flushVec_89             (io_snptFlushVec_89),
-    .io_flushVec_90             (io_snptFlushVec_90),
-    .io_flushVec_91             (io_snptFlushVec_91),
-    .io_flushVec_92             (io_snptFlushVec_92),
-    .io_flushVec_93             (io_snptFlushVec_93),
-    .io_flushVec_94             (io_snptFlushVec_94),
-    .io_flushVec_95             (io_snptFlushVec_95),
-    .io_flushVec_96             (io_snptFlushVec_96),
-    .io_flushVec_97             (io_snptFlushVec_97),
-    .io_flushVec_98             (io_snptFlushVec_98),
-    .io_flushVec_99             (io_snptFlushVec_99),
-    .io_flushVec_100            (io_snptFlushVec_100),
-    .io_flushVec_101            (io_snptFlushVec_101),
-    .io_flushVec_102            (io_snptFlushVec_102),
-    .io_flushVec_103            (io_snptFlushVec_103),
-    .io_flushVec_104            (io_snptFlushVec_104),
-    .io_flushVec_105            (io_snptFlushVec_105),
-    .io_flushVec_106            (io_snptFlushVec_106),
-    .io_flushVec_107            (io_snptFlushVec_107),
-    .io_flushVec_108            (io_snptFlushVec_108),
-    .io_flushVec_109            (io_snptFlushVec_109),
-    .io_flushVec_110            (io_snptFlushVec_110),
-    .io_flushVec_111            (io_snptFlushVec_111),
-    .io_flushVec_112            (io_snptFlushVec_112),
-    .io_flushVec_113            (io_snptFlushVec_113),
-    .io_flushVec_114            (io_snptFlushVec_114),
-    .io_flushVec_115            (io_snptFlushVec_115),
-    .io_flushVec_116            (io_snptFlushVec_116),
-    .io_flushVec_117            (io_snptFlushVec_117),
-    .io_flushVec_118            (io_snptFlushVec_118),
-    .io_flushVec_119            (io_snptFlushVec_119),
-    .io_flushVec_120            (io_snptFlushVec_120),
-    .io_flushVec_121            (io_snptFlushVec_121),
-    .io_flushVec_122            (io_snptFlushVec_122),
-    .io_flushVec_123            (io_snptFlushVec_123),
-    .io_flushVec_124            (io_snptFlushVec_124),
-    .io_flushVec_125            (io_snptFlushVec_125),
-    .io_flushVec_126            (io_snptFlushVec_126),
-    .io_flushVec_127            (io_snptFlushVec_127),
-    .io_flushVec_128            (io_snptFlushVec_128),
-    .io_flushVec_129            (io_snptFlushVec_129),
-    .io_flushVec_130            (io_snptFlushVec_130),
-    .io_flushVec_131            (io_snptFlushVec_131),
-    .io_flushVec_132            (io_snptFlushVec_132),
-    .io_flushVec_133            (io_snptFlushVec_133),
-    .io_flushVec_134            (io_snptFlushVec_134),
-    .io_flushVec_135            (io_snptFlushVec_135),
-    .io_flushVec_136            (io_snptFlushVec_136),
-    .io_flushVec_137            (io_snptFlushVec_137),
-    .io_flushVec_138            (io_snptFlushVec_138),
-    .io_flushVec_139            (io_snptFlushVec_139),
-    .io_flushVec_140            (io_snptFlushVec_140),
-    .io_flushVec_141            (io_snptFlushVec_141),
-    .io_flushVec_142            (io_snptFlushVec_142),
-    .io_flushVec_143            (io_snptFlushVec_143),
-    .io_flushVec_144            (io_snptFlushVec_144),
-    .io_flushVec_145            (io_snptFlushVec_145),
-    .io_flushVec_146            (io_snptFlushVec_146),
-    .io_flushVec_147            (io_snptFlushVec_147),
-    .io_flushVec_148            (io_snptFlushVec_148),
-    .io_flushVec_149            (io_snptFlushVec_149),
-    .io_flushVec_150            (io_snptFlushVec_150),
-    .io_flushVec_151            (io_snptFlushVec_151),
-    .io_flushVec_152            (io_snptFlushVec_152),
-    .io_flushVec_153            (io_snptFlushVec_153),
-    .io_flushVec_154            (io_snptFlushVec_154),
-    .io_flushVec_155            (io_snptFlushVec_155),
-    .io_flushVec_156            (io_snptFlushVec_156),
-    .io_flushVec_157            (io_snptFlushVec_157),
-    .io_flushVec_158            (io_snptFlushVec_158),
-    .io_flushVec_159            (io_snptFlushVec_159),
-    .io_flushVec_160            (io_snptFlushVec_160),
-    .io_flushVec_161            (io_snptFlushVec_161),
-    .io_flushVec_162            (io_snptFlushVec_162),
-    .io_flushVec_163            (io_snptFlushVec_163),
-    .io_flushVec_164            (io_snptFlushVec_164),
-    .io_flushVec_165            (io_snptFlushVec_165),
-    .io_flushVec_166            (io_snptFlushVec_166),
-    .io_flushVec_167            (io_snptFlushVec_167),
-    .io_flushVec_168            (io_snptFlushVec_168),
-    .io_flushVec_169            (io_snptFlushVec_169),
-    .io_flushVec_170            (io_snptFlushVec_170),
-    .io_flushVec_171            (io_snptFlushVec_171),
-    .io_flushVec_172            (io_snptFlushVec_172),
-    .io_flushVec_173            (io_snptFlushVec_173),
-    .io_flushVec_174            (io_snptFlushVec_174),
-    .io_flushVec_175            (io_snptFlushVec_175),
-    .io_flushVec_176            (io_snptFlushVec_176),
-    .io_flushVec_177            (io_snptFlushVec_177),
-    .io_flushVec_178            (io_snptFlushVec_178),
-    .io_flushVec_179            (io_snptFlushVec_179),
-    .io_flushVec_180            (io_snptFlushVec_180),
-    .io_flushVec_181            (io_snptFlushVec_181),
-    .io_flushVec_182            (io_snptFlushVec_182),
-    .io_flushVec_183            (io_snptFlushVec_183),
-    .io_flushVec_184            (io_snptFlushVec_184),
-    .io_flushVec_185            (io_snptFlushVec_185),
-    .io_flushVec_186            (io_snptFlushVec_186),
-    .io_flushVec_187            (io_snptFlushVec_187),
-    .io_flushVec_188            (io_snptFlushVec_188),
-    .io_flushVec_189            (io_snptFlushVec_189),
-    .io_flushVec_190            (io_snptFlushVec_190),
-    .io_flushVec_191            (io_snptFlushVec_191),
-    .io_flushVec_192            (io_snptFlushVec_192),
-    .io_flushVec_193            (io_snptFlushVec_193),
-    .io_flushVec_194            (io_snptFlushVec_194),
-    .io_flushVec_195            (io_snptFlushVec_195),
-    .io_flushVec_196            (io_snptFlushVec_196),
-    .io_flushVec_197            (io_snptFlushVec_197),
-    .io_flushVec_198            (io_snptFlushVec_198),
-    .io_flushVec_199            (io_snptFlushVec_199),
-    .io_flushVec_200            (io_snptFlushVec_200),
-    .io_flushVec_201            (io_snptFlushVec_201),
-    .io_flushVec_202            (io_snptFlushVec_202),
-    .io_flushVec_203            (io_snptFlushVec_203),
-    .io_flushVec_204            (io_snptFlushVec_204),
-    .io_flushVec_205            (io_snptFlushVec_205),
-    .io_flushVec_206            (io_snptFlushVec_206),
-    .io_flushVec_207            (io_snptFlushVec_207),
-    .io_flushVec_208            (io_snptFlushVec_208),
-    .io_flushVec_209            (io_snptFlushVec_209),
-    .io_flushVec_210            (io_snptFlushVec_210),
-    .io_flushVec_211            (io_snptFlushVec_211),
-    .io_flushVec_212            (io_snptFlushVec_212),
-    .io_flushVec_213            (io_snptFlushVec_213),
-    .io_flushVec_214            (io_snptFlushVec_214),
-    .io_flushVec_215            (io_snptFlushVec_215),
-    .io_flushVec_216            (io_snptFlushVec_216),
-    .io_flushVec_217            (io_snptFlushVec_217),
-    .io_flushVec_218            (io_snptFlushVec_218),
-    .io_flushVec_219            (io_snptFlushVec_219),
-    .io_flushVec_220            (io_snptFlushVec_220),
-    .io_flushVec_221            (io_snptFlushVec_221),
-    .io_flushVec_222            (io_snptFlushVec_222),
-    .io_flushVec_223            (io_snptFlushVec_223),
-    .io_flushVec_224            (io_snptFlushVec_224),
-    .io_flushVec_225            (io_snptFlushVec_225),
-    .io_flushVec_226            (io_snptFlushVec_226),
-    .io_flushVec_227            (io_snptFlushVec_227),
-    .io_flushVec_228            (io_snptFlushVec_228),
-    .io_flushVec_229            (io_snptFlushVec_229),
-    .io_flushVec_230            (io_snptFlushVec_230),
-    .io_flushVec_231            (io_snptFlushVec_231),
-    .io_flushVec_232            (io_snptFlushVec_232),
-    .io_flushVec_233            (io_snptFlushVec_233),
-    .io_flushVec_234            (io_snptFlushVec_234),
-    .io_flushVec_235            (io_snptFlushVec_235),
-    .io_flushVec_236            (io_snptFlushVec_236),
-    .io_flushVec_237            (io_snptFlushVec_237),
-    .io_flushVec_238            (io_snptFlushVec_238),
-    .io_flushVec_239            (io_snptFlushVec_239),
-    .io_flushVec_240            (io_snptFlushVec_240),
-    .io_flushVec_241            (io_snptFlushVec_241),
-    .io_flushVec_242            (io_snptFlushVec_242),
-    .io_flushVec_243            (io_snptFlushVec_243),
-    .io_flushVec_244            (io_snptFlushVec_244),
-    .io_flushVec_245            (io_snptFlushVec_245),
-    .io_flushVec_246            (io_snptFlushVec_246),
-    .io_flushVec_247            (io_snptFlushVec_247),
-    .io_flushVec_248            (io_snptFlushVec_248),
-    .io_flushVec_249            (io_snptFlushVec_249),
-    .io_flushVec_250            (io_snptFlushVec_250),
-    .io_flushVec_251            (io_snptFlushVec_251),
-    .io_flushVec_252            (io_snptFlushVec_252),
-    .io_flushVec_253            (io_snptFlushVec_253),
-    .io_flushVec_254            (io_snptFlushVec_254),
-    .io_flushVec_255            (io_snptFlushVec_255),
-    .io_snapshots_0_headPtr     (_snapshots_io_snapshots_0_headPtr),
-    .io_snapshots_0_freeCount   (_snapshots_io_snapshots_0_freeCount),
-    .io_snapshots_1_headPtr     (_snapshots_io_snapshots_1_headPtr),
-    .io_snapshots_1_freeCount   (_snapshots_io_snapshots_1_freeCount),
-    .io_snapshots_2_headPtr     (_snapshots_io_snapshots_2_headPtr),
-    .io_snapshots_2_freeCount   (_snapshots_io_snapshots_2_freeCount),
-    .io_snapshots_3_headPtr     (_snapshots_io_snapshots_3_headPtr),
-    .io_snapshots_3_freeCount   (_snapshots_io_snapshots_3_freeCount),
-    .io_snapshots_4_headPtr     (_snapshots_io_snapshots_4_headPtr),
-    .io_snapshots_4_freeCount   (_snapshots_io_snapshots_4_freeCount),
-    .io_snapshots_5_headPtr     (_snapshots_io_snapshots_5_headPtr),
-    .io_snapshots_5_freeCount   (_snapshots_io_snapshots_5_freeCount),
-    .io_snapshots_6_headPtr     (_snapshots_io_snapshots_6_headPtr),
-    .io_snapshots_6_freeCount   (_snapshots_io_snapshots_6_freeCount),
-    .io_snapshots_7_headPtr     (_snapshots_io_snapshots_7_headPtr),
-    .io_snapshots_7_freeCount   (_snapshots_io_snapshots_7_freeCount),
-    .io_snapshots_8_headPtr     (_snapshots_io_snapshots_8_headPtr),
-    .io_snapshots_8_freeCount   (_snapshots_io_snapshots_8_freeCount),
-    .io_snapshots_9_headPtr     (_snapshots_io_snapshots_9_headPtr),
-    .io_snapshots_9_freeCount   (_snapshots_io_snapshots_9_freeCount),
-    .io_snapshots_10_headPtr    (_snapshots_io_snapshots_10_headPtr),
-    .io_snapshots_10_freeCount  (_snapshots_io_snapshots_10_freeCount),
-    .io_snapshots_11_headPtr    (_snapshots_io_snapshots_11_headPtr),
-    .io_snapshots_11_freeCount  (_snapshots_io_snapshots_11_freeCount),
-    .io_snapshots_12_headPtr    (_snapshots_io_snapshots_12_headPtr),
-    .io_snapshots_12_freeCount  (_snapshots_io_snapshots_12_freeCount),
-    .io_snapshots_13_headPtr    (_snapshots_io_snapshots_13_headPtr),
-    .io_snapshots_13_freeCount  (_snapshots_io_snapshots_13_freeCount),
-    .io_snapshots_14_headPtr    (_snapshots_io_snapshots_14_headPtr),
-    .io_snapshots_14_freeCount  (_snapshots_io_snapshots_14_freeCount),
-    .io_snapshots_15_headPtr    (_snapshots_io_snapshots_15_headPtr),
-    .io_snapshots_15_freeCount  (_snapshots_io_snapshots_15_freeCount),
-    .io_snapshots_16_headPtr    (_snapshots_io_snapshots_16_headPtr),
-    .io_snapshots_16_freeCount  (_snapshots_io_snapshots_16_freeCount),
-    .io_snapshots_17_headPtr    (_snapshots_io_snapshots_17_headPtr),
-    .io_snapshots_17_freeCount  (_snapshots_io_snapshots_17_freeCount),
-    .io_snapshots_18_headPtr    (_snapshots_io_snapshots_18_headPtr),
-    .io_snapshots_18_freeCount  (_snapshots_io_snapshots_18_freeCount),
-    .io_snapshots_19_headPtr    (_snapshots_io_snapshots_19_headPtr),
-    .io_snapshots_19_freeCount  (_snapshots_io_snapshots_19_freeCount),
-    .io_snapshots_20_headPtr    (_snapshots_io_snapshots_20_headPtr),
-    .io_snapshots_20_freeCount  (_snapshots_io_snapshots_20_freeCount),
-    .io_snapshots_21_headPtr    (_snapshots_io_snapshots_21_headPtr),
-    .io_snapshots_21_freeCount  (_snapshots_io_snapshots_21_freeCount),
-    .io_snapshots_22_headPtr    (_snapshots_io_snapshots_22_headPtr),
-    .io_snapshots_22_freeCount  (_snapshots_io_snapshots_22_freeCount),
-    .io_snapshots_23_headPtr    (_snapshots_io_snapshots_23_headPtr),
-    .io_snapshots_23_freeCount  (_snapshots_io_snapshots_23_freeCount),
-    .io_snapshots_24_headPtr    (_snapshots_io_snapshots_24_headPtr),
-    .io_snapshots_24_freeCount  (_snapshots_io_snapshots_24_freeCount),
-    .io_snapshots_25_headPtr    (_snapshots_io_snapshots_25_headPtr),
-    .io_snapshots_25_freeCount  (_snapshots_io_snapshots_25_freeCount),
-    .io_snapshots_26_headPtr    (_snapshots_io_snapshots_26_headPtr),
-    .io_snapshots_26_freeCount  (_snapshots_io_snapshots_26_freeCount),
-    .io_snapshots_27_headPtr    (_snapshots_io_snapshots_27_headPtr),
-    .io_snapshots_27_freeCount  (_snapshots_io_snapshots_27_freeCount),
-    .io_snapshots_28_headPtr    (_snapshots_io_snapshots_28_headPtr),
-    .io_snapshots_28_freeCount  (_snapshots_io_snapshots_28_freeCount),
-    .io_snapshots_29_headPtr    (_snapshots_io_snapshots_29_headPtr),
-    .io_snapshots_29_freeCount  (_snapshots_io_snapshots_29_freeCount),
-    .io_snapshots_30_headPtr    (_snapshots_io_snapshots_30_headPtr),
-    .io_snapshots_30_freeCount  (_snapshots_io_snapshots_30_freeCount),
-    .io_snapshots_31_headPtr    (_snapshots_io_snapshots_31_headPtr),
-    .io_snapshots_31_freeCount  (_snapshots_io_snapshots_31_freeCount),
-    .io_snapshots_32_headPtr    (_snapshots_io_snapshots_32_headPtr),
-    .io_snapshots_32_freeCount  (_snapshots_io_snapshots_32_freeCount),
-    .io_snapshots_33_headPtr    (_snapshots_io_snapshots_33_headPtr),
-    .io_snapshots_33_freeCount  (_snapshots_io_snapshots_33_freeCount),
-    .io_snapshots_34_headPtr    (_snapshots_io_snapshots_34_headPtr),
-    .io_snapshots_34_freeCount  (_snapshots_io_snapshots_34_freeCount),
-    .io_snapshots_35_headPtr    (_snapshots_io_snapshots_35_headPtr),
-    .io_snapshots_35_freeCount  (_snapshots_io_snapshots_35_freeCount),
-    .io_snapshots_36_headPtr    (_snapshots_io_snapshots_36_headPtr),
-    .io_snapshots_36_freeCount  (_snapshots_io_snapshots_36_freeCount),
-    .io_snapshots_37_headPtr    (_snapshots_io_snapshots_37_headPtr),
-    .io_snapshots_37_freeCount  (_snapshots_io_snapshots_37_freeCount),
-    .io_snapshots_38_headPtr    (_snapshots_io_snapshots_38_headPtr),
-    .io_snapshots_38_freeCount  (_snapshots_io_snapshots_38_freeCount),
-    .io_snapshots_39_headPtr    (_snapshots_io_snapshots_39_headPtr),
-    .io_snapshots_39_freeCount  (_snapshots_io_snapshots_39_freeCount),
-    .io_snapshots_40_headPtr    (_snapshots_io_snapshots_40_headPtr),
-    .io_snapshots_40_freeCount  (_snapshots_io_snapshots_40_freeCount),
-    .io_snapshots_41_headPtr    (_snapshots_io_snapshots_41_headPtr),
-    .io_snapshots_41_freeCount  (_snapshots_io_snapshots_41_freeCount),
-    .io_snapshots_42_headPtr    (_snapshots_io_snapshots_42_headPtr),
-    .io_snapshots_42_freeCount  (_snapshots_io_snapshots_42_freeCount),
-    .io_snapshots_43_headPtr    (_snapshots_io_snapshots_43_headPtr),
-    .io_snapshots_43_freeCount  (_snapshots_io_snapshots_43_freeCount),
-    .io_snapshots_44_headPtr    (_snapshots_io_snapshots_44_headPtr),
-    .io_snapshots_44_freeCount  (_snapshots_io_snapshots_44_freeCount),
-    .io_snapshots_45_headPtr    (_snapshots_io_snapshots_45_headPtr),
-    .io_snapshots_45_freeCount  (_snapshots_io_snapshots_45_freeCount),
-    .io_snapshots_46_headPtr    (_snapshots_io_snapshots_46_headPtr),
-    .io_snapshots_46_freeCount  (_snapshots_io_snapshots_46_freeCount),
-    .io_snapshots_47_headPtr    (_snapshots_io_snapshots_47_headPtr),
-    .io_snapshots_47_freeCount  (_snapshots_io_snapshots_47_freeCount),
-    .io_snapshots_48_headPtr    (_snapshots_io_snapshots_48_headPtr),
-    .io_snapshots_48_freeCount  (_snapshots_io_snapshots_48_freeCount),
-    .io_snapshots_49_headPtr    (_snapshots_io_snapshots_49_headPtr),
-    .io_snapshots_49_freeCount  (_snapshots_io_snapshots_49_freeCount),
-    .io_snapshots_50_headPtr    (_snapshots_io_snapshots_50_headPtr),
-    .io_snapshots_50_freeCount  (_snapshots_io_snapshots_50_freeCount),
-    .io_snapshots_51_headPtr    (_snapshots_io_snapshots_51_headPtr),
-    .io_snapshots_51_freeCount  (_snapshots_io_snapshots_51_freeCount),
-    .io_snapshots_52_headPtr    (_snapshots_io_snapshots_52_headPtr),
-    .io_snapshots_52_freeCount  (_snapshots_io_snapshots_52_freeCount),
-    .io_snapshots_53_headPtr    (_snapshots_io_snapshots_53_headPtr),
-    .io_snapshots_53_freeCount  (_snapshots_io_snapshots_53_freeCount),
-    .io_snapshots_54_headPtr    (_snapshots_io_snapshots_54_headPtr),
-    .io_snapshots_54_freeCount  (_snapshots_io_snapshots_54_freeCount),
-    .io_snapshots_55_headPtr    (_snapshots_io_snapshots_55_headPtr),
-    .io_snapshots_55_freeCount  (_snapshots_io_snapshots_55_freeCount),
-    .io_snapshots_56_headPtr    (_snapshots_io_snapshots_56_headPtr),
-    .io_snapshots_56_freeCount  (_snapshots_io_snapshots_56_freeCount),
-    .io_snapshots_57_headPtr    (_snapshots_io_snapshots_57_headPtr),
-    .io_snapshots_57_freeCount  (_snapshots_io_snapshots_57_freeCount),
-    .io_snapshots_58_headPtr    (_snapshots_io_snapshots_58_headPtr),
-    .io_snapshots_58_freeCount  (_snapshots_io_snapshots_58_freeCount),
-    .io_snapshots_59_headPtr    (_snapshots_io_snapshots_59_headPtr),
-    .io_snapshots_59_freeCount  (_snapshots_io_snapshots_59_freeCount),
-    .io_snapshots_60_headPtr    (_snapshots_io_snapshots_60_headPtr),
-    .io_snapshots_60_freeCount  (_snapshots_io_snapshots_60_freeCount),
-    .io_snapshots_61_headPtr    (_snapshots_io_snapshots_61_headPtr),
-    .io_snapshots_61_freeCount  (_snapshots_io_snapshots_61_freeCount),
-    .io_snapshots_62_headPtr    (_snapshots_io_snapshots_62_headPtr),
-    .io_snapshots_62_freeCount  (_snapshots_io_snapshots_62_freeCount),
-    .io_snapshots_63_headPtr    (_snapshots_io_snapshots_63_headPtr),
-    .io_snapshots_63_freeCount  (_snapshots_io_snapshots_63_freeCount),
-    .io_snapshots_64_headPtr    (_snapshots_io_snapshots_64_headPtr),
-    .io_snapshots_64_freeCount  (_snapshots_io_snapshots_64_freeCount),
-    .io_snapshots_65_headPtr    (_snapshots_io_snapshots_65_headPtr),
-    .io_snapshots_65_freeCount  (_snapshots_io_snapshots_65_freeCount),
-    .io_snapshots_66_headPtr    (_snapshots_io_snapshots_66_headPtr),
-    .io_snapshots_66_freeCount  (_snapshots_io_snapshots_66_freeCount),
-    .io_snapshots_67_headPtr    (_snapshots_io_snapshots_67_headPtr),
-    .io_snapshots_67_freeCount  (_snapshots_io_snapshots_67_freeCount),
-    .io_snapshots_68_headPtr    (_snapshots_io_snapshots_68_headPtr),
-    .io_snapshots_68_freeCount  (_snapshots_io_snapshots_68_freeCount),
-    .io_snapshots_69_headPtr    (_snapshots_io_snapshots_69_headPtr),
-    .io_snapshots_69_freeCount  (_snapshots_io_snapshots_69_freeCount),
-    .io_snapshots_70_headPtr    (_snapshots_io_snapshots_70_headPtr),
-    .io_snapshots_70_freeCount  (_snapshots_io_snapshots_70_freeCount),
-    .io_snapshots_71_headPtr    (_snapshots_io_snapshots_71_headPtr),
-    .io_snapshots_71_freeCount  (_snapshots_io_snapshots_71_freeCount),
-    .io_snapshots_72_headPtr    (_snapshots_io_snapshots_72_headPtr),
-    .io_snapshots_72_freeCount  (_snapshots_io_snapshots_72_freeCount),
-    .io_snapshots_73_headPtr    (_snapshots_io_snapshots_73_headPtr),
-    .io_snapshots_73_freeCount  (_snapshots_io_snapshots_73_freeCount),
-    .io_snapshots_74_headPtr    (_snapshots_io_snapshots_74_headPtr),
-    .io_snapshots_74_freeCount  (_snapshots_io_snapshots_74_freeCount),
-    .io_snapshots_75_headPtr    (_snapshots_io_snapshots_75_headPtr),
-    .io_snapshots_75_freeCount  (_snapshots_io_snapshots_75_freeCount),
-    .io_snapshots_76_headPtr    (_snapshots_io_snapshots_76_headPtr),
-    .io_snapshots_76_freeCount  (_snapshots_io_snapshots_76_freeCount),
-    .io_snapshots_77_headPtr    (_snapshots_io_snapshots_77_headPtr),
-    .io_snapshots_77_freeCount  (_snapshots_io_snapshots_77_freeCount),
-    .io_snapshots_78_headPtr    (_snapshots_io_snapshots_78_headPtr),
-    .io_snapshots_78_freeCount  (_snapshots_io_snapshots_78_freeCount),
-    .io_snapshots_79_headPtr    (_snapshots_io_snapshots_79_headPtr),
-    .io_snapshots_79_freeCount  (_snapshots_io_snapshots_79_freeCount),
-    .io_snapshots_80_headPtr    (_snapshots_io_snapshots_80_headPtr),
-    .io_snapshots_80_freeCount  (_snapshots_io_snapshots_80_freeCount),
-    .io_snapshots_81_headPtr    (_snapshots_io_snapshots_81_headPtr),
-    .io_snapshots_81_freeCount  (_snapshots_io_snapshots_81_freeCount),
-    .io_snapshots_82_headPtr    (_snapshots_io_snapshots_82_headPtr),
-    .io_snapshots_82_freeCount  (_snapshots_io_snapshots_82_freeCount),
-    .io_snapshots_83_headPtr    (_snapshots_io_snapshots_83_headPtr),
-    .io_snapshots_83_freeCount  (_snapshots_io_snapshots_83_freeCount),
-    .io_snapshots_84_headPtr    (_snapshots_io_snapshots_84_headPtr),
-    .io_snapshots_84_freeCount  (_snapshots_io_snapshots_84_freeCount),
-    .io_snapshots_85_headPtr    (_snapshots_io_snapshots_85_headPtr),
-    .io_snapshots_85_freeCount  (_snapshots_io_snapshots_85_freeCount),
-    .io_snapshots_86_headPtr    (_snapshots_io_snapshots_86_headPtr),
-    .io_snapshots_86_freeCount  (_snapshots_io_snapshots_86_freeCount),
-    .io_snapshots_87_headPtr    (_snapshots_io_snapshots_87_headPtr),
-    .io_snapshots_87_freeCount  (_snapshots_io_snapshots_87_freeCount),
-    .io_snapshots_88_headPtr    (_snapshots_io_snapshots_88_headPtr),
-    .io_snapshots_88_freeCount  (_snapshots_io_snapshots_88_freeCount),
-    .io_snapshots_89_headPtr    (_snapshots_io_snapshots_89_headPtr),
-    .io_snapshots_89_freeCount  (_snapshots_io_snapshots_89_freeCount),
-    .io_snapshots_90_headPtr    (_snapshots_io_snapshots_90_headPtr),
-    .io_snapshots_90_freeCount  (_snapshots_io_snapshots_90_freeCount),
-    .io_snapshots_91_headPtr    (_snapshots_io_snapshots_91_headPtr),
-    .io_snapshots_91_freeCount  (_snapshots_io_snapshots_91_freeCount),
-    .io_snapshots_92_headPtr    (_snapshots_io_snapshots_92_headPtr),
-    .io_snapshots_92_freeCount  (_snapshots_io_snapshots_92_freeCount),
-    .io_snapshots_93_headPtr    (_snapshots_io_snapshots_93_headPtr),
-    .io_snapshots_93_freeCount  (_snapshots_io_snapshots_93_freeCount),
-    .io_snapshots_94_headPtr    (_snapshots_io_snapshots_94_headPtr),
-    .io_snapshots_94_freeCount  (_snapshots_io_snapshots_94_freeCount),
-    .io_snapshots_95_headPtr    (_snapshots_io_snapshots_95_headPtr),
-    .io_snapshots_95_freeCount  (_snapshots_io_snapshots_95_freeCount),
-    .io_snapshots_96_headPtr    (_snapshots_io_snapshots_96_headPtr),
-    .io_snapshots_96_freeCount  (_snapshots_io_snapshots_96_freeCount),
-    .io_snapshots_97_headPtr    (_snapshots_io_snapshots_97_headPtr),
-    .io_snapshots_97_freeCount  (_snapshots_io_snapshots_97_freeCount),
-    .io_snapshots_98_headPtr    (_snapshots_io_snapshots_98_headPtr),
-    .io_snapshots_98_freeCount  (_snapshots_io_snapshots_98_freeCount),
-    .io_snapshots_99_headPtr    (_snapshots_io_snapshots_99_headPtr),
-    .io_snapshots_99_freeCount  (_snapshots_io_snapshots_99_freeCount),
-    .io_snapshots_100_headPtr   (_snapshots_io_snapshots_100_headPtr),
-    .io_snapshots_100_freeCount (_snapshots_io_snapshots_100_freeCount),
-    .io_snapshots_101_headPtr   (_snapshots_io_snapshots_101_headPtr),
-    .io_snapshots_101_freeCount (_snapshots_io_snapshots_101_freeCount),
-    .io_snapshots_102_headPtr   (_snapshots_io_snapshots_102_headPtr),
-    .io_snapshots_102_freeCount (_snapshots_io_snapshots_102_freeCount),
-    .io_snapshots_103_headPtr   (_snapshots_io_snapshots_103_headPtr),
-    .io_snapshots_103_freeCount (_snapshots_io_snapshots_103_freeCount),
-    .io_snapshots_104_headPtr   (_snapshots_io_snapshots_104_headPtr),
-    .io_snapshots_104_freeCount (_snapshots_io_snapshots_104_freeCount),
-    .io_snapshots_105_headPtr   (_snapshots_io_snapshots_105_headPtr),
-    .io_snapshots_105_freeCount (_snapshots_io_snapshots_105_freeCount),
-    .io_snapshots_106_headPtr   (_snapshots_io_snapshots_106_headPtr),
-    .io_snapshots_106_freeCount (_snapshots_io_snapshots_106_freeCount),
-    .io_snapshots_107_headPtr   (_snapshots_io_snapshots_107_headPtr),
-    .io_snapshots_107_freeCount (_snapshots_io_snapshots_107_freeCount),
-    .io_snapshots_108_headPtr   (_snapshots_io_snapshots_108_headPtr),
-    .io_snapshots_108_freeCount (_snapshots_io_snapshots_108_freeCount),
-    .io_snapshots_109_headPtr   (_snapshots_io_snapshots_109_headPtr),
-    .io_snapshots_109_freeCount (_snapshots_io_snapshots_109_freeCount),
-    .io_snapshots_110_headPtr   (_snapshots_io_snapshots_110_headPtr),
-    .io_snapshots_110_freeCount (_snapshots_io_snapshots_110_freeCount),
-    .io_snapshots_111_headPtr   (_snapshots_io_snapshots_111_headPtr),
-    .io_snapshots_111_freeCount (_snapshots_io_snapshots_111_freeCount),
-    .io_snapshots_112_headPtr   (_snapshots_io_snapshots_112_headPtr),
-    .io_snapshots_112_freeCount (_snapshots_io_snapshots_112_freeCount),
-    .io_snapshots_113_headPtr   (_snapshots_io_snapshots_113_headPtr),
-    .io_snapshots_113_freeCount (_snapshots_io_snapshots_113_freeCount),
-    .io_snapshots_114_headPtr   (_snapshots_io_snapshots_114_headPtr),
-    .io_snapshots_114_freeCount (_snapshots_io_snapshots_114_freeCount),
-    .io_snapshots_115_headPtr   (_snapshots_io_snapshots_115_headPtr),
-    .io_snapshots_115_freeCount (_snapshots_io_snapshots_115_freeCount),
-    .io_snapshots_116_headPtr   (_snapshots_io_snapshots_116_headPtr),
-    .io_snapshots_116_freeCount (_snapshots_io_snapshots_116_freeCount),
-    .io_snapshots_117_headPtr   (_snapshots_io_snapshots_117_headPtr),
-    .io_snapshots_117_freeCount (_snapshots_io_snapshots_117_freeCount),
-    .io_snapshots_118_headPtr   (_snapshots_io_snapshots_118_headPtr),
-    .io_snapshots_118_freeCount (_snapshots_io_snapshots_118_freeCount),
-    .io_snapshots_119_headPtr   (_snapshots_io_snapshots_119_headPtr),
-    .io_snapshots_119_freeCount (_snapshots_io_snapshots_119_freeCount),
-    .io_snapshots_120_headPtr   (_snapshots_io_snapshots_120_headPtr),
-    .io_snapshots_120_freeCount (_snapshots_io_snapshots_120_freeCount),
-    .io_snapshots_121_headPtr   (_snapshots_io_snapshots_121_headPtr),
-    .io_snapshots_121_freeCount (_snapshots_io_snapshots_121_freeCount),
-    .io_snapshots_122_headPtr   (_snapshots_io_snapshots_122_headPtr),
-    .io_snapshots_122_freeCount (_snapshots_io_snapshots_122_freeCount),
-    .io_snapshots_123_headPtr   (_snapshots_io_snapshots_123_headPtr),
-    .io_snapshots_123_freeCount (_snapshots_io_snapshots_123_freeCount),
-    .io_snapshots_124_headPtr   (_snapshots_io_snapshots_124_headPtr),
-    .io_snapshots_124_freeCount (_snapshots_io_snapshots_124_freeCount),
-    .io_snapshots_125_headPtr   (_snapshots_io_snapshots_125_headPtr),
-    .io_snapshots_125_freeCount (_snapshots_io_snapshots_125_freeCount),
-    .io_snapshots_126_headPtr   (_snapshots_io_snapshots_126_headPtr),
-    .io_snapshots_126_freeCount (_snapshots_io_snapshots_126_freeCount),
-    .io_snapshots_127_headPtr   (_snapshots_io_snapshots_127_headPtr),
-    .io_snapshots_127_freeCount (_snapshots_io_snapshots_127_freeCount),
-    .io_snapshots_128_headPtr   (_snapshots_io_snapshots_128_headPtr),
-    .io_snapshots_128_freeCount (_snapshots_io_snapshots_128_freeCount),
-    .io_snapshots_129_headPtr   (_snapshots_io_snapshots_129_headPtr),
-    .io_snapshots_129_freeCount (_snapshots_io_snapshots_129_freeCount),
-    .io_snapshots_130_headPtr   (_snapshots_io_snapshots_130_headPtr),
-    .io_snapshots_130_freeCount (_snapshots_io_snapshots_130_freeCount),
-    .io_snapshots_131_headPtr   (_snapshots_io_snapshots_131_headPtr),
-    .io_snapshots_131_freeCount (_snapshots_io_snapshots_131_freeCount),
-    .io_snapshots_132_headPtr   (_snapshots_io_snapshots_132_headPtr),
-    .io_snapshots_132_freeCount (_snapshots_io_snapshots_132_freeCount),
-    .io_snapshots_133_headPtr   (_snapshots_io_snapshots_133_headPtr),
-    .io_snapshots_133_freeCount (_snapshots_io_snapshots_133_freeCount),
-    .io_snapshots_134_headPtr   (_snapshots_io_snapshots_134_headPtr),
-    .io_snapshots_134_freeCount (_snapshots_io_snapshots_134_freeCount),
-    .io_snapshots_135_headPtr   (_snapshots_io_snapshots_135_headPtr),
-    .io_snapshots_135_freeCount (_snapshots_io_snapshots_135_freeCount),
-    .io_snapshots_136_headPtr   (_snapshots_io_snapshots_136_headPtr),
-    .io_snapshots_136_freeCount (_snapshots_io_snapshots_136_freeCount),
-    .io_snapshots_137_headPtr   (_snapshots_io_snapshots_137_headPtr),
-    .io_snapshots_137_freeCount (_snapshots_io_snapshots_137_freeCount),
-    .io_snapshots_138_headPtr   (_snapshots_io_snapshots_138_headPtr),
-    .io_snapshots_138_freeCount (_snapshots_io_snapshots_138_freeCount),
-    .io_snapshots_139_headPtr   (_snapshots_io_snapshots_139_headPtr),
-    .io_snapshots_139_freeCount (_snapshots_io_snapshots_139_freeCount),
-    .io_snapshots_140_headPtr   (_snapshots_io_snapshots_140_headPtr),
-    .io_snapshots_140_freeCount (_snapshots_io_snapshots_140_freeCount),
-    .io_snapshots_141_headPtr   (_snapshots_io_snapshots_141_headPtr),
-    .io_snapshots_141_freeCount (_snapshots_io_snapshots_141_freeCount),
-    .io_snapshots_142_headPtr   (_snapshots_io_snapshots_142_headPtr),
-    .io_snapshots_142_freeCount (_snapshots_io_snapshots_142_freeCount),
-    .io_snapshots_143_headPtr   (_snapshots_io_snapshots_143_headPtr),
-    .io_snapshots_143_freeCount (_snapshots_io_snapshots_143_freeCount),
-    .io_snapshots_144_headPtr   (_snapshots_io_snapshots_144_headPtr),
-    .io_snapshots_144_freeCount (_snapshots_io_snapshots_144_freeCount),
-    .io_snapshots_145_headPtr   (_snapshots_io_snapshots_145_headPtr),
-    .io_snapshots_145_freeCount (_snapshots_io_snapshots_145_freeCount),
-    .io_snapshots_146_headPtr   (_snapshots_io_snapshots_146_headPtr),
-    .io_snapshots_146_freeCount (_snapshots_io_snapshots_146_freeCount),
-    .io_snapshots_147_headPtr   (_snapshots_io_snapshots_147_headPtr),
-    .io_snapshots_147_freeCount (_snapshots_io_snapshots_147_freeCount),
-    .io_snapshots_148_headPtr   (_snapshots_io_snapshots_148_headPtr),
-    .io_snapshots_148_freeCount (_snapshots_io_snapshots_148_freeCount),
-    .io_snapshots_149_headPtr   (_snapshots_io_snapshots_149_headPtr),
-    .io_snapshots_149_freeCount (_snapshots_io_snapshots_149_freeCount),
-    .io_snapshots_150_headPtr   (_snapshots_io_snapshots_150_headPtr),
-    .io_snapshots_150_freeCount (_snapshots_io_snapshots_150_freeCount),
-    .io_snapshots_151_headPtr   (_snapshots_io_snapshots_151_headPtr),
-    .io_snapshots_151_freeCount (_snapshots_io_snapshots_151_freeCount),
-    .io_snapshots_152_headPtr   (_snapshots_io_snapshots_152_headPtr),
-    .io_snapshots_152_freeCount (_snapshots_io_snapshots_152_freeCount),
-    .io_snapshots_153_headPtr   (_snapshots_io_snapshots_153_headPtr),
-    .io_snapshots_153_freeCount (_snapshots_io_snapshots_153_freeCount),
-    .io_snapshots_154_headPtr   (_snapshots_io_snapshots_154_headPtr),
-    .io_snapshots_154_freeCount (_snapshots_io_snapshots_154_freeCount),
-    .io_snapshots_155_headPtr   (_snapshots_io_snapshots_155_headPtr),
-    .io_snapshots_155_freeCount (_snapshots_io_snapshots_155_freeCount),
-    .io_snapshots_156_headPtr   (_snapshots_io_snapshots_156_headPtr),
-    .io_snapshots_156_freeCount (_snapshots_io_snapshots_156_freeCount),
-    .io_snapshots_157_headPtr   (_snapshots_io_snapshots_157_headPtr),
-    .io_snapshots_157_freeCount (_snapshots_io_snapshots_157_freeCount),
-    .io_snapshots_158_headPtr   (_snapshots_io_snapshots_158_headPtr),
-    .io_snapshots_158_freeCount (_snapshots_io_snapshots_158_freeCount),
-    .io_snapshots_159_headPtr   (_snapshots_io_snapshots_159_headPtr),
-    .io_snapshots_159_freeCount (_snapshots_io_snapshots_159_freeCount),
-    .io_snapshots_160_headPtr   (_snapshots_io_snapshots_160_headPtr),
-    .io_snapshots_160_freeCount (_snapshots_io_snapshots_160_freeCount),
-    .io_snapshots_161_headPtr   (_snapshots_io_snapshots_161_headPtr),
-    .io_snapshots_161_freeCount (_snapshots_io_snapshots_161_freeCount),
-    .io_snapshots_162_headPtr   (_snapshots_io_snapshots_162_headPtr),
-    .io_snapshots_162_freeCount (_snapshots_io_snapshots_162_freeCount),
-    .io_snapshots_163_headPtr   (_snapshots_io_snapshots_163_headPtr),
-    .io_snapshots_163_freeCount (_snapshots_io_snapshots_163_freeCount),
-    .io_snapshots_164_headPtr   (_snapshots_io_snapshots_164_headPtr),
-    .io_snapshots_164_freeCount (_snapshots_io_snapshots_164_freeCount),
-    .io_snapshots_165_headPtr   (_snapshots_io_snapshots_165_headPtr),
-    .io_snapshots_165_freeCount (_snapshots_io_snapshots_165_freeCount),
-    .io_snapshots_166_headPtr   (_snapshots_io_snapshots_166_headPtr),
-    .io_snapshots_166_freeCount (_snapshots_io_snapshots_166_freeCount),
-    .io_snapshots_167_headPtr   (_snapshots_io_snapshots_167_headPtr),
-    .io_snapshots_167_freeCount (_snapshots_io_snapshots_167_freeCount),
-    .io_snapshots_168_headPtr   (_snapshots_io_snapshots_168_headPtr),
-    .io_snapshots_168_freeCount (_snapshots_io_snapshots_168_freeCount),
-    .io_snapshots_169_headPtr   (_snapshots_io_snapshots_169_headPtr),
-    .io_snapshots_169_freeCount (_snapshots_io_snapshots_169_freeCount),
-    .io_snapshots_170_headPtr   (_snapshots_io_snapshots_170_headPtr),
-    .io_snapshots_170_freeCount (_snapshots_io_snapshots_170_freeCount),
-    .io_snapshots_171_headPtr   (_snapshots_io_snapshots_171_headPtr),
-    .io_snapshots_171_freeCount (_snapshots_io_snapshots_171_freeCount),
-    .io_snapshots_172_headPtr   (_snapshots_io_snapshots_172_headPtr),
-    .io_snapshots_172_freeCount (_snapshots_io_snapshots_172_freeCount),
-    .io_snapshots_173_headPtr   (_snapshots_io_snapshots_173_headPtr),
-    .io_snapshots_173_freeCount (_snapshots_io_snapshots_173_freeCount),
-    .io_snapshots_174_headPtr   (_snapshots_io_snapshots_174_headPtr),
-    .io_snapshots_174_freeCount (_snapshots_io_snapshots_174_freeCount),
-    .io_snapshots_175_headPtr   (_snapshots_io_snapshots_175_headPtr),
-    .io_snapshots_175_freeCount (_snapshots_io_snapshots_175_freeCount),
-    .io_snapshots_176_headPtr   (_snapshots_io_snapshots_176_headPtr),
-    .io_snapshots_176_freeCount (_snapshots_io_snapshots_176_freeCount),
-    .io_snapshots_177_headPtr   (_snapshots_io_snapshots_177_headPtr),
-    .io_snapshots_177_freeCount (_snapshots_io_snapshots_177_freeCount),
-    .io_snapshots_178_headPtr   (_snapshots_io_snapshots_178_headPtr),
-    .io_snapshots_178_freeCount (_snapshots_io_snapshots_178_freeCount),
-    .io_snapshots_179_headPtr   (_snapshots_io_snapshots_179_headPtr),
-    .io_snapshots_179_freeCount (_snapshots_io_snapshots_179_freeCount),
-    .io_snapshots_180_headPtr   (_snapshots_io_snapshots_180_headPtr),
-    .io_snapshots_180_freeCount (_snapshots_io_snapshots_180_freeCount),
-    .io_snapshots_181_headPtr   (_snapshots_io_snapshots_181_headPtr),
-    .io_snapshots_181_freeCount (_snapshots_io_snapshots_181_freeCount),
-    .io_snapshots_182_headPtr   (_snapshots_io_snapshots_182_headPtr),
-    .io_snapshots_182_freeCount (_snapshots_io_snapshots_182_freeCount),
-    .io_snapshots_183_headPtr   (_snapshots_io_snapshots_183_headPtr),
-    .io_snapshots_183_freeCount (_snapshots_io_snapshots_183_freeCount),
-    .io_snapshots_184_headPtr   (_snapshots_io_snapshots_184_headPtr),
-    .io_snapshots_184_freeCount (_snapshots_io_snapshots_184_freeCount),
-    .io_snapshots_185_headPtr   (_snapshots_io_snapshots_185_headPtr),
-    .io_snapshots_185_freeCount (_snapshots_io_snapshots_185_freeCount),
-    .io_snapshots_186_headPtr   (_snapshots_io_snapshots_186_headPtr),
-    .io_snapshots_186_freeCount (_snapshots_io_snapshots_186_freeCount),
-    .io_snapshots_187_headPtr   (_snapshots_io_snapshots_187_headPtr),
-    .io_snapshots_187_freeCount (_snapshots_io_snapshots_187_freeCount),
-    .io_snapshots_188_headPtr   (_snapshots_io_snapshots_188_headPtr),
-    .io_snapshots_188_freeCount (_snapshots_io_snapshots_188_freeCount),
-    .io_snapshots_189_headPtr   (_snapshots_io_snapshots_189_headPtr),
-    .io_snapshots_189_freeCount (_snapshots_io_snapshots_189_freeCount),
-    .io_snapshots_190_headPtr   (_snapshots_io_snapshots_190_headPtr),
-    .io_snapshots_190_freeCount (_snapshots_io_snapshots_190_freeCount),
-    .io_snapshots_191_headPtr   (_snapshots_io_snapshots_191_headPtr),
-    .io_snapshots_191_freeCount (_snapshots_io_snapshots_191_freeCount),
-    .io_snapshots_192_headPtr   (_snapshots_io_snapshots_192_headPtr),
-    .io_snapshots_192_freeCount (_snapshots_io_snapshots_192_freeCount),
-    .io_snapshots_193_headPtr   (_snapshots_io_snapshots_193_headPtr),
-    .io_snapshots_193_freeCount (_snapshots_io_snapshots_193_freeCount),
-    .io_snapshots_194_headPtr   (_snapshots_io_snapshots_194_headPtr),
-    .io_snapshots_194_freeCount (_snapshots_io_snapshots_194_freeCount),
-    .io_snapshots_195_headPtr   (_snapshots_io_snapshots_195_headPtr),
-    .io_snapshots_195_freeCount (_snapshots_io_snapshots_195_freeCount),
-    .io_snapshots_196_headPtr   (_snapshots_io_snapshots_196_headPtr),
-    .io_snapshots_196_freeCount (_snapshots_io_snapshots_196_freeCount),
-    .io_snapshots_197_headPtr   (_snapshots_io_snapshots_197_headPtr),
-    .io_snapshots_197_freeCount (_snapshots_io_snapshots_197_freeCount),
-    .io_snapshots_198_headPtr   (_snapshots_io_snapshots_198_headPtr),
-    .io_snapshots_198_freeCount (_snapshots_io_snapshots_198_freeCount),
-    .io_snapshots_199_headPtr   (_snapshots_io_snapshots_199_headPtr),
-    .io_snapshots_199_freeCount (_snapshots_io_snapshots_199_freeCount),
-    .io_snapshots_200_headPtr   (_snapshots_io_snapshots_200_headPtr),
-    .io_snapshots_200_freeCount (_snapshots_io_snapshots_200_freeCount),
-    .io_snapshots_201_headPtr   (_snapshots_io_snapshots_201_headPtr),
-    .io_snapshots_201_freeCount (_snapshots_io_snapshots_201_freeCount),
-    .io_snapshots_202_headPtr   (_snapshots_io_snapshots_202_headPtr),
-    .io_snapshots_202_freeCount (_snapshots_io_snapshots_202_freeCount),
-    .io_snapshots_203_headPtr   (_snapshots_io_snapshots_203_headPtr),
-    .io_snapshots_203_freeCount (_snapshots_io_snapshots_203_freeCount),
-    .io_snapshots_204_headPtr   (_snapshots_io_snapshots_204_headPtr),
-    .io_snapshots_204_freeCount (_snapshots_io_snapshots_204_freeCount),
-    .io_snapshots_205_headPtr   (_snapshots_io_snapshots_205_headPtr),
-    .io_snapshots_205_freeCount (_snapshots_io_snapshots_205_freeCount),
-    .io_snapshots_206_headPtr   (_snapshots_io_snapshots_206_headPtr),
-    .io_snapshots_206_freeCount (_snapshots_io_snapshots_206_freeCount),
-    .io_snapshots_207_headPtr   (_snapshots_io_snapshots_207_headPtr),
-    .io_snapshots_207_freeCount (_snapshots_io_snapshots_207_freeCount),
-    .io_snapshots_208_headPtr   (_snapshots_io_snapshots_208_headPtr),
-    .io_snapshots_208_freeCount (_snapshots_io_snapshots_208_freeCount),
-    .io_snapshots_209_headPtr   (_snapshots_io_snapshots_209_headPtr),
-    .io_snapshots_209_freeCount (_snapshots_io_snapshots_209_freeCount),
-    .io_snapshots_210_headPtr   (_snapshots_io_snapshots_210_headPtr),
-    .io_snapshots_210_freeCount (_snapshots_io_snapshots_210_freeCount),
-    .io_snapshots_211_headPtr   (_snapshots_io_snapshots_211_headPtr),
-    .io_snapshots_211_freeCount (_snapshots_io_snapshots_211_freeCount),
-    .io_snapshots_212_headPtr   (_snapshots_io_snapshots_212_headPtr),
-    .io_snapshots_212_freeCount (_snapshots_io_snapshots_212_freeCount),
-    .io_snapshots_213_headPtr   (_snapshots_io_snapshots_213_headPtr),
-    .io_snapshots_213_freeCount (_snapshots_io_snapshots_213_freeCount),
-    .io_snapshots_214_headPtr   (_snapshots_io_snapshots_214_headPtr),
-    .io_snapshots_214_freeCount (_snapshots_io_snapshots_214_freeCount),
-    .io_snapshots_215_headPtr   (_snapshots_io_snapshots_215_headPtr),
-    .io_snapshots_215_freeCount (_snapshots_io_snapshots_215_freeCount),
-    .io_snapshots_216_headPtr   (_snapshots_io_snapshots_216_headPtr),
-    .io_snapshots_216_freeCount (_snapshots_io_snapshots_216_freeCount),
-    .io_snapshots_217_headPtr   (_snapshots_io_snapshots_217_headPtr),
-    .io_snapshots_217_freeCount (_snapshots_io_snapshots_217_freeCount),
-    .io_snapshots_218_headPtr   (_snapshots_io_snapshots_218_headPtr),
-    .io_snapshots_218_freeCount (_snapshots_io_snapshots_218_freeCount),
-    .io_snapshots_219_headPtr   (_snapshots_io_snapshots_219_headPtr),
-    .io_snapshots_219_freeCount (_snapshots_io_snapshots_219_freeCount),
-    .io_snapshots_220_headPtr   (_snapshots_io_snapshots_220_headPtr),
-    .io_snapshots_220_freeCount (_snapshots_io_snapshots_220_freeCount),
-    .io_snapshots_221_headPtr   (_snapshots_io_snapshots_221_headPtr),
-    .io_snapshots_221_freeCount (_snapshots_io_snapshots_221_freeCount),
-    .io_snapshots_222_headPtr   (_snapshots_io_snapshots_222_headPtr),
-    .io_snapshots_222_freeCount (_snapshots_io_snapshots_222_freeCount),
-    .io_snapshots_223_headPtr   (_snapshots_io_snapshots_223_headPtr),
-    .io_snapshots_223_freeCount (_snapshots_io_snapshots_223_freeCount),
-    .io_snapshots_224_headPtr   (_snapshots_io_snapshots_224_headPtr),
-    .io_snapshots_224_freeCount (_snapshots_io_snapshots_224_freeCount),
-    .io_snapshots_225_headPtr   (_snapshots_io_snapshots_225_headPtr),
-    .io_snapshots_225_freeCount (_snapshots_io_snapshots_225_freeCount),
-    .io_snapshots_226_headPtr   (_snapshots_io_snapshots_226_headPtr),
-    .io_snapshots_226_freeCount (_snapshots_io_snapshots_226_freeCount),
-    .io_snapshots_227_headPtr   (_snapshots_io_snapshots_227_headPtr),
-    .io_snapshots_227_freeCount (_snapshots_io_snapshots_227_freeCount),
-    .io_snapshots_228_headPtr   (_snapshots_io_snapshots_228_headPtr),
-    .io_snapshots_228_freeCount (_snapshots_io_snapshots_228_freeCount),
-    .io_snapshots_229_headPtr   (_snapshots_io_snapshots_229_headPtr),
-    .io_snapshots_229_freeCount (_snapshots_io_snapshots_229_freeCount),
-    .io_snapshots_230_headPtr   (_snapshots_io_snapshots_230_headPtr),
-    .io_snapshots_230_freeCount (_snapshots_io_snapshots_230_freeCount),
-    .io_snapshots_231_headPtr   (_snapshots_io_snapshots_231_headPtr),
-    .io_snapshots_231_freeCount (_snapshots_io_snapshots_231_freeCount),
-    .io_snapshots_232_headPtr   (_snapshots_io_snapshots_232_headPtr),
-    .io_snapshots_232_freeCount (_snapshots_io_snapshots_232_freeCount),
-    .io_snapshots_233_headPtr   (_snapshots_io_snapshots_233_headPtr),
-    .io_snapshots_233_freeCount (_snapshots_io_snapshots_233_freeCount),
-    .io_snapshots_234_headPtr   (_snapshots_io_snapshots_234_headPtr),
-    .io_snapshots_234_freeCount (_snapshots_io_snapshots_234_freeCount),
-    .io_snapshots_235_headPtr   (_snapshots_io_snapshots_235_headPtr),
-    .io_snapshots_235_freeCount (_snapshots_io_snapshots_235_freeCount),
-    .io_snapshots_236_headPtr   (_snapshots_io_snapshots_236_headPtr),
-    .io_snapshots_236_freeCount (_snapshots_io_snapshots_236_freeCount),
-    .io_snapshots_237_headPtr   (_snapshots_io_snapshots_237_headPtr),
-    .io_snapshots_237_freeCount (_snapshots_io_snapshots_237_freeCount),
-    .io_snapshots_238_headPtr   (_snapshots_io_snapshots_238_headPtr),
-    .io_snapshots_238_freeCount (_snapshots_io_snapshots_238_freeCount),
-    .io_snapshots_239_headPtr   (_snapshots_io_snapshots_239_headPtr),
-    .io_snapshots_239_freeCount (_snapshots_io_snapshots_239_freeCount),
-    .io_snapshots_240_headPtr   (_snapshots_io_snapshots_240_headPtr),
-    .io_snapshots_240_freeCount (_snapshots_io_snapshots_240_freeCount),
-    .io_snapshots_241_headPtr   (_snapshots_io_snapshots_241_headPtr),
-    .io_snapshots_241_freeCount (_snapshots_io_snapshots_241_freeCount),
-    .io_snapshots_242_headPtr   (_snapshots_io_snapshots_242_headPtr),
-    .io_snapshots_242_freeCount (_snapshots_io_snapshots_242_freeCount),
-    .io_snapshots_243_headPtr   (_snapshots_io_snapshots_243_headPtr),
-    .io_snapshots_243_freeCount (_snapshots_io_snapshots_243_freeCount),
-    .io_snapshots_244_headPtr   (_snapshots_io_snapshots_244_headPtr),
-    .io_snapshots_244_freeCount (_snapshots_io_snapshots_244_freeCount),
-    .io_snapshots_245_headPtr   (_snapshots_io_snapshots_245_headPtr),
-    .io_snapshots_245_freeCount (_snapshots_io_snapshots_245_freeCount),
-    .io_snapshots_246_headPtr   (_snapshots_io_snapshots_246_headPtr),
-    .io_snapshots_246_freeCount (_snapshots_io_snapshots_246_freeCount),
-    .io_snapshots_247_headPtr   (_snapshots_io_snapshots_247_headPtr),
-    .io_snapshots_247_freeCount (_snapshots_io_snapshots_247_freeCount),
-    .io_snapshots_248_headPtr   (_snapshots_io_snapshots_248_headPtr),
-    .io_snapshots_248_freeCount (_snapshots_io_snapshots_248_freeCount),
-    .io_snapshots_249_headPtr   (_snapshots_io_snapshots_249_headPtr),
-    .io_snapshots_249_freeCount (_snapshots_io_snapshots_249_freeCount),
-    .io_snapshots_250_headPtr   (_snapshots_io_snapshots_250_headPtr),
-    .io_snapshots_250_freeCount (_snapshots_io_snapshots_250_freeCount),
-    .io_snapshots_251_headPtr   (_snapshots_io_snapshots_251_headPtr),
-    .io_snapshots_251_freeCount (_snapshots_io_snapshots_251_freeCount),
-    .io_snapshots_252_headPtr   (_snapshots_io_snapshots_252_headPtr),
-    .io_snapshots_252_freeCount (_snapshots_io_snapshots_252_freeCount),
-    .io_snapshots_253_headPtr   (_snapshots_io_snapshots_253_headPtr),
-    .io_snapshots_253_freeCount (_snapshots_io_snapshots_253_freeCount),
-    .io_snapshots_254_headPtr   (_snapshots_io_snapshots_254_headPtr),
-    .io_snapshots_254_freeCount (_snapshots_io_snapshots_254_freeCount),
-    .io_snapshots_255_headPtr   (_snapshots_io_snapshots_255_headPtr),
-    .io_snapshots_255_freeCount (_snapshots_io_snapshots_255_freeCount)
+         : snpt_data_headPtr_next[7:0]),	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :56:20, :57:{8,14,30}
+    .io_deqCount              (io_snptDeqCount),
+    .io_redirect              (io_redirect),
+    .io_useSnapshot           (io_useSnapshot),
+    .io_redirect_idx          (io_snptRestoreIdx),
+    .io_flushVec_0            (io_snptFlushVec_0),
+    .io_flushVec_1            (io_snptFlushVec_1),
+    .io_flushVec_2            (io_snptFlushVec_2),
+    .io_flushVec_3            (io_snptFlushVec_3),
+    .io_flushVec_4            (io_snptFlushVec_4),
+    .io_flushVec_5            (io_snptFlushVec_5),
+    .io_flushVec_6            (io_snptFlushVec_6),
+    .io_flushVec_7            (io_snptFlushVec_7),
+    .io_flushVec_8            (io_snptFlushVec_8),
+    .io_flushVec_9            (io_snptFlushVec_9),
+    .io_flushVec_10           (io_snptFlushVec_10),
+    .io_flushVec_11           (io_snptFlushVec_11),
+    .io_flushVec_12           (io_snptFlushVec_12),
+    .io_flushVec_13           (io_snptFlushVec_13),
+    .io_flushVec_14           (io_snptFlushVec_14),
+    .io_flushVec_15           (io_snptFlushVec_15),
+    .io_flushVec_16           (io_snptFlushVec_16),
+    .io_flushVec_17           (io_snptFlushVec_17),
+    .io_flushVec_18           (io_snptFlushVec_18),
+    .io_flushVec_19           (io_snptFlushVec_19),
+    .io_flushVec_20           (io_snptFlushVec_20),
+    .io_flushVec_21           (io_snptFlushVec_21),
+    .io_flushVec_22           (io_snptFlushVec_22),
+    .io_flushVec_23           (io_snptFlushVec_23),
+    .io_flushVec_24           (io_snptFlushVec_24),
+    .io_flushVec_25           (io_snptFlushVec_25),
+    .io_flushVec_26           (io_snptFlushVec_26),
+    .io_flushVec_27           (io_snptFlushVec_27),
+    .io_flushVec_28           (io_snptFlushVec_28),
+    .io_flushVec_29           (io_snptFlushVec_29),
+    .io_flushVec_30           (io_snptFlushVec_30),
+    .io_flushVec_31           (io_snptFlushVec_31),
+    .io_flushVec_32           (io_snptFlushVec_32),
+    .io_flushVec_33           (io_snptFlushVec_33),
+    .io_flushVec_34           (io_snptFlushVec_34),
+    .io_flushVec_35           (io_snptFlushVec_35),
+    .io_flushVec_36           (io_snptFlushVec_36),
+    .io_flushVec_37           (io_snptFlushVec_37),
+    .io_flushVec_38           (io_snptFlushVec_38),
+    .io_flushVec_39           (io_snptFlushVec_39),
+    .io_flushVec_40           (io_snptFlushVec_40),
+    .io_flushVec_41           (io_snptFlushVec_41),
+    .io_flushVec_42           (io_snptFlushVec_42),
+    .io_flushVec_43           (io_snptFlushVec_43),
+    .io_flushVec_44           (io_snptFlushVec_44),
+    .io_flushVec_45           (io_snptFlushVec_45),
+    .io_flushVec_46           (io_snptFlushVec_46),
+    .io_flushVec_47           (io_snptFlushVec_47),
+    .io_flushVec_48           (io_snptFlushVec_48),
+    .io_flushVec_49           (io_snptFlushVec_49),
+    .io_flushVec_50           (io_snptFlushVec_50),
+    .io_flushVec_51           (io_snptFlushVec_51),
+    .io_flushVec_52           (io_snptFlushVec_52),
+    .io_flushVec_53           (io_snptFlushVec_53),
+    .io_flushVec_54           (io_snptFlushVec_54),
+    .io_flushVec_55           (io_snptFlushVec_55),
+    .io_flushVec_56           (io_snptFlushVec_56),
+    .io_flushVec_57           (io_snptFlushVec_57),
+    .io_flushVec_58           (io_snptFlushVec_58),
+    .io_flushVec_59           (io_snptFlushVec_59),
+    .io_flushVec_60           (io_snptFlushVec_60),
+    .io_flushVec_61           (io_snptFlushVec_61),
+    .io_flushVec_62           (io_snptFlushVec_62),
+    .io_flushVec_63           (io_snptFlushVec_63),
+    .io_flushVec_64           (io_snptFlushVec_64),
+    .io_flushVec_65           (io_snptFlushVec_65),
+    .io_flushVec_66           (io_snptFlushVec_66),
+    .io_flushVec_67           (io_snptFlushVec_67),
+    .io_flushVec_68           (io_snptFlushVec_68),
+    .io_flushVec_69           (io_snptFlushVec_69),
+    .io_flushVec_70           (io_snptFlushVec_70),
+    .io_flushVec_71           (io_snptFlushVec_71),
+    .io_flushVec_72           (io_snptFlushVec_72),
+    .io_flushVec_73           (io_snptFlushVec_73),
+    .io_flushVec_74           (io_snptFlushVec_74),
+    .io_flushVec_75           (io_snptFlushVec_75),
+    .io_flushVec_76           (io_snptFlushVec_76),
+    .io_flushVec_77           (io_snptFlushVec_77),
+    .io_flushVec_78           (io_snptFlushVec_78),
+    .io_flushVec_79           (io_snptFlushVec_79),
+    .io_flushVec_80           (io_snptFlushVec_80),
+    .io_flushVec_81           (io_snptFlushVec_81),
+    .io_flushVec_82           (io_snptFlushVec_82),
+    .io_flushVec_83           (io_snptFlushVec_83),
+    .io_flushVec_84           (io_snptFlushVec_84),
+    .io_flushVec_85           (io_snptFlushVec_85),
+    .io_flushVec_86           (io_snptFlushVec_86),
+    .io_flushVec_87           (io_snptFlushVec_87),
+    .io_flushVec_88           (io_snptFlushVec_88),
+    .io_flushVec_89           (io_snptFlushVec_89),
+    .io_flushVec_90           (io_snptFlushVec_90),
+    .io_flushVec_91           (io_snptFlushVec_91),
+    .io_flushVec_92           (io_snptFlushVec_92),
+    .io_flushVec_93           (io_snptFlushVec_93),
+    .io_flushVec_94           (io_snptFlushVec_94),
+    .io_flushVec_95           (io_snptFlushVec_95),
+    .io_flushVec_96           (io_snptFlushVec_96),
+    .io_flushVec_97           (io_snptFlushVec_97),
+    .io_flushVec_98           (io_snptFlushVec_98),
+    .io_flushVec_99           (io_snptFlushVec_99),
+    .io_flushVec_100          (io_snptFlushVec_100),
+    .io_flushVec_101          (io_snptFlushVec_101),
+    .io_flushVec_102          (io_snptFlushVec_102),
+    .io_flushVec_103          (io_snptFlushVec_103),
+    .io_flushVec_104          (io_snptFlushVec_104),
+    .io_flushVec_105          (io_snptFlushVec_105),
+    .io_flushVec_106          (io_snptFlushVec_106),
+    .io_flushVec_107          (io_snptFlushVec_107),
+    .io_flushVec_108          (io_snptFlushVec_108),
+    .io_flushVec_109          (io_snptFlushVec_109),
+    .io_flushVec_110          (io_snptFlushVec_110),
+    .io_flushVec_111          (io_snptFlushVec_111),
+    .io_flushVec_112          (io_snptFlushVec_112),
+    .io_flushVec_113          (io_snptFlushVec_113),
+    .io_flushVec_114          (io_snptFlushVec_114),
+    .io_flushVec_115          (io_snptFlushVec_115),
+    .io_flushVec_116          (io_snptFlushVec_116),
+    .io_flushVec_117          (io_snptFlushVec_117),
+    .io_flushVec_118          (io_snptFlushVec_118),
+    .io_flushVec_119          (io_snptFlushVec_119),
+    .io_flushVec_120          (io_snptFlushVec_120),
+    .io_flushVec_121          (io_snptFlushVec_121),
+    .io_flushVec_122          (io_snptFlushVec_122),
+    .io_flushVec_123          (io_snptFlushVec_123),
+    .io_flushVec_124          (io_snptFlushVec_124),
+    .io_flushVec_125          (io_snptFlushVec_125),
+    .io_flushVec_126          (io_snptFlushVec_126),
+    .io_flushVec_127          (io_snptFlushVec_127),
+    .io_flushVec_128          (io_snptFlushVec_128),
+    .io_flushVec_129          (io_snptFlushVec_129),
+    .io_flushVec_130          (io_snptFlushVec_130),
+    .io_flushVec_131          (io_snptFlushVec_131),
+    .io_flushVec_132          (io_snptFlushVec_132),
+    .io_flushVec_133          (io_snptFlushVec_133),
+    .io_flushVec_134          (io_snptFlushVec_134),
+    .io_flushVec_135          (io_snptFlushVec_135),
+    .io_flushVec_136          (io_snptFlushVec_136),
+    .io_flushVec_137          (io_snptFlushVec_137),
+    .io_flushVec_138          (io_snptFlushVec_138),
+    .io_flushVec_139          (io_snptFlushVec_139),
+    .io_flushVec_140          (io_snptFlushVec_140),
+    .io_flushVec_141          (io_snptFlushVec_141),
+    .io_flushVec_142          (io_snptFlushVec_142),
+    .io_flushVec_143          (io_snptFlushVec_143),
+    .io_flushVec_144          (io_snptFlushVec_144),
+    .io_flushVec_145          (io_snptFlushVec_145),
+    .io_flushVec_146          (io_snptFlushVec_146),
+    .io_flushVec_147          (io_snptFlushVec_147),
+    .io_flushVec_148          (io_snptFlushVec_148),
+    .io_flushVec_149          (io_snptFlushVec_149),
+    .io_flushVec_150          (io_snptFlushVec_150),
+    .io_flushVec_151          (io_snptFlushVec_151),
+    .io_flushVec_152          (io_snptFlushVec_152),
+    .io_flushVec_153          (io_snptFlushVec_153),
+    .io_flushVec_154          (io_snptFlushVec_154),
+    .io_flushVec_155          (io_snptFlushVec_155),
+    .io_flushVec_156          (io_snptFlushVec_156),
+    .io_flushVec_157          (io_snptFlushVec_157),
+    .io_flushVec_158          (io_snptFlushVec_158),
+    .io_flushVec_159          (io_snptFlushVec_159),
+    .io_flushVec_160          (io_snptFlushVec_160),
+    .io_flushVec_161          (io_snptFlushVec_161),
+    .io_flushVec_162          (io_snptFlushVec_162),
+    .io_flushVec_163          (io_snptFlushVec_163),
+    .io_flushVec_164          (io_snptFlushVec_164),
+    .io_flushVec_165          (io_snptFlushVec_165),
+    .io_flushVec_166          (io_snptFlushVec_166),
+    .io_flushVec_167          (io_snptFlushVec_167),
+    .io_flushVec_168          (io_snptFlushVec_168),
+    .io_flushVec_169          (io_snptFlushVec_169),
+    .io_flushVec_170          (io_snptFlushVec_170),
+    .io_flushVec_171          (io_snptFlushVec_171),
+    .io_flushVec_172          (io_snptFlushVec_172),
+    .io_flushVec_173          (io_snptFlushVec_173),
+    .io_flushVec_174          (io_snptFlushVec_174),
+    .io_flushVec_175          (io_snptFlushVec_175),
+    .io_flushVec_176          (io_snptFlushVec_176),
+    .io_flushVec_177          (io_snptFlushVec_177),
+    .io_flushVec_178          (io_snptFlushVec_178),
+    .io_flushVec_179          (io_snptFlushVec_179),
+    .io_flushVec_180          (io_snptFlushVec_180),
+    .io_flushVec_181          (io_snptFlushVec_181),
+    .io_flushVec_182          (io_snptFlushVec_182),
+    .io_flushVec_183          (io_snptFlushVec_183),
+    .io_flushVec_184          (io_snptFlushVec_184),
+    .io_flushVec_185          (io_snptFlushVec_185),
+    .io_flushVec_186          (io_snptFlushVec_186),
+    .io_flushVec_187          (io_snptFlushVec_187),
+    .io_flushVec_188          (io_snptFlushVec_188),
+    .io_flushVec_189          (io_snptFlushVec_189),
+    .io_flushVec_190          (io_snptFlushVec_190),
+    .io_flushVec_191          (io_snptFlushVec_191),
+    .io_flushVec_192          (io_snptFlushVec_192),
+    .io_flushVec_193          (io_snptFlushVec_193),
+    .io_flushVec_194          (io_snptFlushVec_194),
+    .io_flushVec_195          (io_snptFlushVec_195),
+    .io_flushVec_196          (io_snptFlushVec_196),
+    .io_flushVec_197          (io_snptFlushVec_197),
+    .io_flushVec_198          (io_snptFlushVec_198),
+    .io_flushVec_199          (io_snptFlushVec_199),
+    .io_flushVec_200          (io_snptFlushVec_200),
+    .io_flushVec_201          (io_snptFlushVec_201),
+    .io_flushVec_202          (io_snptFlushVec_202),
+    .io_flushVec_203          (io_snptFlushVec_203),
+    .io_flushVec_204          (io_snptFlushVec_204),
+    .io_flushVec_205          (io_snptFlushVec_205),
+    .io_flushVec_206          (io_snptFlushVec_206),
+    .io_flushVec_207          (io_snptFlushVec_207),
+    .io_flushVec_208          (io_snptFlushVec_208),
+    .io_flushVec_209          (io_snptFlushVec_209),
+    .io_flushVec_210          (io_snptFlushVec_210),
+    .io_flushVec_211          (io_snptFlushVec_211),
+    .io_flushVec_212          (io_snptFlushVec_212),
+    .io_flushVec_213          (io_snptFlushVec_213),
+    .io_flushVec_214          (io_snptFlushVec_214),
+    .io_flushVec_215          (io_snptFlushVec_215),
+    .io_flushVec_216          (io_snptFlushVec_216),
+    .io_flushVec_217          (io_snptFlushVec_217),
+    .io_flushVec_218          (io_snptFlushVec_218),
+    .io_flushVec_219          (io_snptFlushVec_219),
+    .io_flushVec_220          (io_snptFlushVec_220),
+    .io_flushVec_221          (io_snptFlushVec_221),
+    .io_flushVec_222          (io_snptFlushVec_222),
+    .io_flushVec_223          (io_snptFlushVec_223),
+    .io_flushVec_224          (io_snptFlushVec_224),
+    .io_flushVec_225          (io_snptFlushVec_225),
+    .io_flushVec_226          (io_snptFlushVec_226),
+    .io_flushVec_227          (io_snptFlushVec_227),
+    .io_flushVec_228          (io_snptFlushVec_228),
+    .io_flushVec_229          (io_snptFlushVec_229),
+    .io_flushVec_230          (io_snptFlushVec_230),
+    .io_flushVec_231          (io_snptFlushVec_231),
+    .io_flushVec_232          (io_snptFlushVec_232),
+    .io_flushVec_233          (io_snptFlushVec_233),
+    .io_flushVec_234          (io_snptFlushVec_234),
+    .io_flushVec_235          (io_snptFlushVec_235),
+    .io_flushVec_236          (io_snptFlushVec_236),
+    .io_flushVec_237          (io_snptFlushVec_237),
+    .io_flushVec_238          (io_snptFlushVec_238),
+    .io_flushVec_239          (io_snptFlushVec_239),
+    .io_flushVec_240          (io_snptFlushVec_240),
+    .io_flushVec_241          (io_snptFlushVec_241),
+    .io_flushVec_242          (io_snptFlushVec_242),
+    .io_flushVec_243          (io_snptFlushVec_243),
+    .io_flushVec_244          (io_snptFlushVec_244),
+    .io_flushVec_245          (io_snptFlushVec_245),
+    .io_flushVec_246          (io_snptFlushVec_246),
+    .io_flushVec_247          (io_snptFlushVec_247),
+    .io_flushVec_248          (io_snptFlushVec_248),
+    .io_flushVec_249          (io_snptFlushVec_249),
+    .io_flushVec_250          (io_snptFlushVec_250),
+    .io_flushVec_251          (io_snptFlushVec_251),
+    .io_flushVec_252          (io_snptFlushVec_252),
+    .io_flushVec_253          (io_snptFlushVec_253),
+    .io_flushVec_254          (io_snptFlushVec_254),
+    .io_flushVec_255          (io_snptFlushVec_255),
+    .io_snapshots_0_headPtr   (_snapshots_io_snapshots_0_headPtr),
+    .io_snapshots_1_headPtr   (_snapshots_io_snapshots_1_headPtr),
+    .io_snapshots_2_headPtr   (_snapshots_io_snapshots_2_headPtr),
+    .io_snapshots_3_headPtr   (_snapshots_io_snapshots_3_headPtr),
+    .io_snapshots_4_headPtr   (_snapshots_io_snapshots_4_headPtr),
+    .io_snapshots_5_headPtr   (_snapshots_io_snapshots_5_headPtr),
+    .io_snapshots_6_headPtr   (_snapshots_io_snapshots_6_headPtr),
+    .io_snapshots_7_headPtr   (_snapshots_io_snapshots_7_headPtr),
+    .io_snapshots_8_headPtr   (_snapshots_io_snapshots_8_headPtr),
+    .io_snapshots_9_headPtr   (_snapshots_io_snapshots_9_headPtr),
+    .io_snapshots_10_headPtr  (_snapshots_io_snapshots_10_headPtr),
+    .io_snapshots_11_headPtr  (_snapshots_io_snapshots_11_headPtr),
+    .io_snapshots_12_headPtr  (_snapshots_io_snapshots_12_headPtr),
+    .io_snapshots_13_headPtr  (_snapshots_io_snapshots_13_headPtr),
+    .io_snapshots_14_headPtr  (_snapshots_io_snapshots_14_headPtr),
+    .io_snapshots_15_headPtr  (_snapshots_io_snapshots_15_headPtr),
+    .io_snapshots_16_headPtr  (_snapshots_io_snapshots_16_headPtr),
+    .io_snapshots_17_headPtr  (_snapshots_io_snapshots_17_headPtr),
+    .io_snapshots_18_headPtr  (_snapshots_io_snapshots_18_headPtr),
+    .io_snapshots_19_headPtr  (_snapshots_io_snapshots_19_headPtr),
+    .io_snapshots_20_headPtr  (_snapshots_io_snapshots_20_headPtr),
+    .io_snapshots_21_headPtr  (_snapshots_io_snapshots_21_headPtr),
+    .io_snapshots_22_headPtr  (_snapshots_io_snapshots_22_headPtr),
+    .io_snapshots_23_headPtr  (_snapshots_io_snapshots_23_headPtr),
+    .io_snapshots_24_headPtr  (_snapshots_io_snapshots_24_headPtr),
+    .io_snapshots_25_headPtr  (_snapshots_io_snapshots_25_headPtr),
+    .io_snapshots_26_headPtr  (_snapshots_io_snapshots_26_headPtr),
+    .io_snapshots_27_headPtr  (_snapshots_io_snapshots_27_headPtr),
+    .io_snapshots_28_headPtr  (_snapshots_io_snapshots_28_headPtr),
+    .io_snapshots_29_headPtr  (_snapshots_io_snapshots_29_headPtr),
+    .io_snapshots_30_headPtr  (_snapshots_io_snapshots_30_headPtr),
+    .io_snapshots_31_headPtr  (_snapshots_io_snapshots_31_headPtr),
+    .io_snapshots_32_headPtr  (_snapshots_io_snapshots_32_headPtr),
+    .io_snapshots_33_headPtr  (_snapshots_io_snapshots_33_headPtr),
+    .io_snapshots_34_headPtr  (_snapshots_io_snapshots_34_headPtr),
+    .io_snapshots_35_headPtr  (_snapshots_io_snapshots_35_headPtr),
+    .io_snapshots_36_headPtr  (_snapshots_io_snapshots_36_headPtr),
+    .io_snapshots_37_headPtr  (_snapshots_io_snapshots_37_headPtr),
+    .io_snapshots_38_headPtr  (_snapshots_io_snapshots_38_headPtr),
+    .io_snapshots_39_headPtr  (_snapshots_io_snapshots_39_headPtr),
+    .io_snapshots_40_headPtr  (_snapshots_io_snapshots_40_headPtr),
+    .io_snapshots_41_headPtr  (_snapshots_io_snapshots_41_headPtr),
+    .io_snapshots_42_headPtr  (_snapshots_io_snapshots_42_headPtr),
+    .io_snapshots_43_headPtr  (_snapshots_io_snapshots_43_headPtr),
+    .io_snapshots_44_headPtr  (_snapshots_io_snapshots_44_headPtr),
+    .io_snapshots_45_headPtr  (_snapshots_io_snapshots_45_headPtr),
+    .io_snapshots_46_headPtr  (_snapshots_io_snapshots_46_headPtr),
+    .io_snapshots_47_headPtr  (_snapshots_io_snapshots_47_headPtr),
+    .io_snapshots_48_headPtr  (_snapshots_io_snapshots_48_headPtr),
+    .io_snapshots_49_headPtr  (_snapshots_io_snapshots_49_headPtr),
+    .io_snapshots_50_headPtr  (_snapshots_io_snapshots_50_headPtr),
+    .io_snapshots_51_headPtr  (_snapshots_io_snapshots_51_headPtr),
+    .io_snapshots_52_headPtr  (_snapshots_io_snapshots_52_headPtr),
+    .io_snapshots_53_headPtr  (_snapshots_io_snapshots_53_headPtr),
+    .io_snapshots_54_headPtr  (_snapshots_io_snapshots_54_headPtr),
+    .io_snapshots_55_headPtr  (_snapshots_io_snapshots_55_headPtr),
+    .io_snapshots_56_headPtr  (_snapshots_io_snapshots_56_headPtr),
+    .io_snapshots_57_headPtr  (_snapshots_io_snapshots_57_headPtr),
+    .io_snapshots_58_headPtr  (_snapshots_io_snapshots_58_headPtr),
+    .io_snapshots_59_headPtr  (_snapshots_io_snapshots_59_headPtr),
+    .io_snapshots_60_headPtr  (_snapshots_io_snapshots_60_headPtr),
+    .io_snapshots_61_headPtr  (_snapshots_io_snapshots_61_headPtr),
+    .io_snapshots_62_headPtr  (_snapshots_io_snapshots_62_headPtr),
+    .io_snapshots_63_headPtr  (_snapshots_io_snapshots_63_headPtr),
+    .io_snapshots_64_headPtr  (_snapshots_io_snapshots_64_headPtr),
+    .io_snapshots_65_headPtr  (_snapshots_io_snapshots_65_headPtr),
+    .io_snapshots_66_headPtr  (_snapshots_io_snapshots_66_headPtr),
+    .io_snapshots_67_headPtr  (_snapshots_io_snapshots_67_headPtr),
+    .io_snapshots_68_headPtr  (_snapshots_io_snapshots_68_headPtr),
+    .io_snapshots_69_headPtr  (_snapshots_io_snapshots_69_headPtr),
+    .io_snapshots_70_headPtr  (_snapshots_io_snapshots_70_headPtr),
+    .io_snapshots_71_headPtr  (_snapshots_io_snapshots_71_headPtr),
+    .io_snapshots_72_headPtr  (_snapshots_io_snapshots_72_headPtr),
+    .io_snapshots_73_headPtr  (_snapshots_io_snapshots_73_headPtr),
+    .io_snapshots_74_headPtr  (_snapshots_io_snapshots_74_headPtr),
+    .io_snapshots_75_headPtr  (_snapshots_io_snapshots_75_headPtr),
+    .io_snapshots_76_headPtr  (_snapshots_io_snapshots_76_headPtr),
+    .io_snapshots_77_headPtr  (_snapshots_io_snapshots_77_headPtr),
+    .io_snapshots_78_headPtr  (_snapshots_io_snapshots_78_headPtr),
+    .io_snapshots_79_headPtr  (_snapshots_io_snapshots_79_headPtr),
+    .io_snapshots_80_headPtr  (_snapshots_io_snapshots_80_headPtr),
+    .io_snapshots_81_headPtr  (_snapshots_io_snapshots_81_headPtr),
+    .io_snapshots_82_headPtr  (_snapshots_io_snapshots_82_headPtr),
+    .io_snapshots_83_headPtr  (_snapshots_io_snapshots_83_headPtr),
+    .io_snapshots_84_headPtr  (_snapshots_io_snapshots_84_headPtr),
+    .io_snapshots_85_headPtr  (_snapshots_io_snapshots_85_headPtr),
+    .io_snapshots_86_headPtr  (_snapshots_io_snapshots_86_headPtr),
+    .io_snapshots_87_headPtr  (_snapshots_io_snapshots_87_headPtr),
+    .io_snapshots_88_headPtr  (_snapshots_io_snapshots_88_headPtr),
+    .io_snapshots_89_headPtr  (_snapshots_io_snapshots_89_headPtr),
+    .io_snapshots_90_headPtr  (_snapshots_io_snapshots_90_headPtr),
+    .io_snapshots_91_headPtr  (_snapshots_io_snapshots_91_headPtr),
+    .io_snapshots_92_headPtr  (_snapshots_io_snapshots_92_headPtr),
+    .io_snapshots_93_headPtr  (_snapshots_io_snapshots_93_headPtr),
+    .io_snapshots_94_headPtr  (_snapshots_io_snapshots_94_headPtr),
+    .io_snapshots_95_headPtr  (_snapshots_io_snapshots_95_headPtr),
+    .io_snapshots_96_headPtr  (_snapshots_io_snapshots_96_headPtr),
+    .io_snapshots_97_headPtr  (_snapshots_io_snapshots_97_headPtr),
+    .io_snapshots_98_headPtr  (_snapshots_io_snapshots_98_headPtr),
+    .io_snapshots_99_headPtr  (_snapshots_io_snapshots_99_headPtr),
+    .io_snapshots_100_headPtr (_snapshots_io_snapshots_100_headPtr),
+    .io_snapshots_101_headPtr (_snapshots_io_snapshots_101_headPtr),
+    .io_snapshots_102_headPtr (_snapshots_io_snapshots_102_headPtr),
+    .io_snapshots_103_headPtr (_snapshots_io_snapshots_103_headPtr),
+    .io_snapshots_104_headPtr (_snapshots_io_snapshots_104_headPtr),
+    .io_snapshots_105_headPtr (_snapshots_io_snapshots_105_headPtr),
+    .io_snapshots_106_headPtr (_snapshots_io_snapshots_106_headPtr),
+    .io_snapshots_107_headPtr (_snapshots_io_snapshots_107_headPtr),
+    .io_snapshots_108_headPtr (_snapshots_io_snapshots_108_headPtr),
+    .io_snapshots_109_headPtr (_snapshots_io_snapshots_109_headPtr),
+    .io_snapshots_110_headPtr (_snapshots_io_snapshots_110_headPtr),
+    .io_snapshots_111_headPtr (_snapshots_io_snapshots_111_headPtr),
+    .io_snapshots_112_headPtr (_snapshots_io_snapshots_112_headPtr),
+    .io_snapshots_113_headPtr (_snapshots_io_snapshots_113_headPtr),
+    .io_snapshots_114_headPtr (_snapshots_io_snapshots_114_headPtr),
+    .io_snapshots_115_headPtr (_snapshots_io_snapshots_115_headPtr),
+    .io_snapshots_116_headPtr (_snapshots_io_snapshots_116_headPtr),
+    .io_snapshots_117_headPtr (_snapshots_io_snapshots_117_headPtr),
+    .io_snapshots_118_headPtr (_snapshots_io_snapshots_118_headPtr),
+    .io_snapshots_119_headPtr (_snapshots_io_snapshots_119_headPtr),
+    .io_snapshots_120_headPtr (_snapshots_io_snapshots_120_headPtr),
+    .io_snapshots_121_headPtr (_snapshots_io_snapshots_121_headPtr),
+    .io_snapshots_122_headPtr (_snapshots_io_snapshots_122_headPtr),
+    .io_snapshots_123_headPtr (_snapshots_io_snapshots_123_headPtr),
+    .io_snapshots_124_headPtr (_snapshots_io_snapshots_124_headPtr),
+    .io_snapshots_125_headPtr (_snapshots_io_snapshots_125_headPtr),
+    .io_snapshots_126_headPtr (_snapshots_io_snapshots_126_headPtr),
+    .io_snapshots_127_headPtr (_snapshots_io_snapshots_127_headPtr),
+    .io_snapshots_128_headPtr (_snapshots_io_snapshots_128_headPtr),
+    .io_snapshots_129_headPtr (_snapshots_io_snapshots_129_headPtr),
+    .io_snapshots_130_headPtr (_snapshots_io_snapshots_130_headPtr),
+    .io_snapshots_131_headPtr (_snapshots_io_snapshots_131_headPtr),
+    .io_snapshots_132_headPtr (_snapshots_io_snapshots_132_headPtr),
+    .io_snapshots_133_headPtr (_snapshots_io_snapshots_133_headPtr),
+    .io_snapshots_134_headPtr (_snapshots_io_snapshots_134_headPtr),
+    .io_snapshots_135_headPtr (_snapshots_io_snapshots_135_headPtr),
+    .io_snapshots_136_headPtr (_snapshots_io_snapshots_136_headPtr),
+    .io_snapshots_137_headPtr (_snapshots_io_snapshots_137_headPtr),
+    .io_snapshots_138_headPtr (_snapshots_io_snapshots_138_headPtr),
+    .io_snapshots_139_headPtr (_snapshots_io_snapshots_139_headPtr),
+    .io_snapshots_140_headPtr (_snapshots_io_snapshots_140_headPtr),
+    .io_snapshots_141_headPtr (_snapshots_io_snapshots_141_headPtr),
+    .io_snapshots_142_headPtr (_snapshots_io_snapshots_142_headPtr),
+    .io_snapshots_143_headPtr (_snapshots_io_snapshots_143_headPtr),
+    .io_snapshots_144_headPtr (_snapshots_io_snapshots_144_headPtr),
+    .io_snapshots_145_headPtr (_snapshots_io_snapshots_145_headPtr),
+    .io_snapshots_146_headPtr (_snapshots_io_snapshots_146_headPtr),
+    .io_snapshots_147_headPtr (_snapshots_io_snapshots_147_headPtr),
+    .io_snapshots_148_headPtr (_snapshots_io_snapshots_148_headPtr),
+    .io_snapshots_149_headPtr (_snapshots_io_snapshots_149_headPtr),
+    .io_snapshots_150_headPtr (_snapshots_io_snapshots_150_headPtr),
+    .io_snapshots_151_headPtr (_snapshots_io_snapshots_151_headPtr),
+    .io_snapshots_152_headPtr (_snapshots_io_snapshots_152_headPtr),
+    .io_snapshots_153_headPtr (_snapshots_io_snapshots_153_headPtr),
+    .io_snapshots_154_headPtr (_snapshots_io_snapshots_154_headPtr),
+    .io_snapshots_155_headPtr (_snapshots_io_snapshots_155_headPtr),
+    .io_snapshots_156_headPtr (_snapshots_io_snapshots_156_headPtr),
+    .io_snapshots_157_headPtr (_snapshots_io_snapshots_157_headPtr),
+    .io_snapshots_158_headPtr (_snapshots_io_snapshots_158_headPtr),
+    .io_snapshots_159_headPtr (_snapshots_io_snapshots_159_headPtr),
+    .io_snapshots_160_headPtr (_snapshots_io_snapshots_160_headPtr),
+    .io_snapshots_161_headPtr (_snapshots_io_snapshots_161_headPtr),
+    .io_snapshots_162_headPtr (_snapshots_io_snapshots_162_headPtr),
+    .io_snapshots_163_headPtr (_snapshots_io_snapshots_163_headPtr),
+    .io_snapshots_164_headPtr (_snapshots_io_snapshots_164_headPtr),
+    .io_snapshots_165_headPtr (_snapshots_io_snapshots_165_headPtr),
+    .io_snapshots_166_headPtr (_snapshots_io_snapshots_166_headPtr),
+    .io_snapshots_167_headPtr (_snapshots_io_snapshots_167_headPtr),
+    .io_snapshots_168_headPtr (_snapshots_io_snapshots_168_headPtr),
+    .io_snapshots_169_headPtr (_snapshots_io_snapshots_169_headPtr),
+    .io_snapshots_170_headPtr (_snapshots_io_snapshots_170_headPtr),
+    .io_snapshots_171_headPtr (_snapshots_io_snapshots_171_headPtr),
+    .io_snapshots_172_headPtr (_snapshots_io_snapshots_172_headPtr),
+    .io_snapshots_173_headPtr (_snapshots_io_snapshots_173_headPtr),
+    .io_snapshots_174_headPtr (_snapshots_io_snapshots_174_headPtr),
+    .io_snapshots_175_headPtr (_snapshots_io_snapshots_175_headPtr),
+    .io_snapshots_176_headPtr (_snapshots_io_snapshots_176_headPtr),
+    .io_snapshots_177_headPtr (_snapshots_io_snapshots_177_headPtr),
+    .io_snapshots_178_headPtr (_snapshots_io_snapshots_178_headPtr),
+    .io_snapshots_179_headPtr (_snapshots_io_snapshots_179_headPtr),
+    .io_snapshots_180_headPtr (_snapshots_io_snapshots_180_headPtr),
+    .io_snapshots_181_headPtr (_snapshots_io_snapshots_181_headPtr),
+    .io_snapshots_182_headPtr (_snapshots_io_snapshots_182_headPtr),
+    .io_snapshots_183_headPtr (_snapshots_io_snapshots_183_headPtr),
+    .io_snapshots_184_headPtr (_snapshots_io_snapshots_184_headPtr),
+    .io_snapshots_185_headPtr (_snapshots_io_snapshots_185_headPtr),
+    .io_snapshots_186_headPtr (_snapshots_io_snapshots_186_headPtr),
+    .io_snapshots_187_headPtr (_snapshots_io_snapshots_187_headPtr),
+    .io_snapshots_188_headPtr (_snapshots_io_snapshots_188_headPtr),
+    .io_snapshots_189_headPtr (_snapshots_io_snapshots_189_headPtr),
+    .io_snapshots_190_headPtr (_snapshots_io_snapshots_190_headPtr),
+    .io_snapshots_191_headPtr (_snapshots_io_snapshots_191_headPtr),
+    .io_snapshots_192_headPtr (_snapshots_io_snapshots_192_headPtr),
+    .io_snapshots_193_headPtr (_snapshots_io_snapshots_193_headPtr),
+    .io_snapshots_194_headPtr (_snapshots_io_snapshots_194_headPtr),
+    .io_snapshots_195_headPtr (_snapshots_io_snapshots_195_headPtr),
+    .io_snapshots_196_headPtr (_snapshots_io_snapshots_196_headPtr),
+    .io_snapshots_197_headPtr (_snapshots_io_snapshots_197_headPtr),
+    .io_snapshots_198_headPtr (_snapshots_io_snapshots_198_headPtr),
+    .io_snapshots_199_headPtr (_snapshots_io_snapshots_199_headPtr),
+    .io_snapshots_200_headPtr (_snapshots_io_snapshots_200_headPtr),
+    .io_snapshots_201_headPtr (_snapshots_io_snapshots_201_headPtr),
+    .io_snapshots_202_headPtr (_snapshots_io_snapshots_202_headPtr),
+    .io_snapshots_203_headPtr (_snapshots_io_snapshots_203_headPtr),
+    .io_snapshots_204_headPtr (_snapshots_io_snapshots_204_headPtr),
+    .io_snapshots_205_headPtr (_snapshots_io_snapshots_205_headPtr),
+    .io_snapshots_206_headPtr (_snapshots_io_snapshots_206_headPtr),
+    .io_snapshots_207_headPtr (_snapshots_io_snapshots_207_headPtr),
+    .io_snapshots_208_headPtr (_snapshots_io_snapshots_208_headPtr),
+    .io_snapshots_209_headPtr (_snapshots_io_snapshots_209_headPtr),
+    .io_snapshots_210_headPtr (_snapshots_io_snapshots_210_headPtr),
+    .io_snapshots_211_headPtr (_snapshots_io_snapshots_211_headPtr),
+    .io_snapshots_212_headPtr (_snapshots_io_snapshots_212_headPtr),
+    .io_snapshots_213_headPtr (_snapshots_io_snapshots_213_headPtr),
+    .io_snapshots_214_headPtr (_snapshots_io_snapshots_214_headPtr),
+    .io_snapshots_215_headPtr (_snapshots_io_snapshots_215_headPtr),
+    .io_snapshots_216_headPtr (_snapshots_io_snapshots_216_headPtr),
+    .io_snapshots_217_headPtr (_snapshots_io_snapshots_217_headPtr),
+    .io_snapshots_218_headPtr (_snapshots_io_snapshots_218_headPtr),
+    .io_snapshots_219_headPtr (_snapshots_io_snapshots_219_headPtr),
+    .io_snapshots_220_headPtr (_snapshots_io_snapshots_220_headPtr),
+    .io_snapshots_221_headPtr (_snapshots_io_snapshots_221_headPtr),
+    .io_snapshots_222_headPtr (_snapshots_io_snapshots_222_headPtr),
+    .io_snapshots_223_headPtr (_snapshots_io_snapshots_223_headPtr),
+    .io_snapshots_224_headPtr (_snapshots_io_snapshots_224_headPtr),
+    .io_snapshots_225_headPtr (_snapshots_io_snapshots_225_headPtr),
+    .io_snapshots_226_headPtr (_snapshots_io_snapshots_226_headPtr),
+    .io_snapshots_227_headPtr (_snapshots_io_snapshots_227_headPtr),
+    .io_snapshots_228_headPtr (_snapshots_io_snapshots_228_headPtr),
+    .io_snapshots_229_headPtr (_snapshots_io_snapshots_229_headPtr),
+    .io_snapshots_230_headPtr (_snapshots_io_snapshots_230_headPtr),
+    .io_snapshots_231_headPtr (_snapshots_io_snapshots_231_headPtr),
+    .io_snapshots_232_headPtr (_snapshots_io_snapshots_232_headPtr),
+    .io_snapshots_233_headPtr (_snapshots_io_snapshots_233_headPtr),
+    .io_snapshots_234_headPtr (_snapshots_io_snapshots_234_headPtr),
+    .io_snapshots_235_headPtr (_snapshots_io_snapshots_235_headPtr),
+    .io_snapshots_236_headPtr (_snapshots_io_snapshots_236_headPtr),
+    .io_snapshots_237_headPtr (_snapshots_io_snapshots_237_headPtr),
+    .io_snapshots_238_headPtr (_snapshots_io_snapshots_238_headPtr),
+    .io_snapshots_239_headPtr (_snapshots_io_snapshots_239_headPtr),
+    .io_snapshots_240_headPtr (_snapshots_io_snapshots_240_headPtr),
+    .io_snapshots_241_headPtr (_snapshots_io_snapshots_241_headPtr),
+    .io_snapshots_242_headPtr (_snapshots_io_snapshots_242_headPtr),
+    .io_snapshots_243_headPtr (_snapshots_io_snapshots_243_headPtr),
+    .io_snapshots_244_headPtr (_snapshots_io_snapshots_244_headPtr),
+    .io_snapshots_245_headPtr (_snapshots_io_snapshots_245_headPtr),
+    .io_snapshots_246_headPtr (_snapshots_io_snapshots_246_headPtr),
+    .io_snapshots_247_headPtr (_snapshots_io_snapshots_247_headPtr),
+    .io_snapshots_248_headPtr (_snapshots_io_snapshots_248_headPtr),
+    .io_snapshots_249_headPtr (_snapshots_io_snapshots_249_headPtr),
+    .io_snapshots_250_headPtr (_snapshots_io_snapshots_250_headPtr),
+    .io_snapshots_251_headPtr (_snapshots_io_snapshots_251_headPtr),
+    .io_snapshots_252_headPtr (_snapshots_io_snapshots_252_headPtr),
+    .io_snapshots_253_headPtr (_snapshots_io_snapshots_253_headPtr),
+    .io_snapshots_254_headPtr (_snapshots_io_snapshots_254_headPtr),
+    .io_snapshots_255_headPtr (_snapshots_io_snapshots_255_headPtr)
   );
-  assign io_allocatePhyReg_0 = _GEN_5[_GEN_4 > 9'h9F ? headPtr + 8'h60 : headPtr];	// backend/src/zaqal/backend/rename/FreeList.scala:17:7, :46:33, :50:24, :59:20, :60:{8,14,30}, :69:26
+  assign io_allocatePhyReg_0 = _GEN_5[_GEN > 9'h9F ? headPtr + 8'h60 : headPtr];	// backend/src/zaqal/backend/rename/FreeList.scala:16:7, :46:33, :50:24, :56:20, :57:{8,14,30}, :61:50, :70:26
   assign io_allocatePhyReg_1 =
     _GEN_5[io_allocatePhyReg_1_next > 9'h9F
              ? io_allocatePhyReg_1_next[7:0] + 8'h60
-             : io_allocatePhyReg_1_next[7:0]];	// backend/src/zaqal/backend/rename/FreeList.scala:17:7, :46:33, :59:20, :60:{8,14,30}, :69:26
+             : io_allocatePhyReg_1_next[7:0]];	// backend/src/zaqal/backend/rename/FreeList.scala:16:7, :46:33, :56:20, :57:{8,14,30}, :70:26
   assign io_allocatePhyReg_2 =
     _GEN_5[io_allocatePhyReg_2_next > 9'h9F
              ? io_allocatePhyReg_2_next[7:0] + 8'h60
-             : io_allocatePhyReg_2_next[7:0]];	// backend/src/zaqal/backend/rename/FreeList.scala:17:7, :46:33, :59:20, :60:{8,14,30}, :69:26
+             : io_allocatePhyReg_2_next[7:0]];	// backend/src/zaqal/backend/rename/FreeList.scala:16:7, :46:33, :56:20, :57:{8,14,30}, :70:26
   assign io_allocatePhyReg_3 =
     _GEN_5[io_allocatePhyReg_3_next > 9'h9F
              ? io_allocatePhyReg_3_next[7:0] + 8'h60
-             : io_allocatePhyReg_3_next[7:0]];	// backend/src/zaqal/backend/rename/FreeList.scala:17:7, :46:33, :59:20, :60:{8,14,30}, :69:26
+             : io_allocatePhyReg_3_next[7:0]];	// backend/src/zaqal/backend/rename/FreeList.scala:16:7, :46:33, :56:20, :57:{8,14,30}, :70:26
   assign io_allocatePhyReg_4 =
     _GEN_5[io_allocatePhyReg_4_next > 9'h9F
              ? io_allocatePhyReg_4_next[7:0] + 8'h60
-             : io_allocatePhyReg_4_next[7:0]];	// backend/src/zaqal/backend/rename/FreeList.scala:17:7, :46:33, :59:20, :60:{8,14,30}, :69:26
+             : io_allocatePhyReg_4_next[7:0]];	// backend/src/zaqal/backend/rename/FreeList.scala:16:7, :46:33, :56:20, :57:{8,14,30}, :70:26
   assign io_allocatePhyReg_5 =
     _GEN_5[io_allocatePhyReg_5_next > 9'h9F
              ? io_allocatePhyReg_5_next[7:0] + 8'h60
-             : io_allocatePhyReg_5_next[7:0]];	// backend/src/zaqal/backend/rename/FreeList.scala:17:7, :46:33, :59:20, :60:{8,14,30}, :69:26
-  assign io_canAllocate = io_canAllocate_0;	// backend/src/zaqal/backend/rename/FreeList.scala:17:7, :65:31
+             : io_allocatePhyReg_5_next[7:0]];	// backend/src/zaqal/backend/rename/FreeList.scala:16:7, :46:33, :56:20, :57:{8,14,30}, :70:26
+  assign io_canAllocate = io_canAllocate_0;	// backend/src/zaqal/backend/rename/FreeList.scala:16:7, :66:31
 endmodule
 

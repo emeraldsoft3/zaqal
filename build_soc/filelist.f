@@ -60,6 +60,7 @@ FPDivider.sv
 FPMisc.sv
 CLINT.sv
 PLIC.sv
+extern_modules.sv
 DataMem.sv
 FastTLB.sv
 CSRFile.sv
@@ -86,7 +87,6 @@ AgeDetector.sv
 IssueQueue.sv
 AgeDetector_1.sv
 IssueQueue_1.sv
-extern_modules.sv
 Rob.sv
 SkidBuffer_3.sv
 VectorDispatchQueue.sv
@@ -116,5 +116,6 @@ AXI4SPI.sv
 mem_2097152x64.sv
 AXI4RAM.sv
 ZaqalSoCTop.sv
+./DataMemDpi.v
 ./DifftestInstrCommit.v
 ./DifftestTrapEvent.v

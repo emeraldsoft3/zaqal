@@ -273,8 +273,8 @@ module StoreQueue(	// backend/src/zaqal/backend/lsu/StoreQueue.scala:20:7
          + {1'h0,
             {1'h0, {1'h0, entries_12_valid} + {1'h0, entries_13_valid}}
               + {1'h0, {1'h0, entries_14_valid} + {1'h0, entries_15_valid}}}};	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :81:20, :96:30
-  wire               canEnq = 5'h10 - currentCount > 5'h5;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:96:30, :111:{30,46}, :172:56
-  wire               _leaves_is_older_T_48 = entries_0_valid & entries_0_addr_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :177:30
+  wire               canEnq = 5'h10 - currentCount > 5'h5 & ~io_redirect_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:96:30, :111:{30,46,63,66}, :174:56
+  wire               _leaves_is_older_T_48 = entries_0_valid & entries_0_addr_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :179:30
   wire               _distA_T = entries_0_robIdx >= io_robHeadPtr;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :100:26
   wire [7:0]         _distA_T_3 = {1'h0, entries_0_robIdx} - 8'h80;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :81:20, :100:53
   wire [7:0]         _GEN = {1'h0, io_robHeadPtr};	// backend/src/zaqal/backend/lsu/StoreQueue.scala:81:20, :100:61
@@ -294,8 +294,8 @@ module StoreQueue(	// backend/src/zaqal/backend/lsu/StoreQueue.scala:20:7
                            ? _GEN_1
                            : _leaves_is_older_distB_T_108 - _GEN))
     & entries_0_paddr[63:3] == io_stlf_query_0_paddr[63:3]
-    & (|(entries_0_wmask & io_stlf_query_0_mask)) & entries_0_data_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :100:{20,26,53,61}, :101:{20,26,53,61}, :102:11, :177:{30,62}, :178:{32,46,72}, :179:{35,60}, :182:87
-  wire               _leaves_is_older_T_51 = entries_1_valid & entries_1_addr_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :177:30
+    & (|(entries_0_wmask & io_stlf_query_0_mask)) & entries_0_data_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :100:{20,26,53,61}, :101:{20,26,53,61}, :102:11, :179:{30,62}, :180:{32,46,72}, :181:{35,60}, :184:87
+  wire               _leaves_is_older_T_51 = entries_1_valid & entries_1_addr_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :179:30
   wire               _distA_T_7 = entries_1_robIdx >= io_robHeadPtr;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :100:26
   wire [7:0]         _distA_T_10 = {1'h0, entries_1_robIdx} - 8'h80;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :81:20, :100:53
   wire [7:0]         _GEN_2 = {1'h0, entries_1_robIdx - io_robHeadPtr};	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :81:20, :100:{20,40}
@@ -309,8 +309,8 @@ module StoreQueue(	// backend/src/zaqal/backend/lsu/StoreQueue.scala:20:7
                            ? _GEN_1
                            : _leaves_is_older_distB_T_108 - _GEN))
     & entries_1_paddr[63:3] == io_stlf_query_0_paddr[63:3]
-    & (|(entries_1_wmask & io_stlf_query_0_mask)) & entries_1_data_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :100:{20,26,53,61}, :101:{20,26,53,61}, :102:11, :177:{30,62}, :178:{32,46,72}, :179:{35,60}, :182:87
-  wire               _leaves_is_older_T_54 = entries_2_valid & entries_2_addr_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :177:30
+    & (|(entries_1_wmask & io_stlf_query_0_mask)) & entries_1_data_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :100:{20,26,53,61}, :101:{20,26,53,61}, :102:11, :179:{30,62}, :180:{32,46,72}, :181:{35,60}, :184:87
+  wire               _leaves_is_older_T_54 = entries_2_valid & entries_2_addr_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :179:30
   wire               _distA_T_14 = entries_2_robIdx >= io_robHeadPtr;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :100:26
   wire [7:0]         _distA_T_17 = {1'h0, entries_2_robIdx} - 8'h80;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :81:20, :100:53
   wire [7:0]         _GEN_3 = {1'h0, entries_2_robIdx - io_robHeadPtr};	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :81:20, :100:{20,40}
@@ -324,8 +324,8 @@ module StoreQueue(	// backend/src/zaqal/backend/lsu/StoreQueue.scala:20:7
                            ? _GEN_1
                            : _leaves_is_older_distB_T_108 - _GEN))
     & entries_2_paddr[63:3] == io_stlf_query_0_paddr[63:3]
-    & (|(entries_2_wmask & io_stlf_query_0_mask)) & entries_2_data_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :100:{20,26,53,61}, :101:{20,26,53,61}, :102:11, :177:{30,62}, :178:{32,46,72}, :179:{35,60}, :182:87
-  wire               _leaves_is_older_T_57 = entries_3_valid & entries_3_addr_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :177:30
+    & (|(entries_2_wmask & io_stlf_query_0_mask)) & entries_2_data_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :100:{20,26,53,61}, :101:{20,26,53,61}, :102:11, :179:{30,62}, :180:{32,46,72}, :181:{35,60}, :184:87
+  wire               _leaves_is_older_T_57 = entries_3_valid & entries_3_addr_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :179:30
   wire               _distA_T_21 = entries_3_robIdx >= io_robHeadPtr;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :100:26
   wire [7:0]         _distA_T_24 = {1'h0, entries_3_robIdx} - 8'h80;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :81:20, :100:53
   wire [7:0]         _GEN_4 = {1'h0, entries_3_robIdx - io_robHeadPtr};	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :81:20, :100:{20,40}
@@ -339,8 +339,8 @@ module StoreQueue(	// backend/src/zaqal/backend/lsu/StoreQueue.scala:20:7
                            ? _GEN_1
                            : _leaves_is_older_distB_T_108 - _GEN))
     & entries_3_paddr[63:3] == io_stlf_query_0_paddr[63:3]
-    & (|(entries_3_wmask & io_stlf_query_0_mask)) & entries_3_data_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :100:{20,26,53,61}, :101:{20,26,53,61}, :102:11, :177:{30,62}, :178:{32,46,72}, :179:{35,60}, :182:87
-  wire               _leaves_is_older_T_60 = entries_4_valid & entries_4_addr_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :177:30
+    & (|(entries_3_wmask & io_stlf_query_0_mask)) & entries_3_data_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :100:{20,26,53,61}, :101:{20,26,53,61}, :102:11, :179:{30,62}, :180:{32,46,72}, :181:{35,60}, :184:87
+  wire               _leaves_is_older_T_60 = entries_4_valid & entries_4_addr_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :179:30
   wire               _distA_T_28 = entries_4_robIdx >= io_robHeadPtr;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :100:26
   wire [7:0]         _distA_T_31 = {1'h0, entries_4_robIdx} - 8'h80;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :81:20, :100:53
   wire [7:0]         _GEN_5 = {1'h0, entries_4_robIdx - io_robHeadPtr};	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :81:20, :100:{20,40}
@@ -354,8 +354,8 @@ module StoreQueue(	// backend/src/zaqal/backend/lsu/StoreQueue.scala:20:7
                            ? _GEN_1
                            : _leaves_is_older_distB_T_108 - _GEN))
     & entries_4_paddr[63:3] == io_stlf_query_0_paddr[63:3]
-    & (|(entries_4_wmask & io_stlf_query_0_mask)) & entries_4_data_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :100:{20,26,53,61}, :101:{20,26,53,61}, :102:11, :177:{30,62}, :178:{32,46,72}, :179:{35,60}, :182:87
-  wire               _leaves_is_older_T_63 = entries_5_valid & entries_5_addr_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :177:30
+    & (|(entries_4_wmask & io_stlf_query_0_mask)) & entries_4_data_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :100:{20,26,53,61}, :101:{20,26,53,61}, :102:11, :179:{30,62}, :180:{32,46,72}, :181:{35,60}, :184:87
+  wire               _leaves_is_older_T_63 = entries_5_valid & entries_5_addr_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :179:30
   wire               _distA_T_35 = entries_5_robIdx >= io_robHeadPtr;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :100:26
   wire [7:0]         _distA_T_38 = {1'h0, entries_5_robIdx} - 8'h80;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :81:20, :100:53
   wire [7:0]         _GEN_6 = {1'h0, entries_5_robIdx - io_robHeadPtr};	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :81:20, :100:{20,40}
@@ -369,8 +369,8 @@ module StoreQueue(	// backend/src/zaqal/backend/lsu/StoreQueue.scala:20:7
                            ? _GEN_1
                            : _leaves_is_older_distB_T_108 - _GEN))
     & entries_5_paddr[63:3] == io_stlf_query_0_paddr[63:3]
-    & (|(entries_5_wmask & io_stlf_query_0_mask)) & entries_5_data_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :100:{20,26,53,61}, :101:{20,26,53,61}, :102:11, :177:{30,62}, :178:{32,46,72}, :179:{35,60}, :182:87
-  wire               _leaves_is_older_T_66 = entries_6_valid & entries_6_addr_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :177:30
+    & (|(entries_5_wmask & io_stlf_query_0_mask)) & entries_5_data_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :100:{20,26,53,61}, :101:{20,26,53,61}, :102:11, :179:{30,62}, :180:{32,46,72}, :181:{35,60}, :184:87
+  wire               _leaves_is_older_T_66 = entries_6_valid & entries_6_addr_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :179:30
   wire               _distA_T_42 = entries_6_robIdx >= io_robHeadPtr;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :100:26
   wire [7:0]         _distA_T_45 = {1'h0, entries_6_robIdx} - 8'h80;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :81:20, :100:53
   wire [7:0]         _GEN_7 = {1'h0, entries_6_robIdx - io_robHeadPtr};	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :81:20, :100:{20,40}
@@ -384,8 +384,8 @@ module StoreQueue(	// backend/src/zaqal/backend/lsu/StoreQueue.scala:20:7
                            ? _GEN_1
                            : _leaves_is_older_distB_T_108 - _GEN))
     & entries_6_paddr[63:3] == io_stlf_query_0_paddr[63:3]
-    & (|(entries_6_wmask & io_stlf_query_0_mask)) & entries_6_data_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :100:{20,26,53,61}, :101:{20,26,53,61}, :102:11, :177:{30,62}, :178:{32,46,72}, :179:{35,60}, :182:87
-  wire               _leaves_is_older_T_69 = entries_7_valid & entries_7_addr_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :177:30
+    & (|(entries_6_wmask & io_stlf_query_0_mask)) & entries_6_data_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :100:{20,26,53,61}, :101:{20,26,53,61}, :102:11, :179:{30,62}, :180:{32,46,72}, :181:{35,60}, :184:87
+  wire               _leaves_is_older_T_69 = entries_7_valid & entries_7_addr_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :179:30
   wire               _distA_T_49 = entries_7_robIdx >= io_robHeadPtr;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :100:26
   wire [7:0]         _distA_T_52 = {1'h0, entries_7_robIdx} - 8'h80;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :81:20, :100:53
   wire [7:0]         _GEN_8 = {1'h0, entries_7_robIdx - io_robHeadPtr};	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :81:20, :100:{20,40}
@@ -399,8 +399,8 @@ module StoreQueue(	// backend/src/zaqal/backend/lsu/StoreQueue.scala:20:7
                            ? _GEN_1
                            : _leaves_is_older_distB_T_108 - _GEN))
     & entries_7_paddr[63:3] == io_stlf_query_0_paddr[63:3]
-    & (|(entries_7_wmask & io_stlf_query_0_mask)) & entries_7_data_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :100:{20,26,53,61}, :101:{20,26,53,61}, :102:11, :177:{30,62}, :178:{32,46,72}, :179:{35,60}, :182:87
-  wire               _leaves_is_older_T_72 = entries_8_valid & entries_8_addr_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :177:30
+    & (|(entries_7_wmask & io_stlf_query_0_mask)) & entries_7_data_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :100:{20,26,53,61}, :101:{20,26,53,61}, :102:11, :179:{30,62}, :180:{32,46,72}, :181:{35,60}, :184:87
+  wire               _leaves_is_older_T_72 = entries_8_valid & entries_8_addr_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :179:30
   wire               _distA_T_56 = entries_8_robIdx >= io_robHeadPtr;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :100:26
   wire [7:0]         _distA_T_59 = {1'h0, entries_8_robIdx} - 8'h80;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :81:20, :100:53
   wire [7:0]         _GEN_9 = {1'h0, entries_8_robIdx - io_robHeadPtr};	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :81:20, :100:{20,40}
@@ -414,8 +414,8 @@ module StoreQueue(	// backend/src/zaqal/backend/lsu/StoreQueue.scala:20:7
                            ? _GEN_1
                            : _leaves_is_older_distB_T_108 - _GEN))
     & entries_8_paddr[63:3] == io_stlf_query_0_paddr[63:3]
-    & (|(entries_8_wmask & io_stlf_query_0_mask)) & entries_8_data_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :100:{20,26,53,61}, :101:{20,26,53,61}, :102:11, :177:{30,62}, :178:{32,46,72}, :179:{35,60}, :182:87
-  wire               _leaves_is_older_T_75 = entries_9_valid & entries_9_addr_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :177:30
+    & (|(entries_8_wmask & io_stlf_query_0_mask)) & entries_8_data_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :100:{20,26,53,61}, :101:{20,26,53,61}, :102:11, :179:{30,62}, :180:{32,46,72}, :181:{35,60}, :184:87
+  wire               _leaves_is_older_T_75 = entries_9_valid & entries_9_addr_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :179:30
   wire               _distA_T_63 = entries_9_robIdx >= io_robHeadPtr;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :100:26
   wire [7:0]         _distA_T_66 = {1'h0, entries_9_robIdx} - 8'h80;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :81:20, :100:53
   wire [7:0]         _GEN_10 = {1'h0, entries_9_robIdx - io_robHeadPtr};	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :81:20, :100:{20,40}
@@ -429,8 +429,8 @@ module StoreQueue(	// backend/src/zaqal/backend/lsu/StoreQueue.scala:20:7
                            ? _GEN_1
                            : _leaves_is_older_distB_T_108 - _GEN))
     & entries_9_paddr[63:3] == io_stlf_query_0_paddr[63:3]
-    & (|(entries_9_wmask & io_stlf_query_0_mask)) & entries_9_data_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :100:{20,26,53,61}, :101:{20,26,53,61}, :102:11, :177:{30,62}, :178:{32,46,72}, :179:{35,60}, :182:87
-  wire               _leaves_is_older_T_78 = entries_10_valid & entries_10_addr_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :177:30
+    & (|(entries_9_wmask & io_stlf_query_0_mask)) & entries_9_data_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :100:{20,26,53,61}, :101:{20,26,53,61}, :102:11, :179:{30,62}, :180:{32,46,72}, :181:{35,60}, :184:87
+  wire               _leaves_is_older_T_78 = entries_10_valid & entries_10_addr_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :179:30
   wire               _distA_T_70 = entries_10_robIdx >= io_robHeadPtr;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :100:26
   wire [7:0]         _distA_T_73 = {1'h0, entries_10_robIdx} - 8'h80;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :81:20, :100:53
   wire [7:0]         _GEN_11 = {1'h0, entries_10_robIdx - io_robHeadPtr};	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :81:20, :100:{20,40}
@@ -444,8 +444,8 @@ module StoreQueue(	// backend/src/zaqal/backend/lsu/StoreQueue.scala:20:7
                            ? _GEN_1
                            : _leaves_is_older_distB_T_108 - _GEN))
     & entries_10_paddr[63:3] == io_stlf_query_0_paddr[63:3]
-    & (|(entries_10_wmask & io_stlf_query_0_mask)) & entries_10_data_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :100:{20,26,53,61}, :101:{20,26,53,61}, :102:11, :177:{30,62}, :178:{32,46,72}, :179:{35,60}, :182:87
-  wire               _leaves_is_older_T_81 = entries_11_valid & entries_11_addr_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :177:30
+    & (|(entries_10_wmask & io_stlf_query_0_mask)) & entries_10_data_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :100:{20,26,53,61}, :101:{20,26,53,61}, :102:11, :179:{30,62}, :180:{32,46,72}, :181:{35,60}, :184:87
+  wire               _leaves_is_older_T_81 = entries_11_valid & entries_11_addr_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :179:30
   wire               _distA_T_77 = entries_11_robIdx >= io_robHeadPtr;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :100:26
   wire [7:0]         _distA_T_80 = {1'h0, entries_11_robIdx} - 8'h80;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :81:20, :100:53
   wire [7:0]         _GEN_12 = {1'h0, entries_11_robIdx - io_robHeadPtr};	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :81:20, :100:{20,40}
@@ -459,8 +459,8 @@ module StoreQueue(	// backend/src/zaqal/backend/lsu/StoreQueue.scala:20:7
                            ? _GEN_1
                            : _leaves_is_older_distB_T_108 - _GEN))
     & entries_11_paddr[63:3] == io_stlf_query_0_paddr[63:3]
-    & (|(entries_11_wmask & io_stlf_query_0_mask)) & entries_11_data_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :100:{20,26,53,61}, :101:{20,26,53,61}, :102:11, :177:{30,62}, :178:{32,46,72}, :179:{35,60}, :182:87
-  wire               _leaves_is_older_T_84 = entries_12_valid & entries_12_addr_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :177:30
+    & (|(entries_11_wmask & io_stlf_query_0_mask)) & entries_11_data_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :100:{20,26,53,61}, :101:{20,26,53,61}, :102:11, :179:{30,62}, :180:{32,46,72}, :181:{35,60}, :184:87
+  wire               _leaves_is_older_T_84 = entries_12_valid & entries_12_addr_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :179:30
   wire               _distA_T_84 = entries_12_robIdx >= io_robHeadPtr;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :100:26
   wire [7:0]         _distA_T_87 = {1'h0, entries_12_robIdx} - 8'h80;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :81:20, :100:53
   wire [7:0]         _GEN_13 = {1'h0, entries_12_robIdx - io_robHeadPtr};	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :81:20, :100:{20,40}
@@ -474,8 +474,8 @@ module StoreQueue(	// backend/src/zaqal/backend/lsu/StoreQueue.scala:20:7
                            ? _GEN_1
                            : _leaves_is_older_distB_T_108 - _GEN))
     & entries_12_paddr[63:3] == io_stlf_query_0_paddr[63:3]
-    & (|(entries_12_wmask & io_stlf_query_0_mask)) & entries_12_data_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :100:{20,26,53,61}, :101:{20,26,53,61}, :102:11, :177:{30,62}, :178:{32,46,72}, :179:{35,60}, :182:87
-  wire               _leaves_is_older_T_87 = entries_13_valid & entries_13_addr_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :177:30
+    & (|(entries_12_wmask & io_stlf_query_0_mask)) & entries_12_data_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :100:{20,26,53,61}, :101:{20,26,53,61}, :102:11, :179:{30,62}, :180:{32,46,72}, :181:{35,60}, :184:87
+  wire               _leaves_is_older_T_87 = entries_13_valid & entries_13_addr_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :179:30
   wire               _distA_T_91 = entries_13_robIdx >= io_robHeadPtr;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :100:26
   wire [7:0]         _distA_T_94 = {1'h0, entries_13_robIdx} - 8'h80;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :81:20, :100:53
   wire [7:0]         _GEN_14 = {1'h0, entries_13_robIdx - io_robHeadPtr};	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :81:20, :100:{20,40}
@@ -489,8 +489,8 @@ module StoreQueue(	// backend/src/zaqal/backend/lsu/StoreQueue.scala:20:7
                            ? _GEN_1
                            : _leaves_is_older_distB_T_108 - _GEN))
     & entries_13_paddr[63:3] == io_stlf_query_0_paddr[63:3]
-    & (|(entries_13_wmask & io_stlf_query_0_mask)) & entries_13_data_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :100:{20,26,53,61}, :101:{20,26,53,61}, :102:11, :177:{30,62}, :178:{32,46,72}, :179:{35,60}, :182:87
-  wire               _leaves_is_older_T_90 = entries_14_valid & entries_14_addr_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :177:30
+    & (|(entries_13_wmask & io_stlf_query_0_mask)) & entries_13_data_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :100:{20,26,53,61}, :101:{20,26,53,61}, :102:11, :179:{30,62}, :180:{32,46,72}, :181:{35,60}, :184:87
+  wire               _leaves_is_older_T_90 = entries_14_valid & entries_14_addr_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :179:30
   wire               _distA_T_98 = entries_14_robIdx >= io_robHeadPtr;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :100:26
   wire [7:0]         _distA_T_101 = {1'h0, entries_14_robIdx} - 8'h80;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :81:20, :100:53
   wire [7:0]         _GEN_15 = {1'h0, entries_14_robIdx - io_robHeadPtr};	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :81:20, :100:{20,40}
@@ -504,8 +504,8 @@ module StoreQueue(	// backend/src/zaqal/backend/lsu/StoreQueue.scala:20:7
                            ? _GEN_1
                            : _leaves_is_older_distB_T_108 - _GEN))
     & entries_14_paddr[63:3] == io_stlf_query_0_paddr[63:3]
-    & (|(entries_14_wmask & io_stlf_query_0_mask)) & entries_14_data_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :100:{20,26,53,61}, :101:{20,26,53,61}, :102:11, :177:{30,62}, :178:{32,46,72}, :179:{35,60}, :182:87
-  wire               _leaves_is_older_T_93 = entries_15_valid & entries_15_addr_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :177:30
+    & (|(entries_14_wmask & io_stlf_query_0_mask)) & entries_14_data_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :100:{20,26,53,61}, :101:{20,26,53,61}, :102:11, :179:{30,62}, :180:{32,46,72}, :181:{35,60}, :184:87
+  wire               _leaves_is_older_T_93 = entries_15_valid & entries_15_addr_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :179:30
   wire               _distA_T_105 = entries_15_robIdx >= io_robHeadPtr;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :100:26
   wire [7:0]         _distA_T_108 = {1'h0, entries_15_robIdx} - 8'h80;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :81:20, :100:53
   wire [7:0]         _GEN_16 = {1'h0, entries_15_robIdx - io_robHeadPtr};	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :81:20, :100:{20,40}
@@ -519,31 +519,31 @@ module StoreQueue(	// backend/src/zaqal/backend/lsu/StoreQueue.scala:20:7
                            ? _GEN_1
                            : _leaves_is_older_distB_T_108 - _GEN))
     & entries_15_paddr[63:3] == io_stlf_query_0_paddr[63:3]
-    & (|(entries_15_wmask & io_stlf_query_0_mask)) & entries_15_data_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :100:{20,26,53,61}, :101:{20,26,53,61}, :102:11, :177:{30,62}, :178:{32,46,72}, :179:{35,60}, :182:87
-  wire [4:0]         _GEN_17 = {1'h0, deqPtr};	// backend/src/zaqal/backend/lsu/StoreQueue.scala:81:20, :94:23, :172:85
-  wire [4:0]         _GEN_18 = {1'h0, 4'h0 - deqPtr};	// backend/src/zaqal/backend/lsu/StoreQueue.scala:81:20, :93:23, :94:23, :172:{36,56}
+    & (|(entries_15_wmask & io_stlf_query_0_mask)) & entries_15_data_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :100:{20,26,53,61}, :101:{20,26,53,61}, :102:11, :179:{30,62}, :180:{32,46,72}, :181:{35,60}, :184:87
+  wire [4:0]         _GEN_17 = {1'h0, deqPtr};	// backend/src/zaqal/backend/lsu/StoreQueue.scala:81:20, :94:23, :174:85
+  wire [4:0]         _GEN_18 = {1'h0, 4'h0 - deqPtr};	// backend/src/zaqal/backend/lsu/StoreQueue.scala:81:20, :93:23, :94:23, :174:{36,56}
   wire               winner_b_is_younger =
     (deqPtr < 4'h2
        ? {1'h0, 4'h1 - deqPtr}
-       : 5'h11 - _GEN_17) > (deqPtr == 4'h0 ? _GEN_18 : 5'h10 - _GEN_17);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:81:20, :93:23, :94:23, :111:30, :121:38, :172:{36,41,56,85}, :192:40
+       : 5'h11 - _GEN_17) > (deqPtr == 4'h0 ? _GEN_18 : 5'h10 - _GEN_17);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:81:20, :93:23, :94:23, :111:30, :121:38, :174:{36,41,56,85}, :194:40
   wire               winner_younger_valid =
-    winner_b_is_younger ? leaves_1_valid : leaves_0_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:182:87, :192:40, :193:24
+    winner_b_is_younger ? leaves_1_valid : leaves_0_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:184:87, :194:40, :195:24
   wire [127:0]       winner_younger_wdata =
-    winner_b_is_younger ? entries_1_wdata : entries_0_wdata;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :192:40, :193:24
+    winner_b_is_younger ? entries_1_wdata : entries_0_wdata;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :194:40, :195:24
   wire [15:0]        winner_younger_wmask =
-    winner_b_is_younger ? entries_1_wmask : entries_0_wmask;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :192:40, :193:24
+    winner_b_is_younger ? entries_1_wmask : entries_0_wmask;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :194:40, :195:24
   wire               winner_older_valid =
-    winner_b_is_younger ? leaves_0_valid : leaves_1_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:182:87, :192:40, :194:24
+    winner_b_is_younger ? leaves_0_valid : leaves_1_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:184:87, :194:40, :196:24
   wire [127:0]       winner_older_wdata =
-    winner_b_is_younger ? entries_0_wdata : entries_1_wdata;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :192:40, :194:24
+    winner_b_is_younger ? entries_0_wdata : entries_1_wdata;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :194:40, :196:24
   wire [15:0]        winner_older_wmask =
-    winner_b_is_younger ? entries_0_wmask : entries_1_wmask;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :192:40, :194:24
-  wire               winner_res_valid = leaves_0_valid | leaves_1_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:182:87, :196:29
-  wire               _GEN_19 = winner_younger_valid ^ ~winner_b_is_younger;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:192:40, :193:24, :197:24
-  wire [3:0]         winner_res_idx = {3'h0, _GEN_19};	// backend/src/zaqal/backend/lsu/StoreQueue.scala:117:28, :197:24
+    winner_b_is_younger ? entries_0_wmask : entries_1_wmask;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :194:40, :196:24
+  wire               winner_res_valid = leaves_0_valid | leaves_1_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:184:87, :198:29
+  wire               _GEN_19 = winner_younger_valid ^ ~winner_b_is_younger;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:194:40, :195:24, :199:24
+  wire [3:0]         winner_res_idx = {3'h0, _GEN_19};	// backend/src/zaqal/backend/lsu/StoreQueue.scala:117:28, :199:24
   wire [15:0]        winner_res_wmask =
     (winner_older_valid ? winner_older_wmask : 16'h0)
-    | (winner_younger_valid ? winner_younger_wmask : 16'h0);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:88:20, :193:24, :194:24, :199:{24,56,61}
+    | (winner_younger_valid ? winner_younger_wmask : 16'h0);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:88:20, :195:24, :196:24, :201:{24,56,61}
   wire [127:0]       winner_res_wdata =
     {winner_younger_valid & winner_younger_wmask[15]
        ? winner_younger_wdata[127:120]
@@ -592,29 +592,29 @@ module StoreQueue(	// backend/src/zaqal/backend/lsu/StoreQueue.scala:20:7
        : winner_older_valid & winner_older_wmask[1] ? winner_older_wdata[15:8] : 8'h0,
      winner_younger_valid & winner_younger_wmask[0]
        ? winner_younger_wdata[7:0]
-       : winner_older_valid & winner_older_wmask[0] ? winner_older_wdata[7:0] : 8'h0};	// backend/src/zaqal/backend/lsu/StoreQueue.scala:193:24, :194:24, :202:{46,62}, :203:{44,58}, :204:45, :205:43, :206:{12,48}, :208:24
+       : winner_older_valid & winner_older_wmask[0] ? winner_older_wdata[7:0] : 8'h0};	// backend/src/zaqal/backend/lsu/StoreQueue.scala:195:24, :196:24, :204:{46,62}, :205:{44,58}, :206:45, :207:43, :208:{12,48}, :210:24
   wire               winner_b_is_younger_1 =
     (deqPtr < 4'h4
        ? {1'h0, 4'h3 - deqPtr}
-       : 5'h13 - _GEN_17) > (deqPtr < 4'h3 ? {1'h0, 4'h2 - deqPtr} : 5'h12 - _GEN_17);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:81:20, :94:23, :121:38, :172:{36,41,56,85}, :192:40
+       : 5'h13 - _GEN_17) > (deqPtr < 4'h3 ? {1'h0, 4'h2 - deqPtr} : 5'h12 - _GEN_17);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:81:20, :94:23, :121:38, :174:{36,41,56,85}, :194:40
   wire               winner_younger_1_valid =
-    winner_b_is_younger_1 ? leaves_3_valid : leaves_2_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:182:87, :192:40, :193:24
+    winner_b_is_younger_1 ? leaves_3_valid : leaves_2_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:184:87, :194:40, :195:24
   wire [127:0]       winner_younger_1_wdata =
-    winner_b_is_younger_1 ? entries_3_wdata : entries_2_wdata;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :192:40, :193:24
+    winner_b_is_younger_1 ? entries_3_wdata : entries_2_wdata;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :194:40, :195:24
   wire [15:0]        winner_younger_1_wmask =
-    winner_b_is_younger_1 ? entries_3_wmask : entries_2_wmask;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :192:40, :193:24
+    winner_b_is_younger_1 ? entries_3_wmask : entries_2_wmask;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :194:40, :195:24
   wire               winner_older_1_valid =
-    winner_b_is_younger_1 ? leaves_2_valid : leaves_3_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:182:87, :192:40, :194:24
+    winner_b_is_younger_1 ? leaves_2_valid : leaves_3_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:184:87, :194:40, :196:24
   wire [127:0]       winner_older_1_wdata =
-    winner_b_is_younger_1 ? entries_2_wdata : entries_3_wdata;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :192:40, :194:24
+    winner_b_is_younger_1 ? entries_2_wdata : entries_3_wdata;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :194:40, :196:24
   wire [15:0]        winner_older_1_wmask =
-    winner_b_is_younger_1 ? entries_2_wmask : entries_3_wmask;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :192:40, :194:24
-  wire               winner_res_1_valid = leaves_2_valid | leaves_3_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:182:87, :196:29
-  wire               _GEN_20 = winner_younger_1_valid ^ ~winner_b_is_younger_1;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:192:40, :193:24, :197:24
-  wire [3:0]         winner_res_1_idx = {3'h1, _GEN_20};	// backend/src/zaqal/backend/lsu/StoreQueue.scala:193:24, :197:24
+    winner_b_is_younger_1 ? entries_2_wmask : entries_3_wmask;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :194:40, :196:24
+  wire               winner_res_1_valid = leaves_2_valid | leaves_3_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:184:87, :198:29
+  wire               _GEN_20 = winner_younger_1_valid ^ ~winner_b_is_younger_1;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:194:40, :195:24, :199:24
+  wire [3:0]         winner_res_1_idx = {3'h1, _GEN_20};	// backend/src/zaqal/backend/lsu/StoreQueue.scala:195:24, :199:24
   wire [15:0]        winner_res_1_wmask =
     (winner_older_1_valid ? winner_older_1_wmask : 16'h0)
-    | (winner_younger_1_valid ? winner_younger_1_wmask : 16'h0);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:88:20, :193:24, :194:24, :199:{24,56,61}
+    | (winner_younger_1_valid ? winner_younger_1_wmask : 16'h0);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:88:20, :195:24, :196:24, :201:{24,56,61}
   wire [127:0]       winner_res_1_wdata =
     {winner_younger_1_valid & winner_younger_1_wmask[15]
        ? winner_younger_1_wdata[127:120]
@@ -695,29 +695,29 @@ module StoreQueue(	// backend/src/zaqal/backend/lsu/StoreQueue.scala:20:7
        ? winner_younger_1_wdata[7:0]
        : winner_older_1_valid & winner_older_1_wmask[0]
            ? winner_older_1_wdata[7:0]
-           : 8'h0};	// backend/src/zaqal/backend/lsu/StoreQueue.scala:193:24, :194:24, :202:{46,62}, :203:{44,58}, :204:45, :205:43, :206:{12,48}, :208:24
+           : 8'h0};	// backend/src/zaqal/backend/lsu/StoreQueue.scala:195:24, :196:24, :204:{46,62}, :205:{44,58}, :206:45, :207:43, :208:{12,48}, :210:24
   wire               winner_b_is_younger_2 =
     (deqPtr < 4'h6
        ? {1'h0, 4'h5 - deqPtr}
-       : 5'h15 - _GEN_17) > (deqPtr < 4'h5 ? {1'h0, 4'h4 - deqPtr} : 5'h14 - _GEN_17);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:81:20, :94:23, :121:38, :172:{36,41,56,85}, :192:40
+       : 5'h15 - _GEN_17) > (deqPtr < 4'h5 ? {1'h0, 4'h4 - deqPtr} : 5'h14 - _GEN_17);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:81:20, :94:23, :121:38, :174:{36,41,56,85}, :194:40
   wire               winner_younger_2_valid =
-    winner_b_is_younger_2 ? leaves_5_valid : leaves_4_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:182:87, :192:40, :193:24
+    winner_b_is_younger_2 ? leaves_5_valid : leaves_4_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:184:87, :194:40, :195:24
   wire [127:0]       winner_younger_2_wdata =
-    winner_b_is_younger_2 ? entries_5_wdata : entries_4_wdata;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :192:40, :193:24
+    winner_b_is_younger_2 ? entries_5_wdata : entries_4_wdata;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :194:40, :195:24
   wire [15:0]        winner_younger_2_wmask =
-    winner_b_is_younger_2 ? entries_5_wmask : entries_4_wmask;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :192:40, :193:24
+    winner_b_is_younger_2 ? entries_5_wmask : entries_4_wmask;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :194:40, :195:24
   wire               winner_older_2_valid =
-    winner_b_is_younger_2 ? leaves_4_valid : leaves_5_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:182:87, :192:40, :194:24
+    winner_b_is_younger_2 ? leaves_4_valid : leaves_5_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:184:87, :194:40, :196:24
   wire [127:0]       winner_older_2_wdata =
-    winner_b_is_younger_2 ? entries_4_wdata : entries_5_wdata;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :192:40, :194:24
+    winner_b_is_younger_2 ? entries_4_wdata : entries_5_wdata;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :194:40, :196:24
   wire [15:0]        winner_older_2_wmask =
-    winner_b_is_younger_2 ? entries_4_wmask : entries_5_wmask;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :192:40, :194:24
-  wire               winner_res_2_valid = leaves_4_valid | leaves_5_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:182:87, :196:29
-  wire               _GEN_21 = winner_younger_2_valid ^ ~winner_b_is_younger_2;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:192:40, :193:24, :197:24
-  wire [3:0]         winner_res_2_idx = {3'h2, _GEN_21};	// backend/src/zaqal/backend/lsu/StoreQueue.scala:193:24, :197:24
+    winner_b_is_younger_2 ? entries_4_wmask : entries_5_wmask;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :194:40, :196:24
+  wire               winner_res_2_valid = leaves_4_valid | leaves_5_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:184:87, :198:29
+  wire               _GEN_21 = winner_younger_2_valid ^ ~winner_b_is_younger_2;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:194:40, :195:24, :199:24
+  wire [3:0]         winner_res_2_idx = {3'h2, _GEN_21};	// backend/src/zaqal/backend/lsu/StoreQueue.scala:195:24, :199:24
   wire [15:0]        winner_res_2_wmask =
     (winner_older_2_valid ? winner_older_2_wmask : 16'h0)
-    | (winner_younger_2_valid ? winner_younger_2_wmask : 16'h0);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:88:20, :193:24, :194:24, :199:{24,56,61}
+    | (winner_younger_2_valid ? winner_younger_2_wmask : 16'h0);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:88:20, :195:24, :196:24, :201:{24,56,61}
   wire [127:0]       winner_res_2_wdata =
     {winner_younger_2_valid & winner_younger_2_wmask[15]
        ? winner_younger_2_wdata[127:120]
@@ -798,30 +798,30 @@ module StoreQueue(	// backend/src/zaqal/backend/lsu/StoreQueue.scala:20:7
        ? winner_younger_2_wdata[7:0]
        : winner_older_2_valid & winner_older_2_wmask[0]
            ? winner_older_2_wdata[7:0]
-           : 8'h0};	// backend/src/zaqal/backend/lsu/StoreQueue.scala:193:24, :194:24, :202:{46,62}, :203:{44,58}, :204:45, :205:43, :206:{12,48}, :208:24
+           : 8'h0};	// backend/src/zaqal/backend/lsu/StoreQueue.scala:195:24, :196:24, :204:{46,62}, :205:{44,58}, :206:45, :207:43, :208:{12,48}, :210:24
   wire               winner_b_is_younger_3 =
     (deqPtr[3]
        ? 5'h17 - _GEN_17
        : {1'h0,
-          4'h7 - deqPtr}) > (deqPtr < 4'h7 ? {1'h0, 4'h6 - deqPtr} : 5'h16 - _GEN_17);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:81:20, :94:23, :121:38, :172:{36,41,56,85}, :192:40
+          4'h7 - deqPtr}) > (deqPtr < 4'h7 ? {1'h0, 4'h6 - deqPtr} : 5'h16 - _GEN_17);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:81:20, :94:23, :121:38, :174:{36,41,56,85}, :194:40
   wire               winner_younger_3_valid =
-    winner_b_is_younger_3 ? leaves_7_valid : leaves_6_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:182:87, :192:40, :193:24
+    winner_b_is_younger_3 ? leaves_7_valid : leaves_6_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:184:87, :194:40, :195:24
   wire [127:0]       winner_younger_3_wdata =
-    winner_b_is_younger_3 ? entries_7_wdata : entries_6_wdata;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :192:40, :193:24
+    winner_b_is_younger_3 ? entries_7_wdata : entries_6_wdata;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :194:40, :195:24
   wire [15:0]        winner_younger_3_wmask =
-    winner_b_is_younger_3 ? entries_7_wmask : entries_6_wmask;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :192:40, :193:24
+    winner_b_is_younger_3 ? entries_7_wmask : entries_6_wmask;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :194:40, :195:24
   wire               winner_older_3_valid =
-    winner_b_is_younger_3 ? leaves_6_valid : leaves_7_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:182:87, :192:40, :194:24
+    winner_b_is_younger_3 ? leaves_6_valid : leaves_7_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:184:87, :194:40, :196:24
   wire [127:0]       winner_older_3_wdata =
-    winner_b_is_younger_3 ? entries_6_wdata : entries_7_wdata;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :192:40, :194:24
+    winner_b_is_younger_3 ? entries_6_wdata : entries_7_wdata;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :194:40, :196:24
   wire [15:0]        winner_older_3_wmask =
-    winner_b_is_younger_3 ? entries_6_wmask : entries_7_wmask;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :192:40, :194:24
-  wire               winner_res_3_valid = leaves_6_valid | leaves_7_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:182:87, :196:29
-  wire               _GEN_22 = winner_younger_3_valid ^ ~winner_b_is_younger_3;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:192:40, :193:24, :197:24
-  wire [3:0]         winner_res_3_idx = {3'h3, _GEN_22};	// backend/src/zaqal/backend/lsu/StoreQueue.scala:193:24, :197:24
+    winner_b_is_younger_3 ? entries_6_wmask : entries_7_wmask;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :194:40, :196:24
+  wire               winner_res_3_valid = leaves_6_valid | leaves_7_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:184:87, :198:29
+  wire               _GEN_22 = winner_younger_3_valid ^ ~winner_b_is_younger_3;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:194:40, :195:24, :199:24
+  wire [3:0]         winner_res_3_idx = {3'h3, _GEN_22};	// backend/src/zaqal/backend/lsu/StoreQueue.scala:195:24, :199:24
   wire [15:0]        winner_res_3_wmask =
     (winner_older_3_valid ? winner_older_3_wmask : 16'h0)
-    | (winner_younger_3_valid ? winner_younger_3_wmask : 16'h0);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:88:20, :193:24, :194:24, :199:{24,56,61}
+    | (winner_younger_3_valid ? winner_younger_3_wmask : 16'h0);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:88:20, :195:24, :196:24, :201:{24,56,61}
   wire [127:0]       winner_res_3_wdata =
     {winner_younger_3_valid & winner_younger_3_wmask[15]
        ? winner_younger_3_wdata[127:120]
@@ -902,29 +902,29 @@ module StoreQueue(	// backend/src/zaqal/backend/lsu/StoreQueue.scala:20:7
        ? winner_younger_3_wdata[7:0]
        : winner_older_3_valid & winner_older_3_wmask[0]
            ? winner_older_3_wdata[7:0]
-           : 8'h0};	// backend/src/zaqal/backend/lsu/StoreQueue.scala:193:24, :194:24, :202:{46,62}, :203:{44,58}, :204:45, :205:43, :206:{12,48}, :208:24
+           : 8'h0};	// backend/src/zaqal/backend/lsu/StoreQueue.scala:195:24, :196:24, :204:{46,62}, :205:{44,58}, :206:45, :207:43, :208:{12,48}, :210:24
   wire               winner_b_is_younger_4 =
     (deqPtr < 4'hA
        ? {1'h0, 4'h9 - deqPtr}
-       : 5'h19 - _GEN_17) > (deqPtr < 4'h9 ? {1'h0, 4'h8 - deqPtr} : 5'h18 - _GEN_17);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:81:20, :94:23, :121:38, :172:{36,41,56,85}, :192:40
+       : 5'h19 - _GEN_17) > (deqPtr < 4'h9 ? {1'h0, 4'h8 - deqPtr} : 5'h18 - _GEN_17);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:81:20, :94:23, :121:38, :174:{36,41,56,85}, :194:40
   wire               winner_younger_4_valid =
-    winner_b_is_younger_4 ? leaves_9_valid : leaves_8_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:182:87, :192:40, :193:24
+    winner_b_is_younger_4 ? leaves_9_valid : leaves_8_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:184:87, :194:40, :195:24
   wire [127:0]       winner_younger_4_wdata =
-    winner_b_is_younger_4 ? entries_9_wdata : entries_8_wdata;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :192:40, :193:24
+    winner_b_is_younger_4 ? entries_9_wdata : entries_8_wdata;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :194:40, :195:24
   wire [15:0]        winner_younger_4_wmask =
-    winner_b_is_younger_4 ? entries_9_wmask : entries_8_wmask;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :192:40, :193:24
+    winner_b_is_younger_4 ? entries_9_wmask : entries_8_wmask;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :194:40, :195:24
   wire               winner_older_4_valid =
-    winner_b_is_younger_4 ? leaves_8_valid : leaves_9_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:182:87, :192:40, :194:24
+    winner_b_is_younger_4 ? leaves_8_valid : leaves_9_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:184:87, :194:40, :196:24
   wire [127:0]       winner_older_4_wdata =
-    winner_b_is_younger_4 ? entries_8_wdata : entries_9_wdata;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :192:40, :194:24
+    winner_b_is_younger_4 ? entries_8_wdata : entries_9_wdata;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :194:40, :196:24
   wire [15:0]        winner_older_4_wmask =
-    winner_b_is_younger_4 ? entries_8_wmask : entries_9_wmask;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :192:40, :194:24
-  wire               winner_res_4_valid = leaves_8_valid | leaves_9_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:182:87, :196:29
-  wire               _GEN_23 = winner_younger_4_valid ^ ~winner_b_is_younger_4;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:192:40, :193:24, :197:24
-  wire [3:0]         winner_res_4_idx = {3'h4, _GEN_23};	// backend/src/zaqal/backend/lsu/StoreQueue.scala:193:24, :197:24
+    winner_b_is_younger_4 ? entries_8_wmask : entries_9_wmask;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :194:40, :196:24
+  wire               winner_res_4_valid = leaves_8_valid | leaves_9_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:184:87, :198:29
+  wire               _GEN_23 = winner_younger_4_valid ^ ~winner_b_is_younger_4;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:194:40, :195:24, :199:24
+  wire [3:0]         winner_res_4_idx = {3'h4, _GEN_23};	// backend/src/zaqal/backend/lsu/StoreQueue.scala:195:24, :199:24
   wire [15:0]        winner_res_4_wmask =
     (winner_older_4_valid ? winner_older_4_wmask : 16'h0)
-    | (winner_younger_4_valid ? winner_younger_4_wmask : 16'h0);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:88:20, :193:24, :194:24, :199:{24,56,61}
+    | (winner_younger_4_valid ? winner_younger_4_wmask : 16'h0);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:88:20, :195:24, :196:24, :201:{24,56,61}
   wire [127:0]       winner_res_4_wdata =
     {winner_younger_4_valid & winner_younger_4_wmask[15]
        ? winner_younger_4_wdata[127:120]
@@ -1005,29 +1005,29 @@ module StoreQueue(	// backend/src/zaqal/backend/lsu/StoreQueue.scala:20:7
        ? winner_younger_4_wdata[7:0]
        : winner_older_4_valid & winner_older_4_wmask[0]
            ? winner_older_4_wdata[7:0]
-           : 8'h0};	// backend/src/zaqal/backend/lsu/StoreQueue.scala:193:24, :194:24, :202:{46,62}, :203:{44,58}, :204:45, :205:43, :206:{12,48}, :208:24
+           : 8'h0};	// backend/src/zaqal/backend/lsu/StoreQueue.scala:195:24, :196:24, :204:{46,62}, :205:{44,58}, :206:45, :207:43, :208:{12,48}, :210:24
   wire               winner_b_is_younger_5 =
     (deqPtr[3:2] != 2'h3
        ? {1'h0, 4'hB - deqPtr}
-       : 5'h1B - _GEN_17) > (deqPtr < 4'hB ? {1'h0, 4'hA - deqPtr} : 5'h1A - _GEN_17);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:81:20, :94:23, :121:38, :172:{36,41,56,85}, :192:40
+       : 5'h1B - _GEN_17) > (deqPtr < 4'hB ? {1'h0, 4'hA - deqPtr} : 5'h1A - _GEN_17);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:81:20, :94:23, :121:38, :174:{36,41,56,85}, :194:40
   wire               winner_younger_5_valid =
-    winner_b_is_younger_5 ? leaves_11_valid : leaves_10_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:182:87, :192:40, :193:24
+    winner_b_is_younger_5 ? leaves_11_valid : leaves_10_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:184:87, :194:40, :195:24
   wire [127:0]       winner_younger_5_wdata =
-    winner_b_is_younger_5 ? entries_11_wdata : entries_10_wdata;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :192:40, :193:24
+    winner_b_is_younger_5 ? entries_11_wdata : entries_10_wdata;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :194:40, :195:24
   wire [15:0]        winner_younger_5_wmask =
-    winner_b_is_younger_5 ? entries_11_wmask : entries_10_wmask;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :192:40, :193:24
+    winner_b_is_younger_5 ? entries_11_wmask : entries_10_wmask;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :194:40, :195:24
   wire               winner_older_5_valid =
-    winner_b_is_younger_5 ? leaves_10_valid : leaves_11_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:182:87, :192:40, :194:24
+    winner_b_is_younger_5 ? leaves_10_valid : leaves_11_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:184:87, :194:40, :196:24
   wire [127:0]       winner_older_5_wdata =
-    winner_b_is_younger_5 ? entries_10_wdata : entries_11_wdata;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :192:40, :194:24
+    winner_b_is_younger_5 ? entries_10_wdata : entries_11_wdata;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :194:40, :196:24
   wire [15:0]        winner_older_5_wmask =
-    winner_b_is_younger_5 ? entries_10_wmask : entries_11_wmask;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :192:40, :194:24
-  wire               winner_res_5_valid = leaves_10_valid | leaves_11_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:182:87, :196:29
-  wire               _GEN_24 = winner_younger_5_valid ^ ~winner_b_is_younger_5;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:192:40, :193:24, :197:24
-  wire [3:0]         winner_res_5_idx = {3'h5, _GEN_24};	// backend/src/zaqal/backend/lsu/StoreQueue.scala:193:24, :197:24
+    winner_b_is_younger_5 ? entries_10_wmask : entries_11_wmask;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :194:40, :196:24
+  wire               winner_res_5_valid = leaves_10_valid | leaves_11_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:184:87, :198:29
+  wire               _GEN_24 = winner_younger_5_valid ^ ~winner_b_is_younger_5;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:194:40, :195:24, :199:24
+  wire [3:0]         winner_res_5_idx = {3'h5, _GEN_24};	// backend/src/zaqal/backend/lsu/StoreQueue.scala:195:24, :199:24
   wire [15:0]        winner_res_5_wmask =
     (winner_older_5_valid ? winner_older_5_wmask : 16'h0)
-    | (winner_younger_5_valid ? winner_younger_5_wmask : 16'h0);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:88:20, :193:24, :194:24, :199:{24,56,61}
+    | (winner_younger_5_valid ? winner_younger_5_wmask : 16'h0);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:88:20, :195:24, :196:24, :201:{24,56,61}
   wire [127:0]       winner_res_5_wdata =
     {winner_younger_5_valid & winner_younger_5_wmask[15]
        ? winner_younger_5_wdata[127:120]
@@ -1108,29 +1108,29 @@ module StoreQueue(	// backend/src/zaqal/backend/lsu/StoreQueue.scala:20:7
        ? winner_younger_5_wdata[7:0]
        : winner_older_5_valid & winner_older_5_wmask[0]
            ? winner_older_5_wdata[7:0]
-           : 8'h0};	// backend/src/zaqal/backend/lsu/StoreQueue.scala:193:24, :194:24, :202:{46,62}, :203:{44,58}, :204:45, :205:43, :206:{12,48}, :208:24
+           : 8'h0};	// backend/src/zaqal/backend/lsu/StoreQueue.scala:195:24, :196:24, :204:{46,62}, :205:{44,58}, :206:45, :207:43, :208:{12,48}, :210:24
   wire               winner_b_is_younger_6 =
     (deqPtr[3:1] != 3'h7
        ? {1'h0, 4'hD - deqPtr}
-       : 5'h1D - _GEN_17) > (deqPtr < 4'hD ? {1'h0, 4'hC - deqPtr} : 5'h1C - _GEN_17);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:81:20, :94:23, :121:38, :172:{36,41,56,85}, :192:40
+       : 5'h1D - _GEN_17) > (deqPtr < 4'hD ? {1'h0, 4'hC - deqPtr} : 5'h1C - _GEN_17);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:81:20, :94:23, :121:38, :174:{36,41,56,85}, :194:40
   wire               winner_younger_6_valid =
-    winner_b_is_younger_6 ? leaves_13_valid : leaves_12_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:182:87, :192:40, :193:24
+    winner_b_is_younger_6 ? leaves_13_valid : leaves_12_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:184:87, :194:40, :195:24
   wire [127:0]       winner_younger_6_wdata =
-    winner_b_is_younger_6 ? entries_13_wdata : entries_12_wdata;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :192:40, :193:24
+    winner_b_is_younger_6 ? entries_13_wdata : entries_12_wdata;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :194:40, :195:24
   wire [15:0]        winner_younger_6_wmask =
-    winner_b_is_younger_6 ? entries_13_wmask : entries_12_wmask;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :192:40, :193:24
+    winner_b_is_younger_6 ? entries_13_wmask : entries_12_wmask;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :194:40, :195:24
   wire               winner_older_6_valid =
-    winner_b_is_younger_6 ? leaves_12_valid : leaves_13_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:182:87, :192:40, :194:24
+    winner_b_is_younger_6 ? leaves_12_valid : leaves_13_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:184:87, :194:40, :196:24
   wire [127:0]       winner_older_6_wdata =
-    winner_b_is_younger_6 ? entries_12_wdata : entries_13_wdata;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :192:40, :194:24
+    winner_b_is_younger_6 ? entries_12_wdata : entries_13_wdata;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :194:40, :196:24
   wire [15:0]        winner_older_6_wmask =
-    winner_b_is_younger_6 ? entries_12_wmask : entries_13_wmask;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :192:40, :194:24
-  wire               winner_res_6_valid = leaves_12_valid | leaves_13_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:182:87, :196:29
-  wire               _GEN_25 = winner_younger_6_valid ^ ~winner_b_is_younger_6;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:192:40, :193:24, :197:24
-  wire [3:0]         winner_res_6_idx = {3'h6, _GEN_25};	// backend/src/zaqal/backend/lsu/StoreQueue.scala:193:24, :197:24
+    winner_b_is_younger_6 ? entries_12_wmask : entries_13_wmask;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :194:40, :196:24
+  wire               winner_res_6_valid = leaves_12_valid | leaves_13_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:184:87, :198:29
+  wire               _GEN_25 = winner_younger_6_valid ^ ~winner_b_is_younger_6;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:194:40, :195:24, :199:24
+  wire [3:0]         winner_res_6_idx = {3'h6, _GEN_25};	// backend/src/zaqal/backend/lsu/StoreQueue.scala:195:24, :199:24
   wire [15:0]        winner_res_6_wmask =
     (winner_older_6_valid ? winner_older_6_wmask : 16'h0)
-    | (winner_younger_6_valid ? winner_younger_6_wmask : 16'h0);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:88:20, :193:24, :194:24, :199:{24,56,61}
+    | (winner_younger_6_valid ? winner_younger_6_wmask : 16'h0);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:88:20, :195:24, :196:24, :201:{24,56,61}
   wire [127:0]       winner_res_6_wdata =
     {winner_younger_6_valid & winner_younger_6_wmask[15]
        ? winner_younger_6_wdata[127:120]
@@ -1211,27 +1211,27 @@ module StoreQueue(	// backend/src/zaqal/backend/lsu/StoreQueue.scala:20:7
        ? winner_younger_6_wdata[7:0]
        : winner_older_6_valid & winner_older_6_wmask[0]
            ? winner_older_6_wdata[7:0]
-           : 8'h0};	// backend/src/zaqal/backend/lsu/StoreQueue.scala:193:24, :194:24, :202:{46,62}, :203:{44,58}, :204:45, :205:43, :206:{12,48}, :208:24
+           : 8'h0};	// backend/src/zaqal/backend/lsu/StoreQueue.scala:195:24, :196:24, :204:{46,62}, :205:{44,58}, :206:45, :207:43, :208:{12,48}, :210:24
   wire               winner_b_is_younger_7 =
-    {1'h0, 4'hF - deqPtr} > (deqPtr != 4'hF ? {1'h0, 4'hE - deqPtr} : 5'h1E - _GEN_17);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:81:20, :94:23, :121:38, :172:{36,41,56,85}, :192:40
+    {1'h0, 4'hF - deqPtr} > (deqPtr != 4'hF ? {1'h0, 4'hE - deqPtr} : 5'h1E - _GEN_17);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:81:20, :94:23, :121:38, :174:{36,41,56,85}, :194:40
   wire               winner_younger_7_valid =
-    winner_b_is_younger_7 ? leaves_15_valid : leaves_14_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:182:87, :192:40, :193:24
+    winner_b_is_younger_7 ? leaves_15_valid : leaves_14_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:184:87, :194:40, :195:24
   wire [127:0]       winner_younger_7_wdata =
-    winner_b_is_younger_7 ? entries_15_wdata : entries_14_wdata;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :192:40, :193:24
+    winner_b_is_younger_7 ? entries_15_wdata : entries_14_wdata;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :194:40, :195:24
   wire [15:0]        winner_younger_7_wmask =
-    winner_b_is_younger_7 ? entries_15_wmask : entries_14_wmask;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :192:40, :193:24
+    winner_b_is_younger_7 ? entries_15_wmask : entries_14_wmask;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :194:40, :195:24
   wire               winner_older_7_valid =
-    winner_b_is_younger_7 ? leaves_14_valid : leaves_15_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:182:87, :192:40, :194:24
+    winner_b_is_younger_7 ? leaves_14_valid : leaves_15_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:184:87, :194:40, :196:24
   wire [127:0]       winner_older_7_wdata =
-    winner_b_is_younger_7 ? entries_14_wdata : entries_15_wdata;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :192:40, :194:24
+    winner_b_is_younger_7 ? entries_14_wdata : entries_15_wdata;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :194:40, :196:24
   wire [15:0]        winner_older_7_wmask =
-    winner_b_is_younger_7 ? entries_14_wmask : entries_15_wmask;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :192:40, :194:24
-  wire               winner_res_7_valid = leaves_14_valid | leaves_15_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:182:87, :196:29
-  wire               _GEN_26 = winner_younger_7_valid ^ ~winner_b_is_younger_7;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:192:40, :193:24, :197:24
-  wire [3:0]         winner_res_7_idx = {3'h7, _GEN_26};	// backend/src/zaqal/backend/lsu/StoreQueue.scala:172:41, :197:24
+    winner_b_is_younger_7 ? entries_14_wmask : entries_15_wmask;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :194:40, :196:24
+  wire               winner_res_7_valid = leaves_14_valid | leaves_15_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:184:87, :198:29
+  wire               _GEN_26 = winner_younger_7_valid ^ ~winner_b_is_younger_7;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:194:40, :195:24, :199:24
+  wire [3:0]         winner_res_7_idx = {3'h7, _GEN_26};	// backend/src/zaqal/backend/lsu/StoreQueue.scala:174:41, :199:24
   wire [15:0]        winner_res_7_wmask =
     (winner_older_7_valid ? winner_older_7_wmask : 16'h0)
-    | (winner_younger_7_valid ? winner_younger_7_wmask : 16'h0);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:88:20, :193:24, :194:24, :199:{24,56,61}
+    | (winner_younger_7_valid ? winner_younger_7_wmask : 16'h0);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:88:20, :195:24, :196:24, :201:{24,56,61}
   wire [127:0]       winner_res_7_wdata =
     {winner_younger_7_valid & winner_younger_7_wmask[15]
        ? winner_younger_7_wdata[127:120]
@@ -1312,34 +1312,34 @@ module StoreQueue(	// backend/src/zaqal/backend/lsu/StoreQueue.scala:20:7
        ? winner_younger_7_wdata[7:0]
        : winner_older_7_valid & winner_older_7_wmask[0]
            ? winner_older_7_wdata[7:0]
-           : 8'h0};	// backend/src/zaqal/backend/lsu/StoreQueue.scala:193:24, :194:24, :202:{46,62}, :203:{44,58}, :204:45, :205:43, :206:{12,48}, :208:24
+           : 8'h0};	// backend/src/zaqal/backend/lsu/StoreQueue.scala:195:24, :196:24, :204:{46,62}, :205:{44,58}, :206:45, :207:43, :208:{12,48}, :210:24
   wire               winner_b_is_younger_8 =
     (winner_res_1_idx >= deqPtr
        ? {1'h0, {3'h1, _GEN_20} - deqPtr}
        : {4'h1, _GEN_20} - 5'h10
          - _GEN_17) > (winner_res_idx >= deqPtr
                          ? {1'h0, {3'h0, _GEN_19} - deqPtr}
-                         : {4'h0, _GEN_19} - 5'h10 - _GEN_17);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:81:20, :93:23, :94:23, :117:28, :121:38, :172:{36,41,56,70,85}, :192:40, :193:24, :197:24
+                         : {4'h0, _GEN_19} - 5'h10 - _GEN_17);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:81:20, :93:23, :94:23, :117:28, :121:38, :174:{36,41,56,70,85}, :194:40, :195:24, :199:24
   wire               winner_younger_8_valid =
-    winner_b_is_younger_8 ? winner_res_1_valid : winner_res_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:192:40, :193:24, :196:29
+    winner_b_is_younger_8 ? winner_res_1_valid : winner_res_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:194:40, :195:24, :198:29
   wire [127:0]       winner_younger_8_wdata =
-    winner_b_is_younger_8 ? winner_res_1_wdata : winner_res_wdata;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:192:40, :193:24, :208:24
+    winner_b_is_younger_8 ? winner_res_1_wdata : winner_res_wdata;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:194:40, :195:24, :210:24
   wire [15:0]        winner_younger_8_wmask =
-    winner_b_is_younger_8 ? winner_res_1_wmask : winner_res_wmask;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:192:40, :193:24, :199:56
+    winner_b_is_younger_8 ? winner_res_1_wmask : winner_res_wmask;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:194:40, :195:24, :201:56
   wire               winner_older_8_valid =
-    winner_b_is_younger_8 ? winner_res_valid : winner_res_1_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:192:40, :194:24, :196:29
+    winner_b_is_younger_8 ? winner_res_valid : winner_res_1_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:194:40, :196:24, :198:29
   wire [127:0]       winner_older_8_wdata =
-    winner_b_is_younger_8 ? winner_res_wdata : winner_res_1_wdata;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:192:40, :194:24, :208:24
+    winner_b_is_younger_8 ? winner_res_wdata : winner_res_1_wdata;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:194:40, :196:24, :210:24
   wire [15:0]        winner_older_8_wmask =
-    winner_b_is_younger_8 ? winner_res_wmask : winner_res_1_wmask;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:192:40, :194:24, :199:56
-  wire               winner_res_8_valid = winner_res_valid | winner_res_1_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:196:29
+    winner_b_is_younger_8 ? winner_res_wmask : winner_res_1_wmask;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:194:40, :196:24, :201:56
+  wire               winner_res_8_valid = winner_res_valid | winner_res_1_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:198:29
   wire [3:0]         winner_res_8_idx =
     winner_younger_8_valid
       ? (winner_b_is_younger_8 ? winner_res_1_idx : winner_res_idx)
-      : winner_b_is_younger_8 ? winner_res_idx : winner_res_1_idx;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:192:40, :193:24, :194:24, :197:24
+      : winner_b_is_younger_8 ? winner_res_idx : winner_res_1_idx;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:194:40, :195:24, :196:24, :199:24
   wire [15:0]        winner_res_8_wmask =
     (winner_older_8_valid ? winner_older_8_wmask : 16'h0)
-    | (winner_younger_8_valid ? winner_younger_8_wmask : 16'h0);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:88:20, :193:24, :194:24, :199:{24,56,61}
+    | (winner_younger_8_valid ? winner_younger_8_wmask : 16'h0);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:88:20, :195:24, :196:24, :201:{24,56,61}
   wire [127:0]       winner_res_8_wdata =
     {winner_younger_8_valid & winner_younger_8_wmask[15]
        ? winner_younger_8_wdata[127:120]
@@ -1420,34 +1420,34 @@ module StoreQueue(	// backend/src/zaqal/backend/lsu/StoreQueue.scala:20:7
        ? winner_younger_8_wdata[7:0]
        : winner_older_8_valid & winner_older_8_wmask[0]
            ? winner_older_8_wdata[7:0]
-           : 8'h0};	// backend/src/zaqal/backend/lsu/StoreQueue.scala:193:24, :194:24, :202:{46,62}, :203:{44,58}, :204:45, :205:43, :206:{12,48}, :208:24
+           : 8'h0};	// backend/src/zaqal/backend/lsu/StoreQueue.scala:195:24, :196:24, :204:{46,62}, :205:{44,58}, :206:45, :207:43, :208:{12,48}, :210:24
   wire               winner_b_is_younger_9 =
     (winner_res_3_idx >= deqPtr
        ? {1'h0, {3'h3, _GEN_22} - deqPtr}
        : {4'h3, _GEN_22} - 5'h10
          - _GEN_17) > (winner_res_2_idx >= deqPtr
                          ? {1'h0, {3'h2, _GEN_21} - deqPtr}
-                         : {4'h2, _GEN_21} - 5'h10 - _GEN_17);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:81:20, :94:23, :121:38, :172:{36,41,56,70,85}, :192:40, :193:24, :197:24
+                         : {4'h2, _GEN_21} - 5'h10 - _GEN_17);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:81:20, :94:23, :121:38, :174:{36,41,56,70,85}, :194:40, :195:24, :199:24
   wire               winner_younger_9_valid =
-    winner_b_is_younger_9 ? winner_res_3_valid : winner_res_2_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:192:40, :193:24, :196:29
+    winner_b_is_younger_9 ? winner_res_3_valid : winner_res_2_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:194:40, :195:24, :198:29
   wire [127:0]       winner_younger_9_wdata =
-    winner_b_is_younger_9 ? winner_res_3_wdata : winner_res_2_wdata;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:192:40, :193:24, :208:24
+    winner_b_is_younger_9 ? winner_res_3_wdata : winner_res_2_wdata;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:194:40, :195:24, :210:24
   wire [15:0]        winner_younger_9_wmask =
-    winner_b_is_younger_9 ? winner_res_3_wmask : winner_res_2_wmask;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:192:40, :193:24, :199:56
+    winner_b_is_younger_9 ? winner_res_3_wmask : winner_res_2_wmask;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:194:40, :195:24, :201:56
   wire               winner_older_9_valid =
-    winner_b_is_younger_9 ? winner_res_2_valid : winner_res_3_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:192:40, :194:24, :196:29
+    winner_b_is_younger_9 ? winner_res_2_valid : winner_res_3_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:194:40, :196:24, :198:29
   wire [127:0]       winner_older_9_wdata =
-    winner_b_is_younger_9 ? winner_res_2_wdata : winner_res_3_wdata;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:192:40, :194:24, :208:24
+    winner_b_is_younger_9 ? winner_res_2_wdata : winner_res_3_wdata;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:194:40, :196:24, :210:24
   wire [15:0]        winner_older_9_wmask =
-    winner_b_is_younger_9 ? winner_res_2_wmask : winner_res_3_wmask;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:192:40, :194:24, :199:56
-  wire               winner_res_9_valid = winner_res_2_valid | winner_res_3_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:196:29
+    winner_b_is_younger_9 ? winner_res_2_wmask : winner_res_3_wmask;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:194:40, :196:24, :201:56
+  wire               winner_res_9_valid = winner_res_2_valid | winner_res_3_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:198:29
   wire [3:0]         winner_res_9_idx =
     winner_younger_9_valid
       ? (winner_b_is_younger_9 ? winner_res_3_idx : winner_res_2_idx)
-      : winner_b_is_younger_9 ? winner_res_2_idx : winner_res_3_idx;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:192:40, :193:24, :194:24, :197:24
+      : winner_b_is_younger_9 ? winner_res_2_idx : winner_res_3_idx;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:194:40, :195:24, :196:24, :199:24
   wire [15:0]        winner_res_9_wmask =
     (winner_older_9_valid ? winner_older_9_wmask : 16'h0)
-    | (winner_younger_9_valid ? winner_younger_9_wmask : 16'h0);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:88:20, :193:24, :194:24, :199:{24,56,61}
+    | (winner_younger_9_valid ? winner_younger_9_wmask : 16'h0);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:88:20, :195:24, :196:24, :201:{24,56,61}
   wire [127:0]       winner_res_9_wdata =
     {winner_younger_9_valid & winner_younger_9_wmask[15]
        ? winner_younger_9_wdata[127:120]
@@ -1528,34 +1528,34 @@ module StoreQueue(	// backend/src/zaqal/backend/lsu/StoreQueue.scala:20:7
        ? winner_younger_9_wdata[7:0]
        : winner_older_9_valid & winner_older_9_wmask[0]
            ? winner_older_9_wdata[7:0]
-           : 8'h0};	// backend/src/zaqal/backend/lsu/StoreQueue.scala:193:24, :194:24, :202:{46,62}, :203:{44,58}, :204:45, :205:43, :206:{12,48}, :208:24
+           : 8'h0};	// backend/src/zaqal/backend/lsu/StoreQueue.scala:195:24, :196:24, :204:{46,62}, :205:{44,58}, :206:45, :207:43, :208:{12,48}, :210:24
   wire               winner_b_is_younger_10 =
     (winner_res_5_idx >= deqPtr
        ? {1'h0, {3'h5, _GEN_24} - deqPtr}
        : {4'h5, _GEN_24} - 5'h10
          - _GEN_17) > (winner_res_4_idx >= deqPtr
                          ? {1'h0, {3'h4, _GEN_23} - deqPtr}
-                         : {4'h4, _GEN_23} - 5'h10 - _GEN_17);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:81:20, :94:23, :121:38, :172:{36,41,56,70,85}, :192:40, :193:24, :197:24
+                         : {4'h4, _GEN_23} - 5'h10 - _GEN_17);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:81:20, :94:23, :121:38, :174:{36,41,56,70,85}, :194:40, :195:24, :199:24
   wire               winner_younger_10_valid =
-    winner_b_is_younger_10 ? winner_res_5_valid : winner_res_4_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:192:40, :193:24, :196:29
+    winner_b_is_younger_10 ? winner_res_5_valid : winner_res_4_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:194:40, :195:24, :198:29
   wire [127:0]       winner_younger_10_wdata =
-    winner_b_is_younger_10 ? winner_res_5_wdata : winner_res_4_wdata;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:192:40, :193:24, :208:24
+    winner_b_is_younger_10 ? winner_res_5_wdata : winner_res_4_wdata;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:194:40, :195:24, :210:24
   wire [15:0]        winner_younger_10_wmask =
-    winner_b_is_younger_10 ? winner_res_5_wmask : winner_res_4_wmask;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:192:40, :193:24, :199:56
+    winner_b_is_younger_10 ? winner_res_5_wmask : winner_res_4_wmask;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:194:40, :195:24, :201:56
   wire               winner_older_10_valid =
-    winner_b_is_younger_10 ? winner_res_4_valid : winner_res_5_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:192:40, :194:24, :196:29
+    winner_b_is_younger_10 ? winner_res_4_valid : winner_res_5_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:194:40, :196:24, :198:29
   wire [127:0]       winner_older_10_wdata =
-    winner_b_is_younger_10 ? winner_res_4_wdata : winner_res_5_wdata;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:192:40, :194:24, :208:24
+    winner_b_is_younger_10 ? winner_res_4_wdata : winner_res_5_wdata;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:194:40, :196:24, :210:24
   wire [15:0]        winner_older_10_wmask =
-    winner_b_is_younger_10 ? winner_res_4_wmask : winner_res_5_wmask;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:192:40, :194:24, :199:56
-  wire               winner_res_10_valid = winner_res_4_valid | winner_res_5_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:196:29
+    winner_b_is_younger_10 ? winner_res_4_wmask : winner_res_5_wmask;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:194:40, :196:24, :201:56
+  wire               winner_res_10_valid = winner_res_4_valid | winner_res_5_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:198:29
   wire [3:0]         winner_res_10_idx =
     winner_younger_10_valid
       ? (winner_b_is_younger_10 ? winner_res_5_idx : winner_res_4_idx)
-      : winner_b_is_younger_10 ? winner_res_4_idx : winner_res_5_idx;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:192:40, :193:24, :194:24, :197:24
+      : winner_b_is_younger_10 ? winner_res_4_idx : winner_res_5_idx;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:194:40, :195:24, :196:24, :199:24
   wire [15:0]        winner_res_10_wmask =
     (winner_older_10_valid ? winner_older_10_wmask : 16'h0)
-    | (winner_younger_10_valid ? winner_younger_10_wmask : 16'h0);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:88:20, :193:24, :194:24, :199:{24,56,61}
+    | (winner_younger_10_valid ? winner_younger_10_wmask : 16'h0);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:88:20, :195:24, :196:24, :201:{24,56,61}
   wire [127:0]       winner_res_10_wdata =
     {winner_younger_10_valid & winner_younger_10_wmask[15]
        ? winner_younger_10_wdata[127:120]
@@ -1636,34 +1636,34 @@ module StoreQueue(	// backend/src/zaqal/backend/lsu/StoreQueue.scala:20:7
        ? winner_younger_10_wdata[7:0]
        : winner_older_10_valid & winner_older_10_wmask[0]
            ? winner_older_10_wdata[7:0]
-           : 8'h0};	// backend/src/zaqal/backend/lsu/StoreQueue.scala:193:24, :194:24, :202:{46,62}, :203:{44,58}, :204:45, :205:43, :206:{12,48}, :208:24
+           : 8'h0};	// backend/src/zaqal/backend/lsu/StoreQueue.scala:195:24, :196:24, :204:{46,62}, :205:{44,58}, :206:45, :207:43, :208:{12,48}, :210:24
   wire               winner_b_is_younger_11 =
     (winner_res_7_idx >= deqPtr
        ? {1'h0, {3'h7, _GEN_26} - deqPtr}
        : {4'h7, _GEN_26} - 5'h10
          - _GEN_17) > (winner_res_6_idx >= deqPtr
                          ? {1'h0, {3'h6, _GEN_25} - deqPtr}
-                         : {4'h6, _GEN_25} - 5'h10 - _GEN_17);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:81:20, :94:23, :121:38, :172:{36,41,56,70,85}, :192:40, :193:24, :197:24
+                         : {4'h6, _GEN_25} - 5'h10 - _GEN_17);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:81:20, :94:23, :121:38, :174:{36,41,56,70,85}, :194:40, :195:24, :199:24
   wire               winner_younger_11_valid =
-    winner_b_is_younger_11 ? winner_res_7_valid : winner_res_6_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:192:40, :193:24, :196:29
+    winner_b_is_younger_11 ? winner_res_7_valid : winner_res_6_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:194:40, :195:24, :198:29
   wire [127:0]       winner_younger_11_wdata =
-    winner_b_is_younger_11 ? winner_res_7_wdata : winner_res_6_wdata;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:192:40, :193:24, :208:24
+    winner_b_is_younger_11 ? winner_res_7_wdata : winner_res_6_wdata;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:194:40, :195:24, :210:24
   wire [15:0]        winner_younger_11_wmask =
-    winner_b_is_younger_11 ? winner_res_7_wmask : winner_res_6_wmask;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:192:40, :193:24, :199:56
+    winner_b_is_younger_11 ? winner_res_7_wmask : winner_res_6_wmask;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:194:40, :195:24, :201:56
   wire               winner_older_11_valid =
-    winner_b_is_younger_11 ? winner_res_6_valid : winner_res_7_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:192:40, :194:24, :196:29
+    winner_b_is_younger_11 ? winner_res_6_valid : winner_res_7_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:194:40, :196:24, :198:29
   wire [127:0]       winner_older_11_wdata =
-    winner_b_is_younger_11 ? winner_res_6_wdata : winner_res_7_wdata;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:192:40, :194:24, :208:24
+    winner_b_is_younger_11 ? winner_res_6_wdata : winner_res_7_wdata;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:194:40, :196:24, :210:24
   wire [15:0]        winner_older_11_wmask =
-    winner_b_is_younger_11 ? winner_res_6_wmask : winner_res_7_wmask;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:192:40, :194:24, :199:56
-  wire               winner_res_11_valid = winner_res_6_valid | winner_res_7_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:196:29
+    winner_b_is_younger_11 ? winner_res_6_wmask : winner_res_7_wmask;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:194:40, :196:24, :201:56
+  wire               winner_res_11_valid = winner_res_6_valid | winner_res_7_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:198:29
   wire [3:0]         winner_res_11_idx =
     winner_younger_11_valid
       ? (winner_b_is_younger_11 ? winner_res_7_idx : winner_res_6_idx)
-      : winner_b_is_younger_11 ? winner_res_6_idx : winner_res_7_idx;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:192:40, :193:24, :194:24, :197:24
+      : winner_b_is_younger_11 ? winner_res_6_idx : winner_res_7_idx;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:194:40, :195:24, :196:24, :199:24
   wire [15:0]        winner_res_11_wmask =
     (winner_older_11_valid ? winner_older_11_wmask : 16'h0)
-    | (winner_younger_11_valid ? winner_younger_11_wmask : 16'h0);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:88:20, :193:24, :194:24, :199:{24,56,61}
+    | (winner_younger_11_valid ? winner_younger_11_wmask : 16'h0);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:88:20, :195:24, :196:24, :201:{24,56,61}
   wire [127:0]       winner_res_11_wdata =
     {winner_younger_11_valid & winner_younger_11_wmask[15]
        ? winner_younger_11_wdata[127:120]
@@ -1744,34 +1744,34 @@ module StoreQueue(	// backend/src/zaqal/backend/lsu/StoreQueue.scala:20:7
        ? winner_younger_11_wdata[7:0]
        : winner_older_11_valid & winner_older_11_wmask[0]
            ? winner_older_11_wdata[7:0]
-           : 8'h0};	// backend/src/zaqal/backend/lsu/StoreQueue.scala:193:24, :194:24, :202:{46,62}, :203:{44,58}, :204:45, :205:43, :206:{12,48}, :208:24
+           : 8'h0};	// backend/src/zaqal/backend/lsu/StoreQueue.scala:195:24, :196:24, :204:{46,62}, :205:{44,58}, :206:45, :207:43, :208:{12,48}, :210:24
   wire               winner_b_is_younger_12 =
     (winner_res_9_idx >= deqPtr
        ? {1'h0, winner_res_9_idx - deqPtr}
        : {1'h0, winner_res_9_idx} - 5'h10
          - _GEN_17) > (winner_res_8_idx >= deqPtr
                          ? {1'h0, winner_res_8_idx - deqPtr}
-                         : {1'h0, winner_res_8_idx} - 5'h10 - _GEN_17);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:81:20, :94:23, :172:{36,41,56,70,85}, :192:40, :197:24
+                         : {1'h0, winner_res_8_idx} - 5'h10 - _GEN_17);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:81:20, :94:23, :174:{36,41,56,70,85}, :194:40, :199:24
   wire               winner_younger_12_valid =
-    winner_b_is_younger_12 ? winner_res_9_valid : winner_res_8_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:192:40, :193:24, :196:29
+    winner_b_is_younger_12 ? winner_res_9_valid : winner_res_8_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:194:40, :195:24, :198:29
   wire [127:0]       winner_younger_12_wdata =
-    winner_b_is_younger_12 ? winner_res_9_wdata : winner_res_8_wdata;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:192:40, :193:24, :208:24
+    winner_b_is_younger_12 ? winner_res_9_wdata : winner_res_8_wdata;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:194:40, :195:24, :210:24
   wire [15:0]        winner_younger_12_wmask =
-    winner_b_is_younger_12 ? winner_res_9_wmask : winner_res_8_wmask;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:192:40, :193:24, :199:56
+    winner_b_is_younger_12 ? winner_res_9_wmask : winner_res_8_wmask;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:194:40, :195:24, :201:56
   wire               winner_older_12_valid =
-    winner_b_is_younger_12 ? winner_res_8_valid : winner_res_9_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:192:40, :194:24, :196:29
+    winner_b_is_younger_12 ? winner_res_8_valid : winner_res_9_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:194:40, :196:24, :198:29
   wire [127:0]       winner_older_12_wdata =
-    winner_b_is_younger_12 ? winner_res_8_wdata : winner_res_9_wdata;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:192:40, :194:24, :208:24
+    winner_b_is_younger_12 ? winner_res_8_wdata : winner_res_9_wdata;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:194:40, :196:24, :210:24
   wire [15:0]        winner_older_12_wmask =
-    winner_b_is_younger_12 ? winner_res_8_wmask : winner_res_9_wmask;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:192:40, :194:24, :199:56
-  wire               winner_res_12_valid = winner_res_8_valid | winner_res_9_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:196:29
+    winner_b_is_younger_12 ? winner_res_8_wmask : winner_res_9_wmask;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:194:40, :196:24, :201:56
+  wire               winner_res_12_valid = winner_res_8_valid | winner_res_9_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:198:29
   wire [3:0]         winner_res_12_idx =
     winner_younger_12_valid
       ? (winner_b_is_younger_12 ? winner_res_9_idx : winner_res_8_idx)
-      : winner_b_is_younger_12 ? winner_res_8_idx : winner_res_9_idx;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:192:40, :193:24, :194:24, :197:24
+      : winner_b_is_younger_12 ? winner_res_8_idx : winner_res_9_idx;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:194:40, :195:24, :196:24, :199:24
   wire [15:0]        winner_res_12_wmask =
     (winner_older_12_valid ? winner_older_12_wmask : 16'h0)
-    | (winner_younger_12_valid ? winner_younger_12_wmask : 16'h0);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:88:20, :193:24, :194:24, :199:{24,56,61}
+    | (winner_younger_12_valid ? winner_younger_12_wmask : 16'h0);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:88:20, :195:24, :196:24, :201:{24,56,61}
   wire [127:0]       winner_res_12_wdata =
     {winner_younger_12_valid & winner_younger_12_wmask[15]
        ? winner_younger_12_wdata[127:120]
@@ -1852,34 +1852,34 @@ module StoreQueue(	// backend/src/zaqal/backend/lsu/StoreQueue.scala:20:7
        ? winner_younger_12_wdata[7:0]
        : winner_older_12_valid & winner_older_12_wmask[0]
            ? winner_older_12_wdata[7:0]
-           : 8'h0};	// backend/src/zaqal/backend/lsu/StoreQueue.scala:193:24, :194:24, :202:{46,62}, :203:{44,58}, :204:45, :205:43, :206:{12,48}, :208:24
+           : 8'h0};	// backend/src/zaqal/backend/lsu/StoreQueue.scala:195:24, :196:24, :204:{46,62}, :205:{44,58}, :206:45, :207:43, :208:{12,48}, :210:24
   wire               winner_b_is_younger_13 =
     (winner_res_11_idx >= deqPtr
        ? {1'h0, winner_res_11_idx - deqPtr}
        : {1'h0, winner_res_11_idx} - 5'h10
          - _GEN_17) > (winner_res_10_idx >= deqPtr
                          ? {1'h0, winner_res_10_idx - deqPtr}
-                         : {1'h0, winner_res_10_idx} - 5'h10 - _GEN_17);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:81:20, :94:23, :172:{36,41,56,70,85}, :192:40, :197:24
+                         : {1'h0, winner_res_10_idx} - 5'h10 - _GEN_17);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:81:20, :94:23, :174:{36,41,56,70,85}, :194:40, :199:24
   wire               winner_younger_13_valid =
-    winner_b_is_younger_13 ? winner_res_11_valid : winner_res_10_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:192:40, :193:24, :196:29
+    winner_b_is_younger_13 ? winner_res_11_valid : winner_res_10_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:194:40, :195:24, :198:29
   wire [127:0]       winner_younger_13_wdata =
-    winner_b_is_younger_13 ? winner_res_11_wdata : winner_res_10_wdata;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:192:40, :193:24, :208:24
+    winner_b_is_younger_13 ? winner_res_11_wdata : winner_res_10_wdata;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:194:40, :195:24, :210:24
   wire [15:0]        winner_younger_13_wmask =
-    winner_b_is_younger_13 ? winner_res_11_wmask : winner_res_10_wmask;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:192:40, :193:24, :199:56
+    winner_b_is_younger_13 ? winner_res_11_wmask : winner_res_10_wmask;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:194:40, :195:24, :201:56
   wire               winner_older_13_valid =
-    winner_b_is_younger_13 ? winner_res_10_valid : winner_res_11_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:192:40, :194:24, :196:29
+    winner_b_is_younger_13 ? winner_res_10_valid : winner_res_11_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:194:40, :196:24, :198:29
   wire [127:0]       winner_older_13_wdata =
-    winner_b_is_younger_13 ? winner_res_10_wdata : winner_res_11_wdata;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:192:40, :194:24, :208:24
+    winner_b_is_younger_13 ? winner_res_10_wdata : winner_res_11_wdata;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:194:40, :196:24, :210:24
   wire [15:0]        winner_older_13_wmask =
-    winner_b_is_younger_13 ? winner_res_10_wmask : winner_res_11_wmask;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:192:40, :194:24, :199:56
-  wire               winner_res_13_valid = winner_res_10_valid | winner_res_11_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:196:29
+    winner_b_is_younger_13 ? winner_res_10_wmask : winner_res_11_wmask;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:194:40, :196:24, :201:56
+  wire               winner_res_13_valid = winner_res_10_valid | winner_res_11_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:198:29
   wire [3:0]         winner_res_13_idx =
     winner_younger_13_valid
       ? (winner_b_is_younger_13 ? winner_res_11_idx : winner_res_10_idx)
-      : winner_b_is_younger_13 ? winner_res_10_idx : winner_res_11_idx;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:192:40, :193:24, :194:24, :197:24
+      : winner_b_is_younger_13 ? winner_res_10_idx : winner_res_11_idx;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:194:40, :195:24, :196:24, :199:24
   wire [15:0]        winner_res_13_wmask =
     (winner_older_13_valid ? winner_older_13_wmask : 16'h0)
-    | (winner_younger_13_valid ? winner_younger_13_wmask : 16'h0);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:88:20, :193:24, :194:24, :199:{24,56,61}
+    | (winner_younger_13_valid ? winner_younger_13_wmask : 16'h0);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:88:20, :195:24, :196:24, :201:{24,56,61}
   wire [127:0]       winner_res_13_wdata =
     {winner_younger_13_valid & winner_younger_13_wmask[15]
        ? winner_younger_13_wdata[127:120]
@@ -1960,26 +1960,26 @@ module StoreQueue(	// backend/src/zaqal/backend/lsu/StoreQueue.scala:20:7
        ? winner_younger_13_wdata[7:0]
        : winner_older_13_valid & winner_older_13_wmask[0]
            ? winner_older_13_wdata[7:0]
-           : 8'h0};	// backend/src/zaqal/backend/lsu/StoreQueue.scala:193:24, :194:24, :202:{46,62}, :203:{44,58}, :204:45, :205:43, :206:{12,48}, :208:24
+           : 8'h0};	// backend/src/zaqal/backend/lsu/StoreQueue.scala:195:24, :196:24, :204:{46,62}, :205:{44,58}, :206:45, :207:43, :208:{12,48}, :210:24
   wire               winner_b_is_younger_14 =
     (winner_res_13_idx >= deqPtr
        ? {1'h0, winner_res_13_idx - deqPtr}
        : {1'h0, winner_res_13_idx} - 5'h10
          - _GEN_17) > (winner_res_12_idx >= deqPtr
                          ? {1'h0, winner_res_12_idx - deqPtr}
-                         : {1'h0, winner_res_12_idx} - 5'h10 - _GEN_17);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:81:20, :94:23, :172:{36,41,56,70,85}, :192:40, :197:24
+                         : {1'h0, winner_res_12_idx} - 5'h10 - _GEN_17);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:81:20, :94:23, :174:{36,41,56,70,85}, :194:40, :199:24
   wire               winner_younger_14_valid =
-    winner_b_is_younger_14 ? winner_res_13_valid : winner_res_12_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:192:40, :193:24, :196:29
+    winner_b_is_younger_14 ? winner_res_13_valid : winner_res_12_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:194:40, :195:24, :198:29
   wire [127:0]       winner_younger_14_wdata =
-    winner_b_is_younger_14 ? winner_res_13_wdata : winner_res_12_wdata;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:192:40, :193:24, :208:24
+    winner_b_is_younger_14 ? winner_res_13_wdata : winner_res_12_wdata;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:194:40, :195:24, :210:24
   wire [15:0]        winner_younger_14_wmask =
-    winner_b_is_younger_14 ? winner_res_13_wmask : winner_res_12_wmask;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:192:40, :193:24, :199:56
+    winner_b_is_younger_14 ? winner_res_13_wmask : winner_res_12_wmask;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:194:40, :195:24, :201:56
   wire               winner_older_14_valid =
-    winner_b_is_younger_14 ? winner_res_12_valid : winner_res_13_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:192:40, :194:24, :196:29
+    winner_b_is_younger_14 ? winner_res_12_valid : winner_res_13_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:194:40, :196:24, :198:29
   wire [127:0]       winner_older_14_wdata =
-    winner_b_is_younger_14 ? winner_res_12_wdata : winner_res_13_wdata;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:192:40, :194:24, :208:24
+    winner_b_is_younger_14 ? winner_res_12_wdata : winner_res_13_wdata;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:194:40, :196:24, :210:24
   wire [15:0]        winner_older_14_wmask =
-    winner_b_is_younger_14 ? winner_res_12_wmask : winner_res_13_wmask;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:192:40, :194:24, :199:56
+    winner_b_is_younger_14 ? winner_res_12_wmask : winner_res_13_wmask;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:194:40, :196:24, :201:56
   wire               _leaves_is_older_distB_T_217 =
     io_stlf_query_1_robIdx >= io_robHeadPtr;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:101:26
   wire [7:0]         _leaves_is_older_distB_T_220 =
@@ -1995,7 +1995,7 @@ module StoreQueue(	// backend/src/zaqal/backend/lsu/StoreQueue.scala:20:7
                            ? _GEN_27
                            : _leaves_is_older_distB_T_220 - _GEN))
     & entries_0_paddr[63:3] == io_stlf_query_1_paddr[63:3]
-    & (|(entries_0_wmask & io_stlf_query_1_mask)) & entries_0_data_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :100:{20,26,53,61}, :101:{20,26,53,61}, :102:11, :177:{30,62}, :178:{32,46,72}, :179:{35,60}, :182:87
+    & (|(entries_0_wmask & io_stlf_query_1_mask)) & entries_0_data_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :100:{20,26,53,61}, :101:{20,26,53,61}, :102:11, :179:{30,62}, :180:{32,46,72}, :181:{35,60}, :184:87
   wire               leaves_1_1_valid =
     io_stlf_query_1_valid & _leaves_is_older_T_51
     & (entries_1_committed
@@ -2006,7 +2006,7 @@ module StoreQueue(	// backend/src/zaqal/backend/lsu/StoreQueue.scala:20:7
                            ? _GEN_27
                            : _leaves_is_older_distB_T_220 - _GEN))
     & entries_1_paddr[63:3] == io_stlf_query_1_paddr[63:3]
-    & (|(entries_1_wmask & io_stlf_query_1_mask)) & entries_1_data_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :100:{20,26,53,61}, :101:{20,26,53,61}, :102:11, :177:{30,62}, :178:{32,46,72}, :179:{35,60}, :182:87
+    & (|(entries_1_wmask & io_stlf_query_1_mask)) & entries_1_data_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :100:{20,26,53,61}, :101:{20,26,53,61}, :102:11, :179:{30,62}, :180:{32,46,72}, :181:{35,60}, :184:87
   wire               leaves_2_1_valid =
     io_stlf_query_1_valid & _leaves_is_older_T_54
     & (entries_2_committed
@@ -2017,7 +2017,7 @@ module StoreQueue(	// backend/src/zaqal/backend/lsu/StoreQueue.scala:20:7
                            ? _GEN_27
                            : _leaves_is_older_distB_T_220 - _GEN))
     & entries_2_paddr[63:3] == io_stlf_query_1_paddr[63:3]
-    & (|(entries_2_wmask & io_stlf_query_1_mask)) & entries_2_data_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :100:{20,26,53,61}, :101:{20,26,53,61}, :102:11, :177:{30,62}, :178:{32,46,72}, :179:{35,60}, :182:87
+    & (|(entries_2_wmask & io_stlf_query_1_mask)) & entries_2_data_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :100:{20,26,53,61}, :101:{20,26,53,61}, :102:11, :179:{30,62}, :180:{32,46,72}, :181:{35,60}, :184:87
   wire               leaves_3_1_valid =
     io_stlf_query_1_valid & _leaves_is_older_T_57
     & (entries_3_committed
@@ -2028,7 +2028,7 @@ module StoreQueue(	// backend/src/zaqal/backend/lsu/StoreQueue.scala:20:7
                            ? _GEN_27
                            : _leaves_is_older_distB_T_220 - _GEN))
     & entries_3_paddr[63:3] == io_stlf_query_1_paddr[63:3]
-    & (|(entries_3_wmask & io_stlf_query_1_mask)) & entries_3_data_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :100:{20,26,53,61}, :101:{20,26,53,61}, :102:11, :177:{30,62}, :178:{32,46,72}, :179:{35,60}, :182:87
+    & (|(entries_3_wmask & io_stlf_query_1_mask)) & entries_3_data_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :100:{20,26,53,61}, :101:{20,26,53,61}, :102:11, :179:{30,62}, :180:{32,46,72}, :181:{35,60}, :184:87
   wire               leaves_4_1_valid =
     io_stlf_query_1_valid & _leaves_is_older_T_60
     & (entries_4_committed
@@ -2039,7 +2039,7 @@ module StoreQueue(	// backend/src/zaqal/backend/lsu/StoreQueue.scala:20:7
                            ? _GEN_27
                            : _leaves_is_older_distB_T_220 - _GEN))
     & entries_4_paddr[63:3] == io_stlf_query_1_paddr[63:3]
-    & (|(entries_4_wmask & io_stlf_query_1_mask)) & entries_4_data_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :100:{20,26,53,61}, :101:{20,26,53,61}, :102:11, :177:{30,62}, :178:{32,46,72}, :179:{35,60}, :182:87
+    & (|(entries_4_wmask & io_stlf_query_1_mask)) & entries_4_data_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :100:{20,26,53,61}, :101:{20,26,53,61}, :102:11, :179:{30,62}, :180:{32,46,72}, :181:{35,60}, :184:87
   wire               leaves_5_1_valid =
     io_stlf_query_1_valid & _leaves_is_older_T_63
     & (entries_5_committed
@@ -2050,7 +2050,7 @@ module StoreQueue(	// backend/src/zaqal/backend/lsu/StoreQueue.scala:20:7
                            ? _GEN_27
                            : _leaves_is_older_distB_T_220 - _GEN))
     & entries_5_paddr[63:3] == io_stlf_query_1_paddr[63:3]
-    & (|(entries_5_wmask & io_stlf_query_1_mask)) & entries_5_data_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :100:{20,26,53,61}, :101:{20,26,53,61}, :102:11, :177:{30,62}, :178:{32,46,72}, :179:{35,60}, :182:87
+    & (|(entries_5_wmask & io_stlf_query_1_mask)) & entries_5_data_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :100:{20,26,53,61}, :101:{20,26,53,61}, :102:11, :179:{30,62}, :180:{32,46,72}, :181:{35,60}, :184:87
   wire               leaves_6_1_valid =
     io_stlf_query_1_valid & _leaves_is_older_T_66
     & (entries_6_committed
@@ -2061,7 +2061,7 @@ module StoreQueue(	// backend/src/zaqal/backend/lsu/StoreQueue.scala:20:7
                            ? _GEN_27
                            : _leaves_is_older_distB_T_220 - _GEN))
     & entries_6_paddr[63:3] == io_stlf_query_1_paddr[63:3]
-    & (|(entries_6_wmask & io_stlf_query_1_mask)) & entries_6_data_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :100:{20,26,53,61}, :101:{20,26,53,61}, :102:11, :177:{30,62}, :178:{32,46,72}, :179:{35,60}, :182:87
+    & (|(entries_6_wmask & io_stlf_query_1_mask)) & entries_6_data_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :100:{20,26,53,61}, :101:{20,26,53,61}, :102:11, :179:{30,62}, :180:{32,46,72}, :181:{35,60}, :184:87
   wire               leaves_7_1_valid =
     io_stlf_query_1_valid & _leaves_is_older_T_69
     & (entries_7_committed
@@ -2072,7 +2072,7 @@ module StoreQueue(	// backend/src/zaqal/backend/lsu/StoreQueue.scala:20:7
                            ? _GEN_27
                            : _leaves_is_older_distB_T_220 - _GEN))
     & entries_7_paddr[63:3] == io_stlf_query_1_paddr[63:3]
-    & (|(entries_7_wmask & io_stlf_query_1_mask)) & entries_7_data_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :100:{20,26,53,61}, :101:{20,26,53,61}, :102:11, :177:{30,62}, :178:{32,46,72}, :179:{35,60}, :182:87
+    & (|(entries_7_wmask & io_stlf_query_1_mask)) & entries_7_data_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :100:{20,26,53,61}, :101:{20,26,53,61}, :102:11, :179:{30,62}, :180:{32,46,72}, :181:{35,60}, :184:87
   wire               leaves_8_1_valid =
     io_stlf_query_1_valid & _leaves_is_older_T_72
     & (entries_8_committed
@@ -2083,7 +2083,7 @@ module StoreQueue(	// backend/src/zaqal/backend/lsu/StoreQueue.scala:20:7
                            ? _GEN_27
                            : _leaves_is_older_distB_T_220 - _GEN))
     & entries_8_paddr[63:3] == io_stlf_query_1_paddr[63:3]
-    & (|(entries_8_wmask & io_stlf_query_1_mask)) & entries_8_data_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :100:{20,26,53,61}, :101:{20,26,53,61}, :102:11, :177:{30,62}, :178:{32,46,72}, :179:{35,60}, :182:87
+    & (|(entries_8_wmask & io_stlf_query_1_mask)) & entries_8_data_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :100:{20,26,53,61}, :101:{20,26,53,61}, :102:11, :179:{30,62}, :180:{32,46,72}, :181:{35,60}, :184:87
   wire               leaves_9_1_valid =
     io_stlf_query_1_valid & _leaves_is_older_T_75
     & (entries_9_committed
@@ -2094,7 +2094,7 @@ module StoreQueue(	// backend/src/zaqal/backend/lsu/StoreQueue.scala:20:7
                            ? _GEN_27
                            : _leaves_is_older_distB_T_220 - _GEN))
     & entries_9_paddr[63:3] == io_stlf_query_1_paddr[63:3]
-    & (|(entries_9_wmask & io_stlf_query_1_mask)) & entries_9_data_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :100:{20,26,53,61}, :101:{20,26,53,61}, :102:11, :177:{30,62}, :178:{32,46,72}, :179:{35,60}, :182:87
+    & (|(entries_9_wmask & io_stlf_query_1_mask)) & entries_9_data_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :100:{20,26,53,61}, :101:{20,26,53,61}, :102:11, :179:{30,62}, :180:{32,46,72}, :181:{35,60}, :184:87
   wire               leaves_10_1_valid =
     io_stlf_query_1_valid & _leaves_is_older_T_78
     & (entries_10_committed
@@ -2105,7 +2105,7 @@ module StoreQueue(	// backend/src/zaqal/backend/lsu/StoreQueue.scala:20:7
                            ? _GEN_27
                            : _leaves_is_older_distB_T_220 - _GEN))
     & entries_10_paddr[63:3] == io_stlf_query_1_paddr[63:3]
-    & (|(entries_10_wmask & io_stlf_query_1_mask)) & entries_10_data_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :100:{20,26,53,61}, :101:{20,26,53,61}, :102:11, :177:{30,62}, :178:{32,46,72}, :179:{35,60}, :182:87
+    & (|(entries_10_wmask & io_stlf_query_1_mask)) & entries_10_data_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :100:{20,26,53,61}, :101:{20,26,53,61}, :102:11, :179:{30,62}, :180:{32,46,72}, :181:{35,60}, :184:87
   wire               leaves_11_1_valid =
     io_stlf_query_1_valid & _leaves_is_older_T_81
     & (entries_11_committed
@@ -2116,7 +2116,7 @@ module StoreQueue(	// backend/src/zaqal/backend/lsu/StoreQueue.scala:20:7
                            ? _GEN_27
                            : _leaves_is_older_distB_T_220 - _GEN))
     & entries_11_paddr[63:3] == io_stlf_query_1_paddr[63:3]
-    & (|(entries_11_wmask & io_stlf_query_1_mask)) & entries_11_data_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :100:{20,26,53,61}, :101:{20,26,53,61}, :102:11, :177:{30,62}, :178:{32,46,72}, :179:{35,60}, :182:87
+    & (|(entries_11_wmask & io_stlf_query_1_mask)) & entries_11_data_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :100:{20,26,53,61}, :101:{20,26,53,61}, :102:11, :179:{30,62}, :180:{32,46,72}, :181:{35,60}, :184:87
   wire               leaves_12_1_valid =
     io_stlf_query_1_valid & _leaves_is_older_T_84
     & (entries_12_committed
@@ -2127,7 +2127,7 @@ module StoreQueue(	// backend/src/zaqal/backend/lsu/StoreQueue.scala:20:7
                            ? _GEN_27
                            : _leaves_is_older_distB_T_220 - _GEN))
     & entries_12_paddr[63:3] == io_stlf_query_1_paddr[63:3]
-    & (|(entries_12_wmask & io_stlf_query_1_mask)) & entries_12_data_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :100:{20,26,53,61}, :101:{20,26,53,61}, :102:11, :177:{30,62}, :178:{32,46,72}, :179:{35,60}, :182:87
+    & (|(entries_12_wmask & io_stlf_query_1_mask)) & entries_12_data_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :100:{20,26,53,61}, :101:{20,26,53,61}, :102:11, :179:{30,62}, :180:{32,46,72}, :181:{35,60}, :184:87
   wire               leaves_13_1_valid =
     io_stlf_query_1_valid & _leaves_is_older_T_87
     & (entries_13_committed
@@ -2138,7 +2138,7 @@ module StoreQueue(	// backend/src/zaqal/backend/lsu/StoreQueue.scala:20:7
                            ? _GEN_27
                            : _leaves_is_older_distB_T_220 - _GEN))
     & entries_13_paddr[63:3] == io_stlf_query_1_paddr[63:3]
-    & (|(entries_13_wmask & io_stlf_query_1_mask)) & entries_13_data_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :100:{20,26,53,61}, :101:{20,26,53,61}, :102:11, :177:{30,62}, :178:{32,46,72}, :179:{35,60}, :182:87
+    & (|(entries_13_wmask & io_stlf_query_1_mask)) & entries_13_data_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :100:{20,26,53,61}, :101:{20,26,53,61}, :102:11, :179:{30,62}, :180:{32,46,72}, :181:{35,60}, :184:87
   wire               leaves_14_1_valid =
     io_stlf_query_1_valid & _leaves_is_older_T_90
     & (entries_14_committed
@@ -2149,7 +2149,7 @@ module StoreQueue(	// backend/src/zaqal/backend/lsu/StoreQueue.scala:20:7
                            ? _GEN_27
                            : _leaves_is_older_distB_T_220 - _GEN))
     & entries_14_paddr[63:3] == io_stlf_query_1_paddr[63:3]
-    & (|(entries_14_wmask & io_stlf_query_1_mask)) & entries_14_data_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :100:{20,26,53,61}, :101:{20,26,53,61}, :102:11, :177:{30,62}, :178:{32,46,72}, :179:{35,60}, :182:87
+    & (|(entries_14_wmask & io_stlf_query_1_mask)) & entries_14_data_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :100:{20,26,53,61}, :101:{20,26,53,61}, :102:11, :179:{30,62}, :180:{32,46,72}, :181:{35,60}, :184:87
   wire               leaves_15_1_valid =
     io_stlf_query_1_valid & _leaves_is_older_T_93
     & (entries_15_committed
@@ -2160,29 +2160,29 @@ module StoreQueue(	// backend/src/zaqal/backend/lsu/StoreQueue.scala:20:7
                            ? _GEN_27
                            : _leaves_is_older_distB_T_220 - _GEN))
     & entries_15_paddr[63:3] == io_stlf_query_1_paddr[63:3]
-    & (|(entries_15_wmask & io_stlf_query_1_mask)) & entries_15_data_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :100:{20,26,53,61}, :101:{20,26,53,61}, :102:11, :177:{30,62}, :178:{32,46,72}, :179:{35,60}, :182:87
+    & (|(entries_15_wmask & io_stlf_query_1_mask)) & entries_15_data_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :100:{20,26,53,61}, :101:{20,26,53,61}, :102:11, :179:{30,62}, :180:{32,46,72}, :181:{35,60}, :184:87
   wire               winner_b_is_younger_15 =
     (deqPtr < 4'h2
        ? {1'h0, 4'h1 - deqPtr}
-       : 5'h11 - _GEN_17) > (deqPtr == 4'h0 ? _GEN_18 : 5'h10 - _GEN_17);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:81:20, :93:23, :94:23, :111:30, :121:38, :172:{36,41,56,85}, :192:40
+       : 5'h11 - _GEN_17) > (deqPtr == 4'h0 ? _GEN_18 : 5'h10 - _GEN_17);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:81:20, :93:23, :94:23, :111:30, :121:38, :174:{36,41,56,85}, :194:40
   wire               winner_younger_15_valid =
-    winner_b_is_younger_15 ? leaves_1_1_valid : leaves_0_1_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:182:87, :192:40, :193:24
+    winner_b_is_younger_15 ? leaves_1_1_valid : leaves_0_1_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:184:87, :194:40, :195:24
   wire [127:0]       winner_younger_15_wdata =
-    winner_b_is_younger_15 ? entries_1_wdata : entries_0_wdata;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :192:40, :193:24
+    winner_b_is_younger_15 ? entries_1_wdata : entries_0_wdata;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :194:40, :195:24
   wire [15:0]        winner_younger_15_wmask =
-    winner_b_is_younger_15 ? entries_1_wmask : entries_0_wmask;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :192:40, :193:24
+    winner_b_is_younger_15 ? entries_1_wmask : entries_0_wmask;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :194:40, :195:24
   wire               winner_older_15_valid =
-    winner_b_is_younger_15 ? leaves_0_1_valid : leaves_1_1_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:182:87, :192:40, :194:24
+    winner_b_is_younger_15 ? leaves_0_1_valid : leaves_1_1_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:184:87, :194:40, :196:24
   wire [127:0]       winner_older_15_wdata =
-    winner_b_is_younger_15 ? entries_0_wdata : entries_1_wdata;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :192:40, :194:24
+    winner_b_is_younger_15 ? entries_0_wdata : entries_1_wdata;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :194:40, :196:24
   wire [15:0]        winner_older_15_wmask =
-    winner_b_is_younger_15 ? entries_0_wmask : entries_1_wmask;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :192:40, :194:24
-  wire               winner_res_14_valid = leaves_0_1_valid | leaves_1_1_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:182:87, :196:29
-  wire               _GEN_28 = winner_younger_15_valid ^ ~winner_b_is_younger_15;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:192:40, :193:24, :197:24
-  wire [3:0]         winner_res_14_idx = {3'h0, _GEN_28};	// backend/src/zaqal/backend/lsu/StoreQueue.scala:117:28, :197:24
+    winner_b_is_younger_15 ? entries_0_wmask : entries_1_wmask;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :194:40, :196:24
+  wire               winner_res_14_valid = leaves_0_1_valid | leaves_1_1_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:184:87, :198:29
+  wire               _GEN_28 = winner_younger_15_valid ^ ~winner_b_is_younger_15;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:194:40, :195:24, :199:24
+  wire [3:0]         winner_res_14_idx = {3'h0, _GEN_28};	// backend/src/zaqal/backend/lsu/StoreQueue.scala:117:28, :199:24
   wire [15:0]        winner_res_14_wmask =
     (winner_older_15_valid ? winner_older_15_wmask : 16'h0)
-    | (winner_younger_15_valid ? winner_younger_15_wmask : 16'h0);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:88:20, :193:24, :194:24, :199:{24,56,61}
+    | (winner_younger_15_valid ? winner_younger_15_wmask : 16'h0);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:88:20, :195:24, :196:24, :201:{24,56,61}
   wire [127:0]       winner_res_14_wdata =
     {winner_younger_15_valid & winner_younger_15_wmask[15]
        ? winner_younger_15_wdata[127:120]
@@ -2263,29 +2263,29 @@ module StoreQueue(	// backend/src/zaqal/backend/lsu/StoreQueue.scala:20:7
        ? winner_younger_15_wdata[7:0]
        : winner_older_15_valid & winner_older_15_wmask[0]
            ? winner_older_15_wdata[7:0]
-           : 8'h0};	// backend/src/zaqal/backend/lsu/StoreQueue.scala:193:24, :194:24, :202:{46,62}, :203:{44,58}, :204:45, :205:43, :206:{12,48}, :208:24
+           : 8'h0};	// backend/src/zaqal/backend/lsu/StoreQueue.scala:195:24, :196:24, :204:{46,62}, :205:{44,58}, :206:45, :207:43, :208:{12,48}, :210:24
   wire               winner_b_is_younger_16 =
     (deqPtr < 4'h4
        ? {1'h0, 4'h3 - deqPtr}
-       : 5'h13 - _GEN_17) > (deqPtr < 4'h3 ? {1'h0, 4'h2 - deqPtr} : 5'h12 - _GEN_17);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:81:20, :94:23, :121:38, :172:{36,41,56,85}, :192:40
+       : 5'h13 - _GEN_17) > (deqPtr < 4'h3 ? {1'h0, 4'h2 - deqPtr} : 5'h12 - _GEN_17);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:81:20, :94:23, :121:38, :174:{36,41,56,85}, :194:40
   wire               winner_younger_16_valid =
-    winner_b_is_younger_16 ? leaves_3_1_valid : leaves_2_1_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:182:87, :192:40, :193:24
+    winner_b_is_younger_16 ? leaves_3_1_valid : leaves_2_1_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:184:87, :194:40, :195:24
   wire [127:0]       winner_younger_16_wdata =
-    winner_b_is_younger_16 ? entries_3_wdata : entries_2_wdata;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :192:40, :193:24
+    winner_b_is_younger_16 ? entries_3_wdata : entries_2_wdata;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :194:40, :195:24
   wire [15:0]        winner_younger_16_wmask =
-    winner_b_is_younger_16 ? entries_3_wmask : entries_2_wmask;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :192:40, :193:24
+    winner_b_is_younger_16 ? entries_3_wmask : entries_2_wmask;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :194:40, :195:24
   wire               winner_older_16_valid =
-    winner_b_is_younger_16 ? leaves_2_1_valid : leaves_3_1_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:182:87, :192:40, :194:24
+    winner_b_is_younger_16 ? leaves_2_1_valid : leaves_3_1_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:184:87, :194:40, :196:24
   wire [127:0]       winner_older_16_wdata =
-    winner_b_is_younger_16 ? entries_2_wdata : entries_3_wdata;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :192:40, :194:24
+    winner_b_is_younger_16 ? entries_2_wdata : entries_3_wdata;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :194:40, :196:24
   wire [15:0]        winner_older_16_wmask =
-    winner_b_is_younger_16 ? entries_2_wmask : entries_3_wmask;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :192:40, :194:24
-  wire               winner_res_15_valid = leaves_2_1_valid | leaves_3_1_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:182:87, :196:29
-  wire               _GEN_29 = winner_younger_16_valid ^ ~winner_b_is_younger_16;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:192:40, :193:24, :197:24
-  wire [3:0]         winner_res_15_idx = {3'h1, _GEN_29};	// backend/src/zaqal/backend/lsu/StoreQueue.scala:193:24, :197:24
+    winner_b_is_younger_16 ? entries_2_wmask : entries_3_wmask;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :194:40, :196:24
+  wire               winner_res_15_valid = leaves_2_1_valid | leaves_3_1_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:184:87, :198:29
+  wire               _GEN_29 = winner_younger_16_valid ^ ~winner_b_is_younger_16;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:194:40, :195:24, :199:24
+  wire [3:0]         winner_res_15_idx = {3'h1, _GEN_29};	// backend/src/zaqal/backend/lsu/StoreQueue.scala:195:24, :199:24
   wire [15:0]        winner_res_15_wmask =
     (winner_older_16_valid ? winner_older_16_wmask : 16'h0)
-    | (winner_younger_16_valid ? winner_younger_16_wmask : 16'h0);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:88:20, :193:24, :194:24, :199:{24,56,61}
+    | (winner_younger_16_valid ? winner_younger_16_wmask : 16'h0);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:88:20, :195:24, :196:24, :201:{24,56,61}
   wire [127:0]       winner_res_15_wdata =
     {winner_younger_16_valid & winner_younger_16_wmask[15]
        ? winner_younger_16_wdata[127:120]
@@ -2366,29 +2366,29 @@ module StoreQueue(	// backend/src/zaqal/backend/lsu/StoreQueue.scala:20:7
        ? winner_younger_16_wdata[7:0]
        : winner_older_16_valid & winner_older_16_wmask[0]
            ? winner_older_16_wdata[7:0]
-           : 8'h0};	// backend/src/zaqal/backend/lsu/StoreQueue.scala:193:24, :194:24, :202:{46,62}, :203:{44,58}, :204:45, :205:43, :206:{12,48}, :208:24
+           : 8'h0};	// backend/src/zaqal/backend/lsu/StoreQueue.scala:195:24, :196:24, :204:{46,62}, :205:{44,58}, :206:45, :207:43, :208:{12,48}, :210:24
   wire               winner_b_is_younger_17 =
     (deqPtr < 4'h6
        ? {1'h0, 4'h5 - deqPtr}
-       : 5'h15 - _GEN_17) > (deqPtr < 4'h5 ? {1'h0, 4'h4 - deqPtr} : 5'h14 - _GEN_17);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:81:20, :94:23, :121:38, :172:{36,41,56,85}, :192:40
+       : 5'h15 - _GEN_17) > (deqPtr < 4'h5 ? {1'h0, 4'h4 - deqPtr} : 5'h14 - _GEN_17);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:81:20, :94:23, :121:38, :174:{36,41,56,85}, :194:40
   wire               winner_younger_17_valid =
-    winner_b_is_younger_17 ? leaves_5_1_valid : leaves_4_1_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:182:87, :192:40, :193:24
+    winner_b_is_younger_17 ? leaves_5_1_valid : leaves_4_1_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:184:87, :194:40, :195:24
   wire [127:0]       winner_younger_17_wdata =
-    winner_b_is_younger_17 ? entries_5_wdata : entries_4_wdata;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :192:40, :193:24
+    winner_b_is_younger_17 ? entries_5_wdata : entries_4_wdata;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :194:40, :195:24
   wire [15:0]        winner_younger_17_wmask =
-    winner_b_is_younger_17 ? entries_5_wmask : entries_4_wmask;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :192:40, :193:24
+    winner_b_is_younger_17 ? entries_5_wmask : entries_4_wmask;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :194:40, :195:24
   wire               winner_older_17_valid =
-    winner_b_is_younger_17 ? leaves_4_1_valid : leaves_5_1_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:182:87, :192:40, :194:24
+    winner_b_is_younger_17 ? leaves_4_1_valid : leaves_5_1_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:184:87, :194:40, :196:24
   wire [127:0]       winner_older_17_wdata =
-    winner_b_is_younger_17 ? entries_4_wdata : entries_5_wdata;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :192:40, :194:24
+    winner_b_is_younger_17 ? entries_4_wdata : entries_5_wdata;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :194:40, :196:24
   wire [15:0]        winner_older_17_wmask =
-    winner_b_is_younger_17 ? entries_4_wmask : entries_5_wmask;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :192:40, :194:24
-  wire               winner_res_16_valid = leaves_4_1_valid | leaves_5_1_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:182:87, :196:29
-  wire               _GEN_30 = winner_younger_17_valid ^ ~winner_b_is_younger_17;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:192:40, :193:24, :197:24
-  wire [3:0]         winner_res_16_idx = {3'h2, _GEN_30};	// backend/src/zaqal/backend/lsu/StoreQueue.scala:193:24, :197:24
+    winner_b_is_younger_17 ? entries_4_wmask : entries_5_wmask;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :194:40, :196:24
+  wire               winner_res_16_valid = leaves_4_1_valid | leaves_5_1_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:184:87, :198:29
+  wire               _GEN_30 = winner_younger_17_valid ^ ~winner_b_is_younger_17;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:194:40, :195:24, :199:24
+  wire [3:0]         winner_res_16_idx = {3'h2, _GEN_30};	// backend/src/zaqal/backend/lsu/StoreQueue.scala:195:24, :199:24
   wire [15:0]        winner_res_16_wmask =
     (winner_older_17_valid ? winner_older_17_wmask : 16'h0)
-    | (winner_younger_17_valid ? winner_younger_17_wmask : 16'h0);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:88:20, :193:24, :194:24, :199:{24,56,61}
+    | (winner_younger_17_valid ? winner_younger_17_wmask : 16'h0);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:88:20, :195:24, :196:24, :201:{24,56,61}
   wire [127:0]       winner_res_16_wdata =
     {winner_younger_17_valid & winner_younger_17_wmask[15]
        ? winner_younger_17_wdata[127:120]
@@ -2469,30 +2469,30 @@ module StoreQueue(	// backend/src/zaqal/backend/lsu/StoreQueue.scala:20:7
        ? winner_younger_17_wdata[7:0]
        : winner_older_17_valid & winner_older_17_wmask[0]
            ? winner_older_17_wdata[7:0]
-           : 8'h0};	// backend/src/zaqal/backend/lsu/StoreQueue.scala:193:24, :194:24, :202:{46,62}, :203:{44,58}, :204:45, :205:43, :206:{12,48}, :208:24
+           : 8'h0};	// backend/src/zaqal/backend/lsu/StoreQueue.scala:195:24, :196:24, :204:{46,62}, :205:{44,58}, :206:45, :207:43, :208:{12,48}, :210:24
   wire               winner_b_is_younger_18 =
     (deqPtr[3]
        ? 5'h17 - _GEN_17
        : {1'h0,
-          4'h7 - deqPtr}) > (deqPtr < 4'h7 ? {1'h0, 4'h6 - deqPtr} : 5'h16 - _GEN_17);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:81:20, :94:23, :121:38, :172:{36,41,56,85}, :192:40
+          4'h7 - deqPtr}) > (deqPtr < 4'h7 ? {1'h0, 4'h6 - deqPtr} : 5'h16 - _GEN_17);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:81:20, :94:23, :121:38, :174:{36,41,56,85}, :194:40
   wire               winner_younger_18_valid =
-    winner_b_is_younger_18 ? leaves_7_1_valid : leaves_6_1_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:182:87, :192:40, :193:24
+    winner_b_is_younger_18 ? leaves_7_1_valid : leaves_6_1_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:184:87, :194:40, :195:24
   wire [127:0]       winner_younger_18_wdata =
-    winner_b_is_younger_18 ? entries_7_wdata : entries_6_wdata;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :192:40, :193:24
+    winner_b_is_younger_18 ? entries_7_wdata : entries_6_wdata;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :194:40, :195:24
   wire [15:0]        winner_younger_18_wmask =
-    winner_b_is_younger_18 ? entries_7_wmask : entries_6_wmask;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :192:40, :193:24
+    winner_b_is_younger_18 ? entries_7_wmask : entries_6_wmask;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :194:40, :195:24
   wire               winner_older_18_valid =
-    winner_b_is_younger_18 ? leaves_6_1_valid : leaves_7_1_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:182:87, :192:40, :194:24
+    winner_b_is_younger_18 ? leaves_6_1_valid : leaves_7_1_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:184:87, :194:40, :196:24
   wire [127:0]       winner_older_18_wdata =
-    winner_b_is_younger_18 ? entries_6_wdata : entries_7_wdata;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :192:40, :194:24
+    winner_b_is_younger_18 ? entries_6_wdata : entries_7_wdata;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :194:40, :196:24
   wire [15:0]        winner_older_18_wmask =
-    winner_b_is_younger_18 ? entries_6_wmask : entries_7_wmask;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :192:40, :194:24
-  wire               winner_res_17_valid = leaves_6_1_valid | leaves_7_1_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:182:87, :196:29
-  wire               _GEN_31 = winner_younger_18_valid ^ ~winner_b_is_younger_18;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:192:40, :193:24, :197:24
-  wire [3:0]         winner_res_17_idx = {3'h3, _GEN_31};	// backend/src/zaqal/backend/lsu/StoreQueue.scala:193:24, :197:24
+    winner_b_is_younger_18 ? entries_6_wmask : entries_7_wmask;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :194:40, :196:24
+  wire               winner_res_17_valid = leaves_6_1_valid | leaves_7_1_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:184:87, :198:29
+  wire               _GEN_31 = winner_younger_18_valid ^ ~winner_b_is_younger_18;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:194:40, :195:24, :199:24
+  wire [3:0]         winner_res_17_idx = {3'h3, _GEN_31};	// backend/src/zaqal/backend/lsu/StoreQueue.scala:195:24, :199:24
   wire [15:0]        winner_res_17_wmask =
     (winner_older_18_valid ? winner_older_18_wmask : 16'h0)
-    | (winner_younger_18_valid ? winner_younger_18_wmask : 16'h0);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:88:20, :193:24, :194:24, :199:{24,56,61}
+    | (winner_younger_18_valid ? winner_younger_18_wmask : 16'h0);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:88:20, :195:24, :196:24, :201:{24,56,61}
   wire [127:0]       winner_res_17_wdata =
     {winner_younger_18_valid & winner_younger_18_wmask[15]
        ? winner_younger_18_wdata[127:120]
@@ -2573,29 +2573,29 @@ module StoreQueue(	// backend/src/zaqal/backend/lsu/StoreQueue.scala:20:7
        ? winner_younger_18_wdata[7:0]
        : winner_older_18_valid & winner_older_18_wmask[0]
            ? winner_older_18_wdata[7:0]
-           : 8'h0};	// backend/src/zaqal/backend/lsu/StoreQueue.scala:193:24, :194:24, :202:{46,62}, :203:{44,58}, :204:45, :205:43, :206:{12,48}, :208:24
+           : 8'h0};	// backend/src/zaqal/backend/lsu/StoreQueue.scala:195:24, :196:24, :204:{46,62}, :205:{44,58}, :206:45, :207:43, :208:{12,48}, :210:24
   wire               winner_b_is_younger_19 =
     (deqPtr < 4'hA
        ? {1'h0, 4'h9 - deqPtr}
-       : 5'h19 - _GEN_17) > (deqPtr < 4'h9 ? {1'h0, 4'h8 - deqPtr} : 5'h18 - _GEN_17);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:81:20, :94:23, :121:38, :172:{36,41,56,85}, :192:40
+       : 5'h19 - _GEN_17) > (deqPtr < 4'h9 ? {1'h0, 4'h8 - deqPtr} : 5'h18 - _GEN_17);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:81:20, :94:23, :121:38, :174:{36,41,56,85}, :194:40
   wire               winner_younger_19_valid =
-    winner_b_is_younger_19 ? leaves_9_1_valid : leaves_8_1_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:182:87, :192:40, :193:24
+    winner_b_is_younger_19 ? leaves_9_1_valid : leaves_8_1_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:184:87, :194:40, :195:24
   wire [127:0]       winner_younger_19_wdata =
-    winner_b_is_younger_19 ? entries_9_wdata : entries_8_wdata;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :192:40, :193:24
+    winner_b_is_younger_19 ? entries_9_wdata : entries_8_wdata;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :194:40, :195:24
   wire [15:0]        winner_younger_19_wmask =
-    winner_b_is_younger_19 ? entries_9_wmask : entries_8_wmask;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :192:40, :193:24
+    winner_b_is_younger_19 ? entries_9_wmask : entries_8_wmask;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :194:40, :195:24
   wire               winner_older_19_valid =
-    winner_b_is_younger_19 ? leaves_8_1_valid : leaves_9_1_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:182:87, :192:40, :194:24
+    winner_b_is_younger_19 ? leaves_8_1_valid : leaves_9_1_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:184:87, :194:40, :196:24
   wire [127:0]       winner_older_19_wdata =
-    winner_b_is_younger_19 ? entries_8_wdata : entries_9_wdata;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :192:40, :194:24
+    winner_b_is_younger_19 ? entries_8_wdata : entries_9_wdata;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :194:40, :196:24
   wire [15:0]        winner_older_19_wmask =
-    winner_b_is_younger_19 ? entries_8_wmask : entries_9_wmask;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :192:40, :194:24
-  wire               winner_res_18_valid = leaves_8_1_valid | leaves_9_1_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:182:87, :196:29
-  wire               _GEN_32 = winner_younger_19_valid ^ ~winner_b_is_younger_19;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:192:40, :193:24, :197:24
-  wire [3:0]         winner_res_18_idx = {3'h4, _GEN_32};	// backend/src/zaqal/backend/lsu/StoreQueue.scala:193:24, :197:24
+    winner_b_is_younger_19 ? entries_8_wmask : entries_9_wmask;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :194:40, :196:24
+  wire               winner_res_18_valid = leaves_8_1_valid | leaves_9_1_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:184:87, :198:29
+  wire               _GEN_32 = winner_younger_19_valid ^ ~winner_b_is_younger_19;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:194:40, :195:24, :199:24
+  wire [3:0]         winner_res_18_idx = {3'h4, _GEN_32};	// backend/src/zaqal/backend/lsu/StoreQueue.scala:195:24, :199:24
   wire [15:0]        winner_res_18_wmask =
     (winner_older_19_valid ? winner_older_19_wmask : 16'h0)
-    | (winner_younger_19_valid ? winner_younger_19_wmask : 16'h0);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:88:20, :193:24, :194:24, :199:{24,56,61}
+    | (winner_younger_19_valid ? winner_younger_19_wmask : 16'h0);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:88:20, :195:24, :196:24, :201:{24,56,61}
   wire [127:0]       winner_res_18_wdata =
     {winner_younger_19_valid & winner_younger_19_wmask[15]
        ? winner_younger_19_wdata[127:120]
@@ -2676,29 +2676,29 @@ module StoreQueue(	// backend/src/zaqal/backend/lsu/StoreQueue.scala:20:7
        ? winner_younger_19_wdata[7:0]
        : winner_older_19_valid & winner_older_19_wmask[0]
            ? winner_older_19_wdata[7:0]
-           : 8'h0};	// backend/src/zaqal/backend/lsu/StoreQueue.scala:193:24, :194:24, :202:{46,62}, :203:{44,58}, :204:45, :205:43, :206:{12,48}, :208:24
+           : 8'h0};	// backend/src/zaqal/backend/lsu/StoreQueue.scala:195:24, :196:24, :204:{46,62}, :205:{44,58}, :206:45, :207:43, :208:{12,48}, :210:24
   wire               winner_b_is_younger_20 =
     (deqPtr[3:2] != 2'h3
        ? {1'h0, 4'hB - deqPtr}
-       : 5'h1B - _GEN_17) > (deqPtr < 4'hB ? {1'h0, 4'hA - deqPtr} : 5'h1A - _GEN_17);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:81:20, :94:23, :121:38, :172:{36,41,56,85}, :192:40
+       : 5'h1B - _GEN_17) > (deqPtr < 4'hB ? {1'h0, 4'hA - deqPtr} : 5'h1A - _GEN_17);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:81:20, :94:23, :121:38, :174:{36,41,56,85}, :194:40
   wire               winner_younger_20_valid =
-    winner_b_is_younger_20 ? leaves_11_1_valid : leaves_10_1_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:182:87, :192:40, :193:24
+    winner_b_is_younger_20 ? leaves_11_1_valid : leaves_10_1_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:184:87, :194:40, :195:24
   wire [127:0]       winner_younger_20_wdata =
-    winner_b_is_younger_20 ? entries_11_wdata : entries_10_wdata;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :192:40, :193:24
+    winner_b_is_younger_20 ? entries_11_wdata : entries_10_wdata;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :194:40, :195:24
   wire [15:0]        winner_younger_20_wmask =
-    winner_b_is_younger_20 ? entries_11_wmask : entries_10_wmask;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :192:40, :193:24
+    winner_b_is_younger_20 ? entries_11_wmask : entries_10_wmask;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :194:40, :195:24
   wire               winner_older_20_valid =
-    winner_b_is_younger_20 ? leaves_10_1_valid : leaves_11_1_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:182:87, :192:40, :194:24
+    winner_b_is_younger_20 ? leaves_10_1_valid : leaves_11_1_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:184:87, :194:40, :196:24
   wire [127:0]       winner_older_20_wdata =
-    winner_b_is_younger_20 ? entries_10_wdata : entries_11_wdata;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :192:40, :194:24
+    winner_b_is_younger_20 ? entries_10_wdata : entries_11_wdata;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :194:40, :196:24
   wire [15:0]        winner_older_20_wmask =
-    winner_b_is_younger_20 ? entries_10_wmask : entries_11_wmask;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :192:40, :194:24
-  wire               winner_res_19_valid = leaves_10_1_valid | leaves_11_1_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:182:87, :196:29
-  wire               _GEN_33 = winner_younger_20_valid ^ ~winner_b_is_younger_20;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:192:40, :193:24, :197:24
-  wire [3:0]         winner_res_19_idx = {3'h5, _GEN_33};	// backend/src/zaqal/backend/lsu/StoreQueue.scala:193:24, :197:24
+    winner_b_is_younger_20 ? entries_10_wmask : entries_11_wmask;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :194:40, :196:24
+  wire               winner_res_19_valid = leaves_10_1_valid | leaves_11_1_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:184:87, :198:29
+  wire               _GEN_33 = winner_younger_20_valid ^ ~winner_b_is_younger_20;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:194:40, :195:24, :199:24
+  wire [3:0]         winner_res_19_idx = {3'h5, _GEN_33};	// backend/src/zaqal/backend/lsu/StoreQueue.scala:195:24, :199:24
   wire [15:0]        winner_res_19_wmask =
     (winner_older_20_valid ? winner_older_20_wmask : 16'h0)
-    | (winner_younger_20_valid ? winner_younger_20_wmask : 16'h0);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:88:20, :193:24, :194:24, :199:{24,56,61}
+    | (winner_younger_20_valid ? winner_younger_20_wmask : 16'h0);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:88:20, :195:24, :196:24, :201:{24,56,61}
   wire [127:0]       winner_res_19_wdata =
     {winner_younger_20_valid & winner_younger_20_wmask[15]
        ? winner_younger_20_wdata[127:120]
@@ -2779,29 +2779,29 @@ module StoreQueue(	// backend/src/zaqal/backend/lsu/StoreQueue.scala:20:7
        ? winner_younger_20_wdata[7:0]
        : winner_older_20_valid & winner_older_20_wmask[0]
            ? winner_older_20_wdata[7:0]
-           : 8'h0};	// backend/src/zaqal/backend/lsu/StoreQueue.scala:193:24, :194:24, :202:{46,62}, :203:{44,58}, :204:45, :205:43, :206:{12,48}, :208:24
+           : 8'h0};	// backend/src/zaqal/backend/lsu/StoreQueue.scala:195:24, :196:24, :204:{46,62}, :205:{44,58}, :206:45, :207:43, :208:{12,48}, :210:24
   wire               winner_b_is_younger_21 =
     (deqPtr[3:1] != 3'h7
        ? {1'h0, 4'hD - deqPtr}
-       : 5'h1D - _GEN_17) > (deqPtr < 4'hD ? {1'h0, 4'hC - deqPtr} : 5'h1C - _GEN_17);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:81:20, :94:23, :121:38, :172:{36,41,56,85}, :192:40
+       : 5'h1D - _GEN_17) > (deqPtr < 4'hD ? {1'h0, 4'hC - deqPtr} : 5'h1C - _GEN_17);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:81:20, :94:23, :121:38, :174:{36,41,56,85}, :194:40
   wire               winner_younger_21_valid =
-    winner_b_is_younger_21 ? leaves_13_1_valid : leaves_12_1_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:182:87, :192:40, :193:24
+    winner_b_is_younger_21 ? leaves_13_1_valid : leaves_12_1_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:184:87, :194:40, :195:24
   wire [127:0]       winner_younger_21_wdata =
-    winner_b_is_younger_21 ? entries_13_wdata : entries_12_wdata;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :192:40, :193:24
+    winner_b_is_younger_21 ? entries_13_wdata : entries_12_wdata;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :194:40, :195:24
   wire [15:0]        winner_younger_21_wmask =
-    winner_b_is_younger_21 ? entries_13_wmask : entries_12_wmask;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :192:40, :193:24
+    winner_b_is_younger_21 ? entries_13_wmask : entries_12_wmask;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :194:40, :195:24
   wire               winner_older_21_valid =
-    winner_b_is_younger_21 ? leaves_12_1_valid : leaves_13_1_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:182:87, :192:40, :194:24
+    winner_b_is_younger_21 ? leaves_12_1_valid : leaves_13_1_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:184:87, :194:40, :196:24
   wire [127:0]       winner_older_21_wdata =
-    winner_b_is_younger_21 ? entries_12_wdata : entries_13_wdata;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :192:40, :194:24
+    winner_b_is_younger_21 ? entries_12_wdata : entries_13_wdata;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :194:40, :196:24
   wire [15:0]        winner_older_21_wmask =
-    winner_b_is_younger_21 ? entries_12_wmask : entries_13_wmask;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :192:40, :194:24
-  wire               winner_res_20_valid = leaves_12_1_valid | leaves_13_1_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:182:87, :196:29
-  wire               _GEN_34 = winner_younger_21_valid ^ ~winner_b_is_younger_21;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:192:40, :193:24, :197:24
-  wire [3:0]         winner_res_20_idx = {3'h6, _GEN_34};	// backend/src/zaqal/backend/lsu/StoreQueue.scala:193:24, :197:24
+    winner_b_is_younger_21 ? entries_12_wmask : entries_13_wmask;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :194:40, :196:24
+  wire               winner_res_20_valid = leaves_12_1_valid | leaves_13_1_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:184:87, :198:29
+  wire               _GEN_34 = winner_younger_21_valid ^ ~winner_b_is_younger_21;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:194:40, :195:24, :199:24
+  wire [3:0]         winner_res_20_idx = {3'h6, _GEN_34};	// backend/src/zaqal/backend/lsu/StoreQueue.scala:195:24, :199:24
   wire [15:0]        winner_res_20_wmask =
     (winner_older_21_valid ? winner_older_21_wmask : 16'h0)
-    | (winner_younger_21_valid ? winner_younger_21_wmask : 16'h0);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:88:20, :193:24, :194:24, :199:{24,56,61}
+    | (winner_younger_21_valid ? winner_younger_21_wmask : 16'h0);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:88:20, :195:24, :196:24, :201:{24,56,61}
   wire [127:0]       winner_res_20_wdata =
     {winner_younger_21_valid & winner_younger_21_wmask[15]
        ? winner_younger_21_wdata[127:120]
@@ -2882,27 +2882,27 @@ module StoreQueue(	// backend/src/zaqal/backend/lsu/StoreQueue.scala:20:7
        ? winner_younger_21_wdata[7:0]
        : winner_older_21_valid & winner_older_21_wmask[0]
            ? winner_older_21_wdata[7:0]
-           : 8'h0};	// backend/src/zaqal/backend/lsu/StoreQueue.scala:193:24, :194:24, :202:{46,62}, :203:{44,58}, :204:45, :205:43, :206:{12,48}, :208:24
+           : 8'h0};	// backend/src/zaqal/backend/lsu/StoreQueue.scala:195:24, :196:24, :204:{46,62}, :205:{44,58}, :206:45, :207:43, :208:{12,48}, :210:24
   wire               winner_b_is_younger_22 =
-    {1'h0, 4'hF - deqPtr} > (deqPtr != 4'hF ? {1'h0, 4'hE - deqPtr} : 5'h1E - _GEN_17);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:81:20, :94:23, :121:38, :172:{36,41,56,85}, :192:40
+    {1'h0, 4'hF - deqPtr} > (deqPtr != 4'hF ? {1'h0, 4'hE - deqPtr} : 5'h1E - _GEN_17);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:81:20, :94:23, :121:38, :174:{36,41,56,85}, :194:40
   wire               winner_younger_22_valid =
-    winner_b_is_younger_22 ? leaves_15_1_valid : leaves_14_1_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:182:87, :192:40, :193:24
+    winner_b_is_younger_22 ? leaves_15_1_valid : leaves_14_1_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:184:87, :194:40, :195:24
   wire [127:0]       winner_younger_22_wdata =
-    winner_b_is_younger_22 ? entries_15_wdata : entries_14_wdata;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :192:40, :193:24
+    winner_b_is_younger_22 ? entries_15_wdata : entries_14_wdata;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :194:40, :195:24
   wire [15:0]        winner_younger_22_wmask =
-    winner_b_is_younger_22 ? entries_15_wmask : entries_14_wmask;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :192:40, :193:24
+    winner_b_is_younger_22 ? entries_15_wmask : entries_14_wmask;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :194:40, :195:24
   wire               winner_older_22_valid =
-    winner_b_is_younger_22 ? leaves_14_1_valid : leaves_15_1_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:182:87, :192:40, :194:24
+    winner_b_is_younger_22 ? leaves_14_1_valid : leaves_15_1_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:184:87, :194:40, :196:24
   wire [127:0]       winner_older_22_wdata =
-    winner_b_is_younger_22 ? entries_14_wdata : entries_15_wdata;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :192:40, :194:24
+    winner_b_is_younger_22 ? entries_14_wdata : entries_15_wdata;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :194:40, :196:24
   wire [15:0]        winner_older_22_wmask =
-    winner_b_is_younger_22 ? entries_14_wmask : entries_15_wmask;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :192:40, :194:24
-  wire               winner_res_21_valid = leaves_14_1_valid | leaves_15_1_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:182:87, :196:29
-  wire               _GEN_35 = winner_younger_22_valid ^ ~winner_b_is_younger_22;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:192:40, :193:24, :197:24
-  wire [3:0]         winner_res_21_idx = {3'h7, _GEN_35};	// backend/src/zaqal/backend/lsu/StoreQueue.scala:172:41, :197:24
+    winner_b_is_younger_22 ? entries_14_wmask : entries_15_wmask;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :194:40, :196:24
+  wire               winner_res_21_valid = leaves_14_1_valid | leaves_15_1_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:184:87, :198:29
+  wire               _GEN_35 = winner_younger_22_valid ^ ~winner_b_is_younger_22;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:194:40, :195:24, :199:24
+  wire [3:0]         winner_res_21_idx = {3'h7, _GEN_35};	// backend/src/zaqal/backend/lsu/StoreQueue.scala:174:41, :199:24
   wire [15:0]        winner_res_21_wmask =
     (winner_older_22_valid ? winner_older_22_wmask : 16'h0)
-    | (winner_younger_22_valid ? winner_younger_22_wmask : 16'h0);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:88:20, :193:24, :194:24, :199:{24,56,61}
+    | (winner_younger_22_valid ? winner_younger_22_wmask : 16'h0);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:88:20, :195:24, :196:24, :201:{24,56,61}
   wire [127:0]       winner_res_21_wdata =
     {winner_younger_22_valid & winner_younger_22_wmask[15]
        ? winner_younger_22_wdata[127:120]
@@ -2983,34 +2983,34 @@ module StoreQueue(	// backend/src/zaqal/backend/lsu/StoreQueue.scala:20:7
        ? winner_younger_22_wdata[7:0]
        : winner_older_22_valid & winner_older_22_wmask[0]
            ? winner_older_22_wdata[7:0]
-           : 8'h0};	// backend/src/zaqal/backend/lsu/StoreQueue.scala:193:24, :194:24, :202:{46,62}, :203:{44,58}, :204:45, :205:43, :206:{12,48}, :208:24
+           : 8'h0};	// backend/src/zaqal/backend/lsu/StoreQueue.scala:195:24, :196:24, :204:{46,62}, :205:{44,58}, :206:45, :207:43, :208:{12,48}, :210:24
   wire               winner_b_is_younger_23 =
     (winner_res_15_idx >= deqPtr
        ? {1'h0, {3'h1, _GEN_29} - deqPtr}
        : {4'h1, _GEN_29} - 5'h10
          - _GEN_17) > (winner_res_14_idx >= deqPtr
                          ? {1'h0, {3'h0, _GEN_28} - deqPtr}
-                         : {4'h0, _GEN_28} - 5'h10 - _GEN_17);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:81:20, :93:23, :94:23, :117:28, :121:38, :172:{36,41,56,70,85}, :192:40, :193:24, :197:24
+                         : {4'h0, _GEN_28} - 5'h10 - _GEN_17);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:81:20, :93:23, :94:23, :117:28, :121:38, :174:{36,41,56,70,85}, :194:40, :195:24, :199:24
   wire               winner_younger_23_valid =
-    winner_b_is_younger_23 ? winner_res_15_valid : winner_res_14_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:192:40, :193:24, :196:29
+    winner_b_is_younger_23 ? winner_res_15_valid : winner_res_14_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:194:40, :195:24, :198:29
   wire [127:0]       winner_younger_23_wdata =
-    winner_b_is_younger_23 ? winner_res_15_wdata : winner_res_14_wdata;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:192:40, :193:24, :208:24
+    winner_b_is_younger_23 ? winner_res_15_wdata : winner_res_14_wdata;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:194:40, :195:24, :210:24
   wire [15:0]        winner_younger_23_wmask =
-    winner_b_is_younger_23 ? winner_res_15_wmask : winner_res_14_wmask;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:192:40, :193:24, :199:56
+    winner_b_is_younger_23 ? winner_res_15_wmask : winner_res_14_wmask;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:194:40, :195:24, :201:56
   wire               winner_older_23_valid =
-    winner_b_is_younger_23 ? winner_res_14_valid : winner_res_15_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:192:40, :194:24, :196:29
+    winner_b_is_younger_23 ? winner_res_14_valid : winner_res_15_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:194:40, :196:24, :198:29
   wire [127:0]       winner_older_23_wdata =
-    winner_b_is_younger_23 ? winner_res_14_wdata : winner_res_15_wdata;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:192:40, :194:24, :208:24
+    winner_b_is_younger_23 ? winner_res_14_wdata : winner_res_15_wdata;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:194:40, :196:24, :210:24
   wire [15:0]        winner_older_23_wmask =
-    winner_b_is_younger_23 ? winner_res_14_wmask : winner_res_15_wmask;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:192:40, :194:24, :199:56
-  wire               winner_res_22_valid = winner_res_14_valid | winner_res_15_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:196:29
+    winner_b_is_younger_23 ? winner_res_14_wmask : winner_res_15_wmask;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:194:40, :196:24, :201:56
+  wire               winner_res_22_valid = winner_res_14_valid | winner_res_15_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:198:29
   wire [3:0]         winner_res_22_idx =
     winner_younger_23_valid
       ? (winner_b_is_younger_23 ? winner_res_15_idx : winner_res_14_idx)
-      : winner_b_is_younger_23 ? winner_res_14_idx : winner_res_15_idx;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:192:40, :193:24, :194:24, :197:24
+      : winner_b_is_younger_23 ? winner_res_14_idx : winner_res_15_idx;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:194:40, :195:24, :196:24, :199:24
   wire [15:0]        winner_res_22_wmask =
     (winner_older_23_valid ? winner_older_23_wmask : 16'h0)
-    | (winner_younger_23_valid ? winner_younger_23_wmask : 16'h0);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:88:20, :193:24, :194:24, :199:{24,56,61}
+    | (winner_younger_23_valid ? winner_younger_23_wmask : 16'h0);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:88:20, :195:24, :196:24, :201:{24,56,61}
   wire [127:0]       winner_res_22_wdata =
     {winner_younger_23_valid & winner_younger_23_wmask[15]
        ? winner_younger_23_wdata[127:120]
@@ -3091,34 +3091,34 @@ module StoreQueue(	// backend/src/zaqal/backend/lsu/StoreQueue.scala:20:7
        ? winner_younger_23_wdata[7:0]
        : winner_older_23_valid & winner_older_23_wmask[0]
            ? winner_older_23_wdata[7:0]
-           : 8'h0};	// backend/src/zaqal/backend/lsu/StoreQueue.scala:193:24, :194:24, :202:{46,62}, :203:{44,58}, :204:45, :205:43, :206:{12,48}, :208:24
+           : 8'h0};	// backend/src/zaqal/backend/lsu/StoreQueue.scala:195:24, :196:24, :204:{46,62}, :205:{44,58}, :206:45, :207:43, :208:{12,48}, :210:24
   wire               winner_b_is_younger_24 =
     (winner_res_17_idx >= deqPtr
        ? {1'h0, {3'h3, _GEN_31} - deqPtr}
        : {4'h3, _GEN_31} - 5'h10
          - _GEN_17) > (winner_res_16_idx >= deqPtr
                          ? {1'h0, {3'h2, _GEN_30} - deqPtr}
-                         : {4'h2, _GEN_30} - 5'h10 - _GEN_17);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:81:20, :94:23, :121:38, :172:{36,41,56,70,85}, :192:40, :193:24, :197:24
+                         : {4'h2, _GEN_30} - 5'h10 - _GEN_17);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:81:20, :94:23, :121:38, :174:{36,41,56,70,85}, :194:40, :195:24, :199:24
   wire               winner_younger_24_valid =
-    winner_b_is_younger_24 ? winner_res_17_valid : winner_res_16_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:192:40, :193:24, :196:29
+    winner_b_is_younger_24 ? winner_res_17_valid : winner_res_16_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:194:40, :195:24, :198:29
   wire [127:0]       winner_younger_24_wdata =
-    winner_b_is_younger_24 ? winner_res_17_wdata : winner_res_16_wdata;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:192:40, :193:24, :208:24
+    winner_b_is_younger_24 ? winner_res_17_wdata : winner_res_16_wdata;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:194:40, :195:24, :210:24
   wire [15:0]        winner_younger_24_wmask =
-    winner_b_is_younger_24 ? winner_res_17_wmask : winner_res_16_wmask;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:192:40, :193:24, :199:56
+    winner_b_is_younger_24 ? winner_res_17_wmask : winner_res_16_wmask;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:194:40, :195:24, :201:56
   wire               winner_older_24_valid =
-    winner_b_is_younger_24 ? winner_res_16_valid : winner_res_17_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:192:40, :194:24, :196:29
+    winner_b_is_younger_24 ? winner_res_16_valid : winner_res_17_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:194:40, :196:24, :198:29
   wire [127:0]       winner_older_24_wdata =
-    winner_b_is_younger_24 ? winner_res_16_wdata : winner_res_17_wdata;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:192:40, :194:24, :208:24
+    winner_b_is_younger_24 ? winner_res_16_wdata : winner_res_17_wdata;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:194:40, :196:24, :210:24
   wire [15:0]        winner_older_24_wmask =
-    winner_b_is_younger_24 ? winner_res_16_wmask : winner_res_17_wmask;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:192:40, :194:24, :199:56
-  wire               winner_res_23_valid = winner_res_16_valid | winner_res_17_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:196:29
+    winner_b_is_younger_24 ? winner_res_16_wmask : winner_res_17_wmask;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:194:40, :196:24, :201:56
+  wire               winner_res_23_valid = winner_res_16_valid | winner_res_17_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:198:29
   wire [3:0]         winner_res_23_idx =
     winner_younger_24_valid
       ? (winner_b_is_younger_24 ? winner_res_17_idx : winner_res_16_idx)
-      : winner_b_is_younger_24 ? winner_res_16_idx : winner_res_17_idx;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:192:40, :193:24, :194:24, :197:24
+      : winner_b_is_younger_24 ? winner_res_16_idx : winner_res_17_idx;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:194:40, :195:24, :196:24, :199:24
   wire [15:0]        winner_res_23_wmask =
     (winner_older_24_valid ? winner_older_24_wmask : 16'h0)
-    | (winner_younger_24_valid ? winner_younger_24_wmask : 16'h0);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:88:20, :193:24, :194:24, :199:{24,56,61}
+    | (winner_younger_24_valid ? winner_younger_24_wmask : 16'h0);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:88:20, :195:24, :196:24, :201:{24,56,61}
   wire [127:0]       winner_res_23_wdata =
     {winner_younger_24_valid & winner_younger_24_wmask[15]
        ? winner_younger_24_wdata[127:120]
@@ -3199,34 +3199,34 @@ module StoreQueue(	// backend/src/zaqal/backend/lsu/StoreQueue.scala:20:7
        ? winner_younger_24_wdata[7:0]
        : winner_older_24_valid & winner_older_24_wmask[0]
            ? winner_older_24_wdata[7:0]
-           : 8'h0};	// backend/src/zaqal/backend/lsu/StoreQueue.scala:193:24, :194:24, :202:{46,62}, :203:{44,58}, :204:45, :205:43, :206:{12,48}, :208:24
+           : 8'h0};	// backend/src/zaqal/backend/lsu/StoreQueue.scala:195:24, :196:24, :204:{46,62}, :205:{44,58}, :206:45, :207:43, :208:{12,48}, :210:24
   wire               winner_b_is_younger_25 =
     (winner_res_19_idx >= deqPtr
        ? {1'h0, {3'h5, _GEN_33} - deqPtr}
        : {4'h5, _GEN_33} - 5'h10
          - _GEN_17) > (winner_res_18_idx >= deqPtr
                          ? {1'h0, {3'h4, _GEN_32} - deqPtr}
-                         : {4'h4, _GEN_32} - 5'h10 - _GEN_17);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:81:20, :94:23, :121:38, :172:{36,41,56,70,85}, :192:40, :193:24, :197:24
+                         : {4'h4, _GEN_32} - 5'h10 - _GEN_17);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:81:20, :94:23, :121:38, :174:{36,41,56,70,85}, :194:40, :195:24, :199:24
   wire               winner_younger_25_valid =
-    winner_b_is_younger_25 ? winner_res_19_valid : winner_res_18_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:192:40, :193:24, :196:29
+    winner_b_is_younger_25 ? winner_res_19_valid : winner_res_18_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:194:40, :195:24, :198:29
   wire [127:0]       winner_younger_25_wdata =
-    winner_b_is_younger_25 ? winner_res_19_wdata : winner_res_18_wdata;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:192:40, :193:24, :208:24
+    winner_b_is_younger_25 ? winner_res_19_wdata : winner_res_18_wdata;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:194:40, :195:24, :210:24
   wire [15:0]        winner_younger_25_wmask =
-    winner_b_is_younger_25 ? winner_res_19_wmask : winner_res_18_wmask;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:192:40, :193:24, :199:56
+    winner_b_is_younger_25 ? winner_res_19_wmask : winner_res_18_wmask;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:194:40, :195:24, :201:56
   wire               winner_older_25_valid =
-    winner_b_is_younger_25 ? winner_res_18_valid : winner_res_19_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:192:40, :194:24, :196:29
+    winner_b_is_younger_25 ? winner_res_18_valid : winner_res_19_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:194:40, :196:24, :198:29
   wire [127:0]       winner_older_25_wdata =
-    winner_b_is_younger_25 ? winner_res_18_wdata : winner_res_19_wdata;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:192:40, :194:24, :208:24
+    winner_b_is_younger_25 ? winner_res_18_wdata : winner_res_19_wdata;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:194:40, :196:24, :210:24
   wire [15:0]        winner_older_25_wmask =
-    winner_b_is_younger_25 ? winner_res_18_wmask : winner_res_19_wmask;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:192:40, :194:24, :199:56
-  wire               winner_res_24_valid = winner_res_18_valid | winner_res_19_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:196:29
+    winner_b_is_younger_25 ? winner_res_18_wmask : winner_res_19_wmask;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:194:40, :196:24, :201:56
+  wire               winner_res_24_valid = winner_res_18_valid | winner_res_19_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:198:29
   wire [3:0]         winner_res_24_idx =
     winner_younger_25_valid
       ? (winner_b_is_younger_25 ? winner_res_19_idx : winner_res_18_idx)
-      : winner_b_is_younger_25 ? winner_res_18_idx : winner_res_19_idx;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:192:40, :193:24, :194:24, :197:24
+      : winner_b_is_younger_25 ? winner_res_18_idx : winner_res_19_idx;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:194:40, :195:24, :196:24, :199:24
   wire [15:0]        winner_res_24_wmask =
     (winner_older_25_valid ? winner_older_25_wmask : 16'h0)
-    | (winner_younger_25_valid ? winner_younger_25_wmask : 16'h0);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:88:20, :193:24, :194:24, :199:{24,56,61}
+    | (winner_younger_25_valid ? winner_younger_25_wmask : 16'h0);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:88:20, :195:24, :196:24, :201:{24,56,61}
   wire [127:0]       winner_res_24_wdata =
     {winner_younger_25_valid & winner_younger_25_wmask[15]
        ? winner_younger_25_wdata[127:120]
@@ -3307,34 +3307,34 @@ module StoreQueue(	// backend/src/zaqal/backend/lsu/StoreQueue.scala:20:7
        ? winner_younger_25_wdata[7:0]
        : winner_older_25_valid & winner_older_25_wmask[0]
            ? winner_older_25_wdata[7:0]
-           : 8'h0};	// backend/src/zaqal/backend/lsu/StoreQueue.scala:193:24, :194:24, :202:{46,62}, :203:{44,58}, :204:45, :205:43, :206:{12,48}, :208:24
+           : 8'h0};	// backend/src/zaqal/backend/lsu/StoreQueue.scala:195:24, :196:24, :204:{46,62}, :205:{44,58}, :206:45, :207:43, :208:{12,48}, :210:24
   wire               winner_b_is_younger_26 =
     (winner_res_21_idx >= deqPtr
        ? {1'h0, {3'h7, _GEN_35} - deqPtr}
        : {4'h7, _GEN_35} - 5'h10
          - _GEN_17) > (winner_res_20_idx >= deqPtr
                          ? {1'h0, {3'h6, _GEN_34} - deqPtr}
-                         : {4'h6, _GEN_34} - 5'h10 - _GEN_17);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:81:20, :94:23, :121:38, :172:{36,41,56,70,85}, :192:40, :193:24, :197:24
+                         : {4'h6, _GEN_34} - 5'h10 - _GEN_17);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:81:20, :94:23, :121:38, :174:{36,41,56,70,85}, :194:40, :195:24, :199:24
   wire               winner_younger_26_valid =
-    winner_b_is_younger_26 ? winner_res_21_valid : winner_res_20_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:192:40, :193:24, :196:29
+    winner_b_is_younger_26 ? winner_res_21_valid : winner_res_20_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:194:40, :195:24, :198:29
   wire [127:0]       winner_younger_26_wdata =
-    winner_b_is_younger_26 ? winner_res_21_wdata : winner_res_20_wdata;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:192:40, :193:24, :208:24
+    winner_b_is_younger_26 ? winner_res_21_wdata : winner_res_20_wdata;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:194:40, :195:24, :210:24
   wire [15:0]        winner_younger_26_wmask =
-    winner_b_is_younger_26 ? winner_res_21_wmask : winner_res_20_wmask;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:192:40, :193:24, :199:56
+    winner_b_is_younger_26 ? winner_res_21_wmask : winner_res_20_wmask;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:194:40, :195:24, :201:56
   wire               winner_older_26_valid =
-    winner_b_is_younger_26 ? winner_res_20_valid : winner_res_21_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:192:40, :194:24, :196:29
+    winner_b_is_younger_26 ? winner_res_20_valid : winner_res_21_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:194:40, :196:24, :198:29
   wire [127:0]       winner_older_26_wdata =
-    winner_b_is_younger_26 ? winner_res_20_wdata : winner_res_21_wdata;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:192:40, :194:24, :208:24
+    winner_b_is_younger_26 ? winner_res_20_wdata : winner_res_21_wdata;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:194:40, :196:24, :210:24
   wire [15:0]        winner_older_26_wmask =
-    winner_b_is_younger_26 ? winner_res_20_wmask : winner_res_21_wmask;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:192:40, :194:24, :199:56
-  wire               winner_res_25_valid = winner_res_20_valid | winner_res_21_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:196:29
+    winner_b_is_younger_26 ? winner_res_20_wmask : winner_res_21_wmask;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:194:40, :196:24, :201:56
+  wire               winner_res_25_valid = winner_res_20_valid | winner_res_21_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:198:29
   wire [3:0]         winner_res_25_idx =
     winner_younger_26_valid
       ? (winner_b_is_younger_26 ? winner_res_21_idx : winner_res_20_idx)
-      : winner_b_is_younger_26 ? winner_res_20_idx : winner_res_21_idx;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:192:40, :193:24, :194:24, :197:24
+      : winner_b_is_younger_26 ? winner_res_20_idx : winner_res_21_idx;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:194:40, :195:24, :196:24, :199:24
   wire [15:0]        winner_res_25_wmask =
     (winner_older_26_valid ? winner_older_26_wmask : 16'h0)
-    | (winner_younger_26_valid ? winner_younger_26_wmask : 16'h0);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:88:20, :193:24, :194:24, :199:{24,56,61}
+    | (winner_younger_26_valid ? winner_younger_26_wmask : 16'h0);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:88:20, :195:24, :196:24, :201:{24,56,61}
   wire [127:0]       winner_res_25_wdata =
     {winner_younger_26_valid & winner_younger_26_wmask[15]
        ? winner_younger_26_wdata[127:120]
@@ -3415,34 +3415,34 @@ module StoreQueue(	// backend/src/zaqal/backend/lsu/StoreQueue.scala:20:7
        ? winner_younger_26_wdata[7:0]
        : winner_older_26_valid & winner_older_26_wmask[0]
            ? winner_older_26_wdata[7:0]
-           : 8'h0};	// backend/src/zaqal/backend/lsu/StoreQueue.scala:193:24, :194:24, :202:{46,62}, :203:{44,58}, :204:45, :205:43, :206:{12,48}, :208:24
+           : 8'h0};	// backend/src/zaqal/backend/lsu/StoreQueue.scala:195:24, :196:24, :204:{46,62}, :205:{44,58}, :206:45, :207:43, :208:{12,48}, :210:24
   wire               winner_b_is_younger_27 =
     (winner_res_23_idx >= deqPtr
        ? {1'h0, winner_res_23_idx - deqPtr}
        : {1'h0, winner_res_23_idx} - 5'h10
          - _GEN_17) > (winner_res_22_idx >= deqPtr
                          ? {1'h0, winner_res_22_idx - deqPtr}
-                         : {1'h0, winner_res_22_idx} - 5'h10 - _GEN_17);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:81:20, :94:23, :172:{36,41,56,70,85}, :192:40, :197:24
+                         : {1'h0, winner_res_22_idx} - 5'h10 - _GEN_17);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:81:20, :94:23, :174:{36,41,56,70,85}, :194:40, :199:24
   wire               winner_younger_27_valid =
-    winner_b_is_younger_27 ? winner_res_23_valid : winner_res_22_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:192:40, :193:24, :196:29
+    winner_b_is_younger_27 ? winner_res_23_valid : winner_res_22_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:194:40, :195:24, :198:29
   wire [127:0]       winner_younger_27_wdata =
-    winner_b_is_younger_27 ? winner_res_23_wdata : winner_res_22_wdata;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:192:40, :193:24, :208:24
+    winner_b_is_younger_27 ? winner_res_23_wdata : winner_res_22_wdata;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:194:40, :195:24, :210:24
   wire [15:0]        winner_younger_27_wmask =
-    winner_b_is_younger_27 ? winner_res_23_wmask : winner_res_22_wmask;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:192:40, :193:24, :199:56
+    winner_b_is_younger_27 ? winner_res_23_wmask : winner_res_22_wmask;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:194:40, :195:24, :201:56
   wire               winner_older_27_valid =
-    winner_b_is_younger_27 ? winner_res_22_valid : winner_res_23_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:192:40, :194:24, :196:29
+    winner_b_is_younger_27 ? winner_res_22_valid : winner_res_23_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:194:40, :196:24, :198:29
   wire [127:0]       winner_older_27_wdata =
-    winner_b_is_younger_27 ? winner_res_22_wdata : winner_res_23_wdata;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:192:40, :194:24, :208:24
+    winner_b_is_younger_27 ? winner_res_22_wdata : winner_res_23_wdata;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:194:40, :196:24, :210:24
   wire [15:0]        winner_older_27_wmask =
-    winner_b_is_younger_27 ? winner_res_22_wmask : winner_res_23_wmask;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:192:40, :194:24, :199:56
-  wire               winner_res_26_valid = winner_res_22_valid | winner_res_23_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:196:29
+    winner_b_is_younger_27 ? winner_res_22_wmask : winner_res_23_wmask;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:194:40, :196:24, :201:56
+  wire               winner_res_26_valid = winner_res_22_valid | winner_res_23_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:198:29
   wire [3:0]         winner_res_26_idx =
     winner_younger_27_valid
       ? (winner_b_is_younger_27 ? winner_res_23_idx : winner_res_22_idx)
-      : winner_b_is_younger_27 ? winner_res_22_idx : winner_res_23_idx;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:192:40, :193:24, :194:24, :197:24
+      : winner_b_is_younger_27 ? winner_res_22_idx : winner_res_23_idx;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:194:40, :195:24, :196:24, :199:24
   wire [15:0]        winner_res_26_wmask =
     (winner_older_27_valid ? winner_older_27_wmask : 16'h0)
-    | (winner_younger_27_valid ? winner_younger_27_wmask : 16'h0);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:88:20, :193:24, :194:24, :199:{24,56,61}
+    | (winner_younger_27_valid ? winner_younger_27_wmask : 16'h0);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:88:20, :195:24, :196:24, :201:{24,56,61}
   wire [127:0]       winner_res_26_wdata =
     {winner_younger_27_valid & winner_younger_27_wmask[15]
        ? winner_younger_27_wdata[127:120]
@@ -3523,34 +3523,34 @@ module StoreQueue(	// backend/src/zaqal/backend/lsu/StoreQueue.scala:20:7
        ? winner_younger_27_wdata[7:0]
        : winner_older_27_valid & winner_older_27_wmask[0]
            ? winner_older_27_wdata[7:0]
-           : 8'h0};	// backend/src/zaqal/backend/lsu/StoreQueue.scala:193:24, :194:24, :202:{46,62}, :203:{44,58}, :204:45, :205:43, :206:{12,48}, :208:24
+           : 8'h0};	// backend/src/zaqal/backend/lsu/StoreQueue.scala:195:24, :196:24, :204:{46,62}, :205:{44,58}, :206:45, :207:43, :208:{12,48}, :210:24
   wire               winner_b_is_younger_28 =
     (winner_res_25_idx >= deqPtr
        ? {1'h0, winner_res_25_idx - deqPtr}
        : {1'h0, winner_res_25_idx} - 5'h10
          - _GEN_17) > (winner_res_24_idx >= deqPtr
                          ? {1'h0, winner_res_24_idx - deqPtr}
-                         : {1'h0, winner_res_24_idx} - 5'h10 - _GEN_17);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:81:20, :94:23, :172:{36,41,56,70,85}, :192:40, :197:24
+                         : {1'h0, winner_res_24_idx} - 5'h10 - _GEN_17);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:81:20, :94:23, :174:{36,41,56,70,85}, :194:40, :199:24
   wire               winner_younger_28_valid =
-    winner_b_is_younger_28 ? winner_res_25_valid : winner_res_24_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:192:40, :193:24, :196:29
+    winner_b_is_younger_28 ? winner_res_25_valid : winner_res_24_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:194:40, :195:24, :198:29
   wire [127:0]       winner_younger_28_wdata =
-    winner_b_is_younger_28 ? winner_res_25_wdata : winner_res_24_wdata;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:192:40, :193:24, :208:24
+    winner_b_is_younger_28 ? winner_res_25_wdata : winner_res_24_wdata;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:194:40, :195:24, :210:24
   wire [15:0]        winner_younger_28_wmask =
-    winner_b_is_younger_28 ? winner_res_25_wmask : winner_res_24_wmask;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:192:40, :193:24, :199:56
+    winner_b_is_younger_28 ? winner_res_25_wmask : winner_res_24_wmask;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:194:40, :195:24, :201:56
   wire               winner_older_28_valid =
-    winner_b_is_younger_28 ? winner_res_24_valid : winner_res_25_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:192:40, :194:24, :196:29
+    winner_b_is_younger_28 ? winner_res_24_valid : winner_res_25_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:194:40, :196:24, :198:29
   wire [127:0]       winner_older_28_wdata =
-    winner_b_is_younger_28 ? winner_res_24_wdata : winner_res_25_wdata;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:192:40, :194:24, :208:24
+    winner_b_is_younger_28 ? winner_res_24_wdata : winner_res_25_wdata;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:194:40, :196:24, :210:24
   wire [15:0]        winner_older_28_wmask =
-    winner_b_is_younger_28 ? winner_res_24_wmask : winner_res_25_wmask;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:192:40, :194:24, :199:56
-  wire               winner_res_27_valid = winner_res_24_valid | winner_res_25_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:196:29
+    winner_b_is_younger_28 ? winner_res_24_wmask : winner_res_25_wmask;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:194:40, :196:24, :201:56
+  wire               winner_res_27_valid = winner_res_24_valid | winner_res_25_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:198:29
   wire [3:0]         winner_res_27_idx =
     winner_younger_28_valid
       ? (winner_b_is_younger_28 ? winner_res_25_idx : winner_res_24_idx)
-      : winner_b_is_younger_28 ? winner_res_24_idx : winner_res_25_idx;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:192:40, :193:24, :194:24, :197:24
+      : winner_b_is_younger_28 ? winner_res_24_idx : winner_res_25_idx;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:194:40, :195:24, :196:24, :199:24
   wire [15:0]        winner_res_27_wmask =
     (winner_older_28_valid ? winner_older_28_wmask : 16'h0)
-    | (winner_younger_28_valid ? winner_younger_28_wmask : 16'h0);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:88:20, :193:24, :194:24, :199:{24,56,61}
+    | (winner_younger_28_valid ? winner_younger_28_wmask : 16'h0);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:88:20, :195:24, :196:24, :201:{24,56,61}
   wire [127:0]       winner_res_27_wdata =
     {winner_younger_28_valid & winner_younger_28_wmask[15]
        ? winner_younger_28_wdata[127:120]
@@ -3631,26 +3631,26 @@ module StoreQueue(	// backend/src/zaqal/backend/lsu/StoreQueue.scala:20:7
        ? winner_younger_28_wdata[7:0]
        : winner_older_28_valid & winner_older_28_wmask[0]
            ? winner_older_28_wdata[7:0]
-           : 8'h0};	// backend/src/zaqal/backend/lsu/StoreQueue.scala:193:24, :194:24, :202:{46,62}, :203:{44,58}, :204:45, :205:43, :206:{12,48}, :208:24
+           : 8'h0};	// backend/src/zaqal/backend/lsu/StoreQueue.scala:195:24, :196:24, :204:{46,62}, :205:{44,58}, :206:45, :207:43, :208:{12,48}, :210:24
   wire               winner_b_is_younger_29 =
     (winner_res_27_idx >= deqPtr
        ? {1'h0, winner_res_27_idx - deqPtr}
        : {1'h0, winner_res_27_idx} - 5'h10
          - _GEN_17) > (winner_res_26_idx >= deqPtr
                          ? {1'h0, winner_res_26_idx - deqPtr}
-                         : {1'h0, winner_res_26_idx} - 5'h10 - _GEN_17);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:81:20, :94:23, :172:{36,41,56,70,85}, :192:40, :197:24
+                         : {1'h0, winner_res_26_idx} - 5'h10 - _GEN_17);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:81:20, :94:23, :174:{36,41,56,70,85}, :194:40, :199:24
   wire               winner_younger_29_valid =
-    winner_b_is_younger_29 ? winner_res_27_valid : winner_res_26_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:192:40, :193:24, :196:29
+    winner_b_is_younger_29 ? winner_res_27_valid : winner_res_26_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:194:40, :195:24, :198:29
   wire [127:0]       winner_younger_29_wdata =
-    winner_b_is_younger_29 ? winner_res_27_wdata : winner_res_26_wdata;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:192:40, :193:24, :208:24
+    winner_b_is_younger_29 ? winner_res_27_wdata : winner_res_26_wdata;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:194:40, :195:24, :210:24
   wire [15:0]        winner_younger_29_wmask =
-    winner_b_is_younger_29 ? winner_res_27_wmask : winner_res_26_wmask;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:192:40, :193:24, :199:56
+    winner_b_is_younger_29 ? winner_res_27_wmask : winner_res_26_wmask;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:194:40, :195:24, :201:56
   wire               winner_older_29_valid =
-    winner_b_is_younger_29 ? winner_res_26_valid : winner_res_27_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:192:40, :194:24, :196:29
+    winner_b_is_younger_29 ? winner_res_26_valid : winner_res_27_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:194:40, :196:24, :198:29
   wire [127:0]       winner_older_29_wdata =
-    winner_b_is_younger_29 ? winner_res_26_wdata : winner_res_27_wdata;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:192:40, :194:24, :208:24
+    winner_b_is_younger_29 ? winner_res_26_wdata : winner_res_27_wdata;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:194:40, :196:24, :210:24
   wire [15:0]        winner_older_29_wmask =
-    winner_b_is_younger_29 ? winner_res_26_wmask : winner_res_27_wmask;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:192:40, :194:24, :199:56
+    winner_b_is_younger_29 ? winner_res_26_wmask : winner_res_27_wmask;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:194:40, :196:24, :201:56
   wire [15:0]        _GEN_36 =
     {{entries_15_valid},
      {entries_14_valid},
@@ -3667,8 +3667,8 @@ module StoreQueue(	// backend/src/zaqal/backend/lsu/StoreQueue.scala:20:7
      {entries_3_valid},
      {entries_2_valid},
      {entries_1_valid},
-     {entries_0_valid}};	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :230:34
-  wire               _GEN_37 = _GEN_36[deqPtr];	// backend/src/zaqal/backend/lsu/StoreQueue.scala:94:23, :230:34
+     {entries_0_valid}};	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :232:34
+  wire               _GEN_37 = _GEN_36[deqPtr];	// backend/src/zaqal/backend/lsu/StoreQueue.scala:94:23, :232:34
   wire [15:0]        _GEN_38 =
     {{entries_15_committed},
      {entries_14_committed},
@@ -3685,7 +3685,7 @@ module StoreQueue(	// backend/src/zaqal/backend/lsu/StoreQueue.scala:20:7
      {entries_3_committed},
      {entries_2_committed},
      {entries_1_committed},
-     {entries_0_committed}};	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :230:34
+     {entries_0_committed}};	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :232:34
   wire [15:0]        _GEN_39 =
     {{entries_15_addr_valid},
      {entries_14_addr_valid},
@@ -3702,7 +3702,7 @@ module StoreQueue(	// backend/src/zaqal/backend/lsu/StoreQueue.scala:20:7
      {entries_3_addr_valid},
      {entries_2_addr_valid},
      {entries_1_addr_valid},
-     {entries_0_addr_valid}};	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :230:34
+     {entries_0_addr_valid}};	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :232:34
   wire [15:0]        _GEN_40 =
     {{entries_15_data_valid},
      {entries_14_data_valid},
@@ -3719,7 +3719,7 @@ module StoreQueue(	// backend/src/zaqal/backend/lsu/StoreQueue.scala:20:7
      {entries_3_data_valid},
      {entries_2_data_valid},
      {entries_1_data_valid},
-     {entries_0_data_valid}};	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :230:34
+     {entries_0_data_valid}};	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :232:34
   wire [15:0][63:0]  _GEN_41 =
     {{entries_15_paddr},
      {entries_14_paddr},
@@ -3736,7 +3736,7 @@ module StoreQueue(	// backend/src/zaqal/backend/lsu/StoreQueue.scala:20:7
      {entries_3_paddr},
      {entries_2_paddr},
      {entries_1_paddr},
-     {entries_0_paddr}};	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :230:34
+     {entries_0_paddr}};	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :232:34
   wire [15:0][15:0]  _GEN_42 =
     {{entries_15_wmask},
      {entries_14_wmask},
@@ -3753,7 +3753,7 @@ module StoreQueue(	// backend/src/zaqal/backend/lsu/StoreQueue.scala:20:7
      {entries_3_wmask},
      {entries_2_wmask},
      {entries_1_wmask},
-     {entries_0_wmask}};	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :230:34
+     {entries_0_wmask}};	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :232:34
   wire [15:0][127:0] _GEN_43 =
     {{entries_15_wdata},
      {entries_14_wdata},
@@ -3770,846 +3770,942 @@ module StoreQueue(	// backend/src/zaqal/backend/lsu/StoreQueue.scala:20:7
      {entries_3_wdata},
      {entries_2_wdata},
      {entries_1_wdata},
-     {entries_0_wdata}};	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :230:34
+     {entries_0_wdata}};	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :232:34
   wire               canDrain =
-    _GEN_37 & _GEN_38[deqPtr] & _GEN_39[deqPtr] & _GEN_40[deqPtr];	// backend/src/zaqal/backend/lsu/StoreQueue.scala:94:23, :230:{34,81}
-  wire               _distB_T_105 = io_redirect_robIdx >= io_robHeadPtr;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:262:44
-  wire [7:0]         _distB_T_108 = {1'h0, io_redirect_robIdx} - 8'h80;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:81:20, :262:117
-  wire [7:0]         _GEN_44 = {1'h0, io_redirect_robIdx - io_robHeadPtr};	// backend/src/zaqal/backend/lsu/StoreQueue.scala:81:20, :262:{24,81}
-  wire               _GEN_45 =
-    entries_0_valid & ~entries_0_committed
-    & (_distA_T
-         ? _GEN_0
-         : _distA_T_3 - _GEN) > (_distB_T_105 ? _GEN_44 : _distB_T_108 - _GEN);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :100:{20,26,53,61}, :252:14, :261:{24,122}, :262:{24,44,117,125}, :263:{56,66}
-  wire               _GEN_46 =
-    entries_1_valid & ~entries_1_committed
-    & (_distA_T_7
-         ? _GEN_2
-         : _distA_T_10 - _GEN) > (_distB_T_105 ? _GEN_44 : _distB_T_108 - _GEN);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :100:{20,26,53,61}, :252:14, :261:{24,122}, :262:{24,44,117,125}, :263:{56,66}
-  wire               _GEN_47 =
-    entries_2_valid & ~entries_2_committed
-    & (_distA_T_14
-         ? _GEN_3
-         : _distA_T_17 - _GEN) > (_distB_T_105 ? _GEN_44 : _distB_T_108 - _GEN);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :100:{20,26,53,61}, :252:14, :261:{24,122}, :262:{24,44,117,125}, :263:{56,66}
-  wire               _GEN_48 =
-    entries_3_valid & ~entries_3_committed
-    & (_distA_T_21
-         ? _GEN_4
-         : _distA_T_24 - _GEN) > (_distB_T_105 ? _GEN_44 : _distB_T_108 - _GEN);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :100:{20,26,53,61}, :252:14, :261:{24,122}, :262:{24,44,117,125}, :263:{56,66}
-  wire               _GEN_49 =
-    entries_4_valid & ~entries_4_committed
-    & (_distA_T_28
-         ? _GEN_5
-         : _distA_T_31 - _GEN) > (_distB_T_105 ? _GEN_44 : _distB_T_108 - _GEN);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :100:{20,26,53,61}, :252:14, :261:{24,122}, :262:{24,44,117,125}, :263:{56,66}
-  wire               _GEN_50 =
-    entries_5_valid & ~entries_5_committed
-    & (_distA_T_35
-         ? _GEN_6
-         : _distA_T_38 - _GEN) > (_distB_T_105 ? _GEN_44 : _distB_T_108 - _GEN);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :100:{20,26,53,61}, :252:14, :261:{24,122}, :262:{24,44,117,125}, :263:{56,66}
-  wire               _GEN_51 =
-    entries_6_valid & ~entries_6_committed
-    & (_distA_T_42
-         ? _GEN_7
-         : _distA_T_45 - _GEN) > (_distB_T_105 ? _GEN_44 : _distB_T_108 - _GEN);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :100:{20,26,53,61}, :252:14, :261:{24,122}, :262:{24,44,117,125}, :263:{56,66}
-  wire               _GEN_52 =
-    entries_7_valid & ~entries_7_committed
-    & (_distA_T_49
-         ? _GEN_8
-         : _distA_T_52 - _GEN) > (_distB_T_105 ? _GEN_44 : _distB_T_108 - _GEN);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :100:{20,26,53,61}, :252:14, :261:{24,122}, :262:{24,44,117,125}, :263:{56,66}
-  wire               _GEN_53 =
-    entries_8_valid & ~entries_8_committed
-    & (_distA_T_56
-         ? _GEN_9
-         : _distA_T_59 - _GEN) > (_distB_T_105 ? _GEN_44 : _distB_T_108 - _GEN);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :100:{20,26,53,61}, :252:14, :261:{24,122}, :262:{24,44,117,125}, :263:{56,66}
-  wire               _GEN_54 =
-    entries_9_valid & ~entries_9_committed
-    & (_distA_T_63
-         ? _GEN_10
-         : _distA_T_66 - _GEN) > (_distB_T_105 ? _GEN_44 : _distB_T_108 - _GEN);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :100:{20,26,53,61}, :252:14, :261:{24,122}, :262:{24,44,117,125}, :263:{56,66}
-  wire               _GEN_55 =
-    entries_10_valid & ~entries_10_committed
-    & (_distA_T_70
-         ? _GEN_11
-         : _distA_T_73 - _GEN) > (_distB_T_105 ? _GEN_44 : _distB_T_108 - _GEN);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :100:{20,26,53,61}, :252:14, :261:{24,122}, :262:{24,44,117,125}, :263:{56,66}
-  wire               _GEN_56 =
-    entries_11_valid & ~entries_11_committed
-    & (_distA_T_77
-         ? _GEN_12
-         : _distA_T_80 - _GEN) > (_distB_T_105 ? _GEN_44 : _distB_T_108 - _GEN);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :100:{20,26,53,61}, :252:14, :261:{24,122}, :262:{24,44,117,125}, :263:{56,66}
-  wire               _GEN_57 =
-    entries_12_valid & ~entries_12_committed
-    & (_distA_T_84
-         ? _GEN_13
-         : _distA_T_87 - _GEN) > (_distB_T_105 ? _GEN_44 : _distB_T_108 - _GEN);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :100:{20,26,53,61}, :252:14, :261:{24,122}, :262:{24,44,117,125}, :263:{56,66}
-  wire               _GEN_58 =
-    entries_13_valid & ~entries_13_committed
-    & (_distA_T_91
-         ? _GEN_14
-         : _distA_T_94 - _GEN) > (_distB_T_105 ? _GEN_44 : _distB_T_108 - _GEN);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :100:{20,26,53,61}, :252:14, :261:{24,122}, :262:{24,44,117,125}, :263:{56,66}
-  wire               _GEN_59 =
-    entries_14_valid & ~entries_14_committed
-    & (_distA_T_98
-         ? _GEN_15
-         : _distA_T_101 - _GEN) > (_distB_T_105 ? _GEN_44 : _distB_T_108 - _GEN);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :100:{20,26,53,61}, :252:14, :261:{24,122}, :262:{24,44,117,125}, :263:{56,66}
-  wire               _GEN_60 =
-    entries_15_valid & ~entries_15_committed
-    & (_distA_T_105
-         ? _GEN_16
-         : _distA_T_108 - _GEN) > (_distB_T_105 ? _GEN_44 : _distB_T_108 - _GEN);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :100:{20,26,53,61}, :252:14, :261:{24,122}, :262:{24,44,117,125}, :263:{56,66}
-  wire               enqFires_0 = canEnq & io_enq_0_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:111:46, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               enqFires_1 = canEnq & io_enq_1_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:111:46, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               enqFires_2 = canEnq & io_enq_2_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:111:46, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               enqFires_3 = canEnq & io_enq_3_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:111:46, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               enqFires_4 = canEnq & io_enq_4_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:111:46, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               enqFires_5 = canEnq & io_enq_5_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:111:46, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_61 = enqFires_0 & enqPtr == 4'h0;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :93:23, :120:26, :121:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_62 = enqFires_0 & enqPtr == 4'h1;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :93:23, :120:26, :121:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_63 = enqFires_0 & enqPtr == 4'h2;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :93:23, :120:26, :121:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_64 = enqFires_0 & enqPtr == 4'h3;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :93:23, :120:26, :121:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_65 = enqFires_0 & enqPtr == 4'h4;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :93:23, :120:26, :121:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_66 = enqFires_0 & enqPtr == 4'h5;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :93:23, :120:26, :121:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_67 = enqFires_0 & enqPtr == 4'h6;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :93:23, :120:26, :121:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_68 = enqFires_0 & enqPtr == 4'h7;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :93:23, :120:26, :121:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_69 = enqFires_0 & enqPtr == 4'h8;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :93:23, :120:26, :121:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_70 = enqFires_0 & enqPtr == 4'h9;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :93:23, :120:26, :121:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_71 = enqFires_0 & enqPtr == 4'hA;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :93:23, :120:26, :121:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_72 = enqFires_0 & enqPtr == 4'hB;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :93:23, :120:26, :121:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_73 = enqFires_0 & enqPtr == 4'hC;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :93:23, :120:26, :121:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_74 = enqFires_0 & enqPtr == 4'hD;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :93:23, :120:26, :121:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_75 = enqFires_0 & enqPtr == 4'hE;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :93:23, :120:26, :121:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_76 = enqFires_0 & (&enqPtr);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :93:23, :120:26, :121:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire [3:0]         _targetPtr_T_1 = enqPtr + {3'h0, enqFires_0};	// backend/src/zaqal/backend/lsu/StoreQueue.scala:93:23, :117:28, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_77 = _targetPtr_T_1 == 4'h0;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:93:23, :117:28, :121:38
-  wire               _GEN_78 = _GEN_77 | _GEN_61;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :121:38
-  wire               _GEN_79 =
-    enqFires_1 ? _GEN_78 | entries_0_valid : _GEN_61 | entries_0_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :121:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_80 = _targetPtr_T_1 == 4'h1;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:117:28, :121:38
-  wire               _GEN_81 = _GEN_80 | _GEN_62;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :121:38
-  wire               _GEN_82 =
-    enqFires_1 ? _GEN_81 | entries_1_valid : _GEN_62 | entries_1_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :121:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_83 = _targetPtr_T_1 == 4'h2;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:117:28, :121:38
-  wire               _GEN_84 = _GEN_83 | _GEN_63;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :121:38
-  wire               _GEN_85 =
-    enqFires_1 ? _GEN_84 | entries_2_valid : _GEN_63 | entries_2_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :121:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_86 = _targetPtr_T_1 == 4'h3;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:117:28, :121:38
-  wire               _GEN_87 = _GEN_86 | _GEN_64;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :121:38
-  wire               _GEN_88 =
-    enqFires_1 ? _GEN_87 | entries_3_valid : _GEN_64 | entries_3_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :121:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_89 = _targetPtr_T_1 == 4'h4;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:117:28, :121:38
-  wire               _GEN_90 = _GEN_89 | _GEN_65;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :121:38
-  wire               _GEN_91 =
-    enqFires_1 ? _GEN_90 | entries_4_valid : _GEN_65 | entries_4_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :121:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_92 = _targetPtr_T_1 == 4'h5;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:117:28, :121:38
-  wire               _GEN_93 = _GEN_92 | _GEN_66;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :121:38
-  wire               _GEN_94 =
-    enqFires_1 ? _GEN_93 | entries_5_valid : _GEN_66 | entries_5_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :121:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_95 = _targetPtr_T_1 == 4'h6;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:117:28, :121:38
-  wire               _GEN_96 = _GEN_95 | _GEN_67;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :121:38
-  wire               _GEN_97 =
-    enqFires_1 ? _GEN_96 | entries_6_valid : _GEN_67 | entries_6_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :121:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_98 = _targetPtr_T_1 == 4'h7;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:117:28, :121:38
-  wire               _GEN_99 = _GEN_98 | _GEN_68;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :121:38
-  wire               _GEN_100 =
-    enqFires_1 ? _GEN_99 | entries_7_valid : _GEN_68 | entries_7_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :121:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_101 = _targetPtr_T_1 == 4'h8;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:117:28, :121:38
-  wire               _GEN_102 = _GEN_101 | _GEN_69;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :121:38
-  wire               _GEN_103 =
-    enqFires_1 ? _GEN_102 | entries_8_valid : _GEN_69 | entries_8_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :121:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_104 = _targetPtr_T_1 == 4'h9;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:117:28, :121:38
-  wire               _GEN_105 = _GEN_104 | _GEN_70;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :121:38
-  wire               _GEN_106 =
-    enqFires_1 ? _GEN_105 | entries_9_valid : _GEN_70 | entries_9_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :121:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_107 = _targetPtr_T_1 == 4'hA;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:117:28, :121:38
-  wire               _GEN_108 = _GEN_107 | _GEN_71;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :121:38
+    _GEN_37 & _GEN_38[deqPtr] & _GEN_39[deqPtr] & _GEN_40[deqPtr];	// backend/src/zaqal/backend/lsu/StoreQueue.scala:94:23, :232:{34,81}
+  wire               _distB_T_105 = io_redirect_robIdx >= io_robHeadPtr;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:257:42
+  wire [7:0]         _distB_T_108 = {1'h0, io_redirect_robIdx} - 8'h80;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:81:20, :257:115
+  wire [7:0]         _GEN_44 = {1'h0, io_redirect_robIdx - io_robHeadPtr};	// backend/src/zaqal/backend/lsu/StoreQueue.scala:81:20, :257:{22,79}
+  wire               should_flush =
+    ~entries_0_committed
+    & (io_redirect_is_exception
+       | (_distA_T
+            ? _GEN_0
+            : _distA_T_3 - _GEN) > (_distB_T_105 ? _GEN_44 : _distB_T_108 - _GEN));	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :100:{20,26,53,61}, :256:{22,120}, :257:{22,42,115,123}, :258:{26,48,77,87}
+  wire               should_flush_1 =
+    ~entries_1_committed
+    & (io_redirect_is_exception
+       | (_distA_T_7
+            ? _GEN_2
+            : _distA_T_10 - _GEN) > (_distB_T_105 ? _GEN_44 : _distB_T_108 - _GEN));	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :100:{20,26,53,61}, :256:{22,120}, :257:{22,42,115,123}, :258:{26,48,77,87}
+  wire               should_flush_2 =
+    ~entries_2_committed
+    & (io_redirect_is_exception
+       | (_distA_T_14
+            ? _GEN_3
+            : _distA_T_17 - _GEN) > (_distB_T_105 ? _GEN_44 : _distB_T_108 - _GEN));	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :100:{20,26,53,61}, :256:{22,120}, :257:{22,42,115,123}, :258:{26,48,77,87}
+  wire               should_flush_3 =
+    ~entries_3_committed
+    & (io_redirect_is_exception
+       | (_distA_T_21
+            ? _GEN_4
+            : _distA_T_24 - _GEN) > (_distB_T_105 ? _GEN_44 : _distB_T_108 - _GEN));	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :100:{20,26,53,61}, :256:{22,120}, :257:{22,42,115,123}, :258:{26,48,77,87}
+  wire               should_flush_4 =
+    ~entries_4_committed
+    & (io_redirect_is_exception
+       | (_distA_T_28
+            ? _GEN_5
+            : _distA_T_31 - _GEN) > (_distB_T_105 ? _GEN_44 : _distB_T_108 - _GEN));	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :100:{20,26,53,61}, :256:{22,120}, :257:{22,42,115,123}, :258:{26,48,77,87}
+  wire               should_flush_5 =
+    ~entries_5_committed
+    & (io_redirect_is_exception
+       | (_distA_T_35
+            ? _GEN_6
+            : _distA_T_38 - _GEN) > (_distB_T_105 ? _GEN_44 : _distB_T_108 - _GEN));	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :100:{20,26,53,61}, :256:{22,120}, :257:{22,42,115,123}, :258:{26,48,77,87}
+  wire               should_flush_6 =
+    ~entries_6_committed
+    & (io_redirect_is_exception
+       | (_distA_T_42
+            ? _GEN_7
+            : _distA_T_45 - _GEN) > (_distB_T_105 ? _GEN_44 : _distB_T_108 - _GEN));	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :100:{20,26,53,61}, :256:{22,120}, :257:{22,42,115,123}, :258:{26,48,77,87}
+  wire               should_flush_7 =
+    ~entries_7_committed
+    & (io_redirect_is_exception
+       | (_distA_T_49
+            ? _GEN_8
+            : _distA_T_52 - _GEN) > (_distB_T_105 ? _GEN_44 : _distB_T_108 - _GEN));	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :100:{20,26,53,61}, :256:{22,120}, :257:{22,42,115,123}, :258:{26,48,77,87}
+  wire               should_flush_8 =
+    ~entries_8_committed
+    & (io_redirect_is_exception
+       | (_distA_T_56
+            ? _GEN_9
+            : _distA_T_59 - _GEN) > (_distB_T_105 ? _GEN_44 : _distB_T_108 - _GEN));	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :100:{20,26,53,61}, :256:{22,120}, :257:{22,42,115,123}, :258:{26,48,77,87}
+  wire               should_flush_9 =
+    ~entries_9_committed
+    & (io_redirect_is_exception
+       | (_distA_T_63
+            ? _GEN_10
+            : _distA_T_66 - _GEN) > (_distB_T_105 ? _GEN_44 : _distB_T_108 - _GEN));	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :100:{20,26,53,61}, :256:{22,120}, :257:{22,42,115,123}, :258:{26,48,77,87}
+  wire               should_flush_10 =
+    ~entries_10_committed
+    & (io_redirect_is_exception
+       | (_distA_T_70
+            ? _GEN_11
+            : _distA_T_73 - _GEN) > (_distB_T_105 ? _GEN_44 : _distB_T_108 - _GEN));	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :100:{20,26,53,61}, :256:{22,120}, :257:{22,42,115,123}, :258:{26,48,77,87}
+  wire               should_flush_11 =
+    ~entries_11_committed
+    & (io_redirect_is_exception
+       | (_distA_T_77
+            ? _GEN_12
+            : _distA_T_80 - _GEN) > (_distB_T_105 ? _GEN_44 : _distB_T_108 - _GEN));	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :100:{20,26,53,61}, :256:{22,120}, :257:{22,42,115,123}, :258:{26,48,77,87}
+  wire               should_flush_12 =
+    ~entries_12_committed
+    & (io_redirect_is_exception
+       | (_distA_T_84
+            ? _GEN_13
+            : _distA_T_87 - _GEN) > (_distB_T_105 ? _GEN_44 : _distB_T_108 - _GEN));	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :100:{20,26,53,61}, :256:{22,120}, :257:{22,42,115,123}, :258:{26,48,77,87}
+  wire               should_flush_13 =
+    ~entries_13_committed
+    & (io_redirect_is_exception
+       | (_distA_T_91
+            ? _GEN_14
+            : _distA_T_94 - _GEN) > (_distB_T_105 ? _GEN_44 : _distB_T_108 - _GEN));	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :100:{20,26,53,61}, :256:{22,120}, :257:{22,42,115,123}, :258:{26,48,77,87}
+  wire               should_flush_14 =
+    ~entries_14_committed
+    & (io_redirect_is_exception
+       | (_distA_T_98
+            ? _GEN_15
+            : _distA_T_101 - _GEN) > (_distB_T_105 ? _GEN_44 : _distB_T_108 - _GEN));	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :100:{20,26,53,61}, :256:{22,120}, :257:{22,42,115,123}, :258:{26,48,77,87}
+  wire               should_flush_15 =
+    ~entries_15_committed
+    & (io_redirect_is_exception
+       | (_distA_T_105
+            ? _GEN_16
+            : _distA_T_108 - _GEN) > (_distB_T_105 ? _GEN_44 : _distB_T_108 - _GEN));	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :100:{20,26,53,61}, :256:{22,120}, :257:{22,42,115,123}, :258:{26,48,77,87}
+  wire               enqFires_0 = io_enq_0_valid & canEnq;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:111:63, :112:42
+  wire               enqFires_1 = io_enq_1_valid & canEnq;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:111:63, :112:42
+  wire               enqFires_2 = io_enq_2_valid & canEnq;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:111:63, :112:42
+  wire               enqFires_3 = io_enq_3_valid & canEnq;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:111:63, :112:42
+  wire               enqFires_4 = io_enq_4_valid & canEnq;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:111:63, :112:42
+  wire               enqFires_5 = io_enq_5_valid & canEnq;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:111:63, :112:42
+  wire               _GEN_45 = enqFires_0 & enqPtr == 4'h0;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :93:23, :112:42, :120:23, :121:38
+  wire               _GEN_46 = enqFires_0 & enqPtr == 4'h1;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :93:23, :112:42, :120:23, :121:38
+  wire               _GEN_47 = enqFires_0 & enqPtr == 4'h2;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :93:23, :112:42, :120:23, :121:38
+  wire               _GEN_48 = enqFires_0 & enqPtr == 4'h3;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :93:23, :112:42, :120:23, :121:38
+  wire               _GEN_49 = enqFires_0 & enqPtr == 4'h4;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :93:23, :112:42, :120:23, :121:38
+  wire               _GEN_50 = enqFires_0 & enqPtr == 4'h5;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :93:23, :112:42, :120:23, :121:38
+  wire               _GEN_51 = enqFires_0 & enqPtr == 4'h6;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :93:23, :112:42, :120:23, :121:38
+  wire               _GEN_52 = enqFires_0 & enqPtr == 4'h7;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :93:23, :112:42, :120:23, :121:38
+  wire               _GEN_53 = enqFires_0 & enqPtr == 4'h8;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :93:23, :112:42, :120:23, :121:38
+  wire               _GEN_54 = enqFires_0 & enqPtr == 4'h9;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :93:23, :112:42, :120:23, :121:38
+  wire               _GEN_55 = enqFires_0 & enqPtr == 4'hA;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :93:23, :112:42, :120:23, :121:38
+  wire               _GEN_56 = enqFires_0 & enqPtr == 4'hB;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :93:23, :112:42, :120:23, :121:38
+  wire               _GEN_57 = enqFires_0 & enqPtr == 4'hC;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :93:23, :112:42, :120:23, :121:38
+  wire               _GEN_58 = enqFires_0 & enqPtr == 4'hD;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :93:23, :112:42, :120:23, :121:38
+  wire               _GEN_59 = enqFires_0 & enqPtr == 4'hE;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :93:23, :112:42, :120:23, :121:38
+  wire               _GEN_60 = enqFires_0 & (&enqPtr);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :93:23, :112:42, :120:23, :121:38
+  wire [3:0]         _targetPtr_T_1 = enqPtr + {3'h0, enqFires_0};	// backend/src/zaqal/backend/lsu/StoreQueue.scala:93:23, :112:42, :117:28
+  wire               _GEN_61 = _targetPtr_T_1 == 4'h0;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:93:23, :117:28, :121:38
+  wire               _GEN_62 = _GEN_61 | _GEN_45;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :121:38
+  wire               _GEN_63 =
+    enqFires_1 ? _GEN_62 | entries_0_valid : _GEN_45 | entries_0_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :112:42, :120:23, :121:38
+  wire               _GEN_64 = _targetPtr_T_1 == 4'h1;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:117:28, :121:38
+  wire               _GEN_65 = _GEN_64 | _GEN_46;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :121:38
+  wire               _GEN_66 =
+    enqFires_1 ? _GEN_65 | entries_1_valid : _GEN_46 | entries_1_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :112:42, :120:23, :121:38
+  wire               _GEN_67 = _targetPtr_T_1 == 4'h2;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:117:28, :121:38
+  wire               _GEN_68 = _GEN_67 | _GEN_47;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :121:38
+  wire               _GEN_69 =
+    enqFires_1 ? _GEN_68 | entries_2_valid : _GEN_47 | entries_2_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :112:42, :120:23, :121:38
+  wire               _GEN_70 = _targetPtr_T_1 == 4'h3;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:117:28, :121:38
+  wire               _GEN_71 = _GEN_70 | _GEN_48;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :121:38
+  wire               _GEN_72 =
+    enqFires_1 ? _GEN_71 | entries_3_valid : _GEN_48 | entries_3_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :112:42, :120:23, :121:38
+  wire               _GEN_73 = _targetPtr_T_1 == 4'h4;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:117:28, :121:38
+  wire               _GEN_74 = _GEN_73 | _GEN_49;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :121:38
+  wire               _GEN_75 =
+    enqFires_1 ? _GEN_74 | entries_4_valid : _GEN_49 | entries_4_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :112:42, :120:23, :121:38
+  wire               _GEN_76 = _targetPtr_T_1 == 4'h5;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:117:28, :121:38
+  wire               _GEN_77 = _GEN_76 | _GEN_50;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :121:38
+  wire               _GEN_78 =
+    enqFires_1 ? _GEN_77 | entries_5_valid : _GEN_50 | entries_5_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :112:42, :120:23, :121:38
+  wire               _GEN_79 = _targetPtr_T_1 == 4'h6;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:117:28, :121:38
+  wire               _GEN_80 = _GEN_79 | _GEN_51;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :121:38
+  wire               _GEN_81 =
+    enqFires_1 ? _GEN_80 | entries_6_valid : _GEN_51 | entries_6_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :112:42, :120:23, :121:38
+  wire               _GEN_82 = _targetPtr_T_1 == 4'h7;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:117:28, :121:38
+  wire               _GEN_83 = _GEN_82 | _GEN_52;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :121:38
+  wire               _GEN_84 =
+    enqFires_1 ? _GEN_83 | entries_7_valid : _GEN_52 | entries_7_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :112:42, :120:23, :121:38
+  wire               _GEN_85 = _targetPtr_T_1 == 4'h8;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:117:28, :121:38
+  wire               _GEN_86 = _GEN_85 | _GEN_53;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :121:38
+  wire               _GEN_87 =
+    enqFires_1 ? _GEN_86 | entries_8_valid : _GEN_53 | entries_8_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :112:42, :120:23, :121:38
+  wire               _GEN_88 = _targetPtr_T_1 == 4'h9;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:117:28, :121:38
+  wire               _GEN_89 = _GEN_88 | _GEN_54;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :121:38
+  wire               _GEN_90 =
+    enqFires_1 ? _GEN_89 | entries_9_valid : _GEN_54 | entries_9_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :112:42, :120:23, :121:38
+  wire               _GEN_91 = _targetPtr_T_1 == 4'hA;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:117:28, :121:38
+  wire               _GEN_92 = _GEN_91 | _GEN_55;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :121:38
+  wire               _GEN_93 =
+    enqFires_1 ? _GEN_92 | entries_10_valid : _GEN_55 | entries_10_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :112:42, :120:23, :121:38
+  wire               _GEN_94 = _targetPtr_T_1 == 4'hB;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:117:28, :121:38
+  wire               _GEN_95 = _GEN_94 | _GEN_56;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :121:38
+  wire               _GEN_96 =
+    enqFires_1 ? _GEN_95 | entries_11_valid : _GEN_56 | entries_11_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :112:42, :120:23, :121:38
+  wire               _GEN_97 = _targetPtr_T_1 == 4'hC;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:117:28, :121:38
+  wire               _GEN_98 = _GEN_97 | _GEN_57;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :121:38
+  wire               _GEN_99 =
+    enqFires_1 ? _GEN_98 | entries_12_valid : _GEN_57 | entries_12_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :112:42, :120:23, :121:38
+  wire               _GEN_100 = _targetPtr_T_1 == 4'hD;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:117:28, :121:38
+  wire               _GEN_101 = _GEN_100 | _GEN_58;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :121:38
+  wire               _GEN_102 =
+    enqFires_1 ? _GEN_101 | entries_13_valid : _GEN_58 | entries_13_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :112:42, :120:23, :121:38
+  wire               _GEN_103 = _targetPtr_T_1 == 4'hE;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:117:28, :121:38
+  wire               _GEN_104 = _GEN_103 | _GEN_59;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :121:38
+  wire               _GEN_105 =
+    enqFires_1 ? _GEN_104 | entries_14_valid : _GEN_59 | entries_14_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :112:42, :120:23, :121:38
+  wire               _GEN_106 = (&_targetPtr_T_1) | _GEN_60;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :117:28, :120:23, :121:38
+  wire               _GEN_107 =
+    enqFires_1 ? _GEN_106 | entries_15_valid : _GEN_60 | entries_15_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :112:42, :120:23, :121:38
+  wire               _GEN_108 =
+    enqFires_1 ? ~_GEN_62 & entries_0_committed : ~_GEN_45 & entries_0_committed;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :112:42, :120:23, :121:38, :122:38
   wire               _GEN_109 =
-    enqFires_1 ? _GEN_108 | entries_10_valid : _GEN_71 | entries_10_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :121:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_110 = _targetPtr_T_1 == 4'hB;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:117:28, :121:38
-  wire               _GEN_111 = _GEN_110 | _GEN_72;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :121:38
+    enqFires_1 ? ~_GEN_65 & entries_1_committed : ~_GEN_46 & entries_1_committed;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :112:42, :120:23, :121:38, :122:38
+  wire               _GEN_110 =
+    enqFires_1 ? ~_GEN_68 & entries_2_committed : ~_GEN_47 & entries_2_committed;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :112:42, :120:23, :121:38, :122:38
+  wire               _GEN_111 =
+    enqFires_1 ? ~_GEN_71 & entries_3_committed : ~_GEN_48 & entries_3_committed;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :112:42, :120:23, :121:38, :122:38
   wire               _GEN_112 =
-    enqFires_1 ? _GEN_111 | entries_11_valid : _GEN_72 | entries_11_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :121:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_113 = _targetPtr_T_1 == 4'hC;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:117:28, :121:38
-  wire               _GEN_114 = _GEN_113 | _GEN_73;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :121:38
+    enqFires_1 ? ~_GEN_74 & entries_4_committed : ~_GEN_49 & entries_4_committed;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :112:42, :120:23, :121:38, :122:38
+  wire               _GEN_113 =
+    enqFires_1 ? ~_GEN_77 & entries_5_committed : ~_GEN_50 & entries_5_committed;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :112:42, :120:23, :121:38, :122:38
+  wire               _GEN_114 =
+    enqFires_1 ? ~_GEN_80 & entries_6_committed : ~_GEN_51 & entries_6_committed;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :112:42, :120:23, :121:38, :122:38
   wire               _GEN_115 =
-    enqFires_1 ? _GEN_114 | entries_12_valid : _GEN_73 | entries_12_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :121:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_116 = _targetPtr_T_1 == 4'hD;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:117:28, :121:38
-  wire               _GEN_117 = _GEN_116 | _GEN_74;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :121:38
+    enqFires_1 ? ~_GEN_83 & entries_7_committed : ~_GEN_52 & entries_7_committed;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :112:42, :120:23, :121:38, :122:38
+  wire               _GEN_116 =
+    enqFires_1 ? ~_GEN_86 & entries_8_committed : ~_GEN_53 & entries_8_committed;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :112:42, :120:23, :121:38, :122:38
+  wire               _GEN_117 =
+    enqFires_1 ? ~_GEN_89 & entries_9_committed : ~_GEN_54 & entries_9_committed;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :112:42, :120:23, :121:38, :122:38
   wire               _GEN_118 =
-    enqFires_1 ? _GEN_117 | entries_13_valid : _GEN_74 | entries_13_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :121:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_119 = _targetPtr_T_1 == 4'hE;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:117:28, :121:38
-  wire               _GEN_120 = _GEN_119 | _GEN_75;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :121:38
+    enqFires_1 ? ~_GEN_92 & entries_10_committed : ~_GEN_55 & entries_10_committed;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :112:42, :120:23, :121:38, :122:38
+  wire               _GEN_119 =
+    enqFires_1 ? ~_GEN_95 & entries_11_committed : ~_GEN_56 & entries_11_committed;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :112:42, :120:23, :121:38, :122:38
+  wire               _GEN_120 =
+    enqFires_1 ? ~_GEN_98 & entries_12_committed : ~_GEN_57 & entries_12_committed;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :112:42, :120:23, :121:38, :122:38
   wire               _GEN_121 =
-    enqFires_1 ? _GEN_120 | entries_14_valid : _GEN_75 | entries_14_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :121:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_122 = (&_targetPtr_T_1) | _GEN_76;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :117:28, :120:26, :121:38
+    enqFires_1 ? ~_GEN_101 & entries_13_committed : ~_GEN_58 & entries_13_committed;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :112:42, :120:23, :121:38, :122:38
+  wire               _GEN_122 =
+    enqFires_1 ? ~_GEN_104 & entries_14_committed : ~_GEN_59 & entries_14_committed;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :112:42, :120:23, :121:38, :122:38
   wire               _GEN_123 =
-    enqFires_1 ? _GEN_122 | entries_15_valid : _GEN_76 | entries_15_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :121:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
+    enqFires_1 ? ~_GEN_106 & entries_15_committed : ~_GEN_60 & entries_15_committed;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :112:42, :120:23, :121:38, :122:38
   wire               _GEN_124 =
-    enqFires_1 ? ~_GEN_78 & entries_0_committed : ~_GEN_61 & entries_0_committed;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :121:38, :122:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
+    enqFires_1 ? ~_GEN_62 & entries_0_addr_valid : ~_GEN_45 & entries_0_addr_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :112:42, :120:23, :121:38, :122:38, :123:38
   wire               _GEN_125 =
-    enqFires_1 ? ~_GEN_81 & entries_1_committed : ~_GEN_62 & entries_1_committed;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :121:38, :122:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
+    enqFires_1 ? ~_GEN_65 & entries_1_addr_valid : ~_GEN_46 & entries_1_addr_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :112:42, :120:23, :121:38, :122:38, :123:38
   wire               _GEN_126 =
-    enqFires_1 ? ~_GEN_84 & entries_2_committed : ~_GEN_63 & entries_2_committed;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :121:38, :122:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
+    enqFires_1 ? ~_GEN_68 & entries_2_addr_valid : ~_GEN_47 & entries_2_addr_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :112:42, :120:23, :121:38, :122:38, :123:38
   wire               _GEN_127 =
-    enqFires_1 ? ~_GEN_87 & entries_3_committed : ~_GEN_64 & entries_3_committed;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :121:38, :122:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
+    enqFires_1 ? ~_GEN_71 & entries_3_addr_valid : ~_GEN_48 & entries_3_addr_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :112:42, :120:23, :121:38, :122:38, :123:38
   wire               _GEN_128 =
-    enqFires_1 ? ~_GEN_90 & entries_4_committed : ~_GEN_65 & entries_4_committed;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :121:38, :122:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
+    enqFires_1 ? ~_GEN_74 & entries_4_addr_valid : ~_GEN_49 & entries_4_addr_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :112:42, :120:23, :121:38, :122:38, :123:38
   wire               _GEN_129 =
-    enqFires_1 ? ~_GEN_93 & entries_5_committed : ~_GEN_66 & entries_5_committed;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :121:38, :122:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
+    enqFires_1 ? ~_GEN_77 & entries_5_addr_valid : ~_GEN_50 & entries_5_addr_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :112:42, :120:23, :121:38, :122:38, :123:38
   wire               _GEN_130 =
-    enqFires_1 ? ~_GEN_96 & entries_6_committed : ~_GEN_67 & entries_6_committed;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :121:38, :122:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
+    enqFires_1 ? ~_GEN_80 & entries_6_addr_valid : ~_GEN_51 & entries_6_addr_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :112:42, :120:23, :121:38, :122:38, :123:38
   wire               _GEN_131 =
-    enqFires_1 ? ~_GEN_99 & entries_7_committed : ~_GEN_68 & entries_7_committed;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :121:38, :122:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
+    enqFires_1 ? ~_GEN_83 & entries_7_addr_valid : ~_GEN_52 & entries_7_addr_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :112:42, :120:23, :121:38, :122:38, :123:38
   wire               _GEN_132 =
-    enqFires_1 ? ~_GEN_102 & entries_8_committed : ~_GEN_69 & entries_8_committed;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :121:38, :122:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
+    enqFires_1 ? ~_GEN_86 & entries_8_addr_valid : ~_GEN_53 & entries_8_addr_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :112:42, :120:23, :121:38, :122:38, :123:38
   wire               _GEN_133 =
-    enqFires_1 ? ~_GEN_105 & entries_9_committed : ~_GEN_70 & entries_9_committed;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :121:38, :122:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
+    enqFires_1 ? ~_GEN_89 & entries_9_addr_valid : ~_GEN_54 & entries_9_addr_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :112:42, :120:23, :121:38, :122:38, :123:38
   wire               _GEN_134 =
-    enqFires_1 ? ~_GEN_108 & entries_10_committed : ~_GEN_71 & entries_10_committed;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :121:38, :122:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
+    enqFires_1 ? ~_GEN_92 & entries_10_addr_valid : ~_GEN_55 & entries_10_addr_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :112:42, :120:23, :121:38, :122:38, :123:38
   wire               _GEN_135 =
-    enqFires_1 ? ~_GEN_111 & entries_11_committed : ~_GEN_72 & entries_11_committed;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :121:38, :122:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
+    enqFires_1 ? ~_GEN_95 & entries_11_addr_valid : ~_GEN_56 & entries_11_addr_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :112:42, :120:23, :121:38, :122:38, :123:38
   wire               _GEN_136 =
-    enqFires_1 ? ~_GEN_114 & entries_12_committed : ~_GEN_73 & entries_12_committed;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :121:38, :122:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
+    enqFires_1 ? ~_GEN_98 & entries_12_addr_valid : ~_GEN_57 & entries_12_addr_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :112:42, :120:23, :121:38, :122:38, :123:38
   wire               _GEN_137 =
-    enqFires_1 ? ~_GEN_117 & entries_13_committed : ~_GEN_74 & entries_13_committed;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :121:38, :122:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
+    enqFires_1 ? ~_GEN_101 & entries_13_addr_valid : ~_GEN_58 & entries_13_addr_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :112:42, :120:23, :121:38, :122:38, :123:38
   wire               _GEN_138 =
-    enqFires_1 ? ~_GEN_120 & entries_14_committed : ~_GEN_75 & entries_14_committed;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :121:38, :122:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
+    enqFires_1 ? ~_GEN_104 & entries_14_addr_valid : ~_GEN_59 & entries_14_addr_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :112:42, :120:23, :121:38, :122:38, :123:38
   wire               _GEN_139 =
-    enqFires_1 ? ~_GEN_122 & entries_15_committed : ~_GEN_76 & entries_15_committed;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :121:38, :122:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
+    enqFires_1 ? ~_GEN_106 & entries_15_addr_valid : ~_GEN_60 & entries_15_addr_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :112:42, :120:23, :121:38, :122:38, :123:38
   wire               _GEN_140 =
-    enqFires_1 ? ~_GEN_78 & entries_0_addr_valid : ~_GEN_61 & entries_0_addr_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :121:38, :122:38, :123:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
+    enqFires_1 ? ~_GEN_62 & entries_0_data_valid : ~_GEN_45 & entries_0_data_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :112:42, :120:23, :121:38, :122:38, :124:38
   wire               _GEN_141 =
-    enqFires_1 ? ~_GEN_81 & entries_1_addr_valid : ~_GEN_62 & entries_1_addr_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :121:38, :122:38, :123:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
+    enqFires_1 ? ~_GEN_65 & entries_1_data_valid : ~_GEN_46 & entries_1_data_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :112:42, :120:23, :121:38, :122:38, :124:38
   wire               _GEN_142 =
-    enqFires_1 ? ~_GEN_84 & entries_2_addr_valid : ~_GEN_63 & entries_2_addr_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :121:38, :122:38, :123:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
+    enqFires_1 ? ~_GEN_68 & entries_2_data_valid : ~_GEN_47 & entries_2_data_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :112:42, :120:23, :121:38, :122:38, :124:38
   wire               _GEN_143 =
-    enqFires_1 ? ~_GEN_87 & entries_3_addr_valid : ~_GEN_64 & entries_3_addr_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :121:38, :122:38, :123:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
+    enqFires_1 ? ~_GEN_71 & entries_3_data_valid : ~_GEN_48 & entries_3_data_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :112:42, :120:23, :121:38, :122:38, :124:38
   wire               _GEN_144 =
-    enqFires_1 ? ~_GEN_90 & entries_4_addr_valid : ~_GEN_65 & entries_4_addr_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :121:38, :122:38, :123:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
+    enqFires_1 ? ~_GEN_74 & entries_4_data_valid : ~_GEN_49 & entries_4_data_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :112:42, :120:23, :121:38, :122:38, :124:38
   wire               _GEN_145 =
-    enqFires_1 ? ~_GEN_93 & entries_5_addr_valid : ~_GEN_66 & entries_5_addr_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :121:38, :122:38, :123:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
+    enqFires_1 ? ~_GEN_77 & entries_5_data_valid : ~_GEN_50 & entries_5_data_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :112:42, :120:23, :121:38, :122:38, :124:38
   wire               _GEN_146 =
-    enqFires_1 ? ~_GEN_96 & entries_6_addr_valid : ~_GEN_67 & entries_6_addr_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :121:38, :122:38, :123:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
+    enqFires_1 ? ~_GEN_80 & entries_6_data_valid : ~_GEN_51 & entries_6_data_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :112:42, :120:23, :121:38, :122:38, :124:38
   wire               _GEN_147 =
-    enqFires_1 ? ~_GEN_99 & entries_7_addr_valid : ~_GEN_68 & entries_7_addr_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :121:38, :122:38, :123:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
+    enqFires_1 ? ~_GEN_83 & entries_7_data_valid : ~_GEN_52 & entries_7_data_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :112:42, :120:23, :121:38, :122:38, :124:38
   wire               _GEN_148 =
-    enqFires_1 ? ~_GEN_102 & entries_8_addr_valid : ~_GEN_69 & entries_8_addr_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :121:38, :122:38, :123:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
+    enqFires_1 ? ~_GEN_86 & entries_8_data_valid : ~_GEN_53 & entries_8_data_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :112:42, :120:23, :121:38, :122:38, :124:38
   wire               _GEN_149 =
-    enqFires_1 ? ~_GEN_105 & entries_9_addr_valid : ~_GEN_70 & entries_9_addr_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :121:38, :122:38, :123:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
+    enqFires_1 ? ~_GEN_89 & entries_9_data_valid : ~_GEN_54 & entries_9_data_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :112:42, :120:23, :121:38, :122:38, :124:38
   wire               _GEN_150 =
-    enqFires_1 ? ~_GEN_108 & entries_10_addr_valid : ~_GEN_71 & entries_10_addr_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :121:38, :122:38, :123:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
+    enqFires_1 ? ~_GEN_92 & entries_10_data_valid : ~_GEN_55 & entries_10_data_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :112:42, :120:23, :121:38, :122:38, :124:38
   wire               _GEN_151 =
-    enqFires_1 ? ~_GEN_111 & entries_11_addr_valid : ~_GEN_72 & entries_11_addr_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :121:38, :122:38, :123:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
+    enqFires_1 ? ~_GEN_95 & entries_11_data_valid : ~_GEN_56 & entries_11_data_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :112:42, :120:23, :121:38, :122:38, :124:38
   wire               _GEN_152 =
-    enqFires_1 ? ~_GEN_114 & entries_12_addr_valid : ~_GEN_73 & entries_12_addr_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :121:38, :122:38, :123:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
+    enqFires_1 ? ~_GEN_98 & entries_12_data_valid : ~_GEN_57 & entries_12_data_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :112:42, :120:23, :121:38, :122:38, :124:38
   wire               _GEN_153 =
-    enqFires_1 ? ~_GEN_117 & entries_13_addr_valid : ~_GEN_74 & entries_13_addr_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :121:38, :122:38, :123:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
+    enqFires_1 ? ~_GEN_101 & entries_13_data_valid : ~_GEN_58 & entries_13_data_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :112:42, :120:23, :121:38, :122:38, :124:38
   wire               _GEN_154 =
-    enqFires_1 ? ~_GEN_120 & entries_14_addr_valid : ~_GEN_75 & entries_14_addr_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :121:38, :122:38, :123:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
+    enqFires_1 ? ~_GEN_104 & entries_14_data_valid : ~_GEN_59 & entries_14_data_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :112:42, :120:23, :121:38, :122:38, :124:38
   wire               _GEN_155 =
-    enqFires_1 ? ~_GEN_122 & entries_15_addr_valid : ~_GEN_76 & entries_15_addr_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :121:38, :122:38, :123:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_156 =
-    enqFires_1 ? ~_GEN_78 & entries_0_data_valid : ~_GEN_61 & entries_0_data_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :121:38, :122:38, :124:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_157 =
-    enqFires_1 ? ~_GEN_81 & entries_1_data_valid : ~_GEN_62 & entries_1_data_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :121:38, :122:38, :124:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_158 =
-    enqFires_1 ? ~_GEN_84 & entries_2_data_valid : ~_GEN_63 & entries_2_data_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :121:38, :122:38, :124:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_159 =
-    enqFires_1 ? ~_GEN_87 & entries_3_data_valid : ~_GEN_64 & entries_3_data_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :121:38, :122:38, :124:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_160 =
-    enqFires_1 ? ~_GEN_90 & entries_4_data_valid : ~_GEN_65 & entries_4_data_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :121:38, :122:38, :124:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_161 =
-    enqFires_1 ? ~_GEN_93 & entries_5_data_valid : ~_GEN_66 & entries_5_data_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :121:38, :122:38, :124:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_162 =
-    enqFires_1 ? ~_GEN_96 & entries_6_data_valid : ~_GEN_67 & entries_6_data_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :121:38, :122:38, :124:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_163 =
-    enqFires_1 ? ~_GEN_99 & entries_7_data_valid : ~_GEN_68 & entries_7_data_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :121:38, :122:38, :124:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_164 =
-    enqFires_1 ? ~_GEN_102 & entries_8_data_valid : ~_GEN_69 & entries_8_data_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :121:38, :122:38, :124:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_165 =
-    enqFires_1 ? ~_GEN_105 & entries_9_data_valid : ~_GEN_70 & entries_9_data_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :121:38, :122:38, :124:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_166 =
-    enqFires_1 ? ~_GEN_108 & entries_10_data_valid : ~_GEN_71 & entries_10_data_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :121:38, :122:38, :124:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_167 =
-    enqFires_1 ? ~_GEN_111 & entries_11_data_valid : ~_GEN_72 & entries_11_data_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :121:38, :122:38, :124:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_168 =
-    enqFires_1 ? ~_GEN_114 & entries_12_data_valid : ~_GEN_73 & entries_12_data_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :121:38, :122:38, :124:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_169 =
-    enqFires_1 ? ~_GEN_117 & entries_13_data_valid : ~_GEN_74 & entries_13_data_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :121:38, :122:38, :124:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_170 =
-    enqFires_1 ? ~_GEN_120 & entries_14_data_valid : ~_GEN_75 & entries_14_data_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :121:38, :122:38, :124:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_171 =
-    enqFires_1 ? ~_GEN_122 & entries_15_data_valid : ~_GEN_76 & entries_15_data_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :121:38, :122:38, :124:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire [1:0]         _GEN_172 = {1'h0, enqFires_0};	// backend/src/zaqal/backend/lsu/StoreQueue.scala:81:20, :116:52, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire [1:0]         _GEN_173 = {1'h0, enqFires_1};	// backend/src/zaqal/backend/lsu/StoreQueue.scala:81:20, :116:52, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire [1:0]         allocOffset = _GEN_172 + _GEN_173;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:116:52
+    enqFires_1 ? ~_GEN_106 & entries_15_data_valid : ~_GEN_60 & entries_15_data_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :112:42, :120:23, :121:38, :122:38, :124:38
+  wire [1:0]         _GEN_156 = {1'h0, enqFires_0};	// backend/src/zaqal/backend/lsu/StoreQueue.scala:81:20, :112:42, :116:52
+  wire [1:0]         _GEN_157 = {1'h0, enqFires_1};	// backend/src/zaqal/backend/lsu/StoreQueue.scala:81:20, :112:42, :116:52
+  wire [1:0]         allocOffset = _GEN_156 + _GEN_157;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:116:52
   wire [3:0]         _targetPtr_T_2 = enqPtr + {2'h0, allocOffset};	// backend/src/zaqal/backend/lsu/StoreQueue.scala:93:23, :111:46, :116:52, :117:28
-  wire               _GEN_174 = enqFires_2 & _targetPtr_T_2 == 4'h0;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:93:23, :117:28, :120:26, :121:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_175 = enqFires_2 & _targetPtr_T_2 == 4'h1;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:117:28, :120:26, :121:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_176 = enqFires_2 & _targetPtr_T_2 == 4'h2;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:117:28, :120:26, :121:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_177 = enqFires_2 & _targetPtr_T_2 == 4'h3;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:117:28, :120:26, :121:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_178 = enqFires_2 & _targetPtr_T_2 == 4'h4;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:117:28, :120:26, :121:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_179 = enqFires_2 & _targetPtr_T_2 == 4'h5;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:117:28, :120:26, :121:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_180 = enqFires_2 & _targetPtr_T_2 == 4'h6;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:117:28, :120:26, :121:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_181 = enqFires_2 & _targetPtr_T_2 == 4'h7;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:117:28, :120:26, :121:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_182 = enqFires_2 & _targetPtr_T_2 == 4'h8;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:117:28, :120:26, :121:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_183 = enqFires_2 & _targetPtr_T_2 == 4'h9;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:117:28, :120:26, :121:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_184 = enqFires_2 & _targetPtr_T_2 == 4'hA;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:117:28, :120:26, :121:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_185 = enqFires_2 & _targetPtr_T_2 == 4'hB;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:117:28, :120:26, :121:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_186 = enqFires_2 & _targetPtr_T_2 == 4'hC;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:117:28, :120:26, :121:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_187 = enqFires_2 & _targetPtr_T_2 == 4'hD;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:117:28, :120:26, :121:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_188 = enqFires_2 & _targetPtr_T_2 == 4'hE;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:117:28, :120:26, :121:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_189 = enqFires_2 & (&_targetPtr_T_2);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:117:28, :120:26, :121:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire [1:0]         _GEN_190 = {1'h0, enqFires_2};	// backend/src/zaqal/backend/lsu/StoreQueue.scala:81:20, :116:52, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire [1:0]         _totalEnq_T_1 = _GEN_173 + _GEN_190;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:116:52
-  wire [3:0]         _targetPtr_T_3 = enqPtr + {2'h0, _GEN_172 + _totalEnq_T_1};	// backend/src/zaqal/backend/lsu/StoreQueue.scala:93:23, :111:46, :116:52, :117:28
-  wire               _GEN_191 = _targetPtr_T_3 == 4'h0;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:93:23, :117:28, :121:38
-  wire               _GEN_192 = _GEN_191 | _GEN_174;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38
-  wire               _GEN_193 = enqFires_3 ? _GEN_192 | _GEN_79 : _GEN_174 | _GEN_79;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_194 = _targetPtr_T_3 == 4'h1;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:117:28, :121:38
-  wire               _GEN_195 = _GEN_194 | _GEN_175;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38
-  wire               _GEN_196 = enqFires_3 ? _GEN_195 | _GEN_82 : _GEN_175 | _GEN_82;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_197 = _targetPtr_T_3 == 4'h2;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:117:28, :121:38
-  wire               _GEN_198 = _GEN_197 | _GEN_176;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38
-  wire               _GEN_199 = enqFires_3 ? _GEN_198 | _GEN_85 : _GEN_176 | _GEN_85;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_200 = _targetPtr_T_3 == 4'h3;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:117:28, :121:38
-  wire               _GEN_201 = _GEN_200 | _GEN_177;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38
-  wire               _GEN_202 = enqFires_3 ? _GEN_201 | _GEN_88 : _GEN_177 | _GEN_88;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_203 = _targetPtr_T_3 == 4'h4;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:117:28, :121:38
-  wire               _GEN_204 = _GEN_203 | _GEN_178;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38
-  wire               _GEN_205 = enqFires_3 ? _GEN_204 | _GEN_91 : _GEN_178 | _GEN_91;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_206 = _targetPtr_T_3 == 4'h5;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:117:28, :121:38
-  wire               _GEN_207 = _GEN_206 | _GEN_179;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38
-  wire               _GEN_208 = enqFires_3 ? _GEN_207 | _GEN_94 : _GEN_179 | _GEN_94;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_209 = _targetPtr_T_3 == 4'h6;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:117:28, :121:38
-  wire               _GEN_210 = _GEN_209 | _GEN_180;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38
-  wire               _GEN_211 = enqFires_3 ? _GEN_210 | _GEN_97 : _GEN_180 | _GEN_97;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_212 = _targetPtr_T_3 == 4'h7;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:117:28, :121:38
-  wire               _GEN_213 = _GEN_212 | _GEN_181;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38
-  wire               _GEN_214 = enqFires_3 ? _GEN_213 | _GEN_100 : _GEN_181 | _GEN_100;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_215 = _targetPtr_T_3 == 4'h8;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:117:28, :121:38
-  wire               _GEN_216 = _GEN_215 | _GEN_182;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38
-  wire               _GEN_217 = enqFires_3 ? _GEN_216 | _GEN_103 : _GEN_182 | _GEN_103;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_218 = _targetPtr_T_3 == 4'h9;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:117:28, :121:38
-  wire               _GEN_219 = _GEN_218 | _GEN_183;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38
-  wire               _GEN_220 = enqFires_3 ? _GEN_219 | _GEN_106 : _GEN_183 | _GEN_106;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_221 = _targetPtr_T_3 == 4'hA;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:117:28, :121:38
-  wire               _GEN_222 = _GEN_221 | _GEN_184;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38
-  wire               _GEN_223 = enqFires_3 ? _GEN_222 | _GEN_109 : _GEN_184 | _GEN_109;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_224 = _targetPtr_T_3 == 4'hB;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:117:28, :121:38
-  wire               _GEN_225 = _GEN_224 | _GEN_185;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38
-  wire               _GEN_226 = enqFires_3 ? _GEN_225 | _GEN_112 : _GEN_185 | _GEN_112;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_227 = _targetPtr_T_3 == 4'hC;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:117:28, :121:38
-  wire               _GEN_228 = _GEN_227 | _GEN_186;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38
-  wire               _GEN_229 = enqFires_3 ? _GEN_228 | _GEN_115 : _GEN_186 | _GEN_115;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_230 = _targetPtr_T_3 == 4'hD;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:117:28, :121:38
-  wire               _GEN_231 = _GEN_230 | _GEN_187;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38
-  wire               _GEN_232 = enqFires_3 ? _GEN_231 | _GEN_118 : _GEN_187 | _GEN_118;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_233 = _targetPtr_T_3 == 4'hE;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:117:28, :121:38
-  wire               _GEN_234 = _GEN_233 | _GEN_188;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38
-  wire               _GEN_235 = enqFires_3 ? _GEN_234 | _GEN_121 : _GEN_188 | _GEN_121;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_236 = (&_targetPtr_T_3) | _GEN_189;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:117:28, :120:26, :121:38
-  wire               _GEN_237 = enqFires_3 ? _GEN_236 | _GEN_123 : _GEN_189 | _GEN_123;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_238 = enqFires_3 ? ~_GEN_192 & _GEN_124 : ~_GEN_174 & _GEN_124;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, :122:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_239 = enqFires_3 ? ~_GEN_195 & _GEN_125 : ~_GEN_175 & _GEN_125;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, :122:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_240 = enqFires_3 ? ~_GEN_198 & _GEN_126 : ~_GEN_176 & _GEN_126;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, :122:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_241 = enqFires_3 ? ~_GEN_201 & _GEN_127 : ~_GEN_177 & _GEN_127;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, :122:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_242 = enqFires_3 ? ~_GEN_204 & _GEN_128 : ~_GEN_178 & _GEN_128;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, :122:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_243 = enqFires_3 ? ~_GEN_207 & _GEN_129 : ~_GEN_179 & _GEN_129;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, :122:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_244 = enqFires_3 ? ~_GEN_210 & _GEN_130 : ~_GEN_180 & _GEN_130;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, :122:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_245 = enqFires_3 ? ~_GEN_213 & _GEN_131 : ~_GEN_181 & _GEN_131;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, :122:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_246 = enqFires_3 ? ~_GEN_216 & _GEN_132 : ~_GEN_182 & _GEN_132;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, :122:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_247 = enqFires_3 ? ~_GEN_219 & _GEN_133 : ~_GEN_183 & _GEN_133;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, :122:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_248 = enqFires_3 ? ~_GEN_222 & _GEN_134 : ~_GEN_184 & _GEN_134;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, :122:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_249 = enqFires_3 ? ~_GEN_225 & _GEN_135 : ~_GEN_185 & _GEN_135;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, :122:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_250 = enqFires_3 ? ~_GEN_228 & _GEN_136 : ~_GEN_186 & _GEN_136;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, :122:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_251 = enqFires_3 ? ~_GEN_231 & _GEN_137 : ~_GEN_187 & _GEN_137;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, :122:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_252 = enqFires_3 ? ~_GEN_234 & _GEN_138 : ~_GEN_188 & _GEN_138;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, :122:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_253 = enqFires_3 ? ~_GEN_236 & _GEN_139 : ~_GEN_189 & _GEN_139;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, :122:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_254 = enqFires_3 ? ~_GEN_192 & _GEN_140 : ~_GEN_174 & _GEN_140;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, :122:38, :123:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_255 = enqFires_3 ? ~_GEN_195 & _GEN_141 : ~_GEN_175 & _GEN_141;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, :122:38, :123:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_256 = enqFires_3 ? ~_GEN_198 & _GEN_142 : ~_GEN_176 & _GEN_142;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, :122:38, :123:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_257 = enqFires_3 ? ~_GEN_201 & _GEN_143 : ~_GEN_177 & _GEN_143;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, :122:38, :123:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_258 = enqFires_3 ? ~_GEN_204 & _GEN_144 : ~_GEN_178 & _GEN_144;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, :122:38, :123:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_259 = enqFires_3 ? ~_GEN_207 & _GEN_145 : ~_GEN_179 & _GEN_145;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, :122:38, :123:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_260 = enqFires_3 ? ~_GEN_210 & _GEN_146 : ~_GEN_180 & _GEN_146;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, :122:38, :123:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_261 = enqFires_3 ? ~_GEN_213 & _GEN_147 : ~_GEN_181 & _GEN_147;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, :122:38, :123:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_262 = enqFires_3 ? ~_GEN_216 & _GEN_148 : ~_GEN_182 & _GEN_148;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, :122:38, :123:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_263 = enqFires_3 ? ~_GEN_219 & _GEN_149 : ~_GEN_183 & _GEN_149;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, :122:38, :123:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_264 = enqFires_3 ? ~_GEN_222 & _GEN_150 : ~_GEN_184 & _GEN_150;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, :122:38, :123:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_265 = enqFires_3 ? ~_GEN_225 & _GEN_151 : ~_GEN_185 & _GEN_151;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, :122:38, :123:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_266 = enqFires_3 ? ~_GEN_228 & _GEN_152 : ~_GEN_186 & _GEN_152;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, :122:38, :123:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_267 = enqFires_3 ? ~_GEN_231 & _GEN_153 : ~_GEN_187 & _GEN_153;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, :122:38, :123:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_268 = enqFires_3 ? ~_GEN_234 & _GEN_154 : ~_GEN_188 & _GEN_154;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, :122:38, :123:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_269 = enqFires_3 ? ~_GEN_236 & _GEN_155 : ~_GEN_189 & _GEN_155;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, :122:38, :123:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_270 = enqFires_3 ? ~_GEN_192 & _GEN_156 : ~_GEN_174 & _GEN_156;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, :122:38, :124:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_271 = enqFires_3 ? ~_GEN_195 & _GEN_157 : ~_GEN_175 & _GEN_157;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, :122:38, :124:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_272 = enqFires_3 ? ~_GEN_198 & _GEN_158 : ~_GEN_176 & _GEN_158;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, :122:38, :124:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_273 = enqFires_3 ? ~_GEN_201 & _GEN_159 : ~_GEN_177 & _GEN_159;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, :122:38, :124:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_274 = enqFires_3 ? ~_GEN_204 & _GEN_160 : ~_GEN_178 & _GEN_160;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, :122:38, :124:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_275 = enqFires_3 ? ~_GEN_207 & _GEN_161 : ~_GEN_179 & _GEN_161;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, :122:38, :124:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_276 = enqFires_3 ? ~_GEN_210 & _GEN_162 : ~_GEN_180 & _GEN_162;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, :122:38, :124:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_277 = enqFires_3 ? ~_GEN_213 & _GEN_163 : ~_GEN_181 & _GEN_163;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, :122:38, :124:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_278 = enqFires_3 ? ~_GEN_216 & _GEN_164 : ~_GEN_182 & _GEN_164;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, :122:38, :124:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_279 = enqFires_3 ? ~_GEN_219 & _GEN_165 : ~_GEN_183 & _GEN_165;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, :122:38, :124:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_280 = enqFires_3 ? ~_GEN_222 & _GEN_166 : ~_GEN_184 & _GEN_166;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, :122:38, :124:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_281 = enqFires_3 ? ~_GEN_225 & _GEN_167 : ~_GEN_185 & _GEN_167;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, :122:38, :124:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_282 = enqFires_3 ? ~_GEN_228 & _GEN_168 : ~_GEN_186 & _GEN_168;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, :122:38, :124:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_283 = enqFires_3 ? ~_GEN_231 & _GEN_169 : ~_GEN_187 & _GEN_169;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, :122:38, :124:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_284 = enqFires_3 ? ~_GEN_234 & _GEN_170 : ~_GEN_188 & _GEN_170;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, :122:38, :124:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_285 = enqFires_3 ? ~_GEN_236 & _GEN_171 : ~_GEN_189 & _GEN_171;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, :122:38, :124:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire [1:0]         _GEN_286 = {1'h0, enqFires_3};	// backend/src/zaqal/backend/lsu/StoreQueue.scala:81:20, :116:52, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire [2:0]         _GEN_287 = {1'h0, allocOffset};	// backend/src/zaqal/backend/lsu/StoreQueue.scala:81:20, :116:52
+  wire               _GEN_158 = enqFires_2 & _targetPtr_T_2 == 4'h0;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:93:23, :112:42, :117:28, :120:23, :121:38
+  wire               _GEN_159 = enqFires_2 & _targetPtr_T_2 == 4'h1;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :117:28, :120:23, :121:38
+  wire               _GEN_160 = enqFires_2 & _targetPtr_T_2 == 4'h2;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :117:28, :120:23, :121:38
+  wire               _GEN_161 = enqFires_2 & _targetPtr_T_2 == 4'h3;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :117:28, :120:23, :121:38
+  wire               _GEN_162 = enqFires_2 & _targetPtr_T_2 == 4'h4;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :117:28, :120:23, :121:38
+  wire               _GEN_163 = enqFires_2 & _targetPtr_T_2 == 4'h5;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :117:28, :120:23, :121:38
+  wire               _GEN_164 = enqFires_2 & _targetPtr_T_2 == 4'h6;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :117:28, :120:23, :121:38
+  wire               _GEN_165 = enqFires_2 & _targetPtr_T_2 == 4'h7;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :117:28, :120:23, :121:38
+  wire               _GEN_166 = enqFires_2 & _targetPtr_T_2 == 4'h8;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :117:28, :120:23, :121:38
+  wire               _GEN_167 = enqFires_2 & _targetPtr_T_2 == 4'h9;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :117:28, :120:23, :121:38
+  wire               _GEN_168 = enqFires_2 & _targetPtr_T_2 == 4'hA;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :117:28, :120:23, :121:38
+  wire               _GEN_169 = enqFires_2 & _targetPtr_T_2 == 4'hB;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :117:28, :120:23, :121:38
+  wire               _GEN_170 = enqFires_2 & _targetPtr_T_2 == 4'hC;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :117:28, :120:23, :121:38
+  wire               _GEN_171 = enqFires_2 & _targetPtr_T_2 == 4'hD;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :117:28, :120:23, :121:38
+  wire               _GEN_172 = enqFires_2 & _targetPtr_T_2 == 4'hE;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :117:28, :120:23, :121:38
+  wire               _GEN_173 = enqFires_2 & (&_targetPtr_T_2);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :117:28, :120:23, :121:38
+  wire [1:0]         _GEN_174 = {1'h0, enqFires_2};	// backend/src/zaqal/backend/lsu/StoreQueue.scala:81:20, :112:42, :116:52
+  wire [1:0]         _totalEnq_T_1 = _GEN_157 + _GEN_174;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:116:52
+  wire [3:0]         _targetPtr_T_3 = enqPtr + {2'h0, _GEN_156 + _totalEnq_T_1};	// backend/src/zaqal/backend/lsu/StoreQueue.scala:93:23, :111:46, :116:52, :117:28
+  wire               _GEN_175 = _targetPtr_T_3 == 4'h0;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:93:23, :117:28, :121:38
+  wire               _GEN_176 = _GEN_175 | _GEN_158;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:23, :121:38
+  wire               _GEN_177 = enqFires_3 ? _GEN_176 | _GEN_63 : _GEN_158 | _GEN_63;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38
+  wire               _GEN_178 = _targetPtr_T_3 == 4'h1;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:117:28, :121:38
+  wire               _GEN_179 = _GEN_178 | _GEN_159;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:23, :121:38
+  wire               _GEN_180 = enqFires_3 ? _GEN_179 | _GEN_66 : _GEN_159 | _GEN_66;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38
+  wire               _GEN_181 = _targetPtr_T_3 == 4'h2;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:117:28, :121:38
+  wire               _GEN_182 = _GEN_181 | _GEN_160;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:23, :121:38
+  wire               _GEN_183 = enqFires_3 ? _GEN_182 | _GEN_69 : _GEN_160 | _GEN_69;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38
+  wire               _GEN_184 = _targetPtr_T_3 == 4'h3;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:117:28, :121:38
+  wire               _GEN_185 = _GEN_184 | _GEN_161;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:23, :121:38
+  wire               _GEN_186 = enqFires_3 ? _GEN_185 | _GEN_72 : _GEN_161 | _GEN_72;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38
+  wire               _GEN_187 = _targetPtr_T_3 == 4'h4;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:117:28, :121:38
+  wire               _GEN_188 = _GEN_187 | _GEN_162;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:23, :121:38
+  wire               _GEN_189 = enqFires_3 ? _GEN_188 | _GEN_75 : _GEN_162 | _GEN_75;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38
+  wire               _GEN_190 = _targetPtr_T_3 == 4'h5;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:117:28, :121:38
+  wire               _GEN_191 = _GEN_190 | _GEN_163;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:23, :121:38
+  wire               _GEN_192 = enqFires_3 ? _GEN_191 | _GEN_78 : _GEN_163 | _GEN_78;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38
+  wire               _GEN_193 = _targetPtr_T_3 == 4'h6;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:117:28, :121:38
+  wire               _GEN_194 = _GEN_193 | _GEN_164;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:23, :121:38
+  wire               _GEN_195 = enqFires_3 ? _GEN_194 | _GEN_81 : _GEN_164 | _GEN_81;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38
+  wire               _GEN_196 = _targetPtr_T_3 == 4'h7;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:117:28, :121:38
+  wire               _GEN_197 = _GEN_196 | _GEN_165;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:23, :121:38
+  wire               _GEN_198 = enqFires_3 ? _GEN_197 | _GEN_84 : _GEN_165 | _GEN_84;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38
+  wire               _GEN_199 = _targetPtr_T_3 == 4'h8;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:117:28, :121:38
+  wire               _GEN_200 = _GEN_199 | _GEN_166;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:23, :121:38
+  wire               _GEN_201 = enqFires_3 ? _GEN_200 | _GEN_87 : _GEN_166 | _GEN_87;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38
+  wire               _GEN_202 = _targetPtr_T_3 == 4'h9;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:117:28, :121:38
+  wire               _GEN_203 = _GEN_202 | _GEN_167;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:23, :121:38
+  wire               _GEN_204 = enqFires_3 ? _GEN_203 | _GEN_90 : _GEN_167 | _GEN_90;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38
+  wire               _GEN_205 = _targetPtr_T_3 == 4'hA;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:117:28, :121:38
+  wire               _GEN_206 = _GEN_205 | _GEN_168;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:23, :121:38
+  wire               _GEN_207 = enqFires_3 ? _GEN_206 | _GEN_93 : _GEN_168 | _GEN_93;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38
+  wire               _GEN_208 = _targetPtr_T_3 == 4'hB;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:117:28, :121:38
+  wire               _GEN_209 = _GEN_208 | _GEN_169;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:23, :121:38
+  wire               _GEN_210 = enqFires_3 ? _GEN_209 | _GEN_96 : _GEN_169 | _GEN_96;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38
+  wire               _GEN_211 = _targetPtr_T_3 == 4'hC;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:117:28, :121:38
+  wire               _GEN_212 = _GEN_211 | _GEN_170;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:23, :121:38
+  wire               _GEN_213 = enqFires_3 ? _GEN_212 | _GEN_99 : _GEN_170 | _GEN_99;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38
+  wire               _GEN_214 = _targetPtr_T_3 == 4'hD;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:117:28, :121:38
+  wire               _GEN_215 = _GEN_214 | _GEN_171;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:23, :121:38
+  wire               _GEN_216 = enqFires_3 ? _GEN_215 | _GEN_102 : _GEN_171 | _GEN_102;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38
+  wire               _GEN_217 = _targetPtr_T_3 == 4'hE;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:117:28, :121:38
+  wire               _GEN_218 = _GEN_217 | _GEN_172;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:23, :121:38
+  wire               _GEN_219 = enqFires_3 ? _GEN_218 | _GEN_105 : _GEN_172 | _GEN_105;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38
+  wire               _GEN_220 = (&_targetPtr_T_3) | _GEN_173;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:117:28, :120:23, :121:38
+  wire               _GEN_221 = enqFires_3 ? _GEN_220 | _GEN_107 : _GEN_173 | _GEN_107;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38
+  wire               _GEN_222 = enqFires_3 ? ~_GEN_176 & _GEN_108 : ~_GEN_158 & _GEN_108;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38, :122:38
+  wire               _GEN_223 = enqFires_3 ? ~_GEN_179 & _GEN_109 : ~_GEN_159 & _GEN_109;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38, :122:38
+  wire               _GEN_224 = enqFires_3 ? ~_GEN_182 & _GEN_110 : ~_GEN_160 & _GEN_110;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38, :122:38
+  wire               _GEN_225 = enqFires_3 ? ~_GEN_185 & _GEN_111 : ~_GEN_161 & _GEN_111;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38, :122:38
+  wire               _GEN_226 = enqFires_3 ? ~_GEN_188 & _GEN_112 : ~_GEN_162 & _GEN_112;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38, :122:38
+  wire               _GEN_227 = enqFires_3 ? ~_GEN_191 & _GEN_113 : ~_GEN_163 & _GEN_113;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38, :122:38
+  wire               _GEN_228 = enqFires_3 ? ~_GEN_194 & _GEN_114 : ~_GEN_164 & _GEN_114;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38, :122:38
+  wire               _GEN_229 = enqFires_3 ? ~_GEN_197 & _GEN_115 : ~_GEN_165 & _GEN_115;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38, :122:38
+  wire               _GEN_230 = enqFires_3 ? ~_GEN_200 & _GEN_116 : ~_GEN_166 & _GEN_116;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38, :122:38
+  wire               _GEN_231 = enqFires_3 ? ~_GEN_203 & _GEN_117 : ~_GEN_167 & _GEN_117;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38, :122:38
+  wire               _GEN_232 = enqFires_3 ? ~_GEN_206 & _GEN_118 : ~_GEN_168 & _GEN_118;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38, :122:38
+  wire               _GEN_233 = enqFires_3 ? ~_GEN_209 & _GEN_119 : ~_GEN_169 & _GEN_119;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38, :122:38
+  wire               _GEN_234 = enqFires_3 ? ~_GEN_212 & _GEN_120 : ~_GEN_170 & _GEN_120;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38, :122:38
+  wire               _GEN_235 = enqFires_3 ? ~_GEN_215 & _GEN_121 : ~_GEN_171 & _GEN_121;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38, :122:38
+  wire               _GEN_236 = enqFires_3 ? ~_GEN_218 & _GEN_122 : ~_GEN_172 & _GEN_122;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38, :122:38
+  wire               _GEN_237 = enqFires_3 ? ~_GEN_220 & _GEN_123 : ~_GEN_173 & _GEN_123;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38, :122:38
+  wire               _GEN_238 = enqFires_3 ? ~_GEN_176 & _GEN_124 : ~_GEN_158 & _GEN_124;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38, :122:38, :123:38
+  wire               _GEN_239 = enqFires_3 ? ~_GEN_179 & _GEN_125 : ~_GEN_159 & _GEN_125;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38, :122:38, :123:38
+  wire               _GEN_240 = enqFires_3 ? ~_GEN_182 & _GEN_126 : ~_GEN_160 & _GEN_126;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38, :122:38, :123:38
+  wire               _GEN_241 = enqFires_3 ? ~_GEN_185 & _GEN_127 : ~_GEN_161 & _GEN_127;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38, :122:38, :123:38
+  wire               _GEN_242 = enqFires_3 ? ~_GEN_188 & _GEN_128 : ~_GEN_162 & _GEN_128;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38, :122:38, :123:38
+  wire               _GEN_243 = enqFires_3 ? ~_GEN_191 & _GEN_129 : ~_GEN_163 & _GEN_129;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38, :122:38, :123:38
+  wire               _GEN_244 = enqFires_3 ? ~_GEN_194 & _GEN_130 : ~_GEN_164 & _GEN_130;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38, :122:38, :123:38
+  wire               _GEN_245 = enqFires_3 ? ~_GEN_197 & _GEN_131 : ~_GEN_165 & _GEN_131;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38, :122:38, :123:38
+  wire               _GEN_246 = enqFires_3 ? ~_GEN_200 & _GEN_132 : ~_GEN_166 & _GEN_132;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38, :122:38, :123:38
+  wire               _GEN_247 = enqFires_3 ? ~_GEN_203 & _GEN_133 : ~_GEN_167 & _GEN_133;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38, :122:38, :123:38
+  wire               _GEN_248 = enqFires_3 ? ~_GEN_206 & _GEN_134 : ~_GEN_168 & _GEN_134;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38, :122:38, :123:38
+  wire               _GEN_249 = enqFires_3 ? ~_GEN_209 & _GEN_135 : ~_GEN_169 & _GEN_135;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38, :122:38, :123:38
+  wire               _GEN_250 = enqFires_3 ? ~_GEN_212 & _GEN_136 : ~_GEN_170 & _GEN_136;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38, :122:38, :123:38
+  wire               _GEN_251 = enqFires_3 ? ~_GEN_215 & _GEN_137 : ~_GEN_171 & _GEN_137;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38, :122:38, :123:38
+  wire               _GEN_252 = enqFires_3 ? ~_GEN_218 & _GEN_138 : ~_GEN_172 & _GEN_138;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38, :122:38, :123:38
+  wire               _GEN_253 = enqFires_3 ? ~_GEN_220 & _GEN_139 : ~_GEN_173 & _GEN_139;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38, :122:38, :123:38
+  wire               _GEN_254 = enqFires_3 ? ~_GEN_176 & _GEN_140 : ~_GEN_158 & _GEN_140;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38, :122:38, :124:38
+  wire               _GEN_255 = enqFires_3 ? ~_GEN_179 & _GEN_141 : ~_GEN_159 & _GEN_141;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38, :122:38, :124:38
+  wire               _GEN_256 = enqFires_3 ? ~_GEN_182 & _GEN_142 : ~_GEN_160 & _GEN_142;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38, :122:38, :124:38
+  wire               _GEN_257 = enqFires_3 ? ~_GEN_185 & _GEN_143 : ~_GEN_161 & _GEN_143;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38, :122:38, :124:38
+  wire               _GEN_258 = enqFires_3 ? ~_GEN_188 & _GEN_144 : ~_GEN_162 & _GEN_144;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38, :122:38, :124:38
+  wire               _GEN_259 = enqFires_3 ? ~_GEN_191 & _GEN_145 : ~_GEN_163 & _GEN_145;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38, :122:38, :124:38
+  wire               _GEN_260 = enqFires_3 ? ~_GEN_194 & _GEN_146 : ~_GEN_164 & _GEN_146;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38, :122:38, :124:38
+  wire               _GEN_261 = enqFires_3 ? ~_GEN_197 & _GEN_147 : ~_GEN_165 & _GEN_147;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38, :122:38, :124:38
+  wire               _GEN_262 = enqFires_3 ? ~_GEN_200 & _GEN_148 : ~_GEN_166 & _GEN_148;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38, :122:38, :124:38
+  wire               _GEN_263 = enqFires_3 ? ~_GEN_203 & _GEN_149 : ~_GEN_167 & _GEN_149;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38, :122:38, :124:38
+  wire               _GEN_264 = enqFires_3 ? ~_GEN_206 & _GEN_150 : ~_GEN_168 & _GEN_150;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38, :122:38, :124:38
+  wire               _GEN_265 = enqFires_3 ? ~_GEN_209 & _GEN_151 : ~_GEN_169 & _GEN_151;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38, :122:38, :124:38
+  wire               _GEN_266 = enqFires_3 ? ~_GEN_212 & _GEN_152 : ~_GEN_170 & _GEN_152;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38, :122:38, :124:38
+  wire               _GEN_267 = enqFires_3 ? ~_GEN_215 & _GEN_153 : ~_GEN_171 & _GEN_153;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38, :122:38, :124:38
+  wire               _GEN_268 = enqFires_3 ? ~_GEN_218 & _GEN_154 : ~_GEN_172 & _GEN_154;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38, :122:38, :124:38
+  wire               _GEN_269 = enqFires_3 ? ~_GEN_220 & _GEN_155 : ~_GEN_173 & _GEN_155;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38, :122:38, :124:38
+  wire [1:0]         _GEN_270 = {1'h0, enqFires_3};	// backend/src/zaqal/backend/lsu/StoreQueue.scala:81:20, :112:42, :116:52
+  wire [2:0]         _GEN_271 = {1'h0, allocOffset};	// backend/src/zaqal/backend/lsu/StoreQueue.scala:81:20, :116:52
   wire [3:0]         _targetPtr_T_4 =
-    enqPtr + {1'h0, _GEN_287 + {1'h0, _GEN_190 + _GEN_286}};	// backend/src/zaqal/backend/lsu/StoreQueue.scala:81:20, :93:23, :116:52, :117:28
-  wire               _GEN_288 = enqFires_4 & _targetPtr_T_4 == 4'h0;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:93:23, :117:28, :120:26, :121:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_289 = enqFires_4 & _targetPtr_T_4 == 4'h1;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:117:28, :120:26, :121:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_290 = enqFires_4 & _targetPtr_T_4 == 4'h2;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:117:28, :120:26, :121:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_291 = enqFires_4 & _targetPtr_T_4 == 4'h3;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:117:28, :120:26, :121:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_292 = enqFires_4 & _targetPtr_T_4 == 4'h4;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:117:28, :120:26, :121:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_293 = enqFires_4 & _targetPtr_T_4 == 4'h5;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:117:28, :120:26, :121:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_294 = enqFires_4 & _targetPtr_T_4 == 4'h6;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:117:28, :120:26, :121:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_295 = enqFires_4 & _targetPtr_T_4 == 4'h7;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:117:28, :120:26, :121:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_296 = enqFires_4 & _targetPtr_T_4 == 4'h8;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:117:28, :120:26, :121:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_297 = enqFires_4 & _targetPtr_T_4 == 4'h9;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:117:28, :120:26, :121:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_298 = enqFires_4 & _targetPtr_T_4 == 4'hA;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:117:28, :120:26, :121:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_299 = enqFires_4 & _targetPtr_T_4 == 4'hB;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:117:28, :120:26, :121:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_300 = enqFires_4 & _targetPtr_T_4 == 4'hC;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:117:28, :120:26, :121:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_301 = enqFires_4 & _targetPtr_T_4 == 4'hD;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:117:28, :120:26, :121:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_302 = enqFires_4 & _targetPtr_T_4 == 4'hE;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:117:28, :120:26, :121:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_303 = enqFires_4 & (&_targetPtr_T_4);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:117:28, :120:26, :121:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire [1:0]         _GEN_304 = {1'h0, enqFires_4};	// backend/src/zaqal/backend/lsu/StoreQueue.scala:81:20, :116:52, src/main/scala/chisel3/util/Decoupled.scala:51:35
+    enqPtr + {1'h0, _GEN_271 + {1'h0, _GEN_174 + _GEN_270}};	// backend/src/zaqal/backend/lsu/StoreQueue.scala:81:20, :93:23, :116:52, :117:28
+  wire               _GEN_272 = enqFires_4 & _targetPtr_T_4 == 4'h0;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:93:23, :112:42, :117:28, :120:23, :121:38
+  wire               _GEN_273 = enqFires_4 & _targetPtr_T_4 == 4'h1;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :117:28, :120:23, :121:38
+  wire               _GEN_274 = enqFires_4 & _targetPtr_T_4 == 4'h2;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :117:28, :120:23, :121:38
+  wire               _GEN_275 = enqFires_4 & _targetPtr_T_4 == 4'h3;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :117:28, :120:23, :121:38
+  wire               _GEN_276 = enqFires_4 & _targetPtr_T_4 == 4'h4;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :117:28, :120:23, :121:38
+  wire               _GEN_277 = enqFires_4 & _targetPtr_T_4 == 4'h5;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :117:28, :120:23, :121:38
+  wire               _GEN_278 = enqFires_4 & _targetPtr_T_4 == 4'h6;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :117:28, :120:23, :121:38
+  wire               _GEN_279 = enqFires_4 & _targetPtr_T_4 == 4'h7;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :117:28, :120:23, :121:38
+  wire               _GEN_280 = enqFires_4 & _targetPtr_T_4 == 4'h8;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :117:28, :120:23, :121:38
+  wire               _GEN_281 = enqFires_4 & _targetPtr_T_4 == 4'h9;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :117:28, :120:23, :121:38
+  wire               _GEN_282 = enqFires_4 & _targetPtr_T_4 == 4'hA;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :117:28, :120:23, :121:38
+  wire               _GEN_283 = enqFires_4 & _targetPtr_T_4 == 4'hB;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :117:28, :120:23, :121:38
+  wire               _GEN_284 = enqFires_4 & _targetPtr_T_4 == 4'hC;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :117:28, :120:23, :121:38
+  wire               _GEN_285 = enqFires_4 & _targetPtr_T_4 == 4'hD;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :117:28, :120:23, :121:38
+  wire               _GEN_286 = enqFires_4 & _targetPtr_T_4 == 4'hE;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :117:28, :120:23, :121:38
+  wire               _GEN_287 = enqFires_4 & (&_targetPtr_T_4);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :117:28, :120:23, :121:38
+  wire [1:0]         _GEN_288 = {1'h0, enqFires_4};	// backend/src/zaqal/backend/lsu/StoreQueue.scala:81:20, :112:42, :116:52
   wire [3:0]         _targetPtr_T_5 =
-    enqPtr + {1'h0, _GEN_287 + {1'h0, _GEN_190 + _GEN_286 + _GEN_304}};	// backend/src/zaqal/backend/lsu/StoreQueue.scala:81:20, :93:23, :116:52, :117:28
-  wire               _GEN_305 = _targetPtr_T_5 == 4'h0;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:93:23, :117:28, :121:38
-  wire               _GEN_306 = _GEN_305 | _GEN_288;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38
-  wire               _GEN_307 = enqFires_5 ? _GEN_306 | _GEN_193 : _GEN_288 | _GEN_193;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_308 = _targetPtr_T_5 == 4'h1;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:117:28, :121:38
-  wire               _GEN_309 = _GEN_308 | _GEN_289;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38
-  wire               _GEN_310 = enqFires_5 ? _GEN_309 | _GEN_196 : _GEN_289 | _GEN_196;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_311 = _targetPtr_T_5 == 4'h2;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:117:28, :121:38
-  wire               _GEN_312 = _GEN_311 | _GEN_290;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38
-  wire               _GEN_313 = enqFires_5 ? _GEN_312 | _GEN_199 : _GEN_290 | _GEN_199;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_314 = _targetPtr_T_5 == 4'h3;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:117:28, :121:38
-  wire               _GEN_315 = _GEN_314 | _GEN_291;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38
-  wire               _GEN_316 = enqFires_5 ? _GEN_315 | _GEN_202 : _GEN_291 | _GEN_202;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_317 = _targetPtr_T_5 == 4'h4;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:117:28, :121:38
-  wire               _GEN_318 = _GEN_317 | _GEN_292;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38
-  wire               _GEN_319 = enqFires_5 ? _GEN_318 | _GEN_205 : _GEN_292 | _GEN_205;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_320 = _targetPtr_T_5 == 4'h5;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:117:28, :121:38
-  wire               _GEN_321 = _GEN_320 | _GEN_293;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38
-  wire               _GEN_322 = enqFires_5 ? _GEN_321 | _GEN_208 : _GEN_293 | _GEN_208;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_323 = _targetPtr_T_5 == 4'h6;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:117:28, :121:38
-  wire               _GEN_324 = _GEN_323 | _GEN_294;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38
-  wire               _GEN_325 = enqFires_5 ? _GEN_324 | _GEN_211 : _GEN_294 | _GEN_211;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_326 = _targetPtr_T_5 == 4'h7;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:117:28, :121:38
-  wire               _GEN_327 = _GEN_326 | _GEN_295;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38
-  wire               _GEN_328 = enqFires_5 ? _GEN_327 | _GEN_214 : _GEN_295 | _GEN_214;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_329 = _targetPtr_T_5 == 4'h8;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:117:28, :121:38
-  wire               _GEN_330 = _GEN_329 | _GEN_296;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38
-  wire               _GEN_331 = enqFires_5 ? _GEN_330 | _GEN_217 : _GEN_296 | _GEN_217;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_332 = _targetPtr_T_5 == 4'h9;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:117:28, :121:38
-  wire               _GEN_333 = _GEN_332 | _GEN_297;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38
-  wire               _GEN_334 = enqFires_5 ? _GEN_333 | _GEN_220 : _GEN_297 | _GEN_220;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_335 = _targetPtr_T_5 == 4'hA;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:117:28, :121:38
-  wire               _GEN_336 = _GEN_335 | _GEN_298;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38
-  wire               _GEN_337 = enqFires_5 ? _GEN_336 | _GEN_223 : _GEN_298 | _GEN_223;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_338 = _targetPtr_T_5 == 4'hB;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:117:28, :121:38
-  wire               _GEN_339 = _GEN_338 | _GEN_299;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38
-  wire               _GEN_340 = enqFires_5 ? _GEN_339 | _GEN_226 : _GEN_299 | _GEN_226;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_341 = _targetPtr_T_5 == 4'hC;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:117:28, :121:38
-  wire               _GEN_342 = _GEN_341 | _GEN_300;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38
-  wire               _GEN_343 = enqFires_5 ? _GEN_342 | _GEN_229 : _GEN_300 | _GEN_229;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_344 = _targetPtr_T_5 == 4'hD;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:117:28, :121:38
-  wire               _GEN_345 = _GEN_344 | _GEN_301;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38
-  wire               _GEN_346 = enqFires_5 ? _GEN_345 | _GEN_232 : _GEN_301 | _GEN_232;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_347 = _targetPtr_T_5 == 4'hE;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:117:28, :121:38
-  wire               _GEN_348 = _GEN_347 | _GEN_302;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38
-  wire               _GEN_349 = enqFires_5 ? _GEN_348 | _GEN_235 : _GEN_302 | _GEN_235;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_350 = (&_targetPtr_T_5) | _GEN_303;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:117:28, :120:26, :121:38
-  wire               _GEN_351 = enqFires_5 ? _GEN_350 | _GEN_237 : _GEN_303 | _GEN_237;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_352 = enqFires_5 ? ~_GEN_306 & _GEN_238 : ~_GEN_288 & _GEN_238;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, :122:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_353 = enqFires_5 ? ~_GEN_309 & _GEN_239 : ~_GEN_289 & _GEN_239;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, :122:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_354 = enqFires_5 ? ~_GEN_312 & _GEN_240 : ~_GEN_290 & _GEN_240;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, :122:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_355 = enqFires_5 ? ~_GEN_315 & _GEN_241 : ~_GEN_291 & _GEN_241;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, :122:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_356 = enqFires_5 ? ~_GEN_318 & _GEN_242 : ~_GEN_292 & _GEN_242;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, :122:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_357 = enqFires_5 ? ~_GEN_321 & _GEN_243 : ~_GEN_293 & _GEN_243;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, :122:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_358 = enqFires_5 ? ~_GEN_324 & _GEN_244 : ~_GEN_294 & _GEN_244;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, :122:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_359 = enqFires_5 ? ~_GEN_327 & _GEN_245 : ~_GEN_295 & _GEN_245;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, :122:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_360 = enqFires_5 ? ~_GEN_330 & _GEN_246 : ~_GEN_296 & _GEN_246;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, :122:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_361 = enqFires_5 ? ~_GEN_333 & _GEN_247 : ~_GEN_297 & _GEN_247;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, :122:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_362 = enqFires_5 ? ~_GEN_336 & _GEN_248 : ~_GEN_298 & _GEN_248;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, :122:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_363 = enqFires_5 ? ~_GEN_339 & _GEN_249 : ~_GEN_299 & _GEN_249;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, :122:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_364 = enqFires_5 ? ~_GEN_342 & _GEN_250 : ~_GEN_300 & _GEN_250;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, :122:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_365 = enqFires_5 ? ~_GEN_345 & _GEN_251 : ~_GEN_301 & _GEN_251;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, :122:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_366 = enqFires_5 ? ~_GEN_348 & _GEN_252 : ~_GEN_302 & _GEN_252;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, :122:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_367 = enqFires_5 ? ~_GEN_350 & _GEN_253 : ~_GEN_303 & _GEN_253;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, :122:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
+    enqPtr + {1'h0, _GEN_271 + {1'h0, _GEN_174 + _GEN_270 + _GEN_288}};	// backend/src/zaqal/backend/lsu/StoreQueue.scala:81:20, :93:23, :116:52, :117:28
+  wire               _GEN_289 = _targetPtr_T_5 == 4'h0;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:93:23, :117:28, :121:38
+  wire               _GEN_290 = _GEN_289 | _GEN_272;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:23, :121:38
+  wire               _GEN_291 = enqFires_5 ? _GEN_290 | _GEN_177 : _GEN_272 | _GEN_177;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38
+  wire               _GEN_292 = _targetPtr_T_5 == 4'h1;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:117:28, :121:38
+  wire               _GEN_293 = _GEN_292 | _GEN_273;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:23, :121:38
+  wire               _GEN_294 = enqFires_5 ? _GEN_293 | _GEN_180 : _GEN_273 | _GEN_180;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38
+  wire               _GEN_295 = _targetPtr_T_5 == 4'h2;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:117:28, :121:38
+  wire               _GEN_296 = _GEN_295 | _GEN_274;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:23, :121:38
+  wire               _GEN_297 = enqFires_5 ? _GEN_296 | _GEN_183 : _GEN_274 | _GEN_183;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38
+  wire               _GEN_298 = _targetPtr_T_5 == 4'h3;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:117:28, :121:38
+  wire               _GEN_299 = _GEN_298 | _GEN_275;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:23, :121:38
+  wire               _GEN_300 = enqFires_5 ? _GEN_299 | _GEN_186 : _GEN_275 | _GEN_186;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38
+  wire               _GEN_301 = _targetPtr_T_5 == 4'h4;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:117:28, :121:38
+  wire               _GEN_302 = _GEN_301 | _GEN_276;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:23, :121:38
+  wire               _GEN_303 = enqFires_5 ? _GEN_302 | _GEN_189 : _GEN_276 | _GEN_189;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38
+  wire               _GEN_304 = _targetPtr_T_5 == 4'h5;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:117:28, :121:38
+  wire               _GEN_305 = _GEN_304 | _GEN_277;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:23, :121:38
+  wire               _GEN_306 = enqFires_5 ? _GEN_305 | _GEN_192 : _GEN_277 | _GEN_192;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38
+  wire               _GEN_307 = _targetPtr_T_5 == 4'h6;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:117:28, :121:38
+  wire               _GEN_308 = _GEN_307 | _GEN_278;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:23, :121:38
+  wire               _GEN_309 = enqFires_5 ? _GEN_308 | _GEN_195 : _GEN_278 | _GEN_195;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38
+  wire               _GEN_310 = _targetPtr_T_5 == 4'h7;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:117:28, :121:38
+  wire               _GEN_311 = _GEN_310 | _GEN_279;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:23, :121:38
+  wire               _GEN_312 = enqFires_5 ? _GEN_311 | _GEN_198 : _GEN_279 | _GEN_198;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38
+  wire               _GEN_313 = _targetPtr_T_5 == 4'h8;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:117:28, :121:38
+  wire               _GEN_314 = _GEN_313 | _GEN_280;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:23, :121:38
+  wire               _GEN_315 = enqFires_5 ? _GEN_314 | _GEN_201 : _GEN_280 | _GEN_201;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38
+  wire               _GEN_316 = _targetPtr_T_5 == 4'h9;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:117:28, :121:38
+  wire               _GEN_317 = _GEN_316 | _GEN_281;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:23, :121:38
+  wire               _GEN_318 = enqFires_5 ? _GEN_317 | _GEN_204 : _GEN_281 | _GEN_204;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38
+  wire               _GEN_319 = _targetPtr_T_5 == 4'hA;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:117:28, :121:38
+  wire               _GEN_320 = _GEN_319 | _GEN_282;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:23, :121:38
+  wire               _GEN_321 = enqFires_5 ? _GEN_320 | _GEN_207 : _GEN_282 | _GEN_207;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38
+  wire               _GEN_322 = _targetPtr_T_5 == 4'hB;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:117:28, :121:38
+  wire               _GEN_323 = _GEN_322 | _GEN_283;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:23, :121:38
+  wire               _GEN_324 = enqFires_5 ? _GEN_323 | _GEN_210 : _GEN_283 | _GEN_210;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38
+  wire               _GEN_325 = _targetPtr_T_5 == 4'hC;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:117:28, :121:38
+  wire               _GEN_326 = _GEN_325 | _GEN_284;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:23, :121:38
+  wire               _GEN_327 = enqFires_5 ? _GEN_326 | _GEN_213 : _GEN_284 | _GEN_213;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38
+  wire               _GEN_328 = _targetPtr_T_5 == 4'hD;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:117:28, :121:38
+  wire               _GEN_329 = _GEN_328 | _GEN_285;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:23, :121:38
+  wire               _GEN_330 = enqFires_5 ? _GEN_329 | _GEN_216 : _GEN_285 | _GEN_216;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38
+  wire               _GEN_331 = _targetPtr_T_5 == 4'hE;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:117:28, :121:38
+  wire               _GEN_332 = _GEN_331 | _GEN_286;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:23, :121:38
+  wire               _GEN_333 = enqFires_5 ? _GEN_332 | _GEN_219 : _GEN_286 | _GEN_219;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38
+  wire               _GEN_334 = (&_targetPtr_T_5) | _GEN_287;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:117:28, :120:23, :121:38
+  wire               _GEN_335 = enqFires_5 ? _GEN_334 | _GEN_221 : _GEN_287 | _GEN_221;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38
+  wire               _GEN_336 = enqFires_5 ? ~_GEN_290 & _GEN_222 : ~_GEN_272 & _GEN_222;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38, :122:38
+  wire               _GEN_337 = enqFires_5 ? ~_GEN_293 & _GEN_223 : ~_GEN_273 & _GEN_223;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38, :122:38
+  wire               _GEN_338 = enqFires_5 ? ~_GEN_296 & _GEN_224 : ~_GEN_274 & _GEN_224;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38, :122:38
+  wire               _GEN_339 = enqFires_5 ? ~_GEN_299 & _GEN_225 : ~_GEN_275 & _GEN_225;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38, :122:38
+  wire               _GEN_340 = enqFires_5 ? ~_GEN_302 & _GEN_226 : ~_GEN_276 & _GEN_226;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38, :122:38
+  wire               _GEN_341 = enqFires_5 ? ~_GEN_305 & _GEN_227 : ~_GEN_277 & _GEN_227;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38, :122:38
+  wire               _GEN_342 = enqFires_5 ? ~_GEN_308 & _GEN_228 : ~_GEN_278 & _GEN_228;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38, :122:38
+  wire               _GEN_343 = enqFires_5 ? ~_GEN_311 & _GEN_229 : ~_GEN_279 & _GEN_229;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38, :122:38
+  wire               _GEN_344 = enqFires_5 ? ~_GEN_314 & _GEN_230 : ~_GEN_280 & _GEN_230;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38, :122:38
+  wire               _GEN_345 = enqFires_5 ? ~_GEN_317 & _GEN_231 : ~_GEN_281 & _GEN_231;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38, :122:38
+  wire               _GEN_346 = enqFires_5 ? ~_GEN_320 & _GEN_232 : ~_GEN_282 & _GEN_232;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38, :122:38
+  wire               _GEN_347 = enqFires_5 ? ~_GEN_323 & _GEN_233 : ~_GEN_283 & _GEN_233;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38, :122:38
+  wire               _GEN_348 = enqFires_5 ? ~_GEN_326 & _GEN_234 : ~_GEN_284 & _GEN_234;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38, :122:38
+  wire               _GEN_349 = enqFires_5 ? ~_GEN_329 & _GEN_235 : ~_GEN_285 & _GEN_235;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38, :122:38
+  wire               _GEN_350 = enqFires_5 ? ~_GEN_332 & _GEN_236 : ~_GEN_286 & _GEN_236;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38, :122:38
+  wire               _GEN_351 = enqFires_5 ? ~_GEN_334 & _GEN_237 : ~_GEN_287 & _GEN_237;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38, :122:38
+  wire               _GEN_352 =
+    io_write_valid & entries_0_valid & entries_0_robIdx == io_write_robIdx;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :139:24, :141:{50,71}, :142:31
+  wire               _GEN_353 =
+    _GEN_352 | (enqFires_5 ? ~_GEN_290 & _GEN_238 : ~_GEN_272 & _GEN_238);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38, :122:38, :123:38, :139:24, :141:71, :142:31
+  wire               _GEN_354 =
+    _GEN_352 | (enqFires_5 ? ~_GEN_290 & _GEN_254 : ~_GEN_272 & _GEN_254);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38, :122:38, :124:38, :139:24, :141:71, :142:31, :143:31
+  wire               _GEN_355 =
+    io_write_valid & entries_1_valid & entries_1_robIdx == io_write_robIdx;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :139:24, :141:{50,71}, :142:31
+  wire               _GEN_356 =
+    _GEN_355 | (enqFires_5 ? ~_GEN_293 & _GEN_239 : ~_GEN_273 & _GEN_239);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38, :122:38, :123:38, :139:24, :141:71, :142:31
+  wire               _GEN_357 =
+    _GEN_355 | (enqFires_5 ? ~_GEN_293 & _GEN_255 : ~_GEN_273 & _GEN_255);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38, :122:38, :124:38, :139:24, :141:71, :142:31, :143:31
+  wire               _GEN_358 =
+    io_write_valid & entries_2_valid & entries_2_robIdx == io_write_robIdx;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :139:24, :141:{50,71}, :142:31
+  wire               _GEN_359 =
+    _GEN_358 | (enqFires_5 ? ~_GEN_296 & _GEN_240 : ~_GEN_274 & _GEN_240);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38, :122:38, :123:38, :139:24, :141:71, :142:31
+  wire               _GEN_360 =
+    _GEN_358 | (enqFires_5 ? ~_GEN_296 & _GEN_256 : ~_GEN_274 & _GEN_256);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38, :122:38, :124:38, :139:24, :141:71, :142:31, :143:31
+  wire               _GEN_361 =
+    io_write_valid & entries_3_valid & entries_3_robIdx == io_write_robIdx;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :139:24, :141:{50,71}, :142:31
+  wire               _GEN_362 =
+    _GEN_361 | (enqFires_5 ? ~_GEN_299 & _GEN_241 : ~_GEN_275 & _GEN_241);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38, :122:38, :123:38, :139:24, :141:71, :142:31
+  wire               _GEN_363 =
+    _GEN_361 | (enqFires_5 ? ~_GEN_299 & _GEN_257 : ~_GEN_275 & _GEN_257);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38, :122:38, :124:38, :139:24, :141:71, :142:31, :143:31
+  wire               _GEN_364 =
+    io_write_valid & entries_4_valid & entries_4_robIdx == io_write_robIdx;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :139:24, :141:{50,71}, :142:31
+  wire               _GEN_365 =
+    _GEN_364 | (enqFires_5 ? ~_GEN_302 & _GEN_242 : ~_GEN_276 & _GEN_242);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38, :122:38, :123:38, :139:24, :141:71, :142:31
+  wire               _GEN_366 =
+    _GEN_364 | (enqFires_5 ? ~_GEN_302 & _GEN_258 : ~_GEN_276 & _GEN_258);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38, :122:38, :124:38, :139:24, :141:71, :142:31, :143:31
+  wire               _GEN_367 =
+    io_write_valid & entries_5_valid & entries_5_robIdx == io_write_robIdx;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :139:24, :141:{50,71}, :142:31
   wire               _GEN_368 =
-    io_write_valid & entries_0_valid & entries_0_robIdx == io_write_robIdx;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :137:24, :139:{50,71}, :140:31
+    _GEN_367 | (enqFires_5 ? ~_GEN_305 & _GEN_243 : ~_GEN_277 & _GEN_243);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38, :122:38, :123:38, :139:24, :141:71, :142:31
   wire               _GEN_369 =
-    _GEN_368 | (enqFires_5 ? ~_GEN_306 & _GEN_254 : ~_GEN_288 & _GEN_254);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, :122:38, :123:38, :137:24, :139:71, :140:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
+    _GEN_367 | (enqFires_5 ? ~_GEN_305 & _GEN_259 : ~_GEN_277 & _GEN_259);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38, :122:38, :124:38, :139:24, :141:71, :142:31, :143:31
   wire               _GEN_370 =
-    _GEN_368 | (enqFires_5 ? ~_GEN_306 & _GEN_270 : ~_GEN_288 & _GEN_270);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, :122:38, :124:38, :137:24, :139:71, :140:31, :141:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
+    io_write_valid & entries_6_valid & entries_6_robIdx == io_write_robIdx;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :139:24, :141:{50,71}, :142:31
   wire               _GEN_371 =
-    io_write_valid & entries_1_valid & entries_1_robIdx == io_write_robIdx;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :137:24, :139:{50,71}, :140:31
+    _GEN_370 | (enqFires_5 ? ~_GEN_308 & _GEN_244 : ~_GEN_278 & _GEN_244);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38, :122:38, :123:38, :139:24, :141:71, :142:31
   wire               _GEN_372 =
-    _GEN_371 | (enqFires_5 ? ~_GEN_309 & _GEN_255 : ~_GEN_289 & _GEN_255);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, :122:38, :123:38, :137:24, :139:71, :140:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
+    _GEN_370 | (enqFires_5 ? ~_GEN_308 & _GEN_260 : ~_GEN_278 & _GEN_260);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38, :122:38, :124:38, :139:24, :141:71, :142:31, :143:31
   wire               _GEN_373 =
-    _GEN_371 | (enqFires_5 ? ~_GEN_309 & _GEN_271 : ~_GEN_289 & _GEN_271);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, :122:38, :124:38, :137:24, :139:71, :140:31, :141:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
+    io_write_valid & entries_7_valid & entries_7_robIdx == io_write_robIdx;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :139:24, :141:{50,71}, :142:31
   wire               _GEN_374 =
-    io_write_valid & entries_2_valid & entries_2_robIdx == io_write_robIdx;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :137:24, :139:{50,71}, :140:31
+    _GEN_373 | (enqFires_5 ? ~_GEN_311 & _GEN_245 : ~_GEN_279 & _GEN_245);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38, :122:38, :123:38, :139:24, :141:71, :142:31
   wire               _GEN_375 =
-    _GEN_374 | (enqFires_5 ? ~_GEN_312 & _GEN_256 : ~_GEN_290 & _GEN_256);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, :122:38, :123:38, :137:24, :139:71, :140:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
+    _GEN_373 | (enqFires_5 ? ~_GEN_311 & _GEN_261 : ~_GEN_279 & _GEN_261);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38, :122:38, :124:38, :139:24, :141:71, :142:31, :143:31
   wire               _GEN_376 =
-    _GEN_374 | (enqFires_5 ? ~_GEN_312 & _GEN_272 : ~_GEN_290 & _GEN_272);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, :122:38, :124:38, :137:24, :139:71, :140:31, :141:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
+    io_write_valid & entries_8_valid & entries_8_robIdx == io_write_robIdx;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :139:24, :141:{50,71}, :142:31
   wire               _GEN_377 =
-    io_write_valid & entries_3_valid & entries_3_robIdx == io_write_robIdx;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :137:24, :139:{50,71}, :140:31
+    _GEN_376 | (enqFires_5 ? ~_GEN_314 & _GEN_246 : ~_GEN_280 & _GEN_246);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38, :122:38, :123:38, :139:24, :141:71, :142:31
   wire               _GEN_378 =
-    _GEN_377 | (enqFires_5 ? ~_GEN_315 & _GEN_257 : ~_GEN_291 & _GEN_257);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, :122:38, :123:38, :137:24, :139:71, :140:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
+    _GEN_376 | (enqFires_5 ? ~_GEN_314 & _GEN_262 : ~_GEN_280 & _GEN_262);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38, :122:38, :124:38, :139:24, :141:71, :142:31, :143:31
   wire               _GEN_379 =
-    _GEN_377 | (enqFires_5 ? ~_GEN_315 & _GEN_273 : ~_GEN_291 & _GEN_273);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, :122:38, :124:38, :137:24, :139:71, :140:31, :141:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
+    io_write_valid & entries_9_valid & entries_9_robIdx == io_write_robIdx;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :139:24, :141:{50,71}, :142:31
   wire               _GEN_380 =
-    io_write_valid & entries_4_valid & entries_4_robIdx == io_write_robIdx;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :137:24, :139:{50,71}, :140:31
+    _GEN_379 | (enqFires_5 ? ~_GEN_317 & _GEN_247 : ~_GEN_281 & _GEN_247);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38, :122:38, :123:38, :139:24, :141:71, :142:31
   wire               _GEN_381 =
-    _GEN_380 | (enqFires_5 ? ~_GEN_318 & _GEN_258 : ~_GEN_292 & _GEN_258);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, :122:38, :123:38, :137:24, :139:71, :140:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
+    _GEN_379 | (enqFires_5 ? ~_GEN_317 & _GEN_263 : ~_GEN_281 & _GEN_263);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38, :122:38, :124:38, :139:24, :141:71, :142:31, :143:31
   wire               _GEN_382 =
-    _GEN_380 | (enqFires_5 ? ~_GEN_318 & _GEN_274 : ~_GEN_292 & _GEN_274);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, :122:38, :124:38, :137:24, :139:71, :140:31, :141:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
+    io_write_valid & entries_10_valid & entries_10_robIdx == io_write_robIdx;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :139:24, :141:{50,71}, :142:31
   wire               _GEN_383 =
-    io_write_valid & entries_5_valid & entries_5_robIdx == io_write_robIdx;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :137:24, :139:{50,71}, :140:31
+    _GEN_382 | (enqFires_5 ? ~_GEN_320 & _GEN_248 : ~_GEN_282 & _GEN_248);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38, :122:38, :123:38, :139:24, :141:71, :142:31
   wire               _GEN_384 =
-    _GEN_383 | (enqFires_5 ? ~_GEN_321 & _GEN_259 : ~_GEN_293 & _GEN_259);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, :122:38, :123:38, :137:24, :139:71, :140:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
+    _GEN_382 | (enqFires_5 ? ~_GEN_320 & _GEN_264 : ~_GEN_282 & _GEN_264);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38, :122:38, :124:38, :139:24, :141:71, :142:31, :143:31
   wire               _GEN_385 =
-    _GEN_383 | (enqFires_5 ? ~_GEN_321 & _GEN_275 : ~_GEN_293 & _GEN_275);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, :122:38, :124:38, :137:24, :139:71, :140:31, :141:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
+    io_write_valid & entries_11_valid & entries_11_robIdx == io_write_robIdx;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :139:24, :141:{50,71}, :142:31
   wire               _GEN_386 =
-    io_write_valid & entries_6_valid & entries_6_robIdx == io_write_robIdx;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :137:24, :139:{50,71}, :140:31
+    _GEN_385 | (enqFires_5 ? ~_GEN_323 & _GEN_249 : ~_GEN_283 & _GEN_249);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38, :122:38, :123:38, :139:24, :141:71, :142:31
   wire               _GEN_387 =
-    _GEN_386 | (enqFires_5 ? ~_GEN_324 & _GEN_260 : ~_GEN_294 & _GEN_260);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, :122:38, :123:38, :137:24, :139:71, :140:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
+    _GEN_385 | (enqFires_5 ? ~_GEN_323 & _GEN_265 : ~_GEN_283 & _GEN_265);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38, :122:38, :124:38, :139:24, :141:71, :142:31, :143:31
   wire               _GEN_388 =
-    _GEN_386 | (enqFires_5 ? ~_GEN_324 & _GEN_276 : ~_GEN_294 & _GEN_276);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, :122:38, :124:38, :137:24, :139:71, :140:31, :141:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
+    io_write_valid & entries_12_valid & entries_12_robIdx == io_write_robIdx;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :139:24, :141:{50,71}, :142:31
   wire               _GEN_389 =
-    io_write_valid & entries_7_valid & entries_7_robIdx == io_write_robIdx;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :137:24, :139:{50,71}, :140:31
+    _GEN_388 | (enqFires_5 ? ~_GEN_326 & _GEN_250 : ~_GEN_284 & _GEN_250);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38, :122:38, :123:38, :139:24, :141:71, :142:31
   wire               _GEN_390 =
-    _GEN_389 | (enqFires_5 ? ~_GEN_327 & _GEN_261 : ~_GEN_295 & _GEN_261);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, :122:38, :123:38, :137:24, :139:71, :140:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
+    _GEN_388 | (enqFires_5 ? ~_GEN_326 & _GEN_266 : ~_GEN_284 & _GEN_266);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38, :122:38, :124:38, :139:24, :141:71, :142:31, :143:31
   wire               _GEN_391 =
-    _GEN_389 | (enqFires_5 ? ~_GEN_327 & _GEN_277 : ~_GEN_295 & _GEN_277);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, :122:38, :124:38, :137:24, :139:71, :140:31, :141:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
+    io_write_valid & entries_13_valid & entries_13_robIdx == io_write_robIdx;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :139:24, :141:{50,71}, :142:31
   wire               _GEN_392 =
-    io_write_valid & entries_8_valid & entries_8_robIdx == io_write_robIdx;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :137:24, :139:{50,71}, :140:31
+    _GEN_391 | (enqFires_5 ? ~_GEN_329 & _GEN_251 : ~_GEN_285 & _GEN_251);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38, :122:38, :123:38, :139:24, :141:71, :142:31
   wire               _GEN_393 =
-    _GEN_392 | (enqFires_5 ? ~_GEN_330 & _GEN_262 : ~_GEN_296 & _GEN_262);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, :122:38, :123:38, :137:24, :139:71, :140:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
+    _GEN_391 | (enqFires_5 ? ~_GEN_329 & _GEN_267 : ~_GEN_285 & _GEN_267);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38, :122:38, :124:38, :139:24, :141:71, :142:31, :143:31
   wire               _GEN_394 =
-    _GEN_392 | (enqFires_5 ? ~_GEN_330 & _GEN_278 : ~_GEN_296 & _GEN_278);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, :122:38, :124:38, :137:24, :139:71, :140:31, :141:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
+    io_write_valid & entries_14_valid & entries_14_robIdx == io_write_robIdx;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :139:24, :141:{50,71}, :142:31
   wire               _GEN_395 =
-    io_write_valid & entries_9_valid & entries_9_robIdx == io_write_robIdx;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :137:24, :139:{50,71}, :140:31
+    _GEN_394 | (enqFires_5 ? ~_GEN_332 & _GEN_252 : ~_GEN_286 & _GEN_252);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38, :122:38, :123:38, :139:24, :141:71, :142:31
   wire               _GEN_396 =
-    _GEN_395 | (enqFires_5 ? ~_GEN_333 & _GEN_263 : ~_GEN_297 & _GEN_263);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, :122:38, :123:38, :137:24, :139:71, :140:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
+    _GEN_394 | (enqFires_5 ? ~_GEN_332 & _GEN_268 : ~_GEN_286 & _GEN_268);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38, :122:38, :124:38, :139:24, :141:71, :142:31, :143:31
   wire               _GEN_397 =
-    _GEN_395 | (enqFires_5 ? ~_GEN_333 & _GEN_279 : ~_GEN_297 & _GEN_279);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, :122:38, :124:38, :137:24, :139:71, :140:31, :141:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
+    io_write_valid & entries_15_valid & entries_15_robIdx == io_write_robIdx;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :139:24, :141:{50,71}, :142:31
   wire               _GEN_398 =
-    io_write_valid & entries_10_valid & entries_10_robIdx == io_write_robIdx;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :137:24, :139:{50,71}, :140:31
+    _GEN_397 | (enqFires_5 ? ~_GEN_334 & _GEN_253 : ~_GEN_287 & _GEN_253);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38, :122:38, :123:38, :139:24, :141:71, :142:31
   wire               _GEN_399 =
-    _GEN_398 | (enqFires_5 ? ~_GEN_336 & _GEN_264 : ~_GEN_298 & _GEN_264);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, :122:38, :123:38, :137:24, :139:71, :140:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
+    _GEN_397 | (enqFires_5 ? ~_GEN_334 & _GEN_269 : ~_GEN_287 & _GEN_269);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38, :122:38, :124:38, :139:24, :141:71, :142:31, :143:31
   wire               _GEN_400 =
-    _GEN_398 | (enqFires_5 ? ~_GEN_336 & _GEN_280 : ~_GEN_298 & _GEN_280);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, :122:38, :124:38, :137:24, :139:71, :140:31, :141:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
+    io_commit_valid_0 & entries_0_valid & entries_0_robIdx == io_commit_robIdx_0;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :221:30, :223:{52,77}, :224:32
   wire               _GEN_401 =
-    io_write_valid & entries_11_valid & entries_11_robIdx == io_write_robIdx;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :137:24, :139:{50,71}, :140:31
+    io_commit_valid_0 & entries_1_valid & entries_1_robIdx == io_commit_robIdx_0;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :221:30, :223:{52,77}, :224:32
   wire               _GEN_402 =
-    _GEN_401 | (enqFires_5 ? ~_GEN_339 & _GEN_265 : ~_GEN_299 & _GEN_265);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, :122:38, :123:38, :137:24, :139:71, :140:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
+    io_commit_valid_0 & entries_2_valid & entries_2_robIdx == io_commit_robIdx_0;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :221:30, :223:{52,77}, :224:32
   wire               _GEN_403 =
-    _GEN_401 | (enqFires_5 ? ~_GEN_339 & _GEN_281 : ~_GEN_299 & _GEN_281);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, :122:38, :124:38, :137:24, :139:71, :140:31, :141:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
+    io_commit_valid_0 & entries_3_valid & entries_3_robIdx == io_commit_robIdx_0;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :221:30, :223:{52,77}, :224:32
   wire               _GEN_404 =
-    io_write_valid & entries_12_valid & entries_12_robIdx == io_write_robIdx;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :137:24, :139:{50,71}, :140:31
+    io_commit_valid_0 & entries_4_valid & entries_4_robIdx == io_commit_robIdx_0;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :221:30, :223:{52,77}, :224:32
   wire               _GEN_405 =
-    _GEN_404 | (enqFires_5 ? ~_GEN_342 & _GEN_266 : ~_GEN_300 & _GEN_266);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, :122:38, :123:38, :137:24, :139:71, :140:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
+    io_commit_valid_0 & entries_5_valid & entries_5_robIdx == io_commit_robIdx_0;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :221:30, :223:{52,77}, :224:32
   wire               _GEN_406 =
-    _GEN_404 | (enqFires_5 ? ~_GEN_342 & _GEN_282 : ~_GEN_300 & _GEN_282);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, :122:38, :124:38, :137:24, :139:71, :140:31, :141:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
+    io_commit_valid_0 & entries_6_valid & entries_6_robIdx == io_commit_robIdx_0;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :221:30, :223:{52,77}, :224:32
   wire               _GEN_407 =
-    io_write_valid & entries_13_valid & entries_13_robIdx == io_write_robIdx;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :137:24, :139:{50,71}, :140:31
+    io_commit_valid_0 & entries_7_valid & entries_7_robIdx == io_commit_robIdx_0;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :221:30, :223:{52,77}, :224:32
   wire               _GEN_408 =
-    _GEN_407 | (enqFires_5 ? ~_GEN_345 & _GEN_267 : ~_GEN_301 & _GEN_267);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, :122:38, :123:38, :137:24, :139:71, :140:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
+    io_commit_valid_0 & entries_8_valid & entries_8_robIdx == io_commit_robIdx_0;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :221:30, :223:{52,77}, :224:32
   wire               _GEN_409 =
-    _GEN_407 | (enqFires_5 ? ~_GEN_345 & _GEN_283 : ~_GEN_301 & _GEN_283);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, :122:38, :124:38, :137:24, :139:71, :140:31, :141:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
+    io_commit_valid_0 & entries_9_valid & entries_9_robIdx == io_commit_robIdx_0;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :221:30, :223:{52,77}, :224:32
   wire               _GEN_410 =
-    io_write_valid & entries_14_valid & entries_14_robIdx == io_write_robIdx;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :137:24, :139:{50,71}, :140:31
+    io_commit_valid_0 & entries_10_valid & entries_10_robIdx == io_commit_robIdx_0;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :221:30, :223:{52,77}, :224:32
   wire               _GEN_411 =
-    _GEN_410 | (enqFires_5 ? ~_GEN_348 & _GEN_268 : ~_GEN_302 & _GEN_268);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, :122:38, :123:38, :137:24, :139:71, :140:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
+    io_commit_valid_0 & entries_11_valid & entries_11_robIdx == io_commit_robIdx_0;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :221:30, :223:{52,77}, :224:32
   wire               _GEN_412 =
-    _GEN_410 | (enqFires_5 ? ~_GEN_348 & _GEN_284 : ~_GEN_302 & _GEN_284);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, :122:38, :124:38, :137:24, :139:71, :140:31, :141:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
+    io_commit_valid_0 & entries_12_valid & entries_12_robIdx == io_commit_robIdx_0;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :221:30, :223:{52,77}, :224:32
   wire               _GEN_413 =
-    io_write_valid & entries_15_valid & entries_15_robIdx == io_write_robIdx;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :137:24, :139:{50,71}, :140:31
+    io_commit_valid_0 & entries_13_valid & entries_13_robIdx == io_commit_robIdx_0;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :221:30, :223:{52,77}, :224:32
   wire               _GEN_414 =
-    _GEN_413 | (enqFires_5 ? ~_GEN_350 & _GEN_269 : ~_GEN_303 & _GEN_269);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, :122:38, :123:38, :137:24, :139:71, :140:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
+    io_commit_valid_0 & entries_14_valid & entries_14_robIdx == io_commit_robIdx_0;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :221:30, :223:{52,77}, :224:32
   wire               _GEN_415 =
-    _GEN_413 | (enqFires_5 ? ~_GEN_350 & _GEN_285 : ~_GEN_303 & _GEN_285);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, :122:38, :124:38, :137:24, :139:71, :140:31, :141:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
+    io_commit_valid_0 & entries_15_valid & entries_15_robIdx == io_commit_robIdx_0;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :221:30, :223:{52,77}, :224:32
   wire               _GEN_416 =
-    io_commit_valid_0 & entries_0_valid & entries_0_robIdx == io_commit_robIdx_0;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :219:30, :221:{52,77}, :222:32
+    io_commit_valid_1
+      ? entries_0_valid & entries_0_robIdx == io_commit_robIdx_1 | _GEN_400 | _GEN_336
+      : _GEN_400 | _GEN_336;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :122:38, :221:30, :223:{31,52,77}, :224:32
   wire               _GEN_417 =
-    io_commit_valid_0 & entries_1_valid & entries_1_robIdx == io_commit_robIdx_0;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :219:30, :221:{52,77}, :222:32
+    io_commit_valid_1
+      ? entries_1_valid & entries_1_robIdx == io_commit_robIdx_1 | _GEN_401 | _GEN_337
+      : _GEN_401 | _GEN_337;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :122:38, :221:30, :223:{31,52,77}, :224:32
   wire               _GEN_418 =
-    io_commit_valid_0 & entries_2_valid & entries_2_robIdx == io_commit_robIdx_0;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :219:30, :221:{52,77}, :222:32
+    io_commit_valid_1
+      ? entries_2_valid & entries_2_robIdx == io_commit_robIdx_1 | _GEN_402 | _GEN_338
+      : _GEN_402 | _GEN_338;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :122:38, :221:30, :223:{31,52,77}, :224:32
   wire               _GEN_419 =
-    io_commit_valid_0 & entries_3_valid & entries_3_robIdx == io_commit_robIdx_0;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :219:30, :221:{52,77}, :222:32
+    io_commit_valid_1
+      ? entries_3_valid & entries_3_robIdx == io_commit_robIdx_1 | _GEN_403 | _GEN_339
+      : _GEN_403 | _GEN_339;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :122:38, :221:30, :223:{31,52,77}, :224:32
   wire               _GEN_420 =
-    io_commit_valid_0 & entries_4_valid & entries_4_robIdx == io_commit_robIdx_0;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :219:30, :221:{52,77}, :222:32
+    io_commit_valid_1
+      ? entries_4_valid & entries_4_robIdx == io_commit_robIdx_1 | _GEN_404 | _GEN_340
+      : _GEN_404 | _GEN_340;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :122:38, :221:30, :223:{31,52,77}, :224:32
   wire               _GEN_421 =
-    io_commit_valid_0 & entries_5_valid & entries_5_robIdx == io_commit_robIdx_0;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :219:30, :221:{52,77}, :222:32
+    io_commit_valid_1
+      ? entries_5_valid & entries_5_robIdx == io_commit_robIdx_1 | _GEN_405 | _GEN_341
+      : _GEN_405 | _GEN_341;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :122:38, :221:30, :223:{31,52,77}, :224:32
   wire               _GEN_422 =
-    io_commit_valid_0 & entries_6_valid & entries_6_robIdx == io_commit_robIdx_0;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :219:30, :221:{52,77}, :222:32
+    io_commit_valid_1
+      ? entries_6_valid & entries_6_robIdx == io_commit_robIdx_1 | _GEN_406 | _GEN_342
+      : _GEN_406 | _GEN_342;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :122:38, :221:30, :223:{31,52,77}, :224:32
   wire               _GEN_423 =
-    io_commit_valid_0 & entries_7_valid & entries_7_robIdx == io_commit_robIdx_0;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :219:30, :221:{52,77}, :222:32
+    io_commit_valid_1
+      ? entries_7_valid & entries_7_robIdx == io_commit_robIdx_1 | _GEN_407 | _GEN_343
+      : _GEN_407 | _GEN_343;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :122:38, :221:30, :223:{31,52,77}, :224:32
   wire               _GEN_424 =
-    io_commit_valid_0 & entries_8_valid & entries_8_robIdx == io_commit_robIdx_0;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :219:30, :221:{52,77}, :222:32
+    io_commit_valid_1
+      ? entries_8_valid & entries_8_robIdx == io_commit_robIdx_1 | _GEN_408 | _GEN_344
+      : _GEN_408 | _GEN_344;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :122:38, :221:30, :223:{31,52,77}, :224:32
   wire               _GEN_425 =
-    io_commit_valid_0 & entries_9_valid & entries_9_robIdx == io_commit_robIdx_0;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :219:30, :221:{52,77}, :222:32
+    io_commit_valid_1
+      ? entries_9_valid & entries_9_robIdx == io_commit_robIdx_1 | _GEN_409 | _GEN_345
+      : _GEN_409 | _GEN_345;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :122:38, :221:30, :223:{31,52,77}, :224:32
   wire               _GEN_426 =
-    io_commit_valid_0 & entries_10_valid & entries_10_robIdx == io_commit_robIdx_0;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :219:30, :221:{52,77}, :222:32
+    io_commit_valid_1
+      ? entries_10_valid & entries_10_robIdx == io_commit_robIdx_1 | _GEN_410 | _GEN_346
+      : _GEN_410 | _GEN_346;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :122:38, :221:30, :223:{31,52,77}, :224:32
   wire               _GEN_427 =
-    io_commit_valid_0 & entries_11_valid & entries_11_robIdx == io_commit_robIdx_0;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :219:30, :221:{52,77}, :222:32
+    io_commit_valid_1
+      ? entries_11_valid & entries_11_robIdx == io_commit_robIdx_1 | _GEN_411 | _GEN_347
+      : _GEN_411 | _GEN_347;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :122:38, :221:30, :223:{31,52,77}, :224:32
   wire               _GEN_428 =
-    io_commit_valid_0 & entries_12_valid & entries_12_robIdx == io_commit_robIdx_0;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :219:30, :221:{52,77}, :222:32
+    io_commit_valid_1
+      ? entries_12_valid & entries_12_robIdx == io_commit_robIdx_1 | _GEN_412 | _GEN_348
+      : _GEN_412 | _GEN_348;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :122:38, :221:30, :223:{31,52,77}, :224:32
   wire               _GEN_429 =
-    io_commit_valid_0 & entries_13_valid & entries_13_robIdx == io_commit_robIdx_0;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :219:30, :221:{52,77}, :222:32
+    io_commit_valid_1
+      ? entries_13_valid & entries_13_robIdx == io_commit_robIdx_1 | _GEN_413 | _GEN_349
+      : _GEN_413 | _GEN_349;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :122:38, :221:30, :223:{31,52,77}, :224:32
   wire               _GEN_430 =
-    io_commit_valid_0 & entries_14_valid & entries_14_robIdx == io_commit_robIdx_0;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :219:30, :221:{52,77}, :222:32
+    io_commit_valid_1
+      ? entries_14_valid & entries_14_robIdx == io_commit_robIdx_1 | _GEN_414 | _GEN_350
+      : _GEN_414 | _GEN_350;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :122:38, :221:30, :223:{31,52,77}, :224:32
   wire               _GEN_431 =
-    io_commit_valid_0 & entries_15_valid & entries_15_robIdx == io_commit_robIdx_0;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :219:30, :221:{52,77}, :222:32
+    io_commit_valid_1
+      ? entries_15_valid & entries_15_robIdx == io_commit_robIdx_1 | _GEN_415 | _GEN_351
+      : _GEN_415 | _GEN_351;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :122:38, :221:30, :223:{31,52,77}, :224:32
   wire               _GEN_432 =
-    io_commit_valid_1
-      ? entries_0_valid & entries_0_robIdx == io_commit_robIdx_1 | _GEN_416 | _GEN_352
-      : _GEN_416 | _GEN_352;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :122:38, :219:30, :221:{31,52,77}, :222:32
+    io_commit_valid_2 & entries_0_valid & entries_0_robIdx == io_commit_robIdx_2;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :221:30, :223:{52,77}, :224:32
   wire               _GEN_433 =
-    io_commit_valid_1
-      ? entries_1_valid & entries_1_robIdx == io_commit_robIdx_1 | _GEN_417 | _GEN_353
-      : _GEN_417 | _GEN_353;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :122:38, :219:30, :221:{31,52,77}, :222:32
+    io_commit_valid_2 & entries_1_valid & entries_1_robIdx == io_commit_robIdx_2;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :221:30, :223:{52,77}, :224:32
   wire               _GEN_434 =
-    io_commit_valid_1
-      ? entries_2_valid & entries_2_robIdx == io_commit_robIdx_1 | _GEN_418 | _GEN_354
-      : _GEN_418 | _GEN_354;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :122:38, :219:30, :221:{31,52,77}, :222:32
+    io_commit_valid_2 & entries_2_valid & entries_2_robIdx == io_commit_robIdx_2;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :221:30, :223:{52,77}, :224:32
   wire               _GEN_435 =
-    io_commit_valid_1
-      ? entries_3_valid & entries_3_robIdx == io_commit_robIdx_1 | _GEN_419 | _GEN_355
-      : _GEN_419 | _GEN_355;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :122:38, :219:30, :221:{31,52,77}, :222:32
+    io_commit_valid_2 & entries_3_valid & entries_3_robIdx == io_commit_robIdx_2;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :221:30, :223:{52,77}, :224:32
   wire               _GEN_436 =
-    io_commit_valid_1
-      ? entries_4_valid & entries_4_robIdx == io_commit_robIdx_1 | _GEN_420 | _GEN_356
-      : _GEN_420 | _GEN_356;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :122:38, :219:30, :221:{31,52,77}, :222:32
+    io_commit_valid_2 & entries_4_valid & entries_4_robIdx == io_commit_robIdx_2;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :221:30, :223:{52,77}, :224:32
   wire               _GEN_437 =
-    io_commit_valid_1
-      ? entries_5_valid & entries_5_robIdx == io_commit_robIdx_1 | _GEN_421 | _GEN_357
-      : _GEN_421 | _GEN_357;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :122:38, :219:30, :221:{31,52,77}, :222:32
+    io_commit_valid_2 & entries_5_valid & entries_5_robIdx == io_commit_robIdx_2;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :221:30, :223:{52,77}, :224:32
   wire               _GEN_438 =
-    io_commit_valid_1
-      ? entries_6_valid & entries_6_robIdx == io_commit_robIdx_1 | _GEN_422 | _GEN_358
-      : _GEN_422 | _GEN_358;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :122:38, :219:30, :221:{31,52,77}, :222:32
+    io_commit_valid_2 & entries_6_valid & entries_6_robIdx == io_commit_robIdx_2;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :221:30, :223:{52,77}, :224:32
   wire               _GEN_439 =
-    io_commit_valid_1
-      ? entries_7_valid & entries_7_robIdx == io_commit_robIdx_1 | _GEN_423 | _GEN_359
-      : _GEN_423 | _GEN_359;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :122:38, :219:30, :221:{31,52,77}, :222:32
+    io_commit_valid_2 & entries_7_valid & entries_7_robIdx == io_commit_robIdx_2;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :221:30, :223:{52,77}, :224:32
   wire               _GEN_440 =
-    io_commit_valid_1
-      ? entries_8_valid & entries_8_robIdx == io_commit_robIdx_1 | _GEN_424 | _GEN_360
-      : _GEN_424 | _GEN_360;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :122:38, :219:30, :221:{31,52,77}, :222:32
+    io_commit_valid_2 & entries_8_valid & entries_8_robIdx == io_commit_robIdx_2;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :221:30, :223:{52,77}, :224:32
   wire               _GEN_441 =
-    io_commit_valid_1
-      ? entries_9_valid & entries_9_robIdx == io_commit_robIdx_1 | _GEN_425 | _GEN_361
-      : _GEN_425 | _GEN_361;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :122:38, :219:30, :221:{31,52,77}, :222:32
+    io_commit_valid_2 & entries_9_valid & entries_9_robIdx == io_commit_robIdx_2;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :221:30, :223:{52,77}, :224:32
   wire               _GEN_442 =
-    io_commit_valid_1
-      ? entries_10_valid & entries_10_robIdx == io_commit_robIdx_1 | _GEN_426 | _GEN_362
-      : _GEN_426 | _GEN_362;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :122:38, :219:30, :221:{31,52,77}, :222:32
+    io_commit_valid_2 & entries_10_valid & entries_10_robIdx == io_commit_robIdx_2;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :221:30, :223:{52,77}, :224:32
   wire               _GEN_443 =
-    io_commit_valid_1
-      ? entries_11_valid & entries_11_robIdx == io_commit_robIdx_1 | _GEN_427 | _GEN_363
-      : _GEN_427 | _GEN_363;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :122:38, :219:30, :221:{31,52,77}, :222:32
+    io_commit_valid_2 & entries_11_valid & entries_11_robIdx == io_commit_robIdx_2;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :221:30, :223:{52,77}, :224:32
   wire               _GEN_444 =
-    io_commit_valid_1
-      ? entries_12_valid & entries_12_robIdx == io_commit_robIdx_1 | _GEN_428 | _GEN_364
-      : _GEN_428 | _GEN_364;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :122:38, :219:30, :221:{31,52,77}, :222:32
+    io_commit_valid_2 & entries_12_valid & entries_12_robIdx == io_commit_robIdx_2;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :221:30, :223:{52,77}, :224:32
   wire               _GEN_445 =
-    io_commit_valid_1
-      ? entries_13_valid & entries_13_robIdx == io_commit_robIdx_1 | _GEN_429 | _GEN_365
-      : _GEN_429 | _GEN_365;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :122:38, :219:30, :221:{31,52,77}, :222:32
+    io_commit_valid_2 & entries_13_valid & entries_13_robIdx == io_commit_robIdx_2;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :221:30, :223:{52,77}, :224:32
   wire               _GEN_446 =
-    io_commit_valid_1
-      ? entries_14_valid & entries_14_robIdx == io_commit_robIdx_1 | _GEN_430 | _GEN_366
-      : _GEN_430 | _GEN_366;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :122:38, :219:30, :221:{31,52,77}, :222:32
+    io_commit_valid_2 & entries_14_valid & entries_14_robIdx == io_commit_robIdx_2;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :221:30, :223:{52,77}, :224:32
   wire               _GEN_447 =
-    io_commit_valid_1
-      ? entries_15_valid & entries_15_robIdx == io_commit_robIdx_1 | _GEN_431 | _GEN_367
-      : _GEN_431 | _GEN_367;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :122:38, :219:30, :221:{31,52,77}, :222:32
+    io_commit_valid_2 & entries_15_valid & entries_15_robIdx == io_commit_robIdx_2;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :221:30, :223:{52,77}, :224:32
   wire               _GEN_448 =
-    io_commit_valid_2 & entries_0_valid & entries_0_robIdx == io_commit_robIdx_2;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :219:30, :221:{52,77}, :222:32
+    io_commit_valid_3
+      ? entries_0_valid & entries_0_robIdx == io_commit_robIdx_3 | _GEN_432 | _GEN_416
+      : _GEN_432 | _GEN_416;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :221:30, :223:{31,52,77}, :224:32
   wire               _GEN_449 =
-    io_commit_valid_2 & entries_1_valid & entries_1_robIdx == io_commit_robIdx_2;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :219:30, :221:{52,77}, :222:32
+    io_commit_valid_3
+      ? entries_1_valid & entries_1_robIdx == io_commit_robIdx_3 | _GEN_433 | _GEN_417
+      : _GEN_433 | _GEN_417;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :221:30, :223:{31,52,77}, :224:32
   wire               _GEN_450 =
-    io_commit_valid_2 & entries_2_valid & entries_2_robIdx == io_commit_robIdx_2;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :219:30, :221:{52,77}, :222:32
+    io_commit_valid_3
+      ? entries_2_valid & entries_2_robIdx == io_commit_robIdx_3 | _GEN_434 | _GEN_418
+      : _GEN_434 | _GEN_418;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :221:30, :223:{31,52,77}, :224:32
   wire               _GEN_451 =
-    io_commit_valid_2 & entries_3_valid & entries_3_robIdx == io_commit_robIdx_2;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :219:30, :221:{52,77}, :222:32
+    io_commit_valid_3
+      ? entries_3_valid & entries_3_robIdx == io_commit_robIdx_3 | _GEN_435 | _GEN_419
+      : _GEN_435 | _GEN_419;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :221:30, :223:{31,52,77}, :224:32
   wire               _GEN_452 =
-    io_commit_valid_2 & entries_4_valid & entries_4_robIdx == io_commit_robIdx_2;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :219:30, :221:{52,77}, :222:32
+    io_commit_valid_3
+      ? entries_4_valid & entries_4_robIdx == io_commit_robIdx_3 | _GEN_436 | _GEN_420
+      : _GEN_436 | _GEN_420;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :221:30, :223:{31,52,77}, :224:32
   wire               _GEN_453 =
-    io_commit_valid_2 & entries_5_valid & entries_5_robIdx == io_commit_robIdx_2;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :219:30, :221:{52,77}, :222:32
+    io_commit_valid_3
+      ? entries_5_valid & entries_5_robIdx == io_commit_robIdx_3 | _GEN_437 | _GEN_421
+      : _GEN_437 | _GEN_421;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :221:30, :223:{31,52,77}, :224:32
   wire               _GEN_454 =
-    io_commit_valid_2 & entries_6_valid & entries_6_robIdx == io_commit_robIdx_2;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :219:30, :221:{52,77}, :222:32
+    io_commit_valid_3
+      ? entries_6_valid & entries_6_robIdx == io_commit_robIdx_3 | _GEN_438 | _GEN_422
+      : _GEN_438 | _GEN_422;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :221:30, :223:{31,52,77}, :224:32
   wire               _GEN_455 =
-    io_commit_valid_2 & entries_7_valid & entries_7_robIdx == io_commit_robIdx_2;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :219:30, :221:{52,77}, :222:32
+    io_commit_valid_3
+      ? entries_7_valid & entries_7_robIdx == io_commit_robIdx_3 | _GEN_439 | _GEN_423
+      : _GEN_439 | _GEN_423;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :221:30, :223:{31,52,77}, :224:32
   wire               _GEN_456 =
-    io_commit_valid_2 & entries_8_valid & entries_8_robIdx == io_commit_robIdx_2;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :219:30, :221:{52,77}, :222:32
+    io_commit_valid_3
+      ? entries_8_valid & entries_8_robIdx == io_commit_robIdx_3 | _GEN_440 | _GEN_424
+      : _GEN_440 | _GEN_424;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :221:30, :223:{31,52,77}, :224:32
   wire               _GEN_457 =
-    io_commit_valid_2 & entries_9_valid & entries_9_robIdx == io_commit_robIdx_2;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :219:30, :221:{52,77}, :222:32
+    io_commit_valid_3
+      ? entries_9_valid & entries_9_robIdx == io_commit_robIdx_3 | _GEN_441 | _GEN_425
+      : _GEN_441 | _GEN_425;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :221:30, :223:{31,52,77}, :224:32
   wire               _GEN_458 =
-    io_commit_valid_2 & entries_10_valid & entries_10_robIdx == io_commit_robIdx_2;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :219:30, :221:{52,77}, :222:32
+    io_commit_valid_3
+      ? entries_10_valid & entries_10_robIdx == io_commit_robIdx_3 | _GEN_442 | _GEN_426
+      : _GEN_442 | _GEN_426;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :221:30, :223:{31,52,77}, :224:32
   wire               _GEN_459 =
-    io_commit_valid_2 & entries_11_valid & entries_11_robIdx == io_commit_robIdx_2;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :219:30, :221:{52,77}, :222:32
+    io_commit_valid_3
+      ? entries_11_valid & entries_11_robIdx == io_commit_robIdx_3 | _GEN_443 | _GEN_427
+      : _GEN_443 | _GEN_427;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :221:30, :223:{31,52,77}, :224:32
   wire               _GEN_460 =
-    io_commit_valid_2 & entries_12_valid & entries_12_robIdx == io_commit_robIdx_2;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :219:30, :221:{52,77}, :222:32
+    io_commit_valid_3
+      ? entries_12_valid & entries_12_robIdx == io_commit_robIdx_3 | _GEN_444 | _GEN_428
+      : _GEN_444 | _GEN_428;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :221:30, :223:{31,52,77}, :224:32
   wire               _GEN_461 =
-    io_commit_valid_2 & entries_13_valid & entries_13_robIdx == io_commit_robIdx_2;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :219:30, :221:{52,77}, :222:32
+    io_commit_valid_3
+      ? entries_13_valid & entries_13_robIdx == io_commit_robIdx_3 | _GEN_445 | _GEN_429
+      : _GEN_445 | _GEN_429;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :221:30, :223:{31,52,77}, :224:32
   wire               _GEN_462 =
-    io_commit_valid_2 & entries_14_valid & entries_14_robIdx == io_commit_robIdx_2;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :219:30, :221:{52,77}, :222:32
+    io_commit_valid_3
+      ? entries_14_valid & entries_14_robIdx == io_commit_robIdx_3 | _GEN_446 | _GEN_430
+      : _GEN_446 | _GEN_430;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :221:30, :223:{31,52,77}, :224:32
   wire               _GEN_463 =
-    io_commit_valid_2 & entries_15_valid & entries_15_robIdx == io_commit_robIdx_2;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :219:30, :221:{52,77}, :222:32
+    io_commit_valid_3
+      ? entries_15_valid & entries_15_robIdx == io_commit_robIdx_3 | _GEN_447 | _GEN_431
+      : _GEN_447 | _GEN_431;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :221:30, :223:{31,52,77}, :224:32
   wire               _GEN_464 =
-    io_commit_valid_3
-      ? entries_0_valid & entries_0_robIdx == io_commit_robIdx_3 | _GEN_448 | _GEN_432
-      : _GEN_448 | _GEN_432;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :219:30, :221:{31,52,77}, :222:32
+    io_commit_valid_4 & entries_0_valid & entries_0_robIdx == io_commit_robIdx_4;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :221:30, :223:{52,77}, :224:32
   wire               _GEN_465 =
-    io_commit_valid_3
-      ? entries_1_valid & entries_1_robIdx == io_commit_robIdx_3 | _GEN_449 | _GEN_433
-      : _GEN_449 | _GEN_433;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :219:30, :221:{31,52,77}, :222:32
+    io_commit_valid_4 & entries_1_valid & entries_1_robIdx == io_commit_robIdx_4;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :221:30, :223:{52,77}, :224:32
   wire               _GEN_466 =
-    io_commit_valid_3
-      ? entries_2_valid & entries_2_robIdx == io_commit_robIdx_3 | _GEN_450 | _GEN_434
-      : _GEN_450 | _GEN_434;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :219:30, :221:{31,52,77}, :222:32
+    io_commit_valid_4 & entries_2_valid & entries_2_robIdx == io_commit_robIdx_4;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :221:30, :223:{52,77}, :224:32
   wire               _GEN_467 =
-    io_commit_valid_3
-      ? entries_3_valid & entries_3_robIdx == io_commit_robIdx_3 | _GEN_451 | _GEN_435
-      : _GEN_451 | _GEN_435;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :219:30, :221:{31,52,77}, :222:32
+    io_commit_valid_4 & entries_3_valid & entries_3_robIdx == io_commit_robIdx_4;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :221:30, :223:{52,77}, :224:32
   wire               _GEN_468 =
-    io_commit_valid_3
-      ? entries_4_valid & entries_4_robIdx == io_commit_robIdx_3 | _GEN_452 | _GEN_436
-      : _GEN_452 | _GEN_436;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :219:30, :221:{31,52,77}, :222:32
+    io_commit_valid_4 & entries_4_valid & entries_4_robIdx == io_commit_robIdx_4;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :221:30, :223:{52,77}, :224:32
   wire               _GEN_469 =
-    io_commit_valid_3
-      ? entries_5_valid & entries_5_robIdx == io_commit_robIdx_3 | _GEN_453 | _GEN_437
-      : _GEN_453 | _GEN_437;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :219:30, :221:{31,52,77}, :222:32
+    io_commit_valid_4 & entries_5_valid & entries_5_robIdx == io_commit_robIdx_4;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :221:30, :223:{52,77}, :224:32
   wire               _GEN_470 =
-    io_commit_valid_3
-      ? entries_6_valid & entries_6_robIdx == io_commit_robIdx_3 | _GEN_454 | _GEN_438
-      : _GEN_454 | _GEN_438;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :219:30, :221:{31,52,77}, :222:32
+    io_commit_valid_4 & entries_6_valid & entries_6_robIdx == io_commit_robIdx_4;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :221:30, :223:{52,77}, :224:32
   wire               _GEN_471 =
-    io_commit_valid_3
-      ? entries_7_valid & entries_7_robIdx == io_commit_robIdx_3 | _GEN_455 | _GEN_439
-      : _GEN_455 | _GEN_439;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :219:30, :221:{31,52,77}, :222:32
+    io_commit_valid_4 & entries_7_valid & entries_7_robIdx == io_commit_robIdx_4;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :221:30, :223:{52,77}, :224:32
   wire               _GEN_472 =
-    io_commit_valid_3
-      ? entries_8_valid & entries_8_robIdx == io_commit_robIdx_3 | _GEN_456 | _GEN_440
-      : _GEN_456 | _GEN_440;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :219:30, :221:{31,52,77}, :222:32
+    io_commit_valid_4 & entries_8_valid & entries_8_robIdx == io_commit_robIdx_4;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :221:30, :223:{52,77}, :224:32
   wire               _GEN_473 =
-    io_commit_valid_3
-      ? entries_9_valid & entries_9_robIdx == io_commit_robIdx_3 | _GEN_457 | _GEN_441
-      : _GEN_457 | _GEN_441;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :219:30, :221:{31,52,77}, :222:32
+    io_commit_valid_4 & entries_9_valid & entries_9_robIdx == io_commit_robIdx_4;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :221:30, :223:{52,77}, :224:32
   wire               _GEN_474 =
-    io_commit_valid_3
-      ? entries_10_valid & entries_10_robIdx == io_commit_robIdx_3 | _GEN_458 | _GEN_442
-      : _GEN_458 | _GEN_442;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :219:30, :221:{31,52,77}, :222:32
+    io_commit_valid_4 & entries_10_valid & entries_10_robIdx == io_commit_robIdx_4;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :221:30, :223:{52,77}, :224:32
   wire               _GEN_475 =
-    io_commit_valid_3
-      ? entries_11_valid & entries_11_robIdx == io_commit_robIdx_3 | _GEN_459 | _GEN_443
-      : _GEN_459 | _GEN_443;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :219:30, :221:{31,52,77}, :222:32
+    io_commit_valid_4 & entries_11_valid & entries_11_robIdx == io_commit_robIdx_4;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :221:30, :223:{52,77}, :224:32
   wire               _GEN_476 =
-    io_commit_valid_3
-      ? entries_12_valid & entries_12_robIdx == io_commit_robIdx_3 | _GEN_460 | _GEN_444
-      : _GEN_460 | _GEN_444;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :219:30, :221:{31,52,77}, :222:32
+    io_commit_valid_4 & entries_12_valid & entries_12_robIdx == io_commit_robIdx_4;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :221:30, :223:{52,77}, :224:32
   wire               _GEN_477 =
-    io_commit_valid_3
-      ? entries_13_valid & entries_13_robIdx == io_commit_robIdx_3 | _GEN_461 | _GEN_445
-      : _GEN_461 | _GEN_445;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :219:30, :221:{31,52,77}, :222:32
+    io_commit_valid_4 & entries_13_valid & entries_13_robIdx == io_commit_robIdx_4;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :221:30, :223:{52,77}, :224:32
   wire               _GEN_478 =
-    io_commit_valid_3
-      ? entries_14_valid & entries_14_robIdx == io_commit_robIdx_3 | _GEN_462 | _GEN_446
-      : _GEN_462 | _GEN_446;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :219:30, :221:{31,52,77}, :222:32
+    io_commit_valid_4 & entries_14_valid & entries_14_robIdx == io_commit_robIdx_4;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :221:30, :223:{52,77}, :224:32
   wire               _GEN_479 =
-    io_commit_valid_3
-      ? entries_15_valid & entries_15_robIdx == io_commit_robIdx_3 | _GEN_463 | _GEN_447
-      : _GEN_463 | _GEN_447;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :219:30, :221:{31,52,77}, :222:32
+    io_commit_valid_4 & entries_15_valid & entries_15_robIdx == io_commit_robIdx_4;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :221:30, :223:{52,77}, :224:32
   wire               _GEN_480 =
-    io_commit_valid_4 & entries_0_valid & entries_0_robIdx == io_commit_robIdx_4;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :219:30, :221:{52,77}, :222:32
+    io_commit_valid_5
+      ? entries_0_valid & entries_0_robIdx == io_commit_robIdx_5 | _GEN_464 | _GEN_448
+      : _GEN_464 | _GEN_448;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :221:30, :223:{31,52,77}, :224:32
   wire               _GEN_481 =
-    io_commit_valid_4 & entries_1_valid & entries_1_robIdx == io_commit_robIdx_4;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :219:30, :221:{52,77}, :222:32
+    io_commit_valid_5
+      ? entries_1_valid & entries_1_robIdx == io_commit_robIdx_5 | _GEN_465 | _GEN_449
+      : _GEN_465 | _GEN_449;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :221:30, :223:{31,52,77}, :224:32
   wire               _GEN_482 =
-    io_commit_valid_4 & entries_2_valid & entries_2_robIdx == io_commit_robIdx_4;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :219:30, :221:{52,77}, :222:32
+    io_commit_valid_5
+      ? entries_2_valid & entries_2_robIdx == io_commit_robIdx_5 | _GEN_466 | _GEN_450
+      : _GEN_466 | _GEN_450;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :221:30, :223:{31,52,77}, :224:32
   wire               _GEN_483 =
-    io_commit_valid_4 & entries_3_valid & entries_3_robIdx == io_commit_robIdx_4;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :219:30, :221:{52,77}, :222:32
+    io_commit_valid_5
+      ? entries_3_valid & entries_3_robIdx == io_commit_robIdx_5 | _GEN_467 | _GEN_451
+      : _GEN_467 | _GEN_451;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :221:30, :223:{31,52,77}, :224:32
   wire               _GEN_484 =
-    io_commit_valid_4 & entries_4_valid & entries_4_robIdx == io_commit_robIdx_4;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :219:30, :221:{52,77}, :222:32
+    io_commit_valid_5
+      ? entries_4_valid & entries_4_robIdx == io_commit_robIdx_5 | _GEN_468 | _GEN_452
+      : _GEN_468 | _GEN_452;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :221:30, :223:{31,52,77}, :224:32
   wire               _GEN_485 =
-    io_commit_valid_4 & entries_5_valid & entries_5_robIdx == io_commit_robIdx_4;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :219:30, :221:{52,77}, :222:32
+    io_commit_valid_5
+      ? entries_5_valid & entries_5_robIdx == io_commit_robIdx_5 | _GEN_469 | _GEN_453
+      : _GEN_469 | _GEN_453;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :221:30, :223:{31,52,77}, :224:32
   wire               _GEN_486 =
-    io_commit_valid_4 & entries_6_valid & entries_6_robIdx == io_commit_robIdx_4;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :219:30, :221:{52,77}, :222:32
+    io_commit_valid_5
+      ? entries_6_valid & entries_6_robIdx == io_commit_robIdx_5 | _GEN_470 | _GEN_454
+      : _GEN_470 | _GEN_454;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :221:30, :223:{31,52,77}, :224:32
   wire               _GEN_487 =
-    io_commit_valid_4 & entries_7_valid & entries_7_robIdx == io_commit_robIdx_4;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :219:30, :221:{52,77}, :222:32
+    io_commit_valid_5
+      ? entries_7_valid & entries_7_robIdx == io_commit_robIdx_5 | _GEN_471 | _GEN_455
+      : _GEN_471 | _GEN_455;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :221:30, :223:{31,52,77}, :224:32
   wire               _GEN_488 =
-    io_commit_valid_4 & entries_8_valid & entries_8_robIdx == io_commit_robIdx_4;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :219:30, :221:{52,77}, :222:32
+    io_commit_valid_5
+      ? entries_8_valid & entries_8_robIdx == io_commit_robIdx_5 | _GEN_472 | _GEN_456
+      : _GEN_472 | _GEN_456;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :221:30, :223:{31,52,77}, :224:32
   wire               _GEN_489 =
-    io_commit_valid_4 & entries_9_valid & entries_9_robIdx == io_commit_robIdx_4;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :219:30, :221:{52,77}, :222:32
+    io_commit_valid_5
+      ? entries_9_valid & entries_9_robIdx == io_commit_robIdx_5 | _GEN_473 | _GEN_457
+      : _GEN_473 | _GEN_457;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :221:30, :223:{31,52,77}, :224:32
   wire               _GEN_490 =
-    io_commit_valid_4 & entries_10_valid & entries_10_robIdx == io_commit_robIdx_4;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :219:30, :221:{52,77}, :222:32
+    io_commit_valid_5
+      ? entries_10_valid & entries_10_robIdx == io_commit_robIdx_5 | _GEN_474 | _GEN_458
+      : _GEN_474 | _GEN_458;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :221:30, :223:{31,52,77}, :224:32
   wire               _GEN_491 =
-    io_commit_valid_4 & entries_11_valid & entries_11_robIdx == io_commit_robIdx_4;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :219:30, :221:{52,77}, :222:32
+    io_commit_valid_5
+      ? entries_11_valid & entries_11_robIdx == io_commit_robIdx_5 | _GEN_475 | _GEN_459
+      : _GEN_475 | _GEN_459;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :221:30, :223:{31,52,77}, :224:32
   wire               _GEN_492 =
-    io_commit_valid_4 & entries_12_valid & entries_12_robIdx == io_commit_robIdx_4;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :219:30, :221:{52,77}, :222:32
+    io_commit_valid_5
+      ? entries_12_valid & entries_12_robIdx == io_commit_robIdx_5 | _GEN_476 | _GEN_460
+      : _GEN_476 | _GEN_460;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :221:30, :223:{31,52,77}, :224:32
   wire               _GEN_493 =
-    io_commit_valid_4 & entries_13_valid & entries_13_robIdx == io_commit_robIdx_4;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :219:30, :221:{52,77}, :222:32
+    io_commit_valid_5
+      ? entries_13_valid & entries_13_robIdx == io_commit_robIdx_5 | _GEN_477 | _GEN_461
+      : _GEN_477 | _GEN_461;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :221:30, :223:{31,52,77}, :224:32
   wire               _GEN_494 =
-    io_commit_valid_4 & entries_14_valid & entries_14_robIdx == io_commit_robIdx_4;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :219:30, :221:{52,77}, :222:32
+    io_commit_valid_5
+      ? entries_14_valid & entries_14_robIdx == io_commit_robIdx_5 | _GEN_478 | _GEN_462
+      : _GEN_478 | _GEN_462;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :221:30, :223:{31,52,77}, :224:32
   wire               _GEN_495 =
-    io_commit_valid_4 & entries_15_valid & entries_15_robIdx == io_commit_robIdx_4;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :219:30, :221:{52,77}, :222:32
-  wire               _GEN_496 = canDrain & deqPtr == 4'h0;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:93:23, :94:23, :120:26, :230:81, :238:17, :239:25
-  wire               _GEN_497 = canDrain & deqPtr == 4'h1;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:94:23, :120:26, :121:38, :230:81, :238:17, :239:25
-  wire               _GEN_498 = canDrain & deqPtr == 4'h2;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:94:23, :120:26, :121:38, :230:81, :238:17, :239:25
-  wire               _GEN_499 = canDrain & deqPtr == 4'h3;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:94:23, :120:26, :121:38, :230:81, :238:17, :239:25
-  wire               _GEN_500 = canDrain & deqPtr == 4'h4;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:94:23, :120:26, :121:38, :230:81, :238:17, :239:25
-  wire               _GEN_501 = canDrain & deqPtr == 4'h5;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:94:23, :120:26, :121:38, :230:81, :238:17, :239:25
-  wire               _GEN_502 = canDrain & deqPtr == 4'h6;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:94:23, :120:26, :121:38, :230:81, :238:17, :239:25
-  wire               _GEN_503 = canDrain & deqPtr == 4'h7;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:94:23, :120:26, :121:38, :230:81, :238:17, :239:25
-  wire               _GEN_504 = canDrain & deqPtr == 4'h8;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:94:23, :120:26, :121:38, :230:81, :238:17, :239:25
-  wire               _GEN_505 = canDrain & deqPtr == 4'h9;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:94:23, :120:26, :121:38, :230:81, :238:17, :239:25
-  wire               _GEN_506 = canDrain & deqPtr == 4'hA;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:94:23, :120:26, :121:38, :230:81, :238:17, :239:25
-  wire               _GEN_507 = canDrain & deqPtr == 4'hB;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:94:23, :120:26, :121:38, :230:81, :238:17, :239:25
-  wire               _GEN_508 = canDrain & deqPtr == 4'hC;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:94:23, :120:26, :121:38, :230:81, :238:17, :239:25
-  wire               _GEN_509 = canDrain & deqPtr == 4'hD;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:94:23, :120:26, :121:38, :230:81, :238:17, :239:25
-  wire               _GEN_510 = canDrain & deqPtr == 4'hE;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:94:23, :120:26, :121:38, :230:81, :238:17, :239:25
-  wire               _GEN_511 = canDrain & (&deqPtr);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:94:23, :120:26, :230:81, :238:17, :239:25
-  wire               _GEN_512 = enqFires_1 & _GEN_77 | _GEN_61;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :121:38, :127:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_513 = enqFires_3 ? _GEN_192 | _GEN_512 : _GEN_174 | _GEN_512;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :121:38, :127:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_514 = enqFires_1 & _GEN_80 | _GEN_62;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :121:38, :127:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_515 = enqFires_3 ? _GEN_195 | _GEN_514 : _GEN_175 | _GEN_514;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :121:38, :127:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_516 = enqFires_1 & _GEN_83 | _GEN_63;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :121:38, :127:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_517 = enqFires_3 ? _GEN_198 | _GEN_516 : _GEN_176 | _GEN_516;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :121:38, :127:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_518 = enqFires_1 & _GEN_86 | _GEN_64;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :121:38, :127:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_519 = enqFires_3 ? _GEN_201 | _GEN_518 : _GEN_177 | _GEN_518;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :121:38, :127:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_520 = enqFires_1 & _GEN_89 | _GEN_65;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :121:38, :127:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_521 = enqFires_3 ? _GEN_204 | _GEN_520 : _GEN_178 | _GEN_520;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :121:38, :127:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_522 = enqFires_1 & _GEN_92 | _GEN_66;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :121:38, :127:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_523 = enqFires_3 ? _GEN_207 | _GEN_522 : _GEN_179 | _GEN_522;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :121:38, :127:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_524 = enqFires_1 & _GEN_95 | _GEN_67;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :121:38, :127:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_525 = enqFires_3 ? _GEN_210 | _GEN_524 : _GEN_180 | _GEN_524;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :121:38, :127:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_526 = enqFires_1 & _GEN_98 | _GEN_68;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :121:38, :127:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_527 = enqFires_3 ? _GEN_213 | _GEN_526 : _GEN_181 | _GEN_526;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :121:38, :127:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_528 = enqFires_1 & _GEN_101 | _GEN_69;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :121:38, :127:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_529 = enqFires_3 ? _GEN_216 | _GEN_528 : _GEN_182 | _GEN_528;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :121:38, :127:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_530 = enqFires_1 & _GEN_104 | _GEN_70;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :121:38, :127:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_531 = enqFires_3 ? _GEN_219 | _GEN_530 : _GEN_183 | _GEN_530;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :121:38, :127:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_532 = enqFires_1 & _GEN_107 | _GEN_71;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :121:38, :127:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_533 = enqFires_3 ? _GEN_222 | _GEN_532 : _GEN_184 | _GEN_532;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :121:38, :127:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_534 = enqFires_1 & _GEN_110 | _GEN_72;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :121:38, :127:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_535 = enqFires_3 ? _GEN_225 | _GEN_534 : _GEN_185 | _GEN_534;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :121:38, :127:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_536 = enqFires_1 & _GEN_113 | _GEN_73;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :121:38, :127:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_537 = enqFires_3 ? _GEN_228 | _GEN_536 : _GEN_186 | _GEN_536;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :121:38, :127:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_538 = enqFires_1 & _GEN_116 | _GEN_74;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :121:38, :127:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_539 = enqFires_3 ? _GEN_231 | _GEN_538 : _GEN_187 | _GEN_538;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :121:38, :127:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_540 = enqFires_1 & _GEN_119 | _GEN_75;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :121:38, :127:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_541 = enqFires_3 ? _GEN_234 | _GEN_540 : _GEN_188 | _GEN_540;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :121:38, :127:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_542 = enqFires_1 & (&_targetPtr_T_1) | _GEN_76;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :117:28, :120:26, :121:38, :127:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire               _GEN_543 = enqFires_3 ? _GEN_236 | _GEN_542 : _GEN_189 | _GEN_542;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :121:38, :127:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
+    io_commit_valid_5
+      ? entries_15_valid & entries_15_robIdx == io_commit_robIdx_5 | _GEN_479 | _GEN_463
+      : _GEN_479 | _GEN_463;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :221:30, :223:{31,52,77}, :224:32
+  wire               _GEN_496 = canDrain & ~(|deqPtr);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:94:23, :120:23, :232:81, :240:17, :241:26
+  wire               _GEN_497 = canDrain & deqPtr == 4'h1;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:94:23, :120:23, :121:38, :232:81, :240:17, :241:26
+  wire               _GEN_498 = canDrain & deqPtr == 4'h2;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:94:23, :120:23, :121:38, :232:81, :240:17, :241:26
+  wire               _GEN_499 = canDrain & deqPtr == 4'h3;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:94:23, :120:23, :121:38, :232:81, :240:17, :241:26
+  wire               _GEN_500 = canDrain & deqPtr == 4'h4;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:94:23, :120:23, :121:38, :232:81, :240:17, :241:26
+  wire               _GEN_501 = canDrain & deqPtr == 4'h5;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:94:23, :120:23, :121:38, :232:81, :240:17, :241:26
+  wire               _GEN_502 = canDrain & deqPtr == 4'h6;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:94:23, :120:23, :121:38, :232:81, :240:17, :241:26
+  wire               _GEN_503 = canDrain & deqPtr == 4'h7;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:94:23, :120:23, :121:38, :232:81, :240:17, :241:26
+  wire               _GEN_504 = canDrain & deqPtr == 4'h8;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:94:23, :120:23, :121:38, :232:81, :240:17, :241:26
+  wire               _GEN_505 = canDrain & deqPtr == 4'h9;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:94:23, :120:23, :121:38, :232:81, :240:17, :241:26
+  wire               _GEN_506 = canDrain & deqPtr == 4'hA;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:94:23, :120:23, :121:38, :232:81, :240:17, :241:26
+  wire               _GEN_507 = canDrain & deqPtr == 4'hB;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:94:23, :120:23, :121:38, :232:81, :240:17, :241:26
+  wire               _GEN_508 = canDrain & deqPtr == 4'hC;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:94:23, :120:23, :121:38, :232:81, :240:17, :241:26
+  wire               _GEN_509 = canDrain & deqPtr == 4'hD;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:94:23, :120:23, :121:38, :232:81, :240:17, :241:26
+  wire               _GEN_510 = canDrain & deqPtr == 4'hE;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:94:23, :120:23, :121:38, :232:81, :240:17, :241:26
+  wire               _GEN_511 = canDrain & (&deqPtr);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:94:23, :120:23, :232:81, :240:17, :241:26
+  wire               _GEN_512 = should_flush | _GEN_496;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:23, :240:17, :241:26, :258:48, :260:26, :261:31
+  wire               _GEN_513 = should_flush_1 | _GEN_497;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:23, :240:17, :241:26, :258:48, :260:26, :261:31
+  wire               _GEN_514 = should_flush_2 | _GEN_498;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:23, :240:17, :241:26, :258:48, :260:26, :261:31
+  wire               _GEN_515 = should_flush_3 | _GEN_499;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:23, :240:17, :241:26, :258:48, :260:26, :261:31
+  wire               _GEN_516 = should_flush_4 | _GEN_500;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:23, :240:17, :241:26, :258:48, :260:26, :261:31
+  wire               _GEN_517 = should_flush_5 | _GEN_501;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:23, :240:17, :241:26, :258:48, :260:26, :261:31
+  wire               _GEN_518 = should_flush_6 | _GEN_502;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:23, :240:17, :241:26, :258:48, :260:26, :261:31
+  wire               _GEN_519 = should_flush_7 | _GEN_503;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:23, :240:17, :241:26, :258:48, :260:26, :261:31
+  wire               _GEN_520 = should_flush_8 | _GEN_504;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:23, :240:17, :241:26, :258:48, :260:26, :261:31
+  wire               _GEN_521 = should_flush_9 | _GEN_505;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:23, :240:17, :241:26, :258:48, :260:26, :261:31
+  wire               _GEN_522 = should_flush_10 | _GEN_506;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:23, :240:17, :241:26, :258:48, :260:26, :261:31
+  wire               _GEN_523 = should_flush_11 | _GEN_507;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:23, :240:17, :241:26, :258:48, :260:26, :261:31
+  wire               _GEN_524 = should_flush_12 | _GEN_508;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:23, :240:17, :241:26, :258:48, :260:26, :261:31
+  wire               _GEN_525 = should_flush_13 | _GEN_509;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:23, :240:17, :241:26, :258:48, :260:26, :261:31
+  wire               _GEN_526 = should_flush_14 | _GEN_510;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:23, :240:17, :241:26, :258:48, :260:26, :261:31
+  wire               _GEN_527 = should_flush_15 | _GEN_511;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:23, :240:17, :241:26, :258:48, :260:26, :261:31
+  wire               _GEN_528 = enqFires_1 & _GEN_61 | _GEN_45;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :112:42, :120:23, :121:38, :127:38
+  wire               _GEN_529 = enqFires_3 ? _GEN_176 | _GEN_528 : _GEN_158 | _GEN_528;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :112:42, :120:23, :121:38, :127:38
+  wire               _GEN_530 = enqFires_1 & _GEN_64 | _GEN_46;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :112:42, :120:23, :121:38, :127:38
+  wire               _GEN_531 = enqFires_3 ? _GEN_179 | _GEN_530 : _GEN_159 | _GEN_530;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :112:42, :120:23, :121:38, :127:38
+  wire               _GEN_532 = enqFires_1 & _GEN_67 | _GEN_47;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :112:42, :120:23, :121:38, :127:38
+  wire               _GEN_533 = enqFires_3 ? _GEN_182 | _GEN_532 : _GEN_160 | _GEN_532;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :112:42, :120:23, :121:38, :127:38
+  wire               _GEN_534 = enqFires_1 & _GEN_70 | _GEN_48;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :112:42, :120:23, :121:38, :127:38
+  wire               _GEN_535 = enqFires_3 ? _GEN_185 | _GEN_534 : _GEN_161 | _GEN_534;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :112:42, :120:23, :121:38, :127:38
+  wire               _GEN_536 = enqFires_1 & _GEN_73 | _GEN_49;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :112:42, :120:23, :121:38, :127:38
+  wire               _GEN_537 = enqFires_3 ? _GEN_188 | _GEN_536 : _GEN_162 | _GEN_536;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :112:42, :120:23, :121:38, :127:38
+  wire               _GEN_538 = enqFires_1 & _GEN_76 | _GEN_50;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :112:42, :120:23, :121:38, :127:38
+  wire               _GEN_539 = enqFires_3 ? _GEN_191 | _GEN_538 : _GEN_163 | _GEN_538;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :112:42, :120:23, :121:38, :127:38
+  wire               _GEN_540 = enqFires_1 & _GEN_79 | _GEN_51;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :112:42, :120:23, :121:38, :127:38
+  wire               _GEN_541 = enqFires_3 ? _GEN_194 | _GEN_540 : _GEN_164 | _GEN_540;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :112:42, :120:23, :121:38, :127:38
+  wire               _GEN_542 = enqFires_1 & _GEN_82 | _GEN_52;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :112:42, :120:23, :121:38, :127:38
+  wire               _GEN_543 = enqFires_3 ? _GEN_197 | _GEN_542 : _GEN_165 | _GEN_542;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :112:42, :120:23, :121:38, :127:38
+  wire               _GEN_544 = enqFires_1 & _GEN_85 | _GEN_53;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :112:42, :120:23, :121:38, :127:38
+  wire               _GEN_545 = enqFires_3 ? _GEN_200 | _GEN_544 : _GEN_166 | _GEN_544;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :112:42, :120:23, :121:38, :127:38
+  wire               _GEN_546 = enqFires_1 & _GEN_88 | _GEN_54;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :112:42, :120:23, :121:38, :127:38
+  wire               _GEN_547 = enqFires_3 ? _GEN_203 | _GEN_546 : _GEN_167 | _GEN_546;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :112:42, :120:23, :121:38, :127:38
+  wire               _GEN_548 = enqFires_1 & _GEN_91 | _GEN_55;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :112:42, :120:23, :121:38, :127:38
+  wire               _GEN_549 = enqFires_3 ? _GEN_206 | _GEN_548 : _GEN_168 | _GEN_548;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :112:42, :120:23, :121:38, :127:38
+  wire               _GEN_550 = enqFires_1 & _GEN_94 | _GEN_56;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :112:42, :120:23, :121:38, :127:38
+  wire               _GEN_551 = enqFires_3 ? _GEN_209 | _GEN_550 : _GEN_169 | _GEN_550;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :112:42, :120:23, :121:38, :127:38
+  wire               _GEN_552 = enqFires_1 & _GEN_97 | _GEN_57;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :112:42, :120:23, :121:38, :127:38
+  wire               _GEN_553 = enqFires_3 ? _GEN_212 | _GEN_552 : _GEN_170 | _GEN_552;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :112:42, :120:23, :121:38, :127:38
+  wire               _GEN_554 = enqFires_1 & _GEN_100 | _GEN_58;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :112:42, :120:23, :121:38, :127:38
+  wire               _GEN_555 = enqFires_3 ? _GEN_215 | _GEN_554 : _GEN_171 | _GEN_554;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :112:42, :120:23, :121:38, :127:38
+  wire               _GEN_556 = enqFires_1 & _GEN_103 | _GEN_59;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :112:42, :120:23, :121:38, :127:38
+  wire               _GEN_557 = enqFires_3 ? _GEN_218 | _GEN_556 : _GEN_172 | _GEN_556;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :112:42, :120:23, :121:38, :127:38
+  wire               _GEN_558 = enqFires_1 & (&_targetPtr_T_1) | _GEN_60;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :112:42, :117:28, :120:23, :121:38, :127:38
+  wire               _GEN_559 = enqFires_3 ? _GEN_220 | _GEN_558 : _GEN_173 | _GEN_558;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :112:42, :120:23, :121:38, :127:38
   always @(posedge clock) begin	// backend/src/zaqal/backend/lsu/StoreQueue.scala:20:7
     if (reset) begin	// backend/src/zaqal/backend/lsu/StoreQueue.scala:20:7
       entries_0_valid <= 1'h0;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :81:20
@@ -4745,618 +4841,540 @@ module StoreQueue(	// backend/src/zaqal/backend/lsu/StoreQueue.scala:20:7
     end
     else begin	// backend/src/zaqal/backend/lsu/StoreQueue.scala:20:7
       if (io_redirect_valid) begin	// backend/src/zaqal/backend/lsu/StoreQueue.scala:21:14
-        if (io_redirect_is_exception) begin	// backend/src/zaqal/backend/lsu/StoreQueue.scala:21:14
-          entries_0_valid <= ~(~entries_0_committed | _GEN_496) & _GEN_307;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :121:38, :238:17, :239:25, :252:{14,37}, :253:33
-          entries_0_addr_valid <= entries_0_committed & _GEN_369;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :137:24, :139:71, :140:31, :252:37, :254:33
-          entries_0_data_valid <= entries_0_committed & _GEN_370;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :137:24, :139:71, :141:31, :252:37, :255:33
-          entries_1_valid <= ~(~entries_1_committed | _GEN_497) & _GEN_310;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :121:38, :238:17, :239:25, :252:{14,37}, :253:33
-          entries_1_addr_valid <= entries_1_committed & _GEN_372;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :137:24, :139:71, :140:31, :252:37, :254:33
-          entries_1_data_valid <= entries_1_committed & _GEN_373;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :137:24, :139:71, :141:31, :252:37, :255:33
-          entries_2_valid <= ~(~entries_2_committed | _GEN_498) & _GEN_313;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :121:38, :238:17, :239:25, :252:{14,37}, :253:33
-          entries_2_addr_valid <= entries_2_committed & _GEN_375;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :137:24, :139:71, :140:31, :252:37, :254:33
-          entries_2_data_valid <= entries_2_committed & _GEN_376;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :137:24, :139:71, :141:31, :252:37, :255:33
-          entries_3_valid <= ~(~entries_3_committed | _GEN_499) & _GEN_316;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :121:38, :238:17, :239:25, :252:{14,37}, :253:33
-          entries_3_addr_valid <= entries_3_committed & _GEN_378;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :137:24, :139:71, :140:31, :252:37, :254:33
-          entries_3_data_valid <= entries_3_committed & _GEN_379;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :137:24, :139:71, :141:31, :252:37, :255:33
-          entries_4_valid <= ~(~entries_4_committed | _GEN_500) & _GEN_319;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :121:38, :238:17, :239:25, :252:{14,37}, :253:33
-          entries_4_addr_valid <= entries_4_committed & _GEN_381;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :137:24, :139:71, :140:31, :252:37, :254:33
-          entries_4_data_valid <= entries_4_committed & _GEN_382;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :137:24, :139:71, :141:31, :252:37, :255:33
-          entries_5_valid <= ~(~entries_5_committed | _GEN_501) & _GEN_322;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :121:38, :238:17, :239:25, :252:{14,37}, :253:33
-          entries_5_addr_valid <= entries_5_committed & _GEN_384;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :137:24, :139:71, :140:31, :252:37, :254:33
-          entries_5_data_valid <= entries_5_committed & _GEN_385;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :137:24, :139:71, :141:31, :252:37, :255:33
-          entries_6_valid <= ~(~entries_6_committed | _GEN_502) & _GEN_325;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :121:38, :238:17, :239:25, :252:{14,37}, :253:33
-          entries_6_addr_valid <= entries_6_committed & _GEN_387;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :137:24, :139:71, :140:31, :252:37, :254:33
-          entries_6_data_valid <= entries_6_committed & _GEN_388;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :137:24, :139:71, :141:31, :252:37, :255:33
-          entries_7_valid <= ~(~entries_7_committed | _GEN_503) & _GEN_328;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :121:38, :238:17, :239:25, :252:{14,37}, :253:33
-          entries_7_addr_valid <= entries_7_committed & _GEN_390;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :137:24, :139:71, :140:31, :252:37, :254:33
-          entries_7_data_valid <= entries_7_committed & _GEN_391;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :137:24, :139:71, :141:31, :252:37, :255:33
-          entries_8_valid <= ~(~entries_8_committed | _GEN_504) & _GEN_331;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :121:38, :238:17, :239:25, :252:{14,37}, :253:33
-          entries_8_addr_valid <= entries_8_committed & _GEN_393;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :137:24, :139:71, :140:31, :252:37, :254:33
-          entries_8_data_valid <= entries_8_committed & _GEN_394;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :137:24, :139:71, :141:31, :252:37, :255:33
-          entries_9_valid <= ~(~entries_9_committed | _GEN_505) & _GEN_334;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :121:38, :238:17, :239:25, :252:{14,37}, :253:33
-          entries_9_addr_valid <= entries_9_committed & _GEN_396;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :137:24, :139:71, :140:31, :252:37, :254:33
-          entries_9_data_valid <= entries_9_committed & _GEN_397;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :137:24, :139:71, :141:31, :252:37, :255:33
-          entries_10_valid <= ~(~entries_10_committed | _GEN_506) & _GEN_337;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :121:38, :238:17, :239:25, :252:{14,37}, :253:33
-          entries_10_addr_valid <= entries_10_committed & _GEN_399;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :137:24, :139:71, :140:31, :252:37, :254:33
-          entries_10_data_valid <= entries_10_committed & _GEN_400;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :137:24, :139:71, :141:31, :252:37, :255:33
-          entries_11_valid <= ~(~entries_11_committed | _GEN_507) & _GEN_340;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :121:38, :238:17, :239:25, :252:{14,37}, :253:33
-          entries_11_addr_valid <= entries_11_committed & _GEN_402;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :137:24, :139:71, :140:31, :252:37, :254:33
-          entries_11_data_valid <= entries_11_committed & _GEN_403;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :137:24, :139:71, :141:31, :252:37, :255:33
-          entries_12_valid <= ~(~entries_12_committed | _GEN_508) & _GEN_343;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :121:38, :238:17, :239:25, :252:{14,37}, :253:33
-          entries_12_addr_valid <= entries_12_committed & _GEN_405;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :137:24, :139:71, :140:31, :252:37, :254:33
-          entries_12_data_valid <= entries_12_committed & _GEN_406;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :137:24, :139:71, :141:31, :252:37, :255:33
-          entries_13_valid <= ~(~entries_13_committed | _GEN_509) & _GEN_346;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :121:38, :238:17, :239:25, :252:{14,37}, :253:33
-          entries_13_addr_valid <= entries_13_committed & _GEN_408;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :137:24, :139:71, :140:31, :252:37, :254:33
-          entries_13_data_valid <= entries_13_committed & _GEN_409;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :137:24, :139:71, :141:31, :252:37, :255:33
-          entries_14_valid <= ~(~entries_14_committed | _GEN_510) & _GEN_349;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :121:38, :238:17, :239:25, :252:{14,37}, :253:33
-          entries_14_addr_valid <= entries_14_committed & _GEN_411;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :137:24, :139:71, :140:31, :252:37, :254:33
-          entries_14_data_valid <= entries_14_committed & _GEN_412;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :137:24, :139:71, :141:31, :252:37, :255:33
-          entries_15_valid <= ~(~entries_15_committed | _GEN_511) & _GEN_351;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :121:38, :238:17, :239:25, :252:{14,37}, :253:33
-          entries_15_addr_valid <= entries_15_committed & _GEN_414;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :137:24, :139:71, :140:31, :252:37, :254:33
-          entries_15_data_valid <= entries_15_committed & _GEN_415;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :137:24, :139:71, :141:31, :252:37, :255:33
-        end
-        else begin	// backend/src/zaqal/backend/lsu/StoreQueue.scala:21:14
-          entries_0_valid <= ~(_GEN_45 | _GEN_496) & _GEN_307;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :121:38, :238:17, :239:25, :263:{56,76}, :264:33
-          entries_0_addr_valid <= ~_GEN_45 & _GEN_369;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :137:24, :139:71, :140:31, :263:{56,76}, :265:33
-          entries_0_data_valid <= ~_GEN_45 & _GEN_370;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :137:24, :139:71, :141:31, :263:{56,76}, :265:33, :266:33
-          entries_1_valid <= ~(_GEN_46 | _GEN_497) & _GEN_310;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :121:38, :238:17, :239:25, :263:{56,76}, :264:33
-          entries_1_addr_valid <= ~_GEN_46 & _GEN_372;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :137:24, :139:71, :140:31, :263:{56,76}, :265:33
-          entries_1_data_valid <= ~_GEN_46 & _GEN_373;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :137:24, :139:71, :141:31, :263:{56,76}, :265:33, :266:33
-          entries_2_valid <= ~(_GEN_47 | _GEN_498) & _GEN_313;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :121:38, :238:17, :239:25, :263:{56,76}, :264:33
-          entries_2_addr_valid <= ~_GEN_47 & _GEN_375;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :137:24, :139:71, :140:31, :263:{56,76}, :265:33
-          entries_2_data_valid <= ~_GEN_47 & _GEN_376;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :137:24, :139:71, :141:31, :263:{56,76}, :265:33, :266:33
-          entries_3_valid <= ~(_GEN_48 | _GEN_499) & _GEN_316;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :121:38, :238:17, :239:25, :263:{56,76}, :264:33
-          entries_3_addr_valid <= ~_GEN_48 & _GEN_378;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :137:24, :139:71, :140:31, :263:{56,76}, :265:33
-          entries_3_data_valid <= ~_GEN_48 & _GEN_379;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :137:24, :139:71, :141:31, :263:{56,76}, :265:33, :266:33
-          entries_4_valid <= ~(_GEN_49 | _GEN_500) & _GEN_319;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :121:38, :238:17, :239:25, :263:{56,76}, :264:33
-          entries_4_addr_valid <= ~_GEN_49 & _GEN_381;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :137:24, :139:71, :140:31, :263:{56,76}, :265:33
-          entries_4_data_valid <= ~_GEN_49 & _GEN_382;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :137:24, :139:71, :141:31, :263:{56,76}, :265:33, :266:33
-          entries_5_valid <= ~(_GEN_50 | _GEN_501) & _GEN_322;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :121:38, :238:17, :239:25, :263:{56,76}, :264:33
-          entries_5_addr_valid <= ~_GEN_50 & _GEN_384;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :137:24, :139:71, :140:31, :263:{56,76}, :265:33
-          entries_5_data_valid <= ~_GEN_50 & _GEN_385;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :137:24, :139:71, :141:31, :263:{56,76}, :265:33, :266:33
-          entries_6_valid <= ~(_GEN_51 | _GEN_502) & _GEN_325;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :121:38, :238:17, :239:25, :263:{56,76}, :264:33
-          entries_6_addr_valid <= ~_GEN_51 & _GEN_387;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :137:24, :139:71, :140:31, :263:{56,76}, :265:33
-          entries_6_data_valid <= ~_GEN_51 & _GEN_388;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :137:24, :139:71, :141:31, :263:{56,76}, :265:33, :266:33
-          entries_7_valid <= ~(_GEN_52 | _GEN_503) & _GEN_328;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :121:38, :238:17, :239:25, :263:{56,76}, :264:33
-          entries_7_addr_valid <= ~_GEN_52 & _GEN_390;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :137:24, :139:71, :140:31, :263:{56,76}, :265:33
-          entries_7_data_valid <= ~_GEN_52 & _GEN_391;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :137:24, :139:71, :141:31, :263:{56,76}, :265:33, :266:33
-          entries_8_valid <= ~(_GEN_53 | _GEN_504) & _GEN_331;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :121:38, :238:17, :239:25, :263:{56,76}, :264:33
-          entries_8_addr_valid <= ~_GEN_53 & _GEN_393;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :137:24, :139:71, :140:31, :263:{56,76}, :265:33
-          entries_8_data_valid <= ~_GEN_53 & _GEN_394;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :137:24, :139:71, :141:31, :263:{56,76}, :265:33, :266:33
-          entries_9_valid <= ~(_GEN_54 | _GEN_505) & _GEN_334;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :121:38, :238:17, :239:25, :263:{56,76}, :264:33
-          entries_9_addr_valid <= ~_GEN_54 & _GEN_396;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :137:24, :139:71, :140:31, :263:{56,76}, :265:33
-          entries_9_data_valid <= ~_GEN_54 & _GEN_397;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :137:24, :139:71, :141:31, :263:{56,76}, :265:33, :266:33
-          entries_10_valid <= ~(_GEN_55 | _GEN_506) & _GEN_337;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :121:38, :238:17, :239:25, :263:{56,76}, :264:33
-          entries_10_addr_valid <= ~_GEN_55 & _GEN_399;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :137:24, :139:71, :140:31, :263:{56,76}, :265:33
-          entries_10_data_valid <= ~_GEN_55 & _GEN_400;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :137:24, :139:71, :141:31, :263:{56,76}, :265:33, :266:33
-          entries_11_valid <= ~(_GEN_56 | _GEN_507) & _GEN_340;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :121:38, :238:17, :239:25, :263:{56,76}, :264:33
-          entries_11_addr_valid <= ~_GEN_56 & _GEN_402;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :137:24, :139:71, :140:31, :263:{56,76}, :265:33
-          entries_11_data_valid <= ~_GEN_56 & _GEN_403;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :137:24, :139:71, :141:31, :263:{56,76}, :265:33, :266:33
-          entries_12_valid <= ~(_GEN_57 | _GEN_508) & _GEN_343;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :121:38, :238:17, :239:25, :263:{56,76}, :264:33
-          entries_12_addr_valid <= ~_GEN_57 & _GEN_405;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :137:24, :139:71, :140:31, :263:{56,76}, :265:33
-          entries_12_data_valid <= ~_GEN_57 & _GEN_406;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :137:24, :139:71, :141:31, :263:{56,76}, :265:33, :266:33
-          entries_13_valid <= ~(_GEN_58 | _GEN_509) & _GEN_346;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :121:38, :238:17, :239:25, :263:{56,76}, :264:33
-          entries_13_addr_valid <= ~_GEN_58 & _GEN_408;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :137:24, :139:71, :140:31, :263:{56,76}, :265:33
-          entries_13_data_valid <= ~_GEN_58 & _GEN_409;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :137:24, :139:71, :141:31, :263:{56,76}, :265:33, :266:33
-          entries_14_valid <= ~(_GEN_59 | _GEN_510) & _GEN_349;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :121:38, :238:17, :239:25, :263:{56,76}, :264:33
-          entries_14_addr_valid <= ~_GEN_59 & _GEN_411;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :137:24, :139:71, :140:31, :263:{56,76}, :265:33
-          entries_14_data_valid <= ~_GEN_59 & _GEN_412;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :137:24, :139:71, :141:31, :263:{56,76}, :265:33, :266:33
-          entries_15_valid <= ~(_GEN_60 | _GEN_511) & _GEN_351;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :121:38, :238:17, :239:25, :263:{56,76}, :264:33
-          entries_15_addr_valid <= ~_GEN_60 & _GEN_414;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :137:24, :139:71, :140:31, :263:{56,76}, :265:33
-          entries_15_data_valid <= ~_GEN_60 & _GEN_415;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :137:24, :139:71, :141:31, :263:{56,76}, :265:33, :266:33
-        end
+        entries_0_valid <= ~_GEN_512 & _GEN_291;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :121:38, :240:17, :241:26, :260:26, :261:31
+        entries_0_committed <= ~_GEN_512 & _GEN_480;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :221:30, :223:77, :240:17, :241:26, :242:26, :260:26, :261:31, :262:31
+        entries_0_addr_valid <= ~_GEN_512 & _GEN_353;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :139:24, :141:71, :142:31, :240:17, :241:26, :243:26, :260:26, :261:31, :263:31
+        entries_0_data_valid <= ~_GEN_512 & _GEN_354;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :139:24, :141:71, :143:31, :240:17, :241:26, :244:26, :260:26, :261:31, :264:31
+        entries_1_valid <= ~_GEN_513 & _GEN_294;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :121:38, :240:17, :241:26, :260:26, :261:31
+        entries_1_committed <= ~_GEN_513 & _GEN_481;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :221:30, :223:77, :240:17, :241:26, :242:26, :260:26, :261:31, :262:31
+        entries_1_addr_valid <= ~_GEN_513 & _GEN_356;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :139:24, :141:71, :142:31, :240:17, :241:26, :243:26, :260:26, :261:31, :263:31
+        entries_1_data_valid <= ~_GEN_513 & _GEN_357;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :139:24, :141:71, :143:31, :240:17, :241:26, :244:26, :260:26, :261:31, :264:31
+        entries_2_valid <= ~_GEN_514 & _GEN_297;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :121:38, :240:17, :241:26, :260:26, :261:31
+        entries_2_committed <= ~_GEN_514 & _GEN_482;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :221:30, :223:77, :240:17, :241:26, :242:26, :260:26, :261:31, :262:31
+        entries_2_addr_valid <= ~_GEN_514 & _GEN_359;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :139:24, :141:71, :142:31, :240:17, :241:26, :243:26, :260:26, :261:31, :263:31
+        entries_2_data_valid <= ~_GEN_514 & _GEN_360;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :139:24, :141:71, :143:31, :240:17, :241:26, :244:26, :260:26, :261:31, :264:31
+        entries_3_valid <= ~_GEN_515 & _GEN_300;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :121:38, :240:17, :241:26, :260:26, :261:31
+        entries_3_committed <= ~_GEN_515 & _GEN_483;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :221:30, :223:77, :240:17, :241:26, :242:26, :260:26, :261:31, :262:31
+        entries_3_addr_valid <= ~_GEN_515 & _GEN_362;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :139:24, :141:71, :142:31, :240:17, :241:26, :243:26, :260:26, :261:31, :263:31
+        entries_3_data_valid <= ~_GEN_515 & _GEN_363;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :139:24, :141:71, :143:31, :240:17, :241:26, :244:26, :260:26, :261:31, :264:31
+        entries_4_valid <= ~_GEN_516 & _GEN_303;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :121:38, :240:17, :241:26, :260:26, :261:31
+        entries_4_committed <= ~_GEN_516 & _GEN_484;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :221:30, :223:77, :240:17, :241:26, :242:26, :260:26, :261:31, :262:31
+        entries_4_addr_valid <= ~_GEN_516 & _GEN_365;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :139:24, :141:71, :142:31, :240:17, :241:26, :243:26, :260:26, :261:31, :263:31
+        entries_4_data_valid <= ~_GEN_516 & _GEN_366;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :139:24, :141:71, :143:31, :240:17, :241:26, :244:26, :260:26, :261:31, :264:31
+        entries_5_valid <= ~_GEN_517 & _GEN_306;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :121:38, :240:17, :241:26, :260:26, :261:31
+        entries_5_committed <= ~_GEN_517 & _GEN_485;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :221:30, :223:77, :240:17, :241:26, :242:26, :260:26, :261:31, :262:31
+        entries_5_addr_valid <= ~_GEN_517 & _GEN_368;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :139:24, :141:71, :142:31, :240:17, :241:26, :243:26, :260:26, :261:31, :263:31
+        entries_5_data_valid <= ~_GEN_517 & _GEN_369;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :139:24, :141:71, :143:31, :240:17, :241:26, :244:26, :260:26, :261:31, :264:31
+        entries_6_valid <= ~_GEN_518 & _GEN_309;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :121:38, :240:17, :241:26, :260:26, :261:31
+        entries_6_committed <= ~_GEN_518 & _GEN_486;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :221:30, :223:77, :240:17, :241:26, :242:26, :260:26, :261:31, :262:31
+        entries_6_addr_valid <= ~_GEN_518 & _GEN_371;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :139:24, :141:71, :142:31, :240:17, :241:26, :243:26, :260:26, :261:31, :263:31
+        entries_6_data_valid <= ~_GEN_518 & _GEN_372;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :139:24, :141:71, :143:31, :240:17, :241:26, :244:26, :260:26, :261:31, :264:31
+        entries_7_valid <= ~_GEN_519 & _GEN_312;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :121:38, :240:17, :241:26, :260:26, :261:31
+        entries_7_committed <= ~_GEN_519 & _GEN_487;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :221:30, :223:77, :240:17, :241:26, :242:26, :260:26, :261:31, :262:31
+        entries_7_addr_valid <= ~_GEN_519 & _GEN_374;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :139:24, :141:71, :142:31, :240:17, :241:26, :243:26, :260:26, :261:31, :263:31
+        entries_7_data_valid <= ~_GEN_519 & _GEN_375;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :139:24, :141:71, :143:31, :240:17, :241:26, :244:26, :260:26, :261:31, :264:31
+        entries_8_valid <= ~_GEN_520 & _GEN_315;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :121:38, :240:17, :241:26, :260:26, :261:31
+        entries_8_committed <= ~_GEN_520 & _GEN_488;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :221:30, :223:77, :240:17, :241:26, :242:26, :260:26, :261:31, :262:31
+        entries_8_addr_valid <= ~_GEN_520 & _GEN_377;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :139:24, :141:71, :142:31, :240:17, :241:26, :243:26, :260:26, :261:31, :263:31
+        entries_8_data_valid <= ~_GEN_520 & _GEN_378;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :139:24, :141:71, :143:31, :240:17, :241:26, :244:26, :260:26, :261:31, :264:31
+        entries_9_valid <= ~_GEN_521 & _GEN_318;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :121:38, :240:17, :241:26, :260:26, :261:31
+        entries_9_committed <= ~_GEN_521 & _GEN_489;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :221:30, :223:77, :240:17, :241:26, :242:26, :260:26, :261:31, :262:31
+        entries_9_addr_valid <= ~_GEN_521 & _GEN_380;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :139:24, :141:71, :142:31, :240:17, :241:26, :243:26, :260:26, :261:31, :263:31
+        entries_9_data_valid <= ~_GEN_521 & _GEN_381;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :139:24, :141:71, :143:31, :240:17, :241:26, :244:26, :260:26, :261:31, :264:31
+        entries_10_valid <= ~_GEN_522 & _GEN_321;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :121:38, :240:17, :241:26, :260:26, :261:31
+        entries_10_committed <= ~_GEN_522 & _GEN_490;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :221:30, :223:77, :240:17, :241:26, :242:26, :260:26, :261:31, :262:31
+        entries_10_addr_valid <= ~_GEN_522 & _GEN_383;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :139:24, :141:71, :142:31, :240:17, :241:26, :243:26, :260:26, :261:31, :263:31
+        entries_10_data_valid <= ~_GEN_522 & _GEN_384;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :139:24, :141:71, :143:31, :240:17, :241:26, :244:26, :260:26, :261:31, :264:31
+        entries_11_valid <= ~_GEN_523 & _GEN_324;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :121:38, :240:17, :241:26, :260:26, :261:31
+        entries_11_committed <= ~_GEN_523 & _GEN_491;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :221:30, :223:77, :240:17, :241:26, :242:26, :260:26, :261:31, :262:31
+        entries_11_addr_valid <= ~_GEN_523 & _GEN_386;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :139:24, :141:71, :142:31, :240:17, :241:26, :243:26, :260:26, :261:31, :263:31
+        entries_11_data_valid <= ~_GEN_523 & _GEN_387;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :139:24, :141:71, :143:31, :240:17, :241:26, :244:26, :260:26, :261:31, :264:31
+        entries_12_valid <= ~_GEN_524 & _GEN_327;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :121:38, :240:17, :241:26, :260:26, :261:31
+        entries_12_committed <= ~_GEN_524 & _GEN_492;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :221:30, :223:77, :240:17, :241:26, :242:26, :260:26, :261:31, :262:31
+        entries_12_addr_valid <= ~_GEN_524 & _GEN_389;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :139:24, :141:71, :142:31, :240:17, :241:26, :243:26, :260:26, :261:31, :263:31
+        entries_12_data_valid <= ~_GEN_524 & _GEN_390;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :139:24, :141:71, :143:31, :240:17, :241:26, :244:26, :260:26, :261:31, :264:31
+        entries_13_valid <= ~_GEN_525 & _GEN_330;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :121:38, :240:17, :241:26, :260:26, :261:31
+        entries_13_committed <= ~_GEN_525 & _GEN_493;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :221:30, :223:77, :240:17, :241:26, :242:26, :260:26, :261:31, :262:31
+        entries_13_addr_valid <= ~_GEN_525 & _GEN_392;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :139:24, :141:71, :142:31, :240:17, :241:26, :243:26, :260:26, :261:31, :263:31
+        entries_13_data_valid <= ~_GEN_525 & _GEN_393;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :139:24, :141:71, :143:31, :240:17, :241:26, :244:26, :260:26, :261:31, :264:31
+        entries_14_valid <= ~_GEN_526 & _GEN_333;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :121:38, :240:17, :241:26, :260:26, :261:31
+        entries_14_committed <= ~_GEN_526 & _GEN_494;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :221:30, :223:77, :240:17, :241:26, :242:26, :260:26, :261:31, :262:31
+        entries_14_addr_valid <= ~_GEN_526 & _GEN_395;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :139:24, :141:71, :142:31, :240:17, :241:26, :243:26, :260:26, :261:31, :263:31
+        entries_14_data_valid <= ~_GEN_526 & _GEN_396;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :139:24, :141:71, :143:31, :240:17, :241:26, :244:26, :260:26, :261:31, :264:31
+        entries_15_valid <= ~_GEN_527 & _GEN_335;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :121:38, :240:17, :241:26, :260:26, :261:31
+        entries_15_committed <= ~_GEN_527 & _GEN_495;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :221:30, :223:77, :240:17, :241:26, :242:26, :260:26, :261:31, :262:31
+        entries_15_addr_valid <= ~_GEN_527 & _GEN_398;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :139:24, :141:71, :142:31, :240:17, :241:26, :243:26, :260:26, :261:31, :263:31
+        entries_15_data_valid <= ~_GEN_527 & _GEN_399;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :139:24, :141:71, :143:31, :240:17, :241:26, :244:26, :260:26, :261:31, :264:31
+        enqPtr <=
+          deqPtr + {3'h0, canDrain}
+          + {1'h0,
+             {1'h0,
+              {1'h0, ~should_flush & entries_0_valid & ~(canDrain & ~(|deqPtr))}
+                + {1'h0,
+                   ~should_flush_1 & entries_1_valid & ~(canDrain & deqPtr == 4'h1)}}
+               + {1'h0,
+                  {1'h0, ~should_flush_2 & entries_2_valid & ~(canDrain & deqPtr == 4'h2)}
+                    + {1'h0,
+                       ~should_flush_3 & entries_3_valid & ~(canDrain & deqPtr == 4'h3)}}}
+          + {1'h0,
+             {1'h0,
+              {1'h0, ~should_flush_4 & entries_4_valid & ~(canDrain & deqPtr == 4'h4)}
+                + {1'h0,
+                   ~should_flush_5 & entries_5_valid & ~(canDrain & deqPtr == 4'h5)}}
+               + {1'h0,
+                  {1'h0, ~should_flush_6 & entries_6_valid & ~(canDrain & deqPtr == 4'h6)}
+                    + {1'h0,
+                       ~should_flush_7 & entries_7_valid & ~(canDrain & deqPtr == 4'h7)}}}
+          + {1'h0,
+             {1'h0,
+              {1'h0, ~should_flush_8 & entries_8_valid & ~(canDrain & deqPtr == 4'h8)}
+                + {1'h0,
+                   ~should_flush_9 & entries_9_valid & ~(canDrain & deqPtr == 4'h9)}}
+               + {1'h0,
+                  {1'h0,
+                   ~should_flush_10 & entries_10_valid & ~(canDrain & deqPtr == 4'hA)}
+                    + {1'h0,
+                       ~should_flush_11 & entries_11_valid
+                         & ~(canDrain & deqPtr == 4'hB)}}}
+          + {1'h0,
+             {1'h0,
+              {1'h0, ~should_flush_12 & entries_12_valid & ~(canDrain & deqPtr == 4'hC)}
+                + {1'h0,
+                   ~should_flush_13 & entries_13_valid & ~(canDrain & deqPtr == 4'hD)}}
+               + {1'h0,
+                  {1'h0,
+                   ~should_flush_14 & entries_14_valid & ~(canDrain & deqPtr == 4'hE)}
+                    + {1'h0,
+                       ~should_flush_15 & entries_15_valid & ~(canDrain & (&deqPtr))}}};	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :81:20, :93:23, :94:23, :117:28, :121:38, :232:81, :241:26, :258:48, :260:26, :265:23, :267:{35,43}, :268:{23,46}, :272:34, :273:29, :274:26
       end
       else begin	// backend/src/zaqal/backend/lsu/StoreQueue.scala:21:14
-        entries_0_valid <= ~_GEN_496 & _GEN_307;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :121:38, :238:17, :239:25
-        entries_0_addr_valid <= _GEN_369;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :137:24, :139:71, :140:31
-        entries_0_data_valid <= _GEN_370;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :137:24, :139:71, :141:31
-        entries_1_valid <= ~_GEN_497 & _GEN_310;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :121:38, :238:17, :239:25
-        entries_1_addr_valid <= _GEN_372;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :137:24, :139:71, :140:31
-        entries_1_data_valid <= _GEN_373;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :137:24, :139:71, :141:31
-        entries_2_valid <= ~_GEN_498 & _GEN_313;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :121:38, :238:17, :239:25
-        entries_2_addr_valid <= _GEN_375;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :137:24, :139:71, :140:31
-        entries_2_data_valid <= _GEN_376;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :137:24, :139:71, :141:31
-        entries_3_valid <= ~_GEN_499 & _GEN_316;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :121:38, :238:17, :239:25
-        entries_3_addr_valid <= _GEN_378;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :137:24, :139:71, :140:31
-        entries_3_data_valid <= _GEN_379;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :137:24, :139:71, :141:31
-        entries_4_valid <= ~_GEN_500 & _GEN_319;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :121:38, :238:17, :239:25
-        entries_4_addr_valid <= _GEN_381;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :137:24, :139:71, :140:31
-        entries_4_data_valid <= _GEN_382;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :137:24, :139:71, :141:31
-        entries_5_valid <= ~_GEN_501 & _GEN_322;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :121:38, :238:17, :239:25
-        entries_5_addr_valid <= _GEN_384;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :137:24, :139:71, :140:31
-        entries_5_data_valid <= _GEN_385;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :137:24, :139:71, :141:31
-        entries_6_valid <= ~_GEN_502 & _GEN_325;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :121:38, :238:17, :239:25
-        entries_6_addr_valid <= _GEN_387;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :137:24, :139:71, :140:31
-        entries_6_data_valid <= _GEN_388;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :137:24, :139:71, :141:31
-        entries_7_valid <= ~_GEN_503 & _GEN_328;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :121:38, :238:17, :239:25
-        entries_7_addr_valid <= _GEN_390;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :137:24, :139:71, :140:31
-        entries_7_data_valid <= _GEN_391;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :137:24, :139:71, :141:31
-        entries_8_valid <= ~_GEN_504 & _GEN_331;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :121:38, :238:17, :239:25
-        entries_8_addr_valid <= _GEN_393;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :137:24, :139:71, :140:31
-        entries_8_data_valid <= _GEN_394;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :137:24, :139:71, :141:31
-        entries_9_valid <= ~_GEN_505 & _GEN_334;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :121:38, :238:17, :239:25
-        entries_9_addr_valid <= _GEN_396;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :137:24, :139:71, :140:31
-        entries_9_data_valid <= _GEN_397;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :137:24, :139:71, :141:31
-        entries_10_valid <= ~_GEN_506 & _GEN_337;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :121:38, :238:17, :239:25
-        entries_10_addr_valid <= _GEN_399;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :137:24, :139:71, :140:31
-        entries_10_data_valid <= _GEN_400;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :137:24, :139:71, :141:31
-        entries_11_valid <= ~_GEN_507 & _GEN_340;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :121:38, :238:17, :239:25
-        entries_11_addr_valid <= _GEN_402;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :137:24, :139:71, :140:31
-        entries_11_data_valid <= _GEN_403;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :137:24, :139:71, :141:31
-        entries_12_valid <= ~_GEN_508 & _GEN_343;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :121:38, :238:17, :239:25
-        entries_12_addr_valid <= _GEN_405;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :137:24, :139:71, :140:31
-        entries_12_data_valid <= _GEN_406;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :137:24, :139:71, :141:31
-        entries_13_valid <= ~_GEN_509 & _GEN_346;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :121:38, :238:17, :239:25
-        entries_13_addr_valid <= _GEN_408;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :137:24, :139:71, :140:31
-        entries_13_data_valid <= _GEN_409;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :137:24, :139:71, :141:31
-        entries_14_valid <= ~_GEN_510 & _GEN_349;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :121:38, :238:17, :239:25
-        entries_14_addr_valid <= _GEN_411;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :137:24, :139:71, :140:31
-        entries_14_data_valid <= _GEN_412;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :137:24, :139:71, :141:31
-        entries_15_valid <= ~_GEN_511 & _GEN_351;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :121:38, :238:17, :239:25
-        entries_15_addr_valid <= _GEN_414;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :137:24, :139:71, :140:31
-        entries_15_data_valid <= _GEN_415;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :137:24, :139:71, :141:31
+        entries_0_valid <= ~_GEN_496 & _GEN_291;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :121:38, :240:17, :241:26
+        entries_0_committed <= ~_GEN_496 & _GEN_480;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :221:30, :223:77, :240:17, :241:26, :242:26
+        entries_0_addr_valid <= ~_GEN_496 & _GEN_353;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :139:24, :141:71, :142:31, :240:17, :241:26, :243:26
+        entries_0_data_valid <= ~_GEN_496 & _GEN_354;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :139:24, :141:71, :143:31, :240:17, :241:26, :244:26
+        entries_1_valid <= ~_GEN_497 & _GEN_294;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :121:38, :240:17, :241:26
+        entries_1_committed <= ~_GEN_497 & _GEN_481;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :221:30, :223:77, :240:17, :241:26, :242:26
+        entries_1_addr_valid <= ~_GEN_497 & _GEN_356;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :139:24, :141:71, :142:31, :240:17, :241:26, :243:26
+        entries_1_data_valid <= ~_GEN_497 & _GEN_357;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :139:24, :141:71, :143:31, :240:17, :241:26, :244:26
+        entries_2_valid <= ~_GEN_498 & _GEN_297;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :121:38, :240:17, :241:26
+        entries_2_committed <= ~_GEN_498 & _GEN_482;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :221:30, :223:77, :240:17, :241:26, :242:26
+        entries_2_addr_valid <= ~_GEN_498 & _GEN_359;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :139:24, :141:71, :142:31, :240:17, :241:26, :243:26
+        entries_2_data_valid <= ~_GEN_498 & _GEN_360;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :139:24, :141:71, :143:31, :240:17, :241:26, :244:26
+        entries_3_valid <= ~_GEN_499 & _GEN_300;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :121:38, :240:17, :241:26
+        entries_3_committed <= ~_GEN_499 & _GEN_483;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :221:30, :223:77, :240:17, :241:26, :242:26
+        entries_3_addr_valid <= ~_GEN_499 & _GEN_362;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :139:24, :141:71, :142:31, :240:17, :241:26, :243:26
+        entries_3_data_valid <= ~_GEN_499 & _GEN_363;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :139:24, :141:71, :143:31, :240:17, :241:26, :244:26
+        entries_4_valid <= ~_GEN_500 & _GEN_303;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :121:38, :240:17, :241:26
+        entries_4_committed <= ~_GEN_500 & _GEN_484;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :221:30, :223:77, :240:17, :241:26, :242:26
+        entries_4_addr_valid <= ~_GEN_500 & _GEN_365;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :139:24, :141:71, :142:31, :240:17, :241:26, :243:26
+        entries_4_data_valid <= ~_GEN_500 & _GEN_366;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :139:24, :141:71, :143:31, :240:17, :241:26, :244:26
+        entries_5_valid <= ~_GEN_501 & _GEN_306;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :121:38, :240:17, :241:26
+        entries_5_committed <= ~_GEN_501 & _GEN_485;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :221:30, :223:77, :240:17, :241:26, :242:26
+        entries_5_addr_valid <= ~_GEN_501 & _GEN_368;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :139:24, :141:71, :142:31, :240:17, :241:26, :243:26
+        entries_5_data_valid <= ~_GEN_501 & _GEN_369;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :139:24, :141:71, :143:31, :240:17, :241:26, :244:26
+        entries_6_valid <= ~_GEN_502 & _GEN_309;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :121:38, :240:17, :241:26
+        entries_6_committed <= ~_GEN_502 & _GEN_486;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :221:30, :223:77, :240:17, :241:26, :242:26
+        entries_6_addr_valid <= ~_GEN_502 & _GEN_371;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :139:24, :141:71, :142:31, :240:17, :241:26, :243:26
+        entries_6_data_valid <= ~_GEN_502 & _GEN_372;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :139:24, :141:71, :143:31, :240:17, :241:26, :244:26
+        entries_7_valid <= ~_GEN_503 & _GEN_312;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :121:38, :240:17, :241:26
+        entries_7_committed <= ~_GEN_503 & _GEN_487;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :221:30, :223:77, :240:17, :241:26, :242:26
+        entries_7_addr_valid <= ~_GEN_503 & _GEN_374;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :139:24, :141:71, :142:31, :240:17, :241:26, :243:26
+        entries_7_data_valid <= ~_GEN_503 & _GEN_375;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :139:24, :141:71, :143:31, :240:17, :241:26, :244:26
+        entries_8_valid <= ~_GEN_504 & _GEN_315;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :121:38, :240:17, :241:26
+        entries_8_committed <= ~_GEN_504 & _GEN_488;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :221:30, :223:77, :240:17, :241:26, :242:26
+        entries_8_addr_valid <= ~_GEN_504 & _GEN_377;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :139:24, :141:71, :142:31, :240:17, :241:26, :243:26
+        entries_8_data_valid <= ~_GEN_504 & _GEN_378;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :139:24, :141:71, :143:31, :240:17, :241:26, :244:26
+        entries_9_valid <= ~_GEN_505 & _GEN_318;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :121:38, :240:17, :241:26
+        entries_9_committed <= ~_GEN_505 & _GEN_489;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :221:30, :223:77, :240:17, :241:26, :242:26
+        entries_9_addr_valid <= ~_GEN_505 & _GEN_380;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :139:24, :141:71, :142:31, :240:17, :241:26, :243:26
+        entries_9_data_valid <= ~_GEN_505 & _GEN_381;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :139:24, :141:71, :143:31, :240:17, :241:26, :244:26
+        entries_10_valid <= ~_GEN_506 & _GEN_321;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :121:38, :240:17, :241:26
+        entries_10_committed <= ~_GEN_506 & _GEN_490;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :221:30, :223:77, :240:17, :241:26, :242:26
+        entries_10_addr_valid <= ~_GEN_506 & _GEN_383;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :139:24, :141:71, :142:31, :240:17, :241:26, :243:26
+        entries_10_data_valid <= ~_GEN_506 & _GEN_384;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :139:24, :141:71, :143:31, :240:17, :241:26, :244:26
+        entries_11_valid <= ~_GEN_507 & _GEN_324;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :121:38, :240:17, :241:26
+        entries_11_committed <= ~_GEN_507 & _GEN_491;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :221:30, :223:77, :240:17, :241:26, :242:26
+        entries_11_addr_valid <= ~_GEN_507 & _GEN_386;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :139:24, :141:71, :142:31, :240:17, :241:26, :243:26
+        entries_11_data_valid <= ~_GEN_507 & _GEN_387;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :139:24, :141:71, :143:31, :240:17, :241:26, :244:26
+        entries_12_valid <= ~_GEN_508 & _GEN_327;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :121:38, :240:17, :241:26
+        entries_12_committed <= ~_GEN_508 & _GEN_492;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :221:30, :223:77, :240:17, :241:26, :242:26
+        entries_12_addr_valid <= ~_GEN_508 & _GEN_389;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :139:24, :141:71, :142:31, :240:17, :241:26, :243:26
+        entries_12_data_valid <= ~_GEN_508 & _GEN_390;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :139:24, :141:71, :143:31, :240:17, :241:26, :244:26
+        entries_13_valid <= ~_GEN_509 & _GEN_330;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :121:38, :240:17, :241:26
+        entries_13_committed <= ~_GEN_509 & _GEN_493;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :221:30, :223:77, :240:17, :241:26, :242:26
+        entries_13_addr_valid <= ~_GEN_509 & _GEN_392;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :139:24, :141:71, :142:31, :240:17, :241:26, :243:26
+        entries_13_data_valid <= ~_GEN_509 & _GEN_393;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :139:24, :141:71, :143:31, :240:17, :241:26, :244:26
+        entries_14_valid <= ~_GEN_510 & _GEN_333;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :121:38, :240:17, :241:26
+        entries_14_committed <= ~_GEN_510 & _GEN_494;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :221:30, :223:77, :240:17, :241:26, :242:26
+        entries_14_addr_valid <= ~_GEN_510 & _GEN_395;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :139:24, :141:71, :142:31, :240:17, :241:26, :243:26
+        entries_14_data_valid <= ~_GEN_510 & _GEN_396;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :139:24, :141:71, :143:31, :240:17, :241:26, :244:26
+        entries_15_valid <= ~_GEN_511 & _GEN_335;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :121:38, :240:17, :241:26
+        entries_15_committed <= ~_GEN_511 & _GEN_495;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :221:30, :223:77, :240:17, :241:26, :242:26
+        entries_15_addr_valid <= ~_GEN_511 & _GEN_398;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :139:24, :141:71, :142:31, :240:17, :241:26, :243:26
+        entries_15_data_valid <= ~_GEN_511 & _GEN_399;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :139:24, :141:71, :143:31, :240:17, :241:26, :244:26
+        enqPtr <=
+          enqPtr
+          + {1'h0,
+             {1'h0, _GEN_156 + _totalEnq_T_1}
+               + {1'h0, _GEN_270 + _GEN_288 + {1'h0, enqFires_5}}};	// backend/src/zaqal/backend/lsu/StoreQueue.scala:81:20, :93:23, :112:42, :116:52, :133:26, :135:22
       end
-      entries_0_committed <=
-        ~_GEN_496
-        & (io_commit_valid_5
-             ? entries_0_valid & entries_0_robIdx == io_commit_robIdx_5 | _GEN_480
-               | _GEN_464
-             : _GEN_480 | _GEN_464);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :219:30, :221:{31,52,77}, :222:32, :238:17, :239:25, :240:25
-      if (enqFires_5 & _GEN_305)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, :125:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      if (enqFires_5 & _GEN_289)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38, :125:38
         entries_0_robIdx <= io_enq_5_bits_robIdx;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24
-      else if (_GEN_288)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38
+      else if (_GEN_272)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:23, :121:38
         entries_0_robIdx <= io_enq_4_bits_robIdx;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24
-      else if (enqFires_3 & _GEN_191)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, :125:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      else if (enqFires_3 & _GEN_175)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38, :125:38
         entries_0_robIdx <= io_enq_3_bits_robIdx;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24
-      else if (_GEN_174)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38
+      else if (_GEN_158)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:23, :121:38
         entries_0_robIdx <= io_enq_2_bits_robIdx;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24
-      else if (enqFires_1 & _GEN_77)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, :125:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      else if (enqFires_1 & _GEN_61)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38, :125:38
         entries_0_robIdx <= io_enq_1_bits_robIdx;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24
-      else if (_GEN_61)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :121:38
+      else if (_GEN_45)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :121:38
         entries_0_robIdx <= io_enq_0_bits_robIdx;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24
-      if (_GEN_368) begin	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :137:24, :139:71, :140:31
+      if (_GEN_352) begin	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:23, :139:24, :141:71, :142:31
         entries_0_paddr <= io_write_paddr;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24
         entries_0_wmask <= io_write_wmask;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24
         entries_0_wdata <= io_write_wdata;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24
       end
-      else if (enqFires_5 ? _GEN_306 | _GEN_513 : _GEN_288 | _GEN_513) begin	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, :127:38, :129:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      else if (enqFires_5 ? _GEN_290 | _GEN_529 : _GEN_272 | _GEN_529) begin	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38, :127:38, :129:38
         entries_0_paddr <= 64'h0;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :87:20
         entries_0_wmask <= 16'h0;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :88:20
         entries_0_wdata <= 128'h0;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :89:20
       end
-      entries_1_committed <=
-        ~_GEN_497
-        & (io_commit_valid_5
-             ? entries_1_valid & entries_1_robIdx == io_commit_robIdx_5 | _GEN_481
-               | _GEN_465
-             : _GEN_481 | _GEN_465);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :219:30, :221:{31,52,77}, :222:32, :238:17, :239:25, :240:25
-      if (enqFires_5 & _GEN_308)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, :125:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      if (enqFires_5 & _GEN_292)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38, :125:38
         entries_1_robIdx <= io_enq_5_bits_robIdx;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24
-      else if (_GEN_289)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38
+      else if (_GEN_273)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:23, :121:38
         entries_1_robIdx <= io_enq_4_bits_robIdx;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24
-      else if (enqFires_3 & _GEN_194)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, :125:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      else if (enqFires_3 & _GEN_178)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38, :125:38
         entries_1_robIdx <= io_enq_3_bits_robIdx;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24
-      else if (_GEN_175)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38
+      else if (_GEN_159)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:23, :121:38
         entries_1_robIdx <= io_enq_2_bits_robIdx;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24
-      else if (enqFires_1 & _GEN_80)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, :125:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      else if (enqFires_1 & _GEN_64)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38, :125:38
         entries_1_robIdx <= io_enq_1_bits_robIdx;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24
-      else if (_GEN_62)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :121:38
+      else if (_GEN_46)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :121:38
         entries_1_robIdx <= io_enq_0_bits_robIdx;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24
-      if (_GEN_371) begin	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :137:24, :139:71, :140:31
+      if (_GEN_355) begin	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:23, :139:24, :141:71, :142:31
         entries_1_paddr <= io_write_paddr;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24
         entries_1_wmask <= io_write_wmask;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24
         entries_1_wdata <= io_write_wdata;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24
       end
-      else if (enqFires_5 ? _GEN_309 | _GEN_515 : _GEN_289 | _GEN_515) begin	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, :127:38, :129:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      else if (enqFires_5 ? _GEN_293 | _GEN_531 : _GEN_273 | _GEN_531) begin	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38, :127:38, :129:38
         entries_1_paddr <= 64'h0;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :87:20
         entries_1_wmask <= 16'h0;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :88:20
         entries_1_wdata <= 128'h0;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :89:20
       end
-      entries_2_committed <=
-        ~_GEN_498
-        & (io_commit_valid_5
-             ? entries_2_valid & entries_2_robIdx == io_commit_robIdx_5 | _GEN_482
-               | _GEN_466
-             : _GEN_482 | _GEN_466);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :219:30, :221:{31,52,77}, :222:32, :238:17, :239:25, :240:25
-      if (enqFires_5 & _GEN_311)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, :125:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      if (enqFires_5 & _GEN_295)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38, :125:38
         entries_2_robIdx <= io_enq_5_bits_robIdx;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24
-      else if (_GEN_290)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38
+      else if (_GEN_274)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:23, :121:38
         entries_2_robIdx <= io_enq_4_bits_robIdx;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24
-      else if (enqFires_3 & _GEN_197)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, :125:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      else if (enqFires_3 & _GEN_181)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38, :125:38
         entries_2_robIdx <= io_enq_3_bits_robIdx;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24
-      else if (_GEN_176)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38
+      else if (_GEN_160)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:23, :121:38
         entries_2_robIdx <= io_enq_2_bits_robIdx;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24
-      else if (enqFires_1 & _GEN_83)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, :125:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      else if (enqFires_1 & _GEN_67)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38, :125:38
         entries_2_robIdx <= io_enq_1_bits_robIdx;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24
-      else if (_GEN_63)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :121:38
+      else if (_GEN_47)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :121:38
         entries_2_robIdx <= io_enq_0_bits_robIdx;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24
-      if (_GEN_374) begin	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :137:24, :139:71, :140:31
+      if (_GEN_358) begin	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:23, :139:24, :141:71, :142:31
         entries_2_paddr <= io_write_paddr;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24
         entries_2_wmask <= io_write_wmask;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24
         entries_2_wdata <= io_write_wdata;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24
       end
-      else if (enqFires_5 ? _GEN_312 | _GEN_517 : _GEN_290 | _GEN_517) begin	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, :127:38, :129:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      else if (enqFires_5 ? _GEN_296 | _GEN_533 : _GEN_274 | _GEN_533) begin	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38, :127:38, :129:38
         entries_2_paddr <= 64'h0;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :87:20
         entries_2_wmask <= 16'h0;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :88:20
         entries_2_wdata <= 128'h0;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :89:20
       end
-      entries_3_committed <=
-        ~_GEN_499
-        & (io_commit_valid_5
-             ? entries_3_valid & entries_3_robIdx == io_commit_robIdx_5 | _GEN_483
-               | _GEN_467
-             : _GEN_483 | _GEN_467);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :219:30, :221:{31,52,77}, :222:32, :238:17, :239:25, :240:25
-      if (enqFires_5 & _GEN_314)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, :125:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      if (enqFires_5 & _GEN_298)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38, :125:38
         entries_3_robIdx <= io_enq_5_bits_robIdx;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24
-      else if (_GEN_291)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38
+      else if (_GEN_275)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:23, :121:38
         entries_3_robIdx <= io_enq_4_bits_robIdx;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24
-      else if (enqFires_3 & _GEN_200)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, :125:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      else if (enqFires_3 & _GEN_184)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38, :125:38
         entries_3_robIdx <= io_enq_3_bits_robIdx;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24
-      else if (_GEN_177)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38
+      else if (_GEN_161)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:23, :121:38
         entries_3_robIdx <= io_enq_2_bits_robIdx;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24
-      else if (enqFires_1 & _GEN_86)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, :125:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      else if (enqFires_1 & _GEN_70)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38, :125:38
         entries_3_robIdx <= io_enq_1_bits_robIdx;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24
-      else if (_GEN_64)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :121:38
+      else if (_GEN_48)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :121:38
         entries_3_robIdx <= io_enq_0_bits_robIdx;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24
-      if (_GEN_377) begin	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :137:24, :139:71, :140:31
+      if (_GEN_361) begin	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:23, :139:24, :141:71, :142:31
         entries_3_paddr <= io_write_paddr;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24
         entries_3_wmask <= io_write_wmask;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24
         entries_3_wdata <= io_write_wdata;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24
       end
-      else if (enqFires_5 ? _GEN_315 | _GEN_519 : _GEN_291 | _GEN_519) begin	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, :127:38, :129:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      else if (enqFires_5 ? _GEN_299 | _GEN_535 : _GEN_275 | _GEN_535) begin	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38, :127:38, :129:38
         entries_3_paddr <= 64'h0;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :87:20
         entries_3_wmask <= 16'h0;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :88:20
         entries_3_wdata <= 128'h0;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :89:20
       end
-      entries_4_committed <=
-        ~_GEN_500
-        & (io_commit_valid_5
-             ? entries_4_valid & entries_4_robIdx == io_commit_robIdx_5 | _GEN_484
-               | _GEN_468
-             : _GEN_484 | _GEN_468);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :219:30, :221:{31,52,77}, :222:32, :238:17, :239:25, :240:25
-      if (enqFires_5 & _GEN_317)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, :125:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      if (enqFires_5 & _GEN_301)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38, :125:38
         entries_4_robIdx <= io_enq_5_bits_robIdx;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24
-      else if (_GEN_292)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38
+      else if (_GEN_276)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:23, :121:38
         entries_4_robIdx <= io_enq_4_bits_robIdx;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24
-      else if (enqFires_3 & _GEN_203)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, :125:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      else if (enqFires_3 & _GEN_187)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38, :125:38
         entries_4_robIdx <= io_enq_3_bits_robIdx;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24
-      else if (_GEN_178)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38
+      else if (_GEN_162)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:23, :121:38
         entries_4_robIdx <= io_enq_2_bits_robIdx;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24
-      else if (enqFires_1 & _GEN_89)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, :125:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      else if (enqFires_1 & _GEN_73)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38, :125:38
         entries_4_robIdx <= io_enq_1_bits_robIdx;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24
-      else if (_GEN_65)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :121:38
+      else if (_GEN_49)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :121:38
         entries_4_robIdx <= io_enq_0_bits_robIdx;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24
-      if (_GEN_380) begin	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :137:24, :139:71, :140:31
+      if (_GEN_364) begin	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:23, :139:24, :141:71, :142:31
         entries_4_paddr <= io_write_paddr;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24
         entries_4_wmask <= io_write_wmask;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24
         entries_4_wdata <= io_write_wdata;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24
       end
-      else if (enqFires_5 ? _GEN_318 | _GEN_521 : _GEN_292 | _GEN_521) begin	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, :127:38, :129:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      else if (enqFires_5 ? _GEN_302 | _GEN_537 : _GEN_276 | _GEN_537) begin	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38, :127:38, :129:38
         entries_4_paddr <= 64'h0;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :87:20
         entries_4_wmask <= 16'h0;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :88:20
         entries_4_wdata <= 128'h0;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :89:20
       end
-      entries_5_committed <=
-        ~_GEN_501
-        & (io_commit_valid_5
-             ? entries_5_valid & entries_5_robIdx == io_commit_robIdx_5 | _GEN_485
-               | _GEN_469
-             : _GEN_485 | _GEN_469);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :219:30, :221:{31,52,77}, :222:32, :238:17, :239:25, :240:25
-      if (enqFires_5 & _GEN_320)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, :125:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      if (enqFires_5 & _GEN_304)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38, :125:38
         entries_5_robIdx <= io_enq_5_bits_robIdx;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24
-      else if (_GEN_293)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38
+      else if (_GEN_277)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:23, :121:38
         entries_5_robIdx <= io_enq_4_bits_robIdx;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24
-      else if (enqFires_3 & _GEN_206)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, :125:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      else if (enqFires_3 & _GEN_190)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38, :125:38
         entries_5_robIdx <= io_enq_3_bits_robIdx;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24
-      else if (_GEN_179)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38
+      else if (_GEN_163)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:23, :121:38
         entries_5_robIdx <= io_enq_2_bits_robIdx;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24
-      else if (enqFires_1 & _GEN_92)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, :125:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      else if (enqFires_1 & _GEN_76)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38, :125:38
         entries_5_robIdx <= io_enq_1_bits_robIdx;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24
-      else if (_GEN_66)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :121:38
+      else if (_GEN_50)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :121:38
         entries_5_robIdx <= io_enq_0_bits_robIdx;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24
-      if (_GEN_383) begin	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :137:24, :139:71, :140:31
+      if (_GEN_367) begin	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:23, :139:24, :141:71, :142:31
         entries_5_paddr <= io_write_paddr;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24
         entries_5_wmask <= io_write_wmask;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24
         entries_5_wdata <= io_write_wdata;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24
       end
-      else if (enqFires_5 ? _GEN_321 | _GEN_523 : _GEN_293 | _GEN_523) begin	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, :127:38, :129:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      else if (enqFires_5 ? _GEN_305 | _GEN_539 : _GEN_277 | _GEN_539) begin	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38, :127:38, :129:38
         entries_5_paddr <= 64'h0;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :87:20
         entries_5_wmask <= 16'h0;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :88:20
         entries_5_wdata <= 128'h0;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :89:20
       end
-      entries_6_committed <=
-        ~_GEN_502
-        & (io_commit_valid_5
-             ? entries_6_valid & entries_6_robIdx == io_commit_robIdx_5 | _GEN_486
-               | _GEN_470
-             : _GEN_486 | _GEN_470);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :219:30, :221:{31,52,77}, :222:32, :238:17, :239:25, :240:25
-      if (enqFires_5 & _GEN_323)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, :125:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      if (enqFires_5 & _GEN_307)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38, :125:38
         entries_6_robIdx <= io_enq_5_bits_robIdx;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24
-      else if (_GEN_294)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38
+      else if (_GEN_278)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:23, :121:38
         entries_6_robIdx <= io_enq_4_bits_robIdx;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24
-      else if (enqFires_3 & _GEN_209)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, :125:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      else if (enqFires_3 & _GEN_193)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38, :125:38
         entries_6_robIdx <= io_enq_3_bits_robIdx;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24
-      else if (_GEN_180)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38
+      else if (_GEN_164)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:23, :121:38
         entries_6_robIdx <= io_enq_2_bits_robIdx;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24
-      else if (enqFires_1 & _GEN_95)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, :125:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      else if (enqFires_1 & _GEN_79)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38, :125:38
         entries_6_robIdx <= io_enq_1_bits_robIdx;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24
-      else if (_GEN_67)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :121:38
+      else if (_GEN_51)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :121:38
         entries_6_robIdx <= io_enq_0_bits_robIdx;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24
-      if (_GEN_386) begin	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :137:24, :139:71, :140:31
+      if (_GEN_370) begin	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:23, :139:24, :141:71, :142:31
         entries_6_paddr <= io_write_paddr;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24
         entries_6_wmask <= io_write_wmask;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24
         entries_6_wdata <= io_write_wdata;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24
       end
-      else if (enqFires_5 ? _GEN_324 | _GEN_525 : _GEN_294 | _GEN_525) begin	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, :127:38, :129:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      else if (enqFires_5 ? _GEN_308 | _GEN_541 : _GEN_278 | _GEN_541) begin	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38, :127:38, :129:38
         entries_6_paddr <= 64'h0;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :87:20
         entries_6_wmask <= 16'h0;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :88:20
         entries_6_wdata <= 128'h0;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :89:20
       end
-      entries_7_committed <=
-        ~_GEN_503
-        & (io_commit_valid_5
-             ? entries_7_valid & entries_7_robIdx == io_commit_robIdx_5 | _GEN_487
-               | _GEN_471
-             : _GEN_487 | _GEN_471);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :219:30, :221:{31,52,77}, :222:32, :238:17, :239:25, :240:25
-      if (enqFires_5 & _GEN_326)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, :125:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      if (enqFires_5 & _GEN_310)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38, :125:38
         entries_7_robIdx <= io_enq_5_bits_robIdx;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24
-      else if (_GEN_295)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38
+      else if (_GEN_279)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:23, :121:38
         entries_7_robIdx <= io_enq_4_bits_robIdx;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24
-      else if (enqFires_3 & _GEN_212)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, :125:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      else if (enqFires_3 & _GEN_196)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38, :125:38
         entries_7_robIdx <= io_enq_3_bits_robIdx;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24
-      else if (_GEN_181)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38
+      else if (_GEN_165)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:23, :121:38
         entries_7_robIdx <= io_enq_2_bits_robIdx;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24
-      else if (enqFires_1 & _GEN_98)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, :125:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      else if (enqFires_1 & _GEN_82)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38, :125:38
         entries_7_robIdx <= io_enq_1_bits_robIdx;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24
-      else if (_GEN_68)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :121:38
+      else if (_GEN_52)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :121:38
         entries_7_robIdx <= io_enq_0_bits_robIdx;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24
-      if (_GEN_389) begin	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :137:24, :139:71, :140:31
+      if (_GEN_373) begin	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:23, :139:24, :141:71, :142:31
         entries_7_paddr <= io_write_paddr;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24
         entries_7_wmask <= io_write_wmask;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24
         entries_7_wdata <= io_write_wdata;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24
       end
-      else if (enqFires_5 ? _GEN_327 | _GEN_527 : _GEN_295 | _GEN_527) begin	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, :127:38, :129:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      else if (enqFires_5 ? _GEN_311 | _GEN_543 : _GEN_279 | _GEN_543) begin	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38, :127:38, :129:38
         entries_7_paddr <= 64'h0;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :87:20
         entries_7_wmask <= 16'h0;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :88:20
         entries_7_wdata <= 128'h0;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :89:20
       end
-      entries_8_committed <=
-        ~_GEN_504
-        & (io_commit_valid_5
-             ? entries_8_valid & entries_8_robIdx == io_commit_robIdx_5 | _GEN_488
-               | _GEN_472
-             : _GEN_488 | _GEN_472);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :219:30, :221:{31,52,77}, :222:32, :238:17, :239:25, :240:25
-      if (enqFires_5 & _GEN_329)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, :125:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      if (enqFires_5 & _GEN_313)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38, :125:38
         entries_8_robIdx <= io_enq_5_bits_robIdx;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24
-      else if (_GEN_296)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38
+      else if (_GEN_280)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:23, :121:38
         entries_8_robIdx <= io_enq_4_bits_robIdx;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24
-      else if (enqFires_3 & _GEN_215)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, :125:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      else if (enqFires_3 & _GEN_199)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38, :125:38
         entries_8_robIdx <= io_enq_3_bits_robIdx;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24
-      else if (_GEN_182)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38
+      else if (_GEN_166)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:23, :121:38
         entries_8_robIdx <= io_enq_2_bits_robIdx;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24
-      else if (enqFires_1 & _GEN_101)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, :125:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      else if (enqFires_1 & _GEN_85)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38, :125:38
         entries_8_robIdx <= io_enq_1_bits_robIdx;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24
-      else if (_GEN_69)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :121:38
+      else if (_GEN_53)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :121:38
         entries_8_robIdx <= io_enq_0_bits_robIdx;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24
-      if (_GEN_392) begin	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :137:24, :139:71, :140:31
+      if (_GEN_376) begin	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:23, :139:24, :141:71, :142:31
         entries_8_paddr <= io_write_paddr;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24
         entries_8_wmask <= io_write_wmask;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24
         entries_8_wdata <= io_write_wdata;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24
       end
-      else if (enqFires_5 ? _GEN_330 | _GEN_529 : _GEN_296 | _GEN_529) begin	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, :127:38, :129:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      else if (enqFires_5 ? _GEN_314 | _GEN_545 : _GEN_280 | _GEN_545) begin	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38, :127:38, :129:38
         entries_8_paddr <= 64'h0;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :87:20
         entries_8_wmask <= 16'h0;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :88:20
         entries_8_wdata <= 128'h0;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :89:20
       end
-      entries_9_committed <=
-        ~_GEN_505
-        & (io_commit_valid_5
-             ? entries_9_valid & entries_9_robIdx == io_commit_robIdx_5 | _GEN_489
-               | _GEN_473
-             : _GEN_489 | _GEN_473);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :219:30, :221:{31,52,77}, :222:32, :238:17, :239:25, :240:25
-      if (enqFires_5 & _GEN_332)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, :125:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      if (enqFires_5 & _GEN_316)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38, :125:38
         entries_9_robIdx <= io_enq_5_bits_robIdx;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24
-      else if (_GEN_297)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38
+      else if (_GEN_281)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:23, :121:38
         entries_9_robIdx <= io_enq_4_bits_robIdx;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24
-      else if (enqFires_3 & _GEN_218)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, :125:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      else if (enqFires_3 & _GEN_202)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38, :125:38
         entries_9_robIdx <= io_enq_3_bits_robIdx;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24
-      else if (_GEN_183)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38
+      else if (_GEN_167)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:23, :121:38
         entries_9_robIdx <= io_enq_2_bits_robIdx;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24
-      else if (enqFires_1 & _GEN_104)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, :125:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      else if (enqFires_1 & _GEN_88)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38, :125:38
         entries_9_robIdx <= io_enq_1_bits_robIdx;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24
-      else if (_GEN_70)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :121:38
+      else if (_GEN_54)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :121:38
         entries_9_robIdx <= io_enq_0_bits_robIdx;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24
-      if (_GEN_395) begin	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :137:24, :139:71, :140:31
+      if (_GEN_379) begin	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:23, :139:24, :141:71, :142:31
         entries_9_paddr <= io_write_paddr;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24
         entries_9_wmask <= io_write_wmask;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24
         entries_9_wdata <= io_write_wdata;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24
       end
-      else if (enqFires_5 ? _GEN_333 | _GEN_531 : _GEN_297 | _GEN_531) begin	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, :127:38, :129:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      else if (enqFires_5 ? _GEN_317 | _GEN_547 : _GEN_281 | _GEN_547) begin	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38, :127:38, :129:38
         entries_9_paddr <= 64'h0;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :87:20
         entries_9_wmask <= 16'h0;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :88:20
         entries_9_wdata <= 128'h0;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :89:20
       end
-      entries_10_committed <=
-        ~_GEN_506
-        & (io_commit_valid_5
-             ? entries_10_valid & entries_10_robIdx == io_commit_robIdx_5 | _GEN_490
-               | _GEN_474
-             : _GEN_490 | _GEN_474);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :219:30, :221:{31,52,77}, :222:32, :238:17, :239:25, :240:25
-      if (enqFires_5 & _GEN_335)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, :125:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      if (enqFires_5 & _GEN_319)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38, :125:38
         entries_10_robIdx <= io_enq_5_bits_robIdx;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24
-      else if (_GEN_298)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38
+      else if (_GEN_282)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:23, :121:38
         entries_10_robIdx <= io_enq_4_bits_robIdx;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24
-      else if (enqFires_3 & _GEN_221)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, :125:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      else if (enqFires_3 & _GEN_205)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38, :125:38
         entries_10_robIdx <= io_enq_3_bits_robIdx;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24
-      else if (_GEN_184)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38
+      else if (_GEN_168)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:23, :121:38
         entries_10_robIdx <= io_enq_2_bits_robIdx;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24
-      else if (enqFires_1 & _GEN_107)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, :125:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      else if (enqFires_1 & _GEN_91)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38, :125:38
         entries_10_robIdx <= io_enq_1_bits_robIdx;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24
-      else if (_GEN_71)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :121:38
+      else if (_GEN_55)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :121:38
         entries_10_robIdx <= io_enq_0_bits_robIdx;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24
-      if (_GEN_398) begin	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :137:24, :139:71, :140:31
+      if (_GEN_382) begin	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:23, :139:24, :141:71, :142:31
         entries_10_paddr <= io_write_paddr;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24
         entries_10_wmask <= io_write_wmask;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24
         entries_10_wdata <= io_write_wdata;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24
       end
-      else if (enqFires_5 ? _GEN_336 | _GEN_533 : _GEN_298 | _GEN_533) begin	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, :127:38, :129:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      else if (enqFires_5 ? _GEN_320 | _GEN_549 : _GEN_282 | _GEN_549) begin	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38, :127:38, :129:38
         entries_10_paddr <= 64'h0;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :87:20
         entries_10_wmask <= 16'h0;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :88:20
         entries_10_wdata <= 128'h0;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :89:20
       end
-      entries_11_committed <=
-        ~_GEN_507
-        & (io_commit_valid_5
-             ? entries_11_valid & entries_11_robIdx == io_commit_robIdx_5 | _GEN_491
-               | _GEN_475
-             : _GEN_491 | _GEN_475);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :219:30, :221:{31,52,77}, :222:32, :238:17, :239:25, :240:25
-      if (enqFires_5 & _GEN_338)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, :125:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      if (enqFires_5 & _GEN_322)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38, :125:38
         entries_11_robIdx <= io_enq_5_bits_robIdx;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24
-      else if (_GEN_299)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38
+      else if (_GEN_283)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:23, :121:38
         entries_11_robIdx <= io_enq_4_bits_robIdx;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24
-      else if (enqFires_3 & _GEN_224)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, :125:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      else if (enqFires_3 & _GEN_208)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38, :125:38
         entries_11_robIdx <= io_enq_3_bits_robIdx;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24
-      else if (_GEN_185)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38
+      else if (_GEN_169)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:23, :121:38
         entries_11_robIdx <= io_enq_2_bits_robIdx;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24
-      else if (enqFires_1 & _GEN_110)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, :125:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      else if (enqFires_1 & _GEN_94)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38, :125:38
         entries_11_robIdx <= io_enq_1_bits_robIdx;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24
-      else if (_GEN_72)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :121:38
+      else if (_GEN_56)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :121:38
         entries_11_robIdx <= io_enq_0_bits_robIdx;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24
-      if (_GEN_401) begin	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :137:24, :139:71, :140:31
+      if (_GEN_385) begin	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:23, :139:24, :141:71, :142:31
         entries_11_paddr <= io_write_paddr;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24
         entries_11_wmask <= io_write_wmask;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24
         entries_11_wdata <= io_write_wdata;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24
       end
-      else if (enqFires_5 ? _GEN_339 | _GEN_535 : _GEN_299 | _GEN_535) begin	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, :127:38, :129:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      else if (enqFires_5 ? _GEN_323 | _GEN_551 : _GEN_283 | _GEN_551) begin	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38, :127:38, :129:38
         entries_11_paddr <= 64'h0;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :87:20
         entries_11_wmask <= 16'h0;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :88:20
         entries_11_wdata <= 128'h0;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :89:20
       end
-      entries_12_committed <=
-        ~_GEN_508
-        & (io_commit_valid_5
-             ? entries_12_valid & entries_12_robIdx == io_commit_robIdx_5 | _GEN_492
-               | _GEN_476
-             : _GEN_492 | _GEN_476);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :219:30, :221:{31,52,77}, :222:32, :238:17, :239:25, :240:25
-      if (enqFires_5 & _GEN_341)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, :125:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      if (enqFires_5 & _GEN_325)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38, :125:38
         entries_12_robIdx <= io_enq_5_bits_robIdx;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24
-      else if (_GEN_300)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38
+      else if (_GEN_284)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:23, :121:38
         entries_12_robIdx <= io_enq_4_bits_robIdx;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24
-      else if (enqFires_3 & _GEN_227)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, :125:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      else if (enqFires_3 & _GEN_211)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38, :125:38
         entries_12_robIdx <= io_enq_3_bits_robIdx;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24
-      else if (_GEN_186)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38
+      else if (_GEN_170)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:23, :121:38
         entries_12_robIdx <= io_enq_2_bits_robIdx;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24
-      else if (enqFires_1 & _GEN_113)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, :125:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      else if (enqFires_1 & _GEN_97)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38, :125:38
         entries_12_robIdx <= io_enq_1_bits_robIdx;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24
-      else if (_GEN_73)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :121:38
+      else if (_GEN_57)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :121:38
         entries_12_robIdx <= io_enq_0_bits_robIdx;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24
-      if (_GEN_404) begin	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :137:24, :139:71, :140:31
+      if (_GEN_388) begin	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:23, :139:24, :141:71, :142:31
         entries_12_paddr <= io_write_paddr;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24
         entries_12_wmask <= io_write_wmask;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24
         entries_12_wdata <= io_write_wdata;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24
       end
-      else if (enqFires_5 ? _GEN_342 | _GEN_537 : _GEN_300 | _GEN_537) begin	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, :127:38, :129:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      else if (enqFires_5 ? _GEN_326 | _GEN_553 : _GEN_284 | _GEN_553) begin	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38, :127:38, :129:38
         entries_12_paddr <= 64'h0;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :87:20
         entries_12_wmask <= 16'h0;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :88:20
         entries_12_wdata <= 128'h0;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :89:20
       end
-      entries_13_committed <=
-        ~_GEN_509
-        & (io_commit_valid_5
-             ? entries_13_valid & entries_13_robIdx == io_commit_robIdx_5 | _GEN_493
-               | _GEN_477
-             : _GEN_493 | _GEN_477);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :219:30, :221:{31,52,77}, :222:32, :238:17, :239:25, :240:25
-      if (enqFires_5 & _GEN_344)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, :125:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      if (enqFires_5 & _GEN_328)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38, :125:38
         entries_13_robIdx <= io_enq_5_bits_robIdx;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24
-      else if (_GEN_301)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38
+      else if (_GEN_285)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:23, :121:38
         entries_13_robIdx <= io_enq_4_bits_robIdx;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24
-      else if (enqFires_3 & _GEN_230)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, :125:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      else if (enqFires_3 & _GEN_214)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38, :125:38
         entries_13_robIdx <= io_enq_3_bits_robIdx;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24
-      else if (_GEN_187)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38
+      else if (_GEN_171)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:23, :121:38
         entries_13_robIdx <= io_enq_2_bits_robIdx;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24
-      else if (enqFires_1 & _GEN_116)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, :125:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      else if (enqFires_1 & _GEN_100)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38, :125:38
         entries_13_robIdx <= io_enq_1_bits_robIdx;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24
-      else if (_GEN_74)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :121:38
+      else if (_GEN_58)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :121:38
         entries_13_robIdx <= io_enq_0_bits_robIdx;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24
-      if (_GEN_407) begin	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :137:24, :139:71, :140:31
+      if (_GEN_391) begin	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:23, :139:24, :141:71, :142:31
         entries_13_paddr <= io_write_paddr;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24
         entries_13_wmask <= io_write_wmask;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24
         entries_13_wdata <= io_write_wdata;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24
       end
-      else if (enqFires_5 ? _GEN_345 | _GEN_539 : _GEN_301 | _GEN_539) begin	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, :127:38, :129:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      else if (enqFires_5 ? _GEN_329 | _GEN_555 : _GEN_285 | _GEN_555) begin	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38, :127:38, :129:38
         entries_13_paddr <= 64'h0;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :87:20
         entries_13_wmask <= 16'h0;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :88:20
         entries_13_wdata <= 128'h0;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :89:20
       end
-      entries_14_committed <=
-        ~_GEN_510
-        & (io_commit_valid_5
-             ? entries_14_valid & entries_14_robIdx == io_commit_robIdx_5 | _GEN_494
-               | _GEN_478
-             : _GEN_494 | _GEN_478);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :219:30, :221:{31,52,77}, :222:32, :238:17, :239:25, :240:25
-      if (enqFires_5 & _GEN_347)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, :125:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      if (enqFires_5 & _GEN_331)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38, :125:38
         entries_14_robIdx <= io_enq_5_bits_robIdx;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24
-      else if (_GEN_302)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38
+      else if (_GEN_286)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:23, :121:38
         entries_14_robIdx <= io_enq_4_bits_robIdx;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24
-      else if (enqFires_3 & _GEN_233)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, :125:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      else if (enqFires_3 & _GEN_217)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38, :125:38
         entries_14_robIdx <= io_enq_3_bits_robIdx;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24
-      else if (_GEN_188)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38
+      else if (_GEN_172)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:23, :121:38
         entries_14_robIdx <= io_enq_2_bits_robIdx;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24
-      else if (enqFires_1 & _GEN_119)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, :125:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      else if (enqFires_1 & _GEN_103)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38, :125:38
         entries_14_robIdx <= io_enq_1_bits_robIdx;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24
-      else if (_GEN_75)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :121:38
+      else if (_GEN_59)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :121:38
         entries_14_robIdx <= io_enq_0_bits_robIdx;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24
-      if (_GEN_410) begin	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :137:24, :139:71, :140:31
+      if (_GEN_394) begin	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:23, :139:24, :141:71, :142:31
         entries_14_paddr <= io_write_paddr;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24
         entries_14_wmask <= io_write_wmask;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24
         entries_14_wdata <= io_write_wdata;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24
       end
-      else if (enqFires_5 ? _GEN_348 | _GEN_541 : _GEN_302 | _GEN_541) begin	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, :127:38, :129:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      else if (enqFires_5 ? _GEN_332 | _GEN_557 : _GEN_286 | _GEN_557) begin	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38, :127:38, :129:38
         entries_14_paddr <= 64'h0;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :87:20
         entries_14_wmask <= 16'h0;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :88:20
         entries_14_wdata <= 128'h0;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :89:20
       end
-      entries_15_committed <=
-        ~_GEN_511
-        & (io_commit_valid_5
-             ? entries_15_valid & entries_15_robIdx == io_commit_robIdx_5 | _GEN_495
-               | _GEN_479
-             : _GEN_495 | _GEN_479);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :219:30, :221:{31,52,77}, :222:32, :238:17, :239:25, :240:25
-      if (enqFires_5 & (&_targetPtr_T_5))	// backend/src/zaqal/backend/lsu/StoreQueue.scala:117:28, :120:26, :121:38, :125:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      if (enqFires_5 & (&_targetPtr_T_5))	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :117:28, :120:23, :121:38, :125:38
         entries_15_robIdx <= io_enq_5_bits_robIdx;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24
-      else if (_GEN_303)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38
+      else if (_GEN_287)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:23, :121:38
         entries_15_robIdx <= io_enq_4_bits_robIdx;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24
-      else if (enqFires_3 & (&_targetPtr_T_3))	// backend/src/zaqal/backend/lsu/StoreQueue.scala:117:28, :120:26, :121:38, :125:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      else if (enqFires_3 & (&_targetPtr_T_3))	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :117:28, :120:23, :121:38, :125:38
         entries_15_robIdx <= io_enq_3_bits_robIdx;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24
-      else if (_GEN_189)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38
+      else if (_GEN_173)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:23, :121:38
         entries_15_robIdx <= io_enq_2_bits_robIdx;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24
-      else if (enqFires_1 & (&_targetPtr_T_1))	// backend/src/zaqal/backend/lsu/StoreQueue.scala:117:28, :120:26, :121:38, :125:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      else if (enqFires_1 & (&_targetPtr_T_1))	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :117:28, :120:23, :121:38, :125:38
         entries_15_robIdx <= io_enq_1_bits_robIdx;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24
-      else if (_GEN_76)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:26, :121:38
+      else if (_GEN_60)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :120:23, :121:38
         entries_15_robIdx <= io_enq_0_bits_robIdx;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24
-      if (_GEN_413) begin	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :137:24, :139:71, :140:31
+      if (_GEN_397) begin	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:23, :139:24, :141:71, :142:31
         entries_15_paddr <= io_write_paddr;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24
         entries_15_wmask <= io_write_wmask;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24
         entries_15_wdata <= io_write_wdata;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24
       end
-      else if (enqFires_5 ? _GEN_350 | _GEN_543 : _GEN_303 | _GEN_543) begin	// backend/src/zaqal/backend/lsu/StoreQueue.scala:120:26, :121:38, :127:38, :129:38, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      else if (enqFires_5 ? _GEN_334 | _GEN_559 : _GEN_287 | _GEN_559) begin	// backend/src/zaqal/backend/lsu/StoreQueue.scala:112:42, :120:23, :121:38, :127:38, :129:38
         entries_15_paddr <= 64'h0;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :87:20
         entries_15_wmask <= 16'h0;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :88:20
         entries_15_wdata <= 128'h0;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:79:24, :89:20
       end
-      if (io_redirect_valid & io_redirect_is_exception)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:134:10, :249:27, :250:36, :258:14
-        enqPtr <= deqPtr;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:93:23, :94:23
-      else	// backend/src/zaqal/backend/lsu/StoreQueue.scala:134:10, :249:27, :250:36, :258:14
-        enqPtr <=
-          enqPtr
-          + {1'h0,
-             {1'h0, _GEN_172 + _totalEnq_T_1}
-               + {1'h0, _GEN_286 + _GEN_304 + {1'h0, enqFires_5}}};	// backend/src/zaqal/backend/lsu/StoreQueue.scala:81:20, :93:23, :116:52, :133:26, :134:20, src/main/scala/chisel3/util/Decoupled.scala:51:35
-      if (canDrain)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:230:81
-        deqPtr <= deqPtr + 4'h1;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:94:23, :121:38, :241:22
-      else if (~_GEN_37 & (|currentCount))	// backend/src/zaqal/backend/lsu/StoreQueue.scala:96:30, :230:34, :242:{15,32,49}
-        deqPtr <= deqPtr + 4'h1;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:94:23, :121:38, :243:22
-      else if (~(|currentCount))	// backend/src/zaqal/backend/lsu/StoreQueue.scala:96:30, :242:49
+      if (canDrain)	// backend/src/zaqal/backend/lsu/StoreQueue.scala:232:81
+        deqPtr <= deqPtr + 4'h1;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:94:23, :121:38, :245:22
+      else if (~_GEN_37 & (|currentCount))	// backend/src/zaqal/backend/lsu/StoreQueue.scala:96:30, :232:34, :246:{15,32,49}
+        deqPtr <= deqPtr + 4'h1;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:94:23, :121:38, :247:22
+      else if (~(|currentCount))	// backend/src/zaqal/backend/lsu/StoreQueue.scala:96:30, :246:49
         deqPtr <= enqPtr;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:93:23, :94:23
     end
   end // always @(posedge)
@@ -5589,13 +5607,13 @@ module StoreQueue(	// backend/src/zaqal/backend/lsu/StoreQueue.scala:20:7
       `FIRRTL_AFTER_INITIAL	// backend/src/zaqal/backend/lsu/StoreQueue.scala:20:7
     `endif // FIRRTL_AFTER_INITIAL
   `endif // ENABLE_INITIAL_REG_
-  assign io_enq_0_ready = canEnq;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:20:7, :111:46
-  assign io_enq_1_ready = canEnq;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:20:7, :111:46
-  assign io_enq_2_ready = canEnq;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:20:7, :111:46
-  assign io_enq_3_ready = canEnq;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:20:7, :111:46
-  assign io_enq_4_ready = canEnq;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:20:7, :111:46
-  assign io_enq_5_ready = canEnq;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:20:7, :111:46
-  assign io_stlf_resp_0_hit = winner_res_12_valid | winner_res_13_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:20:7, :196:29
+  assign io_enq_0_ready = canEnq;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:20:7, :111:63
+  assign io_enq_1_ready = canEnq;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:20:7, :111:63
+  assign io_enq_2_ready = canEnq;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:20:7, :111:63
+  assign io_enq_3_ready = canEnq;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:20:7, :111:63
+  assign io_enq_4_ready = canEnq;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:20:7, :111:63
+  assign io_enq_5_ready = canEnq;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:20:7, :111:63
+  assign io_stlf_resp_0_hit = winner_res_12_valid | winner_res_13_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:20:7, :198:29
   assign io_stlf_resp_0_wdata =
     {winner_younger_14_valid & winner_younger_14_wmask[15]
        ? winner_younger_14_wdata[127:120]
@@ -5676,11 +5694,11 @@ module StoreQueue(	// backend/src/zaqal/backend/lsu/StoreQueue.scala:20:7
        ? winner_younger_14_wdata[7:0]
        : winner_older_14_valid & winner_older_14_wmask[0]
            ? winner_older_14_wdata[7:0]
-           : 8'h0};	// backend/src/zaqal/backend/lsu/StoreQueue.scala:20:7, :193:24, :194:24, :202:{46,62}, :203:{44,58}, :204:45, :205:43, :206:{12,48}, :208:24
+           : 8'h0};	// backend/src/zaqal/backend/lsu/StoreQueue.scala:20:7, :195:24, :196:24, :204:{46,62}, :205:{44,58}, :206:45, :207:43, :208:{12,48}, :210:24
   assign io_stlf_resp_0_wmask =
     (winner_older_14_valid ? winner_older_14_wmask : 16'h0)
-    | (winner_younger_14_valid ? winner_younger_14_wmask : 16'h0);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:20:7, :88:20, :193:24, :194:24, :199:{24,56,61}
-  assign io_stlf_resp_1_hit = winner_res_26_valid | winner_res_27_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:20:7, :196:29
+    | (winner_younger_14_valid ? winner_younger_14_wmask : 16'h0);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:20:7, :88:20, :195:24, :196:24, :201:{24,56,61}
+  assign io_stlf_resp_1_hit = winner_res_26_valid | winner_res_27_valid;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:20:7, :198:29
   assign io_stlf_resp_1_wdata =
     {winner_younger_29_valid & winner_younger_29_wmask[15]
        ? winner_younger_29_wdata[127:120]
@@ -5761,13 +5779,13 @@ module StoreQueue(	// backend/src/zaqal/backend/lsu/StoreQueue.scala:20:7
        ? winner_younger_29_wdata[7:0]
        : winner_older_29_valid & winner_older_29_wmask[0]
            ? winner_older_29_wdata[7:0]
-           : 8'h0};	// backend/src/zaqal/backend/lsu/StoreQueue.scala:20:7, :193:24, :194:24, :202:{46,62}, :203:{44,58}, :204:45, :205:43, :206:{12,48}, :208:24
+           : 8'h0};	// backend/src/zaqal/backend/lsu/StoreQueue.scala:20:7, :195:24, :196:24, :204:{46,62}, :205:{44,58}, :206:45, :207:43, :208:{12,48}, :210:24
   assign io_stlf_resp_1_wmask =
     (winner_older_29_valid ? winner_older_29_wmask : 16'h0)
-    | (winner_younger_29_valid ? winner_younger_29_wmask : 16'h0);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:20:7, :88:20, :193:24, :194:24, :199:{24,56,61}
-  assign io_drain_valid = canDrain;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:20:7, :230:81
-  assign io_drain_paddr = _GEN_41[deqPtr];	// backend/src/zaqal/backend/lsu/StoreQueue.scala:20:7, :94:23, :230:34
-  assign io_drain_wmask = _GEN_42[deqPtr];	// backend/src/zaqal/backend/lsu/StoreQueue.scala:20:7, :94:23, :230:34
-  assign io_drain_wdata = _GEN_43[deqPtr];	// backend/src/zaqal/backend/lsu/StoreQueue.scala:20:7, :94:23, :230:34
+    | (winner_younger_29_valid ? winner_younger_29_wmask : 16'h0);	// backend/src/zaqal/backend/lsu/StoreQueue.scala:20:7, :88:20, :195:24, :196:24, :201:{24,56,61}
+  assign io_drain_valid = canDrain;	// backend/src/zaqal/backend/lsu/StoreQueue.scala:20:7, :232:81
+  assign io_drain_paddr = _GEN_41[deqPtr];	// backend/src/zaqal/backend/lsu/StoreQueue.scala:20:7, :94:23, :232:34
+  assign io_drain_wmask = _GEN_42[deqPtr];	// backend/src/zaqal/backend/lsu/StoreQueue.scala:20:7, :94:23, :232:34
+  assign io_drain_wdata = _GEN_43[deqPtr];	// backend/src/zaqal/backend/lsu/StoreQueue.scala:20:7, :94:23, :232:34
 endmodule
 
