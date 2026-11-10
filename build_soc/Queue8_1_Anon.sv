@@ -75,21 +75,18 @@ module Queue8_1_Anon(	// src/main/scala/chisel3/util/Decoupled.scala:243:7
   input         io_deq_ready,	// src/main/scala/chisel3/util/Decoupled.scala:255:14
   output        io_deq_valid,	// src/main/scala/chisel3/util/Decoupled.scala:255:14
   output [63:0] io_deq_bits_addr,	// src/main/scala/chisel3/util/Decoupled.scala:255:14
-                io_deq_bits_data,	// src/main/scala/chisel3/util/Decoupled.scala:255:14
-  output        io_deq_bits_is_write,	// src/main/scala/chisel3/util/Decoupled.scala:255:14
-  output [7:0]  io_deq_bits_load_id	// src/main/scala/chisel3/util/Decoupled.scala:255:14
+  output        io_deq_bits_is_write	// src/main/scala/chisel3/util/Decoupled.scala:255:14
 );
 
-  wire [136:0] _ram_ext_R0_data;	// src/main/scala/chisel3/util/Decoupled.scala:256:91
-  reg  [2:0]   enq_ptr_value;	// src/main/scala/chisel3/util/Counter.scala:61:40
-  reg  [2:0]   deq_ptr_value;	// src/main/scala/chisel3/util/Counter.scala:61:40
-  reg          maybe_full;	// src/main/scala/chisel3/util/Decoupled.scala:259:27
-  wire         ptr_match = enq_ptr_value == deq_ptr_value;	// src/main/scala/chisel3/util/Counter.scala:61:40, src/main/scala/chisel3/util/Decoupled.scala:260:33
-  wire         empty = ptr_match & ~maybe_full;	// src/main/scala/chisel3/util/Decoupled.scala:259:27, :260:33, :261:{25,28}
-  wire         io_deq_valid_0 = io_enq_valid | ~empty;	// src/main/scala/chisel3/util/Decoupled.scala:261:25, :285:{16,19}, :297:{24,39}
-  wire         do_deq = ~empty & io_deq_ready & io_deq_valid_0;	// src/main/scala/chisel3/util/Decoupled.scala:261:25, :264:27, :285:16, :293:17, :297:{24,39}, :298:17, :299:19, :300:14
-  wire         do_enq =
-    ~(empty & io_deq_ready) & ~(ptr_match & maybe_full) & io_enq_valid;	// src/main/scala/chisel3/util/Decoupled.scala:259:27, :260:33, :261:25, :262:24, :263:27, :286:19, :298:17, :301:{26,35}
+  wire [64:0] _ram_ext_R0_data;	// src/main/scala/chisel3/util/Decoupled.scala:256:91
+  reg  [2:0]  enq_ptr_value;	// src/main/scala/chisel3/util/Counter.scala:61:40
+  reg  [2:0]  deq_ptr_value;	// src/main/scala/chisel3/util/Counter.scala:61:40
+  reg         maybe_full;	// src/main/scala/chisel3/util/Decoupled.scala:259:27
+  wire        ptr_match = enq_ptr_value == deq_ptr_value;	// src/main/scala/chisel3/util/Counter.scala:61:40, src/main/scala/chisel3/util/Decoupled.scala:260:33
+  wire        empty = ptr_match & ~maybe_full;	// src/main/scala/chisel3/util/Decoupled.scala:259:27, :260:33, :261:{25,28}
+  wire        io_deq_valid_0 = io_enq_valid | ~empty;	// src/main/scala/chisel3/util/Decoupled.scala:261:25, :285:{16,19}, :297:{24,39}
+  wire        do_deq = ~empty & io_deq_ready & io_deq_valid_0;	// src/main/scala/chisel3/util/Decoupled.scala:261:25, :264:27, :285:16, :293:17, :297:{24,39}, :298:17, :299:19, :300:14
+  wire        do_enq = ~(empty & io_deq_ready) & ~(ptr_match & maybe_full) & io_enq_valid;	// src/main/scala/chisel3/util/Decoupled.scala:259:27, :260:33, :261:25, :262:24, :263:27, :286:19, :298:17, :301:{26,35}
   always @(posedge clock) begin	// src/main/scala/chisel3/util/Decoupled.scala:243:7
     if (reset) begin	// src/main/scala/chisel3/util/Decoupled.scala:243:7
       enq_ptr_value <= 3'h0;	// src/main/scala/chisel3/util/Counter.scala:61:40
@@ -125,7 +122,7 @@ module Queue8_1_Anon(	// src/main/scala/chisel3/util/Decoupled.scala:243:7
       `FIRRTL_AFTER_INITIAL	// src/main/scala/chisel3/util/Decoupled.scala:243:7
     `endif // FIRRTL_AFTER_INITIAL
   `endif // ENABLE_INITIAL_REG_
-  ram_8x137 ram_ext (	// src/main/scala/chisel3/util/Decoupled.scala:256:91
+  ram_8x65 ram_ext (	// src/main/scala/chisel3/util/Decoupled.scala:256:91
     .R0_addr (deq_ptr_value),	// src/main/scala/chisel3/util/Counter.scala:61:40
     .R0_en   (1'h1),	// src/main/scala/chisel3/util/Decoupled.scala:243:7
     .R0_clk  (clock),
@@ -133,12 +130,10 @@ module Queue8_1_Anon(	// src/main/scala/chisel3/util/Decoupled.scala:243:7
     .W0_addr (enq_ptr_value),	// src/main/scala/chisel3/util/Counter.scala:61:40
     .W0_en   (do_enq),	// src/main/scala/chisel3/util/Decoupled.scala:263:27, :298:17, :301:{26,35}
     .W0_clk  (clock),
-    .W0_data ({io_enq_bits_load_id, 65'h0, io_enq_bits_addr})	// src/main/scala/chisel3/util/Decoupled.scala:256:91
+    .W0_data ({1'h0, io_enq_bits_addr})	// src/main/scala/chisel3/util/Decoupled.scala:243:7, :256:91
   );
   assign io_deq_valid = io_deq_valid_0;	// src/main/scala/chisel3/util/Decoupled.scala:243:7, :285:16, :297:{24,39}
   assign io_deq_bits_addr = empty ? io_enq_bits_addr : _ram_ext_R0_data[63:0];	// src/main/scala/chisel3/util/Decoupled.scala:243:7, :256:91, :261:25, :293:17, :298:17, :299:19
-  assign io_deq_bits_data = empty ? 64'h0 : _ram_ext_R0_data[127:64];	// src/main/scala/chisel3/util/Decoupled.scala:243:7, :255:14, :256:91, :261:25, :293:17, :298:17, :299:19
-  assign io_deq_bits_is_write = ~empty & _ram_ext_R0_data[128];	// src/main/scala/chisel3/util/Decoupled.scala:243:7, :256:91, :261:25, :293:17, :298:17, :299:19
-  assign io_deq_bits_load_id = empty ? io_enq_bits_load_id : _ram_ext_R0_data[136:129];	// src/main/scala/chisel3/util/Decoupled.scala:243:7, :256:91, :261:25, :293:17, :298:17, :299:19
+  assign io_deq_bits_is_write = ~empty & _ram_ext_R0_data[64];	// src/main/scala/chisel3/util/Decoupled.scala:243:7, :256:91, :261:25, :293:17, :298:17, :299:19
 endmodule
 

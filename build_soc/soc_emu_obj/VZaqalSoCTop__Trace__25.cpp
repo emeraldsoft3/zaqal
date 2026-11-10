@@ -45,4 +45,9 @@ void VZaqalSoCTop___024root__trace_cleanup(void* voidSelf, VerilatedVcd* /*unuse
     vlSymsp->TOP.__Vm_traceActivity[0x1fU] = 0U;
     vlSymsp->TOP.__Vm_traceActivity[0x20U] = 0U;
     vlSymsp->TOP.__Vm_traceActivity[0x21U] = 0U;
+    vlSymsp->TOP.__Vm_traceActivity[0x22U] = 0U;
+    vlSymsp->TOP.__Vm_traceActivity[0x23U] = 0U;
+    vlSymsp->TOP.__Vm_traceActivity[0x24U] = 0U;
+    vlSymsp->TOP.__Vm_traceActivity[0x25U] = 0U;
+    vlSymsp->TOP.__Vm_traceActivity[0x26U] = 0U;
 }

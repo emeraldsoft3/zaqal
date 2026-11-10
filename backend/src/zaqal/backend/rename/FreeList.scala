@@ -98,12 +98,13 @@ class FreeList(val numPhyRegs: Int, val numLogicalRegs: Int)(implicit val p: Par
   io.isFull := snapshots.io.isFull
 
   // 3. State Update with Fast One-Hot Multiplexing (Mux1H)
-  tailPtr := wrapAdd(tailPtr, numFree)
+  val nextTailPtr = wrapAdd(tailPtr, numFree)
+  tailPtr := nextTailPtr
   when (io.redirect) {
-    // Restore speculative headPtr from snapshot or reset to tailPtr
+    // Restore speculative headPtr from snapshot or reset to nextTailPtr
     val restoreOH = UIntToOH(io.snptRestoreIdx, renameSnapshotNum)
     val restoredSnpt = Mux1H(restoreOH, snapshots.io.snapshots)
-    headPtr := Mux(io.useSnapshot, restoredSnpt.headPtr, tailPtr)
+    headPtr := Mux(io.useSnapshot, restoredSnpt.headPtr, nextTailPtr)
   } .otherwise {
     val numFiredReq = PopCount(io.allocateFire)
     val actualAlloc = Mux(io.doAllocate && io.canAllocate, numFiredReq, 0.U)

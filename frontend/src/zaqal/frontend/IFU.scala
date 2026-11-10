@@ -20,9 +20,9 @@ class IFU(implicit val p: Parameters) extends Module with HasZaqalParameter {
   val cross_line_pc  = RegInit(0.U(xLen.W))
   val has_cross_half = RegInit(false.B)
 
-  val is_cross_match = has_cross_half && (io.fetch_req.bits.pc === cross_line_pc)
+  val is_cross_match = has_cross_half && io.fetch_req.valid && io.fetch_req.bits.mask(0) && (io.fetch_req.bits.pc === cross_line_pc)
 
-  when(io.flush || (has_cross_half && !is_cross_match)) {
+  when(io.flush) {
     has_cross_half := false.B
   }
 

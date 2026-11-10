@@ -70,8 +70,6 @@ module FusionDecoder(	// backend/src/zaqal/backend/decode/FusionDecoder.scala:25
   input  [63:0] io_in_0_uop_pc,	// backend/src/zaqal/backend/decode/FusionDecoder.scala:26:14
   input  [31:0] io_in_0_uop_inst_raw,	// backend/src/zaqal/backend/decode/FusionDecoder.scala:26:14
   input         io_in_0_uop_pre_is_rvc,	// backend/src/zaqal/backend/decode/FusionDecoder.scala:26:14
-                io_in_0_uop_pre_is_call,	// backend/src/zaqal/backend/decode/FusionDecoder.scala:26:14
-                io_in_0_uop_pre_is_ret,	// backend/src/zaqal/backend/decode/FusionDecoder.scala:26:14
   input  [5:0]  io_in_0_uop_ftqPtr,	// backend/src/zaqal/backend/decode/FusionDecoder.scala:26:14
   input         io_in_0_uop_is_predicted_taken,	// backend/src/zaqal/backend/decode/FusionDecoder.scala:26:14
   input  [63:0] io_in_0_uop_predicted_target,	// backend/src/zaqal/backend/decode/FusionDecoder.scala:26:14
@@ -280,13 +278,9 @@ module FusionDecoder(	// backend/src/zaqal/backend/decode/FusionDecoder.scala:25
   input  [2:0]  io_in_0_decode_vec_funct3,	// backend/src/zaqal/backend/decode/FusionDecoder.scala:26:14
   input  [5:0]  io_in_0_decode_vec_funct6,	// backend/src/zaqal/backend/decode/FusionDecoder.scala:26:14
   input  [4:0]  io_in_0_decode_vec_simm5,	// backend/src/zaqal/backend/decode/FusionDecoder.scala:26:14
-  input  [5:0]  io_in_0_ssid,	// backend/src/zaqal/backend/decode/FusionDecoder.scala:26:14
-  input         io_in_0_ssid_valid,	// backend/src/zaqal/backend/decode/FusionDecoder.scala:26:14
   input  [63:0] io_in_1_uop_pc,	// backend/src/zaqal/backend/decode/FusionDecoder.scala:26:14
   input  [31:0] io_in_1_uop_inst_raw,	// backend/src/zaqal/backend/decode/FusionDecoder.scala:26:14
   input         io_in_1_uop_pre_is_rvc,	// backend/src/zaqal/backend/decode/FusionDecoder.scala:26:14
-                io_in_1_uop_pre_is_call,	// backend/src/zaqal/backend/decode/FusionDecoder.scala:26:14
-                io_in_1_uop_pre_is_ret,	// backend/src/zaqal/backend/decode/FusionDecoder.scala:26:14
   input  [5:0]  io_in_1_uop_ftqPtr,	// backend/src/zaqal/backend/decode/FusionDecoder.scala:26:14
   input         io_in_1_uop_is_predicted_taken,	// backend/src/zaqal/backend/decode/FusionDecoder.scala:26:14
   input  [63:0] io_in_1_uop_predicted_target,	// backend/src/zaqal/backend/decode/FusionDecoder.scala:26:14
@@ -495,13 +489,9 @@ module FusionDecoder(	// backend/src/zaqal/backend/decode/FusionDecoder.scala:25
   input  [2:0]  io_in_1_decode_vec_funct3,	// backend/src/zaqal/backend/decode/FusionDecoder.scala:26:14
   input  [5:0]  io_in_1_decode_vec_funct6,	// backend/src/zaqal/backend/decode/FusionDecoder.scala:26:14
   input  [4:0]  io_in_1_decode_vec_simm5,	// backend/src/zaqal/backend/decode/FusionDecoder.scala:26:14
-  input  [5:0]  io_in_1_ssid,	// backend/src/zaqal/backend/decode/FusionDecoder.scala:26:14
-  input         io_in_1_ssid_valid,	// backend/src/zaqal/backend/decode/FusionDecoder.scala:26:14
   input  [63:0] io_in_2_uop_pc,	// backend/src/zaqal/backend/decode/FusionDecoder.scala:26:14
   input  [31:0] io_in_2_uop_inst_raw,	// backend/src/zaqal/backend/decode/FusionDecoder.scala:26:14
   input         io_in_2_uop_pre_is_rvc,	// backend/src/zaqal/backend/decode/FusionDecoder.scala:26:14
-                io_in_2_uop_pre_is_call,	// backend/src/zaqal/backend/decode/FusionDecoder.scala:26:14
-                io_in_2_uop_pre_is_ret,	// backend/src/zaqal/backend/decode/FusionDecoder.scala:26:14
   input  [5:0]  io_in_2_uop_ftqPtr,	// backend/src/zaqal/backend/decode/FusionDecoder.scala:26:14
   input         io_in_2_uop_is_predicted_taken,	// backend/src/zaqal/backend/decode/FusionDecoder.scala:26:14
   input  [63:0] io_in_2_uop_predicted_target,	// backend/src/zaqal/backend/decode/FusionDecoder.scala:26:14
@@ -710,13 +700,9 @@ module FusionDecoder(	// backend/src/zaqal/backend/decode/FusionDecoder.scala:25
   input  [2:0]  io_in_2_decode_vec_funct3,	// backend/src/zaqal/backend/decode/FusionDecoder.scala:26:14
   input  [5:0]  io_in_2_decode_vec_funct6,	// backend/src/zaqal/backend/decode/FusionDecoder.scala:26:14
   input  [4:0]  io_in_2_decode_vec_simm5,	// backend/src/zaqal/backend/decode/FusionDecoder.scala:26:14
-  input  [5:0]  io_in_2_ssid,	// backend/src/zaqal/backend/decode/FusionDecoder.scala:26:14
-  input         io_in_2_ssid_valid,	// backend/src/zaqal/backend/decode/FusionDecoder.scala:26:14
   input  [63:0] io_in_3_uop_pc,	// backend/src/zaqal/backend/decode/FusionDecoder.scala:26:14
   input  [31:0] io_in_3_uop_inst_raw,	// backend/src/zaqal/backend/decode/FusionDecoder.scala:26:14
   input         io_in_3_uop_pre_is_rvc,	// backend/src/zaqal/backend/decode/FusionDecoder.scala:26:14
-                io_in_3_uop_pre_is_call,	// backend/src/zaqal/backend/decode/FusionDecoder.scala:26:14
-                io_in_3_uop_pre_is_ret,	// backend/src/zaqal/backend/decode/FusionDecoder.scala:26:14
   input  [5:0]  io_in_3_uop_ftqPtr,	// backend/src/zaqal/backend/decode/FusionDecoder.scala:26:14
   input         io_in_3_uop_is_predicted_taken,	// backend/src/zaqal/backend/decode/FusionDecoder.scala:26:14
   input  [63:0] io_in_3_uop_predicted_target,	// backend/src/zaqal/backend/decode/FusionDecoder.scala:26:14
@@ -925,13 +911,9 @@ module FusionDecoder(	// backend/src/zaqal/backend/decode/FusionDecoder.scala:25
   input  [2:0]  io_in_3_decode_vec_funct3,	// backend/src/zaqal/backend/decode/FusionDecoder.scala:26:14
   input  [5:0]  io_in_3_decode_vec_funct6,	// backend/src/zaqal/backend/decode/FusionDecoder.scala:26:14
   input  [4:0]  io_in_3_decode_vec_simm5,	// backend/src/zaqal/backend/decode/FusionDecoder.scala:26:14
-  input  [5:0]  io_in_3_ssid,	// backend/src/zaqal/backend/decode/FusionDecoder.scala:26:14
-  input         io_in_3_ssid_valid,	// backend/src/zaqal/backend/decode/FusionDecoder.scala:26:14
   input  [63:0] io_in_4_uop_pc,	// backend/src/zaqal/backend/decode/FusionDecoder.scala:26:14
   input  [31:0] io_in_4_uop_inst_raw,	// backend/src/zaqal/backend/decode/FusionDecoder.scala:26:14
   input         io_in_4_uop_pre_is_rvc,	// backend/src/zaqal/backend/decode/FusionDecoder.scala:26:14
-                io_in_4_uop_pre_is_call,	// backend/src/zaqal/backend/decode/FusionDecoder.scala:26:14
-                io_in_4_uop_pre_is_ret,	// backend/src/zaqal/backend/decode/FusionDecoder.scala:26:14
   input  [5:0]  io_in_4_uop_ftqPtr,	// backend/src/zaqal/backend/decode/FusionDecoder.scala:26:14
   input         io_in_4_uop_is_predicted_taken,	// backend/src/zaqal/backend/decode/FusionDecoder.scala:26:14
   input  [63:0] io_in_4_uop_predicted_target,	// backend/src/zaqal/backend/decode/FusionDecoder.scala:26:14
@@ -1140,13 +1122,9 @@ module FusionDecoder(	// backend/src/zaqal/backend/decode/FusionDecoder.scala:25
   input  [2:0]  io_in_4_decode_vec_funct3,	// backend/src/zaqal/backend/decode/FusionDecoder.scala:26:14
   input  [5:0]  io_in_4_decode_vec_funct6,	// backend/src/zaqal/backend/decode/FusionDecoder.scala:26:14
   input  [4:0]  io_in_4_decode_vec_simm5,	// backend/src/zaqal/backend/decode/FusionDecoder.scala:26:14
-  input  [5:0]  io_in_4_ssid,	// backend/src/zaqal/backend/decode/FusionDecoder.scala:26:14
-  input         io_in_4_ssid_valid,	// backend/src/zaqal/backend/decode/FusionDecoder.scala:26:14
   input  [63:0] io_in_5_uop_pc,	// backend/src/zaqal/backend/decode/FusionDecoder.scala:26:14
   input  [31:0] io_in_5_uop_inst_raw,	// backend/src/zaqal/backend/decode/FusionDecoder.scala:26:14
   input         io_in_5_uop_pre_is_rvc,	// backend/src/zaqal/backend/decode/FusionDecoder.scala:26:14
-                io_in_5_uop_pre_is_call,	// backend/src/zaqal/backend/decode/FusionDecoder.scala:26:14
-                io_in_5_uop_pre_is_ret,	// backend/src/zaqal/backend/decode/FusionDecoder.scala:26:14
   input  [5:0]  io_in_5_uop_ftqPtr,	// backend/src/zaqal/backend/decode/FusionDecoder.scala:26:14
   input         io_in_5_uop_is_predicted_taken,	// backend/src/zaqal/backend/decode/FusionDecoder.scala:26:14
   input  [63:0] io_in_5_uop_predicted_target,	// backend/src/zaqal/backend/decode/FusionDecoder.scala:26:14
@@ -1355,13 +1333,9 @@ module FusionDecoder(	// backend/src/zaqal/backend/decode/FusionDecoder.scala:25
   input  [2:0]  io_in_5_decode_vec_funct3,	// backend/src/zaqal/backend/decode/FusionDecoder.scala:26:14
   input  [5:0]  io_in_5_decode_vec_funct6,	// backend/src/zaqal/backend/decode/FusionDecoder.scala:26:14
   input  [4:0]  io_in_5_decode_vec_simm5,	// backend/src/zaqal/backend/decode/FusionDecoder.scala:26:14
-  input  [5:0]  io_in_5_ssid,	// backend/src/zaqal/backend/decode/FusionDecoder.scala:26:14
-  input         io_in_5_ssid_valid,	// backend/src/zaqal/backend/decode/FusionDecoder.scala:26:14
   output [63:0] io_out_0_uop_pc,	// backend/src/zaqal/backend/decode/FusionDecoder.scala:26:14
   output [31:0] io_out_0_uop_inst_raw,	// backend/src/zaqal/backend/decode/FusionDecoder.scala:26:14
   output        io_out_0_uop_pre_is_rvc,	// backend/src/zaqal/backend/decode/FusionDecoder.scala:26:14
-                io_out_0_uop_pre_is_call,	// backend/src/zaqal/backend/decode/FusionDecoder.scala:26:14
-                io_out_0_uop_pre_is_ret,	// backend/src/zaqal/backend/decode/FusionDecoder.scala:26:14
   output [5:0]  io_out_0_uop_ftqPtr,	// backend/src/zaqal/backend/decode/FusionDecoder.scala:26:14
   output        io_out_0_uop_is_predicted_taken,	// backend/src/zaqal/backend/decode/FusionDecoder.scala:26:14
   output [63:0] io_out_0_uop_predicted_target,	// backend/src/zaqal/backend/decode/FusionDecoder.scala:26:14
@@ -1570,13 +1544,9 @@ module FusionDecoder(	// backend/src/zaqal/backend/decode/FusionDecoder.scala:25
   output [2:0]  io_out_0_decode_vec_funct3,	// backend/src/zaqal/backend/decode/FusionDecoder.scala:26:14
   output [5:0]  io_out_0_decode_vec_funct6,	// backend/src/zaqal/backend/decode/FusionDecoder.scala:26:14
   output [4:0]  io_out_0_decode_vec_simm5,	// backend/src/zaqal/backend/decode/FusionDecoder.scala:26:14
-  output [5:0]  io_out_0_ssid,	// backend/src/zaqal/backend/decode/FusionDecoder.scala:26:14
-  output        io_out_0_ssid_valid,	// backend/src/zaqal/backend/decode/FusionDecoder.scala:26:14
   output [63:0] io_out_1_uop_pc,	// backend/src/zaqal/backend/decode/FusionDecoder.scala:26:14
   output [31:0] io_out_1_uop_inst_raw,	// backend/src/zaqal/backend/decode/FusionDecoder.scala:26:14
   output        io_out_1_uop_pre_is_rvc,	// backend/src/zaqal/backend/decode/FusionDecoder.scala:26:14
-                io_out_1_uop_pre_is_call,	// backend/src/zaqal/backend/decode/FusionDecoder.scala:26:14
-                io_out_1_uop_pre_is_ret,	// backend/src/zaqal/backend/decode/FusionDecoder.scala:26:14
   output [5:0]  io_out_1_uop_ftqPtr,	// backend/src/zaqal/backend/decode/FusionDecoder.scala:26:14
   output        io_out_1_uop_is_predicted_taken,	// backend/src/zaqal/backend/decode/FusionDecoder.scala:26:14
   output [63:0] io_out_1_uop_predicted_target,	// backend/src/zaqal/backend/decode/FusionDecoder.scala:26:14
@@ -1785,13 +1755,9 @@ module FusionDecoder(	// backend/src/zaqal/backend/decode/FusionDecoder.scala:25
   output [2:0]  io_out_1_decode_vec_funct3,	// backend/src/zaqal/backend/decode/FusionDecoder.scala:26:14
   output [5:0]  io_out_1_decode_vec_funct6,	// backend/src/zaqal/backend/decode/FusionDecoder.scala:26:14
   output [4:0]  io_out_1_decode_vec_simm5,	// backend/src/zaqal/backend/decode/FusionDecoder.scala:26:14
-  output [5:0]  io_out_1_ssid,	// backend/src/zaqal/backend/decode/FusionDecoder.scala:26:14
-  output        io_out_1_ssid_valid,	// backend/src/zaqal/backend/decode/FusionDecoder.scala:26:14
   output [63:0] io_out_2_uop_pc,	// backend/src/zaqal/backend/decode/FusionDecoder.scala:26:14
   output [31:0] io_out_2_uop_inst_raw,	// backend/src/zaqal/backend/decode/FusionDecoder.scala:26:14
   output        io_out_2_uop_pre_is_rvc,	// backend/src/zaqal/backend/decode/FusionDecoder.scala:26:14
-                io_out_2_uop_pre_is_call,	// backend/src/zaqal/backend/decode/FusionDecoder.scala:26:14
-                io_out_2_uop_pre_is_ret,	// backend/src/zaqal/backend/decode/FusionDecoder.scala:26:14
   output [5:0]  io_out_2_uop_ftqPtr,	// backend/src/zaqal/backend/decode/FusionDecoder.scala:26:14
   output        io_out_2_uop_is_predicted_taken,	// backend/src/zaqal/backend/decode/FusionDecoder.scala:26:14
   output [63:0] io_out_2_uop_predicted_target,	// backend/src/zaqal/backend/decode/FusionDecoder.scala:26:14
@@ -2000,13 +1966,9 @@ module FusionDecoder(	// backend/src/zaqal/backend/decode/FusionDecoder.scala:25
   output [2:0]  io_out_2_decode_vec_funct3,	// backend/src/zaqal/backend/decode/FusionDecoder.scala:26:14
   output [5:0]  io_out_2_decode_vec_funct6,	// backend/src/zaqal/backend/decode/FusionDecoder.scala:26:14
   output [4:0]  io_out_2_decode_vec_simm5,	// backend/src/zaqal/backend/decode/FusionDecoder.scala:26:14
-  output [5:0]  io_out_2_ssid,	// backend/src/zaqal/backend/decode/FusionDecoder.scala:26:14
-  output        io_out_2_ssid_valid,	// backend/src/zaqal/backend/decode/FusionDecoder.scala:26:14
   output [63:0] io_out_3_uop_pc,	// backend/src/zaqal/backend/decode/FusionDecoder.scala:26:14
   output [31:0] io_out_3_uop_inst_raw,	// backend/src/zaqal/backend/decode/FusionDecoder.scala:26:14
   output        io_out_3_uop_pre_is_rvc,	// backend/src/zaqal/backend/decode/FusionDecoder.scala:26:14
-                io_out_3_uop_pre_is_call,	// backend/src/zaqal/backend/decode/FusionDecoder.scala:26:14
-                io_out_3_uop_pre_is_ret,	// backend/src/zaqal/backend/decode/FusionDecoder.scala:26:14
   output [5:0]  io_out_3_uop_ftqPtr,	// backend/src/zaqal/backend/decode/FusionDecoder.scala:26:14
   output        io_out_3_uop_is_predicted_taken,	// backend/src/zaqal/backend/decode/FusionDecoder.scala:26:14
   output [63:0] io_out_3_uop_predicted_target,	// backend/src/zaqal/backend/decode/FusionDecoder.scala:26:14
@@ -2215,13 +2177,9 @@ module FusionDecoder(	// backend/src/zaqal/backend/decode/FusionDecoder.scala:25
   output [2:0]  io_out_3_decode_vec_funct3,	// backend/src/zaqal/backend/decode/FusionDecoder.scala:26:14
   output [5:0]  io_out_3_decode_vec_funct6,	// backend/src/zaqal/backend/decode/FusionDecoder.scala:26:14
   output [4:0]  io_out_3_decode_vec_simm5,	// backend/src/zaqal/backend/decode/FusionDecoder.scala:26:14
-  output [5:0]  io_out_3_ssid,	// backend/src/zaqal/backend/decode/FusionDecoder.scala:26:14
-  output        io_out_3_ssid_valid,	// backend/src/zaqal/backend/decode/FusionDecoder.scala:26:14
   output [63:0] io_out_4_uop_pc,	// backend/src/zaqal/backend/decode/FusionDecoder.scala:26:14
   output [31:0] io_out_4_uop_inst_raw,	// backend/src/zaqal/backend/decode/FusionDecoder.scala:26:14
   output        io_out_4_uop_pre_is_rvc,	// backend/src/zaqal/backend/decode/FusionDecoder.scala:26:14
-                io_out_4_uop_pre_is_call,	// backend/src/zaqal/backend/decode/FusionDecoder.scala:26:14
-                io_out_4_uop_pre_is_ret,	// backend/src/zaqal/backend/decode/FusionDecoder.scala:26:14
   output [5:0]  io_out_4_uop_ftqPtr,	// backend/src/zaqal/backend/decode/FusionDecoder.scala:26:14
   output        io_out_4_uop_is_predicted_taken,	// backend/src/zaqal/backend/decode/FusionDecoder.scala:26:14
   output [63:0] io_out_4_uop_predicted_target,	// backend/src/zaqal/backend/decode/FusionDecoder.scala:26:14
@@ -2430,13 +2388,9 @@ module FusionDecoder(	// backend/src/zaqal/backend/decode/FusionDecoder.scala:25
   output [2:0]  io_out_4_decode_vec_funct3,	// backend/src/zaqal/backend/decode/FusionDecoder.scala:26:14
   output [5:0]  io_out_4_decode_vec_funct6,	// backend/src/zaqal/backend/decode/FusionDecoder.scala:26:14
   output [4:0]  io_out_4_decode_vec_simm5,	// backend/src/zaqal/backend/decode/FusionDecoder.scala:26:14
-  output [5:0]  io_out_4_ssid,	// backend/src/zaqal/backend/decode/FusionDecoder.scala:26:14
-  output        io_out_4_ssid_valid,	// backend/src/zaqal/backend/decode/FusionDecoder.scala:26:14
   output [63:0] io_out_5_uop_pc,	// backend/src/zaqal/backend/decode/FusionDecoder.scala:26:14
   output [31:0] io_out_5_uop_inst_raw,	// backend/src/zaqal/backend/decode/FusionDecoder.scala:26:14
   output        io_out_5_uop_pre_is_rvc,	// backend/src/zaqal/backend/decode/FusionDecoder.scala:26:14
-                io_out_5_uop_pre_is_call,	// backend/src/zaqal/backend/decode/FusionDecoder.scala:26:14
-                io_out_5_uop_pre_is_ret,	// backend/src/zaqal/backend/decode/FusionDecoder.scala:26:14
   output [5:0]  io_out_5_uop_ftqPtr,	// backend/src/zaqal/backend/decode/FusionDecoder.scala:26:14
   output        io_out_5_uop_is_predicted_taken,	// backend/src/zaqal/backend/decode/FusionDecoder.scala:26:14
   output [63:0] io_out_5_uop_predicted_target,	// backend/src/zaqal/backend/decode/FusionDecoder.scala:26:14
@@ -2644,16 +2598,12 @@ module FusionDecoder(	// backend/src/zaqal/backend/decode/FusionDecoder.scala:25
                 io_out_5_decode_is_vec_strided,	// backend/src/zaqal/backend/decode/FusionDecoder.scala:26:14
   output [2:0]  io_out_5_decode_vec_funct3,	// backend/src/zaqal/backend/decode/FusionDecoder.scala:26:14
   output [5:0]  io_out_5_decode_vec_funct6,	// backend/src/zaqal/backend/decode/FusionDecoder.scala:26:14
-  output [4:0]  io_out_5_decode_vec_simm5,	// backend/src/zaqal/backend/decode/FusionDecoder.scala:26:14
-  output [5:0]  io_out_5_ssid,	// backend/src/zaqal/backend/decode/FusionDecoder.scala:26:14
-  output        io_out_5_ssid_valid	// backend/src/zaqal/backend/decode/FusionDecoder.scala:26:14
+  output [4:0]  io_out_5_decode_vec_simm5	// backend/src/zaqal/backend/decode/FusionDecoder.scala:26:14
 );
 
   assign io_out_0_uop_pc = io_in_0_uop_pc;	// backend/src/zaqal/backend/decode/FusionDecoder.scala:25:7
   assign io_out_0_uop_inst_raw = io_in_0_uop_inst_raw;	// backend/src/zaqal/backend/decode/FusionDecoder.scala:25:7
   assign io_out_0_uop_pre_is_rvc = io_in_0_uop_pre_is_rvc;	// backend/src/zaqal/backend/decode/FusionDecoder.scala:25:7
-  assign io_out_0_uop_pre_is_call = io_in_0_uop_pre_is_call;	// backend/src/zaqal/backend/decode/FusionDecoder.scala:25:7
-  assign io_out_0_uop_pre_is_ret = io_in_0_uop_pre_is_ret;	// backend/src/zaqal/backend/decode/FusionDecoder.scala:25:7
   assign io_out_0_uop_ftqPtr = io_in_0_uop_ftqPtr;	// backend/src/zaqal/backend/decode/FusionDecoder.scala:25:7
   assign io_out_0_uop_is_predicted_taken = io_in_0_uop_is_predicted_taken;	// backend/src/zaqal/backend/decode/FusionDecoder.scala:25:7
   assign io_out_0_uop_predicted_target = io_in_0_uop_predicted_target;	// backend/src/zaqal/backend/decode/FusionDecoder.scala:25:7
@@ -2862,13 +2812,9 @@ module FusionDecoder(	// backend/src/zaqal/backend/decode/FusionDecoder.scala:25
   assign io_out_0_decode_vec_funct3 = io_in_0_decode_vec_funct3;	// backend/src/zaqal/backend/decode/FusionDecoder.scala:25:7
   assign io_out_0_decode_vec_funct6 = io_in_0_decode_vec_funct6;	// backend/src/zaqal/backend/decode/FusionDecoder.scala:25:7
   assign io_out_0_decode_vec_simm5 = io_in_0_decode_vec_simm5;	// backend/src/zaqal/backend/decode/FusionDecoder.scala:25:7
-  assign io_out_0_ssid = io_in_0_ssid;	// backend/src/zaqal/backend/decode/FusionDecoder.scala:25:7
-  assign io_out_0_ssid_valid = io_in_0_ssid_valid;	// backend/src/zaqal/backend/decode/FusionDecoder.scala:25:7
   assign io_out_1_uop_pc = io_in_1_uop_pc;	// backend/src/zaqal/backend/decode/FusionDecoder.scala:25:7
   assign io_out_1_uop_inst_raw = io_in_1_uop_inst_raw;	// backend/src/zaqal/backend/decode/FusionDecoder.scala:25:7
   assign io_out_1_uop_pre_is_rvc = io_in_1_uop_pre_is_rvc;	// backend/src/zaqal/backend/decode/FusionDecoder.scala:25:7
-  assign io_out_1_uop_pre_is_call = io_in_1_uop_pre_is_call;	// backend/src/zaqal/backend/decode/FusionDecoder.scala:25:7
-  assign io_out_1_uop_pre_is_ret = io_in_1_uop_pre_is_ret;	// backend/src/zaqal/backend/decode/FusionDecoder.scala:25:7
   assign io_out_1_uop_ftqPtr = io_in_1_uop_ftqPtr;	// backend/src/zaqal/backend/decode/FusionDecoder.scala:25:7
   assign io_out_1_uop_is_predicted_taken = io_in_1_uop_is_predicted_taken;	// backend/src/zaqal/backend/decode/FusionDecoder.scala:25:7
   assign io_out_1_uop_predicted_target = io_in_1_uop_predicted_target;	// backend/src/zaqal/backend/decode/FusionDecoder.scala:25:7
@@ -3077,13 +3023,9 @@ module FusionDecoder(	// backend/src/zaqal/backend/decode/FusionDecoder.scala:25
   assign io_out_1_decode_vec_funct3 = io_in_1_decode_vec_funct3;	// backend/src/zaqal/backend/decode/FusionDecoder.scala:25:7
   assign io_out_1_decode_vec_funct6 = io_in_1_decode_vec_funct6;	// backend/src/zaqal/backend/decode/FusionDecoder.scala:25:7
   assign io_out_1_decode_vec_simm5 = io_in_1_decode_vec_simm5;	// backend/src/zaqal/backend/decode/FusionDecoder.scala:25:7
-  assign io_out_1_ssid = io_in_1_ssid;	// backend/src/zaqal/backend/decode/FusionDecoder.scala:25:7
-  assign io_out_1_ssid_valid = io_in_1_ssid_valid;	// backend/src/zaqal/backend/decode/FusionDecoder.scala:25:7
   assign io_out_2_uop_pc = io_in_2_uop_pc;	// backend/src/zaqal/backend/decode/FusionDecoder.scala:25:7
   assign io_out_2_uop_inst_raw = io_in_2_uop_inst_raw;	// backend/src/zaqal/backend/decode/FusionDecoder.scala:25:7
   assign io_out_2_uop_pre_is_rvc = io_in_2_uop_pre_is_rvc;	// backend/src/zaqal/backend/decode/FusionDecoder.scala:25:7
-  assign io_out_2_uop_pre_is_call = io_in_2_uop_pre_is_call;	// backend/src/zaqal/backend/decode/FusionDecoder.scala:25:7
-  assign io_out_2_uop_pre_is_ret = io_in_2_uop_pre_is_ret;	// backend/src/zaqal/backend/decode/FusionDecoder.scala:25:7
   assign io_out_2_uop_ftqPtr = io_in_2_uop_ftqPtr;	// backend/src/zaqal/backend/decode/FusionDecoder.scala:25:7
   assign io_out_2_uop_is_predicted_taken = io_in_2_uop_is_predicted_taken;	// backend/src/zaqal/backend/decode/FusionDecoder.scala:25:7
   assign io_out_2_uop_predicted_target = io_in_2_uop_predicted_target;	// backend/src/zaqal/backend/decode/FusionDecoder.scala:25:7
@@ -3292,13 +3234,9 @@ module FusionDecoder(	// backend/src/zaqal/backend/decode/FusionDecoder.scala:25
   assign io_out_2_decode_vec_funct3 = io_in_2_decode_vec_funct3;	// backend/src/zaqal/backend/decode/FusionDecoder.scala:25:7
   assign io_out_2_decode_vec_funct6 = io_in_2_decode_vec_funct6;	// backend/src/zaqal/backend/decode/FusionDecoder.scala:25:7
   assign io_out_2_decode_vec_simm5 = io_in_2_decode_vec_simm5;	// backend/src/zaqal/backend/decode/FusionDecoder.scala:25:7
-  assign io_out_2_ssid = io_in_2_ssid;	// backend/src/zaqal/backend/decode/FusionDecoder.scala:25:7
-  assign io_out_2_ssid_valid = io_in_2_ssid_valid;	// backend/src/zaqal/backend/decode/FusionDecoder.scala:25:7
   assign io_out_3_uop_pc = io_in_3_uop_pc;	// backend/src/zaqal/backend/decode/FusionDecoder.scala:25:7
   assign io_out_3_uop_inst_raw = io_in_3_uop_inst_raw;	// backend/src/zaqal/backend/decode/FusionDecoder.scala:25:7
   assign io_out_3_uop_pre_is_rvc = io_in_3_uop_pre_is_rvc;	// backend/src/zaqal/backend/decode/FusionDecoder.scala:25:7
-  assign io_out_3_uop_pre_is_call = io_in_3_uop_pre_is_call;	// backend/src/zaqal/backend/decode/FusionDecoder.scala:25:7
-  assign io_out_3_uop_pre_is_ret = io_in_3_uop_pre_is_ret;	// backend/src/zaqal/backend/decode/FusionDecoder.scala:25:7
   assign io_out_3_uop_ftqPtr = io_in_3_uop_ftqPtr;	// backend/src/zaqal/backend/decode/FusionDecoder.scala:25:7
   assign io_out_3_uop_is_predicted_taken = io_in_3_uop_is_predicted_taken;	// backend/src/zaqal/backend/decode/FusionDecoder.scala:25:7
   assign io_out_3_uop_predicted_target = io_in_3_uop_predicted_target;	// backend/src/zaqal/backend/decode/FusionDecoder.scala:25:7
@@ -3507,13 +3445,9 @@ module FusionDecoder(	// backend/src/zaqal/backend/decode/FusionDecoder.scala:25
   assign io_out_3_decode_vec_funct3 = io_in_3_decode_vec_funct3;	// backend/src/zaqal/backend/decode/FusionDecoder.scala:25:7
   assign io_out_3_decode_vec_funct6 = io_in_3_decode_vec_funct6;	// backend/src/zaqal/backend/decode/FusionDecoder.scala:25:7
   assign io_out_3_decode_vec_simm5 = io_in_3_decode_vec_simm5;	// backend/src/zaqal/backend/decode/FusionDecoder.scala:25:7
-  assign io_out_3_ssid = io_in_3_ssid;	// backend/src/zaqal/backend/decode/FusionDecoder.scala:25:7
-  assign io_out_3_ssid_valid = io_in_3_ssid_valid;	// backend/src/zaqal/backend/decode/FusionDecoder.scala:25:7
   assign io_out_4_uop_pc = io_in_4_uop_pc;	// backend/src/zaqal/backend/decode/FusionDecoder.scala:25:7
   assign io_out_4_uop_inst_raw = io_in_4_uop_inst_raw;	// backend/src/zaqal/backend/decode/FusionDecoder.scala:25:7
   assign io_out_4_uop_pre_is_rvc = io_in_4_uop_pre_is_rvc;	// backend/src/zaqal/backend/decode/FusionDecoder.scala:25:7
-  assign io_out_4_uop_pre_is_call = io_in_4_uop_pre_is_call;	// backend/src/zaqal/backend/decode/FusionDecoder.scala:25:7
-  assign io_out_4_uop_pre_is_ret = io_in_4_uop_pre_is_ret;	// backend/src/zaqal/backend/decode/FusionDecoder.scala:25:7
   assign io_out_4_uop_ftqPtr = io_in_4_uop_ftqPtr;	// backend/src/zaqal/backend/decode/FusionDecoder.scala:25:7
   assign io_out_4_uop_is_predicted_taken = io_in_4_uop_is_predicted_taken;	// backend/src/zaqal/backend/decode/FusionDecoder.scala:25:7
   assign io_out_4_uop_predicted_target = io_in_4_uop_predicted_target;	// backend/src/zaqal/backend/decode/FusionDecoder.scala:25:7
@@ -3722,13 +3656,9 @@ module FusionDecoder(	// backend/src/zaqal/backend/decode/FusionDecoder.scala:25
   assign io_out_4_decode_vec_funct3 = io_in_4_decode_vec_funct3;	// backend/src/zaqal/backend/decode/FusionDecoder.scala:25:7
   assign io_out_4_decode_vec_funct6 = io_in_4_decode_vec_funct6;	// backend/src/zaqal/backend/decode/FusionDecoder.scala:25:7
   assign io_out_4_decode_vec_simm5 = io_in_4_decode_vec_simm5;	// backend/src/zaqal/backend/decode/FusionDecoder.scala:25:7
-  assign io_out_4_ssid = io_in_4_ssid;	// backend/src/zaqal/backend/decode/FusionDecoder.scala:25:7
-  assign io_out_4_ssid_valid = io_in_4_ssid_valid;	// backend/src/zaqal/backend/decode/FusionDecoder.scala:25:7
   assign io_out_5_uop_pc = io_in_5_uop_pc;	// backend/src/zaqal/backend/decode/FusionDecoder.scala:25:7
   assign io_out_5_uop_inst_raw = io_in_5_uop_inst_raw;	// backend/src/zaqal/backend/decode/FusionDecoder.scala:25:7
   assign io_out_5_uop_pre_is_rvc = io_in_5_uop_pre_is_rvc;	// backend/src/zaqal/backend/decode/FusionDecoder.scala:25:7
-  assign io_out_5_uop_pre_is_call = io_in_5_uop_pre_is_call;	// backend/src/zaqal/backend/decode/FusionDecoder.scala:25:7
-  assign io_out_5_uop_pre_is_ret = io_in_5_uop_pre_is_ret;	// backend/src/zaqal/backend/decode/FusionDecoder.scala:25:7
   assign io_out_5_uop_ftqPtr = io_in_5_uop_ftqPtr;	// backend/src/zaqal/backend/decode/FusionDecoder.scala:25:7
   assign io_out_5_uop_is_predicted_taken = io_in_5_uop_is_predicted_taken;	// backend/src/zaqal/backend/decode/FusionDecoder.scala:25:7
   assign io_out_5_uop_predicted_target = io_in_5_uop_predicted_target;	// backend/src/zaqal/backend/decode/FusionDecoder.scala:25:7
@@ -3937,7 +3867,5 @@ module FusionDecoder(	// backend/src/zaqal/backend/decode/FusionDecoder.scala:25
   assign io_out_5_decode_vec_funct3 = io_in_5_decode_vec_funct3;	// backend/src/zaqal/backend/decode/FusionDecoder.scala:25:7
   assign io_out_5_decode_vec_funct6 = io_in_5_decode_vec_funct6;	// backend/src/zaqal/backend/decode/FusionDecoder.scala:25:7
   assign io_out_5_decode_vec_simm5 = io_in_5_decode_vec_simm5;	// backend/src/zaqal/backend/decode/FusionDecoder.scala:25:7
-  assign io_out_5_ssid = io_in_5_ssid;	// backend/src/zaqal/backend/decode/FusionDecoder.scala:25:7
-  assign io_out_5_ssid_valid = io_in_5_ssid_valid;	// backend/src/zaqal/backend/decode/FusionDecoder.scala:25:7
 endmodule
 

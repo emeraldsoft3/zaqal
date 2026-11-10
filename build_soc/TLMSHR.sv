@@ -67,108 +67,68 @@
 `endif // not def PRINTF_COND_
 
 module TLMSHR(	// cache/src/zaqal/cache/TLMSHR.scala:15:7
-  input          clock,	// cache/src/zaqal/cache/TLMSHR.scala:15:7
-                 reset,	// cache/src/zaqal/cache/TLMSHR.scala:15:7
-  output         io_alloc_ready,	// cache/src/zaqal/cache/TLMSHR.scala:16:14
-  input          io_alloc_valid,	// cache/src/zaqal/cache/TLMSHR.scala:16:14
-  input  [63:0]  io_alloc_bits_addr,	// cache/src/zaqal/cache/TLMSHR.scala:16:14
-                 io_alloc_bits_data,	// cache/src/zaqal/cache/TLMSHR.scala:16:14
-  input  [7:0]   io_alloc_bits_load_id,	// cache/src/zaqal/cache/TLMSHR.scala:16:14
-  input          io_alloc_bits_is_write,	// cache/src/zaqal/cache/TLMSHR.scala:16:14
-                 io_alloc_bits_is_prefetch,	// cache/src/zaqal/cache/TLMSHR.scala:16:14
-                 io_alloc_bits_sink_is_l2,	// cache/src/zaqal/cache/TLMSHR.scala:16:14
-                 io_tl_a_ready,	// cache/src/zaqal/cache/TLMSHR.scala:16:14
-  output         io_tl_a_valid,	// cache/src/zaqal/cache/TLMSHR.scala:16:14
-  output [63:0]  io_tl_a_bits_address,	// cache/src/zaqal/cache/TLMSHR.scala:16:14
-  output         io_tl_d_ready,	// cache/src/zaqal/cache/TLMSHR.scala:16:14
-  input          io_tl_d_valid,	// cache/src/zaqal/cache/TLMSHR.scala:16:14
-  input  [255:0] io_tl_d_bits_data,	// cache/src/zaqal/cache/TLMSHR.scala:16:14
-  output         io_refill_out_valid,	// cache/src/zaqal/cache/TLMSHR.scala:16:14
-  output [63:0]  io_refill_out_bits_addr,	// cache/src/zaqal/cache/TLMSHR.scala:16:14
-  output [255:0] io_refill_out_bits_data,	// cache/src/zaqal/cache/TLMSHR.scala:16:14
-  output [63:0]  io_refill_out_bits_write_data,	// cache/src/zaqal/cache/TLMSHR.scala:16:14
-  output [7:0]   io_refill_out_bits_load_id,	// cache/src/zaqal/cache/TLMSHR.scala:16:14
-  output         io_refill_out_bits_is_write,	// cache/src/zaqal/cache/TLMSHR.scala:16:14
-                 io_refill_out_bits_is_prefetch,	// cache/src/zaqal/cache/TLMSHR.scala:16:14
-                 io_refill_out_bits_sink_is_l2	// cache/src/zaqal/cache/TLMSHR.scala:16:14
+  input         clock,	// cache/src/zaqal/cache/TLMSHR.scala:15:7
+                reset,	// cache/src/zaqal/cache/TLMSHR.scala:15:7
+  output        io_alloc_ready,	// cache/src/zaqal/cache/TLMSHR.scala:16:14
+  input         io_alloc_valid,	// cache/src/zaqal/cache/TLMSHR.scala:16:14
+  input  [63:0] io_alloc_bits_addr,	// cache/src/zaqal/cache/TLMSHR.scala:16:14
+  input         io_alloc_bits_sink_is_l2,	// cache/src/zaqal/cache/TLMSHR.scala:16:14
+                io_tl_a_ready,	// cache/src/zaqal/cache/TLMSHR.scala:16:14
+  output        io_tl_a_valid,	// cache/src/zaqal/cache/TLMSHR.scala:16:14
+  output [63:0] io_tl_a_bits_address,	// cache/src/zaqal/cache/TLMSHR.scala:16:14
+  output        io_tl_d_ready,	// cache/src/zaqal/cache/TLMSHR.scala:16:14
+  input         io_tl_d_valid,	// cache/src/zaqal/cache/TLMSHR.scala:16:14
+  output        io_refill_out_valid,	// cache/src/zaqal/cache/TLMSHR.scala:16:14
+  output [63:0] io_refill_out_bits_addr,	// cache/src/zaqal/cache/TLMSHR.scala:16:14
+  output        io_refill_out_bits_sink_is_l2	// cache/src/zaqal/cache/TLMSHR.scala:16:14
 );
 
-  reg  [2:0]   state;	// cache/src/zaqal/cache/TLMSHR.scala:46:22
-  reg  [63:0]  reqAddr;	// cache/src/zaqal/cache/TLMSHR.scala:48:28
-  reg  [63:0]  reqWriteData;	// cache/src/zaqal/cache/TLMSHR.scala:49:28
-  reg  [7:0]   reqLoadId;	// cache/src/zaqal/cache/TLMSHR.scala:50:28
-  reg          reqIsWrite;	// cache/src/zaqal/cache/TLMSHR.scala:51:32
-  reg          reqIsPrefetch;	// cache/src/zaqal/cache/TLMSHR.scala:53:32
-  reg          reqSinkIsL2;	// cache/src/zaqal/cache/TLMSHR.scala:54:32
-  reg  [255:0] refillData;	// cache/src/zaqal/cache/TLMSHR.scala:55:28
-  wire         io_alloc_ready_0 = state == 3'h0;	// cache/src/zaqal/cache/TLMSHR.scala:16:14, :46:22, :60:28
-  wire         io_tl_a_valid_0 = state == 3'h1;	// cache/src/zaqal/cache/TLMSHR.scala:46:22, :69:21, :73:35
-  wire         io_tl_d_ready_0 = state == 3'h2;	// cache/src/zaqal/cache/TLMSHR.scala:46:22, :76:31, :90:27
-  wire         io_refill_out_valid_0 = state == 3'h4;	// cache/src/zaqal/cache/TLMSHR.scala:46:22, :103:11, :107:47
-  wire         _GEN = io_alloc_ready_0 & io_alloc_valid;	// cache/src/zaqal/cache/TLMSHR.scala:60:28, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire         _GEN_0 = io_tl_d_ready_0 & io_tl_d_valid;	// cache/src/zaqal/cache/TLMSHR.scala:90:27, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  reg  [2:0]  state;	// cache/src/zaqal/cache/TLMSHR.scala:46:22
+  reg  [63:0] reqAddr;	// cache/src/zaqal/cache/TLMSHR.scala:48:28
+  reg         reqSinkIsL2;	// cache/src/zaqal/cache/TLMSHR.scala:54:32
+  wire        io_alloc_ready_0 = state == 3'h0;	// cache/src/zaqal/cache/TLMSHR.scala:15:7, :46:22, :60:28
+  wire        io_tl_a_valid_0 = state == 3'h1;	// cache/src/zaqal/cache/TLMSHR.scala:15:7, :46:22, :73:35
+  wire        io_tl_d_ready_0 = state == 3'h2;	// cache/src/zaqal/cache/TLMSHR.scala:15:7, :46:22, :90:27
+  wire        io_refill_out_valid_0 = state == 3'h4;	// cache/src/zaqal/cache/TLMSHR.scala:15:7, :46:22, :107:47
+  wire        _GEN = io_alloc_ready_0 & io_alloc_valid;	// cache/src/zaqal/cache/TLMSHR.scala:60:28, src/main/scala/chisel3/util/Decoupled.scala:51:35
   always @(posedge clock) begin	// cache/src/zaqal/cache/TLMSHR.scala:15:7
     if (reset) begin	// cache/src/zaqal/cache/TLMSHR.scala:15:7
-      state <= 3'h0;	// cache/src/zaqal/cache/TLMSHR.scala:16:14, :46:22
-      reqIsWrite <= 1'h0;	// cache/src/zaqal/cache/TLMSHR.scala:51:32
-      reqIsPrefetch <= 1'h0;	// cache/src/zaqal/cache/TLMSHR.scala:51:32, :53:32
+      state <= 3'h0;	// cache/src/zaqal/cache/TLMSHR.scala:15:7, :46:22
       reqSinkIsL2 <= 1'h0;	// cache/src/zaqal/cache/TLMSHR.scala:51:32, :54:32
     end
     else begin	// cache/src/zaqal/cache/TLMSHR.scala:15:7
       if (io_refill_out_valid_0)	// cache/src/zaqal/cache/TLMSHR.scala:107:47
-        state <= 3'h0;	// cache/src/zaqal/cache/TLMSHR.scala:16:14, :46:22
-      else if (state == 3'h3)	// cache/src/zaqal/cache/TLMSHR.scala:46:22, :95:17, :99:31
-        state <= 3'h4;	// cache/src/zaqal/cache/TLMSHR.scala:46:22, :103:11
-      else if (_GEN_0)	// src/main/scala/chisel3/util/Decoupled.scala:51:35
-        state <= 3'h3;	// cache/src/zaqal/cache/TLMSHR.scala:46:22, :95:17
+        state <= 3'h0;	// cache/src/zaqal/cache/TLMSHR.scala:15:7, :46:22
+      else if (state == 3'h3)	// cache/src/zaqal/cache/TLMSHR.scala:15:7, :46:22, :99:31
+        state <= 3'h4;	// cache/src/zaqal/cache/TLMSHR.scala:15:7, :46:22
+      else if (io_tl_d_ready_0 & io_tl_d_valid)	// cache/src/zaqal/cache/TLMSHR.scala:90:27, src/main/scala/chisel3/util/Decoupled.scala:51:35
+        state <= 3'h3;	// cache/src/zaqal/cache/TLMSHR.scala:15:7, :46:22
       else if (io_tl_a_ready & io_tl_a_valid_0)	// cache/src/zaqal/cache/TLMSHR.scala:73:35, src/main/scala/chisel3/util/Decoupled.scala:51:35
-        state <= 3'h2;	// cache/src/zaqal/cache/TLMSHR.scala:46:22, :76:31
+        state <= 3'h2;	// cache/src/zaqal/cache/TLMSHR.scala:15:7, :46:22
       else if (_GEN)	// src/main/scala/chisel3/util/Decoupled.scala:51:35
-        state <= 3'h1;	// cache/src/zaqal/cache/TLMSHR.scala:46:22, :69:21
-      if (_GEN) begin	// src/main/scala/chisel3/util/Decoupled.scala:51:35
-        reqIsWrite <= io_alloc_bits_is_write;	// cache/src/zaqal/cache/TLMSHR.scala:51:32
-        reqIsPrefetch <= io_alloc_bits_is_prefetch;	// cache/src/zaqal/cache/TLMSHR.scala:53:32
+        state <= 3'h1;	// cache/src/zaqal/cache/TLMSHR.scala:15:7, :46:22
+      if (_GEN)	// src/main/scala/chisel3/util/Decoupled.scala:51:35
         reqSinkIsL2 <= io_alloc_bits_sink_is_l2;	// cache/src/zaqal/cache/TLMSHR.scala:54:32
-      end
     end
-    if (_GEN) begin	// src/main/scala/chisel3/util/Decoupled.scala:51:35
+    if (_GEN)	// src/main/scala/chisel3/util/Decoupled.scala:51:35
       reqAddr <= io_alloc_bits_addr;	// cache/src/zaqal/cache/TLMSHR.scala:48:28
-      reqWriteData <= io_alloc_bits_data;	// cache/src/zaqal/cache/TLMSHR.scala:49:28
-      reqLoadId <= io_alloc_bits_load_id;	// cache/src/zaqal/cache/TLMSHR.scala:50:28
-    end
-    if (_GEN_0)	// src/main/scala/chisel3/util/Decoupled.scala:51:35
-      refillData <= io_tl_d_bits_data;	// cache/src/zaqal/cache/TLMSHR.scala:55:28
   end // always @(posedge)
   `ifdef ENABLE_INITIAL_REG_	// cache/src/zaqal/cache/TLMSHR.scala:15:7
     `ifdef FIRRTL_BEFORE_INITIAL	// cache/src/zaqal/cache/TLMSHR.scala:15:7
       `FIRRTL_BEFORE_INITIAL	// cache/src/zaqal/cache/TLMSHR.scala:15:7
     `endif // FIRRTL_BEFORE_INITIAL
-    logic [31:0] _RANDOM[0:12];	// cache/src/zaqal/cache/TLMSHR.scala:15:7
+    logic [31:0] _RANDOM[0:4];	// cache/src/zaqal/cache/TLMSHR.scala:15:7
     initial begin	// cache/src/zaqal/cache/TLMSHR.scala:15:7
       `ifdef INIT_RANDOM_PROLOG_	// cache/src/zaqal/cache/TLMSHR.scala:15:7
         `INIT_RANDOM_PROLOG_	// cache/src/zaqal/cache/TLMSHR.scala:15:7
       `endif // INIT_RANDOM_PROLOG_
       `ifdef RANDOMIZE_REG_INIT	// cache/src/zaqal/cache/TLMSHR.scala:15:7
-        for (logic [3:0] i = 4'h0; i < 4'hD; i += 4'h1) begin
+        for (logic [2:0] i = 3'h0; i < 3'h5; i += 3'h1) begin
           _RANDOM[i] = `RANDOM;	// cache/src/zaqal/cache/TLMSHR.scala:15:7
         end	// cache/src/zaqal/cache/TLMSHR.scala:15:7
-        state = _RANDOM[4'h0][2:0];	// cache/src/zaqal/cache/TLMSHR.scala:15:7, :46:22
-        reqAddr = {_RANDOM[4'h0][31:3], _RANDOM[4'h1], _RANDOM[4'h2][2:0]};	// cache/src/zaqal/cache/TLMSHR.scala:15:7, :46:22, :48:28
-        reqWriteData = {_RANDOM[4'h2][31:3], _RANDOM[4'h3], _RANDOM[4'h4][2:0]};	// cache/src/zaqal/cache/TLMSHR.scala:15:7, :48:28, :49:28
-        reqLoadId = _RANDOM[4'h4][10:3];	// cache/src/zaqal/cache/TLMSHR.scala:15:7, :49:28, :50:28
-        reqIsWrite = _RANDOM[4'h4][11];	// cache/src/zaqal/cache/TLMSHR.scala:15:7, :49:28, :51:32
-        reqIsPrefetch = _RANDOM[4'h4][13];	// cache/src/zaqal/cache/TLMSHR.scala:15:7, :49:28, :53:32
-        reqSinkIsL2 = _RANDOM[4'h4][14];	// cache/src/zaqal/cache/TLMSHR.scala:15:7, :49:28, :54:32
-        refillData =
-          {_RANDOM[4'h4][31:15],
-           _RANDOM[4'h5],
-           _RANDOM[4'h6],
-           _RANDOM[4'h7],
-           _RANDOM[4'h8],
-           _RANDOM[4'h9],
-           _RANDOM[4'hA],
-           _RANDOM[4'hB],
-           _RANDOM[4'hC][14:0]};	// cache/src/zaqal/cache/TLMSHR.scala:15:7, :49:28, :55:28
+        state = _RANDOM[3'h0][2:0];	// cache/src/zaqal/cache/TLMSHR.scala:15:7, :46:22
+        reqAddr = {_RANDOM[3'h0][31:3], _RANDOM[3'h1], _RANDOM[3'h2][2:0]};	// cache/src/zaqal/cache/TLMSHR.scala:15:7, :46:22, :48:28
+        reqSinkIsL2 = _RANDOM[3'h4][14];	// cache/src/zaqal/cache/TLMSHR.scala:15:7, :54:32
       `endif // RANDOMIZE_REG_INIT
     end // initial
     `ifdef FIRRTL_AFTER_INITIAL	// cache/src/zaqal/cache/TLMSHR.scala:15:7
@@ -181,11 +141,6 @@ module TLMSHR(	// cache/src/zaqal/cache/TLMSHR.scala:15:7
   assign io_tl_d_ready = io_tl_d_ready_0;	// cache/src/zaqal/cache/TLMSHR.scala:15:7, :90:27
   assign io_refill_out_valid = io_refill_out_valid_0;	// cache/src/zaqal/cache/TLMSHR.scala:15:7, :107:47
   assign io_refill_out_bits_addr = reqAddr;	// cache/src/zaqal/cache/TLMSHR.scala:15:7, :48:28
-  assign io_refill_out_bits_data = refillData;	// cache/src/zaqal/cache/TLMSHR.scala:15:7, :55:28
-  assign io_refill_out_bits_write_data = reqWriteData;	// cache/src/zaqal/cache/TLMSHR.scala:15:7, :49:28
-  assign io_refill_out_bits_load_id = reqLoadId;	// cache/src/zaqal/cache/TLMSHR.scala:15:7, :50:28
-  assign io_refill_out_bits_is_write = reqIsWrite;	// cache/src/zaqal/cache/TLMSHR.scala:15:7, :51:32
-  assign io_refill_out_bits_is_prefetch = reqIsPrefetch;	// cache/src/zaqal/cache/TLMSHR.scala:15:7, :53:32
   assign io_refill_out_bits_sink_is_l2 = reqSinkIsL2;	// cache/src/zaqal/cache/TLMSHR.scala:15:7, :54:32
 endmodule
 

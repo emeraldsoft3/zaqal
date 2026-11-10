@@ -86,30 +86,6 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
                 io_bpu_update_is_jal,	// frontend/src/zaqal/frontend/BPU.scala:31:14
                 io_bpu_update_is_jalr,	// frontend/src/zaqal/frontend/BPU.scala:31:14
   input  [5:0]  io_bpu_update_ftqPtr,	// frontend/src/zaqal/frontend/BPU.scala:31:14
-  input         io_commits_commitValid_0,	// frontend/src/zaqal/frontend/BPU.scala:31:14
-                io_commits_commitValid_1,	// frontend/src/zaqal/frontend/BPU.scala:31:14
-                io_commits_commitValid_2,	// frontend/src/zaqal/frontend/BPU.scala:31:14
-                io_commits_commitValid_3,	// frontend/src/zaqal/frontend/BPU.scala:31:14
-                io_commits_commitValid_4,	// frontend/src/zaqal/frontend/BPU.scala:31:14
-                io_commits_commitValid_5,	// frontend/src/zaqal/frontend/BPU.scala:31:14
-                io_commits_info_0_is_call,	// frontend/src/zaqal/frontend/BPU.scala:31:14
-                io_commits_info_0_is_ret,	// frontend/src/zaqal/frontend/BPU.scala:31:14
-  input  [63:0] io_commits_info_0_pc,	// frontend/src/zaqal/frontend/BPU.scala:31:14
-  input         io_commits_info_1_is_call,	// frontend/src/zaqal/frontend/BPU.scala:31:14
-                io_commits_info_1_is_ret,	// frontend/src/zaqal/frontend/BPU.scala:31:14
-  input  [63:0] io_commits_info_1_pc,	// frontend/src/zaqal/frontend/BPU.scala:31:14
-  input         io_commits_info_2_is_call,	// frontend/src/zaqal/frontend/BPU.scala:31:14
-                io_commits_info_2_is_ret,	// frontend/src/zaqal/frontend/BPU.scala:31:14
-  input  [63:0] io_commits_info_2_pc,	// frontend/src/zaqal/frontend/BPU.scala:31:14
-  input         io_commits_info_3_is_call,	// frontend/src/zaqal/frontend/BPU.scala:31:14
-                io_commits_info_3_is_ret,	// frontend/src/zaqal/frontend/BPU.scala:31:14
-  input  [63:0] io_commits_info_3_pc,	// frontend/src/zaqal/frontend/BPU.scala:31:14
-  input         io_commits_info_4_is_call,	// frontend/src/zaqal/frontend/BPU.scala:31:14
-                io_commits_info_4_is_ret,	// frontend/src/zaqal/frontend/BPU.scala:31:14
-  input  [63:0] io_commits_info_4_pc,	// frontend/src/zaqal/frontend/BPU.scala:31:14
-  input         io_commits_info_5_is_call,	// frontend/src/zaqal/frontend/BPU.scala:31:14
-                io_commits_info_5_is_ret,	// frontend/src/zaqal/frontend/BPU.scala:31:14
-  input  [63:0] io_commits_info_5_pc,	// frontend/src/zaqal/frontend/BPU.scala:31:14
   input         io_out_ready,	// frontend/src/zaqal/frontend/BPU.scala:31:14
   output        io_out_valid,	// frontend/src/zaqal/frontend/BPU.scala:31:14
   output [63:0] io_out_bits_pc,	// frontend/src/zaqal/frontend/BPU.scala:31:14
@@ -121,13 +97,8 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
   output        io_out_bits_epoch	// frontend/src/zaqal/frontend/BPU.scala:31:14
 );
 
-  wire [15:0]        current_mask;	// frontend/src/zaqal/frontend/BPU.scala:238:25, :244:18, :247:28
+  wire [15:0]        current_mask;	// frontend/src/zaqal/frontend/BPU.scala:234:25, :240:18, :243:28
   wire               _composer_io_final_pred_taken;	// frontend/src/zaqal/frontend/BPU.scala:56:24
-  wire               _uftb_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:55:20
-  wire [63:0]        _uftb_io_pred_target;	// frontend/src/zaqal/frontend/BPU.scala:55:20
-  wire [63:0]        _ras_io_spec_pop_addr;	// frontend/src/zaqal/frontend/BPU.scala:54:19
-  wire               _ras_io_spec_pop_valid_out;	// frontend/src/zaqal/frontend/BPU.scala:54:19
-  wire [3:0]         _ras_io_spec_sp;	// frontend/src/zaqal/frontend/BPU.scala:54:19
   wire               _sc_io_pred_taken;	// frontend/src/zaqal/frontend/BPU.scala:53:18
   wire [9:0]         _sc_io_pred_sum;	// frontend/src/zaqal/frontend/BPU.scala:53:18
   wire [1:0]         _ittage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:52:22
@@ -154,7 +125,6 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
   reg  [5:0]         bpu_enq_ptr;	// frontend/src/zaqal/frontend/BPU.scala:59:28
   reg  [127:0]       meta_storage_0_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [31:0]        meta_storage_0_phr;	// frontend/src/zaqal/frontend/BPU.scala:67:25
-  reg  [3:0]         meta_storage_0_ras_sp;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg                meta_storage_0_ghr_spec_shifted;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [1:0]         meta_storage_0_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg                meta_storage_0_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:67:25
@@ -168,7 +138,6 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
   reg  [9:0]         meta_storage_0_sc_sum;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [127:0]       meta_storage_1_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [31:0]        meta_storage_1_phr;	// frontend/src/zaqal/frontend/BPU.scala:67:25
-  reg  [3:0]         meta_storage_1_ras_sp;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg                meta_storage_1_ghr_spec_shifted;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [1:0]         meta_storage_1_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg                meta_storage_1_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:67:25
@@ -182,7 +151,6 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
   reg  [9:0]         meta_storage_1_sc_sum;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [127:0]       meta_storage_2_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [31:0]        meta_storage_2_phr;	// frontend/src/zaqal/frontend/BPU.scala:67:25
-  reg  [3:0]         meta_storage_2_ras_sp;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg                meta_storage_2_ghr_spec_shifted;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [1:0]         meta_storage_2_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg                meta_storage_2_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:67:25
@@ -196,7 +164,6 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
   reg  [9:0]         meta_storage_2_sc_sum;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [127:0]       meta_storage_3_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [31:0]        meta_storage_3_phr;	// frontend/src/zaqal/frontend/BPU.scala:67:25
-  reg  [3:0]         meta_storage_3_ras_sp;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg                meta_storage_3_ghr_spec_shifted;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [1:0]         meta_storage_3_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg                meta_storage_3_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:67:25
@@ -210,7 +177,6 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
   reg  [9:0]         meta_storage_3_sc_sum;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [127:0]       meta_storage_4_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [31:0]        meta_storage_4_phr;	// frontend/src/zaqal/frontend/BPU.scala:67:25
-  reg  [3:0]         meta_storage_4_ras_sp;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg                meta_storage_4_ghr_spec_shifted;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [1:0]         meta_storage_4_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg                meta_storage_4_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:67:25
@@ -224,7 +190,6 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
   reg  [9:0]         meta_storage_4_sc_sum;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [127:0]       meta_storage_5_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [31:0]        meta_storage_5_phr;	// frontend/src/zaqal/frontend/BPU.scala:67:25
-  reg  [3:0]         meta_storage_5_ras_sp;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg                meta_storage_5_ghr_spec_shifted;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [1:0]         meta_storage_5_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg                meta_storage_5_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:67:25
@@ -238,7 +203,6 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
   reg  [9:0]         meta_storage_5_sc_sum;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [127:0]       meta_storage_6_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [31:0]        meta_storage_6_phr;	// frontend/src/zaqal/frontend/BPU.scala:67:25
-  reg  [3:0]         meta_storage_6_ras_sp;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg                meta_storage_6_ghr_spec_shifted;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [1:0]         meta_storage_6_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg                meta_storage_6_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:67:25
@@ -252,7 +216,6 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
   reg  [9:0]         meta_storage_6_sc_sum;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [127:0]       meta_storage_7_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [31:0]        meta_storage_7_phr;	// frontend/src/zaqal/frontend/BPU.scala:67:25
-  reg  [3:0]         meta_storage_7_ras_sp;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg                meta_storage_7_ghr_spec_shifted;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [1:0]         meta_storage_7_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg                meta_storage_7_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:67:25
@@ -266,7 +229,6 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
   reg  [9:0]         meta_storage_7_sc_sum;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [127:0]       meta_storage_8_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [31:0]        meta_storage_8_phr;	// frontend/src/zaqal/frontend/BPU.scala:67:25
-  reg  [3:0]         meta_storage_8_ras_sp;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg                meta_storage_8_ghr_spec_shifted;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [1:0]         meta_storage_8_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg                meta_storage_8_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:67:25
@@ -280,7 +242,6 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
   reg  [9:0]         meta_storage_8_sc_sum;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [127:0]       meta_storage_9_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [31:0]        meta_storage_9_phr;	// frontend/src/zaqal/frontend/BPU.scala:67:25
-  reg  [3:0]         meta_storage_9_ras_sp;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg                meta_storage_9_ghr_spec_shifted;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [1:0]         meta_storage_9_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg                meta_storage_9_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:67:25
@@ -294,7 +255,6 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
   reg  [9:0]         meta_storage_9_sc_sum;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [127:0]       meta_storage_10_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [31:0]        meta_storage_10_phr;	// frontend/src/zaqal/frontend/BPU.scala:67:25
-  reg  [3:0]         meta_storage_10_ras_sp;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg                meta_storage_10_ghr_spec_shifted;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [1:0]         meta_storage_10_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg                meta_storage_10_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:67:25
@@ -308,7 +268,6 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
   reg  [9:0]         meta_storage_10_sc_sum;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [127:0]       meta_storage_11_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [31:0]        meta_storage_11_phr;	// frontend/src/zaqal/frontend/BPU.scala:67:25
-  reg  [3:0]         meta_storage_11_ras_sp;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg                meta_storage_11_ghr_spec_shifted;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [1:0]         meta_storage_11_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg                meta_storage_11_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:67:25
@@ -322,7 +281,6 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
   reg  [9:0]         meta_storage_11_sc_sum;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [127:0]       meta_storage_12_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [31:0]        meta_storage_12_phr;	// frontend/src/zaqal/frontend/BPU.scala:67:25
-  reg  [3:0]         meta_storage_12_ras_sp;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg                meta_storage_12_ghr_spec_shifted;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [1:0]         meta_storage_12_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg                meta_storage_12_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:67:25
@@ -336,7 +294,6 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
   reg  [9:0]         meta_storage_12_sc_sum;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [127:0]       meta_storage_13_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [31:0]        meta_storage_13_phr;	// frontend/src/zaqal/frontend/BPU.scala:67:25
-  reg  [3:0]         meta_storage_13_ras_sp;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg                meta_storage_13_ghr_spec_shifted;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [1:0]         meta_storage_13_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg                meta_storage_13_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:67:25
@@ -350,7 +307,6 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
   reg  [9:0]         meta_storage_13_sc_sum;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [127:0]       meta_storage_14_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [31:0]        meta_storage_14_phr;	// frontend/src/zaqal/frontend/BPU.scala:67:25
-  reg  [3:0]         meta_storage_14_ras_sp;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg                meta_storage_14_ghr_spec_shifted;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [1:0]         meta_storage_14_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg                meta_storage_14_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:67:25
@@ -364,7 +320,6 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
   reg  [9:0]         meta_storage_14_sc_sum;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [127:0]       meta_storage_15_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [31:0]        meta_storage_15_phr;	// frontend/src/zaqal/frontend/BPU.scala:67:25
-  reg  [3:0]         meta_storage_15_ras_sp;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg                meta_storage_15_ghr_spec_shifted;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [1:0]         meta_storage_15_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg                meta_storage_15_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:67:25
@@ -378,7 +333,6 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
   reg  [9:0]         meta_storage_15_sc_sum;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [127:0]       meta_storage_16_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [31:0]        meta_storage_16_phr;	// frontend/src/zaqal/frontend/BPU.scala:67:25
-  reg  [3:0]         meta_storage_16_ras_sp;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg                meta_storage_16_ghr_spec_shifted;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [1:0]         meta_storage_16_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg                meta_storage_16_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:67:25
@@ -392,7 +346,6 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
   reg  [9:0]         meta_storage_16_sc_sum;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [127:0]       meta_storage_17_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [31:0]        meta_storage_17_phr;	// frontend/src/zaqal/frontend/BPU.scala:67:25
-  reg  [3:0]         meta_storage_17_ras_sp;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg                meta_storage_17_ghr_spec_shifted;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [1:0]         meta_storage_17_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg                meta_storage_17_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:67:25
@@ -406,7 +359,6 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
   reg  [9:0]         meta_storage_17_sc_sum;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [127:0]       meta_storage_18_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [31:0]        meta_storage_18_phr;	// frontend/src/zaqal/frontend/BPU.scala:67:25
-  reg  [3:0]         meta_storage_18_ras_sp;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg                meta_storage_18_ghr_spec_shifted;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [1:0]         meta_storage_18_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg                meta_storage_18_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:67:25
@@ -420,7 +372,6 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
   reg  [9:0]         meta_storage_18_sc_sum;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [127:0]       meta_storage_19_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [31:0]        meta_storage_19_phr;	// frontend/src/zaqal/frontend/BPU.scala:67:25
-  reg  [3:0]         meta_storage_19_ras_sp;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg                meta_storage_19_ghr_spec_shifted;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [1:0]         meta_storage_19_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg                meta_storage_19_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:67:25
@@ -434,7 +385,6 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
   reg  [9:0]         meta_storage_19_sc_sum;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [127:0]       meta_storage_20_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [31:0]        meta_storage_20_phr;	// frontend/src/zaqal/frontend/BPU.scala:67:25
-  reg  [3:0]         meta_storage_20_ras_sp;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg                meta_storage_20_ghr_spec_shifted;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [1:0]         meta_storage_20_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg                meta_storage_20_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:67:25
@@ -448,7 +398,6 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
   reg  [9:0]         meta_storage_20_sc_sum;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [127:0]       meta_storage_21_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [31:0]        meta_storage_21_phr;	// frontend/src/zaqal/frontend/BPU.scala:67:25
-  reg  [3:0]         meta_storage_21_ras_sp;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg                meta_storage_21_ghr_spec_shifted;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [1:0]         meta_storage_21_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg                meta_storage_21_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:67:25
@@ -462,7 +411,6 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
   reg  [9:0]         meta_storage_21_sc_sum;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [127:0]       meta_storage_22_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [31:0]        meta_storage_22_phr;	// frontend/src/zaqal/frontend/BPU.scala:67:25
-  reg  [3:0]         meta_storage_22_ras_sp;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg                meta_storage_22_ghr_spec_shifted;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [1:0]         meta_storage_22_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg                meta_storage_22_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:67:25
@@ -476,7 +424,6 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
   reg  [9:0]         meta_storage_22_sc_sum;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [127:0]       meta_storage_23_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [31:0]        meta_storage_23_phr;	// frontend/src/zaqal/frontend/BPU.scala:67:25
-  reg  [3:0]         meta_storage_23_ras_sp;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg                meta_storage_23_ghr_spec_shifted;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [1:0]         meta_storage_23_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg                meta_storage_23_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:67:25
@@ -490,7 +437,6 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
   reg  [9:0]         meta_storage_23_sc_sum;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [127:0]       meta_storage_24_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [31:0]        meta_storage_24_phr;	// frontend/src/zaqal/frontend/BPU.scala:67:25
-  reg  [3:0]         meta_storage_24_ras_sp;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg                meta_storage_24_ghr_spec_shifted;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [1:0]         meta_storage_24_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg                meta_storage_24_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:67:25
@@ -504,7 +450,6 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
   reg  [9:0]         meta_storage_24_sc_sum;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [127:0]       meta_storage_25_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [31:0]        meta_storage_25_phr;	// frontend/src/zaqal/frontend/BPU.scala:67:25
-  reg  [3:0]         meta_storage_25_ras_sp;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg                meta_storage_25_ghr_spec_shifted;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [1:0]         meta_storage_25_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg                meta_storage_25_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:67:25
@@ -518,7 +463,6 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
   reg  [9:0]         meta_storage_25_sc_sum;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [127:0]       meta_storage_26_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [31:0]        meta_storage_26_phr;	// frontend/src/zaqal/frontend/BPU.scala:67:25
-  reg  [3:0]         meta_storage_26_ras_sp;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg                meta_storage_26_ghr_spec_shifted;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [1:0]         meta_storage_26_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg                meta_storage_26_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:67:25
@@ -532,7 +476,6 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
   reg  [9:0]         meta_storage_26_sc_sum;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [127:0]       meta_storage_27_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [31:0]        meta_storage_27_phr;	// frontend/src/zaqal/frontend/BPU.scala:67:25
-  reg  [3:0]         meta_storage_27_ras_sp;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg                meta_storage_27_ghr_spec_shifted;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [1:0]         meta_storage_27_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg                meta_storage_27_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:67:25
@@ -546,7 +489,6 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
   reg  [9:0]         meta_storage_27_sc_sum;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [127:0]       meta_storage_28_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [31:0]        meta_storage_28_phr;	// frontend/src/zaqal/frontend/BPU.scala:67:25
-  reg  [3:0]         meta_storage_28_ras_sp;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg                meta_storage_28_ghr_spec_shifted;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [1:0]         meta_storage_28_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg                meta_storage_28_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:67:25
@@ -560,7 +502,6 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
   reg  [9:0]         meta_storage_28_sc_sum;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [127:0]       meta_storage_29_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [31:0]        meta_storage_29_phr;	// frontend/src/zaqal/frontend/BPU.scala:67:25
-  reg  [3:0]         meta_storage_29_ras_sp;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg                meta_storage_29_ghr_spec_shifted;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [1:0]         meta_storage_29_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg                meta_storage_29_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:67:25
@@ -574,7 +515,6 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
   reg  [9:0]         meta_storage_29_sc_sum;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [127:0]       meta_storage_30_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [31:0]        meta_storage_30_phr;	// frontend/src/zaqal/frontend/BPU.scala:67:25
-  reg  [3:0]         meta_storage_30_ras_sp;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg                meta_storage_30_ghr_spec_shifted;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [1:0]         meta_storage_30_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg                meta_storage_30_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:67:25
@@ -588,7 +528,6 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
   reg  [9:0]         meta_storage_30_sc_sum;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [127:0]       meta_storage_31_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [31:0]        meta_storage_31_phr;	// frontend/src/zaqal/frontend/BPU.scala:67:25
-  reg  [3:0]         meta_storage_31_ras_sp;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg                meta_storage_31_ghr_spec_shifted;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [1:0]         meta_storage_31_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg                meta_storage_31_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:67:25
@@ -602,7 +541,6 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
   reg  [9:0]         meta_storage_31_sc_sum;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [127:0]       meta_storage_32_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [31:0]        meta_storage_32_phr;	// frontend/src/zaqal/frontend/BPU.scala:67:25
-  reg  [3:0]         meta_storage_32_ras_sp;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg                meta_storage_32_ghr_spec_shifted;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [1:0]         meta_storage_32_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg                meta_storage_32_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:67:25
@@ -616,7 +554,6 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
   reg  [9:0]         meta_storage_32_sc_sum;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [127:0]       meta_storage_33_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [31:0]        meta_storage_33_phr;	// frontend/src/zaqal/frontend/BPU.scala:67:25
-  reg  [3:0]         meta_storage_33_ras_sp;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg                meta_storage_33_ghr_spec_shifted;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [1:0]         meta_storage_33_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg                meta_storage_33_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:67:25
@@ -630,7 +567,6 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
   reg  [9:0]         meta_storage_33_sc_sum;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [127:0]       meta_storage_34_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [31:0]        meta_storage_34_phr;	// frontend/src/zaqal/frontend/BPU.scala:67:25
-  reg  [3:0]         meta_storage_34_ras_sp;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg                meta_storage_34_ghr_spec_shifted;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [1:0]         meta_storage_34_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg                meta_storage_34_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:67:25
@@ -644,7 +580,6 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
   reg  [9:0]         meta_storage_34_sc_sum;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [127:0]       meta_storage_35_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [31:0]        meta_storage_35_phr;	// frontend/src/zaqal/frontend/BPU.scala:67:25
-  reg  [3:0]         meta_storage_35_ras_sp;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg                meta_storage_35_ghr_spec_shifted;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [1:0]         meta_storage_35_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg                meta_storage_35_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:67:25
@@ -658,7 +593,6 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
   reg  [9:0]         meta_storage_35_sc_sum;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [127:0]       meta_storage_36_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [31:0]        meta_storage_36_phr;	// frontend/src/zaqal/frontend/BPU.scala:67:25
-  reg  [3:0]         meta_storage_36_ras_sp;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg                meta_storage_36_ghr_spec_shifted;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [1:0]         meta_storage_36_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg                meta_storage_36_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:67:25
@@ -672,7 +606,6 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
   reg  [9:0]         meta_storage_36_sc_sum;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [127:0]       meta_storage_37_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [31:0]        meta_storage_37_phr;	// frontend/src/zaqal/frontend/BPU.scala:67:25
-  reg  [3:0]         meta_storage_37_ras_sp;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg                meta_storage_37_ghr_spec_shifted;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [1:0]         meta_storage_37_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg                meta_storage_37_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:67:25
@@ -686,7 +619,6 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
   reg  [9:0]         meta_storage_37_sc_sum;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [127:0]       meta_storage_38_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [31:0]        meta_storage_38_phr;	// frontend/src/zaqal/frontend/BPU.scala:67:25
-  reg  [3:0]         meta_storage_38_ras_sp;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg                meta_storage_38_ghr_spec_shifted;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [1:0]         meta_storage_38_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg                meta_storage_38_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:67:25
@@ -700,7 +632,6 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
   reg  [9:0]         meta_storage_38_sc_sum;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [127:0]       meta_storage_39_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [31:0]        meta_storage_39_phr;	// frontend/src/zaqal/frontend/BPU.scala:67:25
-  reg  [3:0]         meta_storage_39_ras_sp;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg                meta_storage_39_ghr_spec_shifted;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [1:0]         meta_storage_39_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg                meta_storage_39_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:67:25
@@ -714,7 +645,6 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
   reg  [9:0]         meta_storage_39_sc_sum;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [127:0]       meta_storage_40_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [31:0]        meta_storage_40_phr;	// frontend/src/zaqal/frontend/BPU.scala:67:25
-  reg  [3:0]         meta_storage_40_ras_sp;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg                meta_storage_40_ghr_spec_shifted;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [1:0]         meta_storage_40_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg                meta_storage_40_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:67:25
@@ -728,7 +658,6 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
   reg  [9:0]         meta_storage_40_sc_sum;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [127:0]       meta_storage_41_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [31:0]        meta_storage_41_phr;	// frontend/src/zaqal/frontend/BPU.scala:67:25
-  reg  [3:0]         meta_storage_41_ras_sp;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg                meta_storage_41_ghr_spec_shifted;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [1:0]         meta_storage_41_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg                meta_storage_41_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:67:25
@@ -742,7 +671,6 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
   reg  [9:0]         meta_storage_41_sc_sum;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [127:0]       meta_storage_42_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [31:0]        meta_storage_42_phr;	// frontend/src/zaqal/frontend/BPU.scala:67:25
-  reg  [3:0]         meta_storage_42_ras_sp;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg                meta_storage_42_ghr_spec_shifted;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [1:0]         meta_storage_42_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg                meta_storage_42_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:67:25
@@ -756,7 +684,6 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
   reg  [9:0]         meta_storage_42_sc_sum;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [127:0]       meta_storage_43_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [31:0]        meta_storage_43_phr;	// frontend/src/zaqal/frontend/BPU.scala:67:25
-  reg  [3:0]         meta_storage_43_ras_sp;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg                meta_storage_43_ghr_spec_shifted;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [1:0]         meta_storage_43_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg                meta_storage_43_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:67:25
@@ -770,7 +697,6 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
   reg  [9:0]         meta_storage_43_sc_sum;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [127:0]       meta_storage_44_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [31:0]        meta_storage_44_phr;	// frontend/src/zaqal/frontend/BPU.scala:67:25
-  reg  [3:0]         meta_storage_44_ras_sp;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg                meta_storage_44_ghr_spec_shifted;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [1:0]         meta_storage_44_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg                meta_storage_44_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:67:25
@@ -784,7 +710,6 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
   reg  [9:0]         meta_storage_44_sc_sum;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [127:0]       meta_storage_45_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [31:0]        meta_storage_45_phr;	// frontend/src/zaqal/frontend/BPU.scala:67:25
-  reg  [3:0]         meta_storage_45_ras_sp;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg                meta_storage_45_ghr_spec_shifted;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [1:0]         meta_storage_45_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg                meta_storage_45_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:67:25
@@ -798,7 +723,6 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
   reg  [9:0]         meta_storage_45_sc_sum;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [127:0]       meta_storage_46_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [31:0]        meta_storage_46_phr;	// frontend/src/zaqal/frontend/BPU.scala:67:25
-  reg  [3:0]         meta_storage_46_ras_sp;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg                meta_storage_46_ghr_spec_shifted;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [1:0]         meta_storage_46_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg                meta_storage_46_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:67:25
@@ -812,7 +736,6 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
   reg  [9:0]         meta_storage_46_sc_sum;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [127:0]       meta_storage_47_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [31:0]        meta_storage_47_phr;	// frontend/src/zaqal/frontend/BPU.scala:67:25
-  reg  [3:0]         meta_storage_47_ras_sp;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg                meta_storage_47_ghr_spec_shifted;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [1:0]         meta_storage_47_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg                meta_storage_47_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:67:25
@@ -826,7 +749,6 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
   reg  [9:0]         meta_storage_47_sc_sum;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [127:0]       meta_storage_48_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [31:0]        meta_storage_48_phr;	// frontend/src/zaqal/frontend/BPU.scala:67:25
-  reg  [3:0]         meta_storage_48_ras_sp;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg                meta_storage_48_ghr_spec_shifted;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [1:0]         meta_storage_48_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg                meta_storage_48_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:67:25
@@ -840,7 +762,6 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
   reg  [9:0]         meta_storage_48_sc_sum;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [127:0]       meta_storage_49_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [31:0]        meta_storage_49_phr;	// frontend/src/zaqal/frontend/BPU.scala:67:25
-  reg  [3:0]         meta_storage_49_ras_sp;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg                meta_storage_49_ghr_spec_shifted;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [1:0]         meta_storage_49_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg                meta_storage_49_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:67:25
@@ -854,7 +775,6 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
   reg  [9:0]         meta_storage_49_sc_sum;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [127:0]       meta_storage_50_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [31:0]        meta_storage_50_phr;	// frontend/src/zaqal/frontend/BPU.scala:67:25
-  reg  [3:0]         meta_storage_50_ras_sp;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg                meta_storage_50_ghr_spec_shifted;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [1:0]         meta_storage_50_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg                meta_storage_50_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:67:25
@@ -868,7 +788,6 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
   reg  [9:0]         meta_storage_50_sc_sum;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [127:0]       meta_storage_51_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [31:0]        meta_storage_51_phr;	// frontend/src/zaqal/frontend/BPU.scala:67:25
-  reg  [3:0]         meta_storage_51_ras_sp;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg                meta_storage_51_ghr_spec_shifted;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [1:0]         meta_storage_51_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg                meta_storage_51_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:67:25
@@ -882,7 +801,6 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
   reg  [9:0]         meta_storage_51_sc_sum;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [127:0]       meta_storage_52_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [31:0]        meta_storage_52_phr;	// frontend/src/zaqal/frontend/BPU.scala:67:25
-  reg  [3:0]         meta_storage_52_ras_sp;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg                meta_storage_52_ghr_spec_shifted;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [1:0]         meta_storage_52_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg                meta_storage_52_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:67:25
@@ -896,7 +814,6 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
   reg  [9:0]         meta_storage_52_sc_sum;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [127:0]       meta_storage_53_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [31:0]        meta_storage_53_phr;	// frontend/src/zaqal/frontend/BPU.scala:67:25
-  reg  [3:0]         meta_storage_53_ras_sp;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg                meta_storage_53_ghr_spec_shifted;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [1:0]         meta_storage_53_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg                meta_storage_53_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:67:25
@@ -910,7 +827,6 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
   reg  [9:0]         meta_storage_53_sc_sum;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [127:0]       meta_storage_54_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [31:0]        meta_storage_54_phr;	// frontend/src/zaqal/frontend/BPU.scala:67:25
-  reg  [3:0]         meta_storage_54_ras_sp;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg                meta_storage_54_ghr_spec_shifted;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [1:0]         meta_storage_54_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg                meta_storage_54_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:67:25
@@ -924,7 +840,6 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
   reg  [9:0]         meta_storage_54_sc_sum;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [127:0]       meta_storage_55_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [31:0]        meta_storage_55_phr;	// frontend/src/zaqal/frontend/BPU.scala:67:25
-  reg  [3:0]         meta_storage_55_ras_sp;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg                meta_storage_55_ghr_spec_shifted;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [1:0]         meta_storage_55_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg                meta_storage_55_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:67:25
@@ -938,7 +853,6 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
   reg  [9:0]         meta_storage_55_sc_sum;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [127:0]       meta_storage_56_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [31:0]        meta_storage_56_phr;	// frontend/src/zaqal/frontend/BPU.scala:67:25
-  reg  [3:0]         meta_storage_56_ras_sp;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg                meta_storage_56_ghr_spec_shifted;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [1:0]         meta_storage_56_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg                meta_storage_56_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:67:25
@@ -952,7 +866,6 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
   reg  [9:0]         meta_storage_56_sc_sum;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [127:0]       meta_storage_57_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [31:0]        meta_storage_57_phr;	// frontend/src/zaqal/frontend/BPU.scala:67:25
-  reg  [3:0]         meta_storage_57_ras_sp;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg                meta_storage_57_ghr_spec_shifted;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [1:0]         meta_storage_57_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg                meta_storage_57_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:67:25
@@ -966,7 +879,6 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
   reg  [9:0]         meta_storage_57_sc_sum;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [127:0]       meta_storage_58_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [31:0]        meta_storage_58_phr;	// frontend/src/zaqal/frontend/BPU.scala:67:25
-  reg  [3:0]         meta_storage_58_ras_sp;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg                meta_storage_58_ghr_spec_shifted;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [1:0]         meta_storage_58_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg                meta_storage_58_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:67:25
@@ -980,7 +892,6 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
   reg  [9:0]         meta_storage_58_sc_sum;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [127:0]       meta_storage_59_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [31:0]        meta_storage_59_phr;	// frontend/src/zaqal/frontend/BPU.scala:67:25
-  reg  [3:0]         meta_storage_59_ras_sp;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg                meta_storage_59_ghr_spec_shifted;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [1:0]         meta_storage_59_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg                meta_storage_59_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:67:25
@@ -994,7 +905,6 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
   reg  [9:0]         meta_storage_59_sc_sum;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [127:0]       meta_storage_60_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [31:0]        meta_storage_60_phr;	// frontend/src/zaqal/frontend/BPU.scala:67:25
-  reg  [3:0]         meta_storage_60_ras_sp;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg                meta_storage_60_ghr_spec_shifted;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [1:0]         meta_storage_60_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg                meta_storage_60_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:67:25
@@ -1008,7 +918,6 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
   reg  [9:0]         meta_storage_60_sc_sum;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [127:0]       meta_storage_61_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [31:0]        meta_storage_61_phr;	// frontend/src/zaqal/frontend/BPU.scala:67:25
-  reg  [3:0]         meta_storage_61_ras_sp;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg                meta_storage_61_ghr_spec_shifted;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [1:0]         meta_storage_61_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg                meta_storage_61_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:67:25
@@ -1022,7 +931,6 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
   reg  [9:0]         meta_storage_61_sc_sum;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [127:0]       meta_storage_62_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [31:0]        meta_storage_62_phr;	// frontend/src/zaqal/frontend/BPU.scala:67:25
-  reg  [3:0]         meta_storage_62_ras_sp;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg                meta_storage_62_ghr_spec_shifted;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [1:0]         meta_storage_62_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg                meta_storage_62_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:67:25
@@ -1036,7 +944,6 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
   reg  [9:0]         meta_storage_62_sc_sum;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [127:0]       meta_storage_63_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [31:0]        meta_storage_63_phr;	// frontend/src/zaqal/frontend/BPU.scala:67:25
-  reg  [3:0]         meta_storage_63_ras_sp;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg                meta_storage_63_ghr_spec_shifted;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [1:0]         meta_storage_63_tage_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg                meta_storage_63_tage_providerHit;	// frontend/src/zaqal/frontend/BPU.scala:67:25
@@ -1049,23 +956,15 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
   reg  [1:0]         meta_storage_63_ittage_providerU;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [9:0]         meta_storage_63_sc_sum;	// frontend/src/zaqal/frontend/BPU.scala:67:25
   reg  [63:0]        exact_pc;	// frontend/src/zaqal/frontend/BPU.scala:96:25
-  wire               _ras_hit_T_4 = _ftb_io_slot >= exact_pc[4:1];	// frontend/src/zaqal/frontend/BPU.scala:50:19, :96:25, :105:27, :106:46
-  wire               ftb_valid = _ftb_io_hit & _ras_hit_T_4;	// frontend/src/zaqal/frontend/BPU.scala:50:19, :106:{30,46}
-  wire               _has_spec_cond_br_T_5 = _ftb_io_br_type == 2'h0;	// frontend/src/zaqal/frontend/BPU.scala:50:19, :108:51
-  wire               final_taken =
-    _uftb_io_pred_hit
-    | (ftb_valid & _has_spec_cond_br_T_5 ? _composer_io_final_pred_taken : _ftb_io_taken);	// frontend/src/zaqal/frontend/BPU.scala:50:19, :55:20, :56:24, :106:30, :108:{22,33,51}, :114:24
-  wire               _is_spec_jalr_T = _ftb_io_br_type == 2'h2;	// frontend/src/zaqal/frontend/BPU.scala:50:19, :118:64
-  wire               ras_hit =
-    _ftb_io_hit & _is_spec_jalr_T & _ras_io_spec_pop_valid_out & _ras_hit_T_4;	// frontend/src/zaqal/frontend/BPU.scala:50:19, :54:19, :106:46, :118:{64,101}
-  wire               _ftb_target_T_2 = ftb_valid & _is_spec_jalr_T & _ittage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:52:22, :106:30, :118:64, :126:62
-  wire [63:0]        final_target =
-    _uftb_io_pred_hit
-      ? _uftb_io_pred_target
-      : ras_hit
-          ? _ras_io_spec_pop_addr
-          : _ftb_target_T_2 ? _ittage_io_pred_target : _ftb_io_target;	// frontend/src/zaqal/frontend/BPU.scala:50:19, :52:22, :54:19, :55:20, :118:101, :125:23, :126:{25,62}, :129:25
-  wire               _ras_io_spec_pop_valid_T = io_out_ready & ~reset;	// frontend/src/zaqal/frontend/BPU.scala:332:19, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  wire               ftb_valid =
+    _ftb_io_hit & _ftb_io_slot >= exact_pc[4:1] & _ftb_io_slot != 4'hF;	// frontend/src/zaqal/frontend/BPU.scala:50:19, :96:25, :105:27, :106:{46,60,76}
+  wire               _has_spec_cond_br_T_3 = _ftb_io_br_type == 2'h0;	// frontend/src/zaqal/frontend/BPU.scala:50:19, :108:51
+  wire               ftb_taken =
+    ftb_valid & _has_spec_cond_br_T_3 ? _composer_io_final_pred_taken : _ftb_io_taken;	// frontend/src/zaqal/frontend/BPU.scala:50:19, :56:24, :106:60, :108:{22,33,51}
+  wire               _is_spec_jalr_T = _ftb_io_br_type == 2'h2;	// frontend/src/zaqal/frontend/BPU.scala:50:19, :116:64
+  wire               _ftb_target_T_2 = ftb_valid & _is_spec_jalr_T & _ittage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:52:22, :106:60, :116:64, :123:62
+  wire [63:0]        ftb_target =
+    _ftb_target_T_2 ? _ittage_io_pred_target : _ftb_io_target;	// frontend/src/zaqal/frontend/BPU.scala:50:19, :52:22, :123:{25,62}
   wire [63:0][127:0] _GEN =
     {{meta_storage_63_ghr},
      {meta_storage_62_ghr},
@@ -1130,7 +1029,7 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
      {meta_storage_3_ghr},
      {meta_storage_2_ghr},
      {meta_storage_1_ghr},
-     {meta_storage_0_ghr}};	// frontend/src/zaqal/frontend/BPU.scala:67:25, :141:21
+     {meta_storage_0_ghr}};	// frontend/src/zaqal/frontend/BPU.scala:67:25, :138:21
   wire [63:0][31:0]  _GEN_0 =
     {{meta_storage_63_phr},
      {meta_storage_62_phr},
@@ -1195,110 +1094,25 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
      {meta_storage_3_phr},
      {meta_storage_2_phr},
      {meta_storage_1_phr},
-     {meta_storage_0_phr}};	// frontend/src/zaqal/frontend/BPU.scala:67:25, :141:21
-  wire [63:0][3:0]   _GEN_1 =
-    {{meta_storage_63_ras_sp},
-     {meta_storage_62_ras_sp},
-     {meta_storage_61_ras_sp},
-     {meta_storage_60_ras_sp},
-     {meta_storage_59_ras_sp},
-     {meta_storage_58_ras_sp},
-     {meta_storage_57_ras_sp},
-     {meta_storage_56_ras_sp},
-     {meta_storage_55_ras_sp},
-     {meta_storage_54_ras_sp},
-     {meta_storage_53_ras_sp},
-     {meta_storage_52_ras_sp},
-     {meta_storage_51_ras_sp},
-     {meta_storage_50_ras_sp},
-     {meta_storage_49_ras_sp},
-     {meta_storage_48_ras_sp},
-     {meta_storage_47_ras_sp},
-     {meta_storage_46_ras_sp},
-     {meta_storage_45_ras_sp},
-     {meta_storage_44_ras_sp},
-     {meta_storage_43_ras_sp},
-     {meta_storage_42_ras_sp},
-     {meta_storage_41_ras_sp},
-     {meta_storage_40_ras_sp},
-     {meta_storage_39_ras_sp},
-     {meta_storage_38_ras_sp},
-     {meta_storage_37_ras_sp},
-     {meta_storage_36_ras_sp},
-     {meta_storage_35_ras_sp},
-     {meta_storage_34_ras_sp},
-     {meta_storage_33_ras_sp},
-     {meta_storage_32_ras_sp},
-     {meta_storage_31_ras_sp},
-     {meta_storage_30_ras_sp},
-     {meta_storage_29_ras_sp},
-     {meta_storage_28_ras_sp},
-     {meta_storage_27_ras_sp},
-     {meta_storage_26_ras_sp},
-     {meta_storage_25_ras_sp},
-     {meta_storage_24_ras_sp},
-     {meta_storage_23_ras_sp},
-     {meta_storage_22_ras_sp},
-     {meta_storage_21_ras_sp},
-     {meta_storage_20_ras_sp},
-     {meta_storage_19_ras_sp},
-     {meta_storage_18_ras_sp},
-     {meta_storage_17_ras_sp},
-     {meta_storage_16_ras_sp},
-     {meta_storage_15_ras_sp},
-     {meta_storage_14_ras_sp},
-     {meta_storage_13_ras_sp},
-     {meta_storage_12_ras_sp},
-     {meta_storage_11_ras_sp},
-     {meta_storage_10_ras_sp},
-     {meta_storage_9_ras_sp},
-     {meta_storage_8_ras_sp},
-     {meta_storage_7_ras_sp},
-     {meta_storage_6_ras_sp},
-     {meta_storage_5_ras_sp},
-     {meta_storage_4_ras_sp},
-     {meta_storage_3_ras_sp},
-     {meta_storage_2_ras_sp},
-     {meta_storage_1_ras_sp},
-     {meta_storage_0_ras_sp}};	// frontend/src/zaqal/frontend/BPU.scala:67:25, :141:21
-  wire               commit_calls_0 =
-    io_commits_commitValid_0 & io_commits_info_0_is_call;	// frontend/src/zaqal/frontend/BPU.scala:145:69
-  wire               commit_calls_1 =
-    io_commits_commitValid_1 & io_commits_info_1_is_call;	// frontend/src/zaqal/frontend/BPU.scala:145:69
-  wire               commit_calls_2 =
-    io_commits_commitValid_2 & io_commits_info_2_is_call;	// frontend/src/zaqal/frontend/BPU.scala:145:69
-  wire               commit_calls_3 =
-    io_commits_commitValid_3 & io_commits_info_3_is_call;	// frontend/src/zaqal/frontend/BPU.scala:145:69
-  wire               commit_calls_4 =
-    io_commits_commitValid_4 & io_commits_info_4_is_call;	// frontend/src/zaqal/frontend/BPU.scala:145:69
-  wire [7:0][63:0]   _GEN_2 =
-    {{io_commits_info_0_pc},
-     {io_commits_info_0_pc},
-     {io_commits_info_5_pc},
-     {io_commits_info_4_pc},
-     {io_commits_info_3_pc},
-     {io_commits_info_2_pc},
-     {io_commits_info_1_pc},
-     {io_commits_info_0_pc}};	// frontend/src/zaqal/frontend/BPU.scala:155:60
-  wire               bpu_update_valid = io_redirect_valid | io_bpu_update_valid;	// frontend/src/zaqal/frontend/BPU.scala:159:44
+     {meta_storage_0_phr}};	// frontend/src/zaqal/frontend/BPU.scala:67:25, :138:21
+  wire               bpu_update_valid = io_redirect_valid | io_bpu_update_valid;	// frontend/src/zaqal/frontend/BPU.scala:156:44
   wire [63:0]        bpu_update_pc =
-    io_redirect_valid ? io_redirect_pc : io_bpu_update_pc;	// frontend/src/zaqal/frontend/BPU.scala:160:29
+    io_redirect_valid ? io_redirect_pc : io_bpu_update_pc;	// frontend/src/zaqal/frontend/BPU.scala:157:29
   wire [63:0]        bpu_update_target =
-    io_redirect_valid ? io_redirect_target : io_bpu_update_target;	// frontend/src/zaqal/frontend/BPU.scala:161:29
+    io_redirect_valid ? io_redirect_target : io_bpu_update_target;	// frontend/src/zaqal/frontend/BPU.scala:158:29
   wire               bpu_update_taken =
-    io_redirect_valid ? io_redirect_taken : io_bpu_update_taken;	// frontend/src/zaqal/frontend/BPU.scala:162:29
+    io_redirect_valid ? io_redirect_taken : io_bpu_update_taken;	// frontend/src/zaqal/frontend/BPU.scala:159:29
   wire               bpu_update_is_cfi =
-    io_redirect_valid ? io_redirect_is_cfi : io_bpu_update_is_cfi;	// frontend/src/zaqal/frontend/BPU.scala:163:29
+    io_redirect_valid ? io_redirect_is_cfi : io_bpu_update_is_cfi;	// frontend/src/zaqal/frontend/BPU.scala:160:29
   wire               bpu_update_is_jal =
-    io_redirect_valid ? io_redirect_is_jal : io_bpu_update_is_jal;	// frontend/src/zaqal/frontend/BPU.scala:164:29
+    io_redirect_valid ? io_redirect_is_jal : io_bpu_update_is_jal;	// frontend/src/zaqal/frontend/BPU.scala:161:29
   wire               bpu_update_is_jalr =
-    io_redirect_valid ? io_redirect_is_jalr : io_bpu_update_is_jalr;	// frontend/src/zaqal/frontend/BPU.scala:165:30
+    io_redirect_valid ? io_redirect_is_jalr : io_bpu_update_is_jalr;	// frontend/src/zaqal/frontend/BPU.scala:162:30
   wire [5:0]         bpu_update_ftqPtr =
-    io_redirect_valid ? io_redirect_ftqPtr : io_bpu_update_ftqPtr;	// frontend/src/zaqal/frontend/BPU.scala:166:29
-  wire               _sc_io_update_valid_T = io_redirect_valid & io_redirect_is_exception;	// frontend/src/zaqal/frontend/BPU.scala:170:67
-  wire               _ftb_io_update_valid_T_2 = bpu_update_valid & ~_sc_io_update_valid_T;	// frontend/src/zaqal/frontend/BPU.scala:159:44, :170:{44,47,67}
-  wire [63:0]        aligned_update_pc = bpu_update_pc & 64'hFFFFFFFFFFFFFFE0;	// frontend/src/zaqal/frontend/BPU.scala:160:29, :184:{41,44}
-  wire [63:0][1:0]   _GEN_3 =
+    io_redirect_valid ? io_redirect_ftqPtr : io_bpu_update_ftqPtr;	// frontend/src/zaqal/frontend/BPU.scala:163:29
+  wire               _sc_io_update_valid_T = io_redirect_valid & io_redirect_is_exception;	// frontend/src/zaqal/frontend/BPU.scala:167:67
+  wire [63:0]        aligned_update_pc = bpu_update_pc & 64'hFFFFFFFFFFFFFFE0;	// frontend/src/zaqal/frontend/BPU.scala:157:29, :181:{41,44}
+  wire [63:0][1:0]   _GEN_1 =
     {{meta_storage_63_tage_providerIdx},
      {meta_storage_62_tage_providerIdx},
      {meta_storage_61_tage_providerIdx},
@@ -1362,8 +1176,8 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
      {meta_storage_3_tage_providerIdx},
      {meta_storage_2_tage_providerIdx},
      {meta_storage_1_tage_providerIdx},
-     {meta_storage_0_tage_providerIdx}};	// frontend/src/zaqal/frontend/BPU.scala:67:25, :189:24
-  wire [63:0]        _GEN_4 =
+     {meta_storage_0_tage_providerIdx}};	// frontend/src/zaqal/frontend/BPU.scala:67:25, :186:24
+  wire [63:0]        _GEN_2 =
     {{meta_storage_63_tage_providerHit},
      {meta_storage_62_tage_providerHit},
      {meta_storage_61_tage_providerHit},
@@ -1427,8 +1241,8 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
      {meta_storage_3_tage_providerHit},
      {meta_storage_2_tage_providerHit},
      {meta_storage_1_tage_providerHit},
-     {meta_storage_0_tage_providerHit}};	// frontend/src/zaqal/frontend/BPU.scala:67:25, :189:24
-  wire [63:0][2:0]   _GEN_5 =
+     {meta_storage_0_tage_providerHit}};	// frontend/src/zaqal/frontend/BPU.scala:67:25, :186:24
+  wire [63:0][2:0]   _GEN_3 =
     {{meta_storage_63_tage_providerCtr},
      {meta_storage_62_tage_providerCtr},
      {meta_storage_61_tage_providerCtr},
@@ -1492,8 +1306,8 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
      {meta_storage_3_tage_providerCtr},
      {meta_storage_2_tage_providerCtr},
      {meta_storage_1_tage_providerCtr},
-     {meta_storage_0_tage_providerCtr}};	// frontend/src/zaqal/frontend/BPU.scala:67:25, :189:24
-  wire [63:0]        _GEN_6 =
+     {meta_storage_0_tage_providerCtr}};	// frontend/src/zaqal/frontend/BPU.scala:67:25, :186:24
+  wire [63:0]        _GEN_4 =
     {{meta_storage_63_tage_altTaken},
      {meta_storage_62_tage_altTaken},
      {meta_storage_61_tage_altTaken},
@@ -1557,8 +1371,8 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
      {meta_storage_3_tage_altTaken},
      {meta_storage_2_tage_altTaken},
      {meta_storage_1_tage_altTaken},
-     {meta_storage_0_tage_altTaken}};	// frontend/src/zaqal/frontend/BPU.scala:67:25, :189:24
-  wire [63:0][1:0]   _GEN_7 =
+     {meta_storage_0_tage_altTaken}};	// frontend/src/zaqal/frontend/BPU.scala:67:25, :186:24
+  wire [63:0][1:0]   _GEN_5 =
     {{meta_storage_63_tage_providerU},
      {meta_storage_62_tage_providerU},
      {meta_storage_61_tage_providerU},
@@ -1622,8 +1436,8 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
      {meta_storage_3_tage_providerU},
      {meta_storage_2_tage_providerU},
      {meta_storage_1_tage_providerU},
-     {meta_storage_0_tage_providerU}};	// frontend/src/zaqal/frontend/BPU.scala:67:25, :189:24
-  wire [63:0][1:0]   _GEN_8 =
+     {meta_storage_0_tage_providerU}};	// frontend/src/zaqal/frontend/BPU.scala:67:25, :186:24
+  wire [63:0][1:0]   _GEN_6 =
     {{meta_storage_63_ittage_providerIdx},
      {meta_storage_62_ittage_providerIdx},
      {meta_storage_61_ittage_providerIdx},
@@ -1687,8 +1501,8 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
      {meta_storage_3_ittage_providerIdx},
      {meta_storage_2_ittage_providerIdx},
      {meta_storage_1_ittage_providerIdx},
-     {meta_storage_0_ittage_providerIdx}};	// frontend/src/zaqal/frontend/BPU.scala:67:25, :189:24
-  wire [63:0]        _GEN_9 =
+     {meta_storage_0_ittage_providerIdx}};	// frontend/src/zaqal/frontend/BPU.scala:67:25, :186:24
+  wire [63:0]        _GEN_7 =
     {{meta_storage_63_ittage_providerHit},
      {meta_storage_62_ittage_providerHit},
      {meta_storage_61_ittage_providerHit},
@@ -1752,8 +1566,8 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
      {meta_storage_3_ittage_providerHit},
      {meta_storage_2_ittage_providerHit},
      {meta_storage_1_ittage_providerHit},
-     {meta_storage_0_ittage_providerHit}};	// frontend/src/zaqal/frontend/BPU.scala:67:25, :189:24
-  wire [63:0][63:0]  _GEN_10 =
+     {meta_storage_0_ittage_providerHit}};	// frontend/src/zaqal/frontend/BPU.scala:67:25, :186:24
+  wire [63:0][63:0]  _GEN_8 =
     {{meta_storage_63_ittage_altTarget},
      {meta_storage_62_ittage_altTarget},
      {meta_storage_61_ittage_altTarget},
@@ -1817,8 +1631,8 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
      {meta_storage_3_ittage_altTarget},
      {meta_storage_2_ittage_altTarget},
      {meta_storage_1_ittage_altTarget},
-     {meta_storage_0_ittage_altTarget}};	// frontend/src/zaqal/frontend/BPU.scala:67:25, :189:24
-  wire [63:0][1:0]   _GEN_11 =
+     {meta_storage_0_ittage_altTarget}};	// frontend/src/zaqal/frontend/BPU.scala:67:25, :186:24
+  wire [63:0][1:0]   _GEN_9 =
     {{meta_storage_63_ittage_providerU},
      {meta_storage_62_ittage_providerU},
      {meta_storage_61_ittage_providerU},
@@ -1882,8 +1696,8 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
      {meta_storage_3_ittage_providerU},
      {meta_storage_2_ittage_providerU},
      {meta_storage_1_ittage_providerU},
-     {meta_storage_0_ittage_providerU}};	// frontend/src/zaqal/frontend/BPU.scala:67:25, :189:24
-  wire [63:0][9:0]   _GEN_12 =
+     {meta_storage_0_ittage_providerU}};	// frontend/src/zaqal/frontend/BPU.scala:67:25, :186:24
+  wire [63:0][9:0]   _GEN_10 =
     {{meta_storage_63_sc_sum},
      {meta_storage_62_sc_sum},
      {meta_storage_61_sc_sum},
@@ -1947,81 +1761,78 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
      {meta_storage_3_sc_sum},
      {meta_storage_2_sc_sum},
      {meta_storage_1_sc_sum},
-     {meta_storage_0_sc_sum}};	// frontend/src/zaqal/frontend/BPU.scala:67:25, :189:24
+     {meta_storage_0_sc_sum}};	// frontend/src/zaqal/frontend/BPU.scala:67:25, :186:24
   wire               _sc_io_update_valid_T_7 =
     bpu_update_valid & ~_sc_io_update_valid_T & bpu_update_is_cfi & ~bpu_update_is_jal
-    & ~bpu_update_is_jalr;	// frontend/src/zaqal/frontend/BPU.scala:159:44, :163:29, :164:29, :165:30, :170:67, :187:{120,142}, :208:{45,137}
-  wire [63:0]        _s0_pc_T_4 = s0_pc + 64'h20;	// frontend/src/zaqal/frontend/BPU.scala:38:25, :101:52, :231:55
-  wire [63:0]        meta_target = final_taken ? final_target : _s0_pc_T_4;	// frontend/src/zaqal/frontend/BPU.scala:114:24, :129:25, :231:{21,55}
-  wire [3:0]         _is_spec_jalr_T_2 = _ftb_io_slot - exact_pc[4:1];	// frontend/src/zaqal/frontend/BPU.scala:50:19, :96:25, :105:27, :234:47
-  wire [3:0]         meta_slot = ftb_valid ? _is_spec_jalr_T_2 : 4'h0;	// frontend/src/zaqal/frontend/BPU.scala:106:30, :234:{23,47}
-  wire [15:0]        _meta_taken_T_2 = current_mask >> meta_slot;	// frontend/src/zaqal/frontend/BPU.scala:234:23, :235:78, :238:25, :244:18, :247:28
-  wire               meta_taken = final_taken & _meta_taken_T_2[0];	// frontend/src/zaqal/frontend/BPU.scala:114:24, :235:{63,78}
-  wire [30:0]        _redirect_mask_T_1 = 31'hFFFF << io_redirect_target[4:1];	// frontend/src/zaqal/frontend/BPU.scala:241:41, :242:55
-  assign current_mask = io_redirect_valid ? _redirect_mask_T_1[15:0] : mask_reg;	// frontend/src/zaqal/frontend/BPU.scala:39:25, :238:25, :242:{55,70}, :244:18, :247:28
-  wire [3:0]         rel_slot = meta_taken & ftb_valid ? _is_spec_jalr_T_2 : 4'h0;	// frontend/src/zaqal/frontend/BPU.scala:106:30, :234:{23,47}, :235:63, :336:21
-  wire [30:0]        _branch_mask_T_1 = 31'hFFFF << meta_target[4:1];	// frontend/src/zaqal/frontend/BPU.scala:231:21, :242:55, :251:34, :252:53
-  wire               _in_flight_T_19 = bpu_enq_ptr > 6'h2;	// frontend/src/zaqal/frontend/BPU.scala:59:28, :301:{30,52}
-  wire               _in_flight_T_33 = bpu_enq_ptr > 6'h4;	// frontend/src/zaqal/frontend/BPU.scala:59:28, :301:{30,52}
-  wire               _in_flight_T_40 = bpu_enq_ptr > 6'h5;	// frontend/src/zaqal/frontend/BPU.scala:59:28, :301:{30,52}
-  wire               _in_flight_T_47 = bpu_enq_ptr > 6'h6;	// frontend/src/zaqal/frontend/BPU.scala:59:28, :301:{30,52}
-  wire               _in_flight_T_61 = bpu_enq_ptr > 6'h8;	// frontend/src/zaqal/frontend/BPU.scala:59:28, :301:{30,52}
-  wire               _in_flight_T_68 = bpu_enq_ptr > 6'h9;	// frontend/src/zaqal/frontend/BPU.scala:59:28, :301:{30,52}
-  wire               _in_flight_T_75 = bpu_enq_ptr > 6'hA;	// frontend/src/zaqal/frontend/BPU.scala:59:28, :301:{30,52}
-  wire               _in_flight_T_82 = bpu_enq_ptr > 6'hB;	// frontend/src/zaqal/frontend/BPU.scala:59:28, :301:{30,52}
-  wire               _in_flight_T_89 = bpu_enq_ptr > 6'hC;	// frontend/src/zaqal/frontend/BPU.scala:59:28, :301:{30,52}
-  wire               _in_flight_T_96 = bpu_enq_ptr > 6'hD;	// frontend/src/zaqal/frontend/BPU.scala:59:28, :301:{30,52}
-  wire               _in_flight_T_103 = bpu_enq_ptr > 6'hE;	// frontend/src/zaqal/frontend/BPU.scala:59:28, :301:{30,52}
-  wire               _in_flight_T_117 = bpu_enq_ptr > 6'h10;	// frontend/src/zaqal/frontend/BPU.scala:59:28, :301:{30,52}
-  wire               _in_flight_T_124 = bpu_enq_ptr > 6'h11;	// frontend/src/zaqal/frontend/BPU.scala:59:28, :301:{30,52}
-  wire               _in_flight_T_131 = bpu_enq_ptr > 6'h12;	// frontend/src/zaqal/frontend/BPU.scala:59:28, :301:{30,52}
-  wire               _in_flight_T_138 = bpu_enq_ptr > 6'h13;	// frontend/src/zaqal/frontend/BPU.scala:59:28, :301:{30,52}
-  wire               _in_flight_T_145 = bpu_enq_ptr > 6'h14;	// frontend/src/zaqal/frontend/BPU.scala:59:28, :301:{30,52}
-  wire               _in_flight_T_152 = bpu_enq_ptr > 6'h15;	// frontend/src/zaqal/frontend/BPU.scala:59:28, :301:{30,52}
-  wire               _in_flight_T_159 = bpu_enq_ptr > 6'h16;	// frontend/src/zaqal/frontend/BPU.scala:59:28, :301:{30,52}
-  wire               _in_flight_T_166 = bpu_enq_ptr > 6'h17;	// frontend/src/zaqal/frontend/BPU.scala:59:28, :301:{30,52}
-  wire               _in_flight_T_173 = bpu_enq_ptr > 6'h18;	// frontend/src/zaqal/frontend/BPU.scala:59:28, :301:{30,52}
-  wire               _in_flight_T_180 = bpu_enq_ptr > 6'h19;	// frontend/src/zaqal/frontend/BPU.scala:59:28, :301:{30,52}
-  wire               _in_flight_T_187 = bpu_enq_ptr > 6'h1A;	// frontend/src/zaqal/frontend/BPU.scala:59:28, :301:{30,52}
-  wire               _in_flight_T_194 = bpu_enq_ptr > 6'h1B;	// frontend/src/zaqal/frontend/BPU.scala:59:28, :301:{30,52}
-  wire               _in_flight_T_201 = bpu_enq_ptr > 6'h1C;	// frontend/src/zaqal/frontend/BPU.scala:59:28, :301:{30,52}
-  wire               _in_flight_T_208 = bpu_enq_ptr > 6'h1D;	// frontend/src/zaqal/frontend/BPU.scala:59:28, :301:{30,52}
-  wire               _in_flight_T_215 = bpu_enq_ptr > 6'h1E;	// frontend/src/zaqal/frontend/BPU.scala:59:28, :301:{30,52}
-  wire               _in_flight_T_229 = bpu_enq_ptr > 6'h20;	// frontend/src/zaqal/frontend/BPU.scala:59:28, :101:52, :301:52
-  wire               _in_flight_T_236 = bpu_enq_ptr > 6'h21;	// frontend/src/zaqal/frontend/BPU.scala:59:28, :301:{30,52}
-  wire               _in_flight_T_243 = bpu_enq_ptr > 6'h22;	// frontend/src/zaqal/frontend/BPU.scala:59:28, :301:{30,52}
-  wire               _in_flight_T_250 = bpu_enq_ptr > 6'h23;	// frontend/src/zaqal/frontend/BPU.scala:59:28, :301:{30,52}
-  wire               _in_flight_T_257 = bpu_enq_ptr > 6'h24;	// frontend/src/zaqal/frontend/BPU.scala:59:28, :301:{30,52}
-  wire               _in_flight_T_264 = bpu_enq_ptr > 6'h25;	// frontend/src/zaqal/frontend/BPU.scala:59:28, :301:{30,52}
-  wire               _in_flight_T_271 = bpu_enq_ptr > 6'h26;	// frontend/src/zaqal/frontend/BPU.scala:59:28, :301:{30,52}
-  wire               _in_flight_T_278 = bpu_enq_ptr > 6'h27;	// frontend/src/zaqal/frontend/BPU.scala:59:28, :301:{30,52}
-  wire               _in_flight_T_285 = bpu_enq_ptr > 6'h28;	// frontend/src/zaqal/frontend/BPU.scala:59:28, :301:{30,52}
-  wire               _in_flight_T_292 = bpu_enq_ptr > 6'h29;	// frontend/src/zaqal/frontend/BPU.scala:59:28, :301:{30,52}
-  wire               _in_flight_T_299 = bpu_enq_ptr > 6'h2A;	// frontend/src/zaqal/frontend/BPU.scala:59:28, :301:{30,52}
-  wire               _in_flight_T_306 = bpu_enq_ptr > 6'h2B;	// frontend/src/zaqal/frontend/BPU.scala:59:28, :301:{30,52}
-  wire               _in_flight_T_313 = bpu_enq_ptr > 6'h2C;	// frontend/src/zaqal/frontend/BPU.scala:59:28, :301:{30,52}
-  wire               _in_flight_T_320 = bpu_enq_ptr > 6'h2D;	// frontend/src/zaqal/frontend/BPU.scala:59:28, :301:{30,52}
-  wire               _in_flight_T_327 = bpu_enq_ptr > 6'h2E;	// frontend/src/zaqal/frontend/BPU.scala:59:28, :301:{30,52}
-  wire               _in_flight_T_334 = bpu_enq_ptr > 6'h2F;	// frontend/src/zaqal/frontend/BPU.scala:59:28, :301:{30,52}
-  wire               _in_flight_T_341 = bpu_enq_ptr > 6'h30;	// frontend/src/zaqal/frontend/BPU.scala:59:28, :301:{30,52}
-  wire               _in_flight_T_348 = bpu_enq_ptr > 6'h31;	// frontend/src/zaqal/frontend/BPU.scala:59:28, :301:{30,52}
-  wire               _in_flight_T_355 = bpu_enq_ptr > 6'h32;	// frontend/src/zaqal/frontend/BPU.scala:59:28, :301:{30,52}
-  wire               _in_flight_T_362 = bpu_enq_ptr > 6'h33;	// frontend/src/zaqal/frontend/BPU.scala:59:28, :301:{30,52}
-  wire               _in_flight_T_369 = bpu_enq_ptr > 6'h34;	// frontend/src/zaqal/frontend/BPU.scala:59:28, :301:{30,52}
-  wire               _in_flight_T_376 = bpu_enq_ptr > 6'h35;	// frontend/src/zaqal/frontend/BPU.scala:59:28, :301:{30,52}
-  wire               _in_flight_T_383 = bpu_enq_ptr > 6'h36;	// frontend/src/zaqal/frontend/BPU.scala:59:28, :301:{30,52}
-  wire               _in_flight_T_390 = bpu_enq_ptr > 6'h37;	// frontend/src/zaqal/frontend/BPU.scala:59:28, :301:{30,52}
-  wire               _in_flight_T_397 = bpu_enq_ptr > 6'h38;	// frontend/src/zaqal/frontend/BPU.scala:59:28, :301:{30,52}
-  wire               _in_flight_T_404 = bpu_enq_ptr > 6'h39;	// frontend/src/zaqal/frontend/BPU.scala:59:28, :301:{30,52}
-  wire               _in_flight_T_411 = bpu_enq_ptr > 6'h3A;	// frontend/src/zaqal/frontend/BPU.scala:59:28, :301:{30,52}
-  wire               _in_flight_T_418 = bpu_enq_ptr > 6'h3B;	// frontend/src/zaqal/frontend/BPU.scala:59:28, :301:{30,52}
-  wire               _in_flight_T_425 = bpu_enq_ptr > 6'h3C;	// frontend/src/zaqal/frontend/BPU.scala:59:28, :301:{30,52}
-  wire               _in_flight_T_432 = bpu_enq_ptr > 6'h3D;	// frontend/src/zaqal/frontend/BPU.scala:59:28, :301:{30,52}
-  wire [15:0]        _GEN_13 = {12'h0, _is_spec_jalr_T_2};	// frontend/src/zaqal/frontend/BPU.scala:234:47, :235:78, :264:53
-  wire [15:0]        _has_spec_cond_br_T_2 = current_mask >> _GEN_13;	// frontend/src/zaqal/frontend/BPU.scala:238:25, :244:18, :247:28, :264:53
+    & ~bpu_update_is_jalr;	// frontend/src/zaqal/frontend/BPU.scala:156:44, :160:29, :161:29, :162:30, :167:67, :184:{120,142}, :205:{45,137}
+  wire [63:0]        _s0_pc_T_4 = s0_pc + 64'h20;	// frontend/src/zaqal/frontend/BPU.scala:38:25, :101:52, :228:55
+  wire [63:0]        meta_target = ftb_taken ? ftb_target : _s0_pc_T_4;	// frontend/src/zaqal/frontend/BPU.scala:108:22, :123:25, :228:{21,55}
+  wire [15:0]        _is_spec_jalr_T_2 = current_mask >> _ftb_io_slot;	// frontend/src/zaqal/frontend/BPU.scala:50:19, :231:58, :234:25, :240:18, :243:28
+  wire               meta_taken = ftb_taken & ftb_valid & _is_spec_jalr_T_2[0];	// frontend/src/zaqal/frontend/BPU.scala:106:60, :108:22, :231:{43,58}
+  wire [30:0]        _redirect_mask_T_1 = 31'hFFFF << io_redirect_target[4:1];	// frontend/src/zaqal/frontend/BPU.scala:237:41, :238:55
+  assign current_mask = io_redirect_valid ? _redirect_mask_T_1[15:0] : mask_reg;	// frontend/src/zaqal/frontend/BPU.scala:39:25, :234:25, :238:{55,70}, :240:18, :243:28
+  wire [31:0]        _taken_mask_T_1 = 32'h1 << {1'h0, _ftb_io_slot} + 5'h1;	// frontend/src/zaqal/frontend/BPU.scala:40:25, :50:19, :332:{26,42}
+  wire [30:0]        _branch_mask_T_1 = 31'hFFFF << meta_target[4:1];	// frontend/src/zaqal/frontend/BPU.scala:228:21, :238:55, :247:34, :248:53
+  wire               _in_flight_T_19 = bpu_enq_ptr > 6'h2;	// frontend/src/zaqal/frontend/BPU.scala:59:28, :297:{30,52}
+  wire               _in_flight_T_33 = bpu_enq_ptr > 6'h4;	// frontend/src/zaqal/frontend/BPU.scala:59:28, :297:{30,52}
+  wire               _in_flight_T_40 = bpu_enq_ptr > 6'h5;	// frontend/src/zaqal/frontend/BPU.scala:59:28, :297:{30,52}
+  wire               _in_flight_T_47 = bpu_enq_ptr > 6'h6;	// frontend/src/zaqal/frontend/BPU.scala:59:28, :297:{30,52}
+  wire               _in_flight_T_61 = bpu_enq_ptr > 6'h8;	// frontend/src/zaqal/frontend/BPU.scala:59:28, :297:{30,52}
+  wire               _in_flight_T_68 = bpu_enq_ptr > 6'h9;	// frontend/src/zaqal/frontend/BPU.scala:59:28, :297:{30,52}
+  wire               _in_flight_T_75 = bpu_enq_ptr > 6'hA;	// frontend/src/zaqal/frontend/BPU.scala:59:28, :297:{30,52}
+  wire               _in_flight_T_82 = bpu_enq_ptr > 6'hB;	// frontend/src/zaqal/frontend/BPU.scala:59:28, :297:{30,52}
+  wire               _in_flight_T_89 = bpu_enq_ptr > 6'hC;	// frontend/src/zaqal/frontend/BPU.scala:59:28, :297:{30,52}
+  wire               _in_flight_T_96 = bpu_enq_ptr > 6'hD;	// frontend/src/zaqal/frontend/BPU.scala:59:28, :297:{30,52}
+  wire               _in_flight_T_103 = bpu_enq_ptr > 6'hE;	// frontend/src/zaqal/frontend/BPU.scala:59:28, :297:{30,52}
+  wire               _in_flight_T_117 = bpu_enq_ptr > 6'h10;	// frontend/src/zaqal/frontend/BPU.scala:59:28, :297:{30,52}
+  wire               _in_flight_T_124 = bpu_enq_ptr > 6'h11;	// frontend/src/zaqal/frontend/BPU.scala:59:28, :297:{30,52}
+  wire               _in_flight_T_131 = bpu_enq_ptr > 6'h12;	// frontend/src/zaqal/frontend/BPU.scala:59:28, :297:{30,52}
+  wire               _in_flight_T_138 = bpu_enq_ptr > 6'h13;	// frontend/src/zaqal/frontend/BPU.scala:59:28, :297:{30,52}
+  wire               _in_flight_T_145 = bpu_enq_ptr > 6'h14;	// frontend/src/zaqal/frontend/BPU.scala:59:28, :297:{30,52}
+  wire               _in_flight_T_152 = bpu_enq_ptr > 6'h15;	// frontend/src/zaqal/frontend/BPU.scala:59:28, :297:{30,52}
+  wire               _in_flight_T_159 = bpu_enq_ptr > 6'h16;	// frontend/src/zaqal/frontend/BPU.scala:59:28, :297:{30,52}
+  wire               _in_flight_T_166 = bpu_enq_ptr > 6'h17;	// frontend/src/zaqal/frontend/BPU.scala:59:28, :297:{30,52}
+  wire               _in_flight_T_173 = bpu_enq_ptr > 6'h18;	// frontend/src/zaqal/frontend/BPU.scala:59:28, :297:{30,52}
+  wire               _in_flight_T_180 = bpu_enq_ptr > 6'h19;	// frontend/src/zaqal/frontend/BPU.scala:59:28, :297:{30,52}
+  wire               _in_flight_T_187 = bpu_enq_ptr > 6'h1A;	// frontend/src/zaqal/frontend/BPU.scala:59:28, :297:{30,52}
+  wire               _in_flight_T_194 = bpu_enq_ptr > 6'h1B;	// frontend/src/zaqal/frontend/BPU.scala:59:28, :297:{30,52}
+  wire               _in_flight_T_201 = bpu_enq_ptr > 6'h1C;	// frontend/src/zaqal/frontend/BPU.scala:59:28, :297:{30,52}
+  wire               _in_flight_T_208 = bpu_enq_ptr > 6'h1D;	// frontend/src/zaqal/frontend/BPU.scala:59:28, :297:{30,52}
+  wire               _in_flight_T_215 = bpu_enq_ptr > 6'h1E;	// frontend/src/zaqal/frontend/BPU.scala:59:28, :297:{30,52}
+  wire               _in_flight_T_229 = bpu_enq_ptr > 6'h20;	// frontend/src/zaqal/frontend/BPU.scala:59:28, :101:52, :297:52
+  wire               _in_flight_T_236 = bpu_enq_ptr > 6'h21;	// frontend/src/zaqal/frontend/BPU.scala:59:28, :297:{30,52}
+  wire               _in_flight_T_243 = bpu_enq_ptr > 6'h22;	// frontend/src/zaqal/frontend/BPU.scala:59:28, :297:{30,52}
+  wire               _in_flight_T_250 = bpu_enq_ptr > 6'h23;	// frontend/src/zaqal/frontend/BPU.scala:59:28, :297:{30,52}
+  wire               _in_flight_T_257 = bpu_enq_ptr > 6'h24;	// frontend/src/zaqal/frontend/BPU.scala:59:28, :297:{30,52}
+  wire               _in_flight_T_264 = bpu_enq_ptr > 6'h25;	// frontend/src/zaqal/frontend/BPU.scala:59:28, :297:{30,52}
+  wire               _in_flight_T_271 = bpu_enq_ptr > 6'h26;	// frontend/src/zaqal/frontend/BPU.scala:59:28, :297:{30,52}
+  wire               _in_flight_T_278 = bpu_enq_ptr > 6'h27;	// frontend/src/zaqal/frontend/BPU.scala:59:28, :297:{30,52}
+  wire               _in_flight_T_285 = bpu_enq_ptr > 6'h28;	// frontend/src/zaqal/frontend/BPU.scala:59:28, :297:{30,52}
+  wire               _in_flight_T_292 = bpu_enq_ptr > 6'h29;	// frontend/src/zaqal/frontend/BPU.scala:59:28, :297:{30,52}
+  wire               _in_flight_T_299 = bpu_enq_ptr > 6'h2A;	// frontend/src/zaqal/frontend/BPU.scala:59:28, :297:{30,52}
+  wire               _in_flight_T_306 = bpu_enq_ptr > 6'h2B;	// frontend/src/zaqal/frontend/BPU.scala:59:28, :297:{30,52}
+  wire               _in_flight_T_313 = bpu_enq_ptr > 6'h2C;	// frontend/src/zaqal/frontend/BPU.scala:59:28, :297:{30,52}
+  wire               _in_flight_T_320 = bpu_enq_ptr > 6'h2D;	// frontend/src/zaqal/frontend/BPU.scala:59:28, :297:{30,52}
+  wire               _in_flight_T_327 = bpu_enq_ptr > 6'h2E;	// frontend/src/zaqal/frontend/BPU.scala:59:28, :297:{30,52}
+  wire               _in_flight_T_334 = bpu_enq_ptr > 6'h2F;	// frontend/src/zaqal/frontend/BPU.scala:59:28, :297:{30,52}
+  wire               _in_flight_T_341 = bpu_enq_ptr > 6'h30;	// frontend/src/zaqal/frontend/BPU.scala:59:28, :297:{30,52}
+  wire               _in_flight_T_348 = bpu_enq_ptr > 6'h31;	// frontend/src/zaqal/frontend/BPU.scala:59:28, :297:{30,52}
+  wire               _in_flight_T_355 = bpu_enq_ptr > 6'h32;	// frontend/src/zaqal/frontend/BPU.scala:59:28, :297:{30,52}
+  wire               _in_flight_T_362 = bpu_enq_ptr > 6'h33;	// frontend/src/zaqal/frontend/BPU.scala:59:28, :297:{30,52}
+  wire               _in_flight_T_369 = bpu_enq_ptr > 6'h34;	// frontend/src/zaqal/frontend/BPU.scala:59:28, :297:{30,52}
+  wire               _in_flight_T_376 = bpu_enq_ptr > 6'h35;	// frontend/src/zaqal/frontend/BPU.scala:59:28, :297:{30,52}
+  wire               _in_flight_T_383 = bpu_enq_ptr > 6'h36;	// frontend/src/zaqal/frontend/BPU.scala:59:28, :297:{30,52}
+  wire               _in_flight_T_390 = bpu_enq_ptr > 6'h37;	// frontend/src/zaqal/frontend/BPU.scala:59:28, :297:{30,52}
+  wire               _in_flight_T_397 = bpu_enq_ptr > 6'h38;	// frontend/src/zaqal/frontend/BPU.scala:59:28, :297:{30,52}
+  wire               _in_flight_T_404 = bpu_enq_ptr > 6'h39;	// frontend/src/zaqal/frontend/BPU.scala:59:28, :297:{30,52}
+  wire               _in_flight_T_411 = bpu_enq_ptr > 6'h3A;	// frontend/src/zaqal/frontend/BPU.scala:59:28, :297:{30,52}
+  wire               _in_flight_T_418 = bpu_enq_ptr > 6'h3B;	// frontend/src/zaqal/frontend/BPU.scala:59:28, :297:{30,52}
+  wire               _in_flight_T_425 = bpu_enq_ptr > 6'h3C;	// frontend/src/zaqal/frontend/BPU.scala:59:28, :297:{30,52}
+  wire               _in_flight_T_432 = bpu_enq_ptr > 6'h3D;	// frontend/src/zaqal/frontend/BPU.scala:59:28, :297:{30,52}
+  wire               _ras_io_spec_pop_valid_T = io_out_ready & ~reset;	// frontend/src/zaqal/frontend/BPU.scala:328:19, src/main/scala/chisel3/util/Decoupled.scala:51:35
   wire               has_spec_cond_br =
-    ftb_valid & _has_spec_cond_br_T_2[0] & _has_spec_cond_br_T_5;	// frontend/src/zaqal/frontend/BPU.scala:106:30, :108:51, :264:{53,79}
-  wire [63:0]        _GEN_14 =
+    ftb_valid & _is_spec_jalr_T_2[0] & _has_spec_cond_br_T_3;	// frontend/src/zaqal/frontend/BPU.scala:106:60, :108:51, :231:58, :260:{53,67}
+  wire [63:0]        _GEN_11 =
     {{meta_storage_63_ghr_spec_shifted},
      {meta_storage_62_ghr_spec_shifted},
      {meta_storage_61_ghr_spec_shifted},
@@ -2085,76 +1896,75 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
      {meta_storage_3_ghr_spec_shifted},
      {meta_storage_2_ghr_spec_shifted},
      {meta_storage_1_ghr_spec_shifted},
-     {meta_storage_0_ghr_spec_shifted}};	// frontend/src/zaqal/frontend/BPU.scala:67:25, :189:24
+     {meta_storage_0_ghr_spec_shifted}};	// frontend/src/zaqal/frontend/BPU.scala:67:25, :186:24
   wire               do_non_spec_shift =
     io_bpu_update_valid & bpu_update_is_cfi & ~bpu_update_is_jal & ~bpu_update_is_jalr
-    & ~_GEN_14[bpu_update_ftqPtr] & ~io_redirect_valid;	// frontend/src/zaqal/frontend/BPU.scala:163:29, :164:29, :165:30, :166:29, :187:{120,142}, :189:24, :265:{116,150,153}
-  wire [5:0]         _start_ptr_T_63 = bpu_update_ftqPtr + 6'h1;	// frontend/src/zaqal/frontend/BPU.scala:166:29, :298:41, :301:30
+    & ~_GEN_11[bpu_update_ftqPtr] & ~io_redirect_valid;	// frontend/src/zaqal/frontend/BPU.scala:160:29, :161:29, :162:30, :163:29, :184:{120,142}, :186:24, :261:{116,150,153}
+  wire [5:0]         _start_ptr_T_63 = bpu_update_ftqPtr + 6'h1;	// frontend/src/zaqal/frontend/BPU.scala:163:29, :294:41, :297:30
   wire [127:0]       new_meta_ghr =
-    do_non_spec_shift ? {ghr[126:0], bpu_update_taken} : ghr;	// frontend/src/zaqal/frontend/BPU.scala:43:20, :162:29, :265:150, :312:{39,62,66}
-  wire [15:0]        _is_spec_jalr_T_4 = current_mask >> _GEN_13;	// frontend/src/zaqal/frontend/BPU.scala:238:25, :244:18, :247:28, :264:53, :282:73
-  wire               _in_flight_T_4 = _start_ptr_T_63 == 6'h0;	// frontend/src/zaqal/frontend/BPU.scala:59:28, :298:41, :301:30
-  wire               _in_flight_T_11 = _start_ptr_T_63 < 6'h2;	// frontend/src/zaqal/frontend/BPU.scala:298:41, :301:30
-  wire               _in_flight_T_18 = _start_ptr_T_63 < 6'h3;	// frontend/src/zaqal/frontend/BPU.scala:298:41, :301:30
-  wire               _in_flight_T_25 = _start_ptr_T_63 < 6'h4;	// frontend/src/zaqal/frontend/BPU.scala:298:41, :301:30
-  wire               _in_flight_T_32 = _start_ptr_T_63 < 6'h5;	// frontend/src/zaqal/frontend/BPU.scala:298:41, :301:30
-  wire               _in_flight_T_39 = _start_ptr_T_63 < 6'h6;	// frontend/src/zaqal/frontend/BPU.scala:298:41, :301:30
-  wire               _in_flight_T_46 = _start_ptr_T_63 < 6'h7;	// frontend/src/zaqal/frontend/BPU.scala:298:41, :301:30
-  wire               _in_flight_T_53 = _start_ptr_T_63 < 6'h8;	// frontend/src/zaqal/frontend/BPU.scala:298:41, :301:30
-  wire               _in_flight_T_60 = _start_ptr_T_63 < 6'h9;	// frontend/src/zaqal/frontend/BPU.scala:298:41, :301:30
-  wire               _in_flight_T_67 = _start_ptr_T_63 < 6'hA;	// frontend/src/zaqal/frontend/BPU.scala:298:41, :301:30
-  wire               _in_flight_T_74 = _start_ptr_T_63 < 6'hB;	// frontend/src/zaqal/frontend/BPU.scala:298:41, :301:30
-  wire               _in_flight_T_81 = _start_ptr_T_63 < 6'hC;	// frontend/src/zaqal/frontend/BPU.scala:298:41, :301:30
-  wire               _in_flight_T_88 = _start_ptr_T_63 < 6'hD;	// frontend/src/zaqal/frontend/BPU.scala:298:41, :301:30
-  wire               _in_flight_T_95 = _start_ptr_T_63 < 6'hE;	// frontend/src/zaqal/frontend/BPU.scala:298:41, :301:30
-  wire               _in_flight_T_102 = _start_ptr_T_63 < 6'hF;	// frontend/src/zaqal/frontend/BPU.scala:298:41, :301:30
-  wire               _in_flight_T_109 = _start_ptr_T_63 < 6'h10;	// frontend/src/zaqal/frontend/BPU.scala:298:41, :301:30
-  wire               _in_flight_T_116 = _start_ptr_T_63 < 6'h11;	// frontend/src/zaqal/frontend/BPU.scala:298:41, :301:30
-  wire               _in_flight_T_123 = _start_ptr_T_63 < 6'h12;	// frontend/src/zaqal/frontend/BPU.scala:298:41, :301:30
-  wire               _in_flight_T_130 = _start_ptr_T_63 < 6'h13;	// frontend/src/zaqal/frontend/BPU.scala:298:41, :301:30
-  wire               _in_flight_T_137 = _start_ptr_T_63 < 6'h14;	// frontend/src/zaqal/frontend/BPU.scala:298:41, :301:30
-  wire               _in_flight_T_144 = _start_ptr_T_63 < 6'h15;	// frontend/src/zaqal/frontend/BPU.scala:298:41, :301:30
-  wire               _in_flight_T_151 = _start_ptr_T_63 < 6'h16;	// frontend/src/zaqal/frontend/BPU.scala:298:41, :301:30
-  wire               _in_flight_T_158 = _start_ptr_T_63 < 6'h17;	// frontend/src/zaqal/frontend/BPU.scala:298:41, :301:30
-  wire               _in_flight_T_165 = _start_ptr_T_63 < 6'h18;	// frontend/src/zaqal/frontend/BPU.scala:298:41, :301:30
-  wire               _in_flight_T_172 = _start_ptr_T_63 < 6'h19;	// frontend/src/zaqal/frontend/BPU.scala:298:41, :301:30
-  wire               _in_flight_T_179 = _start_ptr_T_63 < 6'h1A;	// frontend/src/zaqal/frontend/BPU.scala:298:41, :301:30
-  wire               _in_flight_T_186 = _start_ptr_T_63 < 6'h1B;	// frontend/src/zaqal/frontend/BPU.scala:298:41, :301:30
-  wire               _in_flight_T_193 = _start_ptr_T_63 < 6'h1C;	// frontend/src/zaqal/frontend/BPU.scala:298:41, :301:30
-  wire               _in_flight_T_200 = _start_ptr_T_63 < 6'h1D;	// frontend/src/zaqal/frontend/BPU.scala:298:41, :301:30
-  wire               _in_flight_T_207 = _start_ptr_T_63 < 6'h1E;	// frontend/src/zaqal/frontend/BPU.scala:298:41, :301:30
-  wire               _in_flight_T_214 = _start_ptr_T_63 < 6'h1F;	// frontend/src/zaqal/frontend/BPU.scala:298:41, :301:30
-  wire               _in_flight_T_228 = _start_ptr_T_63 < 6'h21;	// frontend/src/zaqal/frontend/BPU.scala:298:41, :301:30
-  wire               _in_flight_T_235 = _start_ptr_T_63 < 6'h22;	// frontend/src/zaqal/frontend/BPU.scala:298:41, :301:30
-  wire               _in_flight_T_242 = _start_ptr_T_63 < 6'h23;	// frontend/src/zaqal/frontend/BPU.scala:298:41, :301:30
-  wire               _in_flight_T_249 = _start_ptr_T_63 < 6'h24;	// frontend/src/zaqal/frontend/BPU.scala:298:41, :301:30
-  wire               _in_flight_T_256 = _start_ptr_T_63 < 6'h25;	// frontend/src/zaqal/frontend/BPU.scala:298:41, :301:30
-  wire               _in_flight_T_263 = _start_ptr_T_63 < 6'h26;	// frontend/src/zaqal/frontend/BPU.scala:298:41, :301:30
-  wire               _in_flight_T_270 = _start_ptr_T_63 < 6'h27;	// frontend/src/zaqal/frontend/BPU.scala:298:41, :301:30
-  wire               _in_flight_T_277 = _start_ptr_T_63 < 6'h28;	// frontend/src/zaqal/frontend/BPU.scala:298:41, :301:30
-  wire               _in_flight_T_284 = _start_ptr_T_63 < 6'h29;	// frontend/src/zaqal/frontend/BPU.scala:298:41, :301:30
-  wire               _in_flight_T_291 = _start_ptr_T_63 < 6'h2A;	// frontend/src/zaqal/frontend/BPU.scala:298:41, :301:30
-  wire               _in_flight_T_298 = _start_ptr_T_63 < 6'h2B;	// frontend/src/zaqal/frontend/BPU.scala:298:41, :301:30
-  wire               _in_flight_T_305 = _start_ptr_T_63 < 6'h2C;	// frontend/src/zaqal/frontend/BPU.scala:298:41, :301:30
-  wire               _in_flight_T_312 = _start_ptr_T_63 < 6'h2D;	// frontend/src/zaqal/frontend/BPU.scala:298:41, :301:30
-  wire               _in_flight_T_319 = _start_ptr_T_63 < 6'h2E;	// frontend/src/zaqal/frontend/BPU.scala:298:41, :301:30
-  wire               _in_flight_T_326 = _start_ptr_T_63 < 6'h2F;	// frontend/src/zaqal/frontend/BPU.scala:298:41, :301:30
-  wire               _in_flight_T_333 = _start_ptr_T_63[5:4] != 2'h3;	// frontend/src/zaqal/frontend/BPU.scala:298:41, :301:30
-  wire               _in_flight_T_340 = _start_ptr_T_63 < 6'h31;	// frontend/src/zaqal/frontend/BPU.scala:298:41, :301:30
-  wire               _in_flight_T_347 = _start_ptr_T_63 < 6'h32;	// frontend/src/zaqal/frontend/BPU.scala:298:41, :301:30
-  wire               _in_flight_T_354 = _start_ptr_T_63 < 6'h33;	// frontend/src/zaqal/frontend/BPU.scala:298:41, :301:30
-  wire               _in_flight_T_361 = _start_ptr_T_63 < 6'h34;	// frontend/src/zaqal/frontend/BPU.scala:298:41, :301:30
-  wire               _in_flight_T_368 = _start_ptr_T_63 < 6'h35;	// frontend/src/zaqal/frontend/BPU.scala:298:41, :301:30
-  wire               _in_flight_T_375 = _start_ptr_T_63 < 6'h36;	// frontend/src/zaqal/frontend/BPU.scala:298:41, :301:30
-  wire               _in_flight_T_382 = _start_ptr_T_63 < 6'h37;	// frontend/src/zaqal/frontend/BPU.scala:298:41, :301:30
-  wire               _in_flight_T_389 = _start_ptr_T_63[5:3] != 3'h7;	// frontend/src/zaqal/frontend/BPU.scala:298:41, :301:30
-  wire               _in_flight_T_396 = _start_ptr_T_63 < 6'h39;	// frontend/src/zaqal/frontend/BPU.scala:298:41, :301:30
-  wire               _in_flight_T_403 = _start_ptr_T_63 < 6'h3A;	// frontend/src/zaqal/frontend/BPU.scala:298:41, :301:30
-  wire               _in_flight_T_410 = _start_ptr_T_63 < 6'h3B;	// frontend/src/zaqal/frontend/BPU.scala:298:41, :301:30
-  wire               _in_flight_T_417 = _start_ptr_T_63[5:2] != 4'hF;	// frontend/src/zaqal/frontend/BPU.scala:298:41, :301:30, :337:33
-  wire               _in_flight_T_424 = _start_ptr_T_63 < 6'h3D;	// frontend/src/zaqal/frontend/BPU.scala:298:41, :301:30
-  wire               _in_flight_T_431 = _start_ptr_T_63[5:1] != 5'h1F;	// frontend/src/zaqal/frontend/BPU.scala:298:41, :301:30
-  wire               _in_flight_T_438 = _start_ptr_T_63 != 6'h3F;	// frontend/src/zaqal/frontend/BPU.scala:298:41, :301:30, :328:33
+    do_non_spec_shift ? {ghr[126:0], bpu_update_taken} : ghr;	// frontend/src/zaqal/frontend/BPU.scala:43:20, :159:29, :261:150, :308:{39,62,66}
+  wire               _in_flight_T_4 = _start_ptr_T_63 == 6'h0;	// frontend/src/zaqal/frontend/BPU.scala:59:28, :294:41, :297:30
+  wire               _in_flight_T_11 = _start_ptr_T_63 < 6'h2;	// frontend/src/zaqal/frontend/BPU.scala:294:41, :297:30
+  wire               _in_flight_T_18 = _start_ptr_T_63 < 6'h3;	// frontend/src/zaqal/frontend/BPU.scala:294:41, :297:30
+  wire               _in_flight_T_25 = _start_ptr_T_63 < 6'h4;	// frontend/src/zaqal/frontend/BPU.scala:294:41, :297:30
+  wire               _in_flight_T_32 = _start_ptr_T_63 < 6'h5;	// frontend/src/zaqal/frontend/BPU.scala:294:41, :297:30
+  wire               _in_flight_T_39 = _start_ptr_T_63 < 6'h6;	// frontend/src/zaqal/frontend/BPU.scala:294:41, :297:30
+  wire               _in_flight_T_46 = _start_ptr_T_63 < 6'h7;	// frontend/src/zaqal/frontend/BPU.scala:294:41, :297:30
+  wire               _in_flight_T_53 = _start_ptr_T_63 < 6'h8;	// frontend/src/zaqal/frontend/BPU.scala:294:41, :297:30
+  wire               _in_flight_T_60 = _start_ptr_T_63 < 6'h9;	// frontend/src/zaqal/frontend/BPU.scala:294:41, :297:30
+  wire               _in_flight_T_67 = _start_ptr_T_63 < 6'hA;	// frontend/src/zaqal/frontend/BPU.scala:294:41, :297:30
+  wire               _in_flight_T_74 = _start_ptr_T_63 < 6'hB;	// frontend/src/zaqal/frontend/BPU.scala:294:41, :297:30
+  wire               _in_flight_T_81 = _start_ptr_T_63 < 6'hC;	// frontend/src/zaqal/frontend/BPU.scala:294:41, :297:30
+  wire               _in_flight_T_88 = _start_ptr_T_63 < 6'hD;	// frontend/src/zaqal/frontend/BPU.scala:294:41, :297:30
+  wire               _in_flight_T_95 = _start_ptr_T_63 < 6'hE;	// frontend/src/zaqal/frontend/BPU.scala:294:41, :297:30
+  wire               _in_flight_T_102 = _start_ptr_T_63 < 6'hF;	// frontend/src/zaqal/frontend/BPU.scala:294:41, :297:30
+  wire               _in_flight_T_109 = _start_ptr_T_63 < 6'h10;	// frontend/src/zaqal/frontend/BPU.scala:294:41, :297:30
+  wire               _in_flight_T_116 = _start_ptr_T_63 < 6'h11;	// frontend/src/zaqal/frontend/BPU.scala:294:41, :297:30
+  wire               _in_flight_T_123 = _start_ptr_T_63 < 6'h12;	// frontend/src/zaqal/frontend/BPU.scala:294:41, :297:30
+  wire               _in_flight_T_130 = _start_ptr_T_63 < 6'h13;	// frontend/src/zaqal/frontend/BPU.scala:294:41, :297:30
+  wire               _in_flight_T_137 = _start_ptr_T_63 < 6'h14;	// frontend/src/zaqal/frontend/BPU.scala:294:41, :297:30
+  wire               _in_flight_T_144 = _start_ptr_T_63 < 6'h15;	// frontend/src/zaqal/frontend/BPU.scala:294:41, :297:30
+  wire               _in_flight_T_151 = _start_ptr_T_63 < 6'h16;	// frontend/src/zaqal/frontend/BPU.scala:294:41, :297:30
+  wire               _in_flight_T_158 = _start_ptr_T_63 < 6'h17;	// frontend/src/zaqal/frontend/BPU.scala:294:41, :297:30
+  wire               _in_flight_T_165 = _start_ptr_T_63 < 6'h18;	// frontend/src/zaqal/frontend/BPU.scala:294:41, :297:30
+  wire               _in_flight_T_172 = _start_ptr_T_63 < 6'h19;	// frontend/src/zaqal/frontend/BPU.scala:294:41, :297:30
+  wire               _in_flight_T_179 = _start_ptr_T_63 < 6'h1A;	// frontend/src/zaqal/frontend/BPU.scala:294:41, :297:30
+  wire               _in_flight_T_186 = _start_ptr_T_63 < 6'h1B;	// frontend/src/zaqal/frontend/BPU.scala:294:41, :297:30
+  wire               _in_flight_T_193 = _start_ptr_T_63 < 6'h1C;	// frontend/src/zaqal/frontend/BPU.scala:294:41, :297:30
+  wire               _in_flight_T_200 = _start_ptr_T_63 < 6'h1D;	// frontend/src/zaqal/frontend/BPU.scala:294:41, :297:30
+  wire               _in_flight_T_207 = _start_ptr_T_63 < 6'h1E;	// frontend/src/zaqal/frontend/BPU.scala:294:41, :297:30
+  wire               _in_flight_T_214 = _start_ptr_T_63 < 6'h1F;	// frontend/src/zaqal/frontend/BPU.scala:294:41, :297:30
+  wire               _in_flight_T_228 = _start_ptr_T_63 < 6'h21;	// frontend/src/zaqal/frontend/BPU.scala:294:41, :297:30
+  wire               _in_flight_T_235 = _start_ptr_T_63 < 6'h22;	// frontend/src/zaqal/frontend/BPU.scala:294:41, :297:30
+  wire               _in_flight_T_242 = _start_ptr_T_63 < 6'h23;	// frontend/src/zaqal/frontend/BPU.scala:294:41, :297:30
+  wire               _in_flight_T_249 = _start_ptr_T_63 < 6'h24;	// frontend/src/zaqal/frontend/BPU.scala:294:41, :297:30
+  wire               _in_flight_T_256 = _start_ptr_T_63 < 6'h25;	// frontend/src/zaqal/frontend/BPU.scala:294:41, :297:30
+  wire               _in_flight_T_263 = _start_ptr_T_63 < 6'h26;	// frontend/src/zaqal/frontend/BPU.scala:294:41, :297:30
+  wire               _in_flight_T_270 = _start_ptr_T_63 < 6'h27;	// frontend/src/zaqal/frontend/BPU.scala:294:41, :297:30
+  wire               _in_flight_T_277 = _start_ptr_T_63 < 6'h28;	// frontend/src/zaqal/frontend/BPU.scala:294:41, :297:30
+  wire               _in_flight_T_284 = _start_ptr_T_63 < 6'h29;	// frontend/src/zaqal/frontend/BPU.scala:294:41, :297:30
+  wire               _in_flight_T_291 = _start_ptr_T_63 < 6'h2A;	// frontend/src/zaqal/frontend/BPU.scala:294:41, :297:30
+  wire               _in_flight_T_298 = _start_ptr_T_63 < 6'h2B;	// frontend/src/zaqal/frontend/BPU.scala:294:41, :297:30
+  wire               _in_flight_T_305 = _start_ptr_T_63 < 6'h2C;	// frontend/src/zaqal/frontend/BPU.scala:294:41, :297:30
+  wire               _in_flight_T_312 = _start_ptr_T_63 < 6'h2D;	// frontend/src/zaqal/frontend/BPU.scala:294:41, :297:30
+  wire               _in_flight_T_319 = _start_ptr_T_63 < 6'h2E;	// frontend/src/zaqal/frontend/BPU.scala:294:41, :297:30
+  wire               _in_flight_T_326 = _start_ptr_T_63 < 6'h2F;	// frontend/src/zaqal/frontend/BPU.scala:294:41, :297:30
+  wire               _in_flight_T_333 = _start_ptr_T_63[5:4] != 2'h3;	// frontend/src/zaqal/frontend/BPU.scala:294:41, :297:30
+  wire               _in_flight_T_340 = _start_ptr_T_63 < 6'h31;	// frontend/src/zaqal/frontend/BPU.scala:294:41, :297:30
+  wire               _in_flight_T_347 = _start_ptr_T_63 < 6'h32;	// frontend/src/zaqal/frontend/BPU.scala:294:41, :297:30
+  wire               _in_flight_T_354 = _start_ptr_T_63 < 6'h33;	// frontend/src/zaqal/frontend/BPU.scala:294:41, :297:30
+  wire               _in_flight_T_361 = _start_ptr_T_63 < 6'h34;	// frontend/src/zaqal/frontend/BPU.scala:294:41, :297:30
+  wire               _in_flight_T_368 = _start_ptr_T_63 < 6'h35;	// frontend/src/zaqal/frontend/BPU.scala:294:41, :297:30
+  wire               _in_flight_T_375 = _start_ptr_T_63 < 6'h36;	// frontend/src/zaqal/frontend/BPU.scala:294:41, :297:30
+  wire               _in_flight_T_382 = _start_ptr_T_63 < 6'h37;	// frontend/src/zaqal/frontend/BPU.scala:294:41, :297:30
+  wire               _in_flight_T_389 = _start_ptr_T_63[5:3] != 3'h7;	// frontend/src/zaqal/frontend/BPU.scala:294:41, :297:30
+  wire               _in_flight_T_396 = _start_ptr_T_63 < 6'h39;	// frontend/src/zaqal/frontend/BPU.scala:294:41, :297:30
+  wire               _in_flight_T_403 = _start_ptr_T_63 < 6'h3A;	// frontend/src/zaqal/frontend/BPU.scala:294:41, :297:30
+  wire               _in_flight_T_410 = _start_ptr_T_63 < 6'h3B;	// frontend/src/zaqal/frontend/BPU.scala:294:41, :297:30
+  wire               _in_flight_T_417 = _start_ptr_T_63[5:2] != 4'hF;	// frontend/src/zaqal/frontend/BPU.scala:106:76, :294:41, :297:30
+  wire               _in_flight_T_424 = _start_ptr_T_63 < 6'h3D;	// frontend/src/zaqal/frontend/BPU.scala:294:41, :297:30
+  wire               _in_flight_T_431 = _start_ptr_T_63[5:1] != 5'h1F;	// frontend/src/zaqal/frontend/BPU.scala:294:41, :297:30
+  wire               _in_flight_T_438 = _start_ptr_T_63 != 6'h3F;	// frontend/src/zaqal/frontend/BPU.scala:294:41, :297:30, :324:33
   always @(posedge clock) begin	// frontend/src/zaqal/frontend/BPU.scala:30:7
     if (reset) begin	// frontend/src/zaqal/frontend/BPU.scala:30:7
       s0_pc <= 64'h80000000;	// frontend/src/zaqal/frontend/BPU.scala:38:25
@@ -2167,64 +1977,59 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
     end
     else begin	// frontend/src/zaqal/frontend/BPU.scala:30:7
       if (io_redirect_valid) begin	// frontend/src/zaqal/frontend/BPU.scala:31:14
-        s0_pc <= io_redirect_target & 64'hFFFFFFFFFFFFFFE0;	// frontend/src/zaqal/frontend/BPU.scala:38:25, :184:44, :225:32
-        mask_reg <= _redirect_mask_T_1[15:0];	// frontend/src/zaqal/frontend/BPU.scala:39:25, :242:{55,70}
+        s0_pc <= io_redirect_target & 64'hFFFFFFFFFFFFFFE0;	// frontend/src/zaqal/frontend/BPU.scala:38:25, :181:44, :222:32
+        mask_reg <= _redirect_mask_T_1[15:0];	// frontend/src/zaqal/frontend/BPU.scala:39:25, :238:{55,70}
         ghr <=
           io_redirect_is_cfi & ~io_redirect_is_jal & ~io_redirect_is_jalr
             ? {_GEN[io_redirect_ftqPtr][126:0], io_redirect_taken}
-            : _GEN[io_redirect_ftqPtr];	// frontend/src/zaqal/frontend/BPU.scala:43:20, :141:21, :261:{50,70,73}, :262:{31,53,71}
+            : _GEN[io_redirect_ftqPtr];	// frontend/src/zaqal/frontend/BPU.scala:43:20, :138:21, :257:{50,70,73}, :258:{31,53,71}
         phr <=
           io_redirect_is_cfi & io_redirect_is_jalr
             ? {_GEN_0[io_redirect_ftqPtr][25:0], io_redirect_target[7:2]}
-            : _GEN_0[io_redirect_ftqPtr];	// frontend/src/zaqal/frontend/BPU.scala:47:20, :141:21, :283:{25,45}, :284:{29,47,74}
+            : _GEN_0[io_redirect_ftqPtr];	// frontend/src/zaqal/frontend/BPU.scala:47:20, :138:21, :279:{25,45}, :280:{29,47,74}
         bpu_enq_ptr <= 6'h0;	// frontend/src/zaqal/frontend/BPU.scala:59:28
         exact_pc <= io_redirect_target;	// frontend/src/zaqal/frontend/BPU.scala:96:25
       end
       else begin	// frontend/src/zaqal/frontend/BPU.scala:31:14
         if (_ras_io_spec_pop_valid_T) begin	// src/main/scala/chisel3/util/Decoupled.scala:51:35
-          if (meta_taken) begin	// frontend/src/zaqal/frontend/BPU.scala:235:63
-            s0_pc <= meta_target & 64'hFFFFFFFFFFFFFFE0;	// frontend/src/zaqal/frontend/BPU.scala:38:25, :184:44, :225:32, :231:21
-            mask_reg <= _branch_mask_T_1[15:0];	// frontend/src/zaqal/frontend/BPU.scala:39:25, :252:{53,68}
+          if (meta_taken) begin	// frontend/src/zaqal/frontend/BPU.scala:231:43
+            s0_pc <= meta_target & 64'hFFFFFFFFFFFFFFE0;	// frontend/src/zaqal/frontend/BPU.scala:38:25, :181:44, :222:32, :228:21
+            mask_reg <= _branch_mask_T_1[15:0];	// frontend/src/zaqal/frontend/BPU.scala:39:25, :248:{53,68}
           end
-          else begin	// frontend/src/zaqal/frontend/BPU.scala:235:63
-            s0_pc <= _s0_pc_T_4;	// frontend/src/zaqal/frontend/BPU.scala:38:25, :231:55
+          else begin	// frontend/src/zaqal/frontend/BPU.scala:231:43
+            s0_pc <= _s0_pc_T_4;	// frontend/src/zaqal/frontend/BPU.scala:38:25, :228:55
             mask_reg <= 16'hFFFF;	// frontend/src/zaqal/frontend/BPU.scala:39:{25,30}
           end
         end
-        if (do_non_spec_shift)	// frontend/src/zaqal/frontend/BPU.scala:265:150
-          ghr <= {ghr[126:0], bpu_update_taken};	// frontend/src/zaqal/frontend/BPU.scala:43:20, :162:29, :271:{27,31}
-        else if (_ras_io_spec_pop_valid_T & has_spec_cond_br)	// frontend/src/zaqal/frontend/BPU.scala:264:79, :274:27, src/main/scala/chisel3/util/Decoupled.scala:51:35
-          ghr <= {ghr[126:0], final_taken};	// frontend/src/zaqal/frontend/BPU.scala:43:20, :114:24, :275:{15,19}
-        if (_ras_io_spec_pop_valid_T & ftb_valid & _is_spec_jalr_T & _is_spec_jalr_T_4[0]
-            & final_taken)	// frontend/src/zaqal/frontend/BPU.scala:106:30, :114:24, :118:64, :282:73, :289:27, src/main/scala/chisel3/util/Decoupled.scala:51:35
-          phr <= {phr[25:0], final_target[7:2]};	// frontend/src/zaqal/frontend/BPU.scala:47:20, :129:25, :290:{15,19,40}
-        if (io_out_ready & ~reset) begin	// frontend/src/zaqal/frontend/BPU.scala:332:19, src/main/scala/chisel3/util/Decoupled.scala:51:35
-          bpu_enq_ptr <= bpu_enq_ptr + 6'h1;	// frontend/src/zaqal/frontend/BPU.scala:59:28, :63:32, :301:30
-          if (meta_taken) begin	// frontend/src/zaqal/frontend/BPU.scala:235:63
-            if (final_taken) begin	// frontend/src/zaqal/frontend/BPU.scala:114:24
-              if (_uftb_io_pred_hit)	// frontend/src/zaqal/frontend/BPU.scala:55:20
-                exact_pc <= _uftb_io_pred_target;	// frontend/src/zaqal/frontend/BPU.scala:55:20, :96:25
-              else if (ras_hit)	// frontend/src/zaqal/frontend/BPU.scala:118:101
-                exact_pc <= _ras_io_spec_pop_addr;	// frontend/src/zaqal/frontend/BPU.scala:54:19, :96:25
-              else if (_ftb_target_T_2)	// frontend/src/zaqal/frontend/BPU.scala:126:62
+        if (do_non_spec_shift)	// frontend/src/zaqal/frontend/BPU.scala:261:150
+          ghr <= {ghr[126:0], bpu_update_taken};	// frontend/src/zaqal/frontend/BPU.scala:43:20, :159:29, :267:{27,31}
+        else if (_ras_io_spec_pop_valid_T & has_spec_cond_br)	// frontend/src/zaqal/frontend/BPU.scala:260:67, :270:27, src/main/scala/chisel3/util/Decoupled.scala:51:35
+          ghr <= {ghr[126:0], ftb_taken};	// frontend/src/zaqal/frontend/BPU.scala:43:20, :108:22, :271:{15,19}
+        if (_ras_io_spec_pop_valid_T & ftb_valid & _is_spec_jalr_T & _is_spec_jalr_T_2[0]
+            & ftb_taken)	// frontend/src/zaqal/frontend/BPU.scala:106:60, :108:22, :116:64, :231:58, :278:75, :285:27, src/main/scala/chisel3/util/Decoupled.scala:51:35
+          phr <= {phr[25:0], ftb_target[7:2]};	// frontend/src/zaqal/frontend/BPU.scala:47:20, :123:25, :286:{15,19,40}
+        if (io_out_ready & ~reset) begin	// frontend/src/zaqal/frontend/BPU.scala:328:19, src/main/scala/chisel3/util/Decoupled.scala:51:35
+          bpu_enq_ptr <= bpu_enq_ptr + 6'h1;	// frontend/src/zaqal/frontend/BPU.scala:59:28, :63:32, :297:30
+          if (meta_taken) begin	// frontend/src/zaqal/frontend/BPU.scala:231:43
+            if (ftb_taken) begin	// frontend/src/zaqal/frontend/BPU.scala:108:22
+              if (_ftb_target_T_2)	// frontend/src/zaqal/frontend/BPU.scala:123:62
                 exact_pc <= _ittage_io_pred_target;	// frontend/src/zaqal/frontend/BPU.scala:52:22, :96:25
-              else	// frontend/src/zaqal/frontend/BPU.scala:126:62
+              else	// frontend/src/zaqal/frontend/BPU.scala:123:62
                 exact_pc <= _ftb_io_target;	// frontend/src/zaqal/frontend/BPU.scala:50:19, :96:25
             end
-            else	// frontend/src/zaqal/frontend/BPU.scala:114:24
-              exact_pc <= _s0_pc_T_4;	// frontend/src/zaqal/frontend/BPU.scala:96:25, :231:55
+            else	// frontend/src/zaqal/frontend/BPU.scala:108:22
+              exact_pc <= _s0_pc_T_4;	// frontend/src/zaqal/frontend/BPU.scala:96:25, :228:55
           end
-          else	// frontend/src/zaqal/frontend/BPU.scala:235:63
+          else	// frontend/src/zaqal/frontend/BPU.scala:231:43
             exact_pc <= s0_pc + 64'h20;	// frontend/src/zaqal/frontend/BPU.scala:38:25, :96:25, :101:52
         end
       end
-      epoch <= io_redirect_valid ^ epoch;	// frontend/src/zaqal/frontend/BPU.scala:40:25, :238:25, :245:18
+      epoch <= io_redirect_valid ^ epoch;	// frontend/src/zaqal/frontend/BPU.scala:40:25, :234:25, :241:18
     end
-    if (_ras_io_spec_pop_valid_T & bpu_enq_ptr == 6'h0) begin	// frontend/src/zaqal/frontend/BPU.scala:59:28, :295:27, :310:21, :328:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
-      meta_storage_0_ghr <= new_meta_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :312:39
+    if (_ras_io_spec_pop_valid_T & bpu_enq_ptr == 6'h0) begin	// frontend/src/zaqal/frontend/BPU.scala:59:28, :291:27, :306:21, :324:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      meta_storage_0_ghr <= new_meta_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :308:39
       meta_storage_0_phr <= phr;	// frontend/src/zaqal/frontend/BPU.scala:47:20, :67:25
-      meta_storage_0_ras_sp <= _ras_io_spec_sp;	// frontend/src/zaqal/frontend/BPU.scala:54:19, :67:25
-      meta_storage_0_ghr_spec_shifted <= has_spec_cond_br;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :264:79
+      meta_storage_0_ghr_spec_shifted <= has_spec_cond_br;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :260:67
       meta_storage_0_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
       meta_storage_0_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
       meta_storage_0_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
@@ -2239,13 +2044,12 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
     else if (do_non_spec_shift
              & (_start_ptr_T_63 <= bpu_enq_ptr
                   ? _in_flight_T_4 & (|bpu_enq_ptr)
-                  : _in_flight_T_4 | (|bpu_enq_ptr)))	// frontend/src/zaqal/frontend/BPU.scala:59:28, :67:25, :265:150, :295:27, :298:41, :300:{26,37}, :301:{30,44,52}, :302:44, :304:23, :305:29
-      meta_storage_0_ghr <= {meta_storage_0_ghr[126:0], bpu_update_taken};	// frontend/src/zaqal/frontend/BPU.scala:67:25, :162:29, :305:{35,55}
-    if (_ras_io_spec_pop_valid_T & bpu_enq_ptr == 6'h1) begin	// frontend/src/zaqal/frontend/BPU.scala:59:28, :295:27, :301:30, :310:21, :328:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
-      meta_storage_1_ghr <= new_meta_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :312:39
+                  : _in_flight_T_4 | (|bpu_enq_ptr)))	// frontend/src/zaqal/frontend/BPU.scala:59:28, :67:25, :261:150, :291:27, :294:41, :296:{26,37}, :297:{30,44,52}, :298:44, :300:23, :301:29
+      meta_storage_0_ghr <= {meta_storage_0_ghr[126:0], bpu_update_taken};	// frontend/src/zaqal/frontend/BPU.scala:67:25, :159:29, :301:{35,55}
+    if (_ras_io_spec_pop_valid_T & bpu_enq_ptr == 6'h1) begin	// frontend/src/zaqal/frontend/BPU.scala:59:28, :291:27, :297:30, :306:21, :324:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      meta_storage_1_ghr <= new_meta_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :308:39
       meta_storage_1_phr <= phr;	// frontend/src/zaqal/frontend/BPU.scala:47:20, :67:25
-      meta_storage_1_ras_sp <= _ras_io_spec_sp;	// frontend/src/zaqal/frontend/BPU.scala:54:19, :67:25
-      meta_storage_1_ghr_spec_shifted <= has_spec_cond_br;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :264:79
+      meta_storage_1_ghr_spec_shifted <= has_spec_cond_br;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :260:67
       meta_storage_1_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
       meta_storage_1_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
       meta_storage_1_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
@@ -2260,13 +2064,12 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
     else if (do_non_spec_shift
              & (_start_ptr_T_63 <= bpu_enq_ptr
                   ? _in_flight_T_11 & (|(bpu_enq_ptr[5:1]))
-                  : _in_flight_T_11 | (|(bpu_enq_ptr[5:1]))))	// frontend/src/zaqal/frontend/BPU.scala:59:28, :67:25, :265:150, :295:27, :298:41, :300:{26,37}, :301:{30,44,52}, :302:44, :304:23, :305:29
-      meta_storage_1_ghr <= {meta_storage_1_ghr[126:0], bpu_update_taken};	// frontend/src/zaqal/frontend/BPU.scala:67:25, :162:29, :305:{35,55}
-    if (_ras_io_spec_pop_valid_T & bpu_enq_ptr == 6'h2) begin	// frontend/src/zaqal/frontend/BPU.scala:59:28, :295:27, :301:30, :310:21, :328:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
-      meta_storage_2_ghr <= new_meta_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :312:39
+                  : _in_flight_T_11 | (|(bpu_enq_ptr[5:1]))))	// frontend/src/zaqal/frontend/BPU.scala:59:28, :67:25, :261:150, :291:27, :294:41, :296:{26,37}, :297:{30,44,52}, :298:44, :300:23, :301:29
+      meta_storage_1_ghr <= {meta_storage_1_ghr[126:0], bpu_update_taken};	// frontend/src/zaqal/frontend/BPU.scala:67:25, :159:29, :301:{35,55}
+    if (_ras_io_spec_pop_valid_T & bpu_enq_ptr == 6'h2) begin	// frontend/src/zaqal/frontend/BPU.scala:59:28, :291:27, :297:30, :306:21, :324:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      meta_storage_2_ghr <= new_meta_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :308:39
       meta_storage_2_phr <= phr;	// frontend/src/zaqal/frontend/BPU.scala:47:20, :67:25
-      meta_storage_2_ras_sp <= _ras_io_spec_sp;	// frontend/src/zaqal/frontend/BPU.scala:54:19, :67:25
-      meta_storage_2_ghr_spec_shifted <= has_spec_cond_br;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :264:79
+      meta_storage_2_ghr_spec_shifted <= has_spec_cond_br;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :260:67
       meta_storage_2_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
       meta_storage_2_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
       meta_storage_2_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
@@ -2281,13 +2084,12 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
     else if (do_non_spec_shift
              & (_start_ptr_T_63 <= bpu_enq_ptr
                   ? _in_flight_T_18 & _in_flight_T_19
-                  : _in_flight_T_18 | _in_flight_T_19))	// frontend/src/zaqal/frontend/BPU.scala:59:28, :67:25, :265:150, :295:27, :298:41, :300:{26,37}, :301:{30,44,52}, :302:44, :304:23, :305:29
-      meta_storage_2_ghr <= {meta_storage_2_ghr[126:0], bpu_update_taken};	// frontend/src/zaqal/frontend/BPU.scala:67:25, :162:29, :305:{35,55}
-    if (_ras_io_spec_pop_valid_T & bpu_enq_ptr == 6'h3) begin	// frontend/src/zaqal/frontend/BPU.scala:59:28, :295:27, :301:30, :310:21, :328:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
-      meta_storage_3_ghr <= new_meta_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :312:39
+                  : _in_flight_T_18 | _in_flight_T_19))	// frontend/src/zaqal/frontend/BPU.scala:59:28, :67:25, :261:150, :291:27, :294:41, :296:{26,37}, :297:{30,44,52}, :298:44, :300:23, :301:29
+      meta_storage_2_ghr <= {meta_storage_2_ghr[126:0], bpu_update_taken};	// frontend/src/zaqal/frontend/BPU.scala:67:25, :159:29, :301:{35,55}
+    if (_ras_io_spec_pop_valid_T & bpu_enq_ptr == 6'h3) begin	// frontend/src/zaqal/frontend/BPU.scala:59:28, :291:27, :297:30, :306:21, :324:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      meta_storage_3_ghr <= new_meta_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :308:39
       meta_storage_3_phr <= phr;	// frontend/src/zaqal/frontend/BPU.scala:47:20, :67:25
-      meta_storage_3_ras_sp <= _ras_io_spec_sp;	// frontend/src/zaqal/frontend/BPU.scala:54:19, :67:25
-      meta_storage_3_ghr_spec_shifted <= has_spec_cond_br;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :264:79
+      meta_storage_3_ghr_spec_shifted <= has_spec_cond_br;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :260:67
       meta_storage_3_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
       meta_storage_3_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
       meta_storage_3_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
@@ -2302,13 +2104,12 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
     else if (do_non_spec_shift
              & (_start_ptr_T_63 <= bpu_enq_ptr
                   ? _in_flight_T_25 & (|(bpu_enq_ptr[5:2]))
-                  : _in_flight_T_25 | (|(bpu_enq_ptr[5:2]))))	// frontend/src/zaqal/frontend/BPU.scala:59:28, :67:25, :265:150, :295:27, :298:41, :300:{26,37}, :301:{30,44,52}, :302:44, :304:23, :305:29
-      meta_storage_3_ghr <= {meta_storage_3_ghr[126:0], bpu_update_taken};	// frontend/src/zaqal/frontend/BPU.scala:67:25, :162:29, :305:{35,55}
-    if (_ras_io_spec_pop_valid_T & bpu_enq_ptr == 6'h4) begin	// frontend/src/zaqal/frontend/BPU.scala:59:28, :295:27, :301:30, :310:21, :328:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
-      meta_storage_4_ghr <= new_meta_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :312:39
+                  : _in_flight_T_25 | (|(bpu_enq_ptr[5:2]))))	// frontend/src/zaqal/frontend/BPU.scala:59:28, :67:25, :261:150, :291:27, :294:41, :296:{26,37}, :297:{30,44,52}, :298:44, :300:23, :301:29
+      meta_storage_3_ghr <= {meta_storage_3_ghr[126:0], bpu_update_taken};	// frontend/src/zaqal/frontend/BPU.scala:67:25, :159:29, :301:{35,55}
+    if (_ras_io_spec_pop_valid_T & bpu_enq_ptr == 6'h4) begin	// frontend/src/zaqal/frontend/BPU.scala:59:28, :291:27, :297:30, :306:21, :324:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      meta_storage_4_ghr <= new_meta_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :308:39
       meta_storage_4_phr <= phr;	// frontend/src/zaqal/frontend/BPU.scala:47:20, :67:25
-      meta_storage_4_ras_sp <= _ras_io_spec_sp;	// frontend/src/zaqal/frontend/BPU.scala:54:19, :67:25
-      meta_storage_4_ghr_spec_shifted <= has_spec_cond_br;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :264:79
+      meta_storage_4_ghr_spec_shifted <= has_spec_cond_br;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :260:67
       meta_storage_4_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
       meta_storage_4_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
       meta_storage_4_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
@@ -2323,13 +2124,12 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
     else if (do_non_spec_shift
              & (_start_ptr_T_63 <= bpu_enq_ptr
                   ? _in_flight_T_32 & _in_flight_T_33
-                  : _in_flight_T_32 | _in_flight_T_33))	// frontend/src/zaqal/frontend/BPU.scala:59:28, :67:25, :265:150, :295:27, :298:41, :300:{26,37}, :301:{30,44,52}, :302:44, :304:23, :305:29
-      meta_storage_4_ghr <= {meta_storage_4_ghr[126:0], bpu_update_taken};	// frontend/src/zaqal/frontend/BPU.scala:67:25, :162:29, :305:{35,55}
-    if (_ras_io_spec_pop_valid_T & bpu_enq_ptr == 6'h5) begin	// frontend/src/zaqal/frontend/BPU.scala:59:28, :295:27, :301:30, :310:21, :328:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
-      meta_storage_5_ghr <= new_meta_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :312:39
+                  : _in_flight_T_32 | _in_flight_T_33))	// frontend/src/zaqal/frontend/BPU.scala:59:28, :67:25, :261:150, :291:27, :294:41, :296:{26,37}, :297:{30,44,52}, :298:44, :300:23, :301:29
+      meta_storage_4_ghr <= {meta_storage_4_ghr[126:0], bpu_update_taken};	// frontend/src/zaqal/frontend/BPU.scala:67:25, :159:29, :301:{35,55}
+    if (_ras_io_spec_pop_valid_T & bpu_enq_ptr == 6'h5) begin	// frontend/src/zaqal/frontend/BPU.scala:59:28, :291:27, :297:30, :306:21, :324:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      meta_storage_5_ghr <= new_meta_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :308:39
       meta_storage_5_phr <= phr;	// frontend/src/zaqal/frontend/BPU.scala:47:20, :67:25
-      meta_storage_5_ras_sp <= _ras_io_spec_sp;	// frontend/src/zaqal/frontend/BPU.scala:54:19, :67:25
-      meta_storage_5_ghr_spec_shifted <= has_spec_cond_br;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :264:79
+      meta_storage_5_ghr_spec_shifted <= has_spec_cond_br;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :260:67
       meta_storage_5_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
       meta_storage_5_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
       meta_storage_5_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
@@ -2344,13 +2144,12 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
     else if (do_non_spec_shift
              & (_start_ptr_T_63 <= bpu_enq_ptr
                   ? _in_flight_T_39 & _in_flight_T_40
-                  : _in_flight_T_39 | _in_flight_T_40))	// frontend/src/zaqal/frontend/BPU.scala:59:28, :67:25, :265:150, :295:27, :298:41, :300:{26,37}, :301:{30,44,52}, :302:44, :304:23, :305:29
-      meta_storage_5_ghr <= {meta_storage_5_ghr[126:0], bpu_update_taken};	// frontend/src/zaqal/frontend/BPU.scala:67:25, :162:29, :305:{35,55}
-    if (_ras_io_spec_pop_valid_T & bpu_enq_ptr == 6'h6) begin	// frontend/src/zaqal/frontend/BPU.scala:59:28, :295:27, :301:30, :310:21, :328:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
-      meta_storage_6_ghr <= new_meta_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :312:39
+                  : _in_flight_T_39 | _in_flight_T_40))	// frontend/src/zaqal/frontend/BPU.scala:59:28, :67:25, :261:150, :291:27, :294:41, :296:{26,37}, :297:{30,44,52}, :298:44, :300:23, :301:29
+      meta_storage_5_ghr <= {meta_storage_5_ghr[126:0], bpu_update_taken};	// frontend/src/zaqal/frontend/BPU.scala:67:25, :159:29, :301:{35,55}
+    if (_ras_io_spec_pop_valid_T & bpu_enq_ptr == 6'h6) begin	// frontend/src/zaqal/frontend/BPU.scala:59:28, :291:27, :297:30, :306:21, :324:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      meta_storage_6_ghr <= new_meta_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :308:39
       meta_storage_6_phr <= phr;	// frontend/src/zaqal/frontend/BPU.scala:47:20, :67:25
-      meta_storage_6_ras_sp <= _ras_io_spec_sp;	// frontend/src/zaqal/frontend/BPU.scala:54:19, :67:25
-      meta_storage_6_ghr_spec_shifted <= has_spec_cond_br;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :264:79
+      meta_storage_6_ghr_spec_shifted <= has_spec_cond_br;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :260:67
       meta_storage_6_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
       meta_storage_6_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
       meta_storage_6_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
@@ -2365,13 +2164,12 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
     else if (do_non_spec_shift
              & (_start_ptr_T_63 <= bpu_enq_ptr
                   ? _in_flight_T_46 & _in_flight_T_47
-                  : _in_flight_T_46 | _in_flight_T_47))	// frontend/src/zaqal/frontend/BPU.scala:59:28, :67:25, :265:150, :295:27, :298:41, :300:{26,37}, :301:{30,44,52}, :302:44, :304:23, :305:29
-      meta_storage_6_ghr <= {meta_storage_6_ghr[126:0], bpu_update_taken};	// frontend/src/zaqal/frontend/BPU.scala:67:25, :162:29, :305:{35,55}
-    if (_ras_io_spec_pop_valid_T & bpu_enq_ptr == 6'h7) begin	// frontend/src/zaqal/frontend/BPU.scala:59:28, :295:27, :301:30, :310:21, :328:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
-      meta_storage_7_ghr <= new_meta_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :312:39
+                  : _in_flight_T_46 | _in_flight_T_47))	// frontend/src/zaqal/frontend/BPU.scala:59:28, :67:25, :261:150, :291:27, :294:41, :296:{26,37}, :297:{30,44,52}, :298:44, :300:23, :301:29
+      meta_storage_6_ghr <= {meta_storage_6_ghr[126:0], bpu_update_taken};	// frontend/src/zaqal/frontend/BPU.scala:67:25, :159:29, :301:{35,55}
+    if (_ras_io_spec_pop_valid_T & bpu_enq_ptr == 6'h7) begin	// frontend/src/zaqal/frontend/BPU.scala:59:28, :291:27, :297:30, :306:21, :324:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      meta_storage_7_ghr <= new_meta_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :308:39
       meta_storage_7_phr <= phr;	// frontend/src/zaqal/frontend/BPU.scala:47:20, :67:25
-      meta_storage_7_ras_sp <= _ras_io_spec_sp;	// frontend/src/zaqal/frontend/BPU.scala:54:19, :67:25
-      meta_storage_7_ghr_spec_shifted <= has_spec_cond_br;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :264:79
+      meta_storage_7_ghr_spec_shifted <= has_spec_cond_br;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :260:67
       meta_storage_7_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
       meta_storage_7_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
       meta_storage_7_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
@@ -2386,13 +2184,12 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
     else if (do_non_spec_shift
              & (_start_ptr_T_63 <= bpu_enq_ptr
                   ? _in_flight_T_53 & (|(bpu_enq_ptr[5:3]))
-                  : _in_flight_T_53 | (|(bpu_enq_ptr[5:3]))))	// frontend/src/zaqal/frontend/BPU.scala:59:28, :67:25, :265:150, :295:27, :298:41, :300:{26,37}, :301:{30,44,52}, :302:44, :304:23, :305:29
-      meta_storage_7_ghr <= {meta_storage_7_ghr[126:0], bpu_update_taken};	// frontend/src/zaqal/frontend/BPU.scala:67:25, :162:29, :305:{35,55}
-    if (_ras_io_spec_pop_valid_T & bpu_enq_ptr == 6'h8) begin	// frontend/src/zaqal/frontend/BPU.scala:59:28, :295:27, :301:30, :310:21, :328:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
-      meta_storage_8_ghr <= new_meta_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :312:39
+                  : _in_flight_T_53 | (|(bpu_enq_ptr[5:3]))))	// frontend/src/zaqal/frontend/BPU.scala:59:28, :67:25, :261:150, :291:27, :294:41, :296:{26,37}, :297:{30,44,52}, :298:44, :300:23, :301:29
+      meta_storage_7_ghr <= {meta_storage_7_ghr[126:0], bpu_update_taken};	// frontend/src/zaqal/frontend/BPU.scala:67:25, :159:29, :301:{35,55}
+    if (_ras_io_spec_pop_valid_T & bpu_enq_ptr == 6'h8) begin	// frontend/src/zaqal/frontend/BPU.scala:59:28, :291:27, :297:30, :306:21, :324:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      meta_storage_8_ghr <= new_meta_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :308:39
       meta_storage_8_phr <= phr;	// frontend/src/zaqal/frontend/BPU.scala:47:20, :67:25
-      meta_storage_8_ras_sp <= _ras_io_spec_sp;	// frontend/src/zaqal/frontend/BPU.scala:54:19, :67:25
-      meta_storage_8_ghr_spec_shifted <= has_spec_cond_br;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :264:79
+      meta_storage_8_ghr_spec_shifted <= has_spec_cond_br;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :260:67
       meta_storage_8_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
       meta_storage_8_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
       meta_storage_8_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
@@ -2407,13 +2204,12 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
     else if (do_non_spec_shift
              & (_start_ptr_T_63 <= bpu_enq_ptr
                   ? _in_flight_T_60 & _in_flight_T_61
-                  : _in_flight_T_60 | _in_flight_T_61))	// frontend/src/zaqal/frontend/BPU.scala:59:28, :67:25, :265:150, :295:27, :298:41, :300:{26,37}, :301:{30,44,52}, :302:44, :304:23, :305:29
-      meta_storage_8_ghr <= {meta_storage_8_ghr[126:0], bpu_update_taken};	// frontend/src/zaqal/frontend/BPU.scala:67:25, :162:29, :305:{35,55}
-    if (_ras_io_spec_pop_valid_T & bpu_enq_ptr == 6'h9) begin	// frontend/src/zaqal/frontend/BPU.scala:59:28, :295:27, :301:30, :310:21, :328:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
-      meta_storage_9_ghr <= new_meta_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :312:39
+                  : _in_flight_T_60 | _in_flight_T_61))	// frontend/src/zaqal/frontend/BPU.scala:59:28, :67:25, :261:150, :291:27, :294:41, :296:{26,37}, :297:{30,44,52}, :298:44, :300:23, :301:29
+      meta_storage_8_ghr <= {meta_storage_8_ghr[126:0], bpu_update_taken};	// frontend/src/zaqal/frontend/BPU.scala:67:25, :159:29, :301:{35,55}
+    if (_ras_io_spec_pop_valid_T & bpu_enq_ptr == 6'h9) begin	// frontend/src/zaqal/frontend/BPU.scala:59:28, :291:27, :297:30, :306:21, :324:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      meta_storage_9_ghr <= new_meta_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :308:39
       meta_storage_9_phr <= phr;	// frontend/src/zaqal/frontend/BPU.scala:47:20, :67:25
-      meta_storage_9_ras_sp <= _ras_io_spec_sp;	// frontend/src/zaqal/frontend/BPU.scala:54:19, :67:25
-      meta_storage_9_ghr_spec_shifted <= has_spec_cond_br;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :264:79
+      meta_storage_9_ghr_spec_shifted <= has_spec_cond_br;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :260:67
       meta_storage_9_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
       meta_storage_9_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
       meta_storage_9_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
@@ -2428,13 +2224,12 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
     else if (do_non_spec_shift
              & (_start_ptr_T_63 <= bpu_enq_ptr
                   ? _in_flight_T_67 & _in_flight_T_68
-                  : _in_flight_T_67 | _in_flight_T_68))	// frontend/src/zaqal/frontend/BPU.scala:59:28, :67:25, :265:150, :295:27, :298:41, :300:{26,37}, :301:{30,44,52}, :302:44, :304:23, :305:29
-      meta_storage_9_ghr <= {meta_storage_9_ghr[126:0], bpu_update_taken};	// frontend/src/zaqal/frontend/BPU.scala:67:25, :162:29, :305:{35,55}
-    if (_ras_io_spec_pop_valid_T & bpu_enq_ptr == 6'hA) begin	// frontend/src/zaqal/frontend/BPU.scala:59:28, :295:27, :301:30, :310:21, :328:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
-      meta_storage_10_ghr <= new_meta_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :312:39
+                  : _in_flight_T_67 | _in_flight_T_68))	// frontend/src/zaqal/frontend/BPU.scala:59:28, :67:25, :261:150, :291:27, :294:41, :296:{26,37}, :297:{30,44,52}, :298:44, :300:23, :301:29
+      meta_storage_9_ghr <= {meta_storage_9_ghr[126:0], bpu_update_taken};	// frontend/src/zaqal/frontend/BPU.scala:67:25, :159:29, :301:{35,55}
+    if (_ras_io_spec_pop_valid_T & bpu_enq_ptr == 6'hA) begin	// frontend/src/zaqal/frontend/BPU.scala:59:28, :291:27, :297:30, :306:21, :324:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      meta_storage_10_ghr <= new_meta_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :308:39
       meta_storage_10_phr <= phr;	// frontend/src/zaqal/frontend/BPU.scala:47:20, :67:25
-      meta_storage_10_ras_sp <= _ras_io_spec_sp;	// frontend/src/zaqal/frontend/BPU.scala:54:19, :67:25
-      meta_storage_10_ghr_spec_shifted <= has_spec_cond_br;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :264:79
+      meta_storage_10_ghr_spec_shifted <= has_spec_cond_br;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :260:67
       meta_storage_10_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
       meta_storage_10_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
       meta_storage_10_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
@@ -2449,13 +2244,12 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
     else if (do_non_spec_shift
              & (_start_ptr_T_63 <= bpu_enq_ptr
                   ? _in_flight_T_74 & _in_flight_T_75
-                  : _in_flight_T_74 | _in_flight_T_75))	// frontend/src/zaqal/frontend/BPU.scala:59:28, :67:25, :265:150, :295:27, :298:41, :300:{26,37}, :301:{30,44,52}, :302:44, :304:23, :305:29
-      meta_storage_10_ghr <= {meta_storage_10_ghr[126:0], bpu_update_taken};	// frontend/src/zaqal/frontend/BPU.scala:67:25, :162:29, :305:{35,55}
-    if (_ras_io_spec_pop_valid_T & bpu_enq_ptr == 6'hB) begin	// frontend/src/zaqal/frontend/BPU.scala:59:28, :295:27, :301:30, :310:21, :328:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
-      meta_storage_11_ghr <= new_meta_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :312:39
+                  : _in_flight_T_74 | _in_flight_T_75))	// frontend/src/zaqal/frontend/BPU.scala:59:28, :67:25, :261:150, :291:27, :294:41, :296:{26,37}, :297:{30,44,52}, :298:44, :300:23, :301:29
+      meta_storage_10_ghr <= {meta_storage_10_ghr[126:0], bpu_update_taken};	// frontend/src/zaqal/frontend/BPU.scala:67:25, :159:29, :301:{35,55}
+    if (_ras_io_spec_pop_valid_T & bpu_enq_ptr == 6'hB) begin	// frontend/src/zaqal/frontend/BPU.scala:59:28, :291:27, :297:30, :306:21, :324:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      meta_storage_11_ghr <= new_meta_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :308:39
       meta_storage_11_phr <= phr;	// frontend/src/zaqal/frontend/BPU.scala:47:20, :67:25
-      meta_storage_11_ras_sp <= _ras_io_spec_sp;	// frontend/src/zaqal/frontend/BPU.scala:54:19, :67:25
-      meta_storage_11_ghr_spec_shifted <= has_spec_cond_br;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :264:79
+      meta_storage_11_ghr_spec_shifted <= has_spec_cond_br;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :260:67
       meta_storage_11_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
       meta_storage_11_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
       meta_storage_11_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
@@ -2470,13 +2264,12 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
     else if (do_non_spec_shift
              & (_start_ptr_T_63 <= bpu_enq_ptr
                   ? _in_flight_T_81 & _in_flight_T_82
-                  : _in_flight_T_81 | _in_flight_T_82))	// frontend/src/zaqal/frontend/BPU.scala:59:28, :67:25, :265:150, :295:27, :298:41, :300:{26,37}, :301:{30,44,52}, :302:44, :304:23, :305:29
-      meta_storage_11_ghr <= {meta_storage_11_ghr[126:0], bpu_update_taken};	// frontend/src/zaqal/frontend/BPU.scala:67:25, :162:29, :305:{35,55}
-    if (_ras_io_spec_pop_valid_T & bpu_enq_ptr == 6'hC) begin	// frontend/src/zaqal/frontend/BPU.scala:59:28, :295:27, :301:30, :310:21, :328:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
-      meta_storage_12_ghr <= new_meta_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :312:39
+                  : _in_flight_T_81 | _in_flight_T_82))	// frontend/src/zaqal/frontend/BPU.scala:59:28, :67:25, :261:150, :291:27, :294:41, :296:{26,37}, :297:{30,44,52}, :298:44, :300:23, :301:29
+      meta_storage_11_ghr <= {meta_storage_11_ghr[126:0], bpu_update_taken};	// frontend/src/zaqal/frontend/BPU.scala:67:25, :159:29, :301:{35,55}
+    if (_ras_io_spec_pop_valid_T & bpu_enq_ptr == 6'hC) begin	// frontend/src/zaqal/frontend/BPU.scala:59:28, :291:27, :297:30, :306:21, :324:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      meta_storage_12_ghr <= new_meta_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :308:39
       meta_storage_12_phr <= phr;	// frontend/src/zaqal/frontend/BPU.scala:47:20, :67:25
-      meta_storage_12_ras_sp <= _ras_io_spec_sp;	// frontend/src/zaqal/frontend/BPU.scala:54:19, :67:25
-      meta_storage_12_ghr_spec_shifted <= has_spec_cond_br;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :264:79
+      meta_storage_12_ghr_spec_shifted <= has_spec_cond_br;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :260:67
       meta_storage_12_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
       meta_storage_12_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
       meta_storage_12_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
@@ -2491,13 +2284,12 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
     else if (do_non_spec_shift
              & (_start_ptr_T_63 <= bpu_enq_ptr
                   ? _in_flight_T_88 & _in_flight_T_89
-                  : _in_flight_T_88 | _in_flight_T_89))	// frontend/src/zaqal/frontend/BPU.scala:59:28, :67:25, :265:150, :295:27, :298:41, :300:{26,37}, :301:{30,44,52}, :302:44, :304:23, :305:29
-      meta_storage_12_ghr <= {meta_storage_12_ghr[126:0], bpu_update_taken};	// frontend/src/zaqal/frontend/BPU.scala:67:25, :162:29, :305:{35,55}
-    if (_ras_io_spec_pop_valid_T & bpu_enq_ptr == 6'hD) begin	// frontend/src/zaqal/frontend/BPU.scala:59:28, :295:27, :301:30, :310:21, :328:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
-      meta_storage_13_ghr <= new_meta_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :312:39
+                  : _in_flight_T_88 | _in_flight_T_89))	// frontend/src/zaqal/frontend/BPU.scala:59:28, :67:25, :261:150, :291:27, :294:41, :296:{26,37}, :297:{30,44,52}, :298:44, :300:23, :301:29
+      meta_storage_12_ghr <= {meta_storage_12_ghr[126:0], bpu_update_taken};	// frontend/src/zaqal/frontend/BPU.scala:67:25, :159:29, :301:{35,55}
+    if (_ras_io_spec_pop_valid_T & bpu_enq_ptr == 6'hD) begin	// frontend/src/zaqal/frontend/BPU.scala:59:28, :291:27, :297:30, :306:21, :324:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      meta_storage_13_ghr <= new_meta_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :308:39
       meta_storage_13_phr <= phr;	// frontend/src/zaqal/frontend/BPU.scala:47:20, :67:25
-      meta_storage_13_ras_sp <= _ras_io_spec_sp;	// frontend/src/zaqal/frontend/BPU.scala:54:19, :67:25
-      meta_storage_13_ghr_spec_shifted <= has_spec_cond_br;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :264:79
+      meta_storage_13_ghr_spec_shifted <= has_spec_cond_br;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :260:67
       meta_storage_13_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
       meta_storage_13_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
       meta_storage_13_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
@@ -2512,13 +2304,12 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
     else if (do_non_spec_shift
              & (_start_ptr_T_63 <= bpu_enq_ptr
                   ? _in_flight_T_95 & _in_flight_T_96
-                  : _in_flight_T_95 | _in_flight_T_96))	// frontend/src/zaqal/frontend/BPU.scala:59:28, :67:25, :265:150, :295:27, :298:41, :300:{26,37}, :301:{30,44,52}, :302:44, :304:23, :305:29
-      meta_storage_13_ghr <= {meta_storage_13_ghr[126:0], bpu_update_taken};	// frontend/src/zaqal/frontend/BPU.scala:67:25, :162:29, :305:{35,55}
-    if (_ras_io_spec_pop_valid_T & bpu_enq_ptr == 6'hE) begin	// frontend/src/zaqal/frontend/BPU.scala:59:28, :295:27, :301:30, :310:21, :328:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
-      meta_storage_14_ghr <= new_meta_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :312:39
+                  : _in_flight_T_95 | _in_flight_T_96))	// frontend/src/zaqal/frontend/BPU.scala:59:28, :67:25, :261:150, :291:27, :294:41, :296:{26,37}, :297:{30,44,52}, :298:44, :300:23, :301:29
+      meta_storage_13_ghr <= {meta_storage_13_ghr[126:0], bpu_update_taken};	// frontend/src/zaqal/frontend/BPU.scala:67:25, :159:29, :301:{35,55}
+    if (_ras_io_spec_pop_valid_T & bpu_enq_ptr == 6'hE) begin	// frontend/src/zaqal/frontend/BPU.scala:59:28, :291:27, :297:30, :306:21, :324:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      meta_storage_14_ghr <= new_meta_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :308:39
       meta_storage_14_phr <= phr;	// frontend/src/zaqal/frontend/BPU.scala:47:20, :67:25
-      meta_storage_14_ras_sp <= _ras_io_spec_sp;	// frontend/src/zaqal/frontend/BPU.scala:54:19, :67:25
-      meta_storage_14_ghr_spec_shifted <= has_spec_cond_br;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :264:79
+      meta_storage_14_ghr_spec_shifted <= has_spec_cond_br;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :260:67
       meta_storage_14_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
       meta_storage_14_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
       meta_storage_14_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
@@ -2533,13 +2324,12 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
     else if (do_non_spec_shift
              & (_start_ptr_T_63 <= bpu_enq_ptr
                   ? _in_flight_T_102 & _in_flight_T_103
-                  : _in_flight_T_102 | _in_flight_T_103))	// frontend/src/zaqal/frontend/BPU.scala:59:28, :67:25, :265:150, :295:27, :298:41, :300:{26,37}, :301:{30,44,52}, :302:44, :304:23, :305:29
-      meta_storage_14_ghr <= {meta_storage_14_ghr[126:0], bpu_update_taken};	// frontend/src/zaqal/frontend/BPU.scala:67:25, :162:29, :305:{35,55}
-    if (_ras_io_spec_pop_valid_T & bpu_enq_ptr == 6'hF) begin	// frontend/src/zaqal/frontend/BPU.scala:59:28, :295:27, :301:30, :310:21, :328:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
-      meta_storage_15_ghr <= new_meta_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :312:39
+                  : _in_flight_T_102 | _in_flight_T_103))	// frontend/src/zaqal/frontend/BPU.scala:59:28, :67:25, :261:150, :291:27, :294:41, :296:{26,37}, :297:{30,44,52}, :298:44, :300:23, :301:29
+      meta_storage_14_ghr <= {meta_storage_14_ghr[126:0], bpu_update_taken};	// frontend/src/zaqal/frontend/BPU.scala:67:25, :159:29, :301:{35,55}
+    if (_ras_io_spec_pop_valid_T & bpu_enq_ptr == 6'hF) begin	// frontend/src/zaqal/frontend/BPU.scala:59:28, :291:27, :297:30, :306:21, :324:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      meta_storage_15_ghr <= new_meta_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :308:39
       meta_storage_15_phr <= phr;	// frontend/src/zaqal/frontend/BPU.scala:47:20, :67:25
-      meta_storage_15_ras_sp <= _ras_io_spec_sp;	// frontend/src/zaqal/frontend/BPU.scala:54:19, :67:25
-      meta_storage_15_ghr_spec_shifted <= has_spec_cond_br;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :264:79
+      meta_storage_15_ghr_spec_shifted <= has_spec_cond_br;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :260:67
       meta_storage_15_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
       meta_storage_15_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
       meta_storage_15_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
@@ -2554,13 +2344,12 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
     else if (do_non_spec_shift
              & (_start_ptr_T_63 <= bpu_enq_ptr
                   ? _in_flight_T_109 & (|(bpu_enq_ptr[5:4]))
-                  : _in_flight_T_109 | (|(bpu_enq_ptr[5:4]))))	// frontend/src/zaqal/frontend/BPU.scala:59:28, :67:25, :265:150, :295:27, :298:41, :300:{26,37}, :301:{30,44,52}, :302:44, :304:23, :305:29
-      meta_storage_15_ghr <= {meta_storage_15_ghr[126:0], bpu_update_taken};	// frontend/src/zaqal/frontend/BPU.scala:67:25, :162:29, :305:{35,55}
-    if (_ras_io_spec_pop_valid_T & bpu_enq_ptr == 6'h10) begin	// frontend/src/zaqal/frontend/BPU.scala:59:28, :295:27, :301:30, :310:21, :328:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
-      meta_storage_16_ghr <= new_meta_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :312:39
+                  : _in_flight_T_109 | (|(bpu_enq_ptr[5:4]))))	// frontend/src/zaqal/frontend/BPU.scala:59:28, :67:25, :261:150, :291:27, :294:41, :296:{26,37}, :297:{30,44,52}, :298:44, :300:23, :301:29
+      meta_storage_15_ghr <= {meta_storage_15_ghr[126:0], bpu_update_taken};	// frontend/src/zaqal/frontend/BPU.scala:67:25, :159:29, :301:{35,55}
+    if (_ras_io_spec_pop_valid_T & bpu_enq_ptr == 6'h10) begin	// frontend/src/zaqal/frontend/BPU.scala:59:28, :291:27, :297:30, :306:21, :324:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      meta_storage_16_ghr <= new_meta_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :308:39
       meta_storage_16_phr <= phr;	// frontend/src/zaqal/frontend/BPU.scala:47:20, :67:25
-      meta_storage_16_ras_sp <= _ras_io_spec_sp;	// frontend/src/zaqal/frontend/BPU.scala:54:19, :67:25
-      meta_storage_16_ghr_spec_shifted <= has_spec_cond_br;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :264:79
+      meta_storage_16_ghr_spec_shifted <= has_spec_cond_br;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :260:67
       meta_storage_16_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
       meta_storage_16_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
       meta_storage_16_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
@@ -2575,13 +2364,12 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
     else if (do_non_spec_shift
              & (_start_ptr_T_63 <= bpu_enq_ptr
                   ? _in_flight_T_116 & _in_flight_T_117
-                  : _in_flight_T_116 | _in_flight_T_117))	// frontend/src/zaqal/frontend/BPU.scala:59:28, :67:25, :265:150, :295:27, :298:41, :300:{26,37}, :301:{30,44,52}, :302:44, :304:23, :305:29
-      meta_storage_16_ghr <= {meta_storage_16_ghr[126:0], bpu_update_taken};	// frontend/src/zaqal/frontend/BPU.scala:67:25, :162:29, :305:{35,55}
-    if (_ras_io_spec_pop_valid_T & bpu_enq_ptr == 6'h11) begin	// frontend/src/zaqal/frontend/BPU.scala:59:28, :295:27, :301:30, :310:21, :328:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
-      meta_storage_17_ghr <= new_meta_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :312:39
+                  : _in_flight_T_116 | _in_flight_T_117))	// frontend/src/zaqal/frontend/BPU.scala:59:28, :67:25, :261:150, :291:27, :294:41, :296:{26,37}, :297:{30,44,52}, :298:44, :300:23, :301:29
+      meta_storage_16_ghr <= {meta_storage_16_ghr[126:0], bpu_update_taken};	// frontend/src/zaqal/frontend/BPU.scala:67:25, :159:29, :301:{35,55}
+    if (_ras_io_spec_pop_valid_T & bpu_enq_ptr == 6'h11) begin	// frontend/src/zaqal/frontend/BPU.scala:59:28, :291:27, :297:30, :306:21, :324:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      meta_storage_17_ghr <= new_meta_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :308:39
       meta_storage_17_phr <= phr;	// frontend/src/zaqal/frontend/BPU.scala:47:20, :67:25
-      meta_storage_17_ras_sp <= _ras_io_spec_sp;	// frontend/src/zaqal/frontend/BPU.scala:54:19, :67:25
-      meta_storage_17_ghr_spec_shifted <= has_spec_cond_br;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :264:79
+      meta_storage_17_ghr_spec_shifted <= has_spec_cond_br;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :260:67
       meta_storage_17_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
       meta_storage_17_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
       meta_storage_17_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
@@ -2596,13 +2384,12 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
     else if (do_non_spec_shift
              & (_start_ptr_T_63 <= bpu_enq_ptr
                   ? _in_flight_T_123 & _in_flight_T_124
-                  : _in_flight_T_123 | _in_flight_T_124))	// frontend/src/zaqal/frontend/BPU.scala:59:28, :67:25, :265:150, :295:27, :298:41, :300:{26,37}, :301:{30,44,52}, :302:44, :304:23, :305:29
-      meta_storage_17_ghr <= {meta_storage_17_ghr[126:0], bpu_update_taken};	// frontend/src/zaqal/frontend/BPU.scala:67:25, :162:29, :305:{35,55}
-    if (_ras_io_spec_pop_valid_T & bpu_enq_ptr == 6'h12) begin	// frontend/src/zaqal/frontend/BPU.scala:59:28, :295:27, :301:30, :310:21, :328:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
-      meta_storage_18_ghr <= new_meta_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :312:39
+                  : _in_flight_T_123 | _in_flight_T_124))	// frontend/src/zaqal/frontend/BPU.scala:59:28, :67:25, :261:150, :291:27, :294:41, :296:{26,37}, :297:{30,44,52}, :298:44, :300:23, :301:29
+      meta_storage_17_ghr <= {meta_storage_17_ghr[126:0], bpu_update_taken};	// frontend/src/zaqal/frontend/BPU.scala:67:25, :159:29, :301:{35,55}
+    if (_ras_io_spec_pop_valid_T & bpu_enq_ptr == 6'h12) begin	// frontend/src/zaqal/frontend/BPU.scala:59:28, :291:27, :297:30, :306:21, :324:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      meta_storage_18_ghr <= new_meta_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :308:39
       meta_storage_18_phr <= phr;	// frontend/src/zaqal/frontend/BPU.scala:47:20, :67:25
-      meta_storage_18_ras_sp <= _ras_io_spec_sp;	// frontend/src/zaqal/frontend/BPU.scala:54:19, :67:25
-      meta_storage_18_ghr_spec_shifted <= has_spec_cond_br;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :264:79
+      meta_storage_18_ghr_spec_shifted <= has_spec_cond_br;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :260:67
       meta_storage_18_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
       meta_storage_18_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
       meta_storage_18_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
@@ -2617,13 +2404,12 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
     else if (do_non_spec_shift
              & (_start_ptr_T_63 <= bpu_enq_ptr
                   ? _in_flight_T_130 & _in_flight_T_131
-                  : _in_flight_T_130 | _in_flight_T_131))	// frontend/src/zaqal/frontend/BPU.scala:59:28, :67:25, :265:150, :295:27, :298:41, :300:{26,37}, :301:{30,44,52}, :302:44, :304:23, :305:29
-      meta_storage_18_ghr <= {meta_storage_18_ghr[126:0], bpu_update_taken};	// frontend/src/zaqal/frontend/BPU.scala:67:25, :162:29, :305:{35,55}
-    if (_ras_io_spec_pop_valid_T & bpu_enq_ptr == 6'h13) begin	// frontend/src/zaqal/frontend/BPU.scala:59:28, :295:27, :301:30, :310:21, :328:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
-      meta_storage_19_ghr <= new_meta_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :312:39
+                  : _in_flight_T_130 | _in_flight_T_131))	// frontend/src/zaqal/frontend/BPU.scala:59:28, :67:25, :261:150, :291:27, :294:41, :296:{26,37}, :297:{30,44,52}, :298:44, :300:23, :301:29
+      meta_storage_18_ghr <= {meta_storage_18_ghr[126:0], bpu_update_taken};	// frontend/src/zaqal/frontend/BPU.scala:67:25, :159:29, :301:{35,55}
+    if (_ras_io_spec_pop_valid_T & bpu_enq_ptr == 6'h13) begin	// frontend/src/zaqal/frontend/BPU.scala:59:28, :291:27, :297:30, :306:21, :324:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      meta_storage_19_ghr <= new_meta_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :308:39
       meta_storage_19_phr <= phr;	// frontend/src/zaqal/frontend/BPU.scala:47:20, :67:25
-      meta_storage_19_ras_sp <= _ras_io_spec_sp;	// frontend/src/zaqal/frontend/BPU.scala:54:19, :67:25
-      meta_storage_19_ghr_spec_shifted <= has_spec_cond_br;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :264:79
+      meta_storage_19_ghr_spec_shifted <= has_spec_cond_br;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :260:67
       meta_storage_19_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
       meta_storage_19_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
       meta_storage_19_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
@@ -2638,13 +2424,12 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
     else if (do_non_spec_shift
              & (_start_ptr_T_63 <= bpu_enq_ptr
                   ? _in_flight_T_137 & _in_flight_T_138
-                  : _in_flight_T_137 | _in_flight_T_138))	// frontend/src/zaqal/frontend/BPU.scala:59:28, :67:25, :265:150, :295:27, :298:41, :300:{26,37}, :301:{30,44,52}, :302:44, :304:23, :305:29
-      meta_storage_19_ghr <= {meta_storage_19_ghr[126:0], bpu_update_taken};	// frontend/src/zaqal/frontend/BPU.scala:67:25, :162:29, :305:{35,55}
-    if (_ras_io_spec_pop_valid_T & bpu_enq_ptr == 6'h14) begin	// frontend/src/zaqal/frontend/BPU.scala:59:28, :295:27, :301:30, :310:21, :328:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
-      meta_storage_20_ghr <= new_meta_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :312:39
+                  : _in_flight_T_137 | _in_flight_T_138))	// frontend/src/zaqal/frontend/BPU.scala:59:28, :67:25, :261:150, :291:27, :294:41, :296:{26,37}, :297:{30,44,52}, :298:44, :300:23, :301:29
+      meta_storage_19_ghr <= {meta_storage_19_ghr[126:0], bpu_update_taken};	// frontend/src/zaqal/frontend/BPU.scala:67:25, :159:29, :301:{35,55}
+    if (_ras_io_spec_pop_valid_T & bpu_enq_ptr == 6'h14) begin	// frontend/src/zaqal/frontend/BPU.scala:59:28, :291:27, :297:30, :306:21, :324:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      meta_storage_20_ghr <= new_meta_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :308:39
       meta_storage_20_phr <= phr;	// frontend/src/zaqal/frontend/BPU.scala:47:20, :67:25
-      meta_storage_20_ras_sp <= _ras_io_spec_sp;	// frontend/src/zaqal/frontend/BPU.scala:54:19, :67:25
-      meta_storage_20_ghr_spec_shifted <= has_spec_cond_br;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :264:79
+      meta_storage_20_ghr_spec_shifted <= has_spec_cond_br;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :260:67
       meta_storage_20_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
       meta_storage_20_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
       meta_storage_20_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
@@ -2659,13 +2444,12 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
     else if (do_non_spec_shift
              & (_start_ptr_T_63 <= bpu_enq_ptr
                   ? _in_flight_T_144 & _in_flight_T_145
-                  : _in_flight_T_144 | _in_flight_T_145))	// frontend/src/zaqal/frontend/BPU.scala:59:28, :67:25, :265:150, :295:27, :298:41, :300:{26,37}, :301:{30,44,52}, :302:44, :304:23, :305:29
-      meta_storage_20_ghr <= {meta_storage_20_ghr[126:0], bpu_update_taken};	// frontend/src/zaqal/frontend/BPU.scala:67:25, :162:29, :305:{35,55}
-    if (_ras_io_spec_pop_valid_T & bpu_enq_ptr == 6'h15) begin	// frontend/src/zaqal/frontend/BPU.scala:59:28, :295:27, :301:30, :310:21, :328:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
-      meta_storage_21_ghr <= new_meta_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :312:39
+                  : _in_flight_T_144 | _in_flight_T_145))	// frontend/src/zaqal/frontend/BPU.scala:59:28, :67:25, :261:150, :291:27, :294:41, :296:{26,37}, :297:{30,44,52}, :298:44, :300:23, :301:29
+      meta_storage_20_ghr <= {meta_storage_20_ghr[126:0], bpu_update_taken};	// frontend/src/zaqal/frontend/BPU.scala:67:25, :159:29, :301:{35,55}
+    if (_ras_io_spec_pop_valid_T & bpu_enq_ptr == 6'h15) begin	// frontend/src/zaqal/frontend/BPU.scala:59:28, :291:27, :297:30, :306:21, :324:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      meta_storage_21_ghr <= new_meta_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :308:39
       meta_storage_21_phr <= phr;	// frontend/src/zaqal/frontend/BPU.scala:47:20, :67:25
-      meta_storage_21_ras_sp <= _ras_io_spec_sp;	// frontend/src/zaqal/frontend/BPU.scala:54:19, :67:25
-      meta_storage_21_ghr_spec_shifted <= has_spec_cond_br;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :264:79
+      meta_storage_21_ghr_spec_shifted <= has_spec_cond_br;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :260:67
       meta_storage_21_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
       meta_storage_21_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
       meta_storage_21_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
@@ -2680,13 +2464,12 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
     else if (do_non_spec_shift
              & (_start_ptr_T_63 <= bpu_enq_ptr
                   ? _in_flight_T_151 & _in_flight_T_152
-                  : _in_flight_T_151 | _in_flight_T_152))	// frontend/src/zaqal/frontend/BPU.scala:59:28, :67:25, :265:150, :295:27, :298:41, :300:{26,37}, :301:{30,44,52}, :302:44, :304:23, :305:29
-      meta_storage_21_ghr <= {meta_storage_21_ghr[126:0], bpu_update_taken};	// frontend/src/zaqal/frontend/BPU.scala:67:25, :162:29, :305:{35,55}
-    if (_ras_io_spec_pop_valid_T & bpu_enq_ptr == 6'h16) begin	// frontend/src/zaqal/frontend/BPU.scala:59:28, :295:27, :301:30, :310:21, :328:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
-      meta_storage_22_ghr <= new_meta_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :312:39
+                  : _in_flight_T_151 | _in_flight_T_152))	// frontend/src/zaqal/frontend/BPU.scala:59:28, :67:25, :261:150, :291:27, :294:41, :296:{26,37}, :297:{30,44,52}, :298:44, :300:23, :301:29
+      meta_storage_21_ghr <= {meta_storage_21_ghr[126:0], bpu_update_taken};	// frontend/src/zaqal/frontend/BPU.scala:67:25, :159:29, :301:{35,55}
+    if (_ras_io_spec_pop_valid_T & bpu_enq_ptr == 6'h16) begin	// frontend/src/zaqal/frontend/BPU.scala:59:28, :291:27, :297:30, :306:21, :324:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      meta_storage_22_ghr <= new_meta_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :308:39
       meta_storage_22_phr <= phr;	// frontend/src/zaqal/frontend/BPU.scala:47:20, :67:25
-      meta_storage_22_ras_sp <= _ras_io_spec_sp;	// frontend/src/zaqal/frontend/BPU.scala:54:19, :67:25
-      meta_storage_22_ghr_spec_shifted <= has_spec_cond_br;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :264:79
+      meta_storage_22_ghr_spec_shifted <= has_spec_cond_br;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :260:67
       meta_storage_22_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
       meta_storage_22_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
       meta_storage_22_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
@@ -2701,13 +2484,12 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
     else if (do_non_spec_shift
              & (_start_ptr_T_63 <= bpu_enq_ptr
                   ? _in_flight_T_158 & _in_flight_T_159
-                  : _in_flight_T_158 | _in_flight_T_159))	// frontend/src/zaqal/frontend/BPU.scala:59:28, :67:25, :265:150, :295:27, :298:41, :300:{26,37}, :301:{30,44,52}, :302:44, :304:23, :305:29
-      meta_storage_22_ghr <= {meta_storage_22_ghr[126:0], bpu_update_taken};	// frontend/src/zaqal/frontend/BPU.scala:67:25, :162:29, :305:{35,55}
-    if (_ras_io_spec_pop_valid_T & bpu_enq_ptr == 6'h17) begin	// frontend/src/zaqal/frontend/BPU.scala:59:28, :295:27, :301:30, :310:21, :328:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
-      meta_storage_23_ghr <= new_meta_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :312:39
+                  : _in_flight_T_158 | _in_flight_T_159))	// frontend/src/zaqal/frontend/BPU.scala:59:28, :67:25, :261:150, :291:27, :294:41, :296:{26,37}, :297:{30,44,52}, :298:44, :300:23, :301:29
+      meta_storage_22_ghr <= {meta_storage_22_ghr[126:0], bpu_update_taken};	// frontend/src/zaqal/frontend/BPU.scala:67:25, :159:29, :301:{35,55}
+    if (_ras_io_spec_pop_valid_T & bpu_enq_ptr == 6'h17) begin	// frontend/src/zaqal/frontend/BPU.scala:59:28, :291:27, :297:30, :306:21, :324:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      meta_storage_23_ghr <= new_meta_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :308:39
       meta_storage_23_phr <= phr;	// frontend/src/zaqal/frontend/BPU.scala:47:20, :67:25
-      meta_storage_23_ras_sp <= _ras_io_spec_sp;	// frontend/src/zaqal/frontend/BPU.scala:54:19, :67:25
-      meta_storage_23_ghr_spec_shifted <= has_spec_cond_br;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :264:79
+      meta_storage_23_ghr_spec_shifted <= has_spec_cond_br;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :260:67
       meta_storage_23_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
       meta_storage_23_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
       meta_storage_23_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
@@ -2722,13 +2504,12 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
     else if (do_non_spec_shift
              & (_start_ptr_T_63 <= bpu_enq_ptr
                   ? _in_flight_T_165 & _in_flight_T_166
-                  : _in_flight_T_165 | _in_flight_T_166))	// frontend/src/zaqal/frontend/BPU.scala:59:28, :67:25, :265:150, :295:27, :298:41, :300:{26,37}, :301:{30,44,52}, :302:44, :304:23, :305:29
-      meta_storage_23_ghr <= {meta_storage_23_ghr[126:0], bpu_update_taken};	// frontend/src/zaqal/frontend/BPU.scala:67:25, :162:29, :305:{35,55}
-    if (_ras_io_spec_pop_valid_T & bpu_enq_ptr == 6'h18) begin	// frontend/src/zaqal/frontend/BPU.scala:59:28, :295:27, :301:30, :310:21, :328:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
-      meta_storage_24_ghr <= new_meta_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :312:39
+                  : _in_flight_T_165 | _in_flight_T_166))	// frontend/src/zaqal/frontend/BPU.scala:59:28, :67:25, :261:150, :291:27, :294:41, :296:{26,37}, :297:{30,44,52}, :298:44, :300:23, :301:29
+      meta_storage_23_ghr <= {meta_storage_23_ghr[126:0], bpu_update_taken};	// frontend/src/zaqal/frontend/BPU.scala:67:25, :159:29, :301:{35,55}
+    if (_ras_io_spec_pop_valid_T & bpu_enq_ptr == 6'h18) begin	// frontend/src/zaqal/frontend/BPU.scala:59:28, :291:27, :297:30, :306:21, :324:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      meta_storage_24_ghr <= new_meta_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :308:39
       meta_storage_24_phr <= phr;	// frontend/src/zaqal/frontend/BPU.scala:47:20, :67:25
-      meta_storage_24_ras_sp <= _ras_io_spec_sp;	// frontend/src/zaqal/frontend/BPU.scala:54:19, :67:25
-      meta_storage_24_ghr_spec_shifted <= has_spec_cond_br;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :264:79
+      meta_storage_24_ghr_spec_shifted <= has_spec_cond_br;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :260:67
       meta_storage_24_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
       meta_storage_24_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
       meta_storage_24_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
@@ -2743,13 +2524,12 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
     else if (do_non_spec_shift
              & (_start_ptr_T_63 <= bpu_enq_ptr
                   ? _in_flight_T_172 & _in_flight_T_173
-                  : _in_flight_T_172 | _in_flight_T_173))	// frontend/src/zaqal/frontend/BPU.scala:59:28, :67:25, :265:150, :295:27, :298:41, :300:{26,37}, :301:{30,44,52}, :302:44, :304:23, :305:29
-      meta_storage_24_ghr <= {meta_storage_24_ghr[126:0], bpu_update_taken};	// frontend/src/zaqal/frontend/BPU.scala:67:25, :162:29, :305:{35,55}
-    if (_ras_io_spec_pop_valid_T & bpu_enq_ptr == 6'h19) begin	// frontend/src/zaqal/frontend/BPU.scala:59:28, :295:27, :301:30, :310:21, :328:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
-      meta_storage_25_ghr <= new_meta_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :312:39
+                  : _in_flight_T_172 | _in_flight_T_173))	// frontend/src/zaqal/frontend/BPU.scala:59:28, :67:25, :261:150, :291:27, :294:41, :296:{26,37}, :297:{30,44,52}, :298:44, :300:23, :301:29
+      meta_storage_24_ghr <= {meta_storage_24_ghr[126:0], bpu_update_taken};	// frontend/src/zaqal/frontend/BPU.scala:67:25, :159:29, :301:{35,55}
+    if (_ras_io_spec_pop_valid_T & bpu_enq_ptr == 6'h19) begin	// frontend/src/zaqal/frontend/BPU.scala:59:28, :291:27, :297:30, :306:21, :324:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      meta_storage_25_ghr <= new_meta_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :308:39
       meta_storage_25_phr <= phr;	// frontend/src/zaqal/frontend/BPU.scala:47:20, :67:25
-      meta_storage_25_ras_sp <= _ras_io_spec_sp;	// frontend/src/zaqal/frontend/BPU.scala:54:19, :67:25
-      meta_storage_25_ghr_spec_shifted <= has_spec_cond_br;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :264:79
+      meta_storage_25_ghr_spec_shifted <= has_spec_cond_br;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :260:67
       meta_storage_25_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
       meta_storage_25_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
       meta_storage_25_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
@@ -2764,13 +2544,12 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
     else if (do_non_spec_shift
              & (_start_ptr_T_63 <= bpu_enq_ptr
                   ? _in_flight_T_179 & _in_flight_T_180
-                  : _in_flight_T_179 | _in_flight_T_180))	// frontend/src/zaqal/frontend/BPU.scala:59:28, :67:25, :265:150, :295:27, :298:41, :300:{26,37}, :301:{30,44,52}, :302:44, :304:23, :305:29
-      meta_storage_25_ghr <= {meta_storage_25_ghr[126:0], bpu_update_taken};	// frontend/src/zaqal/frontend/BPU.scala:67:25, :162:29, :305:{35,55}
-    if (_ras_io_spec_pop_valid_T & bpu_enq_ptr == 6'h1A) begin	// frontend/src/zaqal/frontend/BPU.scala:59:28, :295:27, :301:30, :310:21, :328:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
-      meta_storage_26_ghr <= new_meta_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :312:39
+                  : _in_flight_T_179 | _in_flight_T_180))	// frontend/src/zaqal/frontend/BPU.scala:59:28, :67:25, :261:150, :291:27, :294:41, :296:{26,37}, :297:{30,44,52}, :298:44, :300:23, :301:29
+      meta_storage_25_ghr <= {meta_storage_25_ghr[126:0], bpu_update_taken};	// frontend/src/zaqal/frontend/BPU.scala:67:25, :159:29, :301:{35,55}
+    if (_ras_io_spec_pop_valid_T & bpu_enq_ptr == 6'h1A) begin	// frontend/src/zaqal/frontend/BPU.scala:59:28, :291:27, :297:30, :306:21, :324:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      meta_storage_26_ghr <= new_meta_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :308:39
       meta_storage_26_phr <= phr;	// frontend/src/zaqal/frontend/BPU.scala:47:20, :67:25
-      meta_storage_26_ras_sp <= _ras_io_spec_sp;	// frontend/src/zaqal/frontend/BPU.scala:54:19, :67:25
-      meta_storage_26_ghr_spec_shifted <= has_spec_cond_br;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :264:79
+      meta_storage_26_ghr_spec_shifted <= has_spec_cond_br;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :260:67
       meta_storage_26_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
       meta_storage_26_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
       meta_storage_26_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
@@ -2785,13 +2564,12 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
     else if (do_non_spec_shift
              & (_start_ptr_T_63 <= bpu_enq_ptr
                   ? _in_flight_T_186 & _in_flight_T_187
-                  : _in_flight_T_186 | _in_flight_T_187))	// frontend/src/zaqal/frontend/BPU.scala:59:28, :67:25, :265:150, :295:27, :298:41, :300:{26,37}, :301:{30,44,52}, :302:44, :304:23, :305:29
-      meta_storage_26_ghr <= {meta_storage_26_ghr[126:0], bpu_update_taken};	// frontend/src/zaqal/frontend/BPU.scala:67:25, :162:29, :305:{35,55}
-    if (_ras_io_spec_pop_valid_T & bpu_enq_ptr == 6'h1B) begin	// frontend/src/zaqal/frontend/BPU.scala:59:28, :295:27, :301:30, :310:21, :328:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
-      meta_storage_27_ghr <= new_meta_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :312:39
+                  : _in_flight_T_186 | _in_flight_T_187))	// frontend/src/zaqal/frontend/BPU.scala:59:28, :67:25, :261:150, :291:27, :294:41, :296:{26,37}, :297:{30,44,52}, :298:44, :300:23, :301:29
+      meta_storage_26_ghr <= {meta_storage_26_ghr[126:0], bpu_update_taken};	// frontend/src/zaqal/frontend/BPU.scala:67:25, :159:29, :301:{35,55}
+    if (_ras_io_spec_pop_valid_T & bpu_enq_ptr == 6'h1B) begin	// frontend/src/zaqal/frontend/BPU.scala:59:28, :291:27, :297:30, :306:21, :324:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      meta_storage_27_ghr <= new_meta_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :308:39
       meta_storage_27_phr <= phr;	// frontend/src/zaqal/frontend/BPU.scala:47:20, :67:25
-      meta_storage_27_ras_sp <= _ras_io_spec_sp;	// frontend/src/zaqal/frontend/BPU.scala:54:19, :67:25
-      meta_storage_27_ghr_spec_shifted <= has_spec_cond_br;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :264:79
+      meta_storage_27_ghr_spec_shifted <= has_spec_cond_br;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :260:67
       meta_storage_27_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
       meta_storage_27_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
       meta_storage_27_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
@@ -2806,13 +2584,12 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
     else if (do_non_spec_shift
              & (_start_ptr_T_63 <= bpu_enq_ptr
                   ? _in_flight_T_193 & _in_flight_T_194
-                  : _in_flight_T_193 | _in_flight_T_194))	// frontend/src/zaqal/frontend/BPU.scala:59:28, :67:25, :265:150, :295:27, :298:41, :300:{26,37}, :301:{30,44,52}, :302:44, :304:23, :305:29
-      meta_storage_27_ghr <= {meta_storage_27_ghr[126:0], bpu_update_taken};	// frontend/src/zaqal/frontend/BPU.scala:67:25, :162:29, :305:{35,55}
-    if (_ras_io_spec_pop_valid_T & bpu_enq_ptr == 6'h1C) begin	// frontend/src/zaqal/frontend/BPU.scala:59:28, :295:27, :301:30, :310:21, :328:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
-      meta_storage_28_ghr <= new_meta_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :312:39
+                  : _in_flight_T_193 | _in_flight_T_194))	// frontend/src/zaqal/frontend/BPU.scala:59:28, :67:25, :261:150, :291:27, :294:41, :296:{26,37}, :297:{30,44,52}, :298:44, :300:23, :301:29
+      meta_storage_27_ghr <= {meta_storage_27_ghr[126:0], bpu_update_taken};	// frontend/src/zaqal/frontend/BPU.scala:67:25, :159:29, :301:{35,55}
+    if (_ras_io_spec_pop_valid_T & bpu_enq_ptr == 6'h1C) begin	// frontend/src/zaqal/frontend/BPU.scala:59:28, :291:27, :297:30, :306:21, :324:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      meta_storage_28_ghr <= new_meta_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :308:39
       meta_storage_28_phr <= phr;	// frontend/src/zaqal/frontend/BPU.scala:47:20, :67:25
-      meta_storage_28_ras_sp <= _ras_io_spec_sp;	// frontend/src/zaqal/frontend/BPU.scala:54:19, :67:25
-      meta_storage_28_ghr_spec_shifted <= has_spec_cond_br;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :264:79
+      meta_storage_28_ghr_spec_shifted <= has_spec_cond_br;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :260:67
       meta_storage_28_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
       meta_storage_28_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
       meta_storage_28_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
@@ -2827,13 +2604,12 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
     else if (do_non_spec_shift
              & (_start_ptr_T_63 <= bpu_enq_ptr
                   ? _in_flight_T_200 & _in_flight_T_201
-                  : _in_flight_T_200 | _in_flight_T_201))	// frontend/src/zaqal/frontend/BPU.scala:59:28, :67:25, :265:150, :295:27, :298:41, :300:{26,37}, :301:{30,44,52}, :302:44, :304:23, :305:29
-      meta_storage_28_ghr <= {meta_storage_28_ghr[126:0], bpu_update_taken};	// frontend/src/zaqal/frontend/BPU.scala:67:25, :162:29, :305:{35,55}
-    if (_ras_io_spec_pop_valid_T & bpu_enq_ptr == 6'h1D) begin	// frontend/src/zaqal/frontend/BPU.scala:59:28, :295:27, :301:30, :310:21, :328:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
-      meta_storage_29_ghr <= new_meta_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :312:39
+                  : _in_flight_T_200 | _in_flight_T_201))	// frontend/src/zaqal/frontend/BPU.scala:59:28, :67:25, :261:150, :291:27, :294:41, :296:{26,37}, :297:{30,44,52}, :298:44, :300:23, :301:29
+      meta_storage_28_ghr <= {meta_storage_28_ghr[126:0], bpu_update_taken};	// frontend/src/zaqal/frontend/BPU.scala:67:25, :159:29, :301:{35,55}
+    if (_ras_io_spec_pop_valid_T & bpu_enq_ptr == 6'h1D) begin	// frontend/src/zaqal/frontend/BPU.scala:59:28, :291:27, :297:30, :306:21, :324:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      meta_storage_29_ghr <= new_meta_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :308:39
       meta_storage_29_phr <= phr;	// frontend/src/zaqal/frontend/BPU.scala:47:20, :67:25
-      meta_storage_29_ras_sp <= _ras_io_spec_sp;	// frontend/src/zaqal/frontend/BPU.scala:54:19, :67:25
-      meta_storage_29_ghr_spec_shifted <= has_spec_cond_br;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :264:79
+      meta_storage_29_ghr_spec_shifted <= has_spec_cond_br;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :260:67
       meta_storage_29_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
       meta_storage_29_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
       meta_storage_29_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
@@ -2848,13 +2624,12 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
     else if (do_non_spec_shift
              & (_start_ptr_T_63 <= bpu_enq_ptr
                   ? _in_flight_T_207 & _in_flight_T_208
-                  : _in_flight_T_207 | _in_flight_T_208))	// frontend/src/zaqal/frontend/BPU.scala:59:28, :67:25, :265:150, :295:27, :298:41, :300:{26,37}, :301:{30,44,52}, :302:44, :304:23, :305:29
-      meta_storage_29_ghr <= {meta_storage_29_ghr[126:0], bpu_update_taken};	// frontend/src/zaqal/frontend/BPU.scala:67:25, :162:29, :305:{35,55}
-    if (_ras_io_spec_pop_valid_T & bpu_enq_ptr == 6'h1E) begin	// frontend/src/zaqal/frontend/BPU.scala:59:28, :295:27, :301:30, :310:21, :328:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
-      meta_storage_30_ghr <= new_meta_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :312:39
+                  : _in_flight_T_207 | _in_flight_T_208))	// frontend/src/zaqal/frontend/BPU.scala:59:28, :67:25, :261:150, :291:27, :294:41, :296:{26,37}, :297:{30,44,52}, :298:44, :300:23, :301:29
+      meta_storage_29_ghr <= {meta_storage_29_ghr[126:0], bpu_update_taken};	// frontend/src/zaqal/frontend/BPU.scala:67:25, :159:29, :301:{35,55}
+    if (_ras_io_spec_pop_valid_T & bpu_enq_ptr == 6'h1E) begin	// frontend/src/zaqal/frontend/BPU.scala:59:28, :291:27, :297:30, :306:21, :324:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      meta_storage_30_ghr <= new_meta_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :308:39
       meta_storage_30_phr <= phr;	// frontend/src/zaqal/frontend/BPU.scala:47:20, :67:25
-      meta_storage_30_ras_sp <= _ras_io_spec_sp;	// frontend/src/zaqal/frontend/BPU.scala:54:19, :67:25
-      meta_storage_30_ghr_spec_shifted <= has_spec_cond_br;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :264:79
+      meta_storage_30_ghr_spec_shifted <= has_spec_cond_br;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :260:67
       meta_storage_30_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
       meta_storage_30_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
       meta_storage_30_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
@@ -2869,13 +2644,12 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
     else if (do_non_spec_shift
              & (_start_ptr_T_63 <= bpu_enq_ptr
                   ? _in_flight_T_214 & _in_flight_T_215
-                  : _in_flight_T_214 | _in_flight_T_215))	// frontend/src/zaqal/frontend/BPU.scala:59:28, :67:25, :265:150, :295:27, :298:41, :300:{26,37}, :301:{30,44,52}, :302:44, :304:23, :305:29
-      meta_storage_30_ghr <= {meta_storage_30_ghr[126:0], bpu_update_taken};	// frontend/src/zaqal/frontend/BPU.scala:67:25, :162:29, :305:{35,55}
-    if (_ras_io_spec_pop_valid_T & bpu_enq_ptr == 6'h1F) begin	// frontend/src/zaqal/frontend/BPU.scala:59:28, :295:27, :301:30, :310:21, :328:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
-      meta_storage_31_ghr <= new_meta_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :312:39
+                  : _in_flight_T_214 | _in_flight_T_215))	// frontend/src/zaqal/frontend/BPU.scala:59:28, :67:25, :261:150, :291:27, :294:41, :296:{26,37}, :297:{30,44,52}, :298:44, :300:23, :301:29
+      meta_storage_30_ghr <= {meta_storage_30_ghr[126:0], bpu_update_taken};	// frontend/src/zaqal/frontend/BPU.scala:67:25, :159:29, :301:{35,55}
+    if (_ras_io_spec_pop_valid_T & bpu_enq_ptr == 6'h1F) begin	// frontend/src/zaqal/frontend/BPU.scala:59:28, :291:27, :297:30, :306:21, :324:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      meta_storage_31_ghr <= new_meta_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :308:39
       meta_storage_31_phr <= phr;	// frontend/src/zaqal/frontend/BPU.scala:47:20, :67:25
-      meta_storage_31_ras_sp <= _ras_io_spec_sp;	// frontend/src/zaqal/frontend/BPU.scala:54:19, :67:25
-      meta_storage_31_ghr_spec_shifted <= has_spec_cond_br;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :264:79
+      meta_storage_31_ghr_spec_shifted <= has_spec_cond_br;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :260:67
       meta_storage_31_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
       meta_storage_31_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
       meta_storage_31_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
@@ -2890,13 +2664,12 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
     else if (do_non_spec_shift
              & (_start_ptr_T_63 <= bpu_enq_ptr
                   ? ~(_start_ptr_T_63[5]) & bpu_enq_ptr[5]
-                  : ~(_start_ptr_T_63[5]) | bpu_enq_ptr[5]))	// frontend/src/zaqal/frontend/BPU.scala:59:28, :67:25, :265:150, :295:27, :298:41, :300:{26,37}, :301:{30,44,52}, :302:44, :304:23, :305:29
-      meta_storage_31_ghr <= {meta_storage_31_ghr[126:0], bpu_update_taken};	// frontend/src/zaqal/frontend/BPU.scala:67:25, :162:29, :305:{35,55}
-    if (_ras_io_spec_pop_valid_T & bpu_enq_ptr == 6'h20) begin	// frontend/src/zaqal/frontend/BPU.scala:59:28, :101:52, :295:27, :310:21, :328:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
-      meta_storage_32_ghr <= new_meta_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :312:39
+                  : ~(_start_ptr_T_63[5]) | bpu_enq_ptr[5]))	// frontend/src/zaqal/frontend/BPU.scala:59:28, :67:25, :261:150, :291:27, :294:41, :296:{26,37}, :297:{30,44,52}, :298:44, :300:23, :301:29
+      meta_storage_31_ghr <= {meta_storage_31_ghr[126:0], bpu_update_taken};	// frontend/src/zaqal/frontend/BPU.scala:67:25, :159:29, :301:{35,55}
+    if (_ras_io_spec_pop_valid_T & bpu_enq_ptr == 6'h20) begin	// frontend/src/zaqal/frontend/BPU.scala:59:28, :101:52, :291:27, :306:21, :324:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      meta_storage_32_ghr <= new_meta_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :308:39
       meta_storage_32_phr <= phr;	// frontend/src/zaqal/frontend/BPU.scala:47:20, :67:25
-      meta_storage_32_ras_sp <= _ras_io_spec_sp;	// frontend/src/zaqal/frontend/BPU.scala:54:19, :67:25
-      meta_storage_32_ghr_spec_shifted <= has_spec_cond_br;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :264:79
+      meta_storage_32_ghr_spec_shifted <= has_spec_cond_br;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :260:67
       meta_storage_32_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
       meta_storage_32_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
       meta_storage_32_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
@@ -2911,13 +2684,12 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
     else if (do_non_spec_shift
              & (_start_ptr_T_63 <= bpu_enq_ptr
                   ? _in_flight_T_228 & _in_flight_T_229
-                  : _in_flight_T_228 | _in_flight_T_229))	// frontend/src/zaqal/frontend/BPU.scala:59:28, :67:25, :265:150, :295:27, :298:41, :300:{26,37}, :301:{30,44,52}, :302:44, :304:23, :305:29
-      meta_storage_32_ghr <= {meta_storage_32_ghr[126:0], bpu_update_taken};	// frontend/src/zaqal/frontend/BPU.scala:67:25, :162:29, :305:{35,55}
-    if (_ras_io_spec_pop_valid_T & bpu_enq_ptr == 6'h21) begin	// frontend/src/zaqal/frontend/BPU.scala:59:28, :295:27, :301:30, :310:21, :328:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
-      meta_storage_33_ghr <= new_meta_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :312:39
+                  : _in_flight_T_228 | _in_flight_T_229))	// frontend/src/zaqal/frontend/BPU.scala:59:28, :67:25, :261:150, :291:27, :294:41, :296:{26,37}, :297:{30,44,52}, :298:44, :300:23, :301:29
+      meta_storage_32_ghr <= {meta_storage_32_ghr[126:0], bpu_update_taken};	// frontend/src/zaqal/frontend/BPU.scala:67:25, :159:29, :301:{35,55}
+    if (_ras_io_spec_pop_valid_T & bpu_enq_ptr == 6'h21) begin	// frontend/src/zaqal/frontend/BPU.scala:59:28, :291:27, :297:30, :306:21, :324:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      meta_storage_33_ghr <= new_meta_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :308:39
       meta_storage_33_phr <= phr;	// frontend/src/zaqal/frontend/BPU.scala:47:20, :67:25
-      meta_storage_33_ras_sp <= _ras_io_spec_sp;	// frontend/src/zaqal/frontend/BPU.scala:54:19, :67:25
-      meta_storage_33_ghr_spec_shifted <= has_spec_cond_br;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :264:79
+      meta_storage_33_ghr_spec_shifted <= has_spec_cond_br;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :260:67
       meta_storage_33_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
       meta_storage_33_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
       meta_storage_33_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
@@ -2932,13 +2704,12 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
     else if (do_non_spec_shift
              & (_start_ptr_T_63 <= bpu_enq_ptr
                   ? _in_flight_T_235 & _in_flight_T_236
-                  : _in_flight_T_235 | _in_flight_T_236))	// frontend/src/zaqal/frontend/BPU.scala:59:28, :67:25, :265:150, :295:27, :298:41, :300:{26,37}, :301:{30,44,52}, :302:44, :304:23, :305:29
-      meta_storage_33_ghr <= {meta_storage_33_ghr[126:0], bpu_update_taken};	// frontend/src/zaqal/frontend/BPU.scala:67:25, :162:29, :305:{35,55}
-    if (_ras_io_spec_pop_valid_T & bpu_enq_ptr == 6'h22) begin	// frontend/src/zaqal/frontend/BPU.scala:59:28, :295:27, :301:30, :310:21, :328:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
-      meta_storage_34_ghr <= new_meta_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :312:39
+                  : _in_flight_T_235 | _in_flight_T_236))	// frontend/src/zaqal/frontend/BPU.scala:59:28, :67:25, :261:150, :291:27, :294:41, :296:{26,37}, :297:{30,44,52}, :298:44, :300:23, :301:29
+      meta_storage_33_ghr <= {meta_storage_33_ghr[126:0], bpu_update_taken};	// frontend/src/zaqal/frontend/BPU.scala:67:25, :159:29, :301:{35,55}
+    if (_ras_io_spec_pop_valid_T & bpu_enq_ptr == 6'h22) begin	// frontend/src/zaqal/frontend/BPU.scala:59:28, :291:27, :297:30, :306:21, :324:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      meta_storage_34_ghr <= new_meta_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :308:39
       meta_storage_34_phr <= phr;	// frontend/src/zaqal/frontend/BPU.scala:47:20, :67:25
-      meta_storage_34_ras_sp <= _ras_io_spec_sp;	// frontend/src/zaqal/frontend/BPU.scala:54:19, :67:25
-      meta_storage_34_ghr_spec_shifted <= has_spec_cond_br;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :264:79
+      meta_storage_34_ghr_spec_shifted <= has_spec_cond_br;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :260:67
       meta_storage_34_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
       meta_storage_34_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
       meta_storage_34_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
@@ -2953,13 +2724,12 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
     else if (do_non_spec_shift
              & (_start_ptr_T_63 <= bpu_enq_ptr
                   ? _in_flight_T_242 & _in_flight_T_243
-                  : _in_flight_T_242 | _in_flight_T_243))	// frontend/src/zaqal/frontend/BPU.scala:59:28, :67:25, :265:150, :295:27, :298:41, :300:{26,37}, :301:{30,44,52}, :302:44, :304:23, :305:29
-      meta_storage_34_ghr <= {meta_storage_34_ghr[126:0], bpu_update_taken};	// frontend/src/zaqal/frontend/BPU.scala:67:25, :162:29, :305:{35,55}
-    if (_ras_io_spec_pop_valid_T & bpu_enq_ptr == 6'h23) begin	// frontend/src/zaqal/frontend/BPU.scala:59:28, :295:27, :301:30, :310:21, :328:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
-      meta_storage_35_ghr <= new_meta_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :312:39
+                  : _in_flight_T_242 | _in_flight_T_243))	// frontend/src/zaqal/frontend/BPU.scala:59:28, :67:25, :261:150, :291:27, :294:41, :296:{26,37}, :297:{30,44,52}, :298:44, :300:23, :301:29
+      meta_storage_34_ghr <= {meta_storage_34_ghr[126:0], bpu_update_taken};	// frontend/src/zaqal/frontend/BPU.scala:67:25, :159:29, :301:{35,55}
+    if (_ras_io_spec_pop_valid_T & bpu_enq_ptr == 6'h23) begin	// frontend/src/zaqal/frontend/BPU.scala:59:28, :291:27, :297:30, :306:21, :324:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      meta_storage_35_ghr <= new_meta_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :308:39
       meta_storage_35_phr <= phr;	// frontend/src/zaqal/frontend/BPU.scala:47:20, :67:25
-      meta_storage_35_ras_sp <= _ras_io_spec_sp;	// frontend/src/zaqal/frontend/BPU.scala:54:19, :67:25
-      meta_storage_35_ghr_spec_shifted <= has_spec_cond_br;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :264:79
+      meta_storage_35_ghr_spec_shifted <= has_spec_cond_br;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :260:67
       meta_storage_35_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
       meta_storage_35_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
       meta_storage_35_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
@@ -2974,13 +2744,12 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
     else if (do_non_spec_shift
              & (_start_ptr_T_63 <= bpu_enq_ptr
                   ? _in_flight_T_249 & _in_flight_T_250
-                  : _in_flight_T_249 | _in_flight_T_250))	// frontend/src/zaqal/frontend/BPU.scala:59:28, :67:25, :265:150, :295:27, :298:41, :300:{26,37}, :301:{30,44,52}, :302:44, :304:23, :305:29
-      meta_storage_35_ghr <= {meta_storage_35_ghr[126:0], bpu_update_taken};	// frontend/src/zaqal/frontend/BPU.scala:67:25, :162:29, :305:{35,55}
-    if (_ras_io_spec_pop_valid_T & bpu_enq_ptr == 6'h24) begin	// frontend/src/zaqal/frontend/BPU.scala:59:28, :295:27, :301:30, :310:21, :328:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
-      meta_storage_36_ghr <= new_meta_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :312:39
+                  : _in_flight_T_249 | _in_flight_T_250))	// frontend/src/zaqal/frontend/BPU.scala:59:28, :67:25, :261:150, :291:27, :294:41, :296:{26,37}, :297:{30,44,52}, :298:44, :300:23, :301:29
+      meta_storage_35_ghr <= {meta_storage_35_ghr[126:0], bpu_update_taken};	// frontend/src/zaqal/frontend/BPU.scala:67:25, :159:29, :301:{35,55}
+    if (_ras_io_spec_pop_valid_T & bpu_enq_ptr == 6'h24) begin	// frontend/src/zaqal/frontend/BPU.scala:59:28, :291:27, :297:30, :306:21, :324:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      meta_storage_36_ghr <= new_meta_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :308:39
       meta_storage_36_phr <= phr;	// frontend/src/zaqal/frontend/BPU.scala:47:20, :67:25
-      meta_storage_36_ras_sp <= _ras_io_spec_sp;	// frontend/src/zaqal/frontend/BPU.scala:54:19, :67:25
-      meta_storage_36_ghr_spec_shifted <= has_spec_cond_br;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :264:79
+      meta_storage_36_ghr_spec_shifted <= has_spec_cond_br;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :260:67
       meta_storage_36_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
       meta_storage_36_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
       meta_storage_36_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
@@ -2995,13 +2764,12 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
     else if (do_non_spec_shift
              & (_start_ptr_T_63 <= bpu_enq_ptr
                   ? _in_flight_T_256 & _in_flight_T_257
-                  : _in_flight_T_256 | _in_flight_T_257))	// frontend/src/zaqal/frontend/BPU.scala:59:28, :67:25, :265:150, :295:27, :298:41, :300:{26,37}, :301:{30,44,52}, :302:44, :304:23, :305:29
-      meta_storage_36_ghr <= {meta_storage_36_ghr[126:0], bpu_update_taken};	// frontend/src/zaqal/frontend/BPU.scala:67:25, :162:29, :305:{35,55}
-    if (_ras_io_spec_pop_valid_T & bpu_enq_ptr == 6'h25) begin	// frontend/src/zaqal/frontend/BPU.scala:59:28, :295:27, :301:30, :310:21, :328:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
-      meta_storage_37_ghr <= new_meta_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :312:39
+                  : _in_flight_T_256 | _in_flight_T_257))	// frontend/src/zaqal/frontend/BPU.scala:59:28, :67:25, :261:150, :291:27, :294:41, :296:{26,37}, :297:{30,44,52}, :298:44, :300:23, :301:29
+      meta_storage_36_ghr <= {meta_storage_36_ghr[126:0], bpu_update_taken};	// frontend/src/zaqal/frontend/BPU.scala:67:25, :159:29, :301:{35,55}
+    if (_ras_io_spec_pop_valid_T & bpu_enq_ptr == 6'h25) begin	// frontend/src/zaqal/frontend/BPU.scala:59:28, :291:27, :297:30, :306:21, :324:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      meta_storage_37_ghr <= new_meta_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :308:39
       meta_storage_37_phr <= phr;	// frontend/src/zaqal/frontend/BPU.scala:47:20, :67:25
-      meta_storage_37_ras_sp <= _ras_io_spec_sp;	// frontend/src/zaqal/frontend/BPU.scala:54:19, :67:25
-      meta_storage_37_ghr_spec_shifted <= has_spec_cond_br;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :264:79
+      meta_storage_37_ghr_spec_shifted <= has_spec_cond_br;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :260:67
       meta_storage_37_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
       meta_storage_37_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
       meta_storage_37_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
@@ -3016,13 +2784,12 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
     else if (do_non_spec_shift
              & (_start_ptr_T_63 <= bpu_enq_ptr
                   ? _in_flight_T_263 & _in_flight_T_264
-                  : _in_flight_T_263 | _in_flight_T_264))	// frontend/src/zaqal/frontend/BPU.scala:59:28, :67:25, :265:150, :295:27, :298:41, :300:{26,37}, :301:{30,44,52}, :302:44, :304:23, :305:29
-      meta_storage_37_ghr <= {meta_storage_37_ghr[126:0], bpu_update_taken};	// frontend/src/zaqal/frontend/BPU.scala:67:25, :162:29, :305:{35,55}
-    if (_ras_io_spec_pop_valid_T & bpu_enq_ptr == 6'h26) begin	// frontend/src/zaqal/frontend/BPU.scala:59:28, :295:27, :301:30, :310:21, :328:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
-      meta_storage_38_ghr <= new_meta_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :312:39
+                  : _in_flight_T_263 | _in_flight_T_264))	// frontend/src/zaqal/frontend/BPU.scala:59:28, :67:25, :261:150, :291:27, :294:41, :296:{26,37}, :297:{30,44,52}, :298:44, :300:23, :301:29
+      meta_storage_37_ghr <= {meta_storage_37_ghr[126:0], bpu_update_taken};	// frontend/src/zaqal/frontend/BPU.scala:67:25, :159:29, :301:{35,55}
+    if (_ras_io_spec_pop_valid_T & bpu_enq_ptr == 6'h26) begin	// frontend/src/zaqal/frontend/BPU.scala:59:28, :291:27, :297:30, :306:21, :324:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      meta_storage_38_ghr <= new_meta_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :308:39
       meta_storage_38_phr <= phr;	// frontend/src/zaqal/frontend/BPU.scala:47:20, :67:25
-      meta_storage_38_ras_sp <= _ras_io_spec_sp;	// frontend/src/zaqal/frontend/BPU.scala:54:19, :67:25
-      meta_storage_38_ghr_spec_shifted <= has_spec_cond_br;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :264:79
+      meta_storage_38_ghr_spec_shifted <= has_spec_cond_br;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :260:67
       meta_storage_38_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
       meta_storage_38_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
       meta_storage_38_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
@@ -3037,13 +2804,12 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
     else if (do_non_spec_shift
              & (_start_ptr_T_63 <= bpu_enq_ptr
                   ? _in_flight_T_270 & _in_flight_T_271
-                  : _in_flight_T_270 | _in_flight_T_271))	// frontend/src/zaqal/frontend/BPU.scala:59:28, :67:25, :265:150, :295:27, :298:41, :300:{26,37}, :301:{30,44,52}, :302:44, :304:23, :305:29
-      meta_storage_38_ghr <= {meta_storage_38_ghr[126:0], bpu_update_taken};	// frontend/src/zaqal/frontend/BPU.scala:67:25, :162:29, :305:{35,55}
-    if (_ras_io_spec_pop_valid_T & bpu_enq_ptr == 6'h27) begin	// frontend/src/zaqal/frontend/BPU.scala:59:28, :295:27, :301:30, :310:21, :328:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
-      meta_storage_39_ghr <= new_meta_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :312:39
+                  : _in_flight_T_270 | _in_flight_T_271))	// frontend/src/zaqal/frontend/BPU.scala:59:28, :67:25, :261:150, :291:27, :294:41, :296:{26,37}, :297:{30,44,52}, :298:44, :300:23, :301:29
+      meta_storage_38_ghr <= {meta_storage_38_ghr[126:0], bpu_update_taken};	// frontend/src/zaqal/frontend/BPU.scala:67:25, :159:29, :301:{35,55}
+    if (_ras_io_spec_pop_valid_T & bpu_enq_ptr == 6'h27) begin	// frontend/src/zaqal/frontend/BPU.scala:59:28, :291:27, :297:30, :306:21, :324:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      meta_storage_39_ghr <= new_meta_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :308:39
       meta_storage_39_phr <= phr;	// frontend/src/zaqal/frontend/BPU.scala:47:20, :67:25
-      meta_storage_39_ras_sp <= _ras_io_spec_sp;	// frontend/src/zaqal/frontend/BPU.scala:54:19, :67:25
-      meta_storage_39_ghr_spec_shifted <= has_spec_cond_br;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :264:79
+      meta_storage_39_ghr_spec_shifted <= has_spec_cond_br;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :260:67
       meta_storage_39_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
       meta_storage_39_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
       meta_storage_39_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
@@ -3058,13 +2824,12 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
     else if (do_non_spec_shift
              & (_start_ptr_T_63 <= bpu_enq_ptr
                   ? _in_flight_T_277 & _in_flight_T_278
-                  : _in_flight_T_277 | _in_flight_T_278))	// frontend/src/zaqal/frontend/BPU.scala:59:28, :67:25, :265:150, :295:27, :298:41, :300:{26,37}, :301:{30,44,52}, :302:44, :304:23, :305:29
-      meta_storage_39_ghr <= {meta_storage_39_ghr[126:0], bpu_update_taken};	// frontend/src/zaqal/frontend/BPU.scala:67:25, :162:29, :305:{35,55}
-    if (_ras_io_spec_pop_valid_T & bpu_enq_ptr == 6'h28) begin	// frontend/src/zaqal/frontend/BPU.scala:59:28, :295:27, :301:30, :310:21, :328:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
-      meta_storage_40_ghr <= new_meta_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :312:39
+                  : _in_flight_T_277 | _in_flight_T_278))	// frontend/src/zaqal/frontend/BPU.scala:59:28, :67:25, :261:150, :291:27, :294:41, :296:{26,37}, :297:{30,44,52}, :298:44, :300:23, :301:29
+      meta_storage_39_ghr <= {meta_storage_39_ghr[126:0], bpu_update_taken};	// frontend/src/zaqal/frontend/BPU.scala:67:25, :159:29, :301:{35,55}
+    if (_ras_io_spec_pop_valid_T & bpu_enq_ptr == 6'h28) begin	// frontend/src/zaqal/frontend/BPU.scala:59:28, :291:27, :297:30, :306:21, :324:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      meta_storage_40_ghr <= new_meta_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :308:39
       meta_storage_40_phr <= phr;	// frontend/src/zaqal/frontend/BPU.scala:47:20, :67:25
-      meta_storage_40_ras_sp <= _ras_io_spec_sp;	// frontend/src/zaqal/frontend/BPU.scala:54:19, :67:25
-      meta_storage_40_ghr_spec_shifted <= has_spec_cond_br;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :264:79
+      meta_storage_40_ghr_spec_shifted <= has_spec_cond_br;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :260:67
       meta_storage_40_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
       meta_storage_40_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
       meta_storage_40_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
@@ -3079,13 +2844,12 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
     else if (do_non_spec_shift
              & (_start_ptr_T_63 <= bpu_enq_ptr
                   ? _in_flight_T_284 & _in_flight_T_285
-                  : _in_flight_T_284 | _in_flight_T_285))	// frontend/src/zaqal/frontend/BPU.scala:59:28, :67:25, :265:150, :295:27, :298:41, :300:{26,37}, :301:{30,44,52}, :302:44, :304:23, :305:29
-      meta_storage_40_ghr <= {meta_storage_40_ghr[126:0], bpu_update_taken};	// frontend/src/zaqal/frontend/BPU.scala:67:25, :162:29, :305:{35,55}
-    if (_ras_io_spec_pop_valid_T & bpu_enq_ptr == 6'h29) begin	// frontend/src/zaqal/frontend/BPU.scala:59:28, :295:27, :301:30, :310:21, :328:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
-      meta_storage_41_ghr <= new_meta_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :312:39
+                  : _in_flight_T_284 | _in_flight_T_285))	// frontend/src/zaqal/frontend/BPU.scala:59:28, :67:25, :261:150, :291:27, :294:41, :296:{26,37}, :297:{30,44,52}, :298:44, :300:23, :301:29
+      meta_storage_40_ghr <= {meta_storage_40_ghr[126:0], bpu_update_taken};	// frontend/src/zaqal/frontend/BPU.scala:67:25, :159:29, :301:{35,55}
+    if (_ras_io_spec_pop_valid_T & bpu_enq_ptr == 6'h29) begin	// frontend/src/zaqal/frontend/BPU.scala:59:28, :291:27, :297:30, :306:21, :324:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      meta_storage_41_ghr <= new_meta_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :308:39
       meta_storage_41_phr <= phr;	// frontend/src/zaqal/frontend/BPU.scala:47:20, :67:25
-      meta_storage_41_ras_sp <= _ras_io_spec_sp;	// frontend/src/zaqal/frontend/BPU.scala:54:19, :67:25
-      meta_storage_41_ghr_spec_shifted <= has_spec_cond_br;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :264:79
+      meta_storage_41_ghr_spec_shifted <= has_spec_cond_br;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :260:67
       meta_storage_41_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
       meta_storage_41_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
       meta_storage_41_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
@@ -3100,13 +2864,12 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
     else if (do_non_spec_shift
              & (_start_ptr_T_63 <= bpu_enq_ptr
                   ? _in_flight_T_291 & _in_flight_T_292
-                  : _in_flight_T_291 | _in_flight_T_292))	// frontend/src/zaqal/frontend/BPU.scala:59:28, :67:25, :265:150, :295:27, :298:41, :300:{26,37}, :301:{30,44,52}, :302:44, :304:23, :305:29
-      meta_storage_41_ghr <= {meta_storage_41_ghr[126:0], bpu_update_taken};	// frontend/src/zaqal/frontend/BPU.scala:67:25, :162:29, :305:{35,55}
-    if (_ras_io_spec_pop_valid_T & bpu_enq_ptr == 6'h2A) begin	// frontend/src/zaqal/frontend/BPU.scala:59:28, :295:27, :301:30, :310:21, :328:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
-      meta_storage_42_ghr <= new_meta_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :312:39
+                  : _in_flight_T_291 | _in_flight_T_292))	// frontend/src/zaqal/frontend/BPU.scala:59:28, :67:25, :261:150, :291:27, :294:41, :296:{26,37}, :297:{30,44,52}, :298:44, :300:23, :301:29
+      meta_storage_41_ghr <= {meta_storage_41_ghr[126:0], bpu_update_taken};	// frontend/src/zaqal/frontend/BPU.scala:67:25, :159:29, :301:{35,55}
+    if (_ras_io_spec_pop_valid_T & bpu_enq_ptr == 6'h2A) begin	// frontend/src/zaqal/frontend/BPU.scala:59:28, :291:27, :297:30, :306:21, :324:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      meta_storage_42_ghr <= new_meta_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :308:39
       meta_storage_42_phr <= phr;	// frontend/src/zaqal/frontend/BPU.scala:47:20, :67:25
-      meta_storage_42_ras_sp <= _ras_io_spec_sp;	// frontend/src/zaqal/frontend/BPU.scala:54:19, :67:25
-      meta_storage_42_ghr_spec_shifted <= has_spec_cond_br;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :264:79
+      meta_storage_42_ghr_spec_shifted <= has_spec_cond_br;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :260:67
       meta_storage_42_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
       meta_storage_42_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
       meta_storage_42_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
@@ -3121,13 +2884,12 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
     else if (do_non_spec_shift
              & (_start_ptr_T_63 <= bpu_enq_ptr
                   ? _in_flight_T_298 & _in_flight_T_299
-                  : _in_flight_T_298 | _in_flight_T_299))	// frontend/src/zaqal/frontend/BPU.scala:59:28, :67:25, :265:150, :295:27, :298:41, :300:{26,37}, :301:{30,44,52}, :302:44, :304:23, :305:29
-      meta_storage_42_ghr <= {meta_storage_42_ghr[126:0], bpu_update_taken};	// frontend/src/zaqal/frontend/BPU.scala:67:25, :162:29, :305:{35,55}
-    if (_ras_io_spec_pop_valid_T & bpu_enq_ptr == 6'h2B) begin	// frontend/src/zaqal/frontend/BPU.scala:59:28, :295:27, :301:30, :310:21, :328:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
-      meta_storage_43_ghr <= new_meta_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :312:39
+                  : _in_flight_T_298 | _in_flight_T_299))	// frontend/src/zaqal/frontend/BPU.scala:59:28, :67:25, :261:150, :291:27, :294:41, :296:{26,37}, :297:{30,44,52}, :298:44, :300:23, :301:29
+      meta_storage_42_ghr <= {meta_storage_42_ghr[126:0], bpu_update_taken};	// frontend/src/zaqal/frontend/BPU.scala:67:25, :159:29, :301:{35,55}
+    if (_ras_io_spec_pop_valid_T & bpu_enq_ptr == 6'h2B) begin	// frontend/src/zaqal/frontend/BPU.scala:59:28, :291:27, :297:30, :306:21, :324:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      meta_storage_43_ghr <= new_meta_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :308:39
       meta_storage_43_phr <= phr;	// frontend/src/zaqal/frontend/BPU.scala:47:20, :67:25
-      meta_storage_43_ras_sp <= _ras_io_spec_sp;	// frontend/src/zaqal/frontend/BPU.scala:54:19, :67:25
-      meta_storage_43_ghr_spec_shifted <= has_spec_cond_br;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :264:79
+      meta_storage_43_ghr_spec_shifted <= has_spec_cond_br;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :260:67
       meta_storage_43_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
       meta_storage_43_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
       meta_storage_43_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
@@ -3142,13 +2904,12 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
     else if (do_non_spec_shift
              & (_start_ptr_T_63 <= bpu_enq_ptr
                   ? _in_flight_T_305 & _in_flight_T_306
-                  : _in_flight_T_305 | _in_flight_T_306))	// frontend/src/zaqal/frontend/BPU.scala:59:28, :67:25, :265:150, :295:27, :298:41, :300:{26,37}, :301:{30,44,52}, :302:44, :304:23, :305:29
-      meta_storage_43_ghr <= {meta_storage_43_ghr[126:0], bpu_update_taken};	// frontend/src/zaqal/frontend/BPU.scala:67:25, :162:29, :305:{35,55}
-    if (_ras_io_spec_pop_valid_T & bpu_enq_ptr == 6'h2C) begin	// frontend/src/zaqal/frontend/BPU.scala:59:28, :295:27, :301:30, :310:21, :328:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
-      meta_storage_44_ghr <= new_meta_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :312:39
+                  : _in_flight_T_305 | _in_flight_T_306))	// frontend/src/zaqal/frontend/BPU.scala:59:28, :67:25, :261:150, :291:27, :294:41, :296:{26,37}, :297:{30,44,52}, :298:44, :300:23, :301:29
+      meta_storage_43_ghr <= {meta_storage_43_ghr[126:0], bpu_update_taken};	// frontend/src/zaqal/frontend/BPU.scala:67:25, :159:29, :301:{35,55}
+    if (_ras_io_spec_pop_valid_T & bpu_enq_ptr == 6'h2C) begin	// frontend/src/zaqal/frontend/BPU.scala:59:28, :291:27, :297:30, :306:21, :324:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      meta_storage_44_ghr <= new_meta_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :308:39
       meta_storage_44_phr <= phr;	// frontend/src/zaqal/frontend/BPU.scala:47:20, :67:25
-      meta_storage_44_ras_sp <= _ras_io_spec_sp;	// frontend/src/zaqal/frontend/BPU.scala:54:19, :67:25
-      meta_storage_44_ghr_spec_shifted <= has_spec_cond_br;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :264:79
+      meta_storage_44_ghr_spec_shifted <= has_spec_cond_br;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :260:67
       meta_storage_44_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
       meta_storage_44_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
       meta_storage_44_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
@@ -3163,13 +2924,12 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
     else if (do_non_spec_shift
              & (_start_ptr_T_63 <= bpu_enq_ptr
                   ? _in_flight_T_312 & _in_flight_T_313
-                  : _in_flight_T_312 | _in_flight_T_313))	// frontend/src/zaqal/frontend/BPU.scala:59:28, :67:25, :265:150, :295:27, :298:41, :300:{26,37}, :301:{30,44,52}, :302:44, :304:23, :305:29
-      meta_storage_44_ghr <= {meta_storage_44_ghr[126:0], bpu_update_taken};	// frontend/src/zaqal/frontend/BPU.scala:67:25, :162:29, :305:{35,55}
-    if (_ras_io_spec_pop_valid_T & bpu_enq_ptr == 6'h2D) begin	// frontend/src/zaqal/frontend/BPU.scala:59:28, :295:27, :301:30, :310:21, :328:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
-      meta_storage_45_ghr <= new_meta_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :312:39
+                  : _in_flight_T_312 | _in_flight_T_313))	// frontend/src/zaqal/frontend/BPU.scala:59:28, :67:25, :261:150, :291:27, :294:41, :296:{26,37}, :297:{30,44,52}, :298:44, :300:23, :301:29
+      meta_storage_44_ghr <= {meta_storage_44_ghr[126:0], bpu_update_taken};	// frontend/src/zaqal/frontend/BPU.scala:67:25, :159:29, :301:{35,55}
+    if (_ras_io_spec_pop_valid_T & bpu_enq_ptr == 6'h2D) begin	// frontend/src/zaqal/frontend/BPU.scala:59:28, :291:27, :297:30, :306:21, :324:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      meta_storage_45_ghr <= new_meta_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :308:39
       meta_storage_45_phr <= phr;	// frontend/src/zaqal/frontend/BPU.scala:47:20, :67:25
-      meta_storage_45_ras_sp <= _ras_io_spec_sp;	// frontend/src/zaqal/frontend/BPU.scala:54:19, :67:25
-      meta_storage_45_ghr_spec_shifted <= has_spec_cond_br;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :264:79
+      meta_storage_45_ghr_spec_shifted <= has_spec_cond_br;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :260:67
       meta_storage_45_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
       meta_storage_45_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
       meta_storage_45_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
@@ -3184,13 +2944,12 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
     else if (do_non_spec_shift
              & (_start_ptr_T_63 <= bpu_enq_ptr
                   ? _in_flight_T_319 & _in_flight_T_320
-                  : _in_flight_T_319 | _in_flight_T_320))	// frontend/src/zaqal/frontend/BPU.scala:59:28, :67:25, :265:150, :295:27, :298:41, :300:{26,37}, :301:{30,44,52}, :302:44, :304:23, :305:29
-      meta_storage_45_ghr <= {meta_storage_45_ghr[126:0], bpu_update_taken};	// frontend/src/zaqal/frontend/BPU.scala:67:25, :162:29, :305:{35,55}
-    if (_ras_io_spec_pop_valid_T & bpu_enq_ptr == 6'h2E) begin	// frontend/src/zaqal/frontend/BPU.scala:59:28, :295:27, :301:30, :310:21, :328:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
-      meta_storage_46_ghr <= new_meta_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :312:39
+                  : _in_flight_T_319 | _in_flight_T_320))	// frontend/src/zaqal/frontend/BPU.scala:59:28, :67:25, :261:150, :291:27, :294:41, :296:{26,37}, :297:{30,44,52}, :298:44, :300:23, :301:29
+      meta_storage_45_ghr <= {meta_storage_45_ghr[126:0], bpu_update_taken};	// frontend/src/zaqal/frontend/BPU.scala:67:25, :159:29, :301:{35,55}
+    if (_ras_io_spec_pop_valid_T & bpu_enq_ptr == 6'h2E) begin	// frontend/src/zaqal/frontend/BPU.scala:59:28, :291:27, :297:30, :306:21, :324:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      meta_storage_46_ghr <= new_meta_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :308:39
       meta_storage_46_phr <= phr;	// frontend/src/zaqal/frontend/BPU.scala:47:20, :67:25
-      meta_storage_46_ras_sp <= _ras_io_spec_sp;	// frontend/src/zaqal/frontend/BPU.scala:54:19, :67:25
-      meta_storage_46_ghr_spec_shifted <= has_spec_cond_br;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :264:79
+      meta_storage_46_ghr_spec_shifted <= has_spec_cond_br;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :260:67
       meta_storage_46_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
       meta_storage_46_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
       meta_storage_46_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
@@ -3205,13 +2964,12 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
     else if (do_non_spec_shift
              & (_start_ptr_T_63 <= bpu_enq_ptr
                   ? _in_flight_T_326 & _in_flight_T_327
-                  : _in_flight_T_326 | _in_flight_T_327))	// frontend/src/zaqal/frontend/BPU.scala:59:28, :67:25, :265:150, :295:27, :298:41, :300:{26,37}, :301:{30,44,52}, :302:44, :304:23, :305:29
-      meta_storage_46_ghr <= {meta_storage_46_ghr[126:0], bpu_update_taken};	// frontend/src/zaqal/frontend/BPU.scala:67:25, :162:29, :305:{35,55}
-    if (_ras_io_spec_pop_valid_T & bpu_enq_ptr == 6'h2F) begin	// frontend/src/zaqal/frontend/BPU.scala:59:28, :295:27, :301:30, :310:21, :328:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
-      meta_storage_47_ghr <= new_meta_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :312:39
+                  : _in_flight_T_326 | _in_flight_T_327))	// frontend/src/zaqal/frontend/BPU.scala:59:28, :67:25, :261:150, :291:27, :294:41, :296:{26,37}, :297:{30,44,52}, :298:44, :300:23, :301:29
+      meta_storage_46_ghr <= {meta_storage_46_ghr[126:0], bpu_update_taken};	// frontend/src/zaqal/frontend/BPU.scala:67:25, :159:29, :301:{35,55}
+    if (_ras_io_spec_pop_valid_T & bpu_enq_ptr == 6'h2F) begin	// frontend/src/zaqal/frontend/BPU.scala:59:28, :291:27, :297:30, :306:21, :324:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      meta_storage_47_ghr <= new_meta_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :308:39
       meta_storage_47_phr <= phr;	// frontend/src/zaqal/frontend/BPU.scala:47:20, :67:25
-      meta_storage_47_ras_sp <= _ras_io_spec_sp;	// frontend/src/zaqal/frontend/BPU.scala:54:19, :67:25
-      meta_storage_47_ghr_spec_shifted <= has_spec_cond_br;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :264:79
+      meta_storage_47_ghr_spec_shifted <= has_spec_cond_br;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :260:67
       meta_storage_47_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
       meta_storage_47_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
       meta_storage_47_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
@@ -3226,13 +2984,12 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
     else if (do_non_spec_shift
              & (_start_ptr_T_63 <= bpu_enq_ptr
                   ? _in_flight_T_333 & _in_flight_T_334
-                  : _in_flight_T_333 | _in_flight_T_334))	// frontend/src/zaqal/frontend/BPU.scala:59:28, :67:25, :265:150, :295:27, :298:41, :300:{26,37}, :301:{30,44,52}, :302:44, :304:23, :305:29
-      meta_storage_47_ghr <= {meta_storage_47_ghr[126:0], bpu_update_taken};	// frontend/src/zaqal/frontend/BPU.scala:67:25, :162:29, :305:{35,55}
-    if (_ras_io_spec_pop_valid_T & bpu_enq_ptr == 6'h30) begin	// frontend/src/zaqal/frontend/BPU.scala:59:28, :295:27, :301:30, :310:21, :328:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
-      meta_storage_48_ghr <= new_meta_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :312:39
+                  : _in_flight_T_333 | _in_flight_T_334))	// frontend/src/zaqal/frontend/BPU.scala:59:28, :67:25, :261:150, :291:27, :294:41, :296:{26,37}, :297:{30,44,52}, :298:44, :300:23, :301:29
+      meta_storage_47_ghr <= {meta_storage_47_ghr[126:0], bpu_update_taken};	// frontend/src/zaqal/frontend/BPU.scala:67:25, :159:29, :301:{35,55}
+    if (_ras_io_spec_pop_valid_T & bpu_enq_ptr == 6'h30) begin	// frontend/src/zaqal/frontend/BPU.scala:59:28, :291:27, :297:30, :306:21, :324:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      meta_storage_48_ghr <= new_meta_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :308:39
       meta_storage_48_phr <= phr;	// frontend/src/zaqal/frontend/BPU.scala:47:20, :67:25
-      meta_storage_48_ras_sp <= _ras_io_spec_sp;	// frontend/src/zaqal/frontend/BPU.scala:54:19, :67:25
-      meta_storage_48_ghr_spec_shifted <= has_spec_cond_br;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :264:79
+      meta_storage_48_ghr_spec_shifted <= has_spec_cond_br;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :260:67
       meta_storage_48_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
       meta_storage_48_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
       meta_storage_48_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
@@ -3247,13 +3004,12 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
     else if (do_non_spec_shift
              & (_start_ptr_T_63 <= bpu_enq_ptr
                   ? _in_flight_T_340 & _in_flight_T_341
-                  : _in_flight_T_340 | _in_flight_T_341))	// frontend/src/zaqal/frontend/BPU.scala:59:28, :67:25, :265:150, :295:27, :298:41, :300:{26,37}, :301:{30,44,52}, :302:44, :304:23, :305:29
-      meta_storage_48_ghr <= {meta_storage_48_ghr[126:0], bpu_update_taken};	// frontend/src/zaqal/frontend/BPU.scala:67:25, :162:29, :305:{35,55}
-    if (_ras_io_spec_pop_valid_T & bpu_enq_ptr == 6'h31) begin	// frontend/src/zaqal/frontend/BPU.scala:59:28, :295:27, :301:30, :310:21, :328:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
-      meta_storage_49_ghr <= new_meta_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :312:39
+                  : _in_flight_T_340 | _in_flight_T_341))	// frontend/src/zaqal/frontend/BPU.scala:59:28, :67:25, :261:150, :291:27, :294:41, :296:{26,37}, :297:{30,44,52}, :298:44, :300:23, :301:29
+      meta_storage_48_ghr <= {meta_storage_48_ghr[126:0], bpu_update_taken};	// frontend/src/zaqal/frontend/BPU.scala:67:25, :159:29, :301:{35,55}
+    if (_ras_io_spec_pop_valid_T & bpu_enq_ptr == 6'h31) begin	// frontend/src/zaqal/frontend/BPU.scala:59:28, :291:27, :297:30, :306:21, :324:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      meta_storage_49_ghr <= new_meta_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :308:39
       meta_storage_49_phr <= phr;	// frontend/src/zaqal/frontend/BPU.scala:47:20, :67:25
-      meta_storage_49_ras_sp <= _ras_io_spec_sp;	// frontend/src/zaqal/frontend/BPU.scala:54:19, :67:25
-      meta_storage_49_ghr_spec_shifted <= has_spec_cond_br;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :264:79
+      meta_storage_49_ghr_spec_shifted <= has_spec_cond_br;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :260:67
       meta_storage_49_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
       meta_storage_49_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
       meta_storage_49_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
@@ -3268,13 +3024,12 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
     else if (do_non_spec_shift
              & (_start_ptr_T_63 <= bpu_enq_ptr
                   ? _in_flight_T_347 & _in_flight_T_348
-                  : _in_flight_T_347 | _in_flight_T_348))	// frontend/src/zaqal/frontend/BPU.scala:59:28, :67:25, :265:150, :295:27, :298:41, :300:{26,37}, :301:{30,44,52}, :302:44, :304:23, :305:29
-      meta_storage_49_ghr <= {meta_storage_49_ghr[126:0], bpu_update_taken};	// frontend/src/zaqal/frontend/BPU.scala:67:25, :162:29, :305:{35,55}
-    if (_ras_io_spec_pop_valid_T & bpu_enq_ptr == 6'h32) begin	// frontend/src/zaqal/frontend/BPU.scala:59:28, :295:27, :301:30, :310:21, :328:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
-      meta_storage_50_ghr <= new_meta_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :312:39
+                  : _in_flight_T_347 | _in_flight_T_348))	// frontend/src/zaqal/frontend/BPU.scala:59:28, :67:25, :261:150, :291:27, :294:41, :296:{26,37}, :297:{30,44,52}, :298:44, :300:23, :301:29
+      meta_storage_49_ghr <= {meta_storage_49_ghr[126:0], bpu_update_taken};	// frontend/src/zaqal/frontend/BPU.scala:67:25, :159:29, :301:{35,55}
+    if (_ras_io_spec_pop_valid_T & bpu_enq_ptr == 6'h32) begin	// frontend/src/zaqal/frontend/BPU.scala:59:28, :291:27, :297:30, :306:21, :324:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      meta_storage_50_ghr <= new_meta_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :308:39
       meta_storage_50_phr <= phr;	// frontend/src/zaqal/frontend/BPU.scala:47:20, :67:25
-      meta_storage_50_ras_sp <= _ras_io_spec_sp;	// frontend/src/zaqal/frontend/BPU.scala:54:19, :67:25
-      meta_storage_50_ghr_spec_shifted <= has_spec_cond_br;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :264:79
+      meta_storage_50_ghr_spec_shifted <= has_spec_cond_br;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :260:67
       meta_storage_50_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
       meta_storage_50_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
       meta_storage_50_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
@@ -3289,13 +3044,12 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
     else if (do_non_spec_shift
              & (_start_ptr_T_63 <= bpu_enq_ptr
                   ? _in_flight_T_354 & _in_flight_T_355
-                  : _in_flight_T_354 | _in_flight_T_355))	// frontend/src/zaqal/frontend/BPU.scala:59:28, :67:25, :265:150, :295:27, :298:41, :300:{26,37}, :301:{30,44,52}, :302:44, :304:23, :305:29
-      meta_storage_50_ghr <= {meta_storage_50_ghr[126:0], bpu_update_taken};	// frontend/src/zaqal/frontend/BPU.scala:67:25, :162:29, :305:{35,55}
-    if (_ras_io_spec_pop_valid_T & bpu_enq_ptr == 6'h33) begin	// frontend/src/zaqal/frontend/BPU.scala:59:28, :295:27, :301:30, :310:21, :328:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
-      meta_storage_51_ghr <= new_meta_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :312:39
+                  : _in_flight_T_354 | _in_flight_T_355))	// frontend/src/zaqal/frontend/BPU.scala:59:28, :67:25, :261:150, :291:27, :294:41, :296:{26,37}, :297:{30,44,52}, :298:44, :300:23, :301:29
+      meta_storage_50_ghr <= {meta_storage_50_ghr[126:0], bpu_update_taken};	// frontend/src/zaqal/frontend/BPU.scala:67:25, :159:29, :301:{35,55}
+    if (_ras_io_spec_pop_valid_T & bpu_enq_ptr == 6'h33) begin	// frontend/src/zaqal/frontend/BPU.scala:59:28, :291:27, :297:30, :306:21, :324:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      meta_storage_51_ghr <= new_meta_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :308:39
       meta_storage_51_phr <= phr;	// frontend/src/zaqal/frontend/BPU.scala:47:20, :67:25
-      meta_storage_51_ras_sp <= _ras_io_spec_sp;	// frontend/src/zaqal/frontend/BPU.scala:54:19, :67:25
-      meta_storage_51_ghr_spec_shifted <= has_spec_cond_br;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :264:79
+      meta_storage_51_ghr_spec_shifted <= has_spec_cond_br;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :260:67
       meta_storage_51_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
       meta_storage_51_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
       meta_storage_51_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
@@ -3310,13 +3064,12 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
     else if (do_non_spec_shift
              & (_start_ptr_T_63 <= bpu_enq_ptr
                   ? _in_flight_T_361 & _in_flight_T_362
-                  : _in_flight_T_361 | _in_flight_T_362))	// frontend/src/zaqal/frontend/BPU.scala:59:28, :67:25, :265:150, :295:27, :298:41, :300:{26,37}, :301:{30,44,52}, :302:44, :304:23, :305:29
-      meta_storage_51_ghr <= {meta_storage_51_ghr[126:0], bpu_update_taken};	// frontend/src/zaqal/frontend/BPU.scala:67:25, :162:29, :305:{35,55}
-    if (_ras_io_spec_pop_valid_T & bpu_enq_ptr == 6'h34) begin	// frontend/src/zaqal/frontend/BPU.scala:59:28, :295:27, :301:30, :310:21, :328:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
-      meta_storage_52_ghr <= new_meta_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :312:39
+                  : _in_flight_T_361 | _in_flight_T_362))	// frontend/src/zaqal/frontend/BPU.scala:59:28, :67:25, :261:150, :291:27, :294:41, :296:{26,37}, :297:{30,44,52}, :298:44, :300:23, :301:29
+      meta_storage_51_ghr <= {meta_storage_51_ghr[126:0], bpu_update_taken};	// frontend/src/zaqal/frontend/BPU.scala:67:25, :159:29, :301:{35,55}
+    if (_ras_io_spec_pop_valid_T & bpu_enq_ptr == 6'h34) begin	// frontend/src/zaqal/frontend/BPU.scala:59:28, :291:27, :297:30, :306:21, :324:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      meta_storage_52_ghr <= new_meta_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :308:39
       meta_storage_52_phr <= phr;	// frontend/src/zaqal/frontend/BPU.scala:47:20, :67:25
-      meta_storage_52_ras_sp <= _ras_io_spec_sp;	// frontend/src/zaqal/frontend/BPU.scala:54:19, :67:25
-      meta_storage_52_ghr_spec_shifted <= has_spec_cond_br;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :264:79
+      meta_storage_52_ghr_spec_shifted <= has_spec_cond_br;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :260:67
       meta_storage_52_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
       meta_storage_52_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
       meta_storage_52_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
@@ -3331,13 +3084,12 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
     else if (do_non_spec_shift
              & (_start_ptr_T_63 <= bpu_enq_ptr
                   ? _in_flight_T_368 & _in_flight_T_369
-                  : _in_flight_T_368 | _in_flight_T_369))	// frontend/src/zaqal/frontend/BPU.scala:59:28, :67:25, :265:150, :295:27, :298:41, :300:{26,37}, :301:{30,44,52}, :302:44, :304:23, :305:29
-      meta_storage_52_ghr <= {meta_storage_52_ghr[126:0], bpu_update_taken};	// frontend/src/zaqal/frontend/BPU.scala:67:25, :162:29, :305:{35,55}
-    if (_ras_io_spec_pop_valid_T & bpu_enq_ptr == 6'h35) begin	// frontend/src/zaqal/frontend/BPU.scala:59:28, :295:27, :301:30, :310:21, :328:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
-      meta_storage_53_ghr <= new_meta_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :312:39
+                  : _in_flight_T_368 | _in_flight_T_369))	// frontend/src/zaqal/frontend/BPU.scala:59:28, :67:25, :261:150, :291:27, :294:41, :296:{26,37}, :297:{30,44,52}, :298:44, :300:23, :301:29
+      meta_storage_52_ghr <= {meta_storage_52_ghr[126:0], bpu_update_taken};	// frontend/src/zaqal/frontend/BPU.scala:67:25, :159:29, :301:{35,55}
+    if (_ras_io_spec_pop_valid_T & bpu_enq_ptr == 6'h35) begin	// frontend/src/zaqal/frontend/BPU.scala:59:28, :291:27, :297:30, :306:21, :324:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      meta_storage_53_ghr <= new_meta_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :308:39
       meta_storage_53_phr <= phr;	// frontend/src/zaqal/frontend/BPU.scala:47:20, :67:25
-      meta_storage_53_ras_sp <= _ras_io_spec_sp;	// frontend/src/zaqal/frontend/BPU.scala:54:19, :67:25
-      meta_storage_53_ghr_spec_shifted <= has_spec_cond_br;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :264:79
+      meta_storage_53_ghr_spec_shifted <= has_spec_cond_br;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :260:67
       meta_storage_53_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
       meta_storage_53_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
       meta_storage_53_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
@@ -3352,13 +3104,12 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
     else if (do_non_spec_shift
              & (_start_ptr_T_63 <= bpu_enq_ptr
                   ? _in_flight_T_375 & _in_flight_T_376
-                  : _in_flight_T_375 | _in_flight_T_376))	// frontend/src/zaqal/frontend/BPU.scala:59:28, :67:25, :265:150, :295:27, :298:41, :300:{26,37}, :301:{30,44,52}, :302:44, :304:23, :305:29
-      meta_storage_53_ghr <= {meta_storage_53_ghr[126:0], bpu_update_taken};	// frontend/src/zaqal/frontend/BPU.scala:67:25, :162:29, :305:{35,55}
-    if (_ras_io_spec_pop_valid_T & bpu_enq_ptr == 6'h36) begin	// frontend/src/zaqal/frontend/BPU.scala:59:28, :295:27, :301:30, :310:21, :328:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
-      meta_storage_54_ghr <= new_meta_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :312:39
+                  : _in_flight_T_375 | _in_flight_T_376))	// frontend/src/zaqal/frontend/BPU.scala:59:28, :67:25, :261:150, :291:27, :294:41, :296:{26,37}, :297:{30,44,52}, :298:44, :300:23, :301:29
+      meta_storage_53_ghr <= {meta_storage_53_ghr[126:0], bpu_update_taken};	// frontend/src/zaqal/frontend/BPU.scala:67:25, :159:29, :301:{35,55}
+    if (_ras_io_spec_pop_valid_T & bpu_enq_ptr == 6'h36) begin	// frontend/src/zaqal/frontend/BPU.scala:59:28, :291:27, :297:30, :306:21, :324:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      meta_storage_54_ghr <= new_meta_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :308:39
       meta_storage_54_phr <= phr;	// frontend/src/zaqal/frontend/BPU.scala:47:20, :67:25
-      meta_storage_54_ras_sp <= _ras_io_spec_sp;	// frontend/src/zaqal/frontend/BPU.scala:54:19, :67:25
-      meta_storage_54_ghr_spec_shifted <= has_spec_cond_br;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :264:79
+      meta_storage_54_ghr_spec_shifted <= has_spec_cond_br;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :260:67
       meta_storage_54_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
       meta_storage_54_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
       meta_storage_54_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
@@ -3373,13 +3124,12 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
     else if (do_non_spec_shift
              & (_start_ptr_T_63 <= bpu_enq_ptr
                   ? _in_flight_T_382 & _in_flight_T_383
-                  : _in_flight_T_382 | _in_flight_T_383))	// frontend/src/zaqal/frontend/BPU.scala:59:28, :67:25, :265:150, :295:27, :298:41, :300:{26,37}, :301:{30,44,52}, :302:44, :304:23, :305:29
-      meta_storage_54_ghr <= {meta_storage_54_ghr[126:0], bpu_update_taken};	// frontend/src/zaqal/frontend/BPU.scala:67:25, :162:29, :305:{35,55}
-    if (_ras_io_spec_pop_valid_T & bpu_enq_ptr == 6'h37) begin	// frontend/src/zaqal/frontend/BPU.scala:59:28, :295:27, :301:30, :310:21, :328:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
-      meta_storage_55_ghr <= new_meta_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :312:39
+                  : _in_flight_T_382 | _in_flight_T_383))	// frontend/src/zaqal/frontend/BPU.scala:59:28, :67:25, :261:150, :291:27, :294:41, :296:{26,37}, :297:{30,44,52}, :298:44, :300:23, :301:29
+      meta_storage_54_ghr <= {meta_storage_54_ghr[126:0], bpu_update_taken};	// frontend/src/zaqal/frontend/BPU.scala:67:25, :159:29, :301:{35,55}
+    if (_ras_io_spec_pop_valid_T & bpu_enq_ptr == 6'h37) begin	// frontend/src/zaqal/frontend/BPU.scala:59:28, :291:27, :297:30, :306:21, :324:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      meta_storage_55_ghr <= new_meta_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :308:39
       meta_storage_55_phr <= phr;	// frontend/src/zaqal/frontend/BPU.scala:47:20, :67:25
-      meta_storage_55_ras_sp <= _ras_io_spec_sp;	// frontend/src/zaqal/frontend/BPU.scala:54:19, :67:25
-      meta_storage_55_ghr_spec_shifted <= has_spec_cond_br;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :264:79
+      meta_storage_55_ghr_spec_shifted <= has_spec_cond_br;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :260:67
       meta_storage_55_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
       meta_storage_55_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
       meta_storage_55_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
@@ -3394,13 +3144,12 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
     else if (do_non_spec_shift
              & (_start_ptr_T_63 <= bpu_enq_ptr
                   ? _in_flight_T_389 & _in_flight_T_390
-                  : _in_flight_T_389 | _in_flight_T_390))	// frontend/src/zaqal/frontend/BPU.scala:59:28, :67:25, :265:150, :295:27, :298:41, :300:{26,37}, :301:{30,44,52}, :302:44, :304:23, :305:29
-      meta_storage_55_ghr <= {meta_storage_55_ghr[126:0], bpu_update_taken};	// frontend/src/zaqal/frontend/BPU.scala:67:25, :162:29, :305:{35,55}
-    if (_ras_io_spec_pop_valid_T & bpu_enq_ptr == 6'h38) begin	// frontend/src/zaqal/frontend/BPU.scala:59:28, :295:27, :301:30, :310:21, :328:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
-      meta_storage_56_ghr <= new_meta_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :312:39
+                  : _in_flight_T_389 | _in_flight_T_390))	// frontend/src/zaqal/frontend/BPU.scala:59:28, :67:25, :261:150, :291:27, :294:41, :296:{26,37}, :297:{30,44,52}, :298:44, :300:23, :301:29
+      meta_storage_55_ghr <= {meta_storage_55_ghr[126:0], bpu_update_taken};	// frontend/src/zaqal/frontend/BPU.scala:67:25, :159:29, :301:{35,55}
+    if (_ras_io_spec_pop_valid_T & bpu_enq_ptr == 6'h38) begin	// frontend/src/zaqal/frontend/BPU.scala:59:28, :291:27, :297:30, :306:21, :324:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      meta_storage_56_ghr <= new_meta_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :308:39
       meta_storage_56_phr <= phr;	// frontend/src/zaqal/frontend/BPU.scala:47:20, :67:25
-      meta_storage_56_ras_sp <= _ras_io_spec_sp;	// frontend/src/zaqal/frontend/BPU.scala:54:19, :67:25
-      meta_storage_56_ghr_spec_shifted <= has_spec_cond_br;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :264:79
+      meta_storage_56_ghr_spec_shifted <= has_spec_cond_br;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :260:67
       meta_storage_56_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
       meta_storage_56_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
       meta_storage_56_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
@@ -3415,13 +3164,12 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
     else if (do_non_spec_shift
              & (_start_ptr_T_63 <= bpu_enq_ptr
                   ? _in_flight_T_396 & _in_flight_T_397
-                  : _in_flight_T_396 | _in_flight_T_397))	// frontend/src/zaqal/frontend/BPU.scala:59:28, :67:25, :265:150, :295:27, :298:41, :300:{26,37}, :301:{30,44,52}, :302:44, :304:23, :305:29
-      meta_storage_56_ghr <= {meta_storage_56_ghr[126:0], bpu_update_taken};	// frontend/src/zaqal/frontend/BPU.scala:67:25, :162:29, :305:{35,55}
-    if (_ras_io_spec_pop_valid_T & bpu_enq_ptr == 6'h39) begin	// frontend/src/zaqal/frontend/BPU.scala:59:28, :295:27, :301:30, :310:21, :328:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
-      meta_storage_57_ghr <= new_meta_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :312:39
+                  : _in_flight_T_396 | _in_flight_T_397))	// frontend/src/zaqal/frontend/BPU.scala:59:28, :67:25, :261:150, :291:27, :294:41, :296:{26,37}, :297:{30,44,52}, :298:44, :300:23, :301:29
+      meta_storage_56_ghr <= {meta_storage_56_ghr[126:0], bpu_update_taken};	// frontend/src/zaqal/frontend/BPU.scala:67:25, :159:29, :301:{35,55}
+    if (_ras_io_spec_pop_valid_T & bpu_enq_ptr == 6'h39) begin	// frontend/src/zaqal/frontend/BPU.scala:59:28, :291:27, :297:30, :306:21, :324:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      meta_storage_57_ghr <= new_meta_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :308:39
       meta_storage_57_phr <= phr;	// frontend/src/zaqal/frontend/BPU.scala:47:20, :67:25
-      meta_storage_57_ras_sp <= _ras_io_spec_sp;	// frontend/src/zaqal/frontend/BPU.scala:54:19, :67:25
-      meta_storage_57_ghr_spec_shifted <= has_spec_cond_br;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :264:79
+      meta_storage_57_ghr_spec_shifted <= has_spec_cond_br;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :260:67
       meta_storage_57_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
       meta_storage_57_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
       meta_storage_57_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
@@ -3436,13 +3184,12 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
     else if (do_non_spec_shift
              & (_start_ptr_T_63 <= bpu_enq_ptr
                   ? _in_flight_T_403 & _in_flight_T_404
-                  : _in_flight_T_403 | _in_flight_T_404))	// frontend/src/zaqal/frontend/BPU.scala:59:28, :67:25, :265:150, :295:27, :298:41, :300:{26,37}, :301:{30,44,52}, :302:44, :304:23, :305:29
-      meta_storage_57_ghr <= {meta_storage_57_ghr[126:0], bpu_update_taken};	// frontend/src/zaqal/frontend/BPU.scala:67:25, :162:29, :305:{35,55}
-    if (_ras_io_spec_pop_valid_T & bpu_enq_ptr == 6'h3A) begin	// frontend/src/zaqal/frontend/BPU.scala:59:28, :295:27, :301:30, :310:21, :328:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
-      meta_storage_58_ghr <= new_meta_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :312:39
+                  : _in_flight_T_403 | _in_flight_T_404))	// frontend/src/zaqal/frontend/BPU.scala:59:28, :67:25, :261:150, :291:27, :294:41, :296:{26,37}, :297:{30,44,52}, :298:44, :300:23, :301:29
+      meta_storage_57_ghr <= {meta_storage_57_ghr[126:0], bpu_update_taken};	// frontend/src/zaqal/frontend/BPU.scala:67:25, :159:29, :301:{35,55}
+    if (_ras_io_spec_pop_valid_T & bpu_enq_ptr == 6'h3A) begin	// frontend/src/zaqal/frontend/BPU.scala:59:28, :291:27, :297:30, :306:21, :324:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      meta_storage_58_ghr <= new_meta_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :308:39
       meta_storage_58_phr <= phr;	// frontend/src/zaqal/frontend/BPU.scala:47:20, :67:25
-      meta_storage_58_ras_sp <= _ras_io_spec_sp;	// frontend/src/zaqal/frontend/BPU.scala:54:19, :67:25
-      meta_storage_58_ghr_spec_shifted <= has_spec_cond_br;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :264:79
+      meta_storage_58_ghr_spec_shifted <= has_spec_cond_br;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :260:67
       meta_storage_58_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
       meta_storage_58_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
       meta_storage_58_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
@@ -3457,13 +3204,12 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
     else if (do_non_spec_shift
              & (_start_ptr_T_63 <= bpu_enq_ptr
                   ? _in_flight_T_410 & _in_flight_T_411
-                  : _in_flight_T_410 | _in_flight_T_411))	// frontend/src/zaqal/frontend/BPU.scala:59:28, :67:25, :265:150, :295:27, :298:41, :300:{26,37}, :301:{30,44,52}, :302:44, :304:23, :305:29
-      meta_storage_58_ghr <= {meta_storage_58_ghr[126:0], bpu_update_taken};	// frontend/src/zaqal/frontend/BPU.scala:67:25, :162:29, :305:{35,55}
-    if (_ras_io_spec_pop_valid_T & bpu_enq_ptr == 6'h3B) begin	// frontend/src/zaqal/frontend/BPU.scala:59:28, :295:27, :301:30, :310:21, :328:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
-      meta_storage_59_ghr <= new_meta_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :312:39
+                  : _in_flight_T_410 | _in_flight_T_411))	// frontend/src/zaqal/frontend/BPU.scala:59:28, :67:25, :261:150, :291:27, :294:41, :296:{26,37}, :297:{30,44,52}, :298:44, :300:23, :301:29
+      meta_storage_58_ghr <= {meta_storage_58_ghr[126:0], bpu_update_taken};	// frontend/src/zaqal/frontend/BPU.scala:67:25, :159:29, :301:{35,55}
+    if (_ras_io_spec_pop_valid_T & bpu_enq_ptr == 6'h3B) begin	// frontend/src/zaqal/frontend/BPU.scala:59:28, :291:27, :297:30, :306:21, :324:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      meta_storage_59_ghr <= new_meta_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :308:39
       meta_storage_59_phr <= phr;	// frontend/src/zaqal/frontend/BPU.scala:47:20, :67:25
-      meta_storage_59_ras_sp <= _ras_io_spec_sp;	// frontend/src/zaqal/frontend/BPU.scala:54:19, :67:25
-      meta_storage_59_ghr_spec_shifted <= has_spec_cond_br;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :264:79
+      meta_storage_59_ghr_spec_shifted <= has_spec_cond_br;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :260:67
       meta_storage_59_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
       meta_storage_59_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
       meta_storage_59_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
@@ -3478,13 +3224,12 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
     else if (do_non_spec_shift
              & (_start_ptr_T_63 <= bpu_enq_ptr
                   ? _in_flight_T_417 & _in_flight_T_418
-                  : _in_flight_T_417 | _in_flight_T_418))	// frontend/src/zaqal/frontend/BPU.scala:59:28, :67:25, :265:150, :295:27, :298:41, :300:{26,37}, :301:{30,44,52}, :302:44, :304:23, :305:29
-      meta_storage_59_ghr <= {meta_storage_59_ghr[126:0], bpu_update_taken};	// frontend/src/zaqal/frontend/BPU.scala:67:25, :162:29, :305:{35,55}
-    if (_ras_io_spec_pop_valid_T & bpu_enq_ptr == 6'h3C) begin	// frontend/src/zaqal/frontend/BPU.scala:59:28, :295:27, :301:30, :310:21, :328:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
-      meta_storage_60_ghr <= new_meta_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :312:39
+                  : _in_flight_T_417 | _in_flight_T_418))	// frontend/src/zaqal/frontend/BPU.scala:59:28, :67:25, :261:150, :291:27, :294:41, :296:{26,37}, :297:{30,44,52}, :298:44, :300:23, :301:29
+      meta_storage_59_ghr <= {meta_storage_59_ghr[126:0], bpu_update_taken};	// frontend/src/zaqal/frontend/BPU.scala:67:25, :159:29, :301:{35,55}
+    if (_ras_io_spec_pop_valid_T & bpu_enq_ptr == 6'h3C) begin	// frontend/src/zaqal/frontend/BPU.scala:59:28, :291:27, :297:30, :306:21, :324:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      meta_storage_60_ghr <= new_meta_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :308:39
       meta_storage_60_phr <= phr;	// frontend/src/zaqal/frontend/BPU.scala:47:20, :67:25
-      meta_storage_60_ras_sp <= _ras_io_spec_sp;	// frontend/src/zaqal/frontend/BPU.scala:54:19, :67:25
-      meta_storage_60_ghr_spec_shifted <= has_spec_cond_br;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :264:79
+      meta_storage_60_ghr_spec_shifted <= has_spec_cond_br;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :260:67
       meta_storage_60_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
       meta_storage_60_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
       meta_storage_60_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
@@ -3499,13 +3244,12 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
     else if (do_non_spec_shift
              & (_start_ptr_T_63 <= bpu_enq_ptr
                   ? _in_flight_T_424 & _in_flight_T_425
-                  : _in_flight_T_424 | _in_flight_T_425))	// frontend/src/zaqal/frontend/BPU.scala:59:28, :67:25, :265:150, :295:27, :298:41, :300:{26,37}, :301:{30,44,52}, :302:44, :304:23, :305:29
-      meta_storage_60_ghr <= {meta_storage_60_ghr[126:0], bpu_update_taken};	// frontend/src/zaqal/frontend/BPU.scala:67:25, :162:29, :305:{35,55}
-    if (_ras_io_spec_pop_valid_T & bpu_enq_ptr == 6'h3D) begin	// frontend/src/zaqal/frontend/BPU.scala:59:28, :295:27, :301:30, :310:21, :328:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
-      meta_storage_61_ghr <= new_meta_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :312:39
+                  : _in_flight_T_424 | _in_flight_T_425))	// frontend/src/zaqal/frontend/BPU.scala:59:28, :67:25, :261:150, :291:27, :294:41, :296:{26,37}, :297:{30,44,52}, :298:44, :300:23, :301:29
+      meta_storage_60_ghr <= {meta_storage_60_ghr[126:0], bpu_update_taken};	// frontend/src/zaqal/frontend/BPU.scala:67:25, :159:29, :301:{35,55}
+    if (_ras_io_spec_pop_valid_T & bpu_enq_ptr == 6'h3D) begin	// frontend/src/zaqal/frontend/BPU.scala:59:28, :291:27, :297:30, :306:21, :324:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      meta_storage_61_ghr <= new_meta_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :308:39
       meta_storage_61_phr <= phr;	// frontend/src/zaqal/frontend/BPU.scala:47:20, :67:25
-      meta_storage_61_ras_sp <= _ras_io_spec_sp;	// frontend/src/zaqal/frontend/BPU.scala:54:19, :67:25
-      meta_storage_61_ghr_spec_shifted <= has_spec_cond_br;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :264:79
+      meta_storage_61_ghr_spec_shifted <= has_spec_cond_br;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :260:67
       meta_storage_61_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
       meta_storage_61_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
       meta_storage_61_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
@@ -3520,13 +3264,12 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
     else if (do_non_spec_shift
              & (_start_ptr_T_63 <= bpu_enq_ptr
                   ? _in_flight_T_431 & _in_flight_T_432
-                  : _in_flight_T_431 | _in_flight_T_432))	// frontend/src/zaqal/frontend/BPU.scala:59:28, :67:25, :265:150, :295:27, :298:41, :300:{26,37}, :301:{30,44,52}, :302:44, :304:23, :305:29
-      meta_storage_61_ghr <= {meta_storage_61_ghr[126:0], bpu_update_taken};	// frontend/src/zaqal/frontend/BPU.scala:67:25, :162:29, :305:{35,55}
-    if (_ras_io_spec_pop_valid_T & bpu_enq_ptr == 6'h3E) begin	// frontend/src/zaqal/frontend/BPU.scala:59:28, :295:27, :301:30, :310:21, :328:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
-      meta_storage_62_ghr <= new_meta_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :312:39
+                  : _in_flight_T_431 | _in_flight_T_432))	// frontend/src/zaqal/frontend/BPU.scala:59:28, :67:25, :261:150, :291:27, :294:41, :296:{26,37}, :297:{30,44,52}, :298:44, :300:23, :301:29
+      meta_storage_61_ghr <= {meta_storage_61_ghr[126:0], bpu_update_taken};	// frontend/src/zaqal/frontend/BPU.scala:67:25, :159:29, :301:{35,55}
+    if (_ras_io_spec_pop_valid_T & bpu_enq_ptr == 6'h3E) begin	// frontend/src/zaqal/frontend/BPU.scala:59:28, :291:27, :297:30, :306:21, :324:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      meta_storage_62_ghr <= new_meta_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :308:39
       meta_storage_62_phr <= phr;	// frontend/src/zaqal/frontend/BPU.scala:47:20, :67:25
-      meta_storage_62_ras_sp <= _ras_io_spec_sp;	// frontend/src/zaqal/frontend/BPU.scala:54:19, :67:25
-      meta_storage_62_ghr_spec_shifted <= has_spec_cond_br;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :264:79
+      meta_storage_62_ghr_spec_shifted <= has_spec_cond_br;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :260:67
       meta_storage_62_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
       meta_storage_62_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
       meta_storage_62_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
@@ -3541,13 +3284,12 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
     else if (do_non_spec_shift
              & (_start_ptr_T_63 <= bpu_enq_ptr
                   ? _in_flight_T_438 & (&bpu_enq_ptr)
-                  : _in_flight_T_438 | (&bpu_enq_ptr)))	// frontend/src/zaqal/frontend/BPU.scala:59:28, :67:25, :265:150, :295:27, :298:41, :300:{26,37}, :301:{30,44,52}, :302:44, :304:23, :305:29
-      meta_storage_62_ghr <= {meta_storage_62_ghr[126:0], bpu_update_taken};	// frontend/src/zaqal/frontend/BPU.scala:67:25, :162:29, :305:{35,55}
-    if (_ras_io_spec_pop_valid_T & (&bpu_enq_ptr)) begin	// frontend/src/zaqal/frontend/BPU.scala:59:28, :295:27, :310:21, :328:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
-      meta_storage_63_ghr <= new_meta_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :312:39
+                  : _in_flight_T_438 | (&bpu_enq_ptr)))	// frontend/src/zaqal/frontend/BPU.scala:59:28, :67:25, :261:150, :291:27, :294:41, :296:{26,37}, :297:{30,44,52}, :298:44, :300:23, :301:29
+      meta_storage_62_ghr <= {meta_storage_62_ghr[126:0], bpu_update_taken};	// frontend/src/zaqal/frontend/BPU.scala:67:25, :159:29, :301:{35,55}
+    if (_ras_io_spec_pop_valid_T & (&bpu_enq_ptr)) begin	// frontend/src/zaqal/frontend/BPU.scala:59:28, :291:27, :306:21, :324:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      meta_storage_63_ghr <= new_meta_ghr;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :308:39
       meta_storage_63_phr <= phr;	// frontend/src/zaqal/frontend/BPU.scala:47:20, :67:25
-      meta_storage_63_ras_sp <= _ras_io_spec_sp;	// frontend/src/zaqal/frontend/BPU.scala:54:19, :67:25
-      meta_storage_63_ghr_spec_shifted <= has_spec_cond_br;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :264:79
+      meta_storage_63_ghr_spec_shifted <= has_spec_cond_br;	// frontend/src/zaqal/frontend/BPU.scala:67:25, :260:67
       meta_storage_63_tage_providerIdx <= _tage_io_pred_providerIdx;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
       meta_storage_63_tage_providerHit <= _tage_io_pred_hit;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
       meta_storage_63_tage_providerCtr <= _tage_io_pred_providerCtr;	// frontend/src/zaqal/frontend/BPU.scala:51:20, :67:25
@@ -3559,8 +3301,8 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
       meta_storage_63_ittage_providerU <= _ittage_io_pred_providerU;	// frontend/src/zaqal/frontend/BPU.scala:52:22, :67:25
       meta_storage_63_sc_sum <= _sc_io_pred_sum;	// frontend/src/zaqal/frontend/BPU.scala:53:18, :67:25
     end
-    else if (do_non_spec_shift & _start_ptr_T_63 > bpu_enq_ptr)	// frontend/src/zaqal/frontend/BPU.scala:59:28, :67:25, :265:150, :295:27, :298:41, :300:37, :304:23, :305:29
-      meta_storage_63_ghr <= {meta_storage_63_ghr[126:0], bpu_update_taken};	// frontend/src/zaqal/frontend/BPU.scala:67:25, :162:29, :305:{35,55}
+    else if (do_non_spec_shift & _start_ptr_T_63 > bpu_enq_ptr)	// frontend/src/zaqal/frontend/BPU.scala:59:28, :67:25, :261:150, :291:27, :294:41, :296:37, :300:23, :301:29
+      meta_storage_63_ghr <= {meta_storage_63_ghr[126:0], bpu_update_taken};	// frontend/src/zaqal/frontend/BPU.scala:67:25, :159:29, :301:{35,55}
   end // always @(posedge)
   `ifdef ENABLE_INITIAL_REG_	// frontend/src/zaqal/frontend/BPU.scala:30:7
     `ifdef FIRRTL_BEFORE_INITIAL	// frontend/src/zaqal/frontend/BPU.scala:30:7
@@ -3593,7 +3335,6 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
            _RANDOM[10'hA],
            _RANDOM[10'hB][22:0]};	// frontend/src/zaqal/frontend/BPU.scala:30:7, :47:20, :67:25
         meta_storage_0_phr = {_RANDOM[10'hB][31:23], _RANDOM[10'hC][22:0]};	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
-        meta_storage_0_ras_sp = _RANDOM[10'hC][26:23];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_0_ghr_spec_shifted = _RANDOM[10'hC][27];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_0_tage_providerIdx = _RANDOM[10'hC][29:28];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_0_tage_providerHit = _RANDOM[10'hC][30];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
@@ -3613,7 +3354,6 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
            _RANDOM[10'h12],
            _RANDOM[10'h13][19:0]};	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_1_phr = {_RANDOM[10'h13][31:20], _RANDOM[10'h14][19:0]};	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
-        meta_storage_1_ras_sp = _RANDOM[10'h14][23:20];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_1_ghr_spec_shifted = _RANDOM[10'h14][24];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_1_tage_providerIdx = _RANDOM[10'h14][26:25];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_1_tage_providerHit = _RANDOM[10'h14][27];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
@@ -3633,7 +3373,6 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
            _RANDOM[10'h1A],
            _RANDOM[10'h1B][16:0]};	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_2_phr = {_RANDOM[10'h1B][31:17], _RANDOM[10'h1C][16:0]};	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
-        meta_storage_2_ras_sp = _RANDOM[10'h1C][20:17];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_2_ghr_spec_shifted = _RANDOM[10'h1C][21];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_2_tage_providerIdx = _RANDOM[10'h1C][23:22];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_2_tage_providerHit = _RANDOM[10'h1C][24];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
@@ -3653,7 +3392,6 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
            _RANDOM[10'h22],
            _RANDOM[10'h23][13:0]};	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_3_phr = {_RANDOM[10'h23][31:14], _RANDOM[10'h24][13:0]};	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
-        meta_storage_3_ras_sp = _RANDOM[10'h24][17:14];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_3_ghr_spec_shifted = _RANDOM[10'h24][18];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_3_tage_providerIdx = _RANDOM[10'h24][20:19];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_3_tage_providerHit = _RANDOM[10'h24][21];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
@@ -3673,7 +3411,6 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
            _RANDOM[10'h2A],
            _RANDOM[10'h2B][10:0]};	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_4_phr = {_RANDOM[10'h2B][31:11], _RANDOM[10'h2C][10:0]};	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
-        meta_storage_4_ras_sp = _RANDOM[10'h2C][14:11];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_4_ghr_spec_shifted = _RANDOM[10'h2C][15];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_4_tage_providerIdx = _RANDOM[10'h2C][17:16];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_4_tage_providerHit = _RANDOM[10'h2C][18];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
@@ -3693,7 +3430,6 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
            _RANDOM[10'h32],
            _RANDOM[10'h33][7:0]};	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_5_phr = {_RANDOM[10'h33][31:8], _RANDOM[10'h34][7:0]};	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
-        meta_storage_5_ras_sp = _RANDOM[10'h34][11:8];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_5_ghr_spec_shifted = _RANDOM[10'h34][12];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_5_tage_providerIdx = _RANDOM[10'h34][14:13];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_5_tage_providerHit = _RANDOM[10'h34][15];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
@@ -3713,7 +3449,6 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
            _RANDOM[10'h3A],
            _RANDOM[10'h3B][4:0]};	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_6_phr = {_RANDOM[10'h3B][31:5], _RANDOM[10'h3C][4:0]};	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
-        meta_storage_6_ras_sp = _RANDOM[10'h3C][8:5];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_6_ghr_spec_shifted = _RANDOM[10'h3C][9];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_6_tage_providerIdx = _RANDOM[10'h3C][11:10];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_6_tage_providerHit = _RANDOM[10'h3C][12];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
@@ -3733,7 +3468,6 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
            _RANDOM[10'h42],
            _RANDOM[10'h43][1:0]};	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_7_phr = {_RANDOM[10'h43][31:2], _RANDOM[10'h44][1:0]};	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
-        meta_storage_7_ras_sp = _RANDOM[10'h44][5:2];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_7_ghr_spec_shifted = _RANDOM[10'h44][6];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_7_tage_providerIdx = _RANDOM[10'h44][8:7];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_7_tage_providerHit = _RANDOM[10'h44][9];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
@@ -3753,7 +3487,6 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
            _RANDOM[10'h49],
            _RANDOM[10'h4A][30:0]};	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_8_phr = {_RANDOM[10'h4A][31], _RANDOM[10'h4B][30:0]};	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
-        meta_storage_8_ras_sp = {_RANDOM[10'h4B][31], _RANDOM[10'h4C][2:0]};	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_8_ghr_spec_shifted = _RANDOM[10'h4C][3];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_8_tage_providerIdx = _RANDOM[10'h4C][5:4];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_8_tage_providerHit = _RANDOM[10'h4C][6];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
@@ -3773,7 +3506,6 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
            _RANDOM[10'h51],
            _RANDOM[10'h52][27:0]};	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_9_phr = {_RANDOM[10'h52][31:28], _RANDOM[10'h53][27:0]};	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
-        meta_storage_9_ras_sp = _RANDOM[10'h53][31:28];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_9_ghr_spec_shifted = _RANDOM[10'h54][0];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_9_tage_providerIdx = _RANDOM[10'h54][2:1];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_9_tage_providerHit = _RANDOM[10'h54][3];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
@@ -3793,7 +3525,6 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
            _RANDOM[10'h59],
            _RANDOM[10'h5A][24:0]};	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_10_phr = {_RANDOM[10'h5A][31:25], _RANDOM[10'h5B][24:0]};	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
-        meta_storage_10_ras_sp = _RANDOM[10'h5B][28:25];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_10_ghr_spec_shifted = _RANDOM[10'h5B][29];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_10_tage_providerIdx = _RANDOM[10'h5B][31:30];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_10_tage_providerHit = _RANDOM[10'h5C][0];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
@@ -3813,7 +3544,6 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
            _RANDOM[10'h61],
            _RANDOM[10'h62][21:0]};	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_11_phr = {_RANDOM[10'h62][31:22], _RANDOM[10'h63][21:0]};	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
-        meta_storage_11_ras_sp = _RANDOM[10'h63][25:22];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_11_ghr_spec_shifted = _RANDOM[10'h63][26];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_11_tage_providerIdx = _RANDOM[10'h63][28:27];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_11_tage_providerHit = _RANDOM[10'h63][29];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
@@ -3833,7 +3563,6 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
            _RANDOM[10'h69],
            _RANDOM[10'h6A][18:0]};	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_12_phr = {_RANDOM[10'h6A][31:19], _RANDOM[10'h6B][18:0]};	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
-        meta_storage_12_ras_sp = _RANDOM[10'h6B][22:19];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_12_ghr_spec_shifted = _RANDOM[10'h6B][23];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_12_tage_providerIdx = _RANDOM[10'h6B][25:24];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_12_tage_providerHit = _RANDOM[10'h6B][26];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
@@ -3853,7 +3582,6 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
            _RANDOM[10'h71],
            _RANDOM[10'h72][15:0]};	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_13_phr = {_RANDOM[10'h72][31:16], _RANDOM[10'h73][15:0]};	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
-        meta_storage_13_ras_sp = _RANDOM[10'h73][19:16];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_13_ghr_spec_shifted = _RANDOM[10'h73][20];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_13_tage_providerIdx = _RANDOM[10'h73][22:21];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_13_tage_providerHit = _RANDOM[10'h73][23];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
@@ -3873,7 +3601,6 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
            _RANDOM[10'h79],
            _RANDOM[10'h7A][12:0]};	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_14_phr = {_RANDOM[10'h7A][31:13], _RANDOM[10'h7B][12:0]};	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
-        meta_storage_14_ras_sp = _RANDOM[10'h7B][16:13];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_14_ghr_spec_shifted = _RANDOM[10'h7B][17];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_14_tage_providerIdx = _RANDOM[10'h7B][19:18];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_14_tage_providerHit = _RANDOM[10'h7B][20];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
@@ -3893,7 +3620,6 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
            _RANDOM[10'h81],
            _RANDOM[10'h82][9:0]};	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_15_phr = {_RANDOM[10'h82][31:10], _RANDOM[10'h83][9:0]};	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
-        meta_storage_15_ras_sp = _RANDOM[10'h83][13:10];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_15_ghr_spec_shifted = _RANDOM[10'h83][14];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_15_tage_providerIdx = _RANDOM[10'h83][16:15];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_15_tage_providerHit = _RANDOM[10'h83][17];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
@@ -3913,7 +3639,6 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
            _RANDOM[10'h89],
            _RANDOM[10'h8A][6:0]};	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_16_phr = {_RANDOM[10'h8A][31:7], _RANDOM[10'h8B][6:0]};	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
-        meta_storage_16_ras_sp = _RANDOM[10'h8B][10:7];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_16_ghr_spec_shifted = _RANDOM[10'h8B][11];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_16_tage_providerIdx = _RANDOM[10'h8B][13:12];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_16_tage_providerHit = _RANDOM[10'h8B][14];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
@@ -3933,7 +3658,6 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
            _RANDOM[10'h91],
            _RANDOM[10'h92][3:0]};	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_17_phr = {_RANDOM[10'h92][31:4], _RANDOM[10'h93][3:0]};	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
-        meta_storage_17_ras_sp = _RANDOM[10'h93][7:4];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_17_ghr_spec_shifted = _RANDOM[10'h93][8];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_17_tage_providerIdx = _RANDOM[10'h93][10:9];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_17_tage_providerHit = _RANDOM[10'h93][11];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
@@ -3953,7 +3677,6 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
            _RANDOM[10'h99],
            _RANDOM[10'h9A][0]};	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_18_phr = {_RANDOM[10'h9A][31:1], _RANDOM[10'h9B][0]};	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
-        meta_storage_18_ras_sp = _RANDOM[10'h9B][4:1];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_18_ghr_spec_shifted = _RANDOM[10'h9B][5];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_18_tage_providerIdx = _RANDOM[10'h9B][7:6];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_18_tage_providerHit = _RANDOM[10'h9B][8];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
@@ -3973,7 +3696,6 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
            _RANDOM[10'hA0],
            _RANDOM[10'hA1][29:0]};	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_19_phr = {_RANDOM[10'hA1][31:30], _RANDOM[10'hA2][29:0]};	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
-        meta_storage_19_ras_sp = {_RANDOM[10'hA2][31:30], _RANDOM[10'hA3][1:0]};	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_19_ghr_spec_shifted = _RANDOM[10'hA3][2];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_19_tage_providerIdx = _RANDOM[10'hA3][4:3];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_19_tage_providerHit = _RANDOM[10'hA3][5];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
@@ -3993,7 +3715,6 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
            _RANDOM[10'hA8],
            _RANDOM[10'hA9][26:0]};	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_20_phr = {_RANDOM[10'hA9][31:27], _RANDOM[10'hAA][26:0]};	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
-        meta_storage_20_ras_sp = _RANDOM[10'hAA][30:27];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_20_ghr_spec_shifted = _RANDOM[10'hAA][31];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_20_tage_providerIdx = _RANDOM[10'hAB][1:0];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_20_tage_providerHit = _RANDOM[10'hAB][2];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
@@ -4013,7 +3734,6 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
            _RANDOM[10'hB0],
            _RANDOM[10'hB1][23:0]};	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_21_phr = {_RANDOM[10'hB1][31:24], _RANDOM[10'hB2][23:0]};	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
-        meta_storage_21_ras_sp = _RANDOM[10'hB2][27:24];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_21_ghr_spec_shifted = _RANDOM[10'hB2][28];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_21_tage_providerIdx = _RANDOM[10'hB2][30:29];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_21_tage_providerHit = _RANDOM[10'hB2][31];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
@@ -4033,7 +3753,6 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
            _RANDOM[10'hB8],
            _RANDOM[10'hB9][20:0]};	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_22_phr = {_RANDOM[10'hB9][31:21], _RANDOM[10'hBA][20:0]};	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
-        meta_storage_22_ras_sp = _RANDOM[10'hBA][24:21];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_22_ghr_spec_shifted = _RANDOM[10'hBA][25];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_22_tage_providerIdx = _RANDOM[10'hBA][27:26];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_22_tage_providerHit = _RANDOM[10'hBA][28];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
@@ -4053,7 +3772,6 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
            _RANDOM[10'hC0],
            _RANDOM[10'hC1][17:0]};	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_23_phr = {_RANDOM[10'hC1][31:18], _RANDOM[10'hC2][17:0]};	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
-        meta_storage_23_ras_sp = _RANDOM[10'hC2][21:18];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_23_ghr_spec_shifted = _RANDOM[10'hC2][22];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_23_tage_providerIdx = _RANDOM[10'hC2][24:23];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_23_tage_providerHit = _RANDOM[10'hC2][25];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
@@ -4073,7 +3791,6 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
            _RANDOM[10'hC8],
            _RANDOM[10'hC9][14:0]};	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_24_phr = {_RANDOM[10'hC9][31:15], _RANDOM[10'hCA][14:0]};	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
-        meta_storage_24_ras_sp = _RANDOM[10'hCA][18:15];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_24_ghr_spec_shifted = _RANDOM[10'hCA][19];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_24_tage_providerIdx = _RANDOM[10'hCA][21:20];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_24_tage_providerHit = _RANDOM[10'hCA][22];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
@@ -4092,7 +3809,6 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
            _RANDOM[10'hD0],
            _RANDOM[10'hD1][11:0]};	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_25_phr = {_RANDOM[10'hD1][31:12], _RANDOM[10'hD2][11:0]};	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
-        meta_storage_25_ras_sp = _RANDOM[10'hD2][15:12];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_25_ghr_spec_shifted = _RANDOM[10'hD2][16];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_25_tage_providerIdx = _RANDOM[10'hD2][18:17];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_25_tage_providerHit = _RANDOM[10'hD2][19];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
@@ -4112,7 +3828,6 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
            _RANDOM[10'hD8],
            _RANDOM[10'hD9][8:0]};	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_26_phr = {_RANDOM[10'hD9][31:9], _RANDOM[10'hDA][8:0]};	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
-        meta_storage_26_ras_sp = _RANDOM[10'hDA][12:9];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_26_ghr_spec_shifted = _RANDOM[10'hDA][13];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_26_tage_providerIdx = _RANDOM[10'hDA][15:14];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_26_tage_providerHit = _RANDOM[10'hDA][16];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
@@ -4132,7 +3847,6 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
            _RANDOM[10'hE0],
            _RANDOM[10'hE1][5:0]};	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_27_phr = {_RANDOM[10'hE1][31:6], _RANDOM[10'hE2][5:0]};	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
-        meta_storage_27_ras_sp = _RANDOM[10'hE2][9:6];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_27_ghr_spec_shifted = _RANDOM[10'hE2][10];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_27_tage_providerIdx = _RANDOM[10'hE2][12:11];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_27_tage_providerHit = _RANDOM[10'hE2][13];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
@@ -4152,7 +3866,6 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
            _RANDOM[10'hE8],
            _RANDOM[10'hE9][2:0]};	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_28_phr = {_RANDOM[10'hE9][31:3], _RANDOM[10'hEA][2:0]};	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
-        meta_storage_28_ras_sp = _RANDOM[10'hEA][6:3];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_28_ghr_spec_shifted = _RANDOM[10'hEA][7];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_28_tage_providerIdx = _RANDOM[10'hEA][9:8];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_28_tage_providerHit = _RANDOM[10'hEA][10];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
@@ -4168,7 +3881,6 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
         meta_storage_29_ghr =
           {_RANDOM[10'hED], _RANDOM[10'hEE], _RANDOM[10'hEF], _RANDOM[10'hF0]};	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_29_phr = _RANDOM[10'hF1];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
-        meta_storage_29_ras_sp = _RANDOM[10'hF2][3:0];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_29_ghr_spec_shifted = _RANDOM[10'hF2][4];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_29_tage_providerIdx = _RANDOM[10'hF2][6:5];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_29_tage_providerHit = _RANDOM[10'hF2][7];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
@@ -4188,7 +3900,6 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
            _RANDOM[10'hF7],
            _RANDOM[10'hF8][28:0]};	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_30_phr = {_RANDOM[10'hF8][31:29], _RANDOM[10'hF9][28:0]};	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
-        meta_storage_30_ras_sp = {_RANDOM[10'hF9][31:29], _RANDOM[10'hFA][0]};	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_30_ghr_spec_shifted = _RANDOM[10'hFA][1];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_30_tage_providerIdx = _RANDOM[10'hFA][3:2];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_30_tage_providerHit = _RANDOM[10'hFA][4];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
@@ -4208,7 +3919,6 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
            _RANDOM[10'hFF],
            _RANDOM[10'h100][25:0]};	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_31_phr = {_RANDOM[10'h100][31:26], _RANDOM[10'h101][25:0]};	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
-        meta_storage_31_ras_sp = _RANDOM[10'h101][29:26];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_31_ghr_spec_shifted = _RANDOM[10'h101][30];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_31_tage_providerIdx = {_RANDOM[10'h101][31], _RANDOM[10'h102][0]};	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_31_tage_providerHit = _RANDOM[10'h102][1];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
@@ -4228,7 +3938,6 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
            _RANDOM[10'h107],
            _RANDOM[10'h108][22:0]};	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_32_phr = {_RANDOM[10'h108][31:23], _RANDOM[10'h109][22:0]};	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
-        meta_storage_32_ras_sp = _RANDOM[10'h109][26:23];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_32_ghr_spec_shifted = _RANDOM[10'h109][27];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_32_tage_providerIdx = _RANDOM[10'h109][29:28];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_32_tage_providerHit = _RANDOM[10'h109][30];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
@@ -4248,7 +3957,6 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
            _RANDOM[10'h10F],
            _RANDOM[10'h110][19:0]};	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_33_phr = {_RANDOM[10'h110][31:20], _RANDOM[10'h111][19:0]};	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
-        meta_storage_33_ras_sp = _RANDOM[10'h111][23:20];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_33_ghr_spec_shifted = _RANDOM[10'h111][24];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_33_tage_providerIdx = _RANDOM[10'h111][26:25];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_33_tage_providerHit = _RANDOM[10'h111][27];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
@@ -4268,7 +3976,6 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
            _RANDOM[10'h117],
            _RANDOM[10'h118][16:0]};	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_34_phr = {_RANDOM[10'h118][31:17], _RANDOM[10'h119][16:0]};	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
-        meta_storage_34_ras_sp = _RANDOM[10'h119][20:17];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_34_ghr_spec_shifted = _RANDOM[10'h119][21];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_34_tage_providerIdx = _RANDOM[10'h119][23:22];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_34_tage_providerHit = _RANDOM[10'h119][24];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
@@ -4288,7 +3995,6 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
            _RANDOM[10'h11F],
            _RANDOM[10'h120][13:0]};	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_35_phr = {_RANDOM[10'h120][31:14], _RANDOM[10'h121][13:0]};	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
-        meta_storage_35_ras_sp = _RANDOM[10'h121][17:14];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_35_ghr_spec_shifted = _RANDOM[10'h121][18];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_35_tage_providerIdx = _RANDOM[10'h121][20:19];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_35_tage_providerHit = _RANDOM[10'h121][21];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
@@ -4308,7 +4014,6 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
            _RANDOM[10'h127],
            _RANDOM[10'h128][10:0]};	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_36_phr = {_RANDOM[10'h128][31:11], _RANDOM[10'h129][10:0]};	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
-        meta_storage_36_ras_sp = _RANDOM[10'h129][14:11];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_36_ghr_spec_shifted = _RANDOM[10'h129][15];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_36_tage_providerIdx = _RANDOM[10'h129][17:16];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_36_tage_providerHit = _RANDOM[10'h129][18];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
@@ -4328,7 +4033,6 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
            _RANDOM[10'h12F],
            _RANDOM[10'h130][7:0]};	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_37_phr = {_RANDOM[10'h130][31:8], _RANDOM[10'h131][7:0]};	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
-        meta_storage_37_ras_sp = _RANDOM[10'h131][11:8];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_37_ghr_spec_shifted = _RANDOM[10'h131][12];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_37_tage_providerIdx = _RANDOM[10'h131][14:13];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_37_tage_providerHit = _RANDOM[10'h131][15];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
@@ -4348,7 +4052,6 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
            _RANDOM[10'h137],
            _RANDOM[10'h138][4:0]};	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_38_phr = {_RANDOM[10'h138][31:5], _RANDOM[10'h139][4:0]};	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
-        meta_storage_38_ras_sp = _RANDOM[10'h139][8:5];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_38_ghr_spec_shifted = _RANDOM[10'h139][9];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_38_tage_providerIdx = _RANDOM[10'h139][11:10];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_38_tage_providerHit = _RANDOM[10'h139][12];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
@@ -4368,7 +4071,6 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
            _RANDOM[10'h13F],
            _RANDOM[10'h140][1:0]};	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_39_phr = {_RANDOM[10'h140][31:2], _RANDOM[10'h141][1:0]};	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
-        meta_storage_39_ras_sp = _RANDOM[10'h141][5:2];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_39_ghr_spec_shifted = _RANDOM[10'h141][6];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_39_tage_providerIdx = _RANDOM[10'h141][8:7];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_39_tage_providerHit = _RANDOM[10'h141][9];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
@@ -4388,7 +4090,6 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
            _RANDOM[10'h146],
            _RANDOM[10'h147][30:0]};	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_40_phr = {_RANDOM[10'h147][31], _RANDOM[10'h148][30:0]};	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
-        meta_storage_40_ras_sp = {_RANDOM[10'h148][31], _RANDOM[10'h149][2:0]};	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_40_ghr_spec_shifted = _RANDOM[10'h149][3];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_40_tage_providerIdx = _RANDOM[10'h149][5:4];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_40_tage_providerHit = _RANDOM[10'h149][6];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
@@ -4408,7 +4109,6 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
            _RANDOM[10'h14E],
            _RANDOM[10'h14F][27:0]};	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_41_phr = {_RANDOM[10'h14F][31:28], _RANDOM[10'h150][27:0]};	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
-        meta_storage_41_ras_sp = _RANDOM[10'h150][31:28];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_41_ghr_spec_shifted = _RANDOM[10'h151][0];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_41_tage_providerIdx = _RANDOM[10'h151][2:1];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_41_tage_providerHit = _RANDOM[10'h151][3];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
@@ -4428,7 +4128,6 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
            _RANDOM[10'h156],
            _RANDOM[10'h157][24:0]};	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_42_phr = {_RANDOM[10'h157][31:25], _RANDOM[10'h158][24:0]};	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
-        meta_storage_42_ras_sp = _RANDOM[10'h158][28:25];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_42_ghr_spec_shifted = _RANDOM[10'h158][29];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_42_tage_providerIdx = _RANDOM[10'h158][31:30];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_42_tage_providerHit = _RANDOM[10'h159][0];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
@@ -4448,7 +4147,6 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
            _RANDOM[10'h15E],
            _RANDOM[10'h15F][21:0]};	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_43_phr = {_RANDOM[10'h15F][31:22], _RANDOM[10'h160][21:0]};	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
-        meta_storage_43_ras_sp = _RANDOM[10'h160][25:22];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_43_ghr_spec_shifted = _RANDOM[10'h160][26];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_43_tage_providerIdx = _RANDOM[10'h160][28:27];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_43_tage_providerHit = _RANDOM[10'h160][29];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
@@ -4468,7 +4166,6 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
            _RANDOM[10'h166],
            _RANDOM[10'h167][18:0]};	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_44_phr = {_RANDOM[10'h167][31:19], _RANDOM[10'h168][18:0]};	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
-        meta_storage_44_ras_sp = _RANDOM[10'h168][22:19];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_44_ghr_spec_shifted = _RANDOM[10'h168][23];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_44_tage_providerIdx = _RANDOM[10'h168][25:24];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_44_tage_providerHit = _RANDOM[10'h168][26];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
@@ -4488,7 +4185,6 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
            _RANDOM[10'h16E],
            _RANDOM[10'h16F][15:0]};	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_45_phr = {_RANDOM[10'h16F][31:16], _RANDOM[10'h170][15:0]};	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
-        meta_storage_45_ras_sp = _RANDOM[10'h170][19:16];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_45_ghr_spec_shifted = _RANDOM[10'h170][20];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_45_tage_providerIdx = _RANDOM[10'h170][22:21];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_45_tage_providerHit = _RANDOM[10'h170][23];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
@@ -4508,7 +4204,6 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
            _RANDOM[10'h176],
            _RANDOM[10'h177][12:0]};	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_46_phr = {_RANDOM[10'h177][31:13], _RANDOM[10'h178][12:0]};	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
-        meta_storage_46_ras_sp = _RANDOM[10'h178][16:13];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_46_ghr_spec_shifted = _RANDOM[10'h178][17];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_46_tage_providerIdx = _RANDOM[10'h178][19:18];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_46_tage_providerHit = _RANDOM[10'h178][20];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
@@ -4528,7 +4223,6 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
            _RANDOM[10'h17E],
            _RANDOM[10'h17F][9:0]};	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_47_phr = {_RANDOM[10'h17F][31:10], _RANDOM[10'h180][9:0]};	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
-        meta_storage_47_ras_sp = _RANDOM[10'h180][13:10];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_47_ghr_spec_shifted = _RANDOM[10'h180][14];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_47_tage_providerIdx = _RANDOM[10'h180][16:15];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_47_tage_providerHit = _RANDOM[10'h180][17];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
@@ -4548,7 +4242,6 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
            _RANDOM[10'h186],
            _RANDOM[10'h187][6:0]};	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_48_phr = {_RANDOM[10'h187][31:7], _RANDOM[10'h188][6:0]};	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
-        meta_storage_48_ras_sp = _RANDOM[10'h188][10:7];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_48_ghr_spec_shifted = _RANDOM[10'h188][11];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_48_tage_providerIdx = _RANDOM[10'h188][13:12];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_48_tage_providerHit = _RANDOM[10'h188][14];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
@@ -4568,7 +4261,6 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
            _RANDOM[10'h18E],
            _RANDOM[10'h18F][3:0]};	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_49_phr = {_RANDOM[10'h18F][31:4], _RANDOM[10'h190][3:0]};	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
-        meta_storage_49_ras_sp = _RANDOM[10'h190][7:4];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_49_ghr_spec_shifted = _RANDOM[10'h190][8];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_49_tage_providerIdx = _RANDOM[10'h190][10:9];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_49_tage_providerHit = _RANDOM[10'h190][11];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
@@ -4588,7 +4280,6 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
            _RANDOM[10'h196],
            _RANDOM[10'h197][0]};	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_50_phr = {_RANDOM[10'h197][31:1], _RANDOM[10'h198][0]};	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
-        meta_storage_50_ras_sp = _RANDOM[10'h198][4:1];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_50_ghr_spec_shifted = _RANDOM[10'h198][5];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_50_tage_providerIdx = _RANDOM[10'h198][7:6];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_50_tage_providerHit = _RANDOM[10'h198][8];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
@@ -4608,7 +4299,6 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
            _RANDOM[10'h19D],
            _RANDOM[10'h19E][29:0]};	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_51_phr = {_RANDOM[10'h19E][31:30], _RANDOM[10'h19F][29:0]};	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
-        meta_storage_51_ras_sp = {_RANDOM[10'h19F][31:30], _RANDOM[10'h1A0][1:0]};	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_51_ghr_spec_shifted = _RANDOM[10'h1A0][2];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_51_tage_providerIdx = _RANDOM[10'h1A0][4:3];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_51_tage_providerHit = _RANDOM[10'h1A0][5];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
@@ -4628,7 +4318,6 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
            _RANDOM[10'h1A5],
            _RANDOM[10'h1A6][26:0]};	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_52_phr = {_RANDOM[10'h1A6][31:27], _RANDOM[10'h1A7][26:0]};	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
-        meta_storage_52_ras_sp = _RANDOM[10'h1A7][30:27];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_52_ghr_spec_shifted = _RANDOM[10'h1A7][31];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_52_tage_providerIdx = _RANDOM[10'h1A8][1:0];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_52_tage_providerHit = _RANDOM[10'h1A8][2];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
@@ -4648,7 +4337,6 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
            _RANDOM[10'h1AD],
            _RANDOM[10'h1AE][23:0]};	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_53_phr = {_RANDOM[10'h1AE][31:24], _RANDOM[10'h1AF][23:0]};	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
-        meta_storage_53_ras_sp = _RANDOM[10'h1AF][27:24];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_53_ghr_spec_shifted = _RANDOM[10'h1AF][28];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_53_tage_providerIdx = _RANDOM[10'h1AF][30:29];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_53_tage_providerHit = _RANDOM[10'h1AF][31];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
@@ -4668,7 +4356,6 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
            _RANDOM[10'h1B5],
            _RANDOM[10'h1B6][20:0]};	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_54_phr = {_RANDOM[10'h1B6][31:21], _RANDOM[10'h1B7][20:0]};	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
-        meta_storage_54_ras_sp = _RANDOM[10'h1B7][24:21];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_54_ghr_spec_shifted = _RANDOM[10'h1B7][25];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_54_tage_providerIdx = _RANDOM[10'h1B7][27:26];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_54_tage_providerHit = _RANDOM[10'h1B7][28];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
@@ -4688,7 +4375,6 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
            _RANDOM[10'h1BD],
            _RANDOM[10'h1BE][17:0]};	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_55_phr = {_RANDOM[10'h1BE][31:18], _RANDOM[10'h1BF][17:0]};	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
-        meta_storage_55_ras_sp = _RANDOM[10'h1BF][21:18];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_55_ghr_spec_shifted = _RANDOM[10'h1BF][22];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_55_tage_providerIdx = _RANDOM[10'h1BF][24:23];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_55_tage_providerHit = _RANDOM[10'h1BF][25];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
@@ -4708,7 +4394,6 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
            _RANDOM[10'h1C5],
            _RANDOM[10'h1C6][14:0]};	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_56_phr = {_RANDOM[10'h1C6][31:15], _RANDOM[10'h1C7][14:0]};	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
-        meta_storage_56_ras_sp = _RANDOM[10'h1C7][18:15];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_56_ghr_spec_shifted = _RANDOM[10'h1C7][19];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_56_tage_providerIdx = _RANDOM[10'h1C7][21:20];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_56_tage_providerHit = _RANDOM[10'h1C7][22];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
@@ -4727,7 +4412,6 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
            _RANDOM[10'h1CD],
            _RANDOM[10'h1CE][11:0]};	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_57_phr = {_RANDOM[10'h1CE][31:12], _RANDOM[10'h1CF][11:0]};	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
-        meta_storage_57_ras_sp = _RANDOM[10'h1CF][15:12];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_57_ghr_spec_shifted = _RANDOM[10'h1CF][16];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_57_tage_providerIdx = _RANDOM[10'h1CF][18:17];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_57_tage_providerHit = _RANDOM[10'h1CF][19];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
@@ -4747,7 +4431,6 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
            _RANDOM[10'h1D5],
            _RANDOM[10'h1D6][8:0]};	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_58_phr = {_RANDOM[10'h1D6][31:9], _RANDOM[10'h1D7][8:0]};	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
-        meta_storage_58_ras_sp = _RANDOM[10'h1D7][12:9];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_58_ghr_spec_shifted = _RANDOM[10'h1D7][13];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_58_tage_providerIdx = _RANDOM[10'h1D7][15:14];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_58_tage_providerHit = _RANDOM[10'h1D7][16];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
@@ -4767,7 +4450,6 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
            _RANDOM[10'h1DD],
            _RANDOM[10'h1DE][5:0]};	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_59_phr = {_RANDOM[10'h1DE][31:6], _RANDOM[10'h1DF][5:0]};	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
-        meta_storage_59_ras_sp = _RANDOM[10'h1DF][9:6];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_59_ghr_spec_shifted = _RANDOM[10'h1DF][10];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_59_tage_providerIdx = _RANDOM[10'h1DF][12:11];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_59_tage_providerHit = _RANDOM[10'h1DF][13];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
@@ -4787,7 +4469,6 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
            _RANDOM[10'h1E5],
            _RANDOM[10'h1E6][2:0]};	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_60_phr = {_RANDOM[10'h1E6][31:3], _RANDOM[10'h1E7][2:0]};	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
-        meta_storage_60_ras_sp = _RANDOM[10'h1E7][6:3];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_60_ghr_spec_shifted = _RANDOM[10'h1E7][7];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_60_tage_providerIdx = _RANDOM[10'h1E7][9:8];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_60_tage_providerHit = _RANDOM[10'h1E7][10];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
@@ -4803,7 +4484,6 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
         meta_storage_61_ghr =
           {_RANDOM[10'h1EA], _RANDOM[10'h1EB], _RANDOM[10'h1EC], _RANDOM[10'h1ED]};	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_61_phr = _RANDOM[10'h1EE];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
-        meta_storage_61_ras_sp = _RANDOM[10'h1EF][3:0];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_61_ghr_spec_shifted = _RANDOM[10'h1EF][4];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_61_tage_providerIdx = _RANDOM[10'h1EF][6:5];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_61_tage_providerHit = _RANDOM[10'h1EF][7];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
@@ -4823,7 +4503,6 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
            _RANDOM[10'h1F4],
            _RANDOM[10'h1F5][28:0]};	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_62_phr = {_RANDOM[10'h1F5][31:29], _RANDOM[10'h1F6][28:0]};	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
-        meta_storage_62_ras_sp = {_RANDOM[10'h1F6][31:29], _RANDOM[10'h1F7][0]};	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_62_ghr_spec_shifted = _RANDOM[10'h1F7][1];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_62_tage_providerIdx = _RANDOM[10'h1F7][3:2];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_62_tage_providerHit = _RANDOM[10'h1F7][4];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
@@ -4843,7 +4522,6 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
            _RANDOM[10'h1FC],
            _RANDOM[10'h1FD][25:0]};	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_63_phr = {_RANDOM[10'h1FD][31:26], _RANDOM[10'h1FE][25:0]};	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
-        meta_storage_63_ras_sp = _RANDOM[10'h1FE][29:26];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_63_ghr_spec_shifted = _RANDOM[10'h1FE][30];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_63_tage_providerIdx = {_RANDOM[10'h1FE][31], _RANDOM[10'h1FF][0]};	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
         meta_storage_63_tage_providerHit = _RANDOM[10'h1FF][1];	// frontend/src/zaqal/frontend/BPU.scala:30:7, :67:25
@@ -4872,13 +4550,13 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
     .io_taken          (_ftb_io_taken),
     .io_slot           (_ftb_io_slot),
     .io_br_type        (_ftb_io_br_type),
-    .io_update_valid   (_ftb_io_update_valid_T_2),	// frontend/src/zaqal/frontend/BPU.scala:170:44
-    .io_update_pc      (bpu_update_pc),	// frontend/src/zaqal/frontend/BPU.scala:160:29
-    .io_update_target  (bpu_update_target),	// frontend/src/zaqal/frontend/BPU.scala:161:29
-    .io_update_taken   (bpu_update_taken),	// frontend/src/zaqal/frontend/BPU.scala:162:29
-    .io_update_is_cfi  (bpu_update_is_cfi),	// frontend/src/zaqal/frontend/BPU.scala:163:29
-    .io_update_is_jal  (bpu_update_is_jal),	// frontend/src/zaqal/frontend/BPU.scala:164:29
-    .io_update_is_jalr (bpu_update_is_jalr)	// frontend/src/zaqal/frontend/BPU.scala:165:30
+    .io_update_valid   (bpu_update_valid & ~_sc_io_update_valid_T),	// frontend/src/zaqal/frontend/BPU.scala:156:44, :167:{44,47,67}
+    .io_update_pc      (bpu_update_pc),	// frontend/src/zaqal/frontend/BPU.scala:157:29
+    .io_update_target  (bpu_update_target),	// frontend/src/zaqal/frontend/BPU.scala:158:29
+    .io_update_taken   (bpu_update_taken),	// frontend/src/zaqal/frontend/BPU.scala:159:29
+    .io_update_is_cfi  (bpu_update_is_cfi),	// frontend/src/zaqal/frontend/BPU.scala:160:29
+    .io_update_is_jal  (bpu_update_is_jal),	// frontend/src/zaqal/frontend/BPU.scala:161:29
+    .io_update_is_jalr (bpu_update_is_jalr)	// frontend/src/zaqal/frontend/BPU.scala:162:30
   );
   TagePredictor tage (	// frontend/src/zaqal/frontend/BPU.scala:51:20
     .clock               (clock),
@@ -4893,15 +4571,15 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
     .io_pred_hit         (_tage_io_pred_hit),
     .io_update_valid
       (bpu_update_valid & ~_sc_io_update_valid_T & bpu_update_is_cfi & ~bpu_update_is_jal
-       & ~bpu_update_is_jalr),	// frontend/src/zaqal/frontend/BPU.scala:159:44, :163:29, :164:29, :165:30, :170:67, :187:{47,120,139,142}
-    .io_update_pc        (aligned_update_pc),	// frontend/src/zaqal/frontend/BPU.scala:184:41
-    .io_update_ghr       (_GEN[bpu_update_ftqPtr]),	// frontend/src/zaqal/frontend/BPU.scala:141:21, :166:29, :189:24
-    .io_update_dir       (bpu_update_taken),	// frontend/src/zaqal/frontend/BPU.scala:162:29
-    .io_providerIdx      (_GEN_3[bpu_update_ftqPtr]),	// frontend/src/zaqal/frontend/BPU.scala:166:29, :189:24
-    .io_providerHit      (_GEN_4[bpu_update_ftqPtr]),	// frontend/src/zaqal/frontend/BPU.scala:166:29, :189:24
-    .io_providerCtr      (_GEN_5[bpu_update_ftqPtr]),	// frontend/src/zaqal/frontend/BPU.scala:166:29, :189:24
-    .io_altTaken         (_GEN_6[bpu_update_ftqPtr]),	// frontend/src/zaqal/frontend/BPU.scala:166:29, :189:24
-    .io_providerU        (_GEN_7[bpu_update_ftqPtr])	// frontend/src/zaqal/frontend/BPU.scala:166:29, :189:24
+       & ~bpu_update_is_jalr),	// frontend/src/zaqal/frontend/BPU.scala:156:44, :160:29, :161:29, :162:30, :167:67, :184:{47,120,139,142}
+    .io_update_pc        (aligned_update_pc),	// frontend/src/zaqal/frontend/BPU.scala:181:41
+    .io_update_ghr       (_GEN[bpu_update_ftqPtr]),	// frontend/src/zaqal/frontend/BPU.scala:138:21, :163:29, :186:24
+    .io_update_dir       (bpu_update_taken),	// frontend/src/zaqal/frontend/BPU.scala:159:29
+    .io_providerIdx      (_GEN_1[bpu_update_ftqPtr]),	// frontend/src/zaqal/frontend/BPU.scala:163:29, :186:24
+    .io_providerHit      (_GEN_2[bpu_update_ftqPtr]),	// frontend/src/zaqal/frontend/BPU.scala:163:29, :186:24
+    .io_providerCtr      (_GEN_3[bpu_update_ftqPtr]),	// frontend/src/zaqal/frontend/BPU.scala:163:29, :186:24
+    .io_altTaken         (_GEN_4[bpu_update_ftqPtr]),	// frontend/src/zaqal/frontend/BPU.scala:163:29, :186:24
+    .io_providerU        (_GEN_5[bpu_update_ftqPtr])	// frontend/src/zaqal/frontend/BPU.scala:163:29, :186:24
   );
   ITTagePredictor ittage (	// frontend/src/zaqal/frontend/BPU.scala:52:22
     .clock               (clock),
@@ -4915,14 +4593,14 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
     .io_pred_hit         (_ittage_io_pred_hit),
     .io_update_valid
       (bpu_update_valid & ~_sc_io_update_valid_T & bpu_update_is_cfi
-       & bpu_update_is_jalr),	// frontend/src/zaqal/frontend/BPU.scala:159:44, :163:29, :165:30, :170:67, :198:{50,120}
-    .io_update_pc        (aligned_update_pc),	// frontend/src/zaqal/frontend/BPU.scala:184:41
-    .io_update_phr       (_GEN_0[bpu_update_ftqPtr]),	// frontend/src/zaqal/frontend/BPU.scala:141:21, :166:29, :189:24
-    .io_update_target    (bpu_update_target),	// frontend/src/zaqal/frontend/BPU.scala:161:29
-    .io_providerIdx      (_GEN_8[bpu_update_ftqPtr]),	// frontend/src/zaqal/frontend/BPU.scala:166:29, :189:24
-    .io_providerHit      (_GEN_9[bpu_update_ftqPtr]),	// frontend/src/zaqal/frontend/BPU.scala:166:29, :189:24
-    .io_altTarget        (_GEN_10[bpu_update_ftqPtr]),	// frontend/src/zaqal/frontend/BPU.scala:166:29, :189:24
-    .io_providerU        (_GEN_11[bpu_update_ftqPtr])	// frontend/src/zaqal/frontend/BPU.scala:166:29, :189:24
+       & bpu_update_is_jalr),	// frontend/src/zaqal/frontend/BPU.scala:156:44, :160:29, :162:30, :167:67, :195:{50,120}
+    .io_update_pc        (aligned_update_pc),	// frontend/src/zaqal/frontend/BPU.scala:181:41
+    .io_update_phr       (_GEN_0[bpu_update_ftqPtr]),	// frontend/src/zaqal/frontend/BPU.scala:138:21, :163:29, :186:24
+    .io_update_target    (bpu_update_target),	// frontend/src/zaqal/frontend/BPU.scala:158:29
+    .io_providerIdx      (_GEN_6[bpu_update_ftqPtr]),	// frontend/src/zaqal/frontend/BPU.scala:163:29, :186:24
+    .io_providerHit      (_GEN_7[bpu_update_ftqPtr]),	// frontend/src/zaqal/frontend/BPU.scala:163:29, :186:24
+    .io_altTarget        (_GEN_8[bpu_update_ftqPtr]),	// frontend/src/zaqal/frontend/BPU.scala:163:29, :186:24
+    .io_providerU        (_GEN_9[bpu_update_ftqPtr])	// frontend/src/zaqal/frontend/BPU.scala:163:29, :186:24
   );
   SCPredictor sc (	// frontend/src/zaqal/frontend/BPU.scala:53:18
     .clock           (clock),
@@ -4931,54 +4609,11 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
     .io_req_ghr      (ghr),	// frontend/src/zaqal/frontend/BPU.scala:43:20
     .io_pred_taken   (_sc_io_pred_taken),
     .io_pred_sum     (_sc_io_pred_sum),
-    .io_update_valid (_sc_io_update_valid_T_7),	// frontend/src/zaqal/frontend/BPU.scala:208:137
-    .io_update_pc    (aligned_update_pc),	// frontend/src/zaqal/frontend/BPU.scala:184:41
-    .io_update_ghr   (_GEN[bpu_update_ftqPtr]),	// frontend/src/zaqal/frontend/BPU.scala:141:21, :166:29, :189:24
-    .io_update_dir   (bpu_update_taken),	// frontend/src/zaqal/frontend/BPU.scala:162:29
-    .io_update_sum   (_GEN_12[bpu_update_ftqPtr])	// frontend/src/zaqal/frontend/BPU.scala:166:29, :189:24
-  );
-  RAS ras (	// frontend/src/zaqal/frontend/BPU.scala:54:19
-    .clock                 (clock),
-    .reset                 (reset),
-    .io_spec_push_valid
-      (_ras_io_spec_pop_valid_T & ftb_valid & _ftb_io_br_type == 2'h1 & final_taken),	// frontend/src/zaqal/frontend/BPU.scala:50:19, :106:30, :114:24, :132:51, :135:41, src/main/scala/chisel3/util/Decoupled.scala:51:35
-    .io_spec_push_addr
-      (s0_pc + {58'h0, ftb_valid ? _ftb_io_slot : exact_pc[4:1], 2'h0} + 64'h4),	// frontend/src/zaqal/frontend/BPU.scala:38:25, :50:19, :96:25, :105:27, :106:30, :108:51, :137:24, :138:{35,57}
-    .io_spec_pop_valid
-      (_ras_io_spec_pop_valid_T & ftb_valid & _is_spec_jalr_T & final_taken),	// frontend/src/zaqal/frontend/BPU.scala:106:30, :114:24, :118:64, :139:41, src/main/scala/chisel3/util/Decoupled.scala:51:35
-    .io_spec_pop_addr      (_ras_io_spec_pop_addr),
-    .io_spec_pop_valid_out (_ras_io_spec_pop_valid_out),
-    .io_spec_sp            (_ras_io_spec_sp),
-    .io_commit_push_valid
-      (commit_calls_0 | commit_calls_1 | commit_calls_2 | commit_calls_3 | commit_calls_4
-       | io_commits_commitValid_5 & io_commits_info_5_is_call),	// frontend/src/zaqal/frontend/BPU.scala:145:69, :148:46
-    .io_commit_push_addr
-      (_GEN_2[commit_calls_0
-                ? 3'h0
-                : commit_calls_1
-                    ? 3'h1
-                    : commit_calls_2
-                        ? 3'h2
-                        : commit_calls_3 ? 3'h3 : {2'h2, ~commit_calls_4}] + 64'h4),	// frontend/src/zaqal/frontend/BPU.scala:118:64, :138:57, :145:69, :155:60, src/main/scala/chisel3/util/Mux.scala:50:70
-    .io_commit_pop_valid
-      (io_commits_commitValid_0 & io_commits_info_0_is_ret | io_commits_commitValid_1
-       & io_commits_info_1_is_ret | io_commits_commitValid_2 & io_commits_info_2_is_ret
-       | io_commits_commitValid_3 & io_commits_info_3_is_ret | io_commits_commitValid_4
-       & io_commits_info_4_is_ret | io_commits_commitValid_5 & io_commits_info_5_is_ret),	// frontend/src/zaqal/frontend/BPU.scala:146:69, :149:45
-    .io_restore_en         (io_redirect_valid),
-    .io_restore_sp         (_GEN_1[io_redirect_ftqPtr])	// frontend/src/zaqal/frontend/BPU.scala:141:21
-  );
-  uFTB uftb (	// frontend/src/zaqal/frontend/BPU.scala:55:20
-    .clock            (clock),
-    .reset            (reset),
-    .io_req_pc        (s0_pc),	// frontend/src/zaqal/frontend/BPU.scala:38:25
-    .io_pred_hit      (_uftb_io_pred_hit),
-    .io_pred_target   (_uftb_io_pred_target),
-    .io_update_valid
-      (_ftb_io_update_valid_T_2
-       & (bpu_update_taken | bpu_update_is_jal | bpu_update_is_jalr)),	// frontend/src/zaqal/frontend/BPU.scala:162:29, :164:29, :165:30, :170:44, :179:{48,90}
-    .io_update_pc     (bpu_update_pc),	// frontend/src/zaqal/frontend/BPU.scala:160:29
-    .io_update_target (bpu_update_target)	// frontend/src/zaqal/frontend/BPU.scala:161:29
+    .io_update_valid (_sc_io_update_valid_T_7),	// frontend/src/zaqal/frontend/BPU.scala:205:137
+    .io_update_pc    (aligned_update_pc),	// frontend/src/zaqal/frontend/BPU.scala:181:41
+    .io_update_ghr   (_GEN[bpu_update_ftqPtr]),	// frontend/src/zaqal/frontend/BPU.scala:138:21, :163:29, :186:24
+    .io_update_dir   (bpu_update_taken),	// frontend/src/zaqal/frontend/BPU.scala:159:29
+    .io_update_sum   (_GEN_10[bpu_update_ftqPtr])	// frontend/src/zaqal/frontend/BPU.scala:163:29, :186:24
   );
   BPUComposer composer (	// frontend/src/zaqal/frontend/BPU.scala:56:24
     .clock                (clock),
@@ -4987,21 +4622,20 @@ module BPU(	// frontend/src/zaqal/frontend/BPU.scala:30:7
     .io_tage_pred_taken   (_tage_io_pred_taken),	// frontend/src/zaqal/frontend/BPU.scala:51:20
     .io_sc_pred_taken     (_sc_io_pred_taken),	// frontend/src/zaqal/frontend/BPU.scala:53:18
     .io_final_pred_taken  (_composer_io_final_pred_taken),
-    .io_update_valid      (_sc_io_update_valid_T_7),	// frontend/src/zaqal/frontend/BPU.scala:208:137
-    .io_update_pc         (aligned_update_pc),	// frontend/src/zaqal/frontend/BPU.scala:184:41
-    .io_update_ghr        (_GEN[bpu_update_ftqPtr]),	// frontend/src/zaqal/frontend/BPU.scala:141:21, :166:29, :189:24
-    .io_update_tage_pred  (_GEN_5[bpu_update_ftqPtr][2]),	// frontend/src/zaqal/frontend/BPU.scala:166:29, :189:24, :215:56
-    .io_update_sc_pred    ($signed(_GEN_12[bpu_update_ftqPtr]) > -10'sh1),	// frontend/src/zaqal/frontend/BPU.scala:166:29, :189:24, :216:45
-    .io_update_actual_dir (bpu_update_taken)	// frontend/src/zaqal/frontend/BPU.scala:162:29
+    .io_update_valid      (_sc_io_update_valid_T_7),	// frontend/src/zaqal/frontend/BPU.scala:205:137
+    .io_update_pc         (aligned_update_pc),	// frontend/src/zaqal/frontend/BPU.scala:181:41
+    .io_update_ghr        (_GEN[bpu_update_ftqPtr]),	// frontend/src/zaqal/frontend/BPU.scala:138:21, :163:29, :186:24
+    .io_update_tage_pred  (_GEN_3[bpu_update_ftqPtr][2]),	// frontend/src/zaqal/frontend/BPU.scala:163:29, :186:24, :212:56
+    .io_update_sc_pred    ($signed(_GEN_10[bpu_update_ftqPtr]) > -10'sh1),	// frontend/src/zaqal/frontend/BPU.scala:163:29, :186:24, :213:45
+    .io_update_actual_dir (bpu_update_taken)	// frontend/src/zaqal/frontend/BPU.scala:159:29
   );
-  assign io_out_valid = ~reset;	// frontend/src/zaqal/frontend/BPU.scala:30:7, :332:19
+  assign io_out_valid = ~reset;	// frontend/src/zaqal/frontend/BPU.scala:30:7, :328:19
   assign io_out_bits_pc = s0_pc;	// frontend/src/zaqal/frontend/BPU.scala:30:7, :38:25
   assign io_out_bits_mask =
-    ({16{~meta_taken}} | 16'hFFFF >> 4'hF - ((&rel_slot) ? 4'hF : rel_slot + 4'h1))
-    & current_mask;	// frontend/src/zaqal/frontend/BPU.scala:30:7, :39:30, :235:63, :238:25, :244:18, :247:28, :336:21, :337:{23,33,89}, :338:{45,70}, :339:32
-  assign io_out_bits_prediction_target = meta_target;	// frontend/src/zaqal/frontend/BPU.scala:30:7, :231:21
-  assign io_out_bits_prediction_taken = meta_taken;	// frontend/src/zaqal/frontend/BPU.scala:30:7, :235:63
-  assign io_out_bits_prediction_slot = meta_slot;	// frontend/src/zaqal/frontend/BPU.scala:30:7, :234:23
+    ({16{~meta_taken}} | _taken_mask_T_1[15:0] - 16'h1) & current_mask;	// frontend/src/zaqal/frontend/BPU.scala:30:7, :231:43, :234:25, :240:18, :243:28, :332:{26,51}, :333:32
+  assign io_out_bits_prediction_target = meta_target;	// frontend/src/zaqal/frontend/BPU.scala:30:7, :228:21
+  assign io_out_bits_prediction_taken = meta_taken;	// frontend/src/zaqal/frontend/BPU.scala:30:7, :231:43
+  assign io_out_bits_prediction_slot = _ftb_io_slot;	// frontend/src/zaqal/frontend/BPU.scala:30:7, :50:19
   assign io_out_bits_ftqPtr = bpu_enq_ptr;	// frontend/src/zaqal/frontend/BPU.scala:30:7, :59:28
   assign io_out_bits_epoch = epoch;	// frontend/src/zaqal/frontend/BPU.scala:30:7, :40:25
 endmodule

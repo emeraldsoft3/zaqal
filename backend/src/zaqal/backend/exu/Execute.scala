@@ -235,6 +235,7 @@ class Execute(val hartId: Int = 0)(implicit val p: Parameters) extends Module wi
 
   val decMem = (0 until 3).map(i => io.mem_in(i).bits.decode)
   val decFp  = (0 until 4).map(i => io.fp_in(i).bits.decode)
+  val is_fpdiv_op3 = decFp(3).is_fdiv || decFp(3).is_fsqrt
 
   // Register Cache Hits
   val hit_int = Wire(Vec(4, Bool()))
@@ -242,10 +243,6 @@ class Execute(val hartId: Int = 0)(implicit val p: Parameters) extends Module wi
     hit_int(i) := intRC.io.rhits(i * 2) && intRC.io.rhits(i * 2 + 1)
   }
   val is_amx_0 = decInt(0).is_amx
-  io.int_in(0).ready := Mux(is_amx_0, amx.io.cmd_ready, Mux(is_div_op0, div(0).io.ready, true.B))
-  io.int_in(1).ready := Mux(is_div_op1, div(1).io.ready, true.B)
-  io.int_in(2).ready := true.B
-  io.int_in(3).ready := true.B
 
   val hit_mem = Wire(Vec(3, Bool()))
   for (i <- 0 until 3) {
@@ -261,10 +258,6 @@ class Execute(val hartId: Int = 0)(implicit val p: Parameters) extends Module wi
     val fp_src_hit    = fpRC.io.rhits(i * 3) && fpRC.io.rhits(i * 3 + 1) && Mux(is_fp_fma, fpRC.io.rhits(i * 3 + 2), true.B)
     hit_fp(i) := Mux(is_fp_int_src, fp_int_hit, fp_src_hit)
   }
-  io.fp_in(0).ready := true.B
-  io.fp_in(1).ready := true.B
-  io.fp_in(2).ready := true.B
-  io.fp_in(3).ready := fpdiv.io.ready
 
   // ---------------- READ-TO-EXECUTE PIPELINE REGISTERS ----------------
   def is_younger_than_redirect(robIdx: UInt): Bool = {
@@ -368,6 +361,7 @@ class Execute(val hartId: Int = 0)(implicit val p: Parameters) extends Module wi
   // ---------------- BYPASS NETWORK (CYCLE 2: EXECUTE STAGE) ----------------
   val exe_dec_int = (0 until 4).map(i => exe_uop_int(i).decode)
   val exe_uop_raw_int = (0 until 4).map(i => exe_uop_int(i).uop)
+  val exe_dec_fp = (0 until 4).map(i => exe_uop_fp(i).decode)
 
   val exe_is_div_op0 = exe_dec_int(0).is_div || exe_dec_int(0).is_divu || exe_dec_int(0).is_rem || exe_dec_int(0).is_remu ||
                        exe_dec_int(0).is_divw || exe_dec_int(0).is_divuw || exe_dec_int(0).is_remw || exe_dec_int(0).is_remuw
@@ -380,6 +374,19 @@ class Execute(val hartId: Int = 0)(implicit val p: Parameters) extends Module wi
   val exe_is_mul_op1 = exe_dec_int(1).is_mul || exe_dec_int(1).is_mulh || exe_dec_int(1).is_mulhsu || exe_dec_int(1).is_mulhu || exe_dec_int(1).is_mulw
   val exe_is_link1   = exe_dec_int(1).is_jal || exe_dec_int(1).is_jalr
   val exe_link_addr1 = exe_uop_raw_int(1).pc + Mux(exe_uop_raw_int(1).pre.is_rvc, 2.U, 4.U)
+
+  val div0_inflight = exe_val_int(0) && exe_is_div_op0
+  val div1_inflight = exe_val_int(1) && exe_is_div_op1
+  io.int_in(0).ready := Mux(is_amx_0, amx.io.cmd_ready, Mux(is_div_op0, div(0).io.ready && !div0_inflight, true.B))
+  io.int_in(1).ready := Mux(is_div_op1, div(1).io.ready && !div1_inflight, true.B)
+  io.int_in(2).ready := true.B
+  io.int_in(3).ready := true.B
+
+  io.fp_in(0).ready := true.B
+  io.fp_in(1).ready := true.B
+  io.fp_in(2).ready := true.B
+  val fpdiv_inflight = exe_val_fp(3) && (exe_dec_fp(3).is_fdiv || exe_dec_fp(3).is_fsqrt)
+  io.fp_in(3).ready := Mux(is_fpdiv_op3, fpdiv.io.ready && !fpdiv_inflight, true.B)
 
   // Asynchronous Hardware Interrupt Detection (Day 17-20)
   val has_mret_early = VecInit((0 until 4).map(i => exe_val_int(i) && exe_dec_int(i).is_mret)).asUInt.orR
@@ -466,7 +473,6 @@ class Execute(val hartId: Int = 0)(implicit val p: Parameters) extends Module wi
   }
 
   // FP to INT writeback
-  val exe_dec_fp = (0 until 4).map(i => exe_uop_fp(i).decode)
   val exe_is_fp_wb_to_int2 = exe_dec_fp(2).is_fmv_x_w || exe_dec_fp(2).is_fmv_x_d || exe_dec_fp(2).is_fcvt_f2i || exe_dec_fp(2).is_feq || exe_dec_fp(2).is_flt || exe_dec_fp(2).is_fle || exe_dec_fp(2).is_fclass
   val exe_is_fp_wb_to_int3 = exe_dec_fp(3).is_fmv_x_w || exe_dec_fp(3).is_fmv_x_d || exe_dec_fp(3).is_fcvt_f2i || exe_dec_fp(3).is_feq || exe_dec_fp(3).is_flt || exe_dec_fp(3).is_fle || exe_dec_fp(3).is_fclass
 
@@ -505,10 +511,17 @@ class Execute(val hartId: Int = 0)(implicit val p: Parameters) extends Module wi
   val r2_wb_ld_dest  = RegNext(r_wb_ld_dest, VecInit(Seq.fill(2)(0.U(phyRegIdxWidth.W))))
   val r2_wb_ld_data  = RegNext(r_wb_ld_data, VecInit(Seq.fill(2)(0.U(xLen.W))))
 
+  val r2_wb_div_val  = RegNext(r_wb_div_val, VecInit(Seq.fill(2)(false.B)))
+  val r2_wb_div_dest = RegNext(r_wb_div_dest, VecInit(Seq.fill(2)(0.U(phyRegIdxWidth.W))))
+  val r2_wb_div_data = RegNext(r_wb_div_data, VecInit(Seq.fill(2)(0.U(xLen.W))))
+
+  val r2_wb_mul_val  = RegNext(r_wb_mul_val, VecInit(Seq.fill(2)(false.B)))
+  val r2_wb_mul_dest = RegNext(r_wb_mul_dest, VecInit(Seq.fill(2)(0.U(phyRegIdxWidth.W))))
+  val r2_wb_mul_data = RegNext(r_wb_mul_data, VecInit(Seq.fill(2)(0.U(xLen.W))))
+
   case class BypassChannel(valid: Bool, pdest: UInt, data: UInt)
 
   val bypassChannels = Seq(
-    BypassChannel(io.dcache_resp.valid && io.dcache_resp.bits.load_id =/= 0.U, io.dcache_resp.bits.load_id, io.dcache_resp.bits.data),
     BypassChannel(wb_ld_val(0), wb_ld_dest(0), wb_ld_data(0)),
     BypassChannel(wb_ld_val(1), wb_ld_dest(1), wb_ld_data(1)),
     BypassChannel(r_wb_alu_val(0), r_wb_alu_dest(0), r_wb_alu_data(0)),
@@ -527,7 +540,11 @@ class Execute(val hartId: Int = 0)(implicit val p: Parameters) extends Module wi
     BypassChannel(r2_wb_alu_val(2), r2_wb_alu_dest(2), r2_wb_alu_data(2)),
     BypassChannel(r2_wb_alu_val(3), r2_wb_alu_dest(3), r2_wb_alu_data(3)),
     BypassChannel(r2_wb_ld_val(0), r2_wb_ld_dest(0), r2_wb_ld_data(0)),
-    BypassChannel(r2_wb_ld_val(1), r2_wb_ld_dest(1), r2_wb_ld_data(1))
+    BypassChannel(r2_wb_ld_val(1), r2_wb_ld_dest(1), r2_wb_ld_data(1)),
+    BypassChannel(r2_wb_div_val(0), r2_wb_div_dest(0), r2_wb_div_data(0)),
+    BypassChannel(r2_wb_div_val(1), r2_wb_div_dest(1), r2_wb_div_data(1)),
+    BypassChannel(r2_wb_mul_val(0), r2_wb_mul_dest(0), r2_wb_mul_data(0)),
+    BypassChannel(r2_wb_mul_val(1), r2_wb_mul_dest(1), r2_wb_mul_data(1))
   )
 
   def bypass(raddr: UInt, rdata: UInt): UInt = {
@@ -648,8 +665,11 @@ class Execute(val hartId: Int = 0)(implicit val p: Parameters) extends Module wi
   val pmp_mem_checker = Seq.fill(3)(Module(new PMPChecker(16)))
 
   for (i <- 0 until 3) {
-    is_store_agu(i) := r_agu_val(i) && (r_agu_uop(i).decode.is_store || r_agu_uop(i).decode.is_fstore)
-    is_load_agu(i)  := r_agu_val(i) && (r_agu_uop(i).decode.is_load || r_agu_uop(i).decode.is_fload)
+    val is_amo_agu = r_agu_uop(i).decode.is_amo_w || r_agu_uop(i).decode.is_amo_d
+    val is_sc_agu  = r_agu_uop(i).decode.is_sc
+    is_store_agu(i) := r_agu_val(i) && (r_agu_uop(i).decode.is_store || r_agu_uop(i).decode.is_fstore || is_amo_agu || is_sc_agu)
+    is_load_agu(i)  := r_agu_val(i) && (r_agu_uop(i).decode.is_load || r_agu_uop(i).decode.is_fload || r_agu_uop(i).decode.is_lr)
+
 
     pmp_mem_checker(i).io.addr        := r_agu_paddr(i)
     pmp_mem_checker(i).io.access_type := Mux(is_store_agu(i), PMPAccessType.STORE, PMPAccessType.LOAD)
@@ -676,6 +696,9 @@ class Execute(val hartId: Int = 0)(implicit val p: Parameters) extends Module wi
   val has_ecall  = VecInit((0 until 4).map(i => exe_val_int(i) && exe_dec_int(i).is_ecall)).asUInt.orR
   val ecall_lane = PriorityEncoder(VecInit((0 until 4).map(i => exe_val_int(i) && exe_dec_int(i).is_ecall)))
 
+  val has_ebreak  = VecInit((0 until 4).map(i => exe_val_int(i) && exe_dec_int(i).is_ebreak)).asUInt.orR
+  val ebreak_lane = PriorityEncoder(VecInit((0 until 4).map(i => exe_val_int(i) && exe_dec_int(i).is_ebreak)))
+
   val has_mret   = VecInit((0 until 4).map(i => exe_val_int(i) && exe_dec_int(i).is_mret)).asUInt.orR
   val mret_lane  = PriorityEncoder(VecInit((0 until 4).map(i => exe_val_int(i) && exe_dec_int(i).is_mret)))
 
@@ -683,19 +706,21 @@ class Execute(val hartId: Int = 0)(implicit val p: Parameters) extends Module wi
   val sret_lane  = PriorityEncoder(VecInit((0 until 4).map(i => exe_val_int(i) && exe_dec_int(i).is_sret)))
 
   val is_ecall      = has_ecall
+  val is_ebreak     = has_ebreak
   val is_mret       = has_mret
   val is_sret       = has_sret
   val is_sfence_vma = exe_val_int(0) && exe_dec_int(0).is_sfence_vma
   val is_illegal    = has_csr && csr.io.is_illegal
-  val is_int_trap   = is_ecall || is_illegal
+  val is_int_trap   = is_ecall || is_ebreak || is_illegal
 
-  val sys_lane = Mux(has_ecall, ecall_lane,
-                 Mux(has_mret,  mret_lane,
-                 Mux(has_sret,  sret_lane, csr_lane)))
+  val sys_lane = Mux(has_ebreak, ebreak_lane,
+                 Mux(has_ecall,  ecall_lane,
+                 Mux(has_mret,   mret_lane,
+                 Mux(has_sret,   sret_lane, csr_lane))))
 
   val ecall_cause = Mux(csr.io.priv_mode === zaqal.backend.csr.PrivMode.U, 8.U,
                     Mux(csr.io.priv_mode === zaqal.backend.csr.PrivMode.S, 9.U, 11.U))
-  val int_trap_cause = Mux(is_illegal, 2.U, ecall_cause)
+  val int_trap_cause = Mux(is_illegal, 2.U, Mux(is_ebreak, 3.U, ecall_cause))
   val mem_trap_cause = Mux(is_store_pmp_fault, 7.U, 5.U) // 7: Store Access Fault, 5: Load Access Fault
 
   val trap_cause  = Mux(is_async_interrupt, csr.io.interrupt_cause,
@@ -758,9 +783,11 @@ class Execute(val hartId: Int = 0)(implicit val p: Parameters) extends Module wi
     div(i).io.src2 := src_int_2(i)
     div(i).io.dec  := exe_dec_int(i)
     div(i).io.fire := exe_val_int(i) && is_div_op
-    val div_is_younger = is_younger_than_redirect(div_robIdx_latch(i))
-    div(i).io.flush := io.redirect.valid && (io.redirect.is_exception || div_is_younger)
-    when(div(i).io.flush) { div_rd_latch(i) := 0.U }
+    val div_active = !div(i).io.ready || div(i).io.fire
+    val div_current_robIdx = Mux(div(i).io.fire, exe_uop_int(i).robIdx, div_robIdx_latch(i))
+    val div_is_younger = is_younger_than_redirect(div_current_robIdx)
+    div(i).io.flush := div_active && io.redirect.valid && (io.redirect.is_exception || div_is_younger)
+    when(div(i).io.flush && !div(i).io.fire) { div_rd_latch(i) := 0.U }
   }
 
   // Age-Priority Redirect/Flush Filter across BRU 0, BRU 1, and LoadQueue Replay
@@ -816,13 +843,13 @@ class Execute(val hartId: Int = 0)(implicit val p: Parameters) extends Module wi
     io.redirect.is_jalr      := exe_dec_int(1).is_jalr
     io.redirect.ftqPtr       := exe_uop_raw_int(1).ftqPtr
     io.redirect.robIdx       := exe_uop_int(1).robIdx
-  } .elsewhen(lq.io.violation.valid && io.snptValids(lq.io.violation.snapshotIdx)) {
+  } .elsewhen(lq.io.violation.valid) {
     io.redirect.valid := true.B
     io.redirect.target := lq.io.violation.loadPC
     io.redirect.epoch  := false.B
-    io.redirect.is_exception := false.B
+    io.redirect.is_exception := true.B
     io.redirect.exc_cause    := 0.U
-    io.redirect.snapshotIdx  := lq.io.violation.snapshotIdx
+    io.redirect.snapshotIdx  := 0.U
     io.redirect.pc           := lq.io.violation.loadPC
     io.redirect.taken        := false.B
     io.redirect.is_cfi       := false.B
@@ -871,30 +898,30 @@ class Execute(val hartId: Int = 0)(implicit val p: Parameters) extends Module wi
     io.redirect.valid := true.B
     io.redirect.target := csr.io.mepc_val
     io.redirect.epoch  := int_epoch(mret_lane)
-    io.redirect.is_exception := false.B
+    io.redirect.is_exception := true.B
     io.redirect.exc_cause    := 0.U
     io.redirect.snapshotIdx  := int_snap(mret_lane)
     io.redirect.pc           := int_pc(mret_lane)
-    io.redirect.taken        := true.B
-    io.redirect.is_cfi       := true.B
+    io.redirect.taken        := false.B
+    io.redirect.is_cfi       := false.B
     io.redirect.is_jal       := false.B
-    io.redirect.is_jalr      := true.B
+    io.redirect.is_jalr      := false.B
     io.redirect.ftqPtr       := int_ftq(mret_lane)
     io.redirect.robIdx       := int_rob(mret_lane)
   } .elsewhen(is_sret) {
     io.redirect.valid := true.B
     io.redirect.target := csr.io.sepc_val
-    io.redirect.epoch  := exe_uop_raw_int(0).epoch
-    io.redirect.is_exception := false.B
+    io.redirect.epoch  := int_epoch(sret_lane)
+    io.redirect.is_exception := true.B
     io.redirect.exc_cause    := 0.U
-    io.redirect.snapshotIdx  := r0_snap
-    io.redirect.pc           := exe_uop_raw_int(0).pc
-    io.redirect.taken        := true.B
-    io.redirect.is_cfi       := true.B
+    io.redirect.snapshotIdx  := int_snap(sret_lane)
+    io.redirect.pc           := int_pc(sret_lane)
+    io.redirect.taken        := false.B
+    io.redirect.is_cfi       := false.B
     io.redirect.is_jal       := false.B
-    io.redirect.is_jalr      := true.B
-    io.redirect.ftqPtr       := exe_uop_raw_int(0).ftqPtr
-    io.redirect.robIdx       := exe_uop_int(0).robIdx
+    io.redirect.is_jalr      := false.B
+    io.redirect.ftqPtr       := int_ftq(sret_lane)
+    io.redirect.robIdx       := int_rob(sret_lane)
   } .elsewhen(is_sfence_vma) {
     io.redirect.valid := true.B
     io.redirect.target := exe_uop_raw_int(0).pc + Mux(exe_uop_raw_int(0).pre.is_rvc, 2.U, 4.U)
@@ -954,7 +981,7 @@ class Execute(val hartId: Int = 0)(implicit val p: Parameters) extends Module wi
                                  Mux(exe_dec_int(i).is_csr, csr.io.csr_rdata, alu(i).io.result))))
       }
       if (i < 2) {
-        when(is_div_op) {
+        when(div(i).io.fire && !div(i).io.flush) {
           div_rd_latch(i) := exe_uop_int(i).pdest
           div_snap_latch(i) := exe_uop_int(i).snapshotIdx
           div_robIdx_latch(i) := exe_uop_int(i).robIdx
@@ -974,10 +1001,13 @@ class Execute(val hartId: Int = 0)(implicit val p: Parameters) extends Module wi
 
   // Writeback for Dividers (Ports 8, 9)
   for (i <- 0 until 2) {
-    when(div(i).io.done) {
+    when(div(i).io.done && div_rd_latch(i) =/= 0.U) {
       next_regFile_wen(8 + i)   := true.B
       next_regFile_waddr(8 + i) := div_rd_latch(i)
       next_regFile_wdata(8 + i) := div(i).io.result
+      when(!div(i).io.fire) {
+        div_rd_latch(i)         := 0.U
+      }
     }
   }
 
@@ -990,14 +1020,14 @@ class Execute(val hartId: Int = 0)(implicit val p: Parameters) extends Module wi
     val r_wu_val   = RegNext(wu_val_raw, false.B)
     val r_wu_pdest = RegNext(io.int_in(i).bits.pdest, 0.U)
 
-    val r_mul_wu_raw = RegNext(io.int_in(i).fire && io.int_in(i).bits.pdest =/= 0.U && is_mul_op, false.B)
-    val r_mul_wu_pdest_raw = RegNext(io.int_in(i).bits.pdest, 0.U)
-    val r_mul_wu_val = RegNext(r_mul_wu_raw, false.B)
-    val r_mul_wu_pdest = RegNext(r_mul_wu_pdest_raw, 0.U)
-
-    io.wakeup(i).valid := r_wu_val || r_mul_wu_val
-    io.wakeup(i).pdest := Mux(r_wu_val, r_wu_pdest, r_mul_wu_pdest)
+    io.wakeup(i).valid := r_wu_val
+    io.wakeup(i).pdest := r_wu_pdest
     io.wakeup(i).is_fp := false.B
+
+    val mul_wu_port = if (i == 0) 13 else 11
+    io.wakeup(mul_wu_port).valid := r2_mul_val(i) && r2_mul_pdest(i) =/= 0.U
+    io.wakeup(mul_wu_port).pdest := r2_mul_pdest(i)
+    io.wakeup(mul_wu_port).is_fp := false.B
   }
 
   // Wakeup for ALU 2 and ALU 3
@@ -1270,11 +1300,6 @@ class Execute(val hartId: Int = 0)(implicit val p: Parameters) extends Module wi
   io.pf_train.bits.pc := r_agu_uop(0).uop.pc
   io.pf_train.bits.addr := lsu(0).io.mem_addr
 
-  when(io.dcache_resp.valid && io.dcache_resp.bits.load_id =/= 0.U) {
-    next_regFile_wen(4)   := true.B
-    next_regFile_waddr(4) := io.dcache_resp.bits.load_id
-    next_regFile_wdata(4) := io.dcache_resp.bits.data
-  }
 
   // ---------------- FP EXECUTION (FPU 0..3) ----------------
   val fsrc1 = (0 until 4).map(i => r_fp_rdata(i * 3))
@@ -1309,8 +1334,10 @@ class Execute(val hartId: Int = 0)(implicit val p: Parameters) extends Module wi
   fpdiv.io.src2 := fsrc2(3)
   fpdiv.io.dec  := exe_dec_fp(3)
   fpdiv.io.fire := exe_val_fp(3) && (exe_dec_fp(3).is_fdiv || exe_dec_fp(3).is_fsqrt)
-  val fpdiv_is_younger = is_younger_than_redirect(fpdiv_robIdx_latch)
-  fpdiv.io.flush := io.redirect.valid && (io.redirect.is_exception || fpdiv_is_younger)
+  val fpdiv_active = !fpdiv.io.ready || fpdiv.io.fire
+  val fpdiv_current_robIdx = Mux(fpdiv.io.fire, exe_uop_fp(3).robIdx, fpdiv_robIdx_latch)
+  val fpdiv_is_younger = is_younger_than_redirect(fpdiv_current_robIdx)
+  fpdiv.io.flush := fpdiv_active && io.redirect.valid && (io.redirect.is_exception || fpdiv_is_younger)
   when(fpdiv.io.flush) { fpdiv_rd_latch := 0.U }
 
   // FP Writeback
@@ -1343,7 +1370,7 @@ class Execute(val hartId: Int = 0)(implicit val p: Parameters) extends Module wi
         }
       }
       if (i == 3) {
-        when(exe_dec_fp(3).is_fdiv || exe_dec_fp(3).is_fsqrt) {
+        when(fpdiv.io.fire && !fpdiv.io.flush) {
           fpdiv_rd_latch := exe_uop_fp(3).pdest
           fpdiv_snap_latch := exe_uop_fp(3).snapshotIdx
           fpdiv_robIdx_latch := exe_uop_fp(3).robIdx
@@ -1353,8 +1380,8 @@ class Execute(val hartId: Int = 0)(implicit val p: Parameters) extends Module wi
   }
 
   // FP Wakeup (Wakeup 8..11)
-  for (i <- 0 until 4) {
-    val wu_fp_val = io.fp_in(i).fire && io.fp_in(i).bits.pdest =/= 0.U && !(i == 3).B && !decFp(i).is_fdiv && !decFp(i).is_fsqrt
+  for (i <- 0 until 3) {
+    val wu_fp_val = io.fp_in(i).fire && io.fp_in(i).bits.pdest =/= 0.U && !decFp(i).is_fdiv && !decFp(i).is_fsqrt
     val r_wu_fp_val = RegNext(wu_fp_val, false.B)
     val r_wu_fp_pdest = RegNext(io.fp_in(i).bits.pdest, 0.U)
     val is_int_wb = if (i >= 2) decFp(i).is_fmv_x_w || decFp(i).is_fmv_x_d || decFp(i).is_fcvt_f2i || decFp(i).is_feq || decFp(i).is_flt || decFp(i).is_fle || decFp(i).is_fclass else false.B
@@ -1382,11 +1409,6 @@ class Execute(val hartId: Int = 0)(implicit val p: Parameters) extends Module wi
   io.wakeup(12).pdest := r_wu_fpdiv_pdest
   io.wakeup(12).is_fp := true.B
 
-  // D-Cache Refill Response Wakeup (Port 13)
-  val dcache_wu_val = io.dcache_resp.valid && io.dcache_resp.bits.load_id =/= 0.U
-  io.wakeup(13).valid := dcache_wu_val
-  io.wakeup(13).pdest := io.dcache_resp.bits.load_id
-  io.wakeup(13).is_fp := false.B
 
   io.debug_regs := regFile.io.debug_regs
   io.debug_fp_regs := fpRegFile.io.debug_regs
@@ -1436,14 +1458,16 @@ class Execute(val hartId: Int = 0)(implicit val p: Parameters) extends Module wi
 
   // Dividers 0 & 1 (Ports 7, 8)
   for (i <- 0 until 2) {
-    io.exuWriteback(7 + i).valid := div(i).io.done
+    io.exuWriteback(7 + i).valid := div(i).io.done && div_rd_latch(i) =/= 0.U
     io.exuWriteback(7 + i).bits.robIdx := div_robIdx_latch(i)
+    io.exuWriteback(7 + i).bits.data := div(i).io.result
   }
 
   // Multipliers 0 & 1 (Ports 9, 10)
   for (i <- 0 until 2) {
     io.exuWriteback(9 + i).valid := r2_mul_val(i)
     io.exuWriteback(9 + i).bits.robIdx := r2_mul_robIdx(i)
+    io.exuWriteback(9 + i).bits.data := mul(i).io.result
   }
 
   // FP 0/2 & FP 1/3 (Ports 11, 12)
@@ -1455,6 +1479,6 @@ class Execute(val hartId: Int = 0)(implicit val p: Parameters) extends Module wi
   io.exuWriteback(12).bits.robIdx := Mux(exe_val_fp(1), exe_uop_fp(1).robIdx, exe_uop_fp(3).robIdx)
 
   // FPDIV (Port 13)
-  io.exuWriteback(13).valid := fpdiv.io.done
+  io.exuWriteback(13).valid := fpdiv.io.done && fpdiv_rd_latch =/= 0.U
   io.exuWriteback(13).bits.robIdx := fpdiv_robIdx_latch
 }

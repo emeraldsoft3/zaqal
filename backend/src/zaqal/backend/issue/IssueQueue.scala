@@ -75,7 +75,8 @@ class IssueQueue(val numEntries: Int, val numEnq: Int, val numDeq: Int, val numW
       entries(i).uop.decode.is_amx ||
       entries(i).uop.decode.is_vset ||
       entries(i).uop.decode.is_vec_arith ||
-      entries(i).uop.decode.is_vec_mem
+      entries(i).uop.decode.is_vec_mem ||
+      entries(i).uop.decode.is_atomic
     )
   })
 
@@ -217,12 +218,11 @@ class IssueQueue(val numEntries: Int, val numEnq: Int, val numDeq: Int, val numW
     }
   }
 
-  // Clear loadWaitBit when the store it is waiting for calculates its address
-  when (io.store_resolved.valid) {
-    for (i <- 0 until numEntries) {
-      when (entries(i).valid && entries(i).uop.loadWaitBit && (entries(i).uop.waitForRobIdx === io.store_resolved.bits)) {
-        entries(i).uop.loadWaitBit := false.B
-      }
+  // Clear loadWaitBit when the store it is waiting for calculates its address or has already committed
+  for (i <- 0 until numEntries) {
+    val store_already_committed = robDist(entries(i).uop.waitForRobIdx) >= robDist(entries(i).uop.robIdx)
+    when (entries(i).valid && entries(i).uop.loadWaitBit && (store_already_committed || (io.store_resolved.valid && (entries(i).uop.waitForRobIdx === io.store_resolved.bits)))) {
+      entries(i).uop.loadWaitBit := false.B
     }
   }
 

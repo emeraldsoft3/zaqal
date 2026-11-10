@@ -47,6 +47,7 @@ module DataMemDpi (
       end
     end
   end
+
 `else
   always @* begin
     rdata0_lo = 64'd0;

@@ -167,7 +167,6 @@ module ZaqalSoCTop(	// zaqal/src/zaqal/ZaqalSoCTop.scala:20:7
   wire         _xbar_io_slaves_3_r_ready;	// zaqal/src/zaqal/ZaqalSoCTop.scala:95:20
   wire         _dcache_bridge_io_mem_req_ready;	// zaqal/src/zaqal/ZaqalSoCTop.scala:52:29
   wire         _dcache_bridge_io_mem_resp_valid;	// zaqal/src/zaqal/ZaqalSoCTop.scala:52:29
-  wire [255:0] _dcache_bridge_io_mem_resp_bits_data;	// zaqal/src/zaqal/ZaqalSoCTop.scala:52:29
   wire         _dcache_bridge_io_axi_aw_valid;	// zaqal/src/zaqal/ZaqalSoCTop.scala:52:29
   wire         _dcache_bridge_io_axi_w_valid;	// zaqal/src/zaqal/ZaqalSoCTop.scala:52:29
   wire         _dcache_bridge_io_axi_w_bits_last;	// zaqal/src/zaqal/ZaqalSoCTop.scala:52:29
@@ -207,7 +206,6 @@ module ZaqalSoCTop(	// zaqal/src/zaqal/ZaqalSoCTop.scala:20:7
     .io_tl_d_a_bits_address (_core_io_tl_d_a_bits_address),
     .io_tl_d_d_ready        (_core_io_tl_d_d_ready),
     .io_tl_d_d_valid        (_dcache_bridge_io_mem_resp_valid),	// zaqal/src/zaqal/ZaqalSoCTop.scala:52:29
-    .io_tl_d_d_bits_data    (_dcache_bridge_io_mem_resp_bits_data),	// zaqal/src/zaqal/ZaqalSoCTop.scala:52:29
     .io_uart_tx_valid       (_core_io_uart_tx_valid),
     .io_uart_tx_char        (_core_io_uart_tx_char),
     .io_plic_ext_irq        (io_plic_ext_irq)
@@ -244,7 +242,7 @@ module ZaqalSoCTop(	// zaqal/src/zaqal/ZaqalSoCTop.scala:20:7
     .io_mem_req_bits_addr  (_core_io_tl_d_a_bits_address),	// zaqal/src/zaqal/ZaqalSoCTop.scala:36:20
     .io_mem_resp_ready     (_core_io_tl_d_d_ready),	// zaqal/src/zaqal/ZaqalSoCTop.scala:36:20
     .io_mem_resp_valid     (_dcache_bridge_io_mem_resp_valid),
-    .io_mem_resp_bits_data (_dcache_bridge_io_mem_resp_bits_data),
+    .io_mem_resp_bits_data (/* unused */),
     .io_axi_aw_ready       (_xbar_io_masters_1_aw_ready),	// zaqal/src/zaqal/ZaqalSoCTop.scala:95:20
     .io_axi_aw_valid       (_dcache_bridge_io_axi_aw_valid),
     .io_axi_w_ready        (_xbar_io_masters_1_w_ready),	// zaqal/src/zaqal/ZaqalSoCTop.scala:95:20

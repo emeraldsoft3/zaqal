@@ -233,11 +233,11 @@ class Backend(val hartId: Int = 0)(implicit val p: Parameters) extends Module wi
     val fp_wen = dec.rd_is_fp && !dec.is_branch && !dec.is_store && !dec.is_fstore && !dec.is_atomic && !is_fused_away && !is_shadow
     val vec_wen = dec.rd_is_vec && !dec.is_branch && !dec.is_store && !dec.is_fstore && !dec.is_atomic && !is_fused_away && !is_shadow
 
-    intFreeList.io.allocateReq(i) := rf_wen && io.dispatch(i).valid && !redirect_valid
+    intFreeList.io.allocateReq(i) := rf_wen && io.dispatch(i).valid && !redirect_valid && !has_older_cfi(i)
     intFreeList.io.allocateFire(i) := rf_wen && io.dispatch(i).fire
-    fpFreeList.io.allocateReq(i)  := fp_wen && io.dispatch(i).valid && !redirect_valid
+    fpFreeList.io.allocateReq(i)  := fp_wen && io.dispatch(i).valid && !redirect_valid && !has_older_cfi(i)
     fpFreeList.io.allocateFire(i) := fp_wen && io.dispatch(i).fire
-    vecFreeList.io.allocateReq(i) := vec_wen && io.dispatch(i).valid && !redirect_valid
+    vecFreeList.io.allocateReq(i) := vec_wen && io.dispatch(i).valid && !redirect_valid && !has_older_cfi(i)
     vecFreeList.io.allocateFire(i) := vec_wen && io.dispatch(i).fire
 
     decoded_uops(i).pdest := MuxCase(0.U, Seq(
@@ -252,8 +252,7 @@ class Backend(val hartId: Int = 0)(implicit val p: Parameters) extends Module wi
     rat.io.renamePorts(i).data := decoded_uops(i).pdest
     
     decoded_uops(i).old_pdest := rat.io.old_pdest(i)
-    val slot_is_younger_than_branch = has_branch && (i.U > branch_slot)
-    decoded_uops(i).snapshotIdx := wrapAdd(rat.io.snptEnqPtr, Mux(slot_is_younger_than_branch, 1.U, 0.U))
+    decoded_uops(i).snapshotIdx := rat.io.snptEnqPtr
     decoded_uops(i).is_fused_away := is_fused_away
     
     // Debug Print for Rename (disabled for quiet, fast simulation)
@@ -311,6 +310,7 @@ class Backend(val hartId: Int = 0)(implicit val p: Parameters) extends Module wi
     rat.io.commitPorts(i).wen := rob.io.commits.commitValid(i) && rob.io.commits.info(i).commit_w
     rat.io.commitPorts(i).addr := rob.io.commits.info(i).rd
     rat.io.commitPorts(i).data := rob.io.commits.info(i).pdest
+    rat.io.commit_is_rf(i) := rob.io.commits.info(i).rfWen
     rat.io.commit_is_fp(i) := rob.io.commits.info(i).fpWen
     rat.io.commit_is_vec(i) := rob.io.commits.info(i).vecWen
     
@@ -323,14 +323,20 @@ class Backend(val hartId: Int = 0)(implicit val p: Parameters) extends Module wi
   }
 
   val dispatch_in_buffered = Wire(Vec(decodeWidth, Decoupled(new DecodedMicroOp)))
-  val all_skids_ready = rename_out.map(_.ready).reduce(_ && _)
+  val all_skids_ready = !dispatch_in_buffered.map(_.valid).reduce(_ || _) && rename_out.map(_.ready).reduce(_ && _)
+
+  def is_younger_than_redirect(robIdx: UInt): Bool = {
+    def robDist(idx: UInt): UInt = Mux(idx >= rob.io.robDeqPtr, idx - rob.io.robDeqPtr, idx + 128.U - rob.io.robDeqPtr)
+    robDist(robIdx) > robDist(exec.io.redirect.robIdx)
+  }
 
   for (i <- 0 until decodeWidth) {
-    rename_out(i).valid := io.dispatch(i).valid && all_skids_ready && can_allocate_all && !redirect_valid
+    rename_out(i).valid := io.dispatch(i).valid && all_skids_ready && can_allocate_all && !redirect_valid && !has_older_cfi(i)
     rename_out(i).bits  := decoded_uops(i)
     rename_out(i).bits.robIdx := rob.io.allocPtrs(i)
     
-    dispatch_in_buffered(i) <> SkidBuffer(rename_out(i), exec.io.redirect.valid)
+    val skid_flush = exec.io.redirect.valid && (exec.io.redirect.is_exception || is_younger_than_redirect(dispatch_in_buffered(i).bits.robIdx))
+    dispatch_in_buffered(i) <> SkidBuffer(rename_out(i), skid_flush)
     
     dispatch.io.in(i).valid := dispatch_in_buffered(i).valid
     dispatch.io.in(i).bits  := dispatch_in_buffered(i).bits
@@ -433,7 +439,9 @@ class Backend(val hartId: Int = 0)(implicit val p: Parameters) extends Module wi
     dispatch.io.aluOut(i).ready := intIq.io.enq(i).ready && !redirect_valid
     dispatch.io.bruOut(i).ready := intIq.io.enq(i).ready && !redirect_valid
 
-    val is_store = dispatch.io.memOut(i).bits.decode.is_store || dispatch.io.memOut(i).bits.decode.is_fstore
+    val is_amo   = dispatch.io.memOut(i).bits.decode.is_amo_w || dispatch.io.memOut(i).bits.decode.is_amo_d
+    val is_sc    = dispatch.io.memOut(i).bits.decode.is_sc
+    val is_store = dispatch.io.memOut(i).bits.decode.is_store || dispatch.io.memOut(i).bits.decode.is_fstore || is_amo || is_sc
     val is_load  = dispatch.io.memOut(i).bits.decode.is_load || dispatch.io.memOut(i).bits.decode.is_fload
 
     // Store Set LFST Query & Allocation
@@ -456,7 +464,7 @@ class Backend(val hartId: Int = 0)(implicit val p: Parameters) extends Module wi
     val lsq_ready = Mux(is_store, sq_ready, Mux(is_load, lq_ready, true.B))
 
     val mem_uop = WireInit(dispatch.io.memOut(i).bits)
-    when(is_load && dispatch.io.memOut(i).bits.ssid_valid) {
+    when(enableMdp.B && is_load && dispatch.io.memOut(i).bits.ssid_valid) {
       mem_uop.loadWaitBit   := storeSet.io.dispatch_resp(i).shouldWait
       mem_uop.waitForRobIdx := storeSet.io.dispatch_resp(i).robIdx
       when(storeSet.io.dispatch_resp(i).shouldWait) {
@@ -484,7 +492,9 @@ class Backend(val hartId: Int = 0)(implicit val p: Parameters) extends Module wi
   }
 
   for (i <- 0 until decodeWidth) {
-    val is_store = dispatch.io.memOut(i).bits.decode.is_store || dispatch.io.memOut(i).bits.decode.is_fstore
+    val is_amo   = dispatch.io.memOut(i).bits.decode.is_amo_w || dispatch.io.memOut(i).bits.decode.is_amo_d
+    val is_sc    = dispatch.io.memOut(i).bits.decode.is_sc
+    val is_store = dispatch.io.memOut(i).bits.decode.is_store || dispatch.io.memOut(i).bits.decode.is_fstore || is_amo || is_sc
     val is_load  = dispatch.io.memOut(i).bits.decode.is_load || dispatch.io.memOut(i).bits.decode.is_fload
     val lsq_ready = Mux(is_store, exec.io.sq_enq(i).ready, Mux(is_load, exec.io.lq_enq(i).ready, true.B))
 
@@ -517,7 +527,7 @@ class Backend(val hartId: Int = 0)(implicit val p: Parameters) extends Module wi
 
   // Dispatch Ready Logic (Dynamic Backpressure) - Enforce at most 1 branch per cycle
   for (i <- 0 until decodeWidth) {
-    io.dispatch(i).ready := all_skids_ready && can_allocate_all && !redirect_valid
+    io.dispatch(i).ready := all_skids_ready && can_allocate_all && !redirect_valid && !has_older_cfi(i)
   }
 
   // Route redirection from Execute to Frontend

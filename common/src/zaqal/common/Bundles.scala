@@ -437,8 +437,8 @@ class RobCommitEntryBundle(implicit val p: Parameters) extends Bundle with HasZa
   val isRVC = Bool()
   val mmio = Bool()
   val target = UInt(64.W)
-  val old_pdest = UInt(7.W)
-  val pdest = UInt(7.W)
+  val old_pdest = UInt(phyRegIdxWidth.W)
+  val pdest = UInt(phyRegIdxWidth.W)
   val rd = UInt(5.W)
 }
 
@@ -466,8 +466,8 @@ class RobEntryBundle(implicit val p: Parameters) extends Bundle with HasZaqalPar
   val instr = UInt(32.W)
   val wbData = UInt(64.W)
   val target = UInt(64.W)
-  val old_pdest = UInt(7.W) // phyRegIdxWidth
-  val pdest = UInt(7.W)
+  val old_pdest = UInt(phyRegIdxWidth.W) // phyRegIdxWidth
+  val pdest = UInt(phyRegIdxWidth.W)
   val rd = UInt(5.W) // logicalRegIdxWidth
   val ftqPtr = UInt(6.W) // ftqPtrWidth
   val is_cfi = Bool()

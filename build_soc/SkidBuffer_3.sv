@@ -285,9 +285,7 @@ module SkidBuffer_3(	// utility/src/zaqal/utility/Utility.scala:13:7
                 io_enq_bits_old_pdest,	// utility/src/zaqal/utility/Utility.scala:14:14
                 io_enq_bits_snapshotIdx,	// utility/src/zaqal/utility/Utility.scala:14:14
   input  [6:0]  io_enq_bits_robIdx,	// utility/src/zaqal/utility/Utility.scala:14:14
-  input  [5:0]  io_enq_bits_ssid,	// utility/src/zaqal/utility/Utility.scala:14:14
-  input         io_enq_bits_ssid_valid,	// utility/src/zaqal/utility/Utility.scala:14:14
-                io_deq_ready,	// utility/src/zaqal/utility/Utility.scala:14:14
+  input         io_deq_ready,	// utility/src/zaqal/utility/Utility.scala:14:14
   output        io_deq_valid,	// utility/src/zaqal/utility/Utility.scala:14:14
   output [63:0] io_deq_bits_uop_pc,	// utility/src/zaqal/utility/Utility.scala:14:14
   output [31:0] io_deq_bits_uop_inst_raw,	// utility/src/zaqal/utility/Utility.scala:14:14
@@ -509,9 +507,7 @@ module SkidBuffer_3(	// utility/src/zaqal/utility/Utility.scala:13:7
                 io_deq_bits_snapshotIdx,	// utility/src/zaqal/utility/Utility.scala:14:14
   output        io_deq_bits_is_fused_away,	// utility/src/zaqal/utility/Utility.scala:14:14
   output [6:0]  io_deq_bits_robIdx,	// utility/src/zaqal/utility/Utility.scala:14:14
-  output [5:0]  io_deq_bits_ssid,	// utility/src/zaqal/utility/Utility.scala:14:14
-  output        io_deq_bits_ssid_valid,	// utility/src/zaqal/utility/Utility.scala:14:14
-                io_deq_bits_loadWaitBit,	// utility/src/zaqal/utility/Utility.scala:14:14
+  output        io_deq_bits_loadWaitBit,	// utility/src/zaqal/utility/Utility.scala:14:14
   output [6:0]  io_deq_bits_waitForRobIdx,	// utility/src/zaqal/utility/Utility.scala:14:14
   input         io_flush	// utility/src/zaqal/utility/Utility.scala:14:14
 );
@@ -736,8 +732,6 @@ module SkidBuffer_3(	// utility/src/zaqal/utility/Utility.scala:13:7
   reg  [7:0]  slot0_data_snapshotIdx;	// utility/src/zaqal/utility/Utility.scala:22:24
   reg         slot0_data_is_fused_away;	// utility/src/zaqal/utility/Utility.scala:22:24
   reg  [6:0]  slot0_data_robIdx;	// utility/src/zaqal/utility/Utility.scala:22:24
-  reg  [5:0]  slot0_data_ssid;	// utility/src/zaqal/utility/Utility.scala:22:24
-  reg         slot0_data_ssid_valid;	// utility/src/zaqal/utility/Utility.scala:22:24
   reg         slot0_data_loadWaitBit;	// utility/src/zaqal/utility/Utility.scala:22:24
   reg  [6:0]  slot0_data_waitForRobIdx;	// utility/src/zaqal/utility/Utility.scala:22:24
   reg         slot0_valid;	// utility/src/zaqal/utility/Utility.scala:23:28
@@ -961,8 +955,6 @@ module SkidBuffer_3(	// utility/src/zaqal/utility/Utility.scala:13:7
   reg  [7:0]  slot1_data_snapshotIdx;	// utility/src/zaqal/utility/Utility.scala:24:24
   reg         slot1_data_is_fused_away;	// utility/src/zaqal/utility/Utility.scala:24:24
   reg  [6:0]  slot1_data_robIdx;	// utility/src/zaqal/utility/Utility.scala:24:24
-  reg  [5:0]  slot1_data_ssid;	// utility/src/zaqal/utility/Utility.scala:24:24
-  reg         slot1_data_ssid_valid;	// utility/src/zaqal/utility/Utility.scala:24:24
   reg         slot1_data_loadWaitBit;	// utility/src/zaqal/utility/Utility.scala:24:24
   reg  [6:0]  slot1_data_waitForRobIdx;	// utility/src/zaqal/utility/Utility.scala:24:24
   reg         slot1_valid;	// utility/src/zaqal/utility/Utility.scala:25:28
@@ -1191,8 +1183,6 @@ module SkidBuffer_3(	// utility/src/zaqal/utility/Utility.scala:13:7
         slot0_data_old_pdest <= io_enq_bits_old_pdest;	// utility/src/zaqal/utility/Utility.scala:22:24
         slot0_data_snapshotIdx <= io_enq_bits_snapshotIdx;	// utility/src/zaqal/utility/Utility.scala:22:24
         slot0_data_robIdx <= io_enq_bits_robIdx;	// utility/src/zaqal/utility/Utility.scala:22:24
-        slot0_data_ssid <= io_enq_bits_ssid;	// utility/src/zaqal/utility/Utility.scala:22:24
-        slot0_data_ssid_valid <= io_enq_bits_ssid_valid;	// utility/src/zaqal/utility/Utility.scala:22:24
         slot0_data_waitForRobIdx <= 7'h0;	// utility/src/zaqal/utility/Utility.scala:14:14, :22:24
       end
       slot0_data_decode_is_fused_lui_addi <=
@@ -1423,8 +1413,6 @@ module SkidBuffer_3(	// utility/src/zaqal/utility/Utility.scala:13:7
       slot0_data_snapshotIdx <= slot1_data_snapshotIdx;	// utility/src/zaqal/utility/Utility.scala:22:24, :24:24
       slot0_data_is_fused_away <= slot1_data_is_fused_away;	// utility/src/zaqal/utility/Utility.scala:22:24, :24:24
       slot0_data_robIdx <= slot1_data_robIdx;	// utility/src/zaqal/utility/Utility.scala:22:24, :24:24
-      slot0_data_ssid <= slot1_data_ssid;	// utility/src/zaqal/utility/Utility.scala:22:24, :24:24
-      slot0_data_ssid_valid <= slot1_data_ssid_valid;	// utility/src/zaqal/utility/Utility.scala:22:24, :24:24
       slot0_data_loadWaitBit <= slot1_data_loadWaitBit;	// utility/src/zaqal/utility/Utility.scala:22:24, :24:24
       slot0_data_waitForRobIdx <= slot1_data_waitForRobIdx;	// utility/src/zaqal/utility/Utility.scala:22:24, :24:24
     end
@@ -1657,11 +1645,8 @@ module SkidBuffer_3(	// utility/src/zaqal/utility/Utility.scala:13:7
     slot1_data_is_fused_away <= _GEN_1 & slot1_data_is_fused_away;	// utility/src/zaqal/utility/Utility.scala:24:24, :34:19, :38:24
     if (_GEN_1) begin	// utility/src/zaqal/utility/Utility.scala:24:24, :34:19, :38:24
     end
-    else begin	// utility/src/zaqal/utility/Utility.scala:24:24, :34:19, :38:24
+    else	// utility/src/zaqal/utility/Utility.scala:24:24, :34:19, :38:24
       slot1_data_robIdx <= io_enq_bits_robIdx;	// utility/src/zaqal/utility/Utility.scala:24:24
-      slot1_data_ssid <= io_enq_bits_ssid;	// utility/src/zaqal/utility/Utility.scala:24:24
-      slot1_data_ssid_valid <= io_enq_bits_ssid_valid;	// utility/src/zaqal/utility/Utility.scala:24:24
-    end
     slot1_data_loadWaitBit <= _GEN_1 & slot1_data_loadWaitBit;	// utility/src/zaqal/utility/Utility.scala:24:24, :34:19, :38:24
     if (_GEN_1) begin	// utility/src/zaqal/utility/Utility.scala:24:24, :34:19, :38:24
     end
@@ -1915,8 +1900,6 @@ module SkidBuffer_3(	// utility/src/zaqal/utility/Utility.scala:13:7
         slot0_data_snapshotIdx = _RANDOM[6'h14][31:24];	// utility/src/zaqal/utility/Utility.scala:13:7, :22:24
         slot0_data_is_fused_away = _RANDOM[6'h15][0];	// utility/src/zaqal/utility/Utility.scala:13:7, :22:24
         slot0_data_robIdx = _RANDOM[6'h15][7:1];	// utility/src/zaqal/utility/Utility.scala:13:7, :22:24
-        slot0_data_ssid = _RANDOM[6'h15][13:8];	// utility/src/zaqal/utility/Utility.scala:13:7, :22:24
-        slot0_data_ssid_valid = _RANDOM[6'h15][14];	// utility/src/zaqal/utility/Utility.scala:13:7, :22:24
         slot0_data_loadWaitBit = _RANDOM[6'h15][15];	// utility/src/zaqal/utility/Utility.scala:13:7, :22:24
         slot0_data_waitForRobIdx = _RANDOM[6'h15][22:16];	// utility/src/zaqal/utility/Utility.scala:13:7, :22:24
         slot0_valid = _RANDOM[6'h15][23];	// utility/src/zaqal/utility/Utility.scala:13:7, :22:24, :23:28
@@ -2143,8 +2126,6 @@ module SkidBuffer_3(	// utility/src/zaqal/utility/Utility.scala:13:7
         slot1_data_snapshotIdx = _RANDOM[6'h2A][23:16];	// utility/src/zaqal/utility/Utility.scala:13:7, :24:24
         slot1_data_is_fused_away = _RANDOM[6'h2A][24];	// utility/src/zaqal/utility/Utility.scala:13:7, :24:24
         slot1_data_robIdx = _RANDOM[6'h2A][31:25];	// utility/src/zaqal/utility/Utility.scala:13:7, :24:24
-        slot1_data_ssid = _RANDOM[6'h2B][5:0];	// utility/src/zaqal/utility/Utility.scala:13:7, :24:24
-        slot1_data_ssid_valid = _RANDOM[6'h2B][6];	// utility/src/zaqal/utility/Utility.scala:13:7, :24:24
         slot1_data_loadWaitBit = _RANDOM[6'h2B][7];	// utility/src/zaqal/utility/Utility.scala:13:7, :24:24
         slot1_data_waitForRobIdx = _RANDOM[6'h2B][14:8];	// utility/src/zaqal/utility/Utility.scala:13:7, :24:24
         slot1_valid = _RANDOM[6'h2B][15];	// utility/src/zaqal/utility/Utility.scala:13:7, :24:24, :25:28
@@ -2376,8 +2357,6 @@ module SkidBuffer_3(	// utility/src/zaqal/utility/Utility.scala:13:7
   assign io_deq_bits_snapshotIdx = slot0_data_snapshotIdx;	// utility/src/zaqal/utility/Utility.scala:13:7, :22:24
   assign io_deq_bits_is_fused_away = slot0_data_is_fused_away;	// utility/src/zaqal/utility/Utility.scala:13:7, :22:24
   assign io_deq_bits_robIdx = slot0_data_robIdx;	// utility/src/zaqal/utility/Utility.scala:13:7, :22:24
-  assign io_deq_bits_ssid = slot0_data_ssid;	// utility/src/zaqal/utility/Utility.scala:13:7, :22:24
-  assign io_deq_bits_ssid_valid = slot0_data_ssid_valid;	// utility/src/zaqal/utility/Utility.scala:13:7, :22:24
   assign io_deq_bits_loadWaitBit = slot0_data_loadWaitBit;	// utility/src/zaqal/utility/Utility.scala:13:7, :22:24
   assign io_deq_bits_waitForRobIdx = slot0_data_waitForRobIdx;	// utility/src/zaqal/utility/Utility.scala:13:7, :22:24
 endmodule

@@ -8365,7 +8365,7 @@ module AXI4ROM(	// common/src/zaqal/common/AXI4ROM.scala:10:7
   assign io_in_ar_ready = ~r_state;	// common/src/zaqal/common/AXI4ROM.scala:10:7, :59:24, :65:30
   assign io_in_r_valid = r_state;	// common/src/zaqal/common/AXI4ROM.scala:10:7, :59:24
   assign io_in_r_bits_id = r_id;	// common/src/zaqal/common/AXI4ROM.scala:10:7, :60:24
-  assign io_in_r_bits_data = _GEN[word_idx[12:0]];	// <stdin>:588742:33, common/src/zaqal/common/AXI4ROM.scala:10:7, :75:32, :79:21
+  assign io_in_r_bits_data = _GEN[word_idx[12:0]];	// <stdin>:590135:33, common/src/zaqal/common/AXI4ROM.scala:10:7, :75:32, :79:21
   assign io_in_r_bits_last = io_in_r_bits_last_0;	// common/src/zaqal/common/AXI4ROM.scala:10:7, :81:33
 endmodule
 

@@ -8,6 +8,8 @@
 #include <verilated_vcd_c.h>
 #include "VZaqalSoCTop.h"
 #include "VZaqalSoCTop___024root.h"
+#include "rob_dump.h"
+#include "debug_dump.h"
 
 #define DRAM_BASE 0x80000000ULL
 #define DRAM_WORDS 2097152ULL
@@ -136,16 +138,33 @@ int main(int argc, char **argv) {
   for (uint64_t cycle = 0; cycle < max_cycles; cycle++) {
     top->clock = 0;
     top->eval();
-    if (tfp) tfp->dump(sim_time++);
+    if (tfp && cycle >= 18310 && cycle <= 18360) tfp->dump(sim_time++);
 
     top->clock = 1;
     top->eval();
-    if (tfp) tfp->dump(sim_time++);
+    if (tfp && cycle >= 18310 && cycle <= 18360) tfp->dump(sim_time++);
+
 
     if (top->io_uart_tx_valid) {
       char ch = (char)(top->io_uart_tx_char & 0xFF);
       std::cout << ch << std::flush;
       uart_chars++;
+    }
+
+    uint8_t cur_head = top->rootp->ZaqalSoCTop__DOT__core__DOT__backend__DOT__intFreeList__DOT__headPtr;
+    uint8_t cur_tail = top->rootp->ZaqalSoCTop__DOT__core__DOT__backend__DOT__intFreeList__DOT__tailPtr;
+    uint8_t rob_elems = top->rootp->ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT__elementsInRob;
+    int in_flight = (cur_head >= cur_tail) ? (cur_head - cur_tail) : (160 - (cur_tail - cur_head));
+    if (rob_elems == 0 && cur_head != cur_tail && cycle > 500) {
+      static uint64_t last_desync_cycle = 0;
+      if (cycle - last_desync_cycle > 5000) {
+        std::cout << "\n\033[1;31m[EMPTY ROB DESYNC]\033[0m at cycle " << cycle 
+                  << " commit #" << g_commit_count
+                  << ": head=" << (int)cur_head << " tail=" << (int)cur_tail
+                  << " in_flight=" << in_flight
+                  << "\n";
+        last_desync_cycle = cycle;
+      }
     }
 
     static uint64_t last_commit = 0;
@@ -154,8 +173,13 @@ int main(int argc, char **argv) {
       last_commit = g_commit_count;
       last_commit_cycle = cycle;
     } else if (cycle - last_commit_cycle > 3000 && cycle > 500) {
+      uint8_t deq = top->rootp->ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT__deqPtr;
+      uint8_t enq = top->rootp->ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT__enqPtr;
       std::cout << "\n\033[1;31m[STALL DETECTED]\033[0m No instructions committed for 3000 cycles at cycle " 
-                << cycle << "! Last commit #" << g_commit_count << "\n";
+                << cycle << "! Last commit #" << g_commit_count 
+                << " ROB deq=" << (int)deq << " enq=" << (int)enq << "\n";
+      dump_rob(top, deq, 8);
+      dump_debug(top);
       break;
     }
   }

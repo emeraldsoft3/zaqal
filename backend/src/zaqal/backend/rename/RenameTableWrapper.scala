@@ -10,6 +10,7 @@ class RenameTableWrapper(implicit val p: Parameters) extends Module with HasZaqa
     val dec = Vec(decodeWidth, Input(new DecodeSignals))
     val renamePorts = Vec(decodeWidth, Input(new RatWritePort)) // Logical addr + Physical data
     val commitPorts = Vec(decodeWidth, Input(new RatWritePort))
+    val commit_is_rf  = Vec(decodeWidth, Input(Bool()))
     val commit_is_fp  = Vec(decodeWidth, Input(Bool()))
     val commit_is_vec = Vec(decodeWidth, Input(Bool()))
     val redirect = Input(Bool())
@@ -111,7 +112,7 @@ class RenameTableWrapper(implicit val p: Parameters) extends Module with HasZaqa
                        Mux(io.dec(i).rd_is_fp, fpRat.io.old_pdest(i), intRat.io.old_pdest(i)))
 
     // 3. Route Commit Ports (Architectural Update)
-    intRat.io.commitPorts(i).wen  := io.commitPorts(i).wen && !io.commit_is_fp(i) && !io.commit_is_vec(i)
+    intRat.io.commitPorts(i).wen  := io.commitPorts(i).wen && io.commit_is_rf(i)
     intRat.io.commitPorts(i).addr := io.commitPorts(i).addr
     intRat.io.commitPorts(i).data := io.commitPorts(i).data
 

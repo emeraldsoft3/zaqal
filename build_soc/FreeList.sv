@@ -1347,7 +1347,7 @@ module FreeList(	// backend/src/zaqal/backend/rename/FreeList.scala:16:7
            + {1'h0,
               {1'h0, io_allocateFire_3} + {1'h0, io_allocateFire_4}
                 + {1'h0, io_allocateFire_5}}
-         : 3'h0};	// backend/src/zaqal/backend/rename/FreeList.scala:16:7, :56:20, :61:50, :66:31, :108:31, :109:{26,41}
+         : 3'h0};	// backend/src/zaqal/backend/rename/FreeList.scala:16:7, :56:20, :61:50, :66:31, :109:31, :110:{26,41}
   wire [8:0]        _GEN_10 = {1'h0, tailPtr};	// backend/src/zaqal/backend/rename/FreeList.scala:51:24, :61:50
   wire              effectiveFreeReq_0 = io_freeReq_0 & (|io_freePhyReg_0);	// backend/src/zaqal/backend/rename/FreeList.scala:76:{42,63}
   wire              effectiveFreeReq_1 = io_freeReq_1 & (|io_freePhyReg_1);	// backend/src/zaqal/backend/rename/FreeList.scala:76:{42,63}
@@ -1375,11 +1375,13 @@ module FreeList(	// backend/src/zaqal/backend/rename/FreeList.scala:16:7
   wire [8:0]        next_5 =
     _GEN_10 + {6'h0, _GEN_20 + {1'h0, _GEN_12 + _GEN_15 + _GEN_14}};	// backend/src/zaqal/backend/rename/FreeList.scala:16:7, :56:20, :61:50, :78:25, :80:26
   wire [7:0]        _GEN_22 = next_5 > 9'h9F ? next_5[7:0] + 8'h60 : next_5[7:0];	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :56:20, :57:{8,14,30}
-  wire [8:0]        tailPtr_next =
+  wire [8:0]        nextTailPtr_next =
     _GEN_10
     + {6'h0,
        {1'h0, _GEN_13 + _offset_T_18}
          + {1'h0, _GEN_15 + _GEN_14 + {1'h0, effectiveFreeReq_5}}};	// backend/src/zaqal/backend/rename/FreeList.scala:16:7, :56:20, :61:50, :76:42, :78:25
+  wire [7:0]        _nextTailPtr_T_3 =
+    nextTailPtr_next > 9'h9F ? nextTailPtr_next[7:0] + 8'h60 : nextTailPtr_next[7:0];	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :56:20, :57:{8,14,30}
   always @(posedge clock) begin	// backend/src/zaqal/backend/rename/FreeList.scala:16:7
     if (reset) begin	// backend/src/zaqal/backend/rename/FreeList.scala:16:7
       freeList_0 <= 8'h20;	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}
@@ -3467,10 +3469,10 @@ module FreeList(	// backend/src/zaqal/backend/rename/FreeList.scala:16:7
       else if (effectiveFreeReq_0 & _GEN_16 == 8'h9F)	// backend/src/zaqal/backend/rename/FreeList.scala:46:{25,33}, :57:8, :76:42, :81:32, :82:42
         freeList_159 <= io_freePhyReg_0;	// backend/src/zaqal/backend/rename/FreeList.scala:46:25
       if (io_redirect)	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
-        headPtr <= io_useSnapshot ? _GEN_8 | _GEN_9 : tailPtr;	// backend/src/zaqal/backend/rename/FreeList.scala:50:24, :51:24, :106:19, src/main/scala/chisel3/util/Mux.scala:30:73
+        headPtr <= io_useSnapshot ? _GEN_8 | _GEN_9 : _nextTailPtr_T_3;	// backend/src/zaqal/backend/rename/FreeList.scala:50:24, :57:8, :107:19, src/main/scala/chisel3/util/Mux.scala:30:73
       else	// backend/src/zaqal/backend/rename/FreeList.scala:17:14
         headPtr <= headPtr_next > 9'h9F ? headPtr_next[7:0] + 8'h60 : headPtr_next[7:0];	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :50:24, :56:20, :57:{8,14,30}
-      tailPtr <= tailPtr_next > 9'h9F ? tailPtr_next[7:0] + 8'h60 : tailPtr_next[7:0];	// backend/src/zaqal/backend/rename/FreeList.scala:46:33, :51:24, :56:20, :57:{8,14,30}
+      tailPtr <= _nextTailPtr_T_3;	// backend/src/zaqal/backend/rename/FreeList.scala:51:24, :57:8
     end
   end // always @(posedge)
   `ifdef ENABLE_INITIAL_REG_	// backend/src/zaqal/backend/rename/FreeList.scala:16:7

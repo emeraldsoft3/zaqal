@@ -174,6 +174,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
   input  [2:0]  io_enq_0_bits_decode_csr_cmd,	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:17:14
   input  [11:0] io_enq_0_bits_decode_csr_addr,	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:17:14
   input         io_enq_0_bits_decode_is_ecall,	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:17:14
+                io_enq_0_bits_decode_is_ebreak,	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:17:14
                 io_enq_0_bits_decode_is_mret,	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:17:14
                 io_enq_0_bits_decode_is_sret,	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:17:14
                 io_enq_0_bits_decode_is_sfence_vma,	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:17:14
@@ -326,6 +327,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
   input  [2:0]  io_enq_1_bits_decode_csr_cmd,	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:17:14
   input  [11:0] io_enq_1_bits_decode_csr_addr,	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:17:14
   input         io_enq_1_bits_decode_is_ecall,	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:17:14
+                io_enq_1_bits_decode_is_ebreak,	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:17:14
                 io_enq_1_bits_decode_is_mret,	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:17:14
                 io_enq_1_bits_decode_is_sret,	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:17:14
                 io_enq_1_bits_decode_is_sfence_vma,	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:17:14
@@ -478,6 +480,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
   input  [2:0]  io_enq_2_bits_decode_csr_cmd,	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:17:14
   input  [11:0] io_enq_2_bits_decode_csr_addr,	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:17:14
   input         io_enq_2_bits_decode_is_ecall,	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:17:14
+                io_enq_2_bits_decode_is_ebreak,	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:17:14
                 io_enq_2_bits_decode_is_mret,	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:17:14
                 io_enq_2_bits_decode_is_sret,	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:17:14
                 io_enq_2_bits_decode_is_sfence_vma,	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:17:14
@@ -630,6 +633,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
   input  [2:0]  io_enq_3_bits_decode_csr_cmd,	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:17:14
   input  [11:0] io_enq_3_bits_decode_csr_addr,	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:17:14
   input         io_enq_3_bits_decode_is_ecall,	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:17:14
+                io_enq_3_bits_decode_is_ebreak,	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:17:14
                 io_enq_3_bits_decode_is_mret,	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:17:14
                 io_enq_3_bits_decode_is_sret,	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:17:14
                 io_enq_3_bits_decode_is_sfence_vma,	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:17:14
@@ -782,6 +786,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
   input  [2:0]  io_enq_4_bits_decode_csr_cmd,	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:17:14
   input  [11:0] io_enq_4_bits_decode_csr_addr,	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:17:14
   input         io_enq_4_bits_decode_is_ecall,	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:17:14
+                io_enq_4_bits_decode_is_ebreak,	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:17:14
                 io_enq_4_bits_decode_is_mret,	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:17:14
                 io_enq_4_bits_decode_is_sret,	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:17:14
                 io_enq_4_bits_decode_is_sfence_vma,	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:17:14
@@ -934,6 +939,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
   input  [2:0]  io_enq_5_bits_decode_csr_cmd,	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:17:14
   input  [11:0] io_enq_5_bits_decode_csr_addr,	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:17:14
   input         io_enq_5_bits_decode_is_ecall,	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:17:14
+                io_enq_5_bits_decode_is_ebreak,	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:17:14
                 io_enq_5_bits_decode_is_mret,	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:17:14
                 io_enq_5_bits_decode_is_sret,	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:17:14
                 io_enq_5_bits_decode_is_sfence_vma,	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:17:14
@@ -1086,6 +1092,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
   output [2:0]  io_deq_bits_decode_csr_cmd,	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:17:14
   output [11:0] io_deq_bits_decode_csr_addr,	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:17:14
   output        io_deq_bits_decode_is_ecall,	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:17:14
+                io_deq_bits_decode_is_ebreak,	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:17:14
                 io_deq_bits_decode_is_mret,	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:17:14
                 io_deq_bits_decode_is_sret,	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:17:14
                 io_deq_bits_decode_is_sfence_vma,	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:17:14
@@ -1242,6 +1249,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
   reg  [2:0]        entries_0_uop_decode_csr_cmd;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
   reg  [11:0]       entries_0_uop_decode_csr_addr;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
   reg               entries_0_uop_decode_is_ecall;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
+  reg               entries_0_uop_decode_is_ebreak;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
   reg               entries_0_uop_decode_is_mret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
   reg               entries_0_uop_decode_is_sret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
   reg               entries_0_uop_decode_is_sfence_vma;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -1393,6 +1401,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
   reg  [2:0]        entries_1_uop_decode_csr_cmd;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
   reg  [11:0]       entries_1_uop_decode_csr_addr;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
   reg               entries_1_uop_decode_is_ecall;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
+  reg               entries_1_uop_decode_is_ebreak;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
   reg               entries_1_uop_decode_is_mret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
   reg               entries_1_uop_decode_is_sret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
   reg               entries_1_uop_decode_is_sfence_vma;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -1544,6 +1553,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
   reg  [2:0]        entries_2_uop_decode_csr_cmd;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
   reg  [11:0]       entries_2_uop_decode_csr_addr;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
   reg               entries_2_uop_decode_is_ecall;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
+  reg               entries_2_uop_decode_is_ebreak;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
   reg               entries_2_uop_decode_is_mret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
   reg               entries_2_uop_decode_is_sret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
   reg               entries_2_uop_decode_is_sfence_vma;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -1695,6 +1705,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
   reg  [2:0]        entries_3_uop_decode_csr_cmd;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
   reg  [11:0]       entries_3_uop_decode_csr_addr;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
   reg               entries_3_uop_decode_is_ecall;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
+  reg               entries_3_uop_decode_is_ebreak;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
   reg               entries_3_uop_decode_is_mret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
   reg               entries_3_uop_decode_is_sret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
   reg               entries_3_uop_decode_is_sfence_vma;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -1846,6 +1857,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
   reg  [2:0]        entries_4_uop_decode_csr_cmd;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
   reg  [11:0]       entries_4_uop_decode_csr_addr;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
   reg               entries_4_uop_decode_is_ecall;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
+  reg               entries_4_uop_decode_is_ebreak;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
   reg               entries_4_uop_decode_is_mret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
   reg               entries_4_uop_decode_is_sret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
   reg               entries_4_uop_decode_is_sfence_vma;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -1997,6 +2009,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
   reg  [2:0]        entries_5_uop_decode_csr_cmd;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
   reg  [11:0]       entries_5_uop_decode_csr_addr;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
   reg               entries_5_uop_decode_is_ecall;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
+  reg               entries_5_uop_decode_is_ebreak;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
   reg               entries_5_uop_decode_is_mret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
   reg               entries_5_uop_decode_is_sret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
   reg               entries_5_uop_decode_is_sfence_vma;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -2148,6 +2161,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
   reg  [2:0]        entries_6_uop_decode_csr_cmd;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
   reg  [11:0]       entries_6_uop_decode_csr_addr;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
   reg               entries_6_uop_decode_is_ecall;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
+  reg               entries_6_uop_decode_is_ebreak;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
   reg               entries_6_uop_decode_is_mret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
   reg               entries_6_uop_decode_is_sret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
   reg               entries_6_uop_decode_is_sfence_vma;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -2299,6 +2313,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
   reg  [2:0]        entries_7_uop_decode_csr_cmd;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
   reg  [11:0]       entries_7_uop_decode_csr_addr;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
   reg               entries_7_uop_decode_is_ecall;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
+  reg               entries_7_uop_decode_is_ebreak;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
   reg               entries_7_uop_decode_is_mret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
   reg               entries_7_uop_decode_is_sret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
   reg               entries_7_uop_decode_is_sfence_vma;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -2450,6 +2465,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
   reg  [2:0]        entries_8_uop_decode_csr_cmd;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
   reg  [11:0]       entries_8_uop_decode_csr_addr;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
   reg               entries_8_uop_decode_is_ecall;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
+  reg               entries_8_uop_decode_is_ebreak;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
   reg               entries_8_uop_decode_is_mret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
   reg               entries_8_uop_decode_is_sret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
   reg               entries_8_uop_decode_is_sfence_vma;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -2601,6 +2617,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
   reg  [2:0]        entries_9_uop_decode_csr_cmd;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
   reg  [11:0]       entries_9_uop_decode_csr_addr;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
   reg               entries_9_uop_decode_is_ecall;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
+  reg               entries_9_uop_decode_is_ebreak;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
   reg               entries_9_uop_decode_is_mret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
   reg               entries_9_uop_decode_is_sret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
   reg               entries_9_uop_decode_is_sfence_vma;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -2752,6 +2769,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
   reg  [2:0]        entries_10_uop_decode_csr_cmd;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
   reg  [11:0]       entries_10_uop_decode_csr_addr;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
   reg               entries_10_uop_decode_is_ecall;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
+  reg               entries_10_uop_decode_is_ebreak;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
   reg               entries_10_uop_decode_is_mret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
   reg               entries_10_uop_decode_is_sret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
   reg               entries_10_uop_decode_is_sfence_vma;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -2903,6 +2921,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
   reg  [2:0]        entries_11_uop_decode_csr_cmd;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
   reg  [11:0]       entries_11_uop_decode_csr_addr;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
   reg               entries_11_uop_decode_is_ecall;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
+  reg               entries_11_uop_decode_is_ebreak;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
   reg               entries_11_uop_decode_is_mret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
   reg               entries_11_uop_decode_is_sret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
   reg               entries_11_uop_decode_is_sfence_vma;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -3054,6 +3073,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
   reg  [2:0]        entries_12_uop_decode_csr_cmd;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
   reg  [11:0]       entries_12_uop_decode_csr_addr;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
   reg               entries_12_uop_decode_is_ecall;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
+  reg               entries_12_uop_decode_is_ebreak;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
   reg               entries_12_uop_decode_is_mret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
   reg               entries_12_uop_decode_is_sret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
   reg               entries_12_uop_decode_is_sfence_vma;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -3205,6 +3225,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
   reg  [2:0]        entries_13_uop_decode_csr_cmd;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
   reg  [11:0]       entries_13_uop_decode_csr_addr;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
   reg               entries_13_uop_decode_is_ecall;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
+  reg               entries_13_uop_decode_is_ebreak;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
   reg               entries_13_uop_decode_is_mret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
   reg               entries_13_uop_decode_is_sret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
   reg               entries_13_uop_decode_is_sfence_vma;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -3356,6 +3377,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
   reg  [2:0]        entries_14_uop_decode_csr_cmd;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
   reg  [11:0]       entries_14_uop_decode_csr_addr;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
   reg               entries_14_uop_decode_is_ecall;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
+  reg               entries_14_uop_decode_is_ebreak;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
   reg               entries_14_uop_decode_is_mret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
   reg               entries_14_uop_decode_is_sret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
   reg               entries_14_uop_decode_is_sfence_vma;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -3507,6 +3529,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
   reg  [2:0]        entries_15_uop_decode_csr_cmd;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
   reg  [11:0]       entries_15_uop_decode_csr_addr;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
   reg               entries_15_uop_decode_is_ecall;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
+  reg               entries_15_uop_decode_is_ebreak;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
   reg               entries_15_uop_decode_is_mret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
   reg               entries_15_uop_decode_is_sret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
   reg               entries_15_uop_decode_is_sfence_vma;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -5326,6 +5349,23 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
      {entries_1_uop_decode_is_ecall},
      {entries_0_uop_decode_is_ecall}};	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24, :51:35
   wire [15:0]       _GEN_103 =
+    {{entries_15_uop_decode_is_ebreak},
+     {entries_14_uop_decode_is_ebreak},
+     {entries_13_uop_decode_is_ebreak},
+     {entries_12_uop_decode_is_ebreak},
+     {entries_11_uop_decode_is_ebreak},
+     {entries_10_uop_decode_is_ebreak},
+     {entries_9_uop_decode_is_ebreak},
+     {entries_8_uop_decode_is_ebreak},
+     {entries_7_uop_decode_is_ebreak},
+     {entries_6_uop_decode_is_ebreak},
+     {entries_5_uop_decode_is_ebreak},
+     {entries_4_uop_decode_is_ebreak},
+     {entries_3_uop_decode_is_ebreak},
+     {entries_2_uop_decode_is_ebreak},
+     {entries_1_uop_decode_is_ebreak},
+     {entries_0_uop_decode_is_ebreak}};	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24, :51:35
+  wire [15:0]       _GEN_104 =
     {{entries_15_uop_decode_is_mret},
      {entries_14_uop_decode_is_mret},
      {entries_13_uop_decode_is_mret},
@@ -5342,7 +5382,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
      {entries_2_uop_decode_is_mret},
      {entries_1_uop_decode_is_mret},
      {entries_0_uop_decode_is_mret}};	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24, :51:35
-  wire [15:0]       _GEN_104 =
+  wire [15:0]       _GEN_105 =
     {{entries_15_uop_decode_is_sret},
      {entries_14_uop_decode_is_sret},
      {entries_13_uop_decode_is_sret},
@@ -5359,7 +5399,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
      {entries_2_uop_decode_is_sret},
      {entries_1_uop_decode_is_sret},
      {entries_0_uop_decode_is_sret}};	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24, :51:35
-  wire [15:0]       _GEN_105 =
+  wire [15:0]       _GEN_106 =
     {{entries_15_uop_decode_is_sfence_vma},
      {entries_14_uop_decode_is_sfence_vma},
      {entries_13_uop_decode_is_sfence_vma},
@@ -5376,7 +5416,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
      {entries_2_uop_decode_is_sfence_vma},
      {entries_1_uop_decode_is_sfence_vma},
      {entries_0_uop_decode_is_sfence_vma}};	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24, :51:35
-  wire [15:0][4:0]  _GEN_106 =
+  wire [15:0][4:0]  _GEN_107 =
     {{entries_15_uop_decode_rd},
      {entries_14_uop_decode_rd},
      {entries_13_uop_decode_rd},
@@ -5393,7 +5433,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
      {entries_2_uop_decode_rd},
      {entries_1_uop_decode_rd},
      {entries_0_uop_decode_rd}};	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24, :51:35
-  wire [15:0][4:0]  _GEN_107 =
+  wire [15:0][4:0]  _GEN_108 =
     {{entries_15_uop_decode_rs1},
      {entries_14_uop_decode_rs1},
      {entries_13_uop_decode_rs1},
@@ -5410,7 +5450,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
      {entries_2_uop_decode_rs1},
      {entries_1_uop_decode_rs1},
      {entries_0_uop_decode_rs1}};	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24, :51:35
-  wire [15:0][63:0] _GEN_108 =
+  wire [15:0][63:0] _GEN_109 =
     {{entries_15_uop_decode_imm},
      {entries_14_uop_decode_imm},
      {entries_13_uop_decode_imm},
@@ -5427,7 +5467,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
      {entries_2_uop_decode_imm},
      {entries_1_uop_decode_imm},
      {entries_0_uop_decode_imm}};	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24, :51:35
-  wire [15:0]       _GEN_109 =
+  wire [15:0]       _GEN_110 =
     {{entries_15_uop_decode_is_fused_lui_addi},
      {entries_14_uop_decode_is_fused_lui_addi},
      {entries_13_uop_decode_is_fused_lui_addi},
@@ -5444,7 +5484,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
      {entries_2_uop_decode_is_fused_lui_addi},
      {entries_1_uop_decode_is_fused_lui_addi},
      {entries_0_uop_decode_is_fused_lui_addi}};	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24, :51:35
-  wire [15:0][4:0]  _GEN_110 =
+  wire [15:0][4:0]  _GEN_111 =
     {{entries_15_uop_decode_fused_type},
      {entries_14_uop_decode_fused_type},
      {entries_13_uop_decode_fused_type},
@@ -5461,7 +5501,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
      {entries_2_uop_decode_fused_type},
      {entries_1_uop_decode_fused_type},
      {entries_0_uop_decode_fused_type}};	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24, :51:35
-  wire [15:0]       _GEN_111 =
+  wire [15:0]       _GEN_112 =
     {{entries_15_uop_decode_rd_is_fp},
      {entries_14_uop_decode_rd_is_fp},
      {entries_13_uop_decode_rd_is_fp},
@@ -5478,7 +5518,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
      {entries_2_uop_decode_rd_is_fp},
      {entries_1_uop_decode_rd_is_fp},
      {entries_0_uop_decode_rd_is_fp}};	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24, :51:35
-  wire [15:0]       _GEN_112 =
+  wire [15:0]       _GEN_113 =
     {{entries_15_uop_decode_rs1_is_vec},
      {entries_14_uop_decode_rs1_is_vec},
      {entries_13_uop_decode_rs1_is_vec},
@@ -5495,7 +5535,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
      {entries_2_uop_decode_rs1_is_vec},
      {entries_1_uop_decode_rs1_is_vec},
      {entries_0_uop_decode_rs1_is_vec}};	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24, :51:35
-  wire [15:0]       _GEN_113 =
+  wire [15:0]       _GEN_114 =
     {{entries_15_uop_decode_rs2_is_vec},
      {entries_14_uop_decode_rs2_is_vec},
      {entries_13_uop_decode_rs2_is_vec},
@@ -5512,7 +5552,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
      {entries_2_uop_decode_rs2_is_vec},
      {entries_1_uop_decode_rs2_is_vec},
      {entries_0_uop_decode_rs2_is_vec}};	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24, :51:35
-  wire [15:0]       _GEN_114 =
+  wire [15:0]       _GEN_115 =
     {{entries_15_uop_decode_rs3_is_vec},
      {entries_14_uop_decode_rs3_is_vec},
      {entries_13_uop_decode_rs3_is_vec},
@@ -5529,7 +5569,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
      {entries_2_uop_decode_rs3_is_vec},
      {entries_1_uop_decode_rs3_is_vec},
      {entries_0_uop_decode_rs3_is_vec}};	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24, :51:35
-  wire [15:0]       _GEN_115 =
+  wire [15:0]       _GEN_116 =
     {{entries_15_uop_decode_rd_is_vec},
      {entries_14_uop_decode_rd_is_vec},
      {entries_13_uop_decode_rd_is_vec},
@@ -5546,7 +5586,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
      {entries_2_uop_decode_rd_is_vec},
      {entries_1_uop_decode_rd_is_vec},
      {entries_0_uop_decode_rd_is_vec}};	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24, :51:35
-  wire [15:0]       _GEN_116 =
+  wire [15:0]       _GEN_117 =
     {{entries_15_uop_decode_is_amx},
      {entries_14_uop_decode_is_amx},
      {entries_13_uop_decode_is_amx},
@@ -5563,7 +5603,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
      {entries_2_uop_decode_is_amx},
      {entries_1_uop_decode_is_amx},
      {entries_0_uop_decode_is_amx}};	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24, :51:35
-  wire [15:0]       _GEN_117 =
+  wire [15:0]       _GEN_118 =
     {{entries_15_uop_decode_is_tcfg},
      {entries_14_uop_decode_is_tcfg},
      {entries_13_uop_decode_is_tcfg},
@@ -5580,7 +5620,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
      {entries_2_uop_decode_is_tcfg},
      {entries_1_uop_decode_is_tcfg},
      {entries_0_uop_decode_is_tcfg}};	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24, :51:35
-  wire [15:0]       _GEN_118 =
+  wire [15:0]       _GEN_119 =
     {{entries_15_uop_decode_is_tzero},
      {entries_14_uop_decode_is_tzero},
      {entries_13_uop_decode_is_tzero},
@@ -5597,7 +5637,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
      {entries_2_uop_decode_is_tzero},
      {entries_1_uop_decode_is_tzero},
      {entries_0_uop_decode_is_tzero}};	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24, :51:35
-  wire [15:0]       _GEN_119 =
+  wire [15:0]       _GEN_120 =
     {{entries_15_uop_decode_is_tld},
      {entries_14_uop_decode_is_tld},
      {entries_13_uop_decode_is_tld},
@@ -5614,7 +5654,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
      {entries_2_uop_decode_is_tld},
      {entries_1_uop_decode_is_tld},
      {entries_0_uop_decode_is_tld}};	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24, :51:35
-  wire [15:0]       _GEN_120 =
+  wire [15:0]       _GEN_121 =
     {{entries_15_uop_decode_is_tst},
      {entries_14_uop_decode_is_tst},
      {entries_13_uop_decode_is_tst},
@@ -5631,7 +5671,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
      {entries_2_uop_decode_is_tst},
      {entries_1_uop_decode_is_tst},
      {entries_0_uop_decode_is_tst}};	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24, :51:35
-  wire [15:0]       _GEN_121 =
+  wire [15:0]       _GEN_122 =
     {{entries_15_uop_decode_is_tmma_i8},
      {entries_14_uop_decode_is_tmma_i8},
      {entries_13_uop_decode_is_tmma_i8},
@@ -5648,7 +5688,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
      {entries_2_uop_decode_is_tmma_i8},
      {entries_1_uop_decode_is_tmma_i8},
      {entries_0_uop_decode_is_tmma_i8}};	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24, :51:35
-  wire [15:0]       _GEN_122 =
+  wire [15:0]       _GEN_123 =
     {{entries_15_uop_decode_is_tmma_bf16},
      {entries_14_uop_decode_is_tmma_bf16},
      {entries_13_uop_decode_is_tmma_bf16},
@@ -5665,7 +5705,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
      {entries_2_uop_decode_is_tmma_bf16},
      {entries_1_uop_decode_is_tmma_bf16},
      {entries_0_uop_decode_is_tmma_bf16}};	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24, :51:35
-  wire [15:0]       _GEN_123 =
+  wire [15:0]       _GEN_124 =
     {{entries_15_uop_decode_is_tmma_fp32},
      {entries_14_uop_decode_is_tmma_fp32},
      {entries_13_uop_decode_is_tmma_fp32},
@@ -5682,7 +5722,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
      {entries_2_uop_decode_is_tmma_fp32},
      {entries_1_uop_decode_is_tmma_fp32},
      {entries_0_uop_decode_is_tmma_fp32}};	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24, :51:35
-  wire [15:0][2:0]  _GEN_124 =
+  wire [15:0][2:0]  _GEN_125 =
     {{entries_15_uop_decode_amx_tdest},
      {entries_14_uop_decode_amx_tdest},
      {entries_13_uop_decode_amx_tdest},
@@ -5699,7 +5739,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
      {entries_2_uop_decode_amx_tdest},
      {entries_1_uop_decode_amx_tdest},
      {entries_0_uop_decode_amx_tdest}};	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24, :51:35
-  wire [15:0][2:0]  _GEN_125 =
+  wire [15:0][2:0]  _GEN_126 =
     {{entries_15_uop_decode_amx_tsrc1},
      {entries_14_uop_decode_amx_tsrc1},
      {entries_13_uop_decode_amx_tsrc1},
@@ -5716,7 +5756,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
      {entries_2_uop_decode_amx_tsrc1},
      {entries_1_uop_decode_amx_tsrc1},
      {entries_0_uop_decode_amx_tsrc1}};	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24, :51:35
-  wire [15:0][2:0]  _GEN_126 =
+  wire [15:0][2:0]  _GEN_127 =
     {{entries_15_uop_decode_amx_tsrc2},
      {entries_14_uop_decode_amx_tsrc2},
      {entries_13_uop_decode_amx_tsrc2},
@@ -5733,7 +5773,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
      {entries_2_uop_decode_amx_tsrc2},
      {entries_1_uop_decode_amx_tsrc2},
      {entries_0_uop_decode_amx_tsrc2}};	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24, :51:35
-  wire [15:0]       _GEN_127 =
+  wire [15:0]       _GEN_128 =
     {{entries_15_uop_decode_is_vsetivli},
      {entries_14_uop_decode_is_vsetivli},
      {entries_13_uop_decode_is_vsetivli},
@@ -5750,7 +5790,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
      {entries_2_uop_decode_is_vsetivli},
      {entries_1_uop_decode_is_vsetivli},
      {entries_0_uop_decode_is_vsetivli}};	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24, :51:35
-  wire [15:0]       _GEN_128 =
+  wire [15:0]       _GEN_129 =
     {{entries_15_uop_decode_is_vsetvl},
      {entries_14_uop_decode_is_vsetvl},
      {entries_13_uop_decode_is_vsetvl},
@@ -5767,7 +5807,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
      {entries_2_uop_decode_is_vsetvl},
      {entries_1_uop_decode_is_vsetvl},
      {entries_0_uop_decode_is_vsetvl}};	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24, :51:35
-  wire [15:0]       _GEN_129 =
+  wire [15:0]       _GEN_130 =
     {{entries_15_uop_decode_is_vset},
      {entries_14_uop_decode_is_vset},
      {entries_13_uop_decode_is_vset},
@@ -5784,7 +5824,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
      {entries_2_uop_decode_is_vset},
      {entries_1_uop_decode_is_vset},
      {entries_0_uop_decode_is_vset}};	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24, :51:35
-  wire [15:0][4:0]  _GEN_130 =
+  wire [15:0][4:0]  _GEN_131 =
     {{entries_15_uop_decode_vec_vs1},
      {entries_14_uop_decode_vec_vs1},
      {entries_13_uop_decode_vec_vs1},
@@ -5801,7 +5841,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
      {entries_2_uop_decode_vec_vs1},
      {entries_1_uop_decode_vec_vs1},
      {entries_0_uop_decode_vec_vs1}};	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24, :51:35
-  wire [15:0][4:0]  _GEN_131 =
+  wire [15:0][4:0]  _GEN_132 =
     {{entries_15_uop_decode_vec_vs2},
      {entries_14_uop_decode_vec_vs2},
      {entries_13_uop_decode_vec_vs2},
@@ -5818,7 +5858,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
      {entries_2_uop_decode_vec_vs2},
      {entries_1_uop_decode_vec_vs2},
      {entries_0_uop_decode_vec_vs2}};	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24, :51:35
-  wire [15:0][4:0]  _GEN_132 =
+  wire [15:0][4:0]  _GEN_133 =
     {{entries_15_uop_decode_vec_vd},
      {entries_14_uop_decode_vec_vd},
      {entries_13_uop_decode_vec_vd},
@@ -5835,7 +5875,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
      {entries_2_uop_decode_vec_vd},
      {entries_1_uop_decode_vec_vd},
      {entries_0_uop_decode_vec_vd}};	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24, :51:35
-  wire [15:0]       _GEN_133 =
+  wire [15:0]       _GEN_134 =
     {{entries_15_uop_decode_vec_vm},
      {entries_14_uop_decode_vec_vm},
      {entries_13_uop_decode_vec_vm},
@@ -5852,7 +5892,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
      {entries_2_uop_decode_vec_vm},
      {entries_1_uop_decode_vec_vm},
      {entries_0_uop_decode_vec_vm}};	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24, :51:35
-  wire [15:0][10:0] _GEN_134 =
+  wire [15:0][10:0] _GEN_135 =
     {{entries_15_uop_decode_vec_zimm},
      {entries_14_uop_decode_vec_zimm},
      {entries_13_uop_decode_vec_zimm},
@@ -5869,7 +5909,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
      {entries_2_uop_decode_vec_zimm},
      {entries_1_uop_decode_vec_zimm},
      {entries_0_uop_decode_vec_zimm}};	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24, :51:35
-  wire [15:0]       _GEN_135 =
+  wire [15:0]       _GEN_136 =
     {{entries_15_uop_decode_is_vec_arith},
      {entries_14_uop_decode_is_vec_arith},
      {entries_13_uop_decode_is_vec_arith},
@@ -5886,7 +5926,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
      {entries_2_uop_decode_is_vec_arith},
      {entries_1_uop_decode_is_vec_arith},
      {entries_0_uop_decode_is_vec_arith}};	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24, :51:35
-  wire [15:0]       _GEN_136 =
+  wire [15:0]       _GEN_137 =
     {{entries_15_uop_decode_is_vec_load},
      {entries_14_uop_decode_is_vec_load},
      {entries_13_uop_decode_is_vec_load},
@@ -5903,7 +5943,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
      {entries_2_uop_decode_is_vec_load},
      {entries_1_uop_decode_is_vec_load},
      {entries_0_uop_decode_is_vec_load}};	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24, :51:35
-  wire [15:0]       _GEN_137 =
+  wire [15:0]       _GEN_138 =
     {{entries_15_uop_decode_is_vec_store},
      {entries_14_uop_decode_is_vec_store},
      {entries_13_uop_decode_is_vec_store},
@@ -5920,7 +5960,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
      {entries_2_uop_decode_is_vec_store},
      {entries_1_uop_decode_is_vec_store},
      {entries_0_uop_decode_is_vec_store}};	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24, :51:35
-  wire [15:0]       _GEN_138 =
+  wire [15:0]       _GEN_139 =
     {{entries_15_uop_decode_is_vec_mem},
      {entries_14_uop_decode_is_vec_mem},
      {entries_13_uop_decode_is_vec_mem},
@@ -5937,7 +5977,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
      {entries_2_uop_decode_is_vec_mem},
      {entries_1_uop_decode_is_vec_mem},
      {entries_0_uop_decode_is_vec_mem}};	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24, :51:35
-  wire [15:0]       _GEN_139 =
+  wire [15:0]       _GEN_140 =
     {{entries_15_uop_decode_is_vec_strided},
      {entries_14_uop_decode_is_vec_strided},
      {entries_13_uop_decode_is_vec_strided},
@@ -5954,7 +5994,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
      {entries_2_uop_decode_is_vec_strided},
      {entries_1_uop_decode_is_vec_strided},
      {entries_0_uop_decode_is_vec_strided}};	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24, :51:35
-  wire [15:0][2:0]  _GEN_140 =
+  wire [15:0][2:0]  _GEN_141 =
     {{entries_15_uop_decode_vec_funct3},
      {entries_14_uop_decode_vec_funct3},
      {entries_13_uop_decode_vec_funct3},
@@ -5971,7 +6011,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
      {entries_2_uop_decode_vec_funct3},
      {entries_1_uop_decode_vec_funct3},
      {entries_0_uop_decode_vec_funct3}};	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24, :51:35
-  wire [15:0][5:0]  _GEN_141 =
+  wire [15:0][5:0]  _GEN_142 =
     {{entries_15_uop_decode_vec_funct6},
      {entries_14_uop_decode_vec_funct6},
      {entries_13_uop_decode_vec_funct6},
@@ -5988,7 +6028,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
      {entries_2_uop_decode_vec_funct6},
      {entries_1_uop_decode_vec_funct6},
      {entries_0_uop_decode_vec_funct6}};	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24, :51:35
-  wire [15:0][4:0]  _GEN_142 =
+  wire [15:0][4:0]  _GEN_143 =
     {{entries_15_uop_decode_vec_simm5},
      {entries_14_uop_decode_vec_simm5},
      {entries_13_uop_decode_vec_simm5},
@@ -6005,7 +6045,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
      {entries_2_uop_decode_vec_simm5},
      {entries_1_uop_decode_vec_simm5},
      {entries_0_uop_decode_vec_simm5}};	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24, :51:35
-  wire [15:0][7:0]  _GEN_143 =
+  wire [15:0][7:0]  _GEN_144 =
     {{entries_15_uop_psrs1},
      {entries_14_uop_psrs1},
      {entries_13_uop_psrs1},
@@ -6022,7 +6062,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
      {entries_2_uop_psrs1},
      {entries_1_uop_psrs1},
      {entries_0_uop_psrs1}};	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24, :51:35
-  wire [15:0][7:0]  _GEN_144 =
+  wire [15:0][7:0]  _GEN_145 =
     {{entries_15_uop_psrs2},
      {entries_14_uop_psrs2},
      {entries_13_uop_psrs2},
@@ -6039,7 +6079,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
      {entries_2_uop_psrs2},
      {entries_1_uop_psrs2},
      {entries_0_uop_psrs2}};	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24, :51:35
-  wire [15:0][7:0]  _GEN_145 =
+  wire [15:0][7:0]  _GEN_146 =
     {{entries_15_uop_psrs3},
      {entries_14_uop_psrs3},
      {entries_13_uop_psrs3},
@@ -6056,7 +6096,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
      {entries_2_uop_psrs3},
      {entries_1_uop_psrs3},
      {entries_0_uop_psrs3}};	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24, :51:35
-  wire [15:0][7:0]  _GEN_146 =
+  wire [15:0][7:0]  _GEN_147 =
     {{entries_15_uop_pdest},
      {entries_14_uop_pdest},
      {entries_13_uop_pdest},
@@ -6073,7 +6113,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
      {entries_2_uop_pdest},
      {entries_1_uop_pdest},
      {entries_0_uop_pdest}};	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24, :51:35
-  wire [15:0][7:0]  _GEN_147 =
+  wire [15:0][7:0]  _GEN_148 =
     {{entries_15_uop_old_pdest},
      {entries_14_uop_old_pdest},
      {entries_13_uop_old_pdest},
@@ -6090,7 +6130,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
      {entries_2_uop_old_pdest},
      {entries_1_uop_old_pdest},
      {entries_0_uop_old_pdest}};	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24, :51:35
-  wire [15:0][7:0]  _GEN_148 =
+  wire [15:0][7:0]  _GEN_149 =
     {{entries_15_uop_snapshotIdx},
      {entries_14_uop_snapshotIdx},
      {entries_13_uop_snapshotIdx},
@@ -6107,7 +6147,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
      {entries_2_uop_snapshotIdx},
      {entries_1_uop_snapshotIdx},
      {entries_0_uop_snapshotIdx}};	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24, :51:35
-  wire [15:0][6:0]  _GEN_149 =
+  wire [15:0][6:0]  _GEN_150 =
     {{entries_15_uop_robIdx},
      {entries_14_uop_robIdx},
      {entries_13_uop_robIdx},
@@ -6126,11 +6166,11 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
      {entries_0_uop_robIdx}};	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24, :51:35
   wire              io_deq_valid_0 = _GEN[headPtr] & (|countReg);	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:41:24, :43:25, :51:{35,48}
   wire              do_deq = io_deq_ready & io_deq_valid_0;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:51:35, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire [4:0]        _GEN_150 = {4'h0, do_deq};	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:41:24, :63:48, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire [4:0]        _spaceAvailable_T_3 = 5'h10 - countReg + _GEN_150;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:43:25, :47:27, :63:{37,48}
-  wire              _GEN_151 = io_enq_0_valid & (|_spaceAvailable_T_3);	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:63:48, :70:37, :74:49
-  wire              canAccept_1 = _spaceAvailable_T_3 > {4'h0, _GEN_151};	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:41:24, :63:48, :70:37, :74:49
-  wire [2:0]        enqOffset_2 = {2'h0, _GEN_151} + {2'h0, io_enq_1_valid & canAccept_1};	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:70:37, :74:{27,49}
+  wire [4:0]        _GEN_151 = {4'h0, do_deq};	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:41:24, :63:48, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  wire [4:0]        _spaceAvailable_T_3 = 5'h10 - countReg + _GEN_151;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:43:25, :47:27, :63:{37,48}
+  wire              _GEN_152 = io_enq_0_valid & (|_spaceAvailable_T_3);	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:63:48, :70:37, :74:49
+  wire              canAccept_1 = _spaceAvailable_T_3 > {4'h0, _GEN_152};	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:41:24, :63:48, :70:37, :74:49
+  wire [2:0]        enqOffset_2 = {2'h0, _GEN_152} + {2'h0, io_enq_1_valid & canAccept_1};	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:70:37, :74:{27,49}
   wire              canAccept_2 = _spaceAvailable_T_3 > {2'h0, enqOffset_2};	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:63:48, :70:37, :74:27
   wire [2:0]        enqOffset_3 = enqOffset_2 + {2'h0, io_enq_2_valid & canAccept_2};	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:70:37, :74:{27,49}
   wire              canAccept_3 = _spaceAvailable_T_3 > {2'h0, enqOffset_3};	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:63:48, :70:37, :74:27
@@ -6138,22 +6178,22 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
   wire              canAccept_4 = _spaceAvailable_T_3 > {2'h0, enqOffset_4};	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:63:48, :70:37, :74:27
   wire [2:0]        enqOffset_5 = enqOffset_4 + {2'h0, io_enq_4_valid & canAccept_4};	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:70:37, :74:{27,49}
   wire              canAccept_5 = _spaceAvailable_T_3 > {2'h0, enqOffset_5};	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:63:48, :70:37, :74:27
-  wire              _GEN_152 = ~(do_deq & headPtr == 4'h0) & entries_0_valid;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24, :41:24, :56:16, :57:28, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire              _GEN_153 = ~(do_deq & headPtr == 4'h1) & entries_1_valid;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24, :41:24, :56:16, :57:28, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire              _GEN_154 = ~(do_deq & headPtr == 4'h2) & entries_2_valid;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24, :41:24, :56:16, :57:28, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire              _GEN_155 = ~(do_deq & headPtr == 4'h3) & entries_3_valid;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24, :41:24, :56:16, :57:28, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire              _GEN_156 = ~(do_deq & headPtr == 4'h4) & entries_4_valid;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24, :41:24, :56:16, :57:28, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire              _GEN_157 = ~(do_deq & headPtr == 4'h5) & entries_5_valid;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24, :41:24, :56:16, :57:28, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire              _GEN_158 = ~(do_deq & headPtr == 4'h6) & entries_6_valid;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24, :41:24, :56:16, :57:28, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire              _GEN_159 = ~(do_deq & headPtr == 4'h7) & entries_7_valid;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24, :41:24, :56:16, :57:28, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire              _GEN_160 = ~(do_deq & headPtr == 4'h8) & entries_8_valid;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24, :41:24, :56:16, :57:28, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire              _GEN_161 = ~(do_deq & headPtr == 4'h9) & entries_9_valid;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24, :41:24, :56:16, :57:28, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire              _GEN_162 = ~(do_deq & headPtr == 4'hA) & entries_10_valid;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24, :41:24, :56:16, :57:28, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire              _GEN_163 = ~(do_deq & headPtr == 4'hB) & entries_11_valid;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24, :41:24, :56:16, :57:28, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire              _GEN_164 = ~(do_deq & headPtr == 4'hC) & entries_12_valid;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24, :41:24, :56:16, :57:28, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire              _GEN_165 = ~(do_deq & headPtr == 4'hD) & entries_13_valid;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24, :41:24, :56:16, :57:28, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire              _GEN_166 = ~(do_deq & headPtr == 4'hE) & entries_14_valid;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24, :41:24, :56:16, :57:28, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire              _GEN_167 = ~(do_deq & (&headPtr)) & entries_15_valid;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24, :41:24, :56:16, :57:28, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  wire              _GEN_153 = ~(do_deq & headPtr == 4'h0) & entries_0_valid;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24, :41:24, :56:16, :57:28, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  wire              _GEN_154 = ~(do_deq & headPtr == 4'h1) & entries_1_valid;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24, :41:24, :56:16, :57:28, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  wire              _GEN_155 = ~(do_deq & headPtr == 4'h2) & entries_2_valid;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24, :41:24, :56:16, :57:28, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  wire              _GEN_156 = ~(do_deq & headPtr == 4'h3) & entries_3_valid;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24, :41:24, :56:16, :57:28, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  wire              _GEN_157 = ~(do_deq & headPtr == 4'h4) & entries_4_valid;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24, :41:24, :56:16, :57:28, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  wire              _GEN_158 = ~(do_deq & headPtr == 4'h5) & entries_5_valid;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24, :41:24, :56:16, :57:28, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  wire              _GEN_159 = ~(do_deq & headPtr == 4'h6) & entries_6_valid;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24, :41:24, :56:16, :57:28, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  wire              _GEN_160 = ~(do_deq & headPtr == 4'h7) & entries_7_valid;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24, :41:24, :56:16, :57:28, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  wire              _GEN_161 = ~(do_deq & headPtr == 4'h8) & entries_8_valid;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24, :41:24, :56:16, :57:28, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  wire              _GEN_162 = ~(do_deq & headPtr == 4'h9) & entries_9_valid;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24, :41:24, :56:16, :57:28, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  wire              _GEN_163 = ~(do_deq & headPtr == 4'hA) & entries_10_valid;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24, :41:24, :56:16, :57:28, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  wire              _GEN_164 = ~(do_deq & headPtr == 4'hB) & entries_11_valid;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24, :41:24, :56:16, :57:28, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  wire              _GEN_165 = ~(do_deq & headPtr == 4'hC) & entries_12_valid;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24, :41:24, :56:16, :57:28, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  wire              _GEN_166 = ~(do_deq & headPtr == 4'hD) & entries_13_valid;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24, :41:24, :56:16, :57:28, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  wire              _GEN_167 = ~(do_deq & headPtr == 4'hE) & entries_14_valid;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24, :41:24, :56:16, :57:28, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  wire              _GEN_168 = ~(do_deq & (&headPtr)) & entries_15_valid;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24, :41:24, :56:16, :57:28, src/main/scala/chisel3/util/Decoupled.scala:51:35
   wire              enqFire_0 = (|_spaceAvailable_T_3) & io_enq_0_valid;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:63:48, :70:37, src/main/scala/chisel3/util/Decoupled.scala:51:35
   wire              enqFire_1 = canAccept_1 & io_enq_1_valid;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:70:37, src/main/scala/chisel3/util/Decoupled.scala:51:35
   wire              enqFire_2 = canAccept_2 & io_enq_2_valid;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:70:37, src/main/scala/chisel3/util/Decoupled.scala:51:35
@@ -6163,202 +6203,202 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
   wire [2:0]        totalEnq =
     {1'h0, {1'h0, enqFire_0} + {1'h0, enqFire_1} + {1'h0, enqFire_2}}
     + {1'h0, {1'h0, enqFire_3} + {1'h0, enqFire_4} + {1'h0, enqFire_5}};	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:66, :77:26, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire [4:0]        _GEN_168 = {1'h0, tailPtr};	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:66, :42:24, :80:47
-  wire [4:0]        writeIdx = _GEN_168 % 5'h10;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:47:27, :80:47
-  wire              _GEN_169 = enqFire_0 & writeIdx[3:0] == 4'h0;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:41:24, :56:16, :79:22, :80:47, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire              _GEN_170 = enqFire_0 & writeIdx[3:0] == 4'h1;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:56:16, :57:28, :79:22, :80:47, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire              _GEN_171 = enqFire_0 & writeIdx[3:0] == 4'h2;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:56:16, :57:28, :79:22, :80:47, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire              _GEN_172 = enqFire_0 & writeIdx[3:0] == 4'h3;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:56:16, :57:28, :79:22, :80:47, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire              _GEN_173 = enqFire_0 & writeIdx[3:0] == 4'h4;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:56:16, :57:28, :79:22, :80:47, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire              _GEN_174 = enqFire_0 & writeIdx[3:0] == 4'h5;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:56:16, :57:28, :79:22, :80:47, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire              _GEN_175 = enqFire_0 & writeIdx[3:0] == 4'h6;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:56:16, :57:28, :79:22, :80:47, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire              _GEN_176 = enqFire_0 & writeIdx[3:0] == 4'h7;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:56:16, :57:28, :79:22, :80:47, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire              _GEN_177 = enqFire_0 & writeIdx[3:0] == 4'h8;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:56:16, :57:28, :79:22, :80:47, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire              _GEN_178 = enqFire_0 & writeIdx[3:0] == 4'h9;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:56:16, :57:28, :79:22, :80:47, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire              _GEN_179 = enqFire_0 & writeIdx[3:0] == 4'hA;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:56:16, :57:28, :79:22, :80:47, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire              _GEN_180 = enqFire_0 & writeIdx[3:0] == 4'hB;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:56:16, :57:28, :79:22, :80:47, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire              _GEN_181 = enqFire_0 & writeIdx[3:0] == 4'hC;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:56:16, :57:28, :79:22, :80:47, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire              _GEN_182 = enqFire_0 & writeIdx[3:0] == 4'hD;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:56:16, :57:28, :79:22, :80:47, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire              _GEN_183 = enqFire_0 & writeIdx[3:0] == 4'hE;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:56:16, :57:28, :79:22, :80:47, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire              _GEN_184 = enqFire_0 & (&(writeIdx[3:0]));	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:56:16, :79:22, :80:47, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire [4:0]        writeIdx_1 = {1'h0, tailPtr + {3'h0, _GEN_151}} % 5'h10;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:66, :42:24, :47:27, :74:49, :80:{31,47}
-  wire              _GEN_185 = writeIdx_1[3:0] == 4'h0;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:41:24, :80:47, :81:31
-  wire              _GEN_186 =
-    enqFire_1 ? _GEN_185 | _GEN_169 | _GEN_152 : _GEN_169 | _GEN_152;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24, :56:16, :57:28, :79:22, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire              _GEN_187 = writeIdx_1[3:0] == 4'h1;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:57:28, :80:47, :81:31
-  wire              _GEN_188 =
-    enqFire_1 ? _GEN_187 | _GEN_170 | _GEN_153 : _GEN_170 | _GEN_153;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24, :56:16, :57:28, :79:22, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire              _GEN_189 = writeIdx_1[3:0] == 4'h2;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:57:28, :80:47, :81:31
-  wire              _GEN_190 =
-    enqFire_1 ? _GEN_189 | _GEN_171 | _GEN_154 : _GEN_171 | _GEN_154;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24, :56:16, :57:28, :79:22, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire              _GEN_191 = writeIdx_1[3:0] == 4'h3;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:57:28, :80:47, :81:31
-  wire              _GEN_192 =
-    enqFire_1 ? _GEN_191 | _GEN_172 | _GEN_155 : _GEN_172 | _GEN_155;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24, :56:16, :57:28, :79:22, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire              _GEN_193 = writeIdx_1[3:0] == 4'h4;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:57:28, :80:47, :81:31
-  wire              _GEN_194 =
-    enqFire_1 ? _GEN_193 | _GEN_173 | _GEN_156 : _GEN_173 | _GEN_156;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24, :56:16, :57:28, :79:22, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire              _GEN_195 = writeIdx_1[3:0] == 4'h5;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:57:28, :80:47, :81:31
-  wire              _GEN_196 =
-    enqFire_1 ? _GEN_195 | _GEN_174 | _GEN_157 : _GEN_174 | _GEN_157;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24, :56:16, :57:28, :79:22, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire              _GEN_197 = writeIdx_1[3:0] == 4'h6;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:57:28, :80:47, :81:31
-  wire              _GEN_198 =
-    enqFire_1 ? _GEN_197 | _GEN_175 | _GEN_158 : _GEN_175 | _GEN_158;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24, :56:16, :57:28, :79:22, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire              _GEN_199 = writeIdx_1[3:0] == 4'h7;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:57:28, :80:47, :81:31
-  wire              _GEN_200 =
-    enqFire_1 ? _GEN_199 | _GEN_176 | _GEN_159 : _GEN_176 | _GEN_159;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24, :56:16, :57:28, :79:22, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire              _GEN_201 = writeIdx_1[3:0] == 4'h8;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:57:28, :80:47, :81:31
-  wire              _GEN_202 =
-    enqFire_1 ? _GEN_201 | _GEN_177 | _GEN_160 : _GEN_177 | _GEN_160;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24, :56:16, :57:28, :79:22, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire              _GEN_203 = writeIdx_1[3:0] == 4'h9;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:57:28, :80:47, :81:31
-  wire              _GEN_204 =
-    enqFire_1 ? _GEN_203 | _GEN_178 | _GEN_161 : _GEN_178 | _GEN_161;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24, :56:16, :57:28, :79:22, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire              _GEN_205 = writeIdx_1[3:0] == 4'hA;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:57:28, :80:47, :81:31
-  wire              _GEN_206 =
-    enqFire_1 ? _GEN_205 | _GEN_179 | _GEN_162 : _GEN_179 | _GEN_162;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24, :56:16, :57:28, :79:22, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire              _GEN_207 = writeIdx_1[3:0] == 4'hB;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:57:28, :80:47, :81:31
-  wire              _GEN_208 =
-    enqFire_1 ? _GEN_207 | _GEN_180 | _GEN_163 : _GEN_180 | _GEN_163;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24, :56:16, :57:28, :79:22, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire              _GEN_209 = writeIdx_1[3:0] == 4'hC;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:57:28, :80:47, :81:31
-  wire              _GEN_210 =
-    enqFire_1 ? _GEN_209 | _GEN_181 | _GEN_164 : _GEN_181 | _GEN_164;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24, :56:16, :57:28, :79:22, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire              _GEN_211 = writeIdx_1[3:0] == 4'hD;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:57:28, :80:47, :81:31
-  wire              _GEN_212 =
-    enqFire_1 ? _GEN_211 | _GEN_182 | _GEN_165 : _GEN_182 | _GEN_165;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24, :56:16, :57:28, :79:22, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire              _GEN_213 = writeIdx_1[3:0] == 4'hE;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:57:28, :80:47, :81:31
-  wire              _GEN_214 =
-    enqFire_1 ? _GEN_213 | _GEN_183 | _GEN_166 : _GEN_183 | _GEN_166;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24, :56:16, :57:28, :79:22, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  wire [4:0]        _GEN_169 = {1'h0, tailPtr};	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:66, :42:24, :80:47
+  wire [4:0]        writeIdx = _GEN_169 % 5'h10;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:47:27, :80:47
+  wire              _GEN_170 = enqFire_0 & writeIdx[3:0] == 4'h0;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:41:24, :56:16, :79:22, :80:47, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  wire              _GEN_171 = enqFire_0 & writeIdx[3:0] == 4'h1;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:56:16, :57:28, :79:22, :80:47, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  wire              _GEN_172 = enqFire_0 & writeIdx[3:0] == 4'h2;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:56:16, :57:28, :79:22, :80:47, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  wire              _GEN_173 = enqFire_0 & writeIdx[3:0] == 4'h3;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:56:16, :57:28, :79:22, :80:47, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  wire              _GEN_174 = enqFire_0 & writeIdx[3:0] == 4'h4;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:56:16, :57:28, :79:22, :80:47, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  wire              _GEN_175 = enqFire_0 & writeIdx[3:0] == 4'h5;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:56:16, :57:28, :79:22, :80:47, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  wire              _GEN_176 = enqFire_0 & writeIdx[3:0] == 4'h6;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:56:16, :57:28, :79:22, :80:47, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  wire              _GEN_177 = enqFire_0 & writeIdx[3:0] == 4'h7;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:56:16, :57:28, :79:22, :80:47, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  wire              _GEN_178 = enqFire_0 & writeIdx[3:0] == 4'h8;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:56:16, :57:28, :79:22, :80:47, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  wire              _GEN_179 = enqFire_0 & writeIdx[3:0] == 4'h9;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:56:16, :57:28, :79:22, :80:47, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  wire              _GEN_180 = enqFire_0 & writeIdx[3:0] == 4'hA;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:56:16, :57:28, :79:22, :80:47, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  wire              _GEN_181 = enqFire_0 & writeIdx[3:0] == 4'hB;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:56:16, :57:28, :79:22, :80:47, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  wire              _GEN_182 = enqFire_0 & writeIdx[3:0] == 4'hC;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:56:16, :57:28, :79:22, :80:47, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  wire              _GEN_183 = enqFire_0 & writeIdx[3:0] == 4'hD;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:56:16, :57:28, :79:22, :80:47, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  wire              _GEN_184 = enqFire_0 & writeIdx[3:0] == 4'hE;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:56:16, :57:28, :79:22, :80:47, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  wire              _GEN_185 = enqFire_0 & (&(writeIdx[3:0]));	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:56:16, :79:22, :80:47, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  wire [4:0]        writeIdx_1 = {1'h0, tailPtr + {3'h0, _GEN_152}} % 5'h10;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:66, :42:24, :47:27, :74:49, :80:{31,47}
+  wire              _GEN_186 = writeIdx_1[3:0] == 4'h0;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:41:24, :80:47, :81:31
+  wire              _GEN_187 =
+    enqFire_1 ? _GEN_186 | _GEN_170 | _GEN_153 : _GEN_170 | _GEN_153;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24, :56:16, :57:28, :79:22, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  wire              _GEN_188 = writeIdx_1[3:0] == 4'h1;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:57:28, :80:47, :81:31
+  wire              _GEN_189 =
+    enqFire_1 ? _GEN_188 | _GEN_171 | _GEN_154 : _GEN_171 | _GEN_154;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24, :56:16, :57:28, :79:22, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  wire              _GEN_190 = writeIdx_1[3:0] == 4'h2;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:57:28, :80:47, :81:31
+  wire              _GEN_191 =
+    enqFire_1 ? _GEN_190 | _GEN_172 | _GEN_155 : _GEN_172 | _GEN_155;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24, :56:16, :57:28, :79:22, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  wire              _GEN_192 = writeIdx_1[3:0] == 4'h3;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:57:28, :80:47, :81:31
+  wire              _GEN_193 =
+    enqFire_1 ? _GEN_192 | _GEN_173 | _GEN_156 : _GEN_173 | _GEN_156;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24, :56:16, :57:28, :79:22, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  wire              _GEN_194 = writeIdx_1[3:0] == 4'h4;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:57:28, :80:47, :81:31
+  wire              _GEN_195 =
+    enqFire_1 ? _GEN_194 | _GEN_174 | _GEN_157 : _GEN_174 | _GEN_157;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24, :56:16, :57:28, :79:22, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  wire              _GEN_196 = writeIdx_1[3:0] == 4'h5;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:57:28, :80:47, :81:31
+  wire              _GEN_197 =
+    enqFire_1 ? _GEN_196 | _GEN_175 | _GEN_158 : _GEN_175 | _GEN_158;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24, :56:16, :57:28, :79:22, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  wire              _GEN_198 = writeIdx_1[3:0] == 4'h6;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:57:28, :80:47, :81:31
+  wire              _GEN_199 =
+    enqFire_1 ? _GEN_198 | _GEN_176 | _GEN_159 : _GEN_176 | _GEN_159;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24, :56:16, :57:28, :79:22, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  wire              _GEN_200 = writeIdx_1[3:0] == 4'h7;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:57:28, :80:47, :81:31
+  wire              _GEN_201 =
+    enqFire_1 ? _GEN_200 | _GEN_177 | _GEN_160 : _GEN_177 | _GEN_160;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24, :56:16, :57:28, :79:22, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  wire              _GEN_202 = writeIdx_1[3:0] == 4'h8;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:57:28, :80:47, :81:31
+  wire              _GEN_203 =
+    enqFire_1 ? _GEN_202 | _GEN_178 | _GEN_161 : _GEN_178 | _GEN_161;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24, :56:16, :57:28, :79:22, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  wire              _GEN_204 = writeIdx_1[3:0] == 4'h9;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:57:28, :80:47, :81:31
+  wire              _GEN_205 =
+    enqFire_1 ? _GEN_204 | _GEN_179 | _GEN_162 : _GEN_179 | _GEN_162;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24, :56:16, :57:28, :79:22, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  wire              _GEN_206 = writeIdx_1[3:0] == 4'hA;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:57:28, :80:47, :81:31
+  wire              _GEN_207 =
+    enqFire_1 ? _GEN_206 | _GEN_180 | _GEN_163 : _GEN_180 | _GEN_163;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24, :56:16, :57:28, :79:22, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  wire              _GEN_208 = writeIdx_1[3:0] == 4'hB;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:57:28, :80:47, :81:31
+  wire              _GEN_209 =
+    enqFire_1 ? _GEN_208 | _GEN_181 | _GEN_164 : _GEN_181 | _GEN_164;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24, :56:16, :57:28, :79:22, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  wire              _GEN_210 = writeIdx_1[3:0] == 4'hC;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:57:28, :80:47, :81:31
+  wire              _GEN_211 =
+    enqFire_1 ? _GEN_210 | _GEN_182 | _GEN_165 : _GEN_182 | _GEN_165;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24, :56:16, :57:28, :79:22, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  wire              _GEN_212 = writeIdx_1[3:0] == 4'hD;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:57:28, :80:47, :81:31
+  wire              _GEN_213 =
+    enqFire_1 ? _GEN_212 | _GEN_183 | _GEN_166 : _GEN_183 | _GEN_166;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24, :56:16, :57:28, :79:22, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  wire              _GEN_214 = writeIdx_1[3:0] == 4'hE;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:57:28, :80:47, :81:31
   wire              _GEN_215 =
-    enqFire_1 ? (&(writeIdx_1[3:0])) | _GEN_184 | _GEN_167 : _GEN_184 | _GEN_167;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24, :56:16, :57:28, :79:22, :80:47, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
+    enqFire_1 ? _GEN_214 | _GEN_184 | _GEN_167 : _GEN_184 | _GEN_167;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24, :56:16, :57:28, :79:22, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  wire              _GEN_216 =
+    enqFire_1 ? (&(writeIdx_1[3:0])) | _GEN_185 | _GEN_168 : _GEN_185 | _GEN_168;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24, :56:16, :57:28, :79:22, :80:47, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
   wire [4:0]        writeIdx_2 = {1'h0, tailPtr + {1'h0, enqOffset_2}} % 5'h10;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:66, :42:24, :47:27, :74:27, :80:{31,47}
-  wire              _GEN_216 = enqFire_2 & writeIdx_2[3:0] == 4'h0;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:41:24, :79:22, :80:47, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire              _GEN_217 = enqFire_2 & writeIdx_2[3:0] == 4'h1;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:57:28, :79:22, :80:47, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire              _GEN_218 = enqFire_2 & writeIdx_2[3:0] == 4'h2;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:57:28, :79:22, :80:47, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire              _GEN_219 = enqFire_2 & writeIdx_2[3:0] == 4'h3;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:57:28, :79:22, :80:47, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire              _GEN_220 = enqFire_2 & writeIdx_2[3:0] == 4'h4;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:57:28, :79:22, :80:47, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire              _GEN_221 = enqFire_2 & writeIdx_2[3:0] == 4'h5;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:57:28, :79:22, :80:47, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire              _GEN_222 = enqFire_2 & writeIdx_2[3:0] == 4'h6;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:57:28, :79:22, :80:47, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire              _GEN_223 = enqFire_2 & writeIdx_2[3:0] == 4'h7;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:57:28, :79:22, :80:47, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire              _GEN_224 = enqFire_2 & writeIdx_2[3:0] == 4'h8;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:57:28, :79:22, :80:47, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire              _GEN_225 = enqFire_2 & writeIdx_2[3:0] == 4'h9;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:57:28, :79:22, :80:47, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire              _GEN_226 = enqFire_2 & writeIdx_2[3:0] == 4'hA;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:57:28, :79:22, :80:47, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire              _GEN_227 = enqFire_2 & writeIdx_2[3:0] == 4'hB;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:57:28, :79:22, :80:47, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire              _GEN_228 = enqFire_2 & writeIdx_2[3:0] == 4'hC;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:57:28, :79:22, :80:47, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire              _GEN_229 = enqFire_2 & writeIdx_2[3:0] == 4'hD;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:57:28, :79:22, :80:47, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire              _GEN_230 = enqFire_2 & writeIdx_2[3:0] == 4'hE;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:57:28, :79:22, :80:47, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire              _GEN_231 = enqFire_2 & (&(writeIdx_2[3:0]));	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :80:47, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  wire              _GEN_217 = enqFire_2 & writeIdx_2[3:0] == 4'h0;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:41:24, :79:22, :80:47, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  wire              _GEN_218 = enqFire_2 & writeIdx_2[3:0] == 4'h1;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:57:28, :79:22, :80:47, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  wire              _GEN_219 = enqFire_2 & writeIdx_2[3:0] == 4'h2;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:57:28, :79:22, :80:47, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  wire              _GEN_220 = enqFire_2 & writeIdx_2[3:0] == 4'h3;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:57:28, :79:22, :80:47, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  wire              _GEN_221 = enqFire_2 & writeIdx_2[3:0] == 4'h4;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:57:28, :79:22, :80:47, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  wire              _GEN_222 = enqFire_2 & writeIdx_2[3:0] == 4'h5;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:57:28, :79:22, :80:47, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  wire              _GEN_223 = enqFire_2 & writeIdx_2[3:0] == 4'h6;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:57:28, :79:22, :80:47, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  wire              _GEN_224 = enqFire_2 & writeIdx_2[3:0] == 4'h7;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:57:28, :79:22, :80:47, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  wire              _GEN_225 = enqFire_2 & writeIdx_2[3:0] == 4'h8;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:57:28, :79:22, :80:47, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  wire              _GEN_226 = enqFire_2 & writeIdx_2[3:0] == 4'h9;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:57:28, :79:22, :80:47, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  wire              _GEN_227 = enqFire_2 & writeIdx_2[3:0] == 4'hA;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:57:28, :79:22, :80:47, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  wire              _GEN_228 = enqFire_2 & writeIdx_2[3:0] == 4'hB;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:57:28, :79:22, :80:47, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  wire              _GEN_229 = enqFire_2 & writeIdx_2[3:0] == 4'hC;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:57:28, :79:22, :80:47, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  wire              _GEN_230 = enqFire_2 & writeIdx_2[3:0] == 4'hD;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:57:28, :79:22, :80:47, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  wire              _GEN_231 = enqFire_2 & writeIdx_2[3:0] == 4'hE;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:57:28, :79:22, :80:47, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  wire              _GEN_232 = enqFire_2 & (&(writeIdx_2[3:0]));	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :80:47, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
   wire [4:0]        writeIdx_3 = {1'h0, tailPtr + {1'h0, enqOffset_3}} % 5'h10;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:66, :42:24, :47:27, :74:27, :80:{31,47}
-  wire              _GEN_232 = writeIdx_3[3:0] == 4'h0;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:41:24, :80:47, :81:31
-  wire              _GEN_233 =
-    enqFire_3 ? _GEN_232 | _GEN_216 | _GEN_186 : _GEN_216 | _GEN_186;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire              _GEN_234 = writeIdx_3[3:0] == 4'h1;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:57:28, :80:47, :81:31
-  wire              _GEN_235 =
-    enqFire_3 ? _GEN_234 | _GEN_217 | _GEN_188 : _GEN_217 | _GEN_188;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire              _GEN_236 = writeIdx_3[3:0] == 4'h2;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:57:28, :80:47, :81:31
-  wire              _GEN_237 =
-    enqFire_3 ? _GEN_236 | _GEN_218 | _GEN_190 : _GEN_218 | _GEN_190;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire              _GEN_238 = writeIdx_3[3:0] == 4'h3;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:57:28, :80:47, :81:31
-  wire              _GEN_239 =
-    enqFire_3 ? _GEN_238 | _GEN_219 | _GEN_192 : _GEN_219 | _GEN_192;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire              _GEN_240 = writeIdx_3[3:0] == 4'h4;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:57:28, :80:47, :81:31
-  wire              _GEN_241 =
-    enqFire_3 ? _GEN_240 | _GEN_220 | _GEN_194 : _GEN_220 | _GEN_194;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire              _GEN_242 = writeIdx_3[3:0] == 4'h5;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:57:28, :80:47, :81:31
-  wire              _GEN_243 =
-    enqFire_3 ? _GEN_242 | _GEN_221 | _GEN_196 : _GEN_221 | _GEN_196;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire              _GEN_244 = writeIdx_3[3:0] == 4'h6;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:57:28, :80:47, :81:31
-  wire              _GEN_245 =
-    enqFire_3 ? _GEN_244 | _GEN_222 | _GEN_198 : _GEN_222 | _GEN_198;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire              _GEN_246 = writeIdx_3[3:0] == 4'h7;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:57:28, :80:47, :81:31
-  wire              _GEN_247 =
-    enqFire_3 ? _GEN_246 | _GEN_223 | _GEN_200 : _GEN_223 | _GEN_200;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire              _GEN_248 = writeIdx_3[3:0] == 4'h8;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:57:28, :80:47, :81:31
-  wire              _GEN_249 =
-    enqFire_3 ? _GEN_248 | _GEN_224 | _GEN_202 : _GEN_224 | _GEN_202;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire              _GEN_250 = writeIdx_3[3:0] == 4'h9;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:57:28, :80:47, :81:31
-  wire              _GEN_251 =
-    enqFire_3 ? _GEN_250 | _GEN_225 | _GEN_204 : _GEN_225 | _GEN_204;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire              _GEN_252 = writeIdx_3[3:0] == 4'hA;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:57:28, :80:47, :81:31
-  wire              _GEN_253 =
-    enqFire_3 ? _GEN_252 | _GEN_226 | _GEN_206 : _GEN_226 | _GEN_206;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire              _GEN_254 = writeIdx_3[3:0] == 4'hB;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:57:28, :80:47, :81:31
-  wire              _GEN_255 =
-    enqFire_3 ? _GEN_254 | _GEN_227 | _GEN_208 : _GEN_227 | _GEN_208;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire              _GEN_256 = writeIdx_3[3:0] == 4'hC;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:57:28, :80:47, :81:31
-  wire              _GEN_257 =
-    enqFire_3 ? _GEN_256 | _GEN_228 | _GEN_210 : _GEN_228 | _GEN_210;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire              _GEN_258 = writeIdx_3[3:0] == 4'hD;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:57:28, :80:47, :81:31
-  wire              _GEN_259 =
-    enqFire_3 ? _GEN_258 | _GEN_229 | _GEN_212 : _GEN_229 | _GEN_212;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire              _GEN_260 = writeIdx_3[3:0] == 4'hE;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:57:28, :80:47, :81:31
-  wire              _GEN_261 =
-    enqFire_3 ? _GEN_260 | _GEN_230 | _GEN_214 : _GEN_230 | _GEN_214;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  wire              _GEN_233 = writeIdx_3[3:0] == 4'h0;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:41:24, :80:47, :81:31
+  wire              _GEN_234 =
+    enqFire_3 ? _GEN_233 | _GEN_217 | _GEN_187 : _GEN_217 | _GEN_187;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  wire              _GEN_235 = writeIdx_3[3:0] == 4'h1;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:57:28, :80:47, :81:31
+  wire              _GEN_236 =
+    enqFire_3 ? _GEN_235 | _GEN_218 | _GEN_189 : _GEN_218 | _GEN_189;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  wire              _GEN_237 = writeIdx_3[3:0] == 4'h2;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:57:28, :80:47, :81:31
+  wire              _GEN_238 =
+    enqFire_3 ? _GEN_237 | _GEN_219 | _GEN_191 : _GEN_219 | _GEN_191;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  wire              _GEN_239 = writeIdx_3[3:0] == 4'h3;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:57:28, :80:47, :81:31
+  wire              _GEN_240 =
+    enqFire_3 ? _GEN_239 | _GEN_220 | _GEN_193 : _GEN_220 | _GEN_193;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  wire              _GEN_241 = writeIdx_3[3:0] == 4'h4;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:57:28, :80:47, :81:31
+  wire              _GEN_242 =
+    enqFire_3 ? _GEN_241 | _GEN_221 | _GEN_195 : _GEN_221 | _GEN_195;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  wire              _GEN_243 = writeIdx_3[3:0] == 4'h5;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:57:28, :80:47, :81:31
+  wire              _GEN_244 =
+    enqFire_3 ? _GEN_243 | _GEN_222 | _GEN_197 : _GEN_222 | _GEN_197;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  wire              _GEN_245 = writeIdx_3[3:0] == 4'h6;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:57:28, :80:47, :81:31
+  wire              _GEN_246 =
+    enqFire_3 ? _GEN_245 | _GEN_223 | _GEN_199 : _GEN_223 | _GEN_199;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  wire              _GEN_247 = writeIdx_3[3:0] == 4'h7;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:57:28, :80:47, :81:31
+  wire              _GEN_248 =
+    enqFire_3 ? _GEN_247 | _GEN_224 | _GEN_201 : _GEN_224 | _GEN_201;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  wire              _GEN_249 = writeIdx_3[3:0] == 4'h8;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:57:28, :80:47, :81:31
+  wire              _GEN_250 =
+    enqFire_3 ? _GEN_249 | _GEN_225 | _GEN_203 : _GEN_225 | _GEN_203;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  wire              _GEN_251 = writeIdx_3[3:0] == 4'h9;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:57:28, :80:47, :81:31
+  wire              _GEN_252 =
+    enqFire_3 ? _GEN_251 | _GEN_226 | _GEN_205 : _GEN_226 | _GEN_205;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  wire              _GEN_253 = writeIdx_3[3:0] == 4'hA;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:57:28, :80:47, :81:31
+  wire              _GEN_254 =
+    enqFire_3 ? _GEN_253 | _GEN_227 | _GEN_207 : _GEN_227 | _GEN_207;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  wire              _GEN_255 = writeIdx_3[3:0] == 4'hB;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:57:28, :80:47, :81:31
+  wire              _GEN_256 =
+    enqFire_3 ? _GEN_255 | _GEN_228 | _GEN_209 : _GEN_228 | _GEN_209;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  wire              _GEN_257 = writeIdx_3[3:0] == 4'hC;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:57:28, :80:47, :81:31
+  wire              _GEN_258 =
+    enqFire_3 ? _GEN_257 | _GEN_229 | _GEN_211 : _GEN_229 | _GEN_211;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  wire              _GEN_259 = writeIdx_3[3:0] == 4'hD;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:57:28, :80:47, :81:31
+  wire              _GEN_260 =
+    enqFire_3 ? _GEN_259 | _GEN_230 | _GEN_213 : _GEN_230 | _GEN_213;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  wire              _GEN_261 = writeIdx_3[3:0] == 4'hE;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:57:28, :80:47, :81:31
   wire              _GEN_262 =
-    enqFire_3 ? (&(writeIdx_3[3:0])) | _GEN_231 | _GEN_215 : _GEN_231 | _GEN_215;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :80:47, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
+    enqFire_3 ? _GEN_261 | _GEN_231 | _GEN_215 : _GEN_231 | _GEN_215;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  wire              _GEN_263 =
+    enqFire_3 ? (&(writeIdx_3[3:0])) | _GEN_232 | _GEN_216 : _GEN_232 | _GEN_216;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :80:47, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
   wire [4:0]        writeIdx_4 = {1'h0, tailPtr + {1'h0, enqOffset_4}} % 5'h10;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:66, :42:24, :47:27, :74:27, :80:{31,47}
-  wire              _GEN_263 = enqFire_4 & writeIdx_4[3:0] == 4'h0;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:41:24, :79:22, :80:47, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire              _GEN_264 = enqFire_4 & writeIdx_4[3:0] == 4'h1;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:57:28, :79:22, :80:47, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire              _GEN_265 = enqFire_4 & writeIdx_4[3:0] == 4'h2;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:57:28, :79:22, :80:47, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire              _GEN_266 = enqFire_4 & writeIdx_4[3:0] == 4'h3;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:57:28, :79:22, :80:47, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire              _GEN_267 = enqFire_4 & writeIdx_4[3:0] == 4'h4;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:57:28, :79:22, :80:47, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire              _GEN_268 = enqFire_4 & writeIdx_4[3:0] == 4'h5;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:57:28, :79:22, :80:47, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire              _GEN_269 = enqFire_4 & writeIdx_4[3:0] == 4'h6;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:57:28, :79:22, :80:47, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire              _GEN_270 = enqFire_4 & writeIdx_4[3:0] == 4'h7;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:57:28, :79:22, :80:47, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire              _GEN_271 = enqFire_4 & writeIdx_4[3:0] == 4'h8;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:57:28, :79:22, :80:47, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire              _GEN_272 = enqFire_4 & writeIdx_4[3:0] == 4'h9;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:57:28, :79:22, :80:47, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire              _GEN_273 = enqFire_4 & writeIdx_4[3:0] == 4'hA;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:57:28, :79:22, :80:47, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire              _GEN_274 = enqFire_4 & writeIdx_4[3:0] == 4'hB;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:57:28, :79:22, :80:47, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire              _GEN_275 = enqFire_4 & writeIdx_4[3:0] == 4'hC;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:57:28, :79:22, :80:47, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire              _GEN_276 = enqFire_4 & writeIdx_4[3:0] == 4'hD;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:57:28, :79:22, :80:47, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire              _GEN_277 = enqFire_4 & writeIdx_4[3:0] == 4'hE;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:57:28, :79:22, :80:47, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire              _GEN_278 = enqFire_4 & (&(writeIdx_4[3:0]));	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :80:47, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  wire              _GEN_264 = enqFire_4 & writeIdx_4[3:0] == 4'h0;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:41:24, :79:22, :80:47, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  wire              _GEN_265 = enqFire_4 & writeIdx_4[3:0] == 4'h1;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:57:28, :79:22, :80:47, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  wire              _GEN_266 = enqFire_4 & writeIdx_4[3:0] == 4'h2;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:57:28, :79:22, :80:47, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  wire              _GEN_267 = enqFire_4 & writeIdx_4[3:0] == 4'h3;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:57:28, :79:22, :80:47, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  wire              _GEN_268 = enqFire_4 & writeIdx_4[3:0] == 4'h4;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:57:28, :79:22, :80:47, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  wire              _GEN_269 = enqFire_4 & writeIdx_4[3:0] == 4'h5;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:57:28, :79:22, :80:47, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  wire              _GEN_270 = enqFire_4 & writeIdx_4[3:0] == 4'h6;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:57:28, :79:22, :80:47, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  wire              _GEN_271 = enqFire_4 & writeIdx_4[3:0] == 4'h7;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:57:28, :79:22, :80:47, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  wire              _GEN_272 = enqFire_4 & writeIdx_4[3:0] == 4'h8;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:57:28, :79:22, :80:47, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  wire              _GEN_273 = enqFire_4 & writeIdx_4[3:0] == 4'h9;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:57:28, :79:22, :80:47, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  wire              _GEN_274 = enqFire_4 & writeIdx_4[3:0] == 4'hA;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:57:28, :79:22, :80:47, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  wire              _GEN_275 = enqFire_4 & writeIdx_4[3:0] == 4'hB;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:57:28, :79:22, :80:47, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  wire              _GEN_276 = enqFire_4 & writeIdx_4[3:0] == 4'hC;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:57:28, :79:22, :80:47, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  wire              _GEN_277 = enqFire_4 & writeIdx_4[3:0] == 4'hD;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:57:28, :79:22, :80:47, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  wire              _GEN_278 = enqFire_4 & writeIdx_4[3:0] == 4'hE;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:57:28, :79:22, :80:47, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  wire              _GEN_279 = enqFire_4 & (&(writeIdx_4[3:0]));	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :80:47, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
   wire [4:0]        writeIdx_5 = {1'h0, tailPtr + {1'h0, enqOffset_5}} % 5'h10;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:66, :42:24, :47:27, :74:27, :80:{31,47}
-  wire              _GEN_279 = writeIdx_5[3:0] == 4'h0;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:41:24, :80:47, :81:31
-  wire              _GEN_280 =
-    enqFire_5 ? _GEN_279 | _GEN_263 | _GEN_233 : _GEN_263 | _GEN_233;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire              _GEN_281 = writeIdx_5[3:0] == 4'h1;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:57:28, :80:47, :81:31
-  wire              _GEN_282 =
-    enqFire_5 ? _GEN_281 | _GEN_264 | _GEN_235 : _GEN_264 | _GEN_235;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire              _GEN_283 = writeIdx_5[3:0] == 4'h2;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:57:28, :80:47, :81:31
-  wire              _GEN_284 =
-    enqFire_5 ? _GEN_283 | _GEN_265 | _GEN_237 : _GEN_265 | _GEN_237;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire              _GEN_285 = writeIdx_5[3:0] == 4'h3;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:57:28, :80:47, :81:31
-  wire              _GEN_286 =
-    enqFire_5 ? _GEN_285 | _GEN_266 | _GEN_239 : _GEN_266 | _GEN_239;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire              _GEN_287 = writeIdx_5[3:0] == 4'h4;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:57:28, :80:47, :81:31
-  wire              _GEN_288 =
-    enqFire_5 ? _GEN_287 | _GEN_267 | _GEN_241 : _GEN_267 | _GEN_241;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire              _GEN_289 = writeIdx_5[3:0] == 4'h5;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:57:28, :80:47, :81:31
-  wire              _GEN_290 =
-    enqFire_5 ? _GEN_289 | _GEN_268 | _GEN_243 : _GEN_268 | _GEN_243;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire              _GEN_291 = writeIdx_5[3:0] == 4'h6;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:57:28, :80:47, :81:31
-  wire              _GEN_292 =
-    enqFire_5 ? _GEN_291 | _GEN_269 | _GEN_245 : _GEN_269 | _GEN_245;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire              _GEN_293 = writeIdx_5[3:0] == 4'h7;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:57:28, :80:47, :81:31
-  wire              _GEN_294 =
-    enqFire_5 ? _GEN_293 | _GEN_270 | _GEN_247 : _GEN_270 | _GEN_247;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire              _GEN_295 = writeIdx_5[3:0] == 4'h8;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:57:28, :80:47, :81:31
-  wire              _GEN_296 =
-    enqFire_5 ? _GEN_295 | _GEN_271 | _GEN_249 : _GEN_271 | _GEN_249;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire              _GEN_297 = writeIdx_5[3:0] == 4'h9;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:57:28, :80:47, :81:31
-  wire              _GEN_298 =
-    enqFire_5 ? _GEN_297 | _GEN_272 | _GEN_251 : _GEN_272 | _GEN_251;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire              _GEN_299 = writeIdx_5[3:0] == 4'hA;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:57:28, :80:47, :81:31
-  wire              _GEN_300 =
-    enqFire_5 ? _GEN_299 | _GEN_273 | _GEN_253 : _GEN_273 | _GEN_253;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire              _GEN_301 = writeIdx_5[3:0] == 4'hB;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:57:28, :80:47, :81:31
-  wire              _GEN_302 =
-    enqFire_5 ? _GEN_301 | _GEN_274 | _GEN_255 : _GEN_274 | _GEN_255;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire              _GEN_303 = writeIdx_5[3:0] == 4'hC;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:57:28, :80:47, :81:31
-  wire              _GEN_304 =
-    enqFire_5 ? _GEN_303 | _GEN_275 | _GEN_257 : _GEN_275 | _GEN_257;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire              _GEN_305 = writeIdx_5[3:0] == 4'hD;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:57:28, :80:47, :81:31
-  wire              _GEN_306 =
-    enqFire_5 ? _GEN_305 | _GEN_276 | _GEN_259 : _GEN_276 | _GEN_259;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire              _GEN_307 = writeIdx_5[3:0] == 4'hE;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:57:28, :80:47, :81:31
-  wire              _GEN_308 =
-    enqFire_5 ? _GEN_307 | _GEN_277 | _GEN_261 : _GEN_277 | _GEN_261;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  wire              _GEN_280 = writeIdx_5[3:0] == 4'h0;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:41:24, :80:47, :81:31
+  wire              _GEN_281 =
+    enqFire_5 ? _GEN_280 | _GEN_264 | _GEN_234 : _GEN_264 | _GEN_234;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  wire              _GEN_282 = writeIdx_5[3:0] == 4'h1;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:57:28, :80:47, :81:31
+  wire              _GEN_283 =
+    enqFire_5 ? _GEN_282 | _GEN_265 | _GEN_236 : _GEN_265 | _GEN_236;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  wire              _GEN_284 = writeIdx_5[3:0] == 4'h2;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:57:28, :80:47, :81:31
+  wire              _GEN_285 =
+    enqFire_5 ? _GEN_284 | _GEN_266 | _GEN_238 : _GEN_266 | _GEN_238;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  wire              _GEN_286 = writeIdx_5[3:0] == 4'h3;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:57:28, :80:47, :81:31
+  wire              _GEN_287 =
+    enqFire_5 ? _GEN_286 | _GEN_267 | _GEN_240 : _GEN_267 | _GEN_240;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  wire              _GEN_288 = writeIdx_5[3:0] == 4'h4;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:57:28, :80:47, :81:31
+  wire              _GEN_289 =
+    enqFire_5 ? _GEN_288 | _GEN_268 | _GEN_242 : _GEN_268 | _GEN_242;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  wire              _GEN_290 = writeIdx_5[3:0] == 4'h5;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:57:28, :80:47, :81:31
+  wire              _GEN_291 =
+    enqFire_5 ? _GEN_290 | _GEN_269 | _GEN_244 : _GEN_269 | _GEN_244;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  wire              _GEN_292 = writeIdx_5[3:0] == 4'h6;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:57:28, :80:47, :81:31
+  wire              _GEN_293 =
+    enqFire_5 ? _GEN_292 | _GEN_270 | _GEN_246 : _GEN_270 | _GEN_246;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  wire              _GEN_294 = writeIdx_5[3:0] == 4'h7;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:57:28, :80:47, :81:31
+  wire              _GEN_295 =
+    enqFire_5 ? _GEN_294 | _GEN_271 | _GEN_248 : _GEN_271 | _GEN_248;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  wire              _GEN_296 = writeIdx_5[3:0] == 4'h8;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:57:28, :80:47, :81:31
+  wire              _GEN_297 =
+    enqFire_5 ? _GEN_296 | _GEN_272 | _GEN_250 : _GEN_272 | _GEN_250;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  wire              _GEN_298 = writeIdx_5[3:0] == 4'h9;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:57:28, :80:47, :81:31
+  wire              _GEN_299 =
+    enqFire_5 ? _GEN_298 | _GEN_273 | _GEN_252 : _GEN_273 | _GEN_252;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  wire              _GEN_300 = writeIdx_5[3:0] == 4'hA;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:57:28, :80:47, :81:31
+  wire              _GEN_301 =
+    enqFire_5 ? _GEN_300 | _GEN_274 | _GEN_254 : _GEN_274 | _GEN_254;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  wire              _GEN_302 = writeIdx_5[3:0] == 4'hB;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:57:28, :80:47, :81:31
+  wire              _GEN_303 =
+    enqFire_5 ? _GEN_302 | _GEN_275 | _GEN_256 : _GEN_275 | _GEN_256;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  wire              _GEN_304 = writeIdx_5[3:0] == 4'hC;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:57:28, :80:47, :81:31
+  wire              _GEN_305 =
+    enqFire_5 ? _GEN_304 | _GEN_276 | _GEN_258 : _GEN_276 | _GEN_258;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  wire              _GEN_306 = writeIdx_5[3:0] == 4'hD;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:57:28, :80:47, :81:31
+  wire              _GEN_307 =
+    enqFire_5 ? _GEN_306 | _GEN_277 | _GEN_260 : _GEN_277 | _GEN_260;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  wire              _GEN_308 = writeIdx_5[3:0] == 4'hE;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:57:28, :80:47, :81:31
   wire              _GEN_309 =
-    enqFire_5 ? (&(writeIdx_5[3:0])) | _GEN_278 | _GEN_262 : _GEN_278 | _GEN_262;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :80:47, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
+    enqFire_5 ? _GEN_308 | _GEN_278 | _GEN_262 : _GEN_278 | _GEN_262;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  wire              _GEN_310 =
+    enqFire_5 ? (&(writeIdx_5[3:0])) | _GEN_279 | _GEN_263 : _GEN_279 | _GEN_263;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :80:47, :81:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
   wire              squashed_0 =
     io_redirect_valid & ~io_redirect_is_exception & entries_0_valid
     & entries_0_uop_robIdx > io_redirect_robIdx;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24, :94:46, :95:{41,82}
@@ -6407,7 +6447,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
   wire              squashed_15 =
     io_redirect_valid & ~io_redirect_is_exception & entries_15_valid
     & entries_15_uop_robIdx > io_redirect_robIdx;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24, :94:46, :95:{41,82}
-  wire [4:0]        _GEN_310 = {2'h0, totalEnq};	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:70:37, :77:26, :115:28
+  wire [4:0]        _GEN_311 = {2'h0, totalEnq};	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:70:37, :77:26, :115:28
   wire [4:0]        numSquashed =
     {1'h0,
      {1'h0,
@@ -6530,6 +6570,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
       entries_0_uop_decode_csr_cmd <= 3'h0;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:{24,66}
       entries_0_uop_decode_csr_addr <= 12'h0;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:{24,66}
       entries_0_uop_decode_is_ecall <= 1'h0;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:{24,66}
+      entries_0_uop_decode_is_ebreak <= 1'h0;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:{24,66}
       entries_0_uop_decode_is_mret <= 1'h0;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:{24,66}
       entries_0_uop_decode_is_sret <= 1'h0;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:{24,66}
       entries_0_uop_decode_is_sfence_vma <= 1'h0;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:{24,66}
@@ -6681,6 +6722,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
       entries_1_uop_decode_csr_cmd <= 3'h0;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:{24,66}
       entries_1_uop_decode_csr_addr <= 12'h0;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:{24,66}
       entries_1_uop_decode_is_ecall <= 1'h0;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:{24,66}
+      entries_1_uop_decode_is_ebreak <= 1'h0;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:{24,66}
       entries_1_uop_decode_is_mret <= 1'h0;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:{24,66}
       entries_1_uop_decode_is_sret <= 1'h0;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:{24,66}
       entries_1_uop_decode_is_sfence_vma <= 1'h0;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:{24,66}
@@ -6832,6 +6874,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
       entries_2_uop_decode_csr_cmd <= 3'h0;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:{24,66}
       entries_2_uop_decode_csr_addr <= 12'h0;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:{24,66}
       entries_2_uop_decode_is_ecall <= 1'h0;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:{24,66}
+      entries_2_uop_decode_is_ebreak <= 1'h0;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:{24,66}
       entries_2_uop_decode_is_mret <= 1'h0;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:{24,66}
       entries_2_uop_decode_is_sret <= 1'h0;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:{24,66}
       entries_2_uop_decode_is_sfence_vma <= 1'h0;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:{24,66}
@@ -6983,6 +7026,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
       entries_3_uop_decode_csr_cmd <= 3'h0;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:{24,66}
       entries_3_uop_decode_csr_addr <= 12'h0;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:{24,66}
       entries_3_uop_decode_is_ecall <= 1'h0;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:{24,66}
+      entries_3_uop_decode_is_ebreak <= 1'h0;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:{24,66}
       entries_3_uop_decode_is_mret <= 1'h0;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:{24,66}
       entries_3_uop_decode_is_sret <= 1'h0;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:{24,66}
       entries_3_uop_decode_is_sfence_vma <= 1'h0;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:{24,66}
@@ -7134,6 +7178,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
       entries_4_uop_decode_csr_cmd <= 3'h0;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:{24,66}
       entries_4_uop_decode_csr_addr <= 12'h0;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:{24,66}
       entries_4_uop_decode_is_ecall <= 1'h0;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:{24,66}
+      entries_4_uop_decode_is_ebreak <= 1'h0;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:{24,66}
       entries_4_uop_decode_is_mret <= 1'h0;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:{24,66}
       entries_4_uop_decode_is_sret <= 1'h0;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:{24,66}
       entries_4_uop_decode_is_sfence_vma <= 1'h0;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:{24,66}
@@ -7285,6 +7330,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
       entries_5_uop_decode_csr_cmd <= 3'h0;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:{24,66}
       entries_5_uop_decode_csr_addr <= 12'h0;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:{24,66}
       entries_5_uop_decode_is_ecall <= 1'h0;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:{24,66}
+      entries_5_uop_decode_is_ebreak <= 1'h0;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:{24,66}
       entries_5_uop_decode_is_mret <= 1'h0;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:{24,66}
       entries_5_uop_decode_is_sret <= 1'h0;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:{24,66}
       entries_5_uop_decode_is_sfence_vma <= 1'h0;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:{24,66}
@@ -7436,6 +7482,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
       entries_6_uop_decode_csr_cmd <= 3'h0;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:{24,66}
       entries_6_uop_decode_csr_addr <= 12'h0;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:{24,66}
       entries_6_uop_decode_is_ecall <= 1'h0;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:{24,66}
+      entries_6_uop_decode_is_ebreak <= 1'h0;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:{24,66}
       entries_6_uop_decode_is_mret <= 1'h0;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:{24,66}
       entries_6_uop_decode_is_sret <= 1'h0;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:{24,66}
       entries_6_uop_decode_is_sfence_vma <= 1'h0;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:{24,66}
@@ -7587,6 +7634,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
       entries_7_uop_decode_csr_cmd <= 3'h0;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:{24,66}
       entries_7_uop_decode_csr_addr <= 12'h0;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:{24,66}
       entries_7_uop_decode_is_ecall <= 1'h0;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:{24,66}
+      entries_7_uop_decode_is_ebreak <= 1'h0;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:{24,66}
       entries_7_uop_decode_is_mret <= 1'h0;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:{24,66}
       entries_7_uop_decode_is_sret <= 1'h0;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:{24,66}
       entries_7_uop_decode_is_sfence_vma <= 1'h0;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:{24,66}
@@ -7738,6 +7786,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
       entries_8_uop_decode_csr_cmd <= 3'h0;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:{24,66}
       entries_8_uop_decode_csr_addr <= 12'h0;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:{24,66}
       entries_8_uop_decode_is_ecall <= 1'h0;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:{24,66}
+      entries_8_uop_decode_is_ebreak <= 1'h0;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:{24,66}
       entries_8_uop_decode_is_mret <= 1'h0;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:{24,66}
       entries_8_uop_decode_is_sret <= 1'h0;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:{24,66}
       entries_8_uop_decode_is_sfence_vma <= 1'h0;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:{24,66}
@@ -7889,6 +7938,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
       entries_9_uop_decode_csr_cmd <= 3'h0;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:{24,66}
       entries_9_uop_decode_csr_addr <= 12'h0;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:{24,66}
       entries_9_uop_decode_is_ecall <= 1'h0;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:{24,66}
+      entries_9_uop_decode_is_ebreak <= 1'h0;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:{24,66}
       entries_9_uop_decode_is_mret <= 1'h0;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:{24,66}
       entries_9_uop_decode_is_sret <= 1'h0;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:{24,66}
       entries_9_uop_decode_is_sfence_vma <= 1'h0;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:{24,66}
@@ -8040,6 +8090,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
       entries_10_uop_decode_csr_cmd <= 3'h0;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:{24,66}
       entries_10_uop_decode_csr_addr <= 12'h0;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:{24,66}
       entries_10_uop_decode_is_ecall <= 1'h0;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:{24,66}
+      entries_10_uop_decode_is_ebreak <= 1'h0;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:{24,66}
       entries_10_uop_decode_is_mret <= 1'h0;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:{24,66}
       entries_10_uop_decode_is_sret <= 1'h0;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:{24,66}
       entries_10_uop_decode_is_sfence_vma <= 1'h0;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:{24,66}
@@ -8191,6 +8242,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
       entries_11_uop_decode_csr_cmd <= 3'h0;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:{24,66}
       entries_11_uop_decode_csr_addr <= 12'h0;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:{24,66}
       entries_11_uop_decode_is_ecall <= 1'h0;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:{24,66}
+      entries_11_uop_decode_is_ebreak <= 1'h0;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:{24,66}
       entries_11_uop_decode_is_mret <= 1'h0;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:{24,66}
       entries_11_uop_decode_is_sret <= 1'h0;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:{24,66}
       entries_11_uop_decode_is_sfence_vma <= 1'h0;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:{24,66}
@@ -8342,6 +8394,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
       entries_12_uop_decode_csr_cmd <= 3'h0;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:{24,66}
       entries_12_uop_decode_csr_addr <= 12'h0;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:{24,66}
       entries_12_uop_decode_is_ecall <= 1'h0;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:{24,66}
+      entries_12_uop_decode_is_ebreak <= 1'h0;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:{24,66}
       entries_12_uop_decode_is_mret <= 1'h0;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:{24,66}
       entries_12_uop_decode_is_sret <= 1'h0;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:{24,66}
       entries_12_uop_decode_is_sfence_vma <= 1'h0;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:{24,66}
@@ -8493,6 +8546,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
       entries_13_uop_decode_csr_cmd <= 3'h0;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:{24,66}
       entries_13_uop_decode_csr_addr <= 12'h0;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:{24,66}
       entries_13_uop_decode_is_ecall <= 1'h0;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:{24,66}
+      entries_13_uop_decode_is_ebreak <= 1'h0;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:{24,66}
       entries_13_uop_decode_is_mret <= 1'h0;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:{24,66}
       entries_13_uop_decode_is_sret <= 1'h0;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:{24,66}
       entries_13_uop_decode_is_sfence_vma <= 1'h0;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:{24,66}
@@ -8644,6 +8698,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
       entries_14_uop_decode_csr_cmd <= 3'h0;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:{24,66}
       entries_14_uop_decode_csr_addr <= 12'h0;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:{24,66}
       entries_14_uop_decode_is_ecall <= 1'h0;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:{24,66}
+      entries_14_uop_decode_is_ebreak <= 1'h0;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:{24,66}
       entries_14_uop_decode_is_mret <= 1'h0;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:{24,66}
       entries_14_uop_decode_is_sret <= 1'h0;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:{24,66}
       entries_14_uop_decode_is_sfence_vma <= 1'h0;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:{24,66}
@@ -8795,6 +8850,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
       entries_15_uop_decode_csr_cmd <= 3'h0;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:{24,66}
       entries_15_uop_decode_csr_addr <= 12'h0;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:{24,66}
       entries_15_uop_decode_is_ecall <= 1'h0;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:{24,66}
+      entries_15_uop_decode_is_ebreak <= 1'h0;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:{24,66}
       entries_15_uop_decode_is_mret <= 1'h0;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:{24,66}
       entries_15_uop_decode_is_sret <= 1'h0;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:{24,66}
       entries_15_uop_decode_is_sfence_vma <= 1'h0;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:{24,66}
@@ -8848,56 +8904,56 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
     end
     else begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7
       if (io_redirect_valid) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:17:14
-        entries_0_valid <= ~(io_redirect_is_exception | squashed_0) & _GEN_280;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24, :79:22, :81:31, :95:82, :96:23, :97:24, :103:36, :106:26
-        entries_1_valid <= ~(io_redirect_is_exception | squashed_1) & _GEN_282;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24, :79:22, :81:31, :95:82, :96:23, :97:24, :103:36, :106:26
-        entries_2_valid <= ~(io_redirect_is_exception | squashed_2) & _GEN_284;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24, :79:22, :81:31, :95:82, :96:23, :97:24, :103:36, :106:26
-        entries_3_valid <= ~(io_redirect_is_exception | squashed_3) & _GEN_286;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24, :79:22, :81:31, :95:82, :96:23, :97:24, :103:36, :106:26
-        entries_4_valid <= ~(io_redirect_is_exception | squashed_4) & _GEN_288;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24, :79:22, :81:31, :95:82, :96:23, :97:24, :103:36, :106:26
-        entries_5_valid <= ~(io_redirect_is_exception | squashed_5) & _GEN_290;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24, :79:22, :81:31, :95:82, :96:23, :97:24, :103:36, :106:26
-        entries_6_valid <= ~(io_redirect_is_exception | squashed_6) & _GEN_292;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24, :79:22, :81:31, :95:82, :96:23, :97:24, :103:36, :106:26
-        entries_7_valid <= ~(io_redirect_is_exception | squashed_7) & _GEN_294;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24, :79:22, :81:31, :95:82, :96:23, :97:24, :103:36, :106:26
-        entries_8_valid <= ~(io_redirect_is_exception | squashed_8) & _GEN_296;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24, :79:22, :81:31, :95:82, :96:23, :97:24, :103:36, :106:26
-        entries_9_valid <= ~(io_redirect_is_exception | squashed_9) & _GEN_298;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24, :79:22, :81:31, :95:82, :96:23, :97:24, :103:36, :106:26
-        entries_10_valid <= ~(io_redirect_is_exception | squashed_10) & _GEN_300;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24, :79:22, :81:31, :95:82, :96:23, :97:24, :103:36, :106:26
-        entries_11_valid <= ~(io_redirect_is_exception | squashed_11) & _GEN_302;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24, :79:22, :81:31, :95:82, :96:23, :97:24, :103:36, :106:26
-        entries_12_valid <= ~(io_redirect_is_exception | squashed_12) & _GEN_304;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24, :79:22, :81:31, :95:82, :96:23, :97:24, :103:36, :106:26
-        entries_13_valid <= ~(io_redirect_is_exception | squashed_13) & _GEN_306;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24, :79:22, :81:31, :95:82, :96:23, :97:24, :103:36, :106:26
-        entries_14_valid <= ~(io_redirect_is_exception | squashed_14) & _GEN_308;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24, :79:22, :81:31, :95:82, :96:23, :97:24, :103:36, :106:26
-        entries_15_valid <= ~(io_redirect_is_exception | squashed_15) & _GEN_309;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24, :79:22, :81:31, :95:82, :96:23, :97:24, :103:36, :106:26
+        entries_0_valid <= ~(io_redirect_is_exception | squashed_0) & _GEN_281;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24, :79:22, :81:31, :95:82, :96:23, :97:24, :103:36, :106:26
+        entries_1_valid <= ~(io_redirect_is_exception | squashed_1) & _GEN_283;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24, :79:22, :81:31, :95:82, :96:23, :97:24, :103:36, :106:26
+        entries_2_valid <= ~(io_redirect_is_exception | squashed_2) & _GEN_285;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24, :79:22, :81:31, :95:82, :96:23, :97:24, :103:36, :106:26
+        entries_3_valid <= ~(io_redirect_is_exception | squashed_3) & _GEN_287;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24, :79:22, :81:31, :95:82, :96:23, :97:24, :103:36, :106:26
+        entries_4_valid <= ~(io_redirect_is_exception | squashed_4) & _GEN_289;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24, :79:22, :81:31, :95:82, :96:23, :97:24, :103:36, :106:26
+        entries_5_valid <= ~(io_redirect_is_exception | squashed_5) & _GEN_291;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24, :79:22, :81:31, :95:82, :96:23, :97:24, :103:36, :106:26
+        entries_6_valid <= ~(io_redirect_is_exception | squashed_6) & _GEN_293;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24, :79:22, :81:31, :95:82, :96:23, :97:24, :103:36, :106:26
+        entries_7_valid <= ~(io_redirect_is_exception | squashed_7) & _GEN_295;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24, :79:22, :81:31, :95:82, :96:23, :97:24, :103:36, :106:26
+        entries_8_valid <= ~(io_redirect_is_exception | squashed_8) & _GEN_297;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24, :79:22, :81:31, :95:82, :96:23, :97:24, :103:36, :106:26
+        entries_9_valid <= ~(io_redirect_is_exception | squashed_9) & _GEN_299;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24, :79:22, :81:31, :95:82, :96:23, :97:24, :103:36, :106:26
+        entries_10_valid <= ~(io_redirect_is_exception | squashed_10) & _GEN_301;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24, :79:22, :81:31, :95:82, :96:23, :97:24, :103:36, :106:26
+        entries_11_valid <= ~(io_redirect_is_exception | squashed_11) & _GEN_303;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24, :79:22, :81:31, :95:82, :96:23, :97:24, :103:36, :106:26
+        entries_12_valid <= ~(io_redirect_is_exception | squashed_12) & _GEN_305;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24, :79:22, :81:31, :95:82, :96:23, :97:24, :103:36, :106:26
+        entries_13_valid <= ~(io_redirect_is_exception | squashed_13) & _GEN_307;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24, :79:22, :81:31, :95:82, :96:23, :97:24, :103:36, :106:26
+        entries_14_valid <= ~(io_redirect_is_exception | squashed_14) & _GEN_309;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24, :79:22, :81:31, :95:82, :96:23, :97:24, :103:36, :106:26
+        entries_15_valid <= ~(io_redirect_is_exception | squashed_15) & _GEN_310;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24, :79:22, :81:31, :95:82, :96:23, :97:24, :103:36, :106:26
         if (io_redirect_is_exception) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:17:14
           tailPtr <= 4'h0;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:41:24, :42:24
           countReg <= 5'h0;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:66, :43:25
         end
         else begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:17:14
           tailPtr <=
-            _GEN_168 >= numSquashed
+            _GEN_169 >= numSquashed
               ? tailPtr - numSquashed[3:0]
               : tailPtr - numSquashed[3:0];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:42:24, :80:47, :100:29, :113:{25,34,58,98}
-          countReg <= countReg + _GEN_310 - _GEN_150 - numSquashed;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:43:25, :63:48, :100:29, :115:{28,39,63}
+          countReg <= countReg + _GEN_311 - _GEN_151 - numSquashed;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:43:25, :63:48, :100:29, :115:{28,39,63}
         end
       end
       else begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:17:14
-        entries_0_valid <= ~squashed_0 & _GEN_280;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24, :79:22, :81:31, :95:82, :96:23, :97:24
-        entries_1_valid <= ~squashed_1 & _GEN_282;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24, :79:22, :81:31, :95:82, :96:23, :97:24
-        entries_2_valid <= ~squashed_2 & _GEN_284;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24, :79:22, :81:31, :95:82, :96:23, :97:24
-        entries_3_valid <= ~squashed_3 & _GEN_286;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24, :79:22, :81:31, :95:82, :96:23, :97:24
-        entries_4_valid <= ~squashed_4 & _GEN_288;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24, :79:22, :81:31, :95:82, :96:23, :97:24
-        entries_5_valid <= ~squashed_5 & _GEN_290;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24, :79:22, :81:31, :95:82, :96:23, :97:24
-        entries_6_valid <= ~squashed_6 & _GEN_292;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24, :79:22, :81:31, :95:82, :96:23, :97:24
-        entries_7_valid <= ~squashed_7 & _GEN_294;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24, :79:22, :81:31, :95:82, :96:23, :97:24
-        entries_8_valid <= ~squashed_8 & _GEN_296;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24, :79:22, :81:31, :95:82, :96:23, :97:24
-        entries_9_valid <= ~squashed_9 & _GEN_298;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24, :79:22, :81:31, :95:82, :96:23, :97:24
-        entries_10_valid <= ~squashed_10 & _GEN_300;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24, :79:22, :81:31, :95:82, :96:23, :97:24
-        entries_11_valid <= ~squashed_11 & _GEN_302;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24, :79:22, :81:31, :95:82, :96:23, :97:24
-        entries_12_valid <= ~squashed_12 & _GEN_304;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24, :79:22, :81:31, :95:82, :96:23, :97:24
-        entries_13_valid <= ~squashed_13 & _GEN_306;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24, :79:22, :81:31, :95:82, :96:23, :97:24
-        entries_14_valid <= ~squashed_14 & _GEN_308;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24, :79:22, :81:31, :95:82, :96:23, :97:24
-        entries_15_valid <= ~squashed_15 & _GEN_309;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24, :79:22, :81:31, :95:82, :96:23, :97:24
+        entries_0_valid <= ~squashed_0 & _GEN_281;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24, :79:22, :81:31, :95:82, :96:23, :97:24
+        entries_1_valid <= ~squashed_1 & _GEN_283;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24, :79:22, :81:31, :95:82, :96:23, :97:24
+        entries_2_valid <= ~squashed_2 & _GEN_285;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24, :79:22, :81:31, :95:82, :96:23, :97:24
+        entries_3_valid <= ~squashed_3 & _GEN_287;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24, :79:22, :81:31, :95:82, :96:23, :97:24
+        entries_4_valid <= ~squashed_4 & _GEN_289;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24, :79:22, :81:31, :95:82, :96:23, :97:24
+        entries_5_valid <= ~squashed_5 & _GEN_291;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24, :79:22, :81:31, :95:82, :96:23, :97:24
+        entries_6_valid <= ~squashed_6 & _GEN_293;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24, :79:22, :81:31, :95:82, :96:23, :97:24
+        entries_7_valid <= ~squashed_7 & _GEN_295;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24, :79:22, :81:31, :95:82, :96:23, :97:24
+        entries_8_valid <= ~squashed_8 & _GEN_297;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24, :79:22, :81:31, :95:82, :96:23, :97:24
+        entries_9_valid <= ~squashed_9 & _GEN_299;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24, :79:22, :81:31, :95:82, :96:23, :97:24
+        entries_10_valid <= ~squashed_10 & _GEN_301;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24, :79:22, :81:31, :95:82, :96:23, :97:24
+        entries_11_valid <= ~squashed_11 & _GEN_303;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24, :79:22, :81:31, :95:82, :96:23, :97:24
+        entries_12_valid <= ~squashed_12 & _GEN_305;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24, :79:22, :81:31, :95:82, :96:23, :97:24
+        entries_13_valid <= ~squashed_13 & _GEN_307;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24, :79:22, :81:31, :95:82, :96:23, :97:24
+        entries_14_valid <= ~squashed_14 & _GEN_309;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24, :79:22, :81:31, :95:82, :96:23, :97:24
+        entries_15_valid <= ~squashed_15 & _GEN_310;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24, :79:22, :81:31, :95:82, :96:23, :97:24
         if (|totalEnq)	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:77:26, :86:17
           tailPtr <= _tailPtr_T_2[3:0];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:42:24, :87:37
-        countReg <= countReg + _GEN_310 - _GEN_150;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:43:25, :63:48, :115:28, :118:{26,37}
+        countReg <= countReg + _GEN_311 - _GEN_151;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:43:25, :63:48, :115:28, :118:{26,37}
       end
-      if (enqFire_5 & _GEN_279) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31, :82:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      if (enqFire_5 & _GEN_280) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31, :82:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
         entries_0_uop_uop_pc <= io_enq_5_bits_uop_pc;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_0_uop_uop_inst_raw <= io_enq_5_bits_uop_inst_raw;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_0_uop_uop_pre_is_rvc <= io_enq_5_bits_uop_pre_is_rvc;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -9001,6 +9057,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_0_uop_decode_csr_cmd <= io_enq_5_bits_decode_csr_cmd;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_0_uop_decode_csr_addr <= io_enq_5_bits_decode_csr_addr;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_0_uop_decode_is_ecall <= io_enq_5_bits_decode_is_ecall;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
+        entries_0_uop_decode_is_ebreak <= io_enq_5_bits_decode_is_ebreak;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_0_uop_decode_is_mret <= io_enq_5_bits_decode_is_mret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_0_uop_decode_is_sret <= io_enq_5_bits_decode_is_sret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_0_uop_decode_is_sfence_vma <= io_enq_5_bits_decode_is_sfence_vma;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -9049,7 +9106,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_0_uop_snapshotIdx <= io_enq_5_bits_snapshotIdx;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_0_uop_robIdx <= io_enq_5_bits_robIdx;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
       end
-      else if (_GEN_263) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31
+      else if (_GEN_264) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31
         entries_0_uop_uop_pc <= io_enq_4_bits_uop_pc;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_0_uop_uop_inst_raw <= io_enq_4_bits_uop_inst_raw;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_0_uop_uop_pre_is_rvc <= io_enq_4_bits_uop_pre_is_rvc;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -9153,6 +9210,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_0_uop_decode_csr_cmd <= io_enq_4_bits_decode_csr_cmd;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_0_uop_decode_csr_addr <= io_enq_4_bits_decode_csr_addr;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_0_uop_decode_is_ecall <= io_enq_4_bits_decode_is_ecall;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
+        entries_0_uop_decode_is_ebreak <= io_enq_4_bits_decode_is_ebreak;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_0_uop_decode_is_mret <= io_enq_4_bits_decode_is_mret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_0_uop_decode_is_sret <= io_enq_4_bits_decode_is_sret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_0_uop_decode_is_sfence_vma <= io_enq_4_bits_decode_is_sfence_vma;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -9201,7 +9259,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_0_uop_snapshotIdx <= io_enq_4_bits_snapshotIdx;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_0_uop_robIdx <= io_enq_4_bits_robIdx;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
       end
-      else if (enqFire_3 & _GEN_232) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31, :82:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      else if (enqFire_3 & _GEN_233) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31, :82:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
         entries_0_uop_uop_pc <= io_enq_3_bits_uop_pc;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_0_uop_uop_inst_raw <= io_enq_3_bits_uop_inst_raw;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_0_uop_uop_pre_is_rvc <= io_enq_3_bits_uop_pre_is_rvc;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -9305,6 +9363,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_0_uop_decode_csr_cmd <= io_enq_3_bits_decode_csr_cmd;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_0_uop_decode_csr_addr <= io_enq_3_bits_decode_csr_addr;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_0_uop_decode_is_ecall <= io_enq_3_bits_decode_is_ecall;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
+        entries_0_uop_decode_is_ebreak <= io_enq_3_bits_decode_is_ebreak;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_0_uop_decode_is_mret <= io_enq_3_bits_decode_is_mret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_0_uop_decode_is_sret <= io_enq_3_bits_decode_is_sret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_0_uop_decode_is_sfence_vma <= io_enq_3_bits_decode_is_sfence_vma;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -9353,7 +9412,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_0_uop_snapshotIdx <= io_enq_3_bits_snapshotIdx;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_0_uop_robIdx <= io_enq_3_bits_robIdx;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
       end
-      else if (_GEN_216) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31
+      else if (_GEN_217) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31
         entries_0_uop_uop_pc <= io_enq_2_bits_uop_pc;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_0_uop_uop_inst_raw <= io_enq_2_bits_uop_inst_raw;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_0_uop_uop_pre_is_rvc <= io_enq_2_bits_uop_pre_is_rvc;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -9457,6 +9516,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_0_uop_decode_csr_cmd <= io_enq_2_bits_decode_csr_cmd;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_0_uop_decode_csr_addr <= io_enq_2_bits_decode_csr_addr;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_0_uop_decode_is_ecall <= io_enq_2_bits_decode_is_ecall;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
+        entries_0_uop_decode_is_ebreak <= io_enq_2_bits_decode_is_ebreak;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_0_uop_decode_is_mret <= io_enq_2_bits_decode_is_mret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_0_uop_decode_is_sret <= io_enq_2_bits_decode_is_sret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_0_uop_decode_is_sfence_vma <= io_enq_2_bits_decode_is_sfence_vma;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -9505,7 +9565,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_0_uop_snapshotIdx <= io_enq_2_bits_snapshotIdx;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_0_uop_robIdx <= io_enq_2_bits_robIdx;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
       end
-      else if (enqFire_1 & _GEN_185) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31, :82:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      else if (enqFire_1 & _GEN_186) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31, :82:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
         entries_0_uop_uop_pc <= io_enq_1_bits_uop_pc;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_0_uop_uop_inst_raw <= io_enq_1_bits_uop_inst_raw;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_0_uop_uop_pre_is_rvc <= io_enq_1_bits_uop_pre_is_rvc;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -9609,6 +9669,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_0_uop_decode_csr_cmd <= io_enq_1_bits_decode_csr_cmd;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_0_uop_decode_csr_addr <= io_enq_1_bits_decode_csr_addr;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_0_uop_decode_is_ecall <= io_enq_1_bits_decode_is_ecall;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
+        entries_0_uop_decode_is_ebreak <= io_enq_1_bits_decode_is_ebreak;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_0_uop_decode_is_mret <= io_enq_1_bits_decode_is_mret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_0_uop_decode_is_sret <= io_enq_1_bits_decode_is_sret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_0_uop_decode_is_sfence_vma <= io_enq_1_bits_decode_is_sfence_vma;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -9657,7 +9718,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_0_uop_snapshotIdx <= io_enq_1_bits_snapshotIdx;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_0_uop_robIdx <= io_enq_1_bits_robIdx;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
       end
-      else if (_GEN_169) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:56:16, :79:22, :81:31
+      else if (_GEN_170) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:56:16, :79:22, :81:31
         entries_0_uop_uop_pc <= io_enq_0_bits_uop_pc;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_0_uop_uop_inst_raw <= io_enq_0_bits_uop_inst_raw;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_0_uop_uop_pre_is_rvc <= io_enq_0_bits_uop_pre_is_rvc;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -9761,6 +9822,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_0_uop_decode_csr_cmd <= io_enq_0_bits_decode_csr_cmd;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_0_uop_decode_csr_addr <= io_enq_0_bits_decode_csr_addr;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_0_uop_decode_is_ecall <= io_enq_0_bits_decode_is_ecall;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
+        entries_0_uop_decode_is_ebreak <= io_enq_0_bits_decode_is_ebreak;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_0_uop_decode_is_mret <= io_enq_0_bits_decode_is_mret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_0_uop_decode_is_sret <= io_enq_0_bits_decode_is_sret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_0_uop_decode_is_sfence_vma <= io_enq_0_bits_decode_is_sfence_vma;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -9809,7 +9871,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_0_uop_snapshotIdx <= io_enq_0_bits_snapshotIdx;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_0_uop_robIdx <= io_enq_0_bits_robIdx;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
       end
-      if (enqFire_5 & _GEN_281) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31, :82:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      if (enqFire_5 & _GEN_282) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31, :82:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
         entries_1_uop_uop_pc <= io_enq_5_bits_uop_pc;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_1_uop_uop_inst_raw <= io_enq_5_bits_uop_inst_raw;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_1_uop_uop_pre_is_rvc <= io_enq_5_bits_uop_pre_is_rvc;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -9913,6 +9975,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_1_uop_decode_csr_cmd <= io_enq_5_bits_decode_csr_cmd;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_1_uop_decode_csr_addr <= io_enq_5_bits_decode_csr_addr;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_1_uop_decode_is_ecall <= io_enq_5_bits_decode_is_ecall;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
+        entries_1_uop_decode_is_ebreak <= io_enq_5_bits_decode_is_ebreak;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_1_uop_decode_is_mret <= io_enq_5_bits_decode_is_mret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_1_uop_decode_is_sret <= io_enq_5_bits_decode_is_sret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_1_uop_decode_is_sfence_vma <= io_enq_5_bits_decode_is_sfence_vma;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -9961,7 +10024,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_1_uop_snapshotIdx <= io_enq_5_bits_snapshotIdx;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_1_uop_robIdx <= io_enq_5_bits_robIdx;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
       end
-      else if (_GEN_264) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31
+      else if (_GEN_265) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31
         entries_1_uop_uop_pc <= io_enq_4_bits_uop_pc;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_1_uop_uop_inst_raw <= io_enq_4_bits_uop_inst_raw;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_1_uop_uop_pre_is_rvc <= io_enq_4_bits_uop_pre_is_rvc;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -10065,6 +10128,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_1_uop_decode_csr_cmd <= io_enq_4_bits_decode_csr_cmd;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_1_uop_decode_csr_addr <= io_enq_4_bits_decode_csr_addr;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_1_uop_decode_is_ecall <= io_enq_4_bits_decode_is_ecall;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
+        entries_1_uop_decode_is_ebreak <= io_enq_4_bits_decode_is_ebreak;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_1_uop_decode_is_mret <= io_enq_4_bits_decode_is_mret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_1_uop_decode_is_sret <= io_enq_4_bits_decode_is_sret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_1_uop_decode_is_sfence_vma <= io_enq_4_bits_decode_is_sfence_vma;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -10113,7 +10177,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_1_uop_snapshotIdx <= io_enq_4_bits_snapshotIdx;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_1_uop_robIdx <= io_enq_4_bits_robIdx;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
       end
-      else if (enqFire_3 & _GEN_234) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31, :82:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      else if (enqFire_3 & _GEN_235) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31, :82:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
         entries_1_uop_uop_pc <= io_enq_3_bits_uop_pc;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_1_uop_uop_inst_raw <= io_enq_3_bits_uop_inst_raw;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_1_uop_uop_pre_is_rvc <= io_enq_3_bits_uop_pre_is_rvc;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -10217,6 +10281,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_1_uop_decode_csr_cmd <= io_enq_3_bits_decode_csr_cmd;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_1_uop_decode_csr_addr <= io_enq_3_bits_decode_csr_addr;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_1_uop_decode_is_ecall <= io_enq_3_bits_decode_is_ecall;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
+        entries_1_uop_decode_is_ebreak <= io_enq_3_bits_decode_is_ebreak;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_1_uop_decode_is_mret <= io_enq_3_bits_decode_is_mret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_1_uop_decode_is_sret <= io_enq_3_bits_decode_is_sret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_1_uop_decode_is_sfence_vma <= io_enq_3_bits_decode_is_sfence_vma;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -10265,7 +10330,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_1_uop_snapshotIdx <= io_enq_3_bits_snapshotIdx;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_1_uop_robIdx <= io_enq_3_bits_robIdx;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
       end
-      else if (_GEN_217) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31
+      else if (_GEN_218) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31
         entries_1_uop_uop_pc <= io_enq_2_bits_uop_pc;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_1_uop_uop_inst_raw <= io_enq_2_bits_uop_inst_raw;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_1_uop_uop_pre_is_rvc <= io_enq_2_bits_uop_pre_is_rvc;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -10369,6 +10434,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_1_uop_decode_csr_cmd <= io_enq_2_bits_decode_csr_cmd;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_1_uop_decode_csr_addr <= io_enq_2_bits_decode_csr_addr;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_1_uop_decode_is_ecall <= io_enq_2_bits_decode_is_ecall;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
+        entries_1_uop_decode_is_ebreak <= io_enq_2_bits_decode_is_ebreak;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_1_uop_decode_is_mret <= io_enq_2_bits_decode_is_mret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_1_uop_decode_is_sret <= io_enq_2_bits_decode_is_sret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_1_uop_decode_is_sfence_vma <= io_enq_2_bits_decode_is_sfence_vma;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -10417,7 +10483,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_1_uop_snapshotIdx <= io_enq_2_bits_snapshotIdx;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_1_uop_robIdx <= io_enq_2_bits_robIdx;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
       end
-      else if (enqFire_1 & _GEN_187) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31, :82:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      else if (enqFire_1 & _GEN_188) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31, :82:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
         entries_1_uop_uop_pc <= io_enq_1_bits_uop_pc;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_1_uop_uop_inst_raw <= io_enq_1_bits_uop_inst_raw;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_1_uop_uop_pre_is_rvc <= io_enq_1_bits_uop_pre_is_rvc;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -10521,6 +10587,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_1_uop_decode_csr_cmd <= io_enq_1_bits_decode_csr_cmd;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_1_uop_decode_csr_addr <= io_enq_1_bits_decode_csr_addr;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_1_uop_decode_is_ecall <= io_enq_1_bits_decode_is_ecall;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
+        entries_1_uop_decode_is_ebreak <= io_enq_1_bits_decode_is_ebreak;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_1_uop_decode_is_mret <= io_enq_1_bits_decode_is_mret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_1_uop_decode_is_sret <= io_enq_1_bits_decode_is_sret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_1_uop_decode_is_sfence_vma <= io_enq_1_bits_decode_is_sfence_vma;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -10569,7 +10636,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_1_uop_snapshotIdx <= io_enq_1_bits_snapshotIdx;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_1_uop_robIdx <= io_enq_1_bits_robIdx;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
       end
-      else if (_GEN_170) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:56:16, :79:22, :81:31
+      else if (_GEN_171) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:56:16, :79:22, :81:31
         entries_1_uop_uop_pc <= io_enq_0_bits_uop_pc;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_1_uop_uop_inst_raw <= io_enq_0_bits_uop_inst_raw;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_1_uop_uop_pre_is_rvc <= io_enq_0_bits_uop_pre_is_rvc;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -10673,6 +10740,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_1_uop_decode_csr_cmd <= io_enq_0_bits_decode_csr_cmd;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_1_uop_decode_csr_addr <= io_enq_0_bits_decode_csr_addr;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_1_uop_decode_is_ecall <= io_enq_0_bits_decode_is_ecall;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
+        entries_1_uop_decode_is_ebreak <= io_enq_0_bits_decode_is_ebreak;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_1_uop_decode_is_mret <= io_enq_0_bits_decode_is_mret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_1_uop_decode_is_sret <= io_enq_0_bits_decode_is_sret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_1_uop_decode_is_sfence_vma <= io_enq_0_bits_decode_is_sfence_vma;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -10721,7 +10789,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_1_uop_snapshotIdx <= io_enq_0_bits_snapshotIdx;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_1_uop_robIdx <= io_enq_0_bits_robIdx;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
       end
-      if (enqFire_5 & _GEN_283) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31, :82:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      if (enqFire_5 & _GEN_284) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31, :82:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
         entries_2_uop_uop_pc <= io_enq_5_bits_uop_pc;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_2_uop_uop_inst_raw <= io_enq_5_bits_uop_inst_raw;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_2_uop_uop_pre_is_rvc <= io_enq_5_bits_uop_pre_is_rvc;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -10825,6 +10893,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_2_uop_decode_csr_cmd <= io_enq_5_bits_decode_csr_cmd;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_2_uop_decode_csr_addr <= io_enq_5_bits_decode_csr_addr;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_2_uop_decode_is_ecall <= io_enq_5_bits_decode_is_ecall;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
+        entries_2_uop_decode_is_ebreak <= io_enq_5_bits_decode_is_ebreak;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_2_uop_decode_is_mret <= io_enq_5_bits_decode_is_mret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_2_uop_decode_is_sret <= io_enq_5_bits_decode_is_sret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_2_uop_decode_is_sfence_vma <= io_enq_5_bits_decode_is_sfence_vma;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -10873,7 +10942,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_2_uop_snapshotIdx <= io_enq_5_bits_snapshotIdx;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_2_uop_robIdx <= io_enq_5_bits_robIdx;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
       end
-      else if (_GEN_265) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31
+      else if (_GEN_266) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31
         entries_2_uop_uop_pc <= io_enq_4_bits_uop_pc;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_2_uop_uop_inst_raw <= io_enq_4_bits_uop_inst_raw;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_2_uop_uop_pre_is_rvc <= io_enq_4_bits_uop_pre_is_rvc;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -10977,6 +11046,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_2_uop_decode_csr_cmd <= io_enq_4_bits_decode_csr_cmd;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_2_uop_decode_csr_addr <= io_enq_4_bits_decode_csr_addr;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_2_uop_decode_is_ecall <= io_enq_4_bits_decode_is_ecall;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
+        entries_2_uop_decode_is_ebreak <= io_enq_4_bits_decode_is_ebreak;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_2_uop_decode_is_mret <= io_enq_4_bits_decode_is_mret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_2_uop_decode_is_sret <= io_enq_4_bits_decode_is_sret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_2_uop_decode_is_sfence_vma <= io_enq_4_bits_decode_is_sfence_vma;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -11025,7 +11095,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_2_uop_snapshotIdx <= io_enq_4_bits_snapshotIdx;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_2_uop_robIdx <= io_enq_4_bits_robIdx;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
       end
-      else if (enqFire_3 & _GEN_236) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31, :82:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      else if (enqFire_3 & _GEN_237) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31, :82:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
         entries_2_uop_uop_pc <= io_enq_3_bits_uop_pc;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_2_uop_uop_inst_raw <= io_enq_3_bits_uop_inst_raw;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_2_uop_uop_pre_is_rvc <= io_enq_3_bits_uop_pre_is_rvc;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -11129,6 +11199,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_2_uop_decode_csr_cmd <= io_enq_3_bits_decode_csr_cmd;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_2_uop_decode_csr_addr <= io_enq_3_bits_decode_csr_addr;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_2_uop_decode_is_ecall <= io_enq_3_bits_decode_is_ecall;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
+        entries_2_uop_decode_is_ebreak <= io_enq_3_bits_decode_is_ebreak;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_2_uop_decode_is_mret <= io_enq_3_bits_decode_is_mret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_2_uop_decode_is_sret <= io_enq_3_bits_decode_is_sret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_2_uop_decode_is_sfence_vma <= io_enq_3_bits_decode_is_sfence_vma;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -11177,7 +11248,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_2_uop_snapshotIdx <= io_enq_3_bits_snapshotIdx;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_2_uop_robIdx <= io_enq_3_bits_robIdx;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
       end
-      else if (_GEN_218) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31
+      else if (_GEN_219) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31
         entries_2_uop_uop_pc <= io_enq_2_bits_uop_pc;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_2_uop_uop_inst_raw <= io_enq_2_bits_uop_inst_raw;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_2_uop_uop_pre_is_rvc <= io_enq_2_bits_uop_pre_is_rvc;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -11281,6 +11352,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_2_uop_decode_csr_cmd <= io_enq_2_bits_decode_csr_cmd;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_2_uop_decode_csr_addr <= io_enq_2_bits_decode_csr_addr;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_2_uop_decode_is_ecall <= io_enq_2_bits_decode_is_ecall;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
+        entries_2_uop_decode_is_ebreak <= io_enq_2_bits_decode_is_ebreak;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_2_uop_decode_is_mret <= io_enq_2_bits_decode_is_mret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_2_uop_decode_is_sret <= io_enq_2_bits_decode_is_sret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_2_uop_decode_is_sfence_vma <= io_enq_2_bits_decode_is_sfence_vma;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -11329,7 +11401,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_2_uop_snapshotIdx <= io_enq_2_bits_snapshotIdx;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_2_uop_robIdx <= io_enq_2_bits_robIdx;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
       end
-      else if (enqFire_1 & _GEN_189) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31, :82:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      else if (enqFire_1 & _GEN_190) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31, :82:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
         entries_2_uop_uop_pc <= io_enq_1_bits_uop_pc;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_2_uop_uop_inst_raw <= io_enq_1_bits_uop_inst_raw;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_2_uop_uop_pre_is_rvc <= io_enq_1_bits_uop_pre_is_rvc;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -11433,6 +11505,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_2_uop_decode_csr_cmd <= io_enq_1_bits_decode_csr_cmd;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_2_uop_decode_csr_addr <= io_enq_1_bits_decode_csr_addr;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_2_uop_decode_is_ecall <= io_enq_1_bits_decode_is_ecall;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
+        entries_2_uop_decode_is_ebreak <= io_enq_1_bits_decode_is_ebreak;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_2_uop_decode_is_mret <= io_enq_1_bits_decode_is_mret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_2_uop_decode_is_sret <= io_enq_1_bits_decode_is_sret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_2_uop_decode_is_sfence_vma <= io_enq_1_bits_decode_is_sfence_vma;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -11481,7 +11554,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_2_uop_snapshotIdx <= io_enq_1_bits_snapshotIdx;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_2_uop_robIdx <= io_enq_1_bits_robIdx;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
       end
-      else if (_GEN_171) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:56:16, :79:22, :81:31
+      else if (_GEN_172) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:56:16, :79:22, :81:31
         entries_2_uop_uop_pc <= io_enq_0_bits_uop_pc;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_2_uop_uop_inst_raw <= io_enq_0_bits_uop_inst_raw;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_2_uop_uop_pre_is_rvc <= io_enq_0_bits_uop_pre_is_rvc;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -11585,6 +11658,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_2_uop_decode_csr_cmd <= io_enq_0_bits_decode_csr_cmd;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_2_uop_decode_csr_addr <= io_enq_0_bits_decode_csr_addr;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_2_uop_decode_is_ecall <= io_enq_0_bits_decode_is_ecall;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
+        entries_2_uop_decode_is_ebreak <= io_enq_0_bits_decode_is_ebreak;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_2_uop_decode_is_mret <= io_enq_0_bits_decode_is_mret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_2_uop_decode_is_sret <= io_enq_0_bits_decode_is_sret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_2_uop_decode_is_sfence_vma <= io_enq_0_bits_decode_is_sfence_vma;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -11633,7 +11707,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_2_uop_snapshotIdx <= io_enq_0_bits_snapshotIdx;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_2_uop_robIdx <= io_enq_0_bits_robIdx;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
       end
-      if (enqFire_5 & _GEN_285) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31, :82:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      if (enqFire_5 & _GEN_286) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31, :82:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
         entries_3_uop_uop_pc <= io_enq_5_bits_uop_pc;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_3_uop_uop_inst_raw <= io_enq_5_bits_uop_inst_raw;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_3_uop_uop_pre_is_rvc <= io_enq_5_bits_uop_pre_is_rvc;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -11737,6 +11811,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_3_uop_decode_csr_cmd <= io_enq_5_bits_decode_csr_cmd;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_3_uop_decode_csr_addr <= io_enq_5_bits_decode_csr_addr;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_3_uop_decode_is_ecall <= io_enq_5_bits_decode_is_ecall;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
+        entries_3_uop_decode_is_ebreak <= io_enq_5_bits_decode_is_ebreak;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_3_uop_decode_is_mret <= io_enq_5_bits_decode_is_mret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_3_uop_decode_is_sret <= io_enq_5_bits_decode_is_sret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_3_uop_decode_is_sfence_vma <= io_enq_5_bits_decode_is_sfence_vma;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -11785,7 +11860,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_3_uop_snapshotIdx <= io_enq_5_bits_snapshotIdx;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_3_uop_robIdx <= io_enq_5_bits_robIdx;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
       end
-      else if (_GEN_266) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31
+      else if (_GEN_267) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31
         entries_3_uop_uop_pc <= io_enq_4_bits_uop_pc;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_3_uop_uop_inst_raw <= io_enq_4_bits_uop_inst_raw;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_3_uop_uop_pre_is_rvc <= io_enq_4_bits_uop_pre_is_rvc;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -11889,6 +11964,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_3_uop_decode_csr_cmd <= io_enq_4_bits_decode_csr_cmd;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_3_uop_decode_csr_addr <= io_enq_4_bits_decode_csr_addr;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_3_uop_decode_is_ecall <= io_enq_4_bits_decode_is_ecall;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
+        entries_3_uop_decode_is_ebreak <= io_enq_4_bits_decode_is_ebreak;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_3_uop_decode_is_mret <= io_enq_4_bits_decode_is_mret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_3_uop_decode_is_sret <= io_enq_4_bits_decode_is_sret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_3_uop_decode_is_sfence_vma <= io_enq_4_bits_decode_is_sfence_vma;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -11937,7 +12013,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_3_uop_snapshotIdx <= io_enq_4_bits_snapshotIdx;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_3_uop_robIdx <= io_enq_4_bits_robIdx;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
       end
-      else if (enqFire_3 & _GEN_238) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31, :82:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      else if (enqFire_3 & _GEN_239) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31, :82:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
         entries_3_uop_uop_pc <= io_enq_3_bits_uop_pc;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_3_uop_uop_inst_raw <= io_enq_3_bits_uop_inst_raw;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_3_uop_uop_pre_is_rvc <= io_enq_3_bits_uop_pre_is_rvc;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -12041,6 +12117,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_3_uop_decode_csr_cmd <= io_enq_3_bits_decode_csr_cmd;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_3_uop_decode_csr_addr <= io_enq_3_bits_decode_csr_addr;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_3_uop_decode_is_ecall <= io_enq_3_bits_decode_is_ecall;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
+        entries_3_uop_decode_is_ebreak <= io_enq_3_bits_decode_is_ebreak;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_3_uop_decode_is_mret <= io_enq_3_bits_decode_is_mret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_3_uop_decode_is_sret <= io_enq_3_bits_decode_is_sret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_3_uop_decode_is_sfence_vma <= io_enq_3_bits_decode_is_sfence_vma;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -12089,7 +12166,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_3_uop_snapshotIdx <= io_enq_3_bits_snapshotIdx;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_3_uop_robIdx <= io_enq_3_bits_robIdx;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
       end
-      else if (_GEN_219) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31
+      else if (_GEN_220) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31
         entries_3_uop_uop_pc <= io_enq_2_bits_uop_pc;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_3_uop_uop_inst_raw <= io_enq_2_bits_uop_inst_raw;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_3_uop_uop_pre_is_rvc <= io_enq_2_bits_uop_pre_is_rvc;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -12193,6 +12270,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_3_uop_decode_csr_cmd <= io_enq_2_bits_decode_csr_cmd;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_3_uop_decode_csr_addr <= io_enq_2_bits_decode_csr_addr;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_3_uop_decode_is_ecall <= io_enq_2_bits_decode_is_ecall;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
+        entries_3_uop_decode_is_ebreak <= io_enq_2_bits_decode_is_ebreak;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_3_uop_decode_is_mret <= io_enq_2_bits_decode_is_mret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_3_uop_decode_is_sret <= io_enq_2_bits_decode_is_sret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_3_uop_decode_is_sfence_vma <= io_enq_2_bits_decode_is_sfence_vma;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -12241,7 +12319,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_3_uop_snapshotIdx <= io_enq_2_bits_snapshotIdx;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_3_uop_robIdx <= io_enq_2_bits_robIdx;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
       end
-      else if (enqFire_1 & _GEN_191) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31, :82:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      else if (enqFire_1 & _GEN_192) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31, :82:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
         entries_3_uop_uop_pc <= io_enq_1_bits_uop_pc;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_3_uop_uop_inst_raw <= io_enq_1_bits_uop_inst_raw;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_3_uop_uop_pre_is_rvc <= io_enq_1_bits_uop_pre_is_rvc;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -12345,6 +12423,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_3_uop_decode_csr_cmd <= io_enq_1_bits_decode_csr_cmd;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_3_uop_decode_csr_addr <= io_enq_1_bits_decode_csr_addr;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_3_uop_decode_is_ecall <= io_enq_1_bits_decode_is_ecall;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
+        entries_3_uop_decode_is_ebreak <= io_enq_1_bits_decode_is_ebreak;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_3_uop_decode_is_mret <= io_enq_1_bits_decode_is_mret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_3_uop_decode_is_sret <= io_enq_1_bits_decode_is_sret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_3_uop_decode_is_sfence_vma <= io_enq_1_bits_decode_is_sfence_vma;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -12393,7 +12472,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_3_uop_snapshotIdx <= io_enq_1_bits_snapshotIdx;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_3_uop_robIdx <= io_enq_1_bits_robIdx;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
       end
-      else if (_GEN_172) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:56:16, :79:22, :81:31
+      else if (_GEN_173) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:56:16, :79:22, :81:31
         entries_3_uop_uop_pc <= io_enq_0_bits_uop_pc;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_3_uop_uop_inst_raw <= io_enq_0_bits_uop_inst_raw;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_3_uop_uop_pre_is_rvc <= io_enq_0_bits_uop_pre_is_rvc;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -12497,6 +12576,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_3_uop_decode_csr_cmd <= io_enq_0_bits_decode_csr_cmd;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_3_uop_decode_csr_addr <= io_enq_0_bits_decode_csr_addr;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_3_uop_decode_is_ecall <= io_enq_0_bits_decode_is_ecall;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
+        entries_3_uop_decode_is_ebreak <= io_enq_0_bits_decode_is_ebreak;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_3_uop_decode_is_mret <= io_enq_0_bits_decode_is_mret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_3_uop_decode_is_sret <= io_enq_0_bits_decode_is_sret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_3_uop_decode_is_sfence_vma <= io_enq_0_bits_decode_is_sfence_vma;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -12545,7 +12625,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_3_uop_snapshotIdx <= io_enq_0_bits_snapshotIdx;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_3_uop_robIdx <= io_enq_0_bits_robIdx;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
       end
-      if (enqFire_5 & _GEN_287) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31, :82:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      if (enqFire_5 & _GEN_288) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31, :82:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
         entries_4_uop_uop_pc <= io_enq_5_bits_uop_pc;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_4_uop_uop_inst_raw <= io_enq_5_bits_uop_inst_raw;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_4_uop_uop_pre_is_rvc <= io_enq_5_bits_uop_pre_is_rvc;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -12649,6 +12729,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_4_uop_decode_csr_cmd <= io_enq_5_bits_decode_csr_cmd;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_4_uop_decode_csr_addr <= io_enq_5_bits_decode_csr_addr;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_4_uop_decode_is_ecall <= io_enq_5_bits_decode_is_ecall;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
+        entries_4_uop_decode_is_ebreak <= io_enq_5_bits_decode_is_ebreak;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_4_uop_decode_is_mret <= io_enq_5_bits_decode_is_mret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_4_uop_decode_is_sret <= io_enq_5_bits_decode_is_sret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_4_uop_decode_is_sfence_vma <= io_enq_5_bits_decode_is_sfence_vma;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -12697,7 +12778,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_4_uop_snapshotIdx <= io_enq_5_bits_snapshotIdx;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_4_uop_robIdx <= io_enq_5_bits_robIdx;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
       end
-      else if (_GEN_267) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31
+      else if (_GEN_268) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31
         entries_4_uop_uop_pc <= io_enq_4_bits_uop_pc;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_4_uop_uop_inst_raw <= io_enq_4_bits_uop_inst_raw;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_4_uop_uop_pre_is_rvc <= io_enq_4_bits_uop_pre_is_rvc;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -12801,6 +12882,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_4_uop_decode_csr_cmd <= io_enq_4_bits_decode_csr_cmd;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_4_uop_decode_csr_addr <= io_enq_4_bits_decode_csr_addr;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_4_uop_decode_is_ecall <= io_enq_4_bits_decode_is_ecall;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
+        entries_4_uop_decode_is_ebreak <= io_enq_4_bits_decode_is_ebreak;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_4_uop_decode_is_mret <= io_enq_4_bits_decode_is_mret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_4_uop_decode_is_sret <= io_enq_4_bits_decode_is_sret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_4_uop_decode_is_sfence_vma <= io_enq_4_bits_decode_is_sfence_vma;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -12849,7 +12931,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_4_uop_snapshotIdx <= io_enq_4_bits_snapshotIdx;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_4_uop_robIdx <= io_enq_4_bits_robIdx;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
       end
-      else if (enqFire_3 & _GEN_240) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31, :82:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      else if (enqFire_3 & _GEN_241) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31, :82:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
         entries_4_uop_uop_pc <= io_enq_3_bits_uop_pc;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_4_uop_uop_inst_raw <= io_enq_3_bits_uop_inst_raw;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_4_uop_uop_pre_is_rvc <= io_enq_3_bits_uop_pre_is_rvc;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -12953,6 +13035,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_4_uop_decode_csr_cmd <= io_enq_3_bits_decode_csr_cmd;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_4_uop_decode_csr_addr <= io_enq_3_bits_decode_csr_addr;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_4_uop_decode_is_ecall <= io_enq_3_bits_decode_is_ecall;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
+        entries_4_uop_decode_is_ebreak <= io_enq_3_bits_decode_is_ebreak;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_4_uop_decode_is_mret <= io_enq_3_bits_decode_is_mret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_4_uop_decode_is_sret <= io_enq_3_bits_decode_is_sret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_4_uop_decode_is_sfence_vma <= io_enq_3_bits_decode_is_sfence_vma;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -13001,7 +13084,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_4_uop_snapshotIdx <= io_enq_3_bits_snapshotIdx;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_4_uop_robIdx <= io_enq_3_bits_robIdx;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
       end
-      else if (_GEN_220) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31
+      else if (_GEN_221) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31
         entries_4_uop_uop_pc <= io_enq_2_bits_uop_pc;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_4_uop_uop_inst_raw <= io_enq_2_bits_uop_inst_raw;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_4_uop_uop_pre_is_rvc <= io_enq_2_bits_uop_pre_is_rvc;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -13105,6 +13188,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_4_uop_decode_csr_cmd <= io_enq_2_bits_decode_csr_cmd;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_4_uop_decode_csr_addr <= io_enq_2_bits_decode_csr_addr;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_4_uop_decode_is_ecall <= io_enq_2_bits_decode_is_ecall;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
+        entries_4_uop_decode_is_ebreak <= io_enq_2_bits_decode_is_ebreak;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_4_uop_decode_is_mret <= io_enq_2_bits_decode_is_mret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_4_uop_decode_is_sret <= io_enq_2_bits_decode_is_sret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_4_uop_decode_is_sfence_vma <= io_enq_2_bits_decode_is_sfence_vma;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -13153,7 +13237,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_4_uop_snapshotIdx <= io_enq_2_bits_snapshotIdx;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_4_uop_robIdx <= io_enq_2_bits_robIdx;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
       end
-      else if (enqFire_1 & _GEN_193) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31, :82:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      else if (enqFire_1 & _GEN_194) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31, :82:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
         entries_4_uop_uop_pc <= io_enq_1_bits_uop_pc;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_4_uop_uop_inst_raw <= io_enq_1_bits_uop_inst_raw;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_4_uop_uop_pre_is_rvc <= io_enq_1_bits_uop_pre_is_rvc;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -13257,6 +13341,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_4_uop_decode_csr_cmd <= io_enq_1_bits_decode_csr_cmd;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_4_uop_decode_csr_addr <= io_enq_1_bits_decode_csr_addr;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_4_uop_decode_is_ecall <= io_enq_1_bits_decode_is_ecall;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
+        entries_4_uop_decode_is_ebreak <= io_enq_1_bits_decode_is_ebreak;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_4_uop_decode_is_mret <= io_enq_1_bits_decode_is_mret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_4_uop_decode_is_sret <= io_enq_1_bits_decode_is_sret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_4_uop_decode_is_sfence_vma <= io_enq_1_bits_decode_is_sfence_vma;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -13305,7 +13390,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_4_uop_snapshotIdx <= io_enq_1_bits_snapshotIdx;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_4_uop_robIdx <= io_enq_1_bits_robIdx;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
       end
-      else if (_GEN_173) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:56:16, :79:22, :81:31
+      else if (_GEN_174) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:56:16, :79:22, :81:31
         entries_4_uop_uop_pc <= io_enq_0_bits_uop_pc;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_4_uop_uop_inst_raw <= io_enq_0_bits_uop_inst_raw;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_4_uop_uop_pre_is_rvc <= io_enq_0_bits_uop_pre_is_rvc;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -13409,6 +13494,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_4_uop_decode_csr_cmd <= io_enq_0_bits_decode_csr_cmd;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_4_uop_decode_csr_addr <= io_enq_0_bits_decode_csr_addr;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_4_uop_decode_is_ecall <= io_enq_0_bits_decode_is_ecall;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
+        entries_4_uop_decode_is_ebreak <= io_enq_0_bits_decode_is_ebreak;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_4_uop_decode_is_mret <= io_enq_0_bits_decode_is_mret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_4_uop_decode_is_sret <= io_enq_0_bits_decode_is_sret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_4_uop_decode_is_sfence_vma <= io_enq_0_bits_decode_is_sfence_vma;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -13457,7 +13543,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_4_uop_snapshotIdx <= io_enq_0_bits_snapshotIdx;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_4_uop_robIdx <= io_enq_0_bits_robIdx;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
       end
-      if (enqFire_5 & _GEN_289) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31, :82:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      if (enqFire_5 & _GEN_290) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31, :82:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
         entries_5_uop_uop_pc <= io_enq_5_bits_uop_pc;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_5_uop_uop_inst_raw <= io_enq_5_bits_uop_inst_raw;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_5_uop_uop_pre_is_rvc <= io_enq_5_bits_uop_pre_is_rvc;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -13561,6 +13647,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_5_uop_decode_csr_cmd <= io_enq_5_bits_decode_csr_cmd;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_5_uop_decode_csr_addr <= io_enq_5_bits_decode_csr_addr;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_5_uop_decode_is_ecall <= io_enq_5_bits_decode_is_ecall;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
+        entries_5_uop_decode_is_ebreak <= io_enq_5_bits_decode_is_ebreak;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_5_uop_decode_is_mret <= io_enq_5_bits_decode_is_mret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_5_uop_decode_is_sret <= io_enq_5_bits_decode_is_sret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_5_uop_decode_is_sfence_vma <= io_enq_5_bits_decode_is_sfence_vma;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -13609,7 +13696,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_5_uop_snapshotIdx <= io_enq_5_bits_snapshotIdx;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_5_uop_robIdx <= io_enq_5_bits_robIdx;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
       end
-      else if (_GEN_268) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31
+      else if (_GEN_269) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31
         entries_5_uop_uop_pc <= io_enq_4_bits_uop_pc;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_5_uop_uop_inst_raw <= io_enq_4_bits_uop_inst_raw;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_5_uop_uop_pre_is_rvc <= io_enq_4_bits_uop_pre_is_rvc;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -13713,6 +13800,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_5_uop_decode_csr_cmd <= io_enq_4_bits_decode_csr_cmd;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_5_uop_decode_csr_addr <= io_enq_4_bits_decode_csr_addr;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_5_uop_decode_is_ecall <= io_enq_4_bits_decode_is_ecall;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
+        entries_5_uop_decode_is_ebreak <= io_enq_4_bits_decode_is_ebreak;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_5_uop_decode_is_mret <= io_enq_4_bits_decode_is_mret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_5_uop_decode_is_sret <= io_enq_4_bits_decode_is_sret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_5_uop_decode_is_sfence_vma <= io_enq_4_bits_decode_is_sfence_vma;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -13761,7 +13849,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_5_uop_snapshotIdx <= io_enq_4_bits_snapshotIdx;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_5_uop_robIdx <= io_enq_4_bits_robIdx;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
       end
-      else if (enqFire_3 & _GEN_242) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31, :82:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      else if (enqFire_3 & _GEN_243) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31, :82:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
         entries_5_uop_uop_pc <= io_enq_3_bits_uop_pc;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_5_uop_uop_inst_raw <= io_enq_3_bits_uop_inst_raw;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_5_uop_uop_pre_is_rvc <= io_enq_3_bits_uop_pre_is_rvc;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -13865,6 +13953,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_5_uop_decode_csr_cmd <= io_enq_3_bits_decode_csr_cmd;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_5_uop_decode_csr_addr <= io_enq_3_bits_decode_csr_addr;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_5_uop_decode_is_ecall <= io_enq_3_bits_decode_is_ecall;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
+        entries_5_uop_decode_is_ebreak <= io_enq_3_bits_decode_is_ebreak;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_5_uop_decode_is_mret <= io_enq_3_bits_decode_is_mret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_5_uop_decode_is_sret <= io_enq_3_bits_decode_is_sret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_5_uop_decode_is_sfence_vma <= io_enq_3_bits_decode_is_sfence_vma;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -13913,7 +14002,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_5_uop_snapshotIdx <= io_enq_3_bits_snapshotIdx;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_5_uop_robIdx <= io_enq_3_bits_robIdx;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
       end
-      else if (_GEN_221) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31
+      else if (_GEN_222) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31
         entries_5_uop_uop_pc <= io_enq_2_bits_uop_pc;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_5_uop_uop_inst_raw <= io_enq_2_bits_uop_inst_raw;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_5_uop_uop_pre_is_rvc <= io_enq_2_bits_uop_pre_is_rvc;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -14017,6 +14106,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_5_uop_decode_csr_cmd <= io_enq_2_bits_decode_csr_cmd;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_5_uop_decode_csr_addr <= io_enq_2_bits_decode_csr_addr;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_5_uop_decode_is_ecall <= io_enq_2_bits_decode_is_ecall;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
+        entries_5_uop_decode_is_ebreak <= io_enq_2_bits_decode_is_ebreak;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_5_uop_decode_is_mret <= io_enq_2_bits_decode_is_mret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_5_uop_decode_is_sret <= io_enq_2_bits_decode_is_sret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_5_uop_decode_is_sfence_vma <= io_enq_2_bits_decode_is_sfence_vma;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -14065,7 +14155,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_5_uop_snapshotIdx <= io_enq_2_bits_snapshotIdx;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_5_uop_robIdx <= io_enq_2_bits_robIdx;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
       end
-      else if (enqFire_1 & _GEN_195) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31, :82:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      else if (enqFire_1 & _GEN_196) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31, :82:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
         entries_5_uop_uop_pc <= io_enq_1_bits_uop_pc;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_5_uop_uop_inst_raw <= io_enq_1_bits_uop_inst_raw;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_5_uop_uop_pre_is_rvc <= io_enq_1_bits_uop_pre_is_rvc;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -14169,6 +14259,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_5_uop_decode_csr_cmd <= io_enq_1_bits_decode_csr_cmd;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_5_uop_decode_csr_addr <= io_enq_1_bits_decode_csr_addr;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_5_uop_decode_is_ecall <= io_enq_1_bits_decode_is_ecall;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
+        entries_5_uop_decode_is_ebreak <= io_enq_1_bits_decode_is_ebreak;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_5_uop_decode_is_mret <= io_enq_1_bits_decode_is_mret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_5_uop_decode_is_sret <= io_enq_1_bits_decode_is_sret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_5_uop_decode_is_sfence_vma <= io_enq_1_bits_decode_is_sfence_vma;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -14217,7 +14308,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_5_uop_snapshotIdx <= io_enq_1_bits_snapshotIdx;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_5_uop_robIdx <= io_enq_1_bits_robIdx;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
       end
-      else if (_GEN_174) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:56:16, :79:22, :81:31
+      else if (_GEN_175) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:56:16, :79:22, :81:31
         entries_5_uop_uop_pc <= io_enq_0_bits_uop_pc;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_5_uop_uop_inst_raw <= io_enq_0_bits_uop_inst_raw;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_5_uop_uop_pre_is_rvc <= io_enq_0_bits_uop_pre_is_rvc;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -14321,6 +14412,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_5_uop_decode_csr_cmd <= io_enq_0_bits_decode_csr_cmd;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_5_uop_decode_csr_addr <= io_enq_0_bits_decode_csr_addr;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_5_uop_decode_is_ecall <= io_enq_0_bits_decode_is_ecall;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
+        entries_5_uop_decode_is_ebreak <= io_enq_0_bits_decode_is_ebreak;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_5_uop_decode_is_mret <= io_enq_0_bits_decode_is_mret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_5_uop_decode_is_sret <= io_enq_0_bits_decode_is_sret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_5_uop_decode_is_sfence_vma <= io_enq_0_bits_decode_is_sfence_vma;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -14369,7 +14461,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_5_uop_snapshotIdx <= io_enq_0_bits_snapshotIdx;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_5_uop_robIdx <= io_enq_0_bits_robIdx;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
       end
-      if (enqFire_5 & _GEN_291) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31, :82:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      if (enqFire_5 & _GEN_292) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31, :82:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
         entries_6_uop_uop_pc <= io_enq_5_bits_uop_pc;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_6_uop_uop_inst_raw <= io_enq_5_bits_uop_inst_raw;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_6_uop_uop_pre_is_rvc <= io_enq_5_bits_uop_pre_is_rvc;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -14473,6 +14565,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_6_uop_decode_csr_cmd <= io_enq_5_bits_decode_csr_cmd;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_6_uop_decode_csr_addr <= io_enq_5_bits_decode_csr_addr;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_6_uop_decode_is_ecall <= io_enq_5_bits_decode_is_ecall;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
+        entries_6_uop_decode_is_ebreak <= io_enq_5_bits_decode_is_ebreak;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_6_uop_decode_is_mret <= io_enq_5_bits_decode_is_mret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_6_uop_decode_is_sret <= io_enq_5_bits_decode_is_sret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_6_uop_decode_is_sfence_vma <= io_enq_5_bits_decode_is_sfence_vma;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -14521,7 +14614,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_6_uop_snapshotIdx <= io_enq_5_bits_snapshotIdx;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_6_uop_robIdx <= io_enq_5_bits_robIdx;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
       end
-      else if (_GEN_269) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31
+      else if (_GEN_270) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31
         entries_6_uop_uop_pc <= io_enq_4_bits_uop_pc;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_6_uop_uop_inst_raw <= io_enq_4_bits_uop_inst_raw;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_6_uop_uop_pre_is_rvc <= io_enq_4_bits_uop_pre_is_rvc;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -14625,6 +14718,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_6_uop_decode_csr_cmd <= io_enq_4_bits_decode_csr_cmd;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_6_uop_decode_csr_addr <= io_enq_4_bits_decode_csr_addr;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_6_uop_decode_is_ecall <= io_enq_4_bits_decode_is_ecall;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
+        entries_6_uop_decode_is_ebreak <= io_enq_4_bits_decode_is_ebreak;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_6_uop_decode_is_mret <= io_enq_4_bits_decode_is_mret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_6_uop_decode_is_sret <= io_enq_4_bits_decode_is_sret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_6_uop_decode_is_sfence_vma <= io_enq_4_bits_decode_is_sfence_vma;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -14673,7 +14767,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_6_uop_snapshotIdx <= io_enq_4_bits_snapshotIdx;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_6_uop_robIdx <= io_enq_4_bits_robIdx;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
       end
-      else if (enqFire_3 & _GEN_244) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31, :82:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      else if (enqFire_3 & _GEN_245) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31, :82:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
         entries_6_uop_uop_pc <= io_enq_3_bits_uop_pc;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_6_uop_uop_inst_raw <= io_enq_3_bits_uop_inst_raw;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_6_uop_uop_pre_is_rvc <= io_enq_3_bits_uop_pre_is_rvc;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -14777,6 +14871,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_6_uop_decode_csr_cmd <= io_enq_3_bits_decode_csr_cmd;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_6_uop_decode_csr_addr <= io_enq_3_bits_decode_csr_addr;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_6_uop_decode_is_ecall <= io_enq_3_bits_decode_is_ecall;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
+        entries_6_uop_decode_is_ebreak <= io_enq_3_bits_decode_is_ebreak;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_6_uop_decode_is_mret <= io_enq_3_bits_decode_is_mret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_6_uop_decode_is_sret <= io_enq_3_bits_decode_is_sret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_6_uop_decode_is_sfence_vma <= io_enq_3_bits_decode_is_sfence_vma;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -14825,7 +14920,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_6_uop_snapshotIdx <= io_enq_3_bits_snapshotIdx;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_6_uop_robIdx <= io_enq_3_bits_robIdx;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
       end
-      else if (_GEN_222) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31
+      else if (_GEN_223) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31
         entries_6_uop_uop_pc <= io_enq_2_bits_uop_pc;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_6_uop_uop_inst_raw <= io_enq_2_bits_uop_inst_raw;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_6_uop_uop_pre_is_rvc <= io_enq_2_bits_uop_pre_is_rvc;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -14929,6 +15024,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_6_uop_decode_csr_cmd <= io_enq_2_bits_decode_csr_cmd;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_6_uop_decode_csr_addr <= io_enq_2_bits_decode_csr_addr;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_6_uop_decode_is_ecall <= io_enq_2_bits_decode_is_ecall;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
+        entries_6_uop_decode_is_ebreak <= io_enq_2_bits_decode_is_ebreak;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_6_uop_decode_is_mret <= io_enq_2_bits_decode_is_mret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_6_uop_decode_is_sret <= io_enq_2_bits_decode_is_sret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_6_uop_decode_is_sfence_vma <= io_enq_2_bits_decode_is_sfence_vma;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -14977,7 +15073,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_6_uop_snapshotIdx <= io_enq_2_bits_snapshotIdx;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_6_uop_robIdx <= io_enq_2_bits_robIdx;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
       end
-      else if (enqFire_1 & _GEN_197) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31, :82:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      else if (enqFire_1 & _GEN_198) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31, :82:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
         entries_6_uop_uop_pc <= io_enq_1_bits_uop_pc;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_6_uop_uop_inst_raw <= io_enq_1_bits_uop_inst_raw;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_6_uop_uop_pre_is_rvc <= io_enq_1_bits_uop_pre_is_rvc;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -15081,6 +15177,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_6_uop_decode_csr_cmd <= io_enq_1_bits_decode_csr_cmd;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_6_uop_decode_csr_addr <= io_enq_1_bits_decode_csr_addr;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_6_uop_decode_is_ecall <= io_enq_1_bits_decode_is_ecall;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
+        entries_6_uop_decode_is_ebreak <= io_enq_1_bits_decode_is_ebreak;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_6_uop_decode_is_mret <= io_enq_1_bits_decode_is_mret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_6_uop_decode_is_sret <= io_enq_1_bits_decode_is_sret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_6_uop_decode_is_sfence_vma <= io_enq_1_bits_decode_is_sfence_vma;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -15129,7 +15226,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_6_uop_snapshotIdx <= io_enq_1_bits_snapshotIdx;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_6_uop_robIdx <= io_enq_1_bits_robIdx;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
       end
-      else if (_GEN_175) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:56:16, :79:22, :81:31
+      else if (_GEN_176) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:56:16, :79:22, :81:31
         entries_6_uop_uop_pc <= io_enq_0_bits_uop_pc;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_6_uop_uop_inst_raw <= io_enq_0_bits_uop_inst_raw;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_6_uop_uop_pre_is_rvc <= io_enq_0_bits_uop_pre_is_rvc;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -15233,6 +15330,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_6_uop_decode_csr_cmd <= io_enq_0_bits_decode_csr_cmd;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_6_uop_decode_csr_addr <= io_enq_0_bits_decode_csr_addr;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_6_uop_decode_is_ecall <= io_enq_0_bits_decode_is_ecall;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
+        entries_6_uop_decode_is_ebreak <= io_enq_0_bits_decode_is_ebreak;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_6_uop_decode_is_mret <= io_enq_0_bits_decode_is_mret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_6_uop_decode_is_sret <= io_enq_0_bits_decode_is_sret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_6_uop_decode_is_sfence_vma <= io_enq_0_bits_decode_is_sfence_vma;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -15281,7 +15379,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_6_uop_snapshotIdx <= io_enq_0_bits_snapshotIdx;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_6_uop_robIdx <= io_enq_0_bits_robIdx;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
       end
-      if (enqFire_5 & _GEN_293) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31, :82:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      if (enqFire_5 & _GEN_294) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31, :82:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
         entries_7_uop_uop_pc <= io_enq_5_bits_uop_pc;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_7_uop_uop_inst_raw <= io_enq_5_bits_uop_inst_raw;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_7_uop_uop_pre_is_rvc <= io_enq_5_bits_uop_pre_is_rvc;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -15385,6 +15483,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_7_uop_decode_csr_cmd <= io_enq_5_bits_decode_csr_cmd;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_7_uop_decode_csr_addr <= io_enq_5_bits_decode_csr_addr;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_7_uop_decode_is_ecall <= io_enq_5_bits_decode_is_ecall;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
+        entries_7_uop_decode_is_ebreak <= io_enq_5_bits_decode_is_ebreak;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_7_uop_decode_is_mret <= io_enq_5_bits_decode_is_mret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_7_uop_decode_is_sret <= io_enq_5_bits_decode_is_sret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_7_uop_decode_is_sfence_vma <= io_enq_5_bits_decode_is_sfence_vma;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -15433,7 +15532,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_7_uop_snapshotIdx <= io_enq_5_bits_snapshotIdx;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_7_uop_robIdx <= io_enq_5_bits_robIdx;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
       end
-      else if (_GEN_270) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31
+      else if (_GEN_271) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31
         entries_7_uop_uop_pc <= io_enq_4_bits_uop_pc;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_7_uop_uop_inst_raw <= io_enq_4_bits_uop_inst_raw;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_7_uop_uop_pre_is_rvc <= io_enq_4_bits_uop_pre_is_rvc;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -15537,6 +15636,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_7_uop_decode_csr_cmd <= io_enq_4_bits_decode_csr_cmd;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_7_uop_decode_csr_addr <= io_enq_4_bits_decode_csr_addr;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_7_uop_decode_is_ecall <= io_enq_4_bits_decode_is_ecall;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
+        entries_7_uop_decode_is_ebreak <= io_enq_4_bits_decode_is_ebreak;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_7_uop_decode_is_mret <= io_enq_4_bits_decode_is_mret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_7_uop_decode_is_sret <= io_enq_4_bits_decode_is_sret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_7_uop_decode_is_sfence_vma <= io_enq_4_bits_decode_is_sfence_vma;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -15585,7 +15685,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_7_uop_snapshotIdx <= io_enq_4_bits_snapshotIdx;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_7_uop_robIdx <= io_enq_4_bits_robIdx;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
       end
-      else if (enqFire_3 & _GEN_246) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31, :82:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      else if (enqFire_3 & _GEN_247) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31, :82:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
         entries_7_uop_uop_pc <= io_enq_3_bits_uop_pc;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_7_uop_uop_inst_raw <= io_enq_3_bits_uop_inst_raw;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_7_uop_uop_pre_is_rvc <= io_enq_3_bits_uop_pre_is_rvc;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -15689,6 +15789,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_7_uop_decode_csr_cmd <= io_enq_3_bits_decode_csr_cmd;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_7_uop_decode_csr_addr <= io_enq_3_bits_decode_csr_addr;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_7_uop_decode_is_ecall <= io_enq_3_bits_decode_is_ecall;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
+        entries_7_uop_decode_is_ebreak <= io_enq_3_bits_decode_is_ebreak;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_7_uop_decode_is_mret <= io_enq_3_bits_decode_is_mret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_7_uop_decode_is_sret <= io_enq_3_bits_decode_is_sret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_7_uop_decode_is_sfence_vma <= io_enq_3_bits_decode_is_sfence_vma;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -15737,7 +15838,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_7_uop_snapshotIdx <= io_enq_3_bits_snapshotIdx;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_7_uop_robIdx <= io_enq_3_bits_robIdx;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
       end
-      else if (_GEN_223) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31
+      else if (_GEN_224) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31
         entries_7_uop_uop_pc <= io_enq_2_bits_uop_pc;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_7_uop_uop_inst_raw <= io_enq_2_bits_uop_inst_raw;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_7_uop_uop_pre_is_rvc <= io_enq_2_bits_uop_pre_is_rvc;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -15841,6 +15942,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_7_uop_decode_csr_cmd <= io_enq_2_bits_decode_csr_cmd;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_7_uop_decode_csr_addr <= io_enq_2_bits_decode_csr_addr;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_7_uop_decode_is_ecall <= io_enq_2_bits_decode_is_ecall;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
+        entries_7_uop_decode_is_ebreak <= io_enq_2_bits_decode_is_ebreak;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_7_uop_decode_is_mret <= io_enq_2_bits_decode_is_mret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_7_uop_decode_is_sret <= io_enq_2_bits_decode_is_sret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_7_uop_decode_is_sfence_vma <= io_enq_2_bits_decode_is_sfence_vma;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -15889,7 +15991,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_7_uop_snapshotIdx <= io_enq_2_bits_snapshotIdx;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_7_uop_robIdx <= io_enq_2_bits_robIdx;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
       end
-      else if (enqFire_1 & _GEN_199) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31, :82:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      else if (enqFire_1 & _GEN_200) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31, :82:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
         entries_7_uop_uop_pc <= io_enq_1_bits_uop_pc;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_7_uop_uop_inst_raw <= io_enq_1_bits_uop_inst_raw;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_7_uop_uop_pre_is_rvc <= io_enq_1_bits_uop_pre_is_rvc;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -15993,6 +16095,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_7_uop_decode_csr_cmd <= io_enq_1_bits_decode_csr_cmd;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_7_uop_decode_csr_addr <= io_enq_1_bits_decode_csr_addr;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_7_uop_decode_is_ecall <= io_enq_1_bits_decode_is_ecall;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
+        entries_7_uop_decode_is_ebreak <= io_enq_1_bits_decode_is_ebreak;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_7_uop_decode_is_mret <= io_enq_1_bits_decode_is_mret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_7_uop_decode_is_sret <= io_enq_1_bits_decode_is_sret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_7_uop_decode_is_sfence_vma <= io_enq_1_bits_decode_is_sfence_vma;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -16041,7 +16144,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_7_uop_snapshotIdx <= io_enq_1_bits_snapshotIdx;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_7_uop_robIdx <= io_enq_1_bits_robIdx;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
       end
-      else if (_GEN_176) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:56:16, :79:22, :81:31
+      else if (_GEN_177) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:56:16, :79:22, :81:31
         entries_7_uop_uop_pc <= io_enq_0_bits_uop_pc;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_7_uop_uop_inst_raw <= io_enq_0_bits_uop_inst_raw;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_7_uop_uop_pre_is_rvc <= io_enq_0_bits_uop_pre_is_rvc;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -16145,6 +16248,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_7_uop_decode_csr_cmd <= io_enq_0_bits_decode_csr_cmd;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_7_uop_decode_csr_addr <= io_enq_0_bits_decode_csr_addr;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_7_uop_decode_is_ecall <= io_enq_0_bits_decode_is_ecall;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
+        entries_7_uop_decode_is_ebreak <= io_enq_0_bits_decode_is_ebreak;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_7_uop_decode_is_mret <= io_enq_0_bits_decode_is_mret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_7_uop_decode_is_sret <= io_enq_0_bits_decode_is_sret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_7_uop_decode_is_sfence_vma <= io_enq_0_bits_decode_is_sfence_vma;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -16193,7 +16297,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_7_uop_snapshotIdx <= io_enq_0_bits_snapshotIdx;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_7_uop_robIdx <= io_enq_0_bits_robIdx;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
       end
-      if (enqFire_5 & _GEN_295) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31, :82:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      if (enqFire_5 & _GEN_296) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31, :82:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
         entries_8_uop_uop_pc <= io_enq_5_bits_uop_pc;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_8_uop_uop_inst_raw <= io_enq_5_bits_uop_inst_raw;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_8_uop_uop_pre_is_rvc <= io_enq_5_bits_uop_pre_is_rvc;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -16297,6 +16401,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_8_uop_decode_csr_cmd <= io_enq_5_bits_decode_csr_cmd;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_8_uop_decode_csr_addr <= io_enq_5_bits_decode_csr_addr;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_8_uop_decode_is_ecall <= io_enq_5_bits_decode_is_ecall;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
+        entries_8_uop_decode_is_ebreak <= io_enq_5_bits_decode_is_ebreak;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_8_uop_decode_is_mret <= io_enq_5_bits_decode_is_mret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_8_uop_decode_is_sret <= io_enq_5_bits_decode_is_sret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_8_uop_decode_is_sfence_vma <= io_enq_5_bits_decode_is_sfence_vma;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -16345,7 +16450,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_8_uop_snapshotIdx <= io_enq_5_bits_snapshotIdx;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_8_uop_robIdx <= io_enq_5_bits_robIdx;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
       end
-      else if (_GEN_271) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31
+      else if (_GEN_272) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31
         entries_8_uop_uop_pc <= io_enq_4_bits_uop_pc;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_8_uop_uop_inst_raw <= io_enq_4_bits_uop_inst_raw;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_8_uop_uop_pre_is_rvc <= io_enq_4_bits_uop_pre_is_rvc;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -16449,6 +16554,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_8_uop_decode_csr_cmd <= io_enq_4_bits_decode_csr_cmd;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_8_uop_decode_csr_addr <= io_enq_4_bits_decode_csr_addr;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_8_uop_decode_is_ecall <= io_enq_4_bits_decode_is_ecall;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
+        entries_8_uop_decode_is_ebreak <= io_enq_4_bits_decode_is_ebreak;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_8_uop_decode_is_mret <= io_enq_4_bits_decode_is_mret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_8_uop_decode_is_sret <= io_enq_4_bits_decode_is_sret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_8_uop_decode_is_sfence_vma <= io_enq_4_bits_decode_is_sfence_vma;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -16497,7 +16603,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_8_uop_snapshotIdx <= io_enq_4_bits_snapshotIdx;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_8_uop_robIdx <= io_enq_4_bits_robIdx;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
       end
-      else if (enqFire_3 & _GEN_248) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31, :82:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      else if (enqFire_3 & _GEN_249) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31, :82:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
         entries_8_uop_uop_pc <= io_enq_3_bits_uop_pc;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_8_uop_uop_inst_raw <= io_enq_3_bits_uop_inst_raw;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_8_uop_uop_pre_is_rvc <= io_enq_3_bits_uop_pre_is_rvc;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -16601,6 +16707,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_8_uop_decode_csr_cmd <= io_enq_3_bits_decode_csr_cmd;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_8_uop_decode_csr_addr <= io_enq_3_bits_decode_csr_addr;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_8_uop_decode_is_ecall <= io_enq_3_bits_decode_is_ecall;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
+        entries_8_uop_decode_is_ebreak <= io_enq_3_bits_decode_is_ebreak;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_8_uop_decode_is_mret <= io_enq_3_bits_decode_is_mret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_8_uop_decode_is_sret <= io_enq_3_bits_decode_is_sret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_8_uop_decode_is_sfence_vma <= io_enq_3_bits_decode_is_sfence_vma;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -16649,7 +16756,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_8_uop_snapshotIdx <= io_enq_3_bits_snapshotIdx;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_8_uop_robIdx <= io_enq_3_bits_robIdx;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
       end
-      else if (_GEN_224) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31
+      else if (_GEN_225) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31
         entries_8_uop_uop_pc <= io_enq_2_bits_uop_pc;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_8_uop_uop_inst_raw <= io_enq_2_bits_uop_inst_raw;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_8_uop_uop_pre_is_rvc <= io_enq_2_bits_uop_pre_is_rvc;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -16753,6 +16860,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_8_uop_decode_csr_cmd <= io_enq_2_bits_decode_csr_cmd;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_8_uop_decode_csr_addr <= io_enq_2_bits_decode_csr_addr;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_8_uop_decode_is_ecall <= io_enq_2_bits_decode_is_ecall;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
+        entries_8_uop_decode_is_ebreak <= io_enq_2_bits_decode_is_ebreak;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_8_uop_decode_is_mret <= io_enq_2_bits_decode_is_mret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_8_uop_decode_is_sret <= io_enq_2_bits_decode_is_sret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_8_uop_decode_is_sfence_vma <= io_enq_2_bits_decode_is_sfence_vma;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -16801,7 +16909,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_8_uop_snapshotIdx <= io_enq_2_bits_snapshotIdx;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_8_uop_robIdx <= io_enq_2_bits_robIdx;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
       end
-      else if (enqFire_1 & _GEN_201) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31, :82:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      else if (enqFire_1 & _GEN_202) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31, :82:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
         entries_8_uop_uop_pc <= io_enq_1_bits_uop_pc;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_8_uop_uop_inst_raw <= io_enq_1_bits_uop_inst_raw;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_8_uop_uop_pre_is_rvc <= io_enq_1_bits_uop_pre_is_rvc;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -16905,6 +17013,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_8_uop_decode_csr_cmd <= io_enq_1_bits_decode_csr_cmd;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_8_uop_decode_csr_addr <= io_enq_1_bits_decode_csr_addr;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_8_uop_decode_is_ecall <= io_enq_1_bits_decode_is_ecall;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
+        entries_8_uop_decode_is_ebreak <= io_enq_1_bits_decode_is_ebreak;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_8_uop_decode_is_mret <= io_enq_1_bits_decode_is_mret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_8_uop_decode_is_sret <= io_enq_1_bits_decode_is_sret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_8_uop_decode_is_sfence_vma <= io_enq_1_bits_decode_is_sfence_vma;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -16953,7 +17062,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_8_uop_snapshotIdx <= io_enq_1_bits_snapshotIdx;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_8_uop_robIdx <= io_enq_1_bits_robIdx;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
       end
-      else if (_GEN_177) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:56:16, :79:22, :81:31
+      else if (_GEN_178) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:56:16, :79:22, :81:31
         entries_8_uop_uop_pc <= io_enq_0_bits_uop_pc;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_8_uop_uop_inst_raw <= io_enq_0_bits_uop_inst_raw;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_8_uop_uop_pre_is_rvc <= io_enq_0_bits_uop_pre_is_rvc;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -17057,6 +17166,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_8_uop_decode_csr_cmd <= io_enq_0_bits_decode_csr_cmd;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_8_uop_decode_csr_addr <= io_enq_0_bits_decode_csr_addr;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_8_uop_decode_is_ecall <= io_enq_0_bits_decode_is_ecall;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
+        entries_8_uop_decode_is_ebreak <= io_enq_0_bits_decode_is_ebreak;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_8_uop_decode_is_mret <= io_enq_0_bits_decode_is_mret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_8_uop_decode_is_sret <= io_enq_0_bits_decode_is_sret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_8_uop_decode_is_sfence_vma <= io_enq_0_bits_decode_is_sfence_vma;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -17105,7 +17215,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_8_uop_snapshotIdx <= io_enq_0_bits_snapshotIdx;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_8_uop_robIdx <= io_enq_0_bits_robIdx;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
       end
-      if (enqFire_5 & _GEN_297) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31, :82:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      if (enqFire_5 & _GEN_298) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31, :82:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
         entries_9_uop_uop_pc <= io_enq_5_bits_uop_pc;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_9_uop_uop_inst_raw <= io_enq_5_bits_uop_inst_raw;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_9_uop_uop_pre_is_rvc <= io_enq_5_bits_uop_pre_is_rvc;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -17209,6 +17319,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_9_uop_decode_csr_cmd <= io_enq_5_bits_decode_csr_cmd;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_9_uop_decode_csr_addr <= io_enq_5_bits_decode_csr_addr;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_9_uop_decode_is_ecall <= io_enq_5_bits_decode_is_ecall;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
+        entries_9_uop_decode_is_ebreak <= io_enq_5_bits_decode_is_ebreak;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_9_uop_decode_is_mret <= io_enq_5_bits_decode_is_mret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_9_uop_decode_is_sret <= io_enq_5_bits_decode_is_sret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_9_uop_decode_is_sfence_vma <= io_enq_5_bits_decode_is_sfence_vma;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -17257,7 +17368,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_9_uop_snapshotIdx <= io_enq_5_bits_snapshotIdx;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_9_uop_robIdx <= io_enq_5_bits_robIdx;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
       end
-      else if (_GEN_272) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31
+      else if (_GEN_273) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31
         entries_9_uop_uop_pc <= io_enq_4_bits_uop_pc;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_9_uop_uop_inst_raw <= io_enq_4_bits_uop_inst_raw;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_9_uop_uop_pre_is_rvc <= io_enq_4_bits_uop_pre_is_rvc;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -17361,6 +17472,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_9_uop_decode_csr_cmd <= io_enq_4_bits_decode_csr_cmd;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_9_uop_decode_csr_addr <= io_enq_4_bits_decode_csr_addr;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_9_uop_decode_is_ecall <= io_enq_4_bits_decode_is_ecall;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
+        entries_9_uop_decode_is_ebreak <= io_enq_4_bits_decode_is_ebreak;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_9_uop_decode_is_mret <= io_enq_4_bits_decode_is_mret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_9_uop_decode_is_sret <= io_enq_4_bits_decode_is_sret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_9_uop_decode_is_sfence_vma <= io_enq_4_bits_decode_is_sfence_vma;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -17409,7 +17521,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_9_uop_snapshotIdx <= io_enq_4_bits_snapshotIdx;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_9_uop_robIdx <= io_enq_4_bits_robIdx;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
       end
-      else if (enqFire_3 & _GEN_250) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31, :82:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      else if (enqFire_3 & _GEN_251) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31, :82:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
         entries_9_uop_uop_pc <= io_enq_3_bits_uop_pc;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_9_uop_uop_inst_raw <= io_enq_3_bits_uop_inst_raw;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_9_uop_uop_pre_is_rvc <= io_enq_3_bits_uop_pre_is_rvc;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -17513,6 +17625,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_9_uop_decode_csr_cmd <= io_enq_3_bits_decode_csr_cmd;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_9_uop_decode_csr_addr <= io_enq_3_bits_decode_csr_addr;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_9_uop_decode_is_ecall <= io_enq_3_bits_decode_is_ecall;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
+        entries_9_uop_decode_is_ebreak <= io_enq_3_bits_decode_is_ebreak;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_9_uop_decode_is_mret <= io_enq_3_bits_decode_is_mret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_9_uop_decode_is_sret <= io_enq_3_bits_decode_is_sret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_9_uop_decode_is_sfence_vma <= io_enq_3_bits_decode_is_sfence_vma;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -17561,7 +17674,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_9_uop_snapshotIdx <= io_enq_3_bits_snapshotIdx;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_9_uop_robIdx <= io_enq_3_bits_robIdx;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
       end
-      else if (_GEN_225) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31
+      else if (_GEN_226) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31
         entries_9_uop_uop_pc <= io_enq_2_bits_uop_pc;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_9_uop_uop_inst_raw <= io_enq_2_bits_uop_inst_raw;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_9_uop_uop_pre_is_rvc <= io_enq_2_bits_uop_pre_is_rvc;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -17665,6 +17778,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_9_uop_decode_csr_cmd <= io_enq_2_bits_decode_csr_cmd;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_9_uop_decode_csr_addr <= io_enq_2_bits_decode_csr_addr;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_9_uop_decode_is_ecall <= io_enq_2_bits_decode_is_ecall;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
+        entries_9_uop_decode_is_ebreak <= io_enq_2_bits_decode_is_ebreak;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_9_uop_decode_is_mret <= io_enq_2_bits_decode_is_mret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_9_uop_decode_is_sret <= io_enq_2_bits_decode_is_sret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_9_uop_decode_is_sfence_vma <= io_enq_2_bits_decode_is_sfence_vma;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -17713,7 +17827,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_9_uop_snapshotIdx <= io_enq_2_bits_snapshotIdx;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_9_uop_robIdx <= io_enq_2_bits_robIdx;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
       end
-      else if (enqFire_1 & _GEN_203) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31, :82:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      else if (enqFire_1 & _GEN_204) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31, :82:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
         entries_9_uop_uop_pc <= io_enq_1_bits_uop_pc;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_9_uop_uop_inst_raw <= io_enq_1_bits_uop_inst_raw;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_9_uop_uop_pre_is_rvc <= io_enq_1_bits_uop_pre_is_rvc;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -17817,6 +17931,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_9_uop_decode_csr_cmd <= io_enq_1_bits_decode_csr_cmd;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_9_uop_decode_csr_addr <= io_enq_1_bits_decode_csr_addr;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_9_uop_decode_is_ecall <= io_enq_1_bits_decode_is_ecall;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
+        entries_9_uop_decode_is_ebreak <= io_enq_1_bits_decode_is_ebreak;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_9_uop_decode_is_mret <= io_enq_1_bits_decode_is_mret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_9_uop_decode_is_sret <= io_enq_1_bits_decode_is_sret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_9_uop_decode_is_sfence_vma <= io_enq_1_bits_decode_is_sfence_vma;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -17865,7 +17980,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_9_uop_snapshotIdx <= io_enq_1_bits_snapshotIdx;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_9_uop_robIdx <= io_enq_1_bits_robIdx;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
       end
-      else if (_GEN_178) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:56:16, :79:22, :81:31
+      else if (_GEN_179) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:56:16, :79:22, :81:31
         entries_9_uop_uop_pc <= io_enq_0_bits_uop_pc;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_9_uop_uop_inst_raw <= io_enq_0_bits_uop_inst_raw;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_9_uop_uop_pre_is_rvc <= io_enq_0_bits_uop_pre_is_rvc;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -17969,6 +18084,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_9_uop_decode_csr_cmd <= io_enq_0_bits_decode_csr_cmd;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_9_uop_decode_csr_addr <= io_enq_0_bits_decode_csr_addr;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_9_uop_decode_is_ecall <= io_enq_0_bits_decode_is_ecall;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
+        entries_9_uop_decode_is_ebreak <= io_enq_0_bits_decode_is_ebreak;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_9_uop_decode_is_mret <= io_enq_0_bits_decode_is_mret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_9_uop_decode_is_sret <= io_enq_0_bits_decode_is_sret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_9_uop_decode_is_sfence_vma <= io_enq_0_bits_decode_is_sfence_vma;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -18017,7 +18133,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_9_uop_snapshotIdx <= io_enq_0_bits_snapshotIdx;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_9_uop_robIdx <= io_enq_0_bits_robIdx;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
       end
-      if (enqFire_5 & _GEN_299) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31, :82:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      if (enqFire_5 & _GEN_300) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31, :82:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
         entries_10_uop_uop_pc <= io_enq_5_bits_uop_pc;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_10_uop_uop_inst_raw <= io_enq_5_bits_uop_inst_raw;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_10_uop_uop_pre_is_rvc <= io_enq_5_bits_uop_pre_is_rvc;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -18121,6 +18237,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_10_uop_decode_csr_cmd <= io_enq_5_bits_decode_csr_cmd;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_10_uop_decode_csr_addr <= io_enq_5_bits_decode_csr_addr;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_10_uop_decode_is_ecall <= io_enq_5_bits_decode_is_ecall;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
+        entries_10_uop_decode_is_ebreak <= io_enq_5_bits_decode_is_ebreak;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_10_uop_decode_is_mret <= io_enq_5_bits_decode_is_mret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_10_uop_decode_is_sret <= io_enq_5_bits_decode_is_sret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_10_uop_decode_is_sfence_vma <= io_enq_5_bits_decode_is_sfence_vma;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -18169,7 +18286,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_10_uop_snapshotIdx <= io_enq_5_bits_snapshotIdx;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_10_uop_robIdx <= io_enq_5_bits_robIdx;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
       end
-      else if (_GEN_273) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31
+      else if (_GEN_274) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31
         entries_10_uop_uop_pc <= io_enq_4_bits_uop_pc;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_10_uop_uop_inst_raw <= io_enq_4_bits_uop_inst_raw;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_10_uop_uop_pre_is_rvc <= io_enq_4_bits_uop_pre_is_rvc;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -18273,6 +18390,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_10_uop_decode_csr_cmd <= io_enq_4_bits_decode_csr_cmd;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_10_uop_decode_csr_addr <= io_enq_4_bits_decode_csr_addr;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_10_uop_decode_is_ecall <= io_enq_4_bits_decode_is_ecall;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
+        entries_10_uop_decode_is_ebreak <= io_enq_4_bits_decode_is_ebreak;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_10_uop_decode_is_mret <= io_enq_4_bits_decode_is_mret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_10_uop_decode_is_sret <= io_enq_4_bits_decode_is_sret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_10_uop_decode_is_sfence_vma <= io_enq_4_bits_decode_is_sfence_vma;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -18321,7 +18439,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_10_uop_snapshotIdx <= io_enq_4_bits_snapshotIdx;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_10_uop_robIdx <= io_enq_4_bits_robIdx;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
       end
-      else if (enqFire_3 & _GEN_252) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31, :82:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      else if (enqFire_3 & _GEN_253) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31, :82:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
         entries_10_uop_uop_pc <= io_enq_3_bits_uop_pc;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_10_uop_uop_inst_raw <= io_enq_3_bits_uop_inst_raw;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_10_uop_uop_pre_is_rvc <= io_enq_3_bits_uop_pre_is_rvc;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -18425,6 +18543,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_10_uop_decode_csr_cmd <= io_enq_3_bits_decode_csr_cmd;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_10_uop_decode_csr_addr <= io_enq_3_bits_decode_csr_addr;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_10_uop_decode_is_ecall <= io_enq_3_bits_decode_is_ecall;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
+        entries_10_uop_decode_is_ebreak <= io_enq_3_bits_decode_is_ebreak;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_10_uop_decode_is_mret <= io_enq_3_bits_decode_is_mret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_10_uop_decode_is_sret <= io_enq_3_bits_decode_is_sret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_10_uop_decode_is_sfence_vma <= io_enq_3_bits_decode_is_sfence_vma;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -18473,7 +18592,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_10_uop_snapshotIdx <= io_enq_3_bits_snapshotIdx;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_10_uop_robIdx <= io_enq_3_bits_robIdx;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
       end
-      else if (_GEN_226) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31
+      else if (_GEN_227) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31
         entries_10_uop_uop_pc <= io_enq_2_bits_uop_pc;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_10_uop_uop_inst_raw <= io_enq_2_bits_uop_inst_raw;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_10_uop_uop_pre_is_rvc <= io_enq_2_bits_uop_pre_is_rvc;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -18577,6 +18696,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_10_uop_decode_csr_cmd <= io_enq_2_bits_decode_csr_cmd;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_10_uop_decode_csr_addr <= io_enq_2_bits_decode_csr_addr;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_10_uop_decode_is_ecall <= io_enq_2_bits_decode_is_ecall;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
+        entries_10_uop_decode_is_ebreak <= io_enq_2_bits_decode_is_ebreak;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_10_uop_decode_is_mret <= io_enq_2_bits_decode_is_mret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_10_uop_decode_is_sret <= io_enq_2_bits_decode_is_sret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_10_uop_decode_is_sfence_vma <= io_enq_2_bits_decode_is_sfence_vma;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -18625,7 +18745,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_10_uop_snapshotIdx <= io_enq_2_bits_snapshotIdx;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_10_uop_robIdx <= io_enq_2_bits_robIdx;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
       end
-      else if (enqFire_1 & _GEN_205) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31, :82:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      else if (enqFire_1 & _GEN_206) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31, :82:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
         entries_10_uop_uop_pc <= io_enq_1_bits_uop_pc;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_10_uop_uop_inst_raw <= io_enq_1_bits_uop_inst_raw;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_10_uop_uop_pre_is_rvc <= io_enq_1_bits_uop_pre_is_rvc;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -18729,6 +18849,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_10_uop_decode_csr_cmd <= io_enq_1_bits_decode_csr_cmd;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_10_uop_decode_csr_addr <= io_enq_1_bits_decode_csr_addr;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_10_uop_decode_is_ecall <= io_enq_1_bits_decode_is_ecall;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
+        entries_10_uop_decode_is_ebreak <= io_enq_1_bits_decode_is_ebreak;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_10_uop_decode_is_mret <= io_enq_1_bits_decode_is_mret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_10_uop_decode_is_sret <= io_enq_1_bits_decode_is_sret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_10_uop_decode_is_sfence_vma <= io_enq_1_bits_decode_is_sfence_vma;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -18777,7 +18898,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_10_uop_snapshotIdx <= io_enq_1_bits_snapshotIdx;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_10_uop_robIdx <= io_enq_1_bits_robIdx;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
       end
-      else if (_GEN_179) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:56:16, :79:22, :81:31
+      else if (_GEN_180) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:56:16, :79:22, :81:31
         entries_10_uop_uop_pc <= io_enq_0_bits_uop_pc;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_10_uop_uop_inst_raw <= io_enq_0_bits_uop_inst_raw;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_10_uop_uop_pre_is_rvc <= io_enq_0_bits_uop_pre_is_rvc;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -18881,6 +19002,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_10_uop_decode_csr_cmd <= io_enq_0_bits_decode_csr_cmd;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_10_uop_decode_csr_addr <= io_enq_0_bits_decode_csr_addr;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_10_uop_decode_is_ecall <= io_enq_0_bits_decode_is_ecall;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
+        entries_10_uop_decode_is_ebreak <= io_enq_0_bits_decode_is_ebreak;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_10_uop_decode_is_mret <= io_enq_0_bits_decode_is_mret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_10_uop_decode_is_sret <= io_enq_0_bits_decode_is_sret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_10_uop_decode_is_sfence_vma <= io_enq_0_bits_decode_is_sfence_vma;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -18929,7 +19051,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_10_uop_snapshotIdx <= io_enq_0_bits_snapshotIdx;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_10_uop_robIdx <= io_enq_0_bits_robIdx;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
       end
-      if (enqFire_5 & _GEN_301) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31, :82:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      if (enqFire_5 & _GEN_302) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31, :82:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
         entries_11_uop_uop_pc <= io_enq_5_bits_uop_pc;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_11_uop_uop_inst_raw <= io_enq_5_bits_uop_inst_raw;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_11_uop_uop_pre_is_rvc <= io_enq_5_bits_uop_pre_is_rvc;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -19033,6 +19155,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_11_uop_decode_csr_cmd <= io_enq_5_bits_decode_csr_cmd;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_11_uop_decode_csr_addr <= io_enq_5_bits_decode_csr_addr;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_11_uop_decode_is_ecall <= io_enq_5_bits_decode_is_ecall;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
+        entries_11_uop_decode_is_ebreak <= io_enq_5_bits_decode_is_ebreak;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_11_uop_decode_is_mret <= io_enq_5_bits_decode_is_mret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_11_uop_decode_is_sret <= io_enq_5_bits_decode_is_sret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_11_uop_decode_is_sfence_vma <= io_enq_5_bits_decode_is_sfence_vma;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -19081,7 +19204,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_11_uop_snapshotIdx <= io_enq_5_bits_snapshotIdx;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_11_uop_robIdx <= io_enq_5_bits_robIdx;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
       end
-      else if (_GEN_274) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31
+      else if (_GEN_275) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31
         entries_11_uop_uop_pc <= io_enq_4_bits_uop_pc;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_11_uop_uop_inst_raw <= io_enq_4_bits_uop_inst_raw;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_11_uop_uop_pre_is_rvc <= io_enq_4_bits_uop_pre_is_rvc;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -19185,6 +19308,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_11_uop_decode_csr_cmd <= io_enq_4_bits_decode_csr_cmd;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_11_uop_decode_csr_addr <= io_enq_4_bits_decode_csr_addr;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_11_uop_decode_is_ecall <= io_enq_4_bits_decode_is_ecall;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
+        entries_11_uop_decode_is_ebreak <= io_enq_4_bits_decode_is_ebreak;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_11_uop_decode_is_mret <= io_enq_4_bits_decode_is_mret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_11_uop_decode_is_sret <= io_enq_4_bits_decode_is_sret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_11_uop_decode_is_sfence_vma <= io_enq_4_bits_decode_is_sfence_vma;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -19233,7 +19357,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_11_uop_snapshotIdx <= io_enq_4_bits_snapshotIdx;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_11_uop_robIdx <= io_enq_4_bits_robIdx;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
       end
-      else if (enqFire_3 & _GEN_254) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31, :82:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      else if (enqFire_3 & _GEN_255) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31, :82:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
         entries_11_uop_uop_pc <= io_enq_3_bits_uop_pc;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_11_uop_uop_inst_raw <= io_enq_3_bits_uop_inst_raw;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_11_uop_uop_pre_is_rvc <= io_enq_3_bits_uop_pre_is_rvc;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -19337,6 +19461,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_11_uop_decode_csr_cmd <= io_enq_3_bits_decode_csr_cmd;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_11_uop_decode_csr_addr <= io_enq_3_bits_decode_csr_addr;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_11_uop_decode_is_ecall <= io_enq_3_bits_decode_is_ecall;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
+        entries_11_uop_decode_is_ebreak <= io_enq_3_bits_decode_is_ebreak;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_11_uop_decode_is_mret <= io_enq_3_bits_decode_is_mret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_11_uop_decode_is_sret <= io_enq_3_bits_decode_is_sret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_11_uop_decode_is_sfence_vma <= io_enq_3_bits_decode_is_sfence_vma;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -19385,7 +19510,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_11_uop_snapshotIdx <= io_enq_3_bits_snapshotIdx;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_11_uop_robIdx <= io_enq_3_bits_robIdx;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
       end
-      else if (_GEN_227) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31
+      else if (_GEN_228) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31
         entries_11_uop_uop_pc <= io_enq_2_bits_uop_pc;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_11_uop_uop_inst_raw <= io_enq_2_bits_uop_inst_raw;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_11_uop_uop_pre_is_rvc <= io_enq_2_bits_uop_pre_is_rvc;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -19489,6 +19614,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_11_uop_decode_csr_cmd <= io_enq_2_bits_decode_csr_cmd;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_11_uop_decode_csr_addr <= io_enq_2_bits_decode_csr_addr;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_11_uop_decode_is_ecall <= io_enq_2_bits_decode_is_ecall;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
+        entries_11_uop_decode_is_ebreak <= io_enq_2_bits_decode_is_ebreak;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_11_uop_decode_is_mret <= io_enq_2_bits_decode_is_mret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_11_uop_decode_is_sret <= io_enq_2_bits_decode_is_sret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_11_uop_decode_is_sfence_vma <= io_enq_2_bits_decode_is_sfence_vma;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -19537,7 +19663,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_11_uop_snapshotIdx <= io_enq_2_bits_snapshotIdx;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_11_uop_robIdx <= io_enq_2_bits_robIdx;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
       end
-      else if (enqFire_1 & _GEN_207) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31, :82:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      else if (enqFire_1 & _GEN_208) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31, :82:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
         entries_11_uop_uop_pc <= io_enq_1_bits_uop_pc;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_11_uop_uop_inst_raw <= io_enq_1_bits_uop_inst_raw;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_11_uop_uop_pre_is_rvc <= io_enq_1_bits_uop_pre_is_rvc;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -19641,6 +19767,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_11_uop_decode_csr_cmd <= io_enq_1_bits_decode_csr_cmd;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_11_uop_decode_csr_addr <= io_enq_1_bits_decode_csr_addr;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_11_uop_decode_is_ecall <= io_enq_1_bits_decode_is_ecall;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
+        entries_11_uop_decode_is_ebreak <= io_enq_1_bits_decode_is_ebreak;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_11_uop_decode_is_mret <= io_enq_1_bits_decode_is_mret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_11_uop_decode_is_sret <= io_enq_1_bits_decode_is_sret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_11_uop_decode_is_sfence_vma <= io_enq_1_bits_decode_is_sfence_vma;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -19689,7 +19816,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_11_uop_snapshotIdx <= io_enq_1_bits_snapshotIdx;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_11_uop_robIdx <= io_enq_1_bits_robIdx;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
       end
-      else if (_GEN_180) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:56:16, :79:22, :81:31
+      else if (_GEN_181) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:56:16, :79:22, :81:31
         entries_11_uop_uop_pc <= io_enq_0_bits_uop_pc;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_11_uop_uop_inst_raw <= io_enq_0_bits_uop_inst_raw;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_11_uop_uop_pre_is_rvc <= io_enq_0_bits_uop_pre_is_rvc;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -19793,6 +19920,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_11_uop_decode_csr_cmd <= io_enq_0_bits_decode_csr_cmd;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_11_uop_decode_csr_addr <= io_enq_0_bits_decode_csr_addr;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_11_uop_decode_is_ecall <= io_enq_0_bits_decode_is_ecall;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
+        entries_11_uop_decode_is_ebreak <= io_enq_0_bits_decode_is_ebreak;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_11_uop_decode_is_mret <= io_enq_0_bits_decode_is_mret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_11_uop_decode_is_sret <= io_enq_0_bits_decode_is_sret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_11_uop_decode_is_sfence_vma <= io_enq_0_bits_decode_is_sfence_vma;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -19841,7 +19969,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_11_uop_snapshotIdx <= io_enq_0_bits_snapshotIdx;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_11_uop_robIdx <= io_enq_0_bits_robIdx;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
       end
-      if (enqFire_5 & _GEN_303) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31, :82:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      if (enqFire_5 & _GEN_304) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31, :82:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
         entries_12_uop_uop_pc <= io_enq_5_bits_uop_pc;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_12_uop_uop_inst_raw <= io_enq_5_bits_uop_inst_raw;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_12_uop_uop_pre_is_rvc <= io_enq_5_bits_uop_pre_is_rvc;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -19945,6 +20073,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_12_uop_decode_csr_cmd <= io_enq_5_bits_decode_csr_cmd;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_12_uop_decode_csr_addr <= io_enq_5_bits_decode_csr_addr;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_12_uop_decode_is_ecall <= io_enq_5_bits_decode_is_ecall;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
+        entries_12_uop_decode_is_ebreak <= io_enq_5_bits_decode_is_ebreak;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_12_uop_decode_is_mret <= io_enq_5_bits_decode_is_mret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_12_uop_decode_is_sret <= io_enq_5_bits_decode_is_sret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_12_uop_decode_is_sfence_vma <= io_enq_5_bits_decode_is_sfence_vma;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -19993,7 +20122,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_12_uop_snapshotIdx <= io_enq_5_bits_snapshotIdx;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_12_uop_robIdx <= io_enq_5_bits_robIdx;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
       end
-      else if (_GEN_275) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31
+      else if (_GEN_276) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31
         entries_12_uop_uop_pc <= io_enq_4_bits_uop_pc;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_12_uop_uop_inst_raw <= io_enq_4_bits_uop_inst_raw;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_12_uop_uop_pre_is_rvc <= io_enq_4_bits_uop_pre_is_rvc;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -20097,6 +20226,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_12_uop_decode_csr_cmd <= io_enq_4_bits_decode_csr_cmd;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_12_uop_decode_csr_addr <= io_enq_4_bits_decode_csr_addr;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_12_uop_decode_is_ecall <= io_enq_4_bits_decode_is_ecall;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
+        entries_12_uop_decode_is_ebreak <= io_enq_4_bits_decode_is_ebreak;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_12_uop_decode_is_mret <= io_enq_4_bits_decode_is_mret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_12_uop_decode_is_sret <= io_enq_4_bits_decode_is_sret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_12_uop_decode_is_sfence_vma <= io_enq_4_bits_decode_is_sfence_vma;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -20145,7 +20275,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_12_uop_snapshotIdx <= io_enq_4_bits_snapshotIdx;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_12_uop_robIdx <= io_enq_4_bits_robIdx;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
       end
-      else if (enqFire_3 & _GEN_256) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31, :82:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      else if (enqFire_3 & _GEN_257) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31, :82:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
         entries_12_uop_uop_pc <= io_enq_3_bits_uop_pc;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_12_uop_uop_inst_raw <= io_enq_3_bits_uop_inst_raw;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_12_uop_uop_pre_is_rvc <= io_enq_3_bits_uop_pre_is_rvc;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -20249,6 +20379,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_12_uop_decode_csr_cmd <= io_enq_3_bits_decode_csr_cmd;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_12_uop_decode_csr_addr <= io_enq_3_bits_decode_csr_addr;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_12_uop_decode_is_ecall <= io_enq_3_bits_decode_is_ecall;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
+        entries_12_uop_decode_is_ebreak <= io_enq_3_bits_decode_is_ebreak;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_12_uop_decode_is_mret <= io_enq_3_bits_decode_is_mret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_12_uop_decode_is_sret <= io_enq_3_bits_decode_is_sret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_12_uop_decode_is_sfence_vma <= io_enq_3_bits_decode_is_sfence_vma;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -20297,7 +20428,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_12_uop_snapshotIdx <= io_enq_3_bits_snapshotIdx;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_12_uop_robIdx <= io_enq_3_bits_robIdx;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
       end
-      else if (_GEN_228) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31
+      else if (_GEN_229) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31
         entries_12_uop_uop_pc <= io_enq_2_bits_uop_pc;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_12_uop_uop_inst_raw <= io_enq_2_bits_uop_inst_raw;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_12_uop_uop_pre_is_rvc <= io_enq_2_bits_uop_pre_is_rvc;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -20401,6 +20532,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_12_uop_decode_csr_cmd <= io_enq_2_bits_decode_csr_cmd;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_12_uop_decode_csr_addr <= io_enq_2_bits_decode_csr_addr;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_12_uop_decode_is_ecall <= io_enq_2_bits_decode_is_ecall;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
+        entries_12_uop_decode_is_ebreak <= io_enq_2_bits_decode_is_ebreak;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_12_uop_decode_is_mret <= io_enq_2_bits_decode_is_mret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_12_uop_decode_is_sret <= io_enq_2_bits_decode_is_sret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_12_uop_decode_is_sfence_vma <= io_enq_2_bits_decode_is_sfence_vma;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -20449,7 +20581,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_12_uop_snapshotIdx <= io_enq_2_bits_snapshotIdx;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_12_uop_robIdx <= io_enq_2_bits_robIdx;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
       end
-      else if (enqFire_1 & _GEN_209) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31, :82:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      else if (enqFire_1 & _GEN_210) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31, :82:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
         entries_12_uop_uop_pc <= io_enq_1_bits_uop_pc;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_12_uop_uop_inst_raw <= io_enq_1_bits_uop_inst_raw;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_12_uop_uop_pre_is_rvc <= io_enq_1_bits_uop_pre_is_rvc;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -20553,6 +20685,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_12_uop_decode_csr_cmd <= io_enq_1_bits_decode_csr_cmd;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_12_uop_decode_csr_addr <= io_enq_1_bits_decode_csr_addr;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_12_uop_decode_is_ecall <= io_enq_1_bits_decode_is_ecall;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
+        entries_12_uop_decode_is_ebreak <= io_enq_1_bits_decode_is_ebreak;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_12_uop_decode_is_mret <= io_enq_1_bits_decode_is_mret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_12_uop_decode_is_sret <= io_enq_1_bits_decode_is_sret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_12_uop_decode_is_sfence_vma <= io_enq_1_bits_decode_is_sfence_vma;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -20601,7 +20734,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_12_uop_snapshotIdx <= io_enq_1_bits_snapshotIdx;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_12_uop_robIdx <= io_enq_1_bits_robIdx;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
       end
-      else if (_GEN_181) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:56:16, :79:22, :81:31
+      else if (_GEN_182) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:56:16, :79:22, :81:31
         entries_12_uop_uop_pc <= io_enq_0_bits_uop_pc;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_12_uop_uop_inst_raw <= io_enq_0_bits_uop_inst_raw;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_12_uop_uop_pre_is_rvc <= io_enq_0_bits_uop_pre_is_rvc;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -20705,6 +20838,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_12_uop_decode_csr_cmd <= io_enq_0_bits_decode_csr_cmd;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_12_uop_decode_csr_addr <= io_enq_0_bits_decode_csr_addr;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_12_uop_decode_is_ecall <= io_enq_0_bits_decode_is_ecall;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
+        entries_12_uop_decode_is_ebreak <= io_enq_0_bits_decode_is_ebreak;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_12_uop_decode_is_mret <= io_enq_0_bits_decode_is_mret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_12_uop_decode_is_sret <= io_enq_0_bits_decode_is_sret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_12_uop_decode_is_sfence_vma <= io_enq_0_bits_decode_is_sfence_vma;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -20753,7 +20887,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_12_uop_snapshotIdx <= io_enq_0_bits_snapshotIdx;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_12_uop_robIdx <= io_enq_0_bits_robIdx;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
       end
-      if (enqFire_5 & _GEN_305) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31, :82:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      if (enqFire_5 & _GEN_306) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31, :82:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
         entries_13_uop_uop_pc <= io_enq_5_bits_uop_pc;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_13_uop_uop_inst_raw <= io_enq_5_bits_uop_inst_raw;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_13_uop_uop_pre_is_rvc <= io_enq_5_bits_uop_pre_is_rvc;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -20857,6 +20991,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_13_uop_decode_csr_cmd <= io_enq_5_bits_decode_csr_cmd;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_13_uop_decode_csr_addr <= io_enq_5_bits_decode_csr_addr;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_13_uop_decode_is_ecall <= io_enq_5_bits_decode_is_ecall;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
+        entries_13_uop_decode_is_ebreak <= io_enq_5_bits_decode_is_ebreak;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_13_uop_decode_is_mret <= io_enq_5_bits_decode_is_mret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_13_uop_decode_is_sret <= io_enq_5_bits_decode_is_sret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_13_uop_decode_is_sfence_vma <= io_enq_5_bits_decode_is_sfence_vma;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -20905,7 +21040,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_13_uop_snapshotIdx <= io_enq_5_bits_snapshotIdx;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_13_uop_robIdx <= io_enq_5_bits_robIdx;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
       end
-      else if (_GEN_276) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31
+      else if (_GEN_277) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31
         entries_13_uop_uop_pc <= io_enq_4_bits_uop_pc;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_13_uop_uop_inst_raw <= io_enq_4_bits_uop_inst_raw;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_13_uop_uop_pre_is_rvc <= io_enq_4_bits_uop_pre_is_rvc;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -21009,6 +21144,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_13_uop_decode_csr_cmd <= io_enq_4_bits_decode_csr_cmd;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_13_uop_decode_csr_addr <= io_enq_4_bits_decode_csr_addr;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_13_uop_decode_is_ecall <= io_enq_4_bits_decode_is_ecall;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
+        entries_13_uop_decode_is_ebreak <= io_enq_4_bits_decode_is_ebreak;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_13_uop_decode_is_mret <= io_enq_4_bits_decode_is_mret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_13_uop_decode_is_sret <= io_enq_4_bits_decode_is_sret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_13_uop_decode_is_sfence_vma <= io_enq_4_bits_decode_is_sfence_vma;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -21057,7 +21193,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_13_uop_snapshotIdx <= io_enq_4_bits_snapshotIdx;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_13_uop_robIdx <= io_enq_4_bits_robIdx;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
       end
-      else if (enqFire_3 & _GEN_258) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31, :82:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      else if (enqFire_3 & _GEN_259) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31, :82:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
         entries_13_uop_uop_pc <= io_enq_3_bits_uop_pc;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_13_uop_uop_inst_raw <= io_enq_3_bits_uop_inst_raw;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_13_uop_uop_pre_is_rvc <= io_enq_3_bits_uop_pre_is_rvc;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -21161,6 +21297,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_13_uop_decode_csr_cmd <= io_enq_3_bits_decode_csr_cmd;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_13_uop_decode_csr_addr <= io_enq_3_bits_decode_csr_addr;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_13_uop_decode_is_ecall <= io_enq_3_bits_decode_is_ecall;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
+        entries_13_uop_decode_is_ebreak <= io_enq_3_bits_decode_is_ebreak;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_13_uop_decode_is_mret <= io_enq_3_bits_decode_is_mret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_13_uop_decode_is_sret <= io_enq_3_bits_decode_is_sret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_13_uop_decode_is_sfence_vma <= io_enq_3_bits_decode_is_sfence_vma;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -21209,7 +21346,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_13_uop_snapshotIdx <= io_enq_3_bits_snapshotIdx;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_13_uop_robIdx <= io_enq_3_bits_robIdx;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
       end
-      else if (_GEN_229) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31
+      else if (_GEN_230) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31
         entries_13_uop_uop_pc <= io_enq_2_bits_uop_pc;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_13_uop_uop_inst_raw <= io_enq_2_bits_uop_inst_raw;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_13_uop_uop_pre_is_rvc <= io_enq_2_bits_uop_pre_is_rvc;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -21313,6 +21450,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_13_uop_decode_csr_cmd <= io_enq_2_bits_decode_csr_cmd;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_13_uop_decode_csr_addr <= io_enq_2_bits_decode_csr_addr;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_13_uop_decode_is_ecall <= io_enq_2_bits_decode_is_ecall;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
+        entries_13_uop_decode_is_ebreak <= io_enq_2_bits_decode_is_ebreak;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_13_uop_decode_is_mret <= io_enq_2_bits_decode_is_mret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_13_uop_decode_is_sret <= io_enq_2_bits_decode_is_sret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_13_uop_decode_is_sfence_vma <= io_enq_2_bits_decode_is_sfence_vma;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -21361,7 +21499,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_13_uop_snapshotIdx <= io_enq_2_bits_snapshotIdx;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_13_uop_robIdx <= io_enq_2_bits_robIdx;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
       end
-      else if (enqFire_1 & _GEN_211) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31, :82:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      else if (enqFire_1 & _GEN_212) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31, :82:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
         entries_13_uop_uop_pc <= io_enq_1_bits_uop_pc;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_13_uop_uop_inst_raw <= io_enq_1_bits_uop_inst_raw;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_13_uop_uop_pre_is_rvc <= io_enq_1_bits_uop_pre_is_rvc;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -21465,6 +21603,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_13_uop_decode_csr_cmd <= io_enq_1_bits_decode_csr_cmd;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_13_uop_decode_csr_addr <= io_enq_1_bits_decode_csr_addr;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_13_uop_decode_is_ecall <= io_enq_1_bits_decode_is_ecall;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
+        entries_13_uop_decode_is_ebreak <= io_enq_1_bits_decode_is_ebreak;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_13_uop_decode_is_mret <= io_enq_1_bits_decode_is_mret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_13_uop_decode_is_sret <= io_enq_1_bits_decode_is_sret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_13_uop_decode_is_sfence_vma <= io_enq_1_bits_decode_is_sfence_vma;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -21513,7 +21652,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_13_uop_snapshotIdx <= io_enq_1_bits_snapshotIdx;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_13_uop_robIdx <= io_enq_1_bits_robIdx;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
       end
-      else if (_GEN_182) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:56:16, :79:22, :81:31
+      else if (_GEN_183) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:56:16, :79:22, :81:31
         entries_13_uop_uop_pc <= io_enq_0_bits_uop_pc;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_13_uop_uop_inst_raw <= io_enq_0_bits_uop_inst_raw;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_13_uop_uop_pre_is_rvc <= io_enq_0_bits_uop_pre_is_rvc;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -21617,6 +21756,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_13_uop_decode_csr_cmd <= io_enq_0_bits_decode_csr_cmd;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_13_uop_decode_csr_addr <= io_enq_0_bits_decode_csr_addr;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_13_uop_decode_is_ecall <= io_enq_0_bits_decode_is_ecall;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
+        entries_13_uop_decode_is_ebreak <= io_enq_0_bits_decode_is_ebreak;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_13_uop_decode_is_mret <= io_enq_0_bits_decode_is_mret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_13_uop_decode_is_sret <= io_enq_0_bits_decode_is_sret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_13_uop_decode_is_sfence_vma <= io_enq_0_bits_decode_is_sfence_vma;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -21665,7 +21805,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_13_uop_snapshotIdx <= io_enq_0_bits_snapshotIdx;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_13_uop_robIdx <= io_enq_0_bits_robIdx;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
       end
-      if (enqFire_5 & _GEN_307) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31, :82:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      if (enqFire_5 & _GEN_308) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31, :82:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
         entries_14_uop_uop_pc <= io_enq_5_bits_uop_pc;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_14_uop_uop_inst_raw <= io_enq_5_bits_uop_inst_raw;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_14_uop_uop_pre_is_rvc <= io_enq_5_bits_uop_pre_is_rvc;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -21769,6 +21909,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_14_uop_decode_csr_cmd <= io_enq_5_bits_decode_csr_cmd;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_14_uop_decode_csr_addr <= io_enq_5_bits_decode_csr_addr;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_14_uop_decode_is_ecall <= io_enq_5_bits_decode_is_ecall;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
+        entries_14_uop_decode_is_ebreak <= io_enq_5_bits_decode_is_ebreak;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_14_uop_decode_is_mret <= io_enq_5_bits_decode_is_mret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_14_uop_decode_is_sret <= io_enq_5_bits_decode_is_sret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_14_uop_decode_is_sfence_vma <= io_enq_5_bits_decode_is_sfence_vma;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -21817,7 +21958,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_14_uop_snapshotIdx <= io_enq_5_bits_snapshotIdx;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_14_uop_robIdx <= io_enq_5_bits_robIdx;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
       end
-      else if (_GEN_277) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31
+      else if (_GEN_278) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31
         entries_14_uop_uop_pc <= io_enq_4_bits_uop_pc;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_14_uop_uop_inst_raw <= io_enq_4_bits_uop_inst_raw;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_14_uop_uop_pre_is_rvc <= io_enq_4_bits_uop_pre_is_rvc;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -21921,6 +22062,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_14_uop_decode_csr_cmd <= io_enq_4_bits_decode_csr_cmd;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_14_uop_decode_csr_addr <= io_enq_4_bits_decode_csr_addr;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_14_uop_decode_is_ecall <= io_enq_4_bits_decode_is_ecall;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
+        entries_14_uop_decode_is_ebreak <= io_enq_4_bits_decode_is_ebreak;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_14_uop_decode_is_mret <= io_enq_4_bits_decode_is_mret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_14_uop_decode_is_sret <= io_enq_4_bits_decode_is_sret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_14_uop_decode_is_sfence_vma <= io_enq_4_bits_decode_is_sfence_vma;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -21969,7 +22111,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_14_uop_snapshotIdx <= io_enq_4_bits_snapshotIdx;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_14_uop_robIdx <= io_enq_4_bits_robIdx;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
       end
-      else if (enqFire_3 & _GEN_260) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31, :82:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      else if (enqFire_3 & _GEN_261) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31, :82:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
         entries_14_uop_uop_pc <= io_enq_3_bits_uop_pc;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_14_uop_uop_inst_raw <= io_enq_3_bits_uop_inst_raw;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_14_uop_uop_pre_is_rvc <= io_enq_3_bits_uop_pre_is_rvc;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -22073,6 +22215,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_14_uop_decode_csr_cmd <= io_enq_3_bits_decode_csr_cmd;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_14_uop_decode_csr_addr <= io_enq_3_bits_decode_csr_addr;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_14_uop_decode_is_ecall <= io_enq_3_bits_decode_is_ecall;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
+        entries_14_uop_decode_is_ebreak <= io_enq_3_bits_decode_is_ebreak;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_14_uop_decode_is_mret <= io_enq_3_bits_decode_is_mret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_14_uop_decode_is_sret <= io_enq_3_bits_decode_is_sret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_14_uop_decode_is_sfence_vma <= io_enq_3_bits_decode_is_sfence_vma;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -22121,7 +22264,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_14_uop_snapshotIdx <= io_enq_3_bits_snapshotIdx;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_14_uop_robIdx <= io_enq_3_bits_robIdx;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
       end
-      else if (_GEN_230) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31
+      else if (_GEN_231) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31
         entries_14_uop_uop_pc <= io_enq_2_bits_uop_pc;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_14_uop_uop_inst_raw <= io_enq_2_bits_uop_inst_raw;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_14_uop_uop_pre_is_rvc <= io_enq_2_bits_uop_pre_is_rvc;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -22225,6 +22368,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_14_uop_decode_csr_cmd <= io_enq_2_bits_decode_csr_cmd;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_14_uop_decode_csr_addr <= io_enq_2_bits_decode_csr_addr;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_14_uop_decode_is_ecall <= io_enq_2_bits_decode_is_ecall;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
+        entries_14_uop_decode_is_ebreak <= io_enq_2_bits_decode_is_ebreak;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_14_uop_decode_is_mret <= io_enq_2_bits_decode_is_mret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_14_uop_decode_is_sret <= io_enq_2_bits_decode_is_sret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_14_uop_decode_is_sfence_vma <= io_enq_2_bits_decode_is_sfence_vma;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -22273,7 +22417,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_14_uop_snapshotIdx <= io_enq_2_bits_snapshotIdx;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_14_uop_robIdx <= io_enq_2_bits_robIdx;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
       end
-      else if (enqFire_1 & _GEN_213) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31, :82:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
+      else if (enqFire_1 & _GEN_214) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31, :82:31, src/main/scala/chisel3/util/Decoupled.scala:51:35
         entries_14_uop_uop_pc <= io_enq_1_bits_uop_pc;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_14_uop_uop_inst_raw <= io_enq_1_bits_uop_inst_raw;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_14_uop_uop_pre_is_rvc <= io_enq_1_bits_uop_pre_is_rvc;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -22377,6 +22521,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_14_uop_decode_csr_cmd <= io_enq_1_bits_decode_csr_cmd;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_14_uop_decode_csr_addr <= io_enq_1_bits_decode_csr_addr;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_14_uop_decode_is_ecall <= io_enq_1_bits_decode_is_ecall;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
+        entries_14_uop_decode_is_ebreak <= io_enq_1_bits_decode_is_ebreak;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_14_uop_decode_is_mret <= io_enq_1_bits_decode_is_mret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_14_uop_decode_is_sret <= io_enq_1_bits_decode_is_sret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_14_uop_decode_is_sfence_vma <= io_enq_1_bits_decode_is_sfence_vma;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -22425,7 +22570,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_14_uop_snapshotIdx <= io_enq_1_bits_snapshotIdx;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_14_uop_robIdx <= io_enq_1_bits_robIdx;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
       end
-      else if (_GEN_183) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:56:16, :79:22, :81:31
+      else if (_GEN_184) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:56:16, :79:22, :81:31
         entries_14_uop_uop_pc <= io_enq_0_bits_uop_pc;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_14_uop_uop_inst_raw <= io_enq_0_bits_uop_inst_raw;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_14_uop_uop_pre_is_rvc <= io_enq_0_bits_uop_pre_is_rvc;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -22529,6 +22674,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_14_uop_decode_csr_cmd <= io_enq_0_bits_decode_csr_cmd;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_14_uop_decode_csr_addr <= io_enq_0_bits_decode_csr_addr;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_14_uop_decode_is_ecall <= io_enq_0_bits_decode_is_ecall;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
+        entries_14_uop_decode_is_ebreak <= io_enq_0_bits_decode_is_ebreak;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_14_uop_decode_is_mret <= io_enq_0_bits_decode_is_mret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_14_uop_decode_is_sret <= io_enq_0_bits_decode_is_sret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_14_uop_decode_is_sfence_vma <= io_enq_0_bits_decode_is_sfence_vma;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -22681,6 +22827,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_15_uop_decode_csr_cmd <= io_enq_5_bits_decode_csr_cmd;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_15_uop_decode_csr_addr <= io_enq_5_bits_decode_csr_addr;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_15_uop_decode_is_ecall <= io_enq_5_bits_decode_is_ecall;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
+        entries_15_uop_decode_is_ebreak <= io_enq_5_bits_decode_is_ebreak;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_15_uop_decode_is_mret <= io_enq_5_bits_decode_is_mret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_15_uop_decode_is_sret <= io_enq_5_bits_decode_is_sret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_15_uop_decode_is_sfence_vma <= io_enq_5_bits_decode_is_sfence_vma;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -22729,7 +22876,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_15_uop_snapshotIdx <= io_enq_5_bits_snapshotIdx;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_15_uop_robIdx <= io_enq_5_bits_robIdx;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
       end
-      else if (_GEN_278) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31
+      else if (_GEN_279) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31
         entries_15_uop_uop_pc <= io_enq_4_bits_uop_pc;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_15_uop_uop_inst_raw <= io_enq_4_bits_uop_inst_raw;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_15_uop_uop_pre_is_rvc <= io_enq_4_bits_uop_pre_is_rvc;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -22833,6 +22980,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_15_uop_decode_csr_cmd <= io_enq_4_bits_decode_csr_cmd;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_15_uop_decode_csr_addr <= io_enq_4_bits_decode_csr_addr;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_15_uop_decode_is_ecall <= io_enq_4_bits_decode_is_ecall;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
+        entries_15_uop_decode_is_ebreak <= io_enq_4_bits_decode_is_ebreak;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_15_uop_decode_is_mret <= io_enq_4_bits_decode_is_mret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_15_uop_decode_is_sret <= io_enq_4_bits_decode_is_sret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_15_uop_decode_is_sfence_vma <= io_enq_4_bits_decode_is_sfence_vma;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -22985,6 +23133,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_15_uop_decode_csr_cmd <= io_enq_3_bits_decode_csr_cmd;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_15_uop_decode_csr_addr <= io_enq_3_bits_decode_csr_addr;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_15_uop_decode_is_ecall <= io_enq_3_bits_decode_is_ecall;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
+        entries_15_uop_decode_is_ebreak <= io_enq_3_bits_decode_is_ebreak;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_15_uop_decode_is_mret <= io_enq_3_bits_decode_is_mret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_15_uop_decode_is_sret <= io_enq_3_bits_decode_is_sret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_15_uop_decode_is_sfence_vma <= io_enq_3_bits_decode_is_sfence_vma;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -23033,7 +23182,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_15_uop_snapshotIdx <= io_enq_3_bits_snapshotIdx;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_15_uop_robIdx <= io_enq_3_bits_robIdx;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
       end
-      else if (_GEN_231) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31
+      else if (_GEN_232) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:79:22, :81:31
         entries_15_uop_uop_pc <= io_enq_2_bits_uop_pc;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_15_uop_uop_inst_raw <= io_enq_2_bits_uop_inst_raw;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_15_uop_uop_pre_is_rvc <= io_enq_2_bits_uop_pre_is_rvc;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -23137,6 +23286,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_15_uop_decode_csr_cmd <= io_enq_2_bits_decode_csr_cmd;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_15_uop_decode_csr_addr <= io_enq_2_bits_decode_csr_addr;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_15_uop_decode_is_ecall <= io_enq_2_bits_decode_is_ecall;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
+        entries_15_uop_decode_is_ebreak <= io_enq_2_bits_decode_is_ebreak;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_15_uop_decode_is_mret <= io_enq_2_bits_decode_is_mret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_15_uop_decode_is_sret <= io_enq_2_bits_decode_is_sret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_15_uop_decode_is_sfence_vma <= io_enq_2_bits_decode_is_sfence_vma;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -23289,6 +23439,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_15_uop_decode_csr_cmd <= io_enq_1_bits_decode_csr_cmd;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_15_uop_decode_csr_addr <= io_enq_1_bits_decode_csr_addr;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_15_uop_decode_is_ecall <= io_enq_1_bits_decode_is_ecall;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
+        entries_15_uop_decode_is_ebreak <= io_enq_1_bits_decode_is_ebreak;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_15_uop_decode_is_mret <= io_enq_1_bits_decode_is_mret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_15_uop_decode_is_sret <= io_enq_1_bits_decode_is_sret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_15_uop_decode_is_sfence_vma <= io_enq_1_bits_decode_is_sfence_vma;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -23337,7 +23488,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_15_uop_snapshotIdx <= io_enq_1_bits_snapshotIdx;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_15_uop_robIdx <= io_enq_1_bits_robIdx;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
       end
-      else if (_GEN_184) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:56:16, :79:22, :81:31
+      else if (_GEN_185) begin	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:56:16, :79:22, :81:31
         entries_15_uop_uop_pc <= io_enq_0_bits_uop_pc;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_15_uop_uop_inst_raw <= io_enq_0_bits_uop_inst_raw;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_15_uop_uop_pre_is_rvc <= io_enq_0_bits_uop_pre_is_rvc;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -23441,6 +23592,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_15_uop_decode_csr_cmd <= io_enq_0_bits_decode_csr_cmd;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_15_uop_decode_csr_addr <= io_enq_0_bits_decode_csr_addr;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_15_uop_decode_is_ecall <= io_enq_0_bits_decode_is_ecall;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
+        entries_15_uop_decode_is_ebreak <= io_enq_0_bits_decode_is_ebreak;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_15_uop_decode_is_mret <= io_enq_0_bits_decode_is_mret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_15_uop_decode_is_sret <= io_enq_0_bits_decode_is_sret;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
         entries_15_uop_decode_is_sfence_vma <= io_enq_0_bits_decode_is_sfence_vma;	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:40:24
@@ -23617,6 +23769,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_0_uop_decode_csr_cmd = _RANDOM[9'hB][14:12];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :40:24
         entries_0_uop_decode_csr_addr = _RANDOM[9'hB][26:15];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :40:24
         entries_0_uop_decode_is_ecall = _RANDOM[9'hB][27];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :40:24
+        entries_0_uop_decode_is_ebreak = _RANDOM[9'hB][28];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :40:24
         entries_0_uop_decode_is_mret = _RANDOM[9'hB][29];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :40:24
         entries_0_uop_decode_is_sret = _RANDOM[9'hB][30];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :40:24
         entries_0_uop_decode_is_sfence_vma = _RANDOM[9'hC][0];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :40:24
@@ -23771,6 +23924,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_1_uop_decode_csr_cmd = _RANDOM[9'h21][6:4];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :40:24
         entries_1_uop_decode_csr_addr = _RANDOM[9'h21][18:7];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :40:24
         entries_1_uop_decode_is_ecall = _RANDOM[9'h21][19];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :40:24
+        entries_1_uop_decode_is_ebreak = _RANDOM[9'h21][20];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :40:24
         entries_1_uop_decode_is_mret = _RANDOM[9'h21][21];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :40:24
         entries_1_uop_decode_is_sret = _RANDOM[9'h21][22];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :40:24
         entries_1_uop_decode_is_sfence_vma = _RANDOM[9'h21][24];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :40:24
@@ -23925,6 +24079,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_2_uop_decode_csr_cmd = _RANDOM[9'h36][30:28];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :40:24
         entries_2_uop_decode_csr_addr = {_RANDOM[9'h36][31], _RANDOM[9'h37][10:0]};	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :40:24
         entries_2_uop_decode_is_ecall = _RANDOM[9'h37][11];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :40:24
+        entries_2_uop_decode_is_ebreak = _RANDOM[9'h37][12];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :40:24
         entries_2_uop_decode_is_mret = _RANDOM[9'h37][13];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :40:24
         entries_2_uop_decode_is_sret = _RANDOM[9'h37][14];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :40:24
         entries_2_uop_decode_is_sfence_vma = _RANDOM[9'h37][16];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :40:24
@@ -24079,6 +24234,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_3_uop_decode_csr_cmd = _RANDOM[9'h4C][22:20];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :40:24
         entries_3_uop_decode_csr_addr = {_RANDOM[9'h4C][31:23], _RANDOM[9'h4D][2:0]};	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :40:24
         entries_3_uop_decode_is_ecall = _RANDOM[9'h4D][3];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :40:24
+        entries_3_uop_decode_is_ebreak = _RANDOM[9'h4D][4];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :40:24
         entries_3_uop_decode_is_mret = _RANDOM[9'h4D][5];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :40:24
         entries_3_uop_decode_is_sret = _RANDOM[9'h4D][6];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :40:24
         entries_3_uop_decode_is_sfence_vma = _RANDOM[9'h4D][8];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :40:24
@@ -24232,6 +24388,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_4_uop_decode_csr_cmd = _RANDOM[9'h62][14:12];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :40:24
         entries_4_uop_decode_csr_addr = _RANDOM[9'h62][26:15];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :40:24
         entries_4_uop_decode_is_ecall = _RANDOM[9'h62][27];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :40:24
+        entries_4_uop_decode_is_ebreak = _RANDOM[9'h62][28];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :40:24
         entries_4_uop_decode_is_mret = _RANDOM[9'h62][29];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :40:24
         entries_4_uop_decode_is_sret = _RANDOM[9'h62][30];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :40:24
         entries_4_uop_decode_is_sfence_vma = _RANDOM[9'h63][0];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :40:24
@@ -24386,6 +24543,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_5_uop_decode_csr_cmd = _RANDOM[9'h78][6:4];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :40:24
         entries_5_uop_decode_csr_addr = _RANDOM[9'h78][18:7];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :40:24
         entries_5_uop_decode_is_ecall = _RANDOM[9'h78][19];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :40:24
+        entries_5_uop_decode_is_ebreak = _RANDOM[9'h78][20];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :40:24
         entries_5_uop_decode_is_mret = _RANDOM[9'h78][21];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :40:24
         entries_5_uop_decode_is_sret = _RANDOM[9'h78][22];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :40:24
         entries_5_uop_decode_is_sfence_vma = _RANDOM[9'h78][24];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :40:24
@@ -24540,6 +24698,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_6_uop_decode_csr_cmd = _RANDOM[9'h8D][30:28];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :40:24
         entries_6_uop_decode_csr_addr = {_RANDOM[9'h8D][31], _RANDOM[9'h8E][10:0]};	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :40:24
         entries_6_uop_decode_is_ecall = _RANDOM[9'h8E][11];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :40:24
+        entries_6_uop_decode_is_ebreak = _RANDOM[9'h8E][12];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :40:24
         entries_6_uop_decode_is_mret = _RANDOM[9'h8E][13];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :40:24
         entries_6_uop_decode_is_sret = _RANDOM[9'h8E][14];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :40:24
         entries_6_uop_decode_is_sfence_vma = _RANDOM[9'h8E][16];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :40:24
@@ -24694,6 +24853,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_7_uop_decode_csr_cmd = _RANDOM[9'hA3][22:20];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :40:24
         entries_7_uop_decode_csr_addr = {_RANDOM[9'hA3][31:23], _RANDOM[9'hA4][2:0]};	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :40:24
         entries_7_uop_decode_is_ecall = _RANDOM[9'hA4][3];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :40:24
+        entries_7_uop_decode_is_ebreak = _RANDOM[9'hA4][4];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :40:24
         entries_7_uop_decode_is_mret = _RANDOM[9'hA4][5];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :40:24
         entries_7_uop_decode_is_sret = _RANDOM[9'hA4][6];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :40:24
         entries_7_uop_decode_is_sfence_vma = _RANDOM[9'hA4][8];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :40:24
@@ -24847,6 +25007,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_8_uop_decode_csr_cmd = _RANDOM[9'hB9][14:12];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :40:24
         entries_8_uop_decode_csr_addr = _RANDOM[9'hB9][26:15];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :40:24
         entries_8_uop_decode_is_ecall = _RANDOM[9'hB9][27];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :40:24
+        entries_8_uop_decode_is_ebreak = _RANDOM[9'hB9][28];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :40:24
         entries_8_uop_decode_is_mret = _RANDOM[9'hB9][29];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :40:24
         entries_8_uop_decode_is_sret = _RANDOM[9'hB9][30];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :40:24
         entries_8_uop_decode_is_sfence_vma = _RANDOM[9'hBA][0];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :40:24
@@ -25001,6 +25162,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_9_uop_decode_csr_cmd = _RANDOM[9'hCF][6:4];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :40:24
         entries_9_uop_decode_csr_addr = _RANDOM[9'hCF][18:7];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :40:24
         entries_9_uop_decode_is_ecall = _RANDOM[9'hCF][19];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :40:24
+        entries_9_uop_decode_is_ebreak = _RANDOM[9'hCF][20];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :40:24
         entries_9_uop_decode_is_mret = _RANDOM[9'hCF][21];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :40:24
         entries_9_uop_decode_is_sret = _RANDOM[9'hCF][22];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :40:24
         entries_9_uop_decode_is_sfence_vma = _RANDOM[9'hCF][24];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :40:24
@@ -25155,6 +25317,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_10_uop_decode_csr_cmd = _RANDOM[9'hE4][30:28];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :40:24
         entries_10_uop_decode_csr_addr = {_RANDOM[9'hE4][31], _RANDOM[9'hE5][10:0]};	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :40:24
         entries_10_uop_decode_is_ecall = _RANDOM[9'hE5][11];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :40:24
+        entries_10_uop_decode_is_ebreak = _RANDOM[9'hE5][12];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :40:24
         entries_10_uop_decode_is_mret = _RANDOM[9'hE5][13];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :40:24
         entries_10_uop_decode_is_sret = _RANDOM[9'hE5][14];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :40:24
         entries_10_uop_decode_is_sfence_vma = _RANDOM[9'hE5][16];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :40:24
@@ -25309,6 +25472,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_11_uop_decode_csr_cmd = _RANDOM[9'hFA][22:20];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :40:24
         entries_11_uop_decode_csr_addr = {_RANDOM[9'hFA][31:23], _RANDOM[9'hFB][2:0]};	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :40:24
         entries_11_uop_decode_is_ecall = _RANDOM[9'hFB][3];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :40:24
+        entries_11_uop_decode_is_ebreak = _RANDOM[9'hFB][4];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :40:24
         entries_11_uop_decode_is_mret = _RANDOM[9'hFB][5];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :40:24
         entries_11_uop_decode_is_sret = _RANDOM[9'hFB][6];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :40:24
         entries_11_uop_decode_is_sfence_vma = _RANDOM[9'hFB][8];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :40:24
@@ -25463,6 +25627,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_12_uop_decode_csr_cmd = _RANDOM[9'h110][14:12];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :40:24
         entries_12_uop_decode_csr_addr = _RANDOM[9'h110][26:15];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :40:24
         entries_12_uop_decode_is_ecall = _RANDOM[9'h110][27];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :40:24
+        entries_12_uop_decode_is_ebreak = _RANDOM[9'h110][28];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :40:24
         entries_12_uop_decode_is_mret = _RANDOM[9'h110][29];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :40:24
         entries_12_uop_decode_is_sret = _RANDOM[9'h110][30];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :40:24
         entries_12_uop_decode_is_sfence_vma = _RANDOM[9'h111][0];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :40:24
@@ -25617,6 +25782,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_13_uop_decode_csr_cmd = _RANDOM[9'h126][6:4];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :40:24
         entries_13_uop_decode_csr_addr = _RANDOM[9'h126][18:7];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :40:24
         entries_13_uop_decode_is_ecall = _RANDOM[9'h126][19];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :40:24
+        entries_13_uop_decode_is_ebreak = _RANDOM[9'h126][20];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :40:24
         entries_13_uop_decode_is_mret = _RANDOM[9'h126][21];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :40:24
         entries_13_uop_decode_is_sret = _RANDOM[9'h126][22];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :40:24
         entries_13_uop_decode_is_sfence_vma = _RANDOM[9'h126][24];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :40:24
@@ -25771,6 +25937,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_14_uop_decode_csr_cmd = _RANDOM[9'h13B][30:28];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :40:24
         entries_14_uop_decode_csr_addr = {_RANDOM[9'h13B][31], _RANDOM[9'h13C][10:0]};	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :40:24
         entries_14_uop_decode_is_ecall = _RANDOM[9'h13C][11];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :40:24
+        entries_14_uop_decode_is_ebreak = _RANDOM[9'h13C][12];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :40:24
         entries_14_uop_decode_is_mret = _RANDOM[9'h13C][13];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :40:24
         entries_14_uop_decode_is_sret = _RANDOM[9'h13C][14];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :40:24
         entries_14_uop_decode_is_sfence_vma = _RANDOM[9'h13C][16];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :40:24
@@ -25925,6 +26092,7 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
         entries_15_uop_decode_csr_cmd = _RANDOM[9'h151][22:20];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :40:24
         entries_15_uop_decode_csr_addr = {_RANDOM[9'h151][31:23], _RANDOM[9'h152][2:0]};	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :40:24
         entries_15_uop_decode_is_ecall = _RANDOM[9'h152][3];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :40:24
+        entries_15_uop_decode_is_ebreak = _RANDOM[9'h152][4];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :40:24
         entries_15_uop_decode_is_mret = _RANDOM[9'h152][5];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :40:24
         entries_15_uop_decode_is_sret = _RANDOM[9'h152][6];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :40:24
         entries_15_uop_decode_is_sfence_vma = _RANDOM[9'h152][8];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :40:24
@@ -26092,52 +26260,53 @@ module VectorDispatchQueue(	// backend/src/zaqal/backend/dispatch/VectorDispatch
   assign io_deq_bits_decode_csr_cmd = _GEN_100[headPtr];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :41:24, :51:35
   assign io_deq_bits_decode_csr_addr = _GEN_101[headPtr];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :41:24, :51:35
   assign io_deq_bits_decode_is_ecall = _GEN_102[headPtr];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :41:24, :51:35
-  assign io_deq_bits_decode_is_mret = _GEN_103[headPtr];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :41:24, :51:35
-  assign io_deq_bits_decode_is_sret = _GEN_104[headPtr];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :41:24, :51:35
-  assign io_deq_bits_decode_is_sfence_vma = _GEN_105[headPtr];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :41:24, :51:35
-  assign io_deq_bits_decode_rd = _GEN_106[headPtr];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :41:24, :51:35
-  assign io_deq_bits_decode_rs1 = _GEN_107[headPtr];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :41:24, :51:35
-  assign io_deq_bits_decode_imm = _GEN_108[headPtr];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :41:24, :51:35
-  assign io_deq_bits_decode_is_fused_lui_addi = _GEN_109[headPtr];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :41:24, :51:35
-  assign io_deq_bits_decode_fused_type = _GEN_110[headPtr];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :41:24, :51:35
-  assign io_deq_bits_decode_rd_is_fp = _GEN_111[headPtr];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :41:24, :51:35
-  assign io_deq_bits_decode_rs1_is_vec = _GEN_112[headPtr];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :41:24, :51:35
-  assign io_deq_bits_decode_rs2_is_vec = _GEN_113[headPtr];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :41:24, :51:35
-  assign io_deq_bits_decode_rs3_is_vec = _GEN_114[headPtr];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :41:24, :51:35
-  assign io_deq_bits_decode_rd_is_vec = _GEN_115[headPtr];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :41:24, :51:35
-  assign io_deq_bits_decode_is_amx = _GEN_116[headPtr];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :41:24, :51:35
-  assign io_deq_bits_decode_is_tcfg = _GEN_117[headPtr];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :41:24, :51:35
-  assign io_deq_bits_decode_is_tzero = _GEN_118[headPtr];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :41:24, :51:35
-  assign io_deq_bits_decode_is_tld = _GEN_119[headPtr];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :41:24, :51:35
-  assign io_deq_bits_decode_is_tst = _GEN_120[headPtr];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :41:24, :51:35
-  assign io_deq_bits_decode_is_tmma_i8 = _GEN_121[headPtr];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :41:24, :51:35
-  assign io_deq_bits_decode_is_tmma_bf16 = _GEN_122[headPtr];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :41:24, :51:35
-  assign io_deq_bits_decode_is_tmma_fp32 = _GEN_123[headPtr];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :41:24, :51:35
-  assign io_deq_bits_decode_amx_tdest = _GEN_124[headPtr];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :41:24, :51:35
-  assign io_deq_bits_decode_amx_tsrc1 = _GEN_125[headPtr];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :41:24, :51:35
-  assign io_deq_bits_decode_amx_tsrc2 = _GEN_126[headPtr];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :41:24, :51:35
-  assign io_deq_bits_decode_is_vsetivli = _GEN_127[headPtr];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :41:24, :51:35
-  assign io_deq_bits_decode_is_vsetvl = _GEN_128[headPtr];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :41:24, :51:35
-  assign io_deq_bits_decode_is_vset = _GEN_129[headPtr];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :41:24, :51:35
-  assign io_deq_bits_decode_vec_vs1 = _GEN_130[headPtr];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :41:24, :51:35
-  assign io_deq_bits_decode_vec_vs2 = _GEN_131[headPtr];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :41:24, :51:35
-  assign io_deq_bits_decode_vec_vd = _GEN_132[headPtr];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :41:24, :51:35
-  assign io_deq_bits_decode_vec_vm = _GEN_133[headPtr];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :41:24, :51:35
-  assign io_deq_bits_decode_vec_zimm = _GEN_134[headPtr];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :41:24, :51:35
-  assign io_deq_bits_decode_is_vec_arith = _GEN_135[headPtr];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :41:24, :51:35
-  assign io_deq_bits_decode_is_vec_load = _GEN_136[headPtr];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :41:24, :51:35
-  assign io_deq_bits_decode_is_vec_store = _GEN_137[headPtr];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :41:24, :51:35
-  assign io_deq_bits_decode_is_vec_mem = _GEN_138[headPtr];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :41:24, :51:35
-  assign io_deq_bits_decode_is_vec_strided = _GEN_139[headPtr];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :41:24, :51:35
-  assign io_deq_bits_decode_vec_funct3 = _GEN_140[headPtr];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :41:24, :51:35
-  assign io_deq_bits_decode_vec_funct6 = _GEN_141[headPtr];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :41:24, :51:35
-  assign io_deq_bits_decode_vec_simm5 = _GEN_142[headPtr];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :41:24, :51:35
-  assign io_deq_bits_psrs1 = _GEN_143[headPtr];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :41:24, :51:35
-  assign io_deq_bits_psrs2 = _GEN_144[headPtr];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :41:24, :51:35
-  assign io_deq_bits_psrs3 = _GEN_145[headPtr];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :41:24, :51:35
-  assign io_deq_bits_pdest = _GEN_146[headPtr];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :41:24, :51:35
-  assign io_deq_bits_old_pdest = _GEN_147[headPtr];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :41:24, :51:35
-  assign io_deq_bits_snapshotIdx = _GEN_148[headPtr];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :41:24, :51:35
-  assign io_deq_bits_robIdx = _GEN_149[headPtr];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :41:24, :51:35
+  assign io_deq_bits_decode_is_ebreak = _GEN_103[headPtr];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :41:24, :51:35
+  assign io_deq_bits_decode_is_mret = _GEN_104[headPtr];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :41:24, :51:35
+  assign io_deq_bits_decode_is_sret = _GEN_105[headPtr];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :41:24, :51:35
+  assign io_deq_bits_decode_is_sfence_vma = _GEN_106[headPtr];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :41:24, :51:35
+  assign io_deq_bits_decode_rd = _GEN_107[headPtr];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :41:24, :51:35
+  assign io_deq_bits_decode_rs1 = _GEN_108[headPtr];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :41:24, :51:35
+  assign io_deq_bits_decode_imm = _GEN_109[headPtr];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :41:24, :51:35
+  assign io_deq_bits_decode_is_fused_lui_addi = _GEN_110[headPtr];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :41:24, :51:35
+  assign io_deq_bits_decode_fused_type = _GEN_111[headPtr];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :41:24, :51:35
+  assign io_deq_bits_decode_rd_is_fp = _GEN_112[headPtr];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :41:24, :51:35
+  assign io_deq_bits_decode_rs1_is_vec = _GEN_113[headPtr];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :41:24, :51:35
+  assign io_deq_bits_decode_rs2_is_vec = _GEN_114[headPtr];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :41:24, :51:35
+  assign io_deq_bits_decode_rs3_is_vec = _GEN_115[headPtr];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :41:24, :51:35
+  assign io_deq_bits_decode_rd_is_vec = _GEN_116[headPtr];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :41:24, :51:35
+  assign io_deq_bits_decode_is_amx = _GEN_117[headPtr];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :41:24, :51:35
+  assign io_deq_bits_decode_is_tcfg = _GEN_118[headPtr];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :41:24, :51:35
+  assign io_deq_bits_decode_is_tzero = _GEN_119[headPtr];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :41:24, :51:35
+  assign io_deq_bits_decode_is_tld = _GEN_120[headPtr];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :41:24, :51:35
+  assign io_deq_bits_decode_is_tst = _GEN_121[headPtr];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :41:24, :51:35
+  assign io_deq_bits_decode_is_tmma_i8 = _GEN_122[headPtr];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :41:24, :51:35
+  assign io_deq_bits_decode_is_tmma_bf16 = _GEN_123[headPtr];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :41:24, :51:35
+  assign io_deq_bits_decode_is_tmma_fp32 = _GEN_124[headPtr];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :41:24, :51:35
+  assign io_deq_bits_decode_amx_tdest = _GEN_125[headPtr];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :41:24, :51:35
+  assign io_deq_bits_decode_amx_tsrc1 = _GEN_126[headPtr];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :41:24, :51:35
+  assign io_deq_bits_decode_amx_tsrc2 = _GEN_127[headPtr];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :41:24, :51:35
+  assign io_deq_bits_decode_is_vsetivli = _GEN_128[headPtr];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :41:24, :51:35
+  assign io_deq_bits_decode_is_vsetvl = _GEN_129[headPtr];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :41:24, :51:35
+  assign io_deq_bits_decode_is_vset = _GEN_130[headPtr];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :41:24, :51:35
+  assign io_deq_bits_decode_vec_vs1 = _GEN_131[headPtr];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :41:24, :51:35
+  assign io_deq_bits_decode_vec_vs2 = _GEN_132[headPtr];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :41:24, :51:35
+  assign io_deq_bits_decode_vec_vd = _GEN_133[headPtr];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :41:24, :51:35
+  assign io_deq_bits_decode_vec_vm = _GEN_134[headPtr];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :41:24, :51:35
+  assign io_deq_bits_decode_vec_zimm = _GEN_135[headPtr];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :41:24, :51:35
+  assign io_deq_bits_decode_is_vec_arith = _GEN_136[headPtr];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :41:24, :51:35
+  assign io_deq_bits_decode_is_vec_load = _GEN_137[headPtr];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :41:24, :51:35
+  assign io_deq_bits_decode_is_vec_store = _GEN_138[headPtr];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :41:24, :51:35
+  assign io_deq_bits_decode_is_vec_mem = _GEN_139[headPtr];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :41:24, :51:35
+  assign io_deq_bits_decode_is_vec_strided = _GEN_140[headPtr];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :41:24, :51:35
+  assign io_deq_bits_decode_vec_funct3 = _GEN_141[headPtr];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :41:24, :51:35
+  assign io_deq_bits_decode_vec_funct6 = _GEN_142[headPtr];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :41:24, :51:35
+  assign io_deq_bits_decode_vec_simm5 = _GEN_143[headPtr];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :41:24, :51:35
+  assign io_deq_bits_psrs1 = _GEN_144[headPtr];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :41:24, :51:35
+  assign io_deq_bits_psrs2 = _GEN_145[headPtr];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :41:24, :51:35
+  assign io_deq_bits_psrs3 = _GEN_146[headPtr];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :41:24, :51:35
+  assign io_deq_bits_pdest = _GEN_147[headPtr];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :41:24, :51:35
+  assign io_deq_bits_old_pdest = _GEN_148[headPtr];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :41:24, :51:35
+  assign io_deq_bits_snapshotIdx = _GEN_149[headPtr];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :41:24, :51:35
+  assign io_deq_bits_robIdx = _GEN_150[headPtr];	// backend/src/zaqal/backend/dispatch/VectorDispatchQueue.scala:16:7, :41:24, :51:35
 endmodule
 

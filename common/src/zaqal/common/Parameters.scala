@@ -30,7 +30,7 @@ case class ZaqalParams(
   enableBpuTage: Boolean = true,
   enableBpuIttage: Boolean = true,
   enableBpuSc: Boolean = true,
-  enableBpuRas: Boolean = true,
+  enableBpuRas: Boolean = false,
   
   // SC Predictor Parameters
   scHistLen: Int = 8,
@@ -53,12 +53,12 @@ case class ZaqalParams(
   ittageTagWidth: Int = 8,
   
   // UOp Cache Parameters (XiangShan Parity)
-  enableUOpCache: Boolean = true,
+  enableUOpCache: Boolean = false,
   uopCacheSets: Int = 64,
   uopCacheWays: Int = 8,
 
   // Memory Dependence Predictor (MDP) Parameters (XiangShan Store Sets Parity)
-  enableMdp: Boolean = true,
+  enableMdp: Boolean = false,
   ssitEntries: Int = 256,
   ssidWidth: Int = 6,
   lfstEntries: Int = 64,

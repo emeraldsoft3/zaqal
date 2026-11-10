@@ -16,8 +16,6 @@ ITTageTable_1.sv
 ITTageTable_2.sv
 ITTagePredictor.sv
 SCPredictor.sv
-RAS.sv
-uFTB.sv
 chooserTable_2048x2.sv
 BPUComposer.sv
 BPU.sv
@@ -32,9 +30,6 @@ SkidBuffer.sv
 SkidBuffer_2.sv
 Frontend.sv
 Decoder.sv
-SSIT.sv
-LFST.sv
-StoreSet.sv
 FusionDecoder.sv
 SnapshotGenerator.sv
 RenameTable.sv
@@ -79,7 +74,7 @@ RegFile.sv
 FPRegFile.sv
 RegisterCache.sv
 RegisterCache_1.sv
-ram_8x137.sv
+ram_8x65.sv
 Queue8_1_Anon.sv
 Execute.sv
 Dispatch.sv
@@ -97,7 +92,6 @@ StridePrefetcher.sv
 StreamPrefetcher.sv
 SMSPrefetcher.sv
 PrefetchCoordinator.sv
-ram_8x65.sv
 Queue8_PrefetchReqBundle.sv
 L1Prefetcher.sv
 DCache.sv

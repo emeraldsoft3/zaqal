@@ -172,6 +172,7 @@ module Arbiter2_DecodedMicroOp(	// src/main/scala/chisel3/util/Arbiter.scala:133
   input  [2:0]  io_in_0_bits_decode_csr_cmd,	// src/main/scala/chisel3/util/Arbiter.scala:140:14
   input  [11:0] io_in_0_bits_decode_csr_addr,	// src/main/scala/chisel3/util/Arbiter.scala:140:14
   input         io_in_0_bits_decode_is_ecall,	// src/main/scala/chisel3/util/Arbiter.scala:140:14
+                io_in_0_bits_decode_is_ebreak,	// src/main/scala/chisel3/util/Arbiter.scala:140:14
                 io_in_0_bits_decode_is_mret,	// src/main/scala/chisel3/util/Arbiter.scala:140:14
                 io_in_0_bits_decode_is_sret,	// src/main/scala/chisel3/util/Arbiter.scala:140:14
                 io_in_0_bits_decode_is_sfence_vma,	// src/main/scala/chisel3/util/Arbiter.scala:140:14
@@ -324,6 +325,7 @@ module Arbiter2_DecodedMicroOp(	// src/main/scala/chisel3/util/Arbiter.scala:133
   input  [2:0]  io_in_1_bits_decode_csr_cmd,	// src/main/scala/chisel3/util/Arbiter.scala:140:14
   input  [11:0] io_in_1_bits_decode_csr_addr,	// src/main/scala/chisel3/util/Arbiter.scala:140:14
   input         io_in_1_bits_decode_is_ecall,	// src/main/scala/chisel3/util/Arbiter.scala:140:14
+                io_in_1_bits_decode_is_ebreak,	// src/main/scala/chisel3/util/Arbiter.scala:140:14
                 io_in_1_bits_decode_is_mret,	// src/main/scala/chisel3/util/Arbiter.scala:140:14
                 io_in_1_bits_decode_is_sret,	// src/main/scala/chisel3/util/Arbiter.scala:140:14
                 io_in_1_bits_decode_is_sfence_vma,	// src/main/scala/chisel3/util/Arbiter.scala:140:14
@@ -476,6 +478,7 @@ module Arbiter2_DecodedMicroOp(	// src/main/scala/chisel3/util/Arbiter.scala:133
   output [2:0]  io_out_bits_decode_csr_cmd,	// src/main/scala/chisel3/util/Arbiter.scala:140:14
   output [11:0] io_out_bits_decode_csr_addr,	// src/main/scala/chisel3/util/Arbiter.scala:140:14
   output        io_out_bits_decode_is_ecall,	// src/main/scala/chisel3/util/Arbiter.scala:140:14
+                io_out_bits_decode_is_ebreak,	// src/main/scala/chisel3/util/Arbiter.scala:140:14
                 io_out_bits_decode_is_mret,	// src/main/scala/chisel3/util/Arbiter.scala:140:14
                 io_out_bits_decode_is_sret,	// src/main/scala/chisel3/util/Arbiter.scala:140:14
                 io_out_bits_decode_is_sfence_vma,	// src/main/scala/chisel3/util/Arbiter.scala:140:14
@@ -735,6 +738,8 @@ module Arbiter2_DecodedMicroOp(	// src/main/scala/chisel3/util/Arbiter.scala:133
     io_in_0_valid ? io_in_0_bits_decode_csr_addr : io_in_1_bits_decode_csr_addr;	// src/main/scala/chisel3/util/Arbiter.scala:133:7, :143:15, :145:26, :147:19
   assign io_out_bits_decode_is_ecall =
     io_in_0_valid ? io_in_0_bits_decode_is_ecall : io_in_1_bits_decode_is_ecall;	// src/main/scala/chisel3/util/Arbiter.scala:133:7, :143:15, :145:26, :147:19
+  assign io_out_bits_decode_is_ebreak =
+    io_in_0_valid ? io_in_0_bits_decode_is_ebreak : io_in_1_bits_decode_is_ebreak;	// src/main/scala/chisel3/util/Arbiter.scala:133:7, :143:15, :145:26, :147:19
   assign io_out_bits_decode_is_mret =
     io_in_0_valid ? io_in_0_bits_decode_is_mret : io_in_1_bits_decode_is_mret;	// src/main/scala/chisel3/util/Arbiter.scala:133:7, :143:15, :145:26, :147:19
   assign io_out_bits_decode_is_sret =

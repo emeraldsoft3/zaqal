@@ -137,7 +137,7 @@ class RVCExpander(implicit val p: Parameters) extends Module with HasZaqalParame
       switch(funct3) {
         is("b000".U) { // c.slli
           val imm = Cat(inst(12), inst(6, 2))
-          expanded := Cat(0.U(7.W), imm(4, 0), rd_rs1(4, 0), 1.U(3.W), rd_rs1(4, 0), "b0010011".U(7.W))
+          expanded := Cat(0.U(6.W), imm, rd_rs1(4, 0), 1.U(3.W), rd_rs1(4, 0), "b0010011".U(7.W))
         }
         is("b010".U) { // c.lwsp
           val uimm = Cat(inst(3, 2), inst(12), inst(6, 4), 0.U(2.W))

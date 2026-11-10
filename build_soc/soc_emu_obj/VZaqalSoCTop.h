@@ -33,14 +33,14 @@ class alignas(VL_CACHE_LINE_BYTES) VZaqalSoCTop VL_NOT_FINAL : public VerilatedM
     // PORTS
     // The application code writes and reads these signals to
     // propagate new values into/out from the Verilated model.
-    VL_IN8(&reset,0,0);
-    VL_IN(&io_plic_ext_irq,31,0);
-    VL_IN8(&io_spi_miso,0,0);
     VL_OUT8(&io_spi_sck,0,0);
     VL_OUT8(&io_spi_mosi,0,0);
+    VL_IN8(&io_spi_miso,0,0);
     VL_OUT8(&io_spi_cs_n,3,0);
     VL_OUT8(&io_uart_tx_valid,0,0);
     VL_OUT8(&io_uart_tx_char,7,0);
+    VL_IN(&io_plic_ext_irq,31,0);
+    VL_IN8(&reset,0,0);
     VL_IN8(&clock,0,0);
     VL_OUT8(&io_success,0,0);
 
