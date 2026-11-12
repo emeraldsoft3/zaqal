@@ -49,6 +49,9 @@ class IBUF(implicit val p: Parameters) extends Module with HasZaqalParameter {
       }
     }
     tail := Mux(tail +& enq_count >= ibufSize.U, tail +& enq_count - ibufSize.U, tail +& enq_count)
+    when(io.inst_data.bits.pc(0) === "h800120c0".U || io.inst_data.bits.pc(0) === "h800120c8".U) {
+      printf(p"[IBUF ENQ pc=0x${Hexadecimal(io.inst_data.bits.pc(0))}] enq_mask=0x${Hexadecimal(enq_mask)} count=$enq_count\n")
+    }
   }
 
   // Dequeue Logic (at most 1 CFI per decode bundle so rename snapshots are 1:1)

@@ -28,7 +28,6 @@ VM_CLASSES_FAST += \
   VZaqalSoCTop \
   VZaqalSoCTop___024root__DepSet_he9bd6fd3__0 \
   VZaqalSoCTop___024root__DepSet_he9bd6fd3__1 \
-  VZaqalSoCTop___024root__DepSet_he9bd6fd3__2 \
   VZaqalSoCTop___024root__DepSet_h69af0f82__0 \
   VZaqalSoCTop___024root__DepSet_h69af0f82__1 \
   VZaqalSoCTop___024root__DepSet_h69af0f82__2 \
@@ -142,6 +141,8 @@ VM_CLASSES_FAST += \
   VZaqalSoCTop___024root__DepSet_h69af0f82__110 \
   VZaqalSoCTop___024root__DepSet_h69af0f82__111 \
   VZaqalSoCTop___024root__DepSet_h69af0f82__112 \
+  VZaqalSoCTop___024root__DepSet_h69af0f82__113 \
+  VZaqalSoCTop___024root__DepSet_h69af0f82__114 \
   VZaqalSoCTop___024unit__DepSet_hf12383c8__0 \
 
 # Generated module classes, non-fast-path, compile with low/medium optimization
@@ -278,8 +279,6 @@ VM_SUPPORT_SLOW += \
   VZaqalSoCTop__Trace__27__Slow \
   VZaqalSoCTop__Trace__28__Slow \
   VZaqalSoCTop__Trace__29__Slow \
-  VZaqalSoCTop__Trace__30__Slow \
-  VZaqalSoCTop__Trace__31__Slow \
 
 # Global classes, need linked once per executable, fast-path, compile with highest optimization
 VM_GLOBAL_FAST += \

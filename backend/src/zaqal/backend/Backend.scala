@@ -64,6 +64,10 @@ class Backend(val hartId: Int = 0)(implicit val p: Parameters) extends Module wi
     when(io.dispatch(i).valid && (io.dispatch(i).bits.pc === "h8001e8d2".U || io.dispatch(i).bits.pc === "h8001e8e6".U)) {
       printf(p"[DISPATCH DEBUG 0x${Hexadecimal(io.dispatch(i).bits.pc)}] exp=0x${Hexadecimal(io.dispatch(i).bits.pre.expanded_inst)} is_rvc=${io.dispatch(i).bits.pre.is_rvc} is_beq=${decoders(i).io.out.is_beq} is_br=${decoders(i).io.out.is_branch} op=0x${Hexadecimal(decoders(i).io.inst(6,0))} f3=${decoders(i).io.inst(14,12)}\n")
     }
+
+    when(io.dispatch(i).fire && (io.dispatch(i).bits.pc >= "h800120b0".U && io.dispatch(i).bits.pc <= "h80012100".U)) {
+      printf(p"[DISP FIRE lane $i] pc=0x${Hexadecimal(io.dispatch(i).bits.pc)} raw=0x${Hexadecimal(io.dispatch(i).bits.inst_raw)} exp=0x${Hexadecimal(io.dispatch(i).bits.pre.expanded_inst)} is_rvc=${io.dispatch(i).bits.pre.is_rvc}\n")
+    }
     
     // Default to raw
     decoded_uops_raw(i).psrs1 := 0.U

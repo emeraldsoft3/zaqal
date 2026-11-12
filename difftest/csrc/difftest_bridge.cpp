@@ -34,11 +34,13 @@ extern "C" void difftest_InstrCommit (
 
   g_commit_count++;
 
-  #ifdef DEBUG_DIFF
-  std::cout << "[Commit #" << std::dec << g_commit_count << " L" << (int)index << "] PC: 0x" 
-            << std::hex << pc << " (inst: 0x" << instr << ") isRVC: " << (int)isRVC << " rfwen: " << (int)rfwen 
-            << " wdest: " << (int)wdest << " data: 0x" << data << std::dec << std::endl;
-  #endif
+  #if defined(DEBUG_DIFF)
+  if ((pc >= 0x800120b0 && pc <= 0x80012100) || (g_commit_count % 200000 == 0)) {
+    std::cout << "[Commit #" << std::dec << g_commit_count << " L" << (int)index << "] PC: 0x" 
+              << std::hex << pc << " (inst: 0x" << instr << ") isRVC: " << (int)isRVC << " rfwen: " << (int)rfwen 
+              << " wdest: " << (int)wdest << " data: 0x" << data << std::dec << std::endl;
+  }
+#endif
 
   // If Golden model isn't active, just run free
 

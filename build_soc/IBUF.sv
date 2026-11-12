@@ -756,13 +756,23 @@ module IBUF(	// frontend/src/zaqal/frontend/IBUF.scala:9:7
                       + {1'h0,
                          {1'h0, valid_45} + {1'h0, valid_46}
                            + {1'h0, valid_47}}}}}) >= {1'h0, enq_count} & ~io_flush;	// frontend/src/zaqal/frontend/IBUF.scala:17:{23,46}, :22:27, :23:{29,39,55}, :24:{33,36}
-  wire [6:0]        _GEN = {1'h0, head};	// frontend/src/zaqal/frontend/IBUF.scala:17:46, :18:23, :56:20
-  wire [6:0]        ptr_1 = _GEN + 7'h1;	// frontend/src/zaqal/frontend/IBUF.scala:17:46, :56:20
-  wire [6:0]        ptr_2 = _GEN + 7'h2;	// frontend/src/zaqal/frontend/IBUF.scala:17:46, :56:20
-  wire [6:0]        ptr_3 = _GEN + 7'h3;	// frontend/src/zaqal/frontend/IBUF.scala:17:46, :56:20
-  wire [6:0]        ptr_4 = _GEN + 7'h4;	// frontend/src/zaqal/frontend/IBUF.scala:17:46, :56:20
-  wire [6:0]        ptr_5 = _GEN + 7'h5;	// frontend/src/zaqal/frontend/IBUF.scala:17:46, :56:20
-  wire [63:0]       _GEN_0 =
+  wire              _GEN = io_inst_data_ready_0 & io_inst_data_valid;	// frontend/src/zaqal/frontend/IBUF.scala:24:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  `ifndef SYNTHESIS	// frontend/src/zaqal/frontend/IBUF.scala:53:13
+    always @(posedge clock) begin	// frontend/src/zaqal/frontend/IBUF.scala:53:13
+      if ((`PRINTF_COND_) & _GEN
+          & (io_inst_data_bits_pc_0 == 64'h800120C0
+             | io_inst_data_bits_pc_0 == 64'h800120C8) & ~reset)	// frontend/src/zaqal/frontend/IBUF.scala:52:{34,52,79}, :53:13, src/main/scala/chisel3/util/Decoupled.scala:51:35
+        $fwrite(32'h80000002, "[IBUF ENQ pc=0x%x] enq_mask=0x%x count=%d\n",
+                io_inst_data_bits_pc_0, io_inst_data_bits_mask, enq_count);	// frontend/src/zaqal/frontend/IBUF.scala:22:27, :53:13
+    end // always @(posedge)
+  `endif // not def SYNTHESIS
+  wire [6:0]        _GEN_0 = {1'h0, head};	// frontend/src/zaqal/frontend/IBUF.scala:17:46, :18:23, :59:20
+  wire [6:0]        ptr_1 = _GEN_0 + 7'h1;	// frontend/src/zaqal/frontend/IBUF.scala:17:46, :59:20
+  wire [6:0]        ptr_2 = _GEN_0 + 7'h2;	// frontend/src/zaqal/frontend/IBUF.scala:17:46, :59:20
+  wire [6:0]        ptr_3 = _GEN_0 + 7'h3;	// frontend/src/zaqal/frontend/IBUF.scala:17:46, :59:20
+  wire [6:0]        ptr_4 = _GEN_0 + 7'h4;	// frontend/src/zaqal/frontend/IBUF.scala:17:46, :59:20
+  wire [6:0]        ptr_5 = _GEN_0 + 7'h5;	// frontend/src/zaqal/frontend/IBUF.scala:17:46, :59:20
+  wire [63:0]       _GEN_1 =
     {{valid_0},
      {valid_0},
      {valid_0},
@@ -826,17 +836,17 @@ module IBUF(	// frontend/src/zaqal/frontend/IBUF.scala:9:7
      {valid_3},
      {valid_2},
      {valid_1},
-     {valid_0}};	// frontend/src/zaqal/frontend/IBUF.scala:17:23, :59:24
-  wire              _GEN_1 = _GEN_0[_GEN > 7'h2F ? head + 6'h10 : head];	// frontend/src/zaqal/frontend/IBUF.scala:17:46, :18:23, :47:21, :56:20, :57:{26,31,50}, :59:24, :89:42
+     {valid_0}};	// frontend/src/zaqal/frontend/IBUF.scala:17:23, :62:24
+  wire              _GEN_2 = _GEN_1[_GEN_0 > 7'h2F ? head + 6'h10 : head];	// frontend/src/zaqal/frontend/IBUF.scala:17:46, :18:23, :47:21, :59:20, :60:{26,31,50}, :62:24, :92:42
   wire              deq_valid_raw_1 =
-    _GEN_1 & _GEN_0[ptr_1 > 7'h2F ? head + 6'h11 : ptr_1[5:0]];	// frontend/src/zaqal/frontend/IBUF.scala:18:23, :47:21, :56:20, :57:{26,31,50}, :59:24, :89:42
+    _GEN_2 & _GEN_1[ptr_1 > 7'h2F ? head + 6'h11 : ptr_1[5:0]];	// frontend/src/zaqal/frontend/IBUF.scala:18:23, :47:21, :59:20, :60:{26,31,50}, :62:24, :92:42
   wire              deq_valid_raw_2 =
-    deq_valid_raw_1 & _GEN_0[ptr_2 > 7'h2F ? head + 6'h12 : ptr_2[5:0]];	// frontend/src/zaqal/frontend/IBUF.scala:18:23, :47:21, :56:20, :57:{26,31,50}, :59:24, :89:42
+    deq_valid_raw_1 & _GEN_1[ptr_2 > 7'h2F ? head + 6'h12 : ptr_2[5:0]];	// frontend/src/zaqal/frontend/IBUF.scala:18:23, :47:21, :59:20, :60:{26,31,50}, :62:24, :92:42
   wire              deq_valid_raw_3 =
-    deq_valid_raw_2 & _GEN_0[ptr_3 > 7'h2F ? head + 6'h13 : ptr_3[5:0]];	// frontend/src/zaqal/frontend/IBUF.scala:18:23, :47:21, :56:20, :57:{26,31,50}, :59:24, :89:42
+    deq_valid_raw_2 & _GEN_1[ptr_3 > 7'h2F ? head + 6'h13 : ptr_3[5:0]];	// frontend/src/zaqal/frontend/IBUF.scala:18:23, :47:21, :59:20, :60:{26,31,50}, :62:24, :92:42
   wire              deq_valid_raw_4 =
-    deq_valid_raw_3 & _GEN_0[ptr_4 > 7'h2F ? head + 6'h14 : ptr_4[5:0]];	// frontend/src/zaqal/frontend/IBUF.scala:18:23, :47:21, :56:20, :57:{26,31,50}, :59:24, :89:42
-  wire [63:0]       _GEN_2 =
+    deq_valid_raw_3 & _GEN_1[ptr_4 > 7'h2F ? head + 6'h14 : ptr_4[5:0]];	// frontend/src/zaqal/frontend/IBUF.scala:18:23, :47:21, :59:20, :60:{26,31,50}, :62:24, :92:42
+  wire [63:0]       _GEN_3 =
     {{buffer_0_pre_is_cfi},
      {buffer_0_pre_is_cfi},
      {buffer_0_pre_is_cfi},
@@ -900,17 +910,18 @@ module IBUF(	// frontend/src/zaqal/frontend/IBUF.scala:9:7
      {buffer_3_pre_is_cfi},
      {buffer_2_pre_is_cfi},
      {buffer_1_pre_is_cfi},
-     {buffer_0_pre_is_cfi}};	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :68:68
-  wire              has_older_cfi_1 = _GEN_1 & _GEN_2[_GEN > 7'h2F ? head + 6'h10 : head];	// frontend/src/zaqal/frontend/IBUF.scala:17:46, :18:23, :47:21, :56:20, :59:24, :63:{26,31,50}, :68:68, :89:42
+     {buffer_0_pre_is_cfi}};	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :71:68
+  wire              has_older_cfi_1 =
+    _GEN_2 & _GEN_3[_GEN_0 > 7'h2F ? head + 6'h10 : head];	// frontend/src/zaqal/frontend/IBUF.scala:17:46, :18:23, :47:21, :59:20, :62:24, :66:{26,31,50}, :71:68, :92:42
   wire              _has_older_cfi_T_13 =
-    deq_valid_raw_1 & _GEN_2[ptr_1 > 7'h2F ? head + 6'h11 : ptr_1[5:0]];	// frontend/src/zaqal/frontend/IBUF.scala:18:23, :47:21, :56:20, :59:24, :63:{26,31,50}, :68:68, :89:42
+    deq_valid_raw_1 & _GEN_3[ptr_1 > 7'h2F ? head + 6'h11 : ptr_1[5:0]];	// frontend/src/zaqal/frontend/IBUF.scala:18:23, :47:21, :59:20, :62:24, :66:{26,31,50}, :71:68, :92:42
   wire              _has_older_cfi_T_14 =
-    deq_valid_raw_2 & _GEN_2[ptr_2 > 7'h2F ? head + 6'h12 : ptr_2[5:0]];	// frontend/src/zaqal/frontend/IBUF.scala:18:23, :47:21, :56:20, :59:24, :63:{26,31,50}, :68:68, :89:42
+    deq_valid_raw_2 & _GEN_3[ptr_2 > 7'h2F ? head + 6'h12 : ptr_2[5:0]];	// frontend/src/zaqal/frontend/IBUF.scala:18:23, :47:21, :59:20, :62:24, :66:{26,31,50}, :71:68, :92:42
   wire              _has_older_cfi_T_15 =
-    deq_valid_raw_3 & _GEN_2[ptr_3 > 7'h2F ? head + 6'h13 : ptr_3[5:0]];	// frontend/src/zaqal/frontend/IBUF.scala:18:23, :47:21, :56:20, :59:24, :63:{26,31,50}, :68:68, :89:42
-  wire [5:0]        wrapped_ptr = _GEN > 7'h2F ? head + 6'h10 : head;	// frontend/src/zaqal/frontend/IBUF.scala:17:46, :18:23, :47:21, :56:20, :80:{26,31,50}, :89:42
-  wire              io_out_0_valid_0 = _GEN_1 & ~io_flush;	// frontend/src/zaqal/frontend/IBUF.scala:24:36, :59:24, :81:42
-  wire [63:0][63:0] _GEN_3 =
+    deq_valid_raw_3 & _GEN_3[ptr_3 > 7'h2F ? head + 6'h13 : ptr_3[5:0]];	// frontend/src/zaqal/frontend/IBUF.scala:18:23, :47:21, :59:20, :62:24, :66:{26,31,50}, :71:68, :92:42
+  wire [5:0]        wrapped_ptr = _GEN_0 > 7'h2F ? head + 6'h10 : head;	// frontend/src/zaqal/frontend/IBUF.scala:17:46, :18:23, :47:21, :59:20, :83:{26,31,50}, :92:42
+  wire              io_out_0_valid_0 = _GEN_2 & ~io_flush;	// frontend/src/zaqal/frontend/IBUF.scala:24:36, :62:24, :84:42
+  wire [63:0][63:0] _GEN_4 =
     {{buffer_0_pc},
      {buffer_0_pc},
      {buffer_0_pc},
@@ -974,8 +985,8 @@ module IBUF(	// frontend/src/zaqal/frontend/IBUF.scala:9:7
      {buffer_3_pc},
      {buffer_2_pc},
      {buffer_1_pc},
-     {buffer_0_pc}};	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :82:21
-  wire [63:0][31:0] _GEN_4 =
+     {buffer_0_pc}};	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :85:21
+  wire [63:0][31:0] _GEN_5 =
     {{buffer_0_inst_raw},
      {buffer_0_inst_raw},
      {buffer_0_inst_raw},
@@ -1039,8 +1050,8 @@ module IBUF(	// frontend/src/zaqal/frontend/IBUF.scala:9:7
      {buffer_3_inst_raw},
      {buffer_2_inst_raw},
      {buffer_1_inst_raw},
-     {buffer_0_inst_raw}};	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :82:21
-  wire [63:0]       _GEN_5 =
+     {buffer_0_inst_raw}};	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :85:21
+  wire [63:0]       _GEN_6 =
     {{buffer_0_pre_is_rvc},
      {buffer_0_pre_is_rvc},
      {buffer_0_pre_is_rvc},
@@ -1104,8 +1115,8 @@ module IBUF(	// frontend/src/zaqal/frontend/IBUF.scala:9:7
      {buffer_3_pre_is_rvc},
      {buffer_2_pre_is_rvc},
      {buffer_1_pre_is_rvc},
-     {buffer_0_pre_is_rvc}};	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :82:21
-  wire [63:0][31:0] _GEN_6 =
+     {buffer_0_pre_is_rvc}};	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :85:21
+  wire [63:0][31:0] _GEN_7 =
     {{buffer_0_pre_expanded_inst},
      {buffer_0_pre_expanded_inst},
      {buffer_0_pre_expanded_inst},
@@ -1169,8 +1180,8 @@ module IBUF(	// frontend/src/zaqal/frontend/IBUF.scala:9:7
      {buffer_3_pre_expanded_inst},
      {buffer_2_pre_expanded_inst},
      {buffer_1_pre_expanded_inst},
-     {buffer_0_pre_expanded_inst}};	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :82:21
-  wire [63:0][5:0]  _GEN_7 =
+     {buffer_0_pre_expanded_inst}};	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :85:21
+  wire [63:0][5:0]  _GEN_8 =
     {{buffer_0_ftqPtr},
      {buffer_0_ftqPtr},
      {buffer_0_ftqPtr},
@@ -1234,8 +1245,8 @@ module IBUF(	// frontend/src/zaqal/frontend/IBUF.scala:9:7
      {buffer_3_ftqPtr},
      {buffer_2_ftqPtr},
      {buffer_1_ftqPtr},
-     {buffer_0_ftqPtr}};	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :82:21
-  wire [63:0]       _GEN_8 =
+     {buffer_0_ftqPtr}};	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :85:21
+  wire [63:0]       _GEN_9 =
     {{buffer_0_is_predicted_taken},
      {buffer_0_is_predicted_taken},
      {buffer_0_is_predicted_taken},
@@ -1299,8 +1310,8 @@ module IBUF(	// frontend/src/zaqal/frontend/IBUF.scala:9:7
      {buffer_3_is_predicted_taken},
      {buffer_2_is_predicted_taken},
      {buffer_1_is_predicted_taken},
-     {buffer_0_is_predicted_taken}};	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :82:21
-  wire [63:0][63:0] _GEN_9 =
+     {buffer_0_is_predicted_taken}};	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :85:21
+  wire [63:0][63:0] _GEN_10 =
     {{buffer_0_predicted_target},
      {buffer_0_predicted_target},
      {buffer_0_predicted_target},
@@ -1364,8 +1375,8 @@ module IBUF(	// frontend/src/zaqal/frontend/IBUF.scala:9:7
      {buffer_3_predicted_target},
      {buffer_2_predicted_target},
      {buffer_1_predicted_target},
-     {buffer_0_predicted_target}};	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :82:21
-  wire [63:0]       _GEN_10 =
+     {buffer_0_predicted_target}};	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :85:21
+  wire [63:0]       _GEN_11 =
     {{buffer_0_epoch},
      {buffer_0_epoch},
      {buffer_0_epoch},
@@ -1429,27 +1440,27 @@ module IBUF(	// frontend/src/zaqal/frontend/IBUF.scala:9:7
      {buffer_3_epoch},
      {buffer_2_epoch},
      {buffer_1_epoch},
-     {buffer_0_epoch}};	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :82:21
-  wire [5:0]        wrapped_ptr_1 = ptr_1 > 7'h2F ? head + 6'h11 : ptr_1[5:0];	// frontend/src/zaqal/frontend/IBUF.scala:18:23, :47:21, :56:20, :80:{26,31,50}, :89:42
-  wire              io_out_1_valid_0 = deq_valid_raw_1 & ~has_older_cfi_1 & ~io_flush;	// frontend/src/zaqal/frontend/IBUF.scala:24:36, :59:24, :68:68, :72:25, :81:42
-  wire [5:0]        wrapped_ptr_2 = ptr_2 > 7'h2F ? head + 6'h12 : ptr_2[5:0];	// frontend/src/zaqal/frontend/IBUF.scala:18:23, :47:21, :56:20, :80:{26,31,50}, :89:42
+     {buffer_0_epoch}};	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :85:21
+  wire [5:0]        wrapped_ptr_1 = ptr_1 > 7'h2F ? head + 6'h11 : ptr_1[5:0];	// frontend/src/zaqal/frontend/IBUF.scala:18:23, :47:21, :59:20, :83:{26,31,50}, :92:42
+  wire              io_out_1_valid_0 = deq_valid_raw_1 & ~has_older_cfi_1 & ~io_flush;	// frontend/src/zaqal/frontend/IBUF.scala:24:36, :62:24, :71:68, :75:25, :84:42
+  wire [5:0]        wrapped_ptr_2 = ptr_2 > 7'h2F ? head + 6'h12 : ptr_2[5:0];	// frontend/src/zaqal/frontend/IBUF.scala:18:23, :47:21, :59:20, :83:{26,31,50}, :92:42
   wire              io_out_2_valid_0 =
-    deq_valid_raw_2 & ~(has_older_cfi_1 | _has_older_cfi_T_13) & ~io_flush;	// frontend/src/zaqal/frontend/IBUF.scala:24:36, :59:24, :68:{68,91}, :72:25, :81:42
-  wire [5:0]        wrapped_ptr_3 = ptr_3 > 7'h2F ? head + 6'h13 : ptr_3[5:0];	// frontend/src/zaqal/frontend/IBUF.scala:18:23, :47:21, :56:20, :80:{26,31,50}, :89:42
+    deq_valid_raw_2 & ~(has_older_cfi_1 | _has_older_cfi_T_13) & ~io_flush;	// frontend/src/zaqal/frontend/IBUF.scala:24:36, :62:24, :71:{68,91}, :75:25, :84:42
+  wire [5:0]        wrapped_ptr_3 = ptr_3 > 7'h2F ? head + 6'h13 : ptr_3[5:0];	// frontend/src/zaqal/frontend/IBUF.scala:18:23, :47:21, :59:20, :83:{26,31,50}, :92:42
   wire              io_out_3_valid_0 =
     deq_valid_raw_3 & ~(has_older_cfi_1 | _has_older_cfi_T_13 | _has_older_cfi_T_14)
-    & ~io_flush;	// frontend/src/zaqal/frontend/IBUF.scala:24:36, :59:24, :68:{68,91}, :72:25, :81:42
-  wire [5:0]        wrapped_ptr_4 = ptr_4 > 7'h2F ? head + 6'h14 : ptr_4[5:0];	// frontend/src/zaqal/frontend/IBUF.scala:18:23, :47:21, :56:20, :80:{26,31,50}, :89:42
+    & ~io_flush;	// frontend/src/zaqal/frontend/IBUF.scala:24:36, :62:24, :71:{68,91}, :75:25, :84:42
+  wire [5:0]        wrapped_ptr_4 = ptr_4 > 7'h2F ? head + 6'h14 : ptr_4[5:0];	// frontend/src/zaqal/frontend/IBUF.scala:18:23, :47:21, :59:20, :83:{26,31,50}, :92:42
   wire              io_out_4_valid_0 =
     deq_valid_raw_4
     & ~(has_older_cfi_1 | _has_older_cfi_T_13 | _has_older_cfi_T_14 | _has_older_cfi_T_15)
-    & ~io_flush;	// frontend/src/zaqal/frontend/IBUF.scala:24:36, :59:24, :68:{68,91}, :72:25, :81:42
-  wire [5:0]        wrapped_ptr_5 = ptr_5 > 7'h2F ? head + 6'h15 : ptr_5[5:0];	// frontend/src/zaqal/frontend/IBUF.scala:18:23, :47:21, :56:20, :80:{26,31,50}, :89:42
+    & ~io_flush;	// frontend/src/zaqal/frontend/IBUF.scala:24:36, :62:24, :71:{68,91}, :75:25, :84:42
+  wire [5:0]        wrapped_ptr_5 = ptr_5 > 7'h2F ? head + 6'h15 : ptr_5[5:0];	// frontend/src/zaqal/frontend/IBUF.scala:18:23, :47:21, :59:20, :83:{26,31,50}, :92:42
   wire              io_out_5_valid_0 =
-    deq_valid_raw_4 & _GEN_0[ptr_5 > 7'h2F ? head + 6'h15 : ptr_5[5:0]]
+    deq_valid_raw_4 & _GEN_1[ptr_5 > 7'h2F ? head + 6'h15 : ptr_5[5:0]]
     & ~(has_older_cfi_1 | _has_older_cfi_T_13 | _has_older_cfi_T_14 | _has_older_cfi_T_15
-        | deq_valid_raw_4 & _GEN_2[ptr_4 > 7'h2F ? head + 6'h14 : ptr_4[5:0]])
-    & ~io_flush;	// frontend/src/zaqal/frontend/IBUF.scala:18:23, :24:36, :47:21, :56:20, :57:{26,31,50}, :59:24, :63:{26,31,50}, :68:{68,91}, :72:25, :81:42, :89:42
+        | deq_valid_raw_4 & _GEN_3[ptr_4 > 7'h2F ? head + 6'h14 : ptr_4[5:0]])
+    & ~io_flush;	// frontend/src/zaqal/frontend/IBUF.scala:18:23, :24:36, :47:21, :59:20, :60:{26,31,50}, :62:24, :66:{26,31,50}, :71:{68,91}, :75:25, :84:42, :92:42
   wire              entry_is_predicted_taken =
     io_inst_data_bits_prediction_taken & io_inst_data_bits_prediction_slot == 4'h0;	// frontend/src/zaqal/frontend/IBUF.scala:29:21, :44:{72,80}
   wire              entry_1_is_predicted_taken =
@@ -1489,95 +1500,95 @@ module IBUF(	// frontend/src/zaqal/frontend/IBUF.scala:9:7
     + {1'h0,
        {1'h0, io_out_3_ready & io_out_3_valid_0}
          + {1'h0, io_out_4_ready & io_out_4_valid_0}
-         + {1'h0, io_out_5_ready & io_out_5_valid_0}};	// frontend/src/zaqal/frontend/IBUF.scala:17:46, :76:27, :81:42, src/main/scala/chisel3/util/Decoupled.scala:51:35
-  wire [6:0]        _head_T_5 = _GEN + {4'h0, deq_count};	// frontend/src/zaqal/frontend/IBUF.scala:17:46, :29:21, :56:20, :76:27, :88:28
-  wire              _fired_T_6 = head == 6'h0;	// frontend/src/zaqal/frontend/IBUF.scala:18:23, :89:27
-  wire              _fired_T_18 = head < 6'h2;	// frontend/src/zaqal/frontend/IBUF.scala:18:23, :47:21, :89:27
-  wire              _fired_T_30 = head < 6'h3;	// frontend/src/zaqal/frontend/IBUF.scala:18:23, :47:21, :89:27
-  wire              _fired_T_42 = head < 6'h4;	// frontend/src/zaqal/frontend/IBUF.scala:18:23, :47:21, :89:27
-  wire              _fired_T_54 = head < 6'h5;	// frontend/src/zaqal/frontend/IBUF.scala:18:23, :47:21, :89:27
-  wire              _fired_T_66 = head < 6'h6;	// frontend/src/zaqal/frontend/IBUF.scala:18:23, :47:21, :89:27
-  wire              _fired_T_78 = head < 6'h7;	// frontend/src/zaqal/frontend/IBUF.scala:18:23, :47:21, :89:27
-  wire              _fired_T_90 = head < 6'h8;	// frontend/src/zaqal/frontend/IBUF.scala:18:23, :47:21, :89:27
-  wire              _fired_T_102 = head < 6'h9;	// frontend/src/zaqal/frontend/IBUF.scala:18:23, :47:21, :89:27
-  wire              _fired_T_114 = head < 6'hA;	// frontend/src/zaqal/frontend/IBUF.scala:18:23, :47:21, :89:27
-  wire              _fired_T_126 = head < 6'hB;	// frontend/src/zaqal/frontend/IBUF.scala:18:23, :47:21, :89:27
-  wire              _fired_T_138 = head < 6'hC;	// frontend/src/zaqal/frontend/IBUF.scala:18:23, :47:21, :89:27
-  wire              _fired_T_150 = head < 6'hD;	// frontend/src/zaqal/frontend/IBUF.scala:18:23, :47:21, :89:27
-  wire              _fired_T_162 = head < 6'hE;	// frontend/src/zaqal/frontend/IBUF.scala:18:23, :47:21, :89:27
-  wire              _fired_T_174 = head < 6'hF;	// frontend/src/zaqal/frontend/IBUF.scala:18:23, :47:21, :89:27
-  wire              _fired_T_186 = head < 6'h10;	// frontend/src/zaqal/frontend/IBUF.scala:18:23, :47:21, :89:27
-  wire              _fired_T_198 = head < 6'h11;	// frontend/src/zaqal/frontend/IBUF.scala:18:23, :47:21, :89:27
-  wire              _fired_T_210 = head < 6'h12;	// frontend/src/zaqal/frontend/IBUF.scala:18:23, :47:21, :89:27
-  wire              _fired_T_222 = head < 6'h13;	// frontend/src/zaqal/frontend/IBUF.scala:18:23, :47:21, :89:27
-  wire              _fired_T_234 = head < 6'h14;	// frontend/src/zaqal/frontend/IBUF.scala:18:23, :47:21, :89:27
-  wire              _fired_T_246 = head < 6'h15;	// frontend/src/zaqal/frontend/IBUF.scala:18:23, :47:21, :89:27
-  wire              _fired_T_258 = head < 6'h16;	// frontend/src/zaqal/frontend/IBUF.scala:18:23, :47:21, :89:27
-  wire              _fired_T_270 = head < 6'h17;	// frontend/src/zaqal/frontend/IBUF.scala:18:23, :47:21, :89:27
-  wire              _fired_T_282 = head < 6'h18;	// frontend/src/zaqal/frontend/IBUF.scala:18:23, :47:21, :89:27
-  wire              _fired_T_294 = head < 6'h19;	// frontend/src/zaqal/frontend/IBUF.scala:18:23, :47:21, :89:27
-  wire              _fired_T_306 = head < 6'h1A;	// frontend/src/zaqal/frontend/IBUF.scala:18:23, :47:21, :89:27
-  wire              _fired_T_318 = head < 6'h1B;	// frontend/src/zaqal/frontend/IBUF.scala:18:23, :47:21, :89:27
-  wire              _fired_T_330 = head < 6'h1C;	// frontend/src/zaqal/frontend/IBUF.scala:18:23, :47:21, :89:27
-  wire              _fired_T_342 = head < 6'h1D;	// frontend/src/zaqal/frontend/IBUF.scala:18:23, :47:21, :89:27
-  wire              _fired_T_354 = head < 6'h1E;	// frontend/src/zaqal/frontend/IBUF.scala:18:23, :47:21, :89:27
-  wire              _fired_T_366 = head < 6'h1F;	// frontend/src/zaqal/frontend/IBUF.scala:18:23, :47:21, :89:27
-  wire              _fired_T_390 = head < 6'h21;	// frontend/src/zaqal/frontend/IBUF.scala:18:23, :47:21, :89:27
-  wire              _fired_T_402 = head < 6'h22;	// frontend/src/zaqal/frontend/IBUF.scala:18:23, :47:21, :89:27
-  wire              _fired_T_414 = head < 6'h23;	// frontend/src/zaqal/frontend/IBUF.scala:18:23, :47:21, :89:27
-  wire              _fired_T_426 = head < 6'h24;	// frontend/src/zaqal/frontend/IBUF.scala:18:23, :47:21, :89:27
-  wire              _fired_T_438 = head < 6'h25;	// frontend/src/zaqal/frontend/IBUF.scala:18:23, :47:21, :89:27
-  wire              _fired_T_450 = head < 6'h26;	// frontend/src/zaqal/frontend/IBUF.scala:18:23, :47:21, :89:27
-  wire              _fired_T_462 = head < 6'h27;	// frontend/src/zaqal/frontend/IBUF.scala:18:23, :47:21, :89:27
-  wire              _fired_T_474 = head < 6'h28;	// frontend/src/zaqal/frontend/IBUF.scala:18:23, :47:21, :89:27
-  wire              _fired_T_486 = head < 6'h29;	// frontend/src/zaqal/frontend/IBUF.scala:18:23, :47:21, :89:27
-  wire              _fired_T_498 = head < 6'h2A;	// frontend/src/zaqal/frontend/IBUF.scala:18:23, :47:21, :89:27
-  wire              _fired_T_510 = head < 6'h2B;	// frontend/src/zaqal/frontend/IBUF.scala:18:23, :47:21, :89:27
-  wire              _fired_T_522 = head < 6'h2C;	// frontend/src/zaqal/frontend/IBUF.scala:18:23, :47:21, :89:27
-  wire              _fired_T_534 = head < 6'h2D;	// frontend/src/zaqal/frontend/IBUF.scala:18:23, :47:21, :89:27
-  wire              _fired_T_546 = head < 6'h2E;	// frontend/src/zaqal/frontend/IBUF.scala:18:23, :47:21, :89:27
-  wire              _fired_T_558 = head < 6'h2F;	// frontend/src/zaqal/frontend/IBUF.scala:18:23, :47:21, :89:27
-  wire              _fired_T_570 = head[5:4] != 2'h3;	// frontend/src/zaqal/frontend/IBUF.scala:18:23, :89:27
-  wire [6:0]        _fired_T_20 = _head_T_5 - 7'h30;	// frontend/src/zaqal/frontend/IBUF.scala:88:28, :90:64
-  wire [6:0]        _fired_T_44 = _head_T_5 - 7'h30;	// frontend/src/zaqal/frontend/IBUF.scala:88:28, :90:64
-  wire [6:0]        _fired_T_92 = _head_T_5 - 7'h30;	// frontend/src/zaqal/frontend/IBUF.scala:88:28, :90:64
-  wire [6:0]        _fired_T_188 = _head_T_5 - 7'h30;	// frontend/src/zaqal/frontend/IBUF.scala:88:28, :90:64
-  wire [6:0]        _fired_T_380 = _head_T_5 - 7'h30;	// frontend/src/zaqal/frontend/IBUF.scala:88:28, :90:64
-  wire [6:0]        _GEN_11 = {1'h0, tail};	// frontend/src/zaqal/frontend/IBUF.scala:17:46, :19:23, :29:21
-  wire [5:0]        indices_wrapped = _GEN_11 > 7'h2F ? tail + 6'h10 : tail;	// frontend/src/zaqal/frontend/IBUF.scala:17:46, :19:23, :29:21, :30:{22,28,48}, :47:21, :89:42
-  wire [6:0]        indices_temp_1 = _GEN_11 + {6'h0, io_inst_data_bits_mask[0]};	// frontend/src/zaqal/frontend/IBUF.scala:17:46, :18:23, :22:27, :29:21
+         + {1'h0, io_out_5_ready & io_out_5_valid_0}};	// frontend/src/zaqal/frontend/IBUF.scala:17:46, :79:27, :84:42, src/main/scala/chisel3/util/Decoupled.scala:51:35
+  wire [6:0]        _head_T_5 = _GEN_0 + {4'h0, deq_count};	// frontend/src/zaqal/frontend/IBUF.scala:17:46, :29:21, :59:20, :79:27, :91:28
+  wire              _fired_T_6 = head == 6'h0;	// frontend/src/zaqal/frontend/IBUF.scala:18:23, :92:27
+  wire              _fired_T_18 = head < 6'h2;	// frontend/src/zaqal/frontend/IBUF.scala:18:23, :47:21, :92:27
+  wire              _fired_T_30 = head < 6'h3;	// frontend/src/zaqal/frontend/IBUF.scala:18:23, :47:21, :92:27
+  wire              _fired_T_42 = head < 6'h4;	// frontend/src/zaqal/frontend/IBUF.scala:18:23, :47:21, :92:27
+  wire              _fired_T_54 = head < 6'h5;	// frontend/src/zaqal/frontend/IBUF.scala:18:23, :47:21, :92:27
+  wire              _fired_T_66 = head < 6'h6;	// frontend/src/zaqal/frontend/IBUF.scala:18:23, :47:21, :92:27
+  wire              _fired_T_78 = head < 6'h7;	// frontend/src/zaqal/frontend/IBUF.scala:18:23, :47:21, :92:27
+  wire              _fired_T_90 = head < 6'h8;	// frontend/src/zaqal/frontend/IBUF.scala:18:23, :47:21, :92:27
+  wire              _fired_T_102 = head < 6'h9;	// frontend/src/zaqal/frontend/IBUF.scala:18:23, :47:21, :92:27
+  wire              _fired_T_114 = head < 6'hA;	// frontend/src/zaqal/frontend/IBUF.scala:18:23, :47:21, :92:27
+  wire              _fired_T_126 = head < 6'hB;	// frontend/src/zaqal/frontend/IBUF.scala:18:23, :47:21, :92:27
+  wire              _fired_T_138 = head < 6'hC;	// frontend/src/zaqal/frontend/IBUF.scala:18:23, :47:21, :92:27
+  wire              _fired_T_150 = head < 6'hD;	// frontend/src/zaqal/frontend/IBUF.scala:18:23, :47:21, :92:27
+  wire              _fired_T_162 = head < 6'hE;	// frontend/src/zaqal/frontend/IBUF.scala:18:23, :47:21, :92:27
+  wire              _fired_T_174 = head < 6'hF;	// frontend/src/zaqal/frontend/IBUF.scala:18:23, :47:21, :92:27
+  wire              _fired_T_186 = head < 6'h10;	// frontend/src/zaqal/frontend/IBUF.scala:18:23, :47:21, :92:27
+  wire              _fired_T_198 = head < 6'h11;	// frontend/src/zaqal/frontend/IBUF.scala:18:23, :47:21, :92:27
+  wire              _fired_T_210 = head < 6'h12;	// frontend/src/zaqal/frontend/IBUF.scala:18:23, :47:21, :92:27
+  wire              _fired_T_222 = head < 6'h13;	// frontend/src/zaqal/frontend/IBUF.scala:18:23, :47:21, :92:27
+  wire              _fired_T_234 = head < 6'h14;	// frontend/src/zaqal/frontend/IBUF.scala:18:23, :47:21, :92:27
+  wire              _fired_T_246 = head < 6'h15;	// frontend/src/zaqal/frontend/IBUF.scala:18:23, :47:21, :92:27
+  wire              _fired_T_258 = head < 6'h16;	// frontend/src/zaqal/frontend/IBUF.scala:18:23, :47:21, :92:27
+  wire              _fired_T_270 = head < 6'h17;	// frontend/src/zaqal/frontend/IBUF.scala:18:23, :47:21, :92:27
+  wire              _fired_T_282 = head < 6'h18;	// frontend/src/zaqal/frontend/IBUF.scala:18:23, :47:21, :92:27
+  wire              _fired_T_294 = head < 6'h19;	// frontend/src/zaqal/frontend/IBUF.scala:18:23, :47:21, :92:27
+  wire              _fired_T_306 = head < 6'h1A;	// frontend/src/zaqal/frontend/IBUF.scala:18:23, :47:21, :92:27
+  wire              _fired_T_318 = head < 6'h1B;	// frontend/src/zaqal/frontend/IBUF.scala:18:23, :47:21, :92:27
+  wire              _fired_T_330 = head < 6'h1C;	// frontend/src/zaqal/frontend/IBUF.scala:18:23, :47:21, :92:27
+  wire              _fired_T_342 = head < 6'h1D;	// frontend/src/zaqal/frontend/IBUF.scala:18:23, :47:21, :92:27
+  wire              _fired_T_354 = head < 6'h1E;	// frontend/src/zaqal/frontend/IBUF.scala:18:23, :47:21, :92:27
+  wire              _fired_T_366 = head < 6'h1F;	// frontend/src/zaqal/frontend/IBUF.scala:18:23, :47:21, :92:27
+  wire              _fired_T_390 = head < 6'h21;	// frontend/src/zaqal/frontend/IBUF.scala:18:23, :47:21, :92:27
+  wire              _fired_T_402 = head < 6'h22;	// frontend/src/zaqal/frontend/IBUF.scala:18:23, :47:21, :92:27
+  wire              _fired_T_414 = head < 6'h23;	// frontend/src/zaqal/frontend/IBUF.scala:18:23, :47:21, :92:27
+  wire              _fired_T_426 = head < 6'h24;	// frontend/src/zaqal/frontend/IBUF.scala:18:23, :47:21, :92:27
+  wire              _fired_T_438 = head < 6'h25;	// frontend/src/zaqal/frontend/IBUF.scala:18:23, :47:21, :92:27
+  wire              _fired_T_450 = head < 6'h26;	// frontend/src/zaqal/frontend/IBUF.scala:18:23, :47:21, :92:27
+  wire              _fired_T_462 = head < 6'h27;	// frontend/src/zaqal/frontend/IBUF.scala:18:23, :47:21, :92:27
+  wire              _fired_T_474 = head < 6'h28;	// frontend/src/zaqal/frontend/IBUF.scala:18:23, :47:21, :92:27
+  wire              _fired_T_486 = head < 6'h29;	// frontend/src/zaqal/frontend/IBUF.scala:18:23, :47:21, :92:27
+  wire              _fired_T_498 = head < 6'h2A;	// frontend/src/zaqal/frontend/IBUF.scala:18:23, :47:21, :92:27
+  wire              _fired_T_510 = head < 6'h2B;	// frontend/src/zaqal/frontend/IBUF.scala:18:23, :47:21, :92:27
+  wire              _fired_T_522 = head < 6'h2C;	// frontend/src/zaqal/frontend/IBUF.scala:18:23, :47:21, :92:27
+  wire              _fired_T_534 = head < 6'h2D;	// frontend/src/zaqal/frontend/IBUF.scala:18:23, :47:21, :92:27
+  wire              _fired_T_546 = head < 6'h2E;	// frontend/src/zaqal/frontend/IBUF.scala:18:23, :47:21, :92:27
+  wire              _fired_T_558 = head < 6'h2F;	// frontend/src/zaqal/frontend/IBUF.scala:18:23, :47:21, :92:27
+  wire              _fired_T_570 = head[5:4] != 2'h3;	// frontend/src/zaqal/frontend/IBUF.scala:18:23, :92:27
+  wire [6:0]        _fired_T_20 = _head_T_5 - 7'h30;	// frontend/src/zaqal/frontend/IBUF.scala:91:28, :93:64
+  wire [6:0]        _fired_T_44 = _head_T_5 - 7'h30;	// frontend/src/zaqal/frontend/IBUF.scala:91:28, :93:64
+  wire [6:0]        _fired_T_92 = _head_T_5 - 7'h30;	// frontend/src/zaqal/frontend/IBUF.scala:91:28, :93:64
+  wire [6:0]        _fired_T_188 = _head_T_5 - 7'h30;	// frontend/src/zaqal/frontend/IBUF.scala:91:28, :93:64
+  wire [6:0]        _fired_T_380 = _head_T_5 - 7'h30;	// frontend/src/zaqal/frontend/IBUF.scala:91:28, :93:64
+  wire [6:0]        _GEN_12 = {1'h0, tail};	// frontend/src/zaqal/frontend/IBUF.scala:17:46, :19:23, :29:21
+  wire [5:0]        indices_wrapped = _GEN_12 > 7'h2F ? tail + 6'h10 : tail;	// frontend/src/zaqal/frontend/IBUF.scala:17:46, :19:23, :29:21, :30:{22,28,48}, :47:21, :92:42
+  wire [6:0]        indices_temp_1 = _GEN_12 + {6'h0, io_inst_data_bits_mask[0]};	// frontend/src/zaqal/frontend/IBUF.scala:17:46, :18:23, :22:27, :29:21
   wire [5:0]        indices_wrapped_1 =
-    indices_temp_1 > 7'h2F ? indices_temp_1[5:0] + 6'h10 : indices_temp_1[5:0];	// frontend/src/zaqal/frontend/IBUF.scala:29:21, :30:{22,28,48}, :47:21, :89:42
+    indices_temp_1 > 7'h2F ? indices_temp_1[5:0] + 6'h10 : indices_temp_1[5:0];	// frontend/src/zaqal/frontend/IBUF.scala:29:21, :30:{22,28,48}, :47:21, :92:42
   wire [6:0]        indices_temp_2 =
-    _GEN_11
+    _GEN_12
     + {5'h0, {1'h0, io_inst_data_bits_mask[0]} + {1'h0, io_inst_data_bits_mask[1]}};	// frontend/src/zaqal/frontend/IBUF.scala:17:46, :27:{78,87}, :29:21
   wire [5:0]        indices_wrapped_2 =
-    indices_temp_2 > 7'h2F ? indices_temp_2[5:0] + 6'h10 : indices_temp_2[5:0];	// frontend/src/zaqal/frontend/IBUF.scala:29:21, :30:{22,28,48}, :47:21, :89:42
+    indices_temp_2 > 7'h2F ? indices_temp_2[5:0] + 6'h10 : indices_temp_2[5:0];	// frontend/src/zaqal/frontend/IBUF.scala:29:21, :30:{22,28,48}, :47:21, :92:42
   wire [6:0]        indices_temp_3 =
-    _GEN_11
+    _GEN_12
     + {5'h0,
        {1'h0, io_inst_data_bits_mask[0]} + {1'h0, io_inst_data_bits_mask[1]}
          + {1'h0, io_inst_data_bits_mask[2]}};	// frontend/src/zaqal/frontend/IBUF.scala:17:46, :27:{78,87}, :29:21
   wire [5:0]        indices_wrapped_3 =
-    indices_temp_3 > 7'h2F ? indices_temp_3[5:0] + 6'h10 : indices_temp_3[5:0];	// frontend/src/zaqal/frontend/IBUF.scala:29:21, :30:{22,28,48}, :47:21, :89:42
+    indices_temp_3 > 7'h2F ? indices_temp_3[5:0] + 6'h10 : indices_temp_3[5:0];	// frontend/src/zaqal/frontend/IBUF.scala:29:21, :30:{22,28,48}, :47:21, :92:42
   wire [6:0]        indices_temp_4 =
-    _GEN_11
+    _GEN_12
     + {4'h0,
        {1'h0, {1'h0, io_inst_data_bits_mask[0]} + {1'h0, io_inst_data_bits_mask[1]}}
          + {1'h0, {1'h0, io_inst_data_bits_mask[2]} + {1'h0, io_inst_data_bits_mask[3]}}};	// frontend/src/zaqal/frontend/IBUF.scala:17:46, :27:{78,87}, :29:21
   wire [5:0]        indices_wrapped_4 =
-    indices_temp_4 > 7'h2F ? indices_temp_4[5:0] + 6'h10 : indices_temp_4[5:0];	// frontend/src/zaqal/frontend/IBUF.scala:29:21, :30:{22,28,48}, :47:21, :89:42
+    indices_temp_4 > 7'h2F ? indices_temp_4[5:0] + 6'h10 : indices_temp_4[5:0];	// frontend/src/zaqal/frontend/IBUF.scala:29:21, :30:{22,28,48}, :47:21, :92:42
   wire [6:0]        indices_temp_5 =
-    _GEN_11
+    _GEN_12
     + {4'h0,
        {1'h0, {1'h0, io_inst_data_bits_mask[0]} + {1'h0, io_inst_data_bits_mask[1]}}
          + {1'h0,
             {1'h0, io_inst_data_bits_mask[2]} + {1'h0, io_inst_data_bits_mask[3]}
               + {1'h0, io_inst_data_bits_mask[4]}}};	// frontend/src/zaqal/frontend/IBUF.scala:17:46, :27:{78,87}, :29:21
   wire [5:0]        indices_wrapped_5 =
-    indices_temp_5 > 7'h2F ? indices_temp_5[5:0] + 6'h10 : indices_temp_5[5:0];	// frontend/src/zaqal/frontend/IBUF.scala:29:21, :30:{22,28,48}, :47:21, :89:42
+    indices_temp_5 > 7'h2F ? indices_temp_5[5:0] + 6'h10 : indices_temp_5[5:0];	// frontend/src/zaqal/frontend/IBUF.scala:29:21, :30:{22,28,48}, :47:21, :92:42
   wire [6:0]        indices_temp_6 =
-    _GEN_11
+    _GEN_12
     + {4'h0,
        {1'h0,
         {1'h0, io_inst_data_bits_mask[0]} + {1'h0, io_inst_data_bits_mask[1]}
@@ -1586,9 +1597,9 @@ module IBUF(	// frontend/src/zaqal/frontend/IBUF.scala:9:7
             {1'h0, io_inst_data_bits_mask[3]} + {1'h0, io_inst_data_bits_mask[4]}
               + {1'h0, io_inst_data_bits_mask[5]}}};	// frontend/src/zaqal/frontend/IBUF.scala:17:46, :27:{78,87}, :29:21
   wire [5:0]        indices_wrapped_6 =
-    indices_temp_6 > 7'h2F ? indices_temp_6[5:0] + 6'h10 : indices_temp_6[5:0];	// frontend/src/zaqal/frontend/IBUF.scala:29:21, :30:{22,28,48}, :47:21, :89:42
+    indices_temp_6 > 7'h2F ? indices_temp_6[5:0] + 6'h10 : indices_temp_6[5:0];	// frontend/src/zaqal/frontend/IBUF.scala:29:21, :30:{22,28,48}, :47:21, :92:42
   wire [6:0]        indices_temp_7 =
-    _GEN_11
+    _GEN_12
     + {4'h0,
        {1'h0,
         {1'h0, io_inst_data_bits_mask[0]} + {1'h0, io_inst_data_bits_mask[1]}
@@ -1596,9 +1607,9 @@ module IBUF(	// frontend/src/zaqal/frontend/IBUF.scala:9:7
          + {1'h0, {1'h0, io_inst_data_bits_mask[3]} + {1'h0, io_inst_data_bits_mask[4]}}
          + {1'h0, {1'h0, io_inst_data_bits_mask[5]} + {1'h0, io_inst_data_bits_mask[6]}}};	// frontend/src/zaqal/frontend/IBUF.scala:17:46, :27:{78,87}, :29:21
   wire [5:0]        indices_wrapped_7 =
-    indices_temp_7 > 7'h2F ? indices_temp_7[5:0] + 6'h10 : indices_temp_7[5:0];	// frontend/src/zaqal/frontend/IBUF.scala:29:21, :30:{22,28,48}, :47:21, :89:42
+    indices_temp_7 > 7'h2F ? indices_temp_7[5:0] + 6'h10 : indices_temp_7[5:0];	// frontend/src/zaqal/frontend/IBUF.scala:29:21, :30:{22,28,48}, :47:21, :92:42
   wire [6:0]        indices_temp_8 =
-    _GEN_11
+    _GEN_12
     + {3'h0,
        {1'h0,
         {1'h0, {1'h0, io_inst_data_bits_mask[0]} + {1'h0, io_inst_data_bits_mask[1]}}
@@ -1608,9 +1619,9 @@ module IBUF(	// frontend/src/zaqal/frontend/IBUF.scala:9:7
               + {1'h0,
                  {1'h0, io_inst_data_bits_mask[6]} + {1'h0, io_inst_data_bits_mask[7]}}}};	// frontend/src/zaqal/frontend/IBUF.scala:17:46, :27:{78,87}, :29:21
   wire [5:0]        indices_wrapped_8 =
-    indices_temp_8 > 7'h2F ? indices_temp_8[5:0] + 6'h10 : indices_temp_8[5:0];	// frontend/src/zaqal/frontend/IBUF.scala:29:21, :30:{22,28,48}, :47:21, :89:42
+    indices_temp_8 > 7'h2F ? indices_temp_8[5:0] + 6'h10 : indices_temp_8[5:0];	// frontend/src/zaqal/frontend/IBUF.scala:29:21, :30:{22,28,48}, :47:21, :92:42
   wire [6:0]        indices_temp_9 =
-    _GEN_11
+    _GEN_12
     + {3'h0,
        {1'h0,
         {1'h0, {1'h0, io_inst_data_bits_mask[0]} + {1'h0, io_inst_data_bits_mask[1]}}
@@ -1621,9 +1632,9 @@ module IBUF(	// frontend/src/zaqal/frontend/IBUF.scala:9:7
                  {1'h0, io_inst_data_bits_mask[6]} + {1'h0, io_inst_data_bits_mask[7]}
                    + {1'h0, io_inst_data_bits_mask[8]}}}};	// frontend/src/zaqal/frontend/IBUF.scala:17:46, :27:{78,87}, :29:21
   wire [5:0]        indices_wrapped_9 =
-    indices_temp_9 > 7'h2F ? indices_temp_9[5:0] + 6'h10 : indices_temp_9[5:0];	// frontend/src/zaqal/frontend/IBUF.scala:29:21, :30:{22,28,48}, :47:21, :89:42
+    indices_temp_9 > 7'h2F ? indices_temp_9[5:0] + 6'h10 : indices_temp_9[5:0];	// frontend/src/zaqal/frontend/IBUF.scala:29:21, :30:{22,28,48}, :47:21, :92:42
   wire [6:0]        indices_temp_10 =
-    _GEN_11
+    _GEN_12
     + {3'h0,
        {1'h0,
         {1'h0, {1'h0, io_inst_data_bits_mask[0]} + {1'h0, io_inst_data_bits_mask[1]}}
@@ -1636,9 +1647,9 @@ module IBUF(	// frontend/src/zaqal/frontend/IBUF.scala:9:7
                  {1'h0, io_inst_data_bits_mask[7]} + {1'h0, io_inst_data_bits_mask[8]}
                    + {1'h0, io_inst_data_bits_mask[9]}}}};	// frontend/src/zaqal/frontend/IBUF.scala:17:46, :27:{78,87}, :29:21
   wire [5:0]        indices_wrapped_10 =
-    indices_temp_10 > 7'h2F ? indices_temp_10[5:0] + 6'h10 : indices_temp_10[5:0];	// frontend/src/zaqal/frontend/IBUF.scala:29:21, :30:{22,28,48}, :47:21, :89:42
+    indices_temp_10 > 7'h2F ? indices_temp_10[5:0] + 6'h10 : indices_temp_10[5:0];	// frontend/src/zaqal/frontend/IBUF.scala:29:21, :30:{22,28,48}, :47:21, :92:42
   wire [6:0]        indices_temp_11 =
-    _GEN_11
+    _GEN_12
     + {3'h0,
        {1'h0,
         {1'h0, {1'h0, io_inst_data_bits_mask[0]} + {1'h0, io_inst_data_bits_mask[1]}}
@@ -1653,9 +1664,9 @@ module IBUF(	// frontend/src/zaqal/frontend/IBUF.scala:9:7
                  {1'h0, io_inst_data_bits_mask[8]} + {1'h0, io_inst_data_bits_mask[9]}
                    + {1'h0, io_inst_data_bits_mask[10]}}}};	// frontend/src/zaqal/frontend/IBUF.scala:17:46, :27:{78,87}, :29:21
   wire [5:0]        indices_wrapped_11 =
-    indices_temp_11 > 7'h2F ? indices_temp_11[5:0] + 6'h10 : indices_temp_11[5:0];	// frontend/src/zaqal/frontend/IBUF.scala:29:21, :30:{22,28,48}, :47:21, :89:42
+    indices_temp_11 > 7'h2F ? indices_temp_11[5:0] + 6'h10 : indices_temp_11[5:0];	// frontend/src/zaqal/frontend/IBUF.scala:29:21, :30:{22,28,48}, :47:21, :92:42
   wire [6:0]        indices_temp_12 =
-    _GEN_11
+    _GEN_12
     + {3'h0,
        {1'h0,
         {1'h0,
@@ -1672,9 +1683,9 @@ module IBUF(	// frontend/src/zaqal/frontend/IBUF.scala:9:7
                  {1'h0, io_inst_data_bits_mask[9]} + {1'h0, io_inst_data_bits_mask[10]}
                    + {1'h0, io_inst_data_bits_mask[11]}}}};	// frontend/src/zaqal/frontend/IBUF.scala:17:46, :27:{78,87}, :29:21
   wire [5:0]        indices_wrapped_12 =
-    indices_temp_12 > 7'h2F ? indices_temp_12[5:0] + 6'h10 : indices_temp_12[5:0];	// frontend/src/zaqal/frontend/IBUF.scala:29:21, :30:{22,28,48}, :47:21, :89:42
+    indices_temp_12 > 7'h2F ? indices_temp_12[5:0] + 6'h10 : indices_temp_12[5:0];	// frontend/src/zaqal/frontend/IBUF.scala:29:21, :30:{22,28,48}, :47:21, :92:42
   wire [6:0]        indices_temp_13 =
-    _GEN_11
+    _GEN_12
     + {3'h0,
        {1'h0,
         {1'h0,
@@ -1693,9 +1704,9 @@ module IBUF(	// frontend/src/zaqal/frontend/IBUF.scala:9:7
                  {1'h0, io_inst_data_bits_mask[11]}
                    + {1'h0, io_inst_data_bits_mask[12]}}}};	// frontend/src/zaqal/frontend/IBUF.scala:17:46, :27:{78,87}, :29:21
   wire [5:0]        indices_wrapped_13 =
-    indices_temp_13 > 7'h2F ? indices_temp_13[5:0] + 6'h10 : indices_temp_13[5:0];	// frontend/src/zaqal/frontend/IBUF.scala:29:21, :30:{22,28,48}, :47:21, :89:42
+    indices_temp_13 > 7'h2F ? indices_temp_13[5:0] + 6'h10 : indices_temp_13[5:0];	// frontend/src/zaqal/frontend/IBUF.scala:29:21, :30:{22,28,48}, :47:21, :92:42
   wire [6:0]        indices_temp_14 =
-    _GEN_11
+    _GEN_12
     + {3'h0,
        {1'h0,
         {1'h0,
@@ -1713,9 +1724,9 @@ module IBUF(	// frontend/src/zaqal/frontend/IBUF.scala:9:7
                  {1'h0, io_inst_data_bits_mask[12]}
                    + {1'h0, io_inst_data_bits_mask[13]}}}};	// frontend/src/zaqal/frontend/IBUF.scala:17:46, :27:{78,87}, :29:21
   wire [5:0]        indices_wrapped_14 =
-    indices_temp_14 > 7'h2F ? indices_temp_14[5:0] + 6'h10 : indices_temp_14[5:0];	// frontend/src/zaqal/frontend/IBUF.scala:29:21, :30:{22,28,48}, :47:21, :89:42
+    indices_temp_14 > 7'h2F ? indices_temp_14[5:0] + 6'h10 : indices_temp_14[5:0];	// frontend/src/zaqal/frontend/IBUF.scala:29:21, :30:{22,28,48}, :47:21, :92:42
   wire [6:0]        indices_temp_15 =
-    _GEN_11
+    _GEN_12
     + {3'h0,
        {1'h0,
         {1'h0,
@@ -1734,8 +1745,7 @@ module IBUF(	// frontend/src/zaqal/frontend/IBUF.scala:9:7
                  {1'h0, io_inst_data_bits_mask[13]}
                    + {1'h0, io_inst_data_bits_mask[14]}}}};	// frontend/src/zaqal/frontend/IBUF.scala:17:46, :27:{78,87}, :29:21
   wire [5:0]        indices_wrapped_15 =
-    indices_temp_15 > 7'h2F ? indices_temp_15[5:0] + 6'h10 : indices_temp_15[5:0];	// frontend/src/zaqal/frontend/IBUF.scala:29:21, :30:{22,28,48}, :47:21, :89:42
-  wire              _GEN_12 = io_inst_data_ready_0 & io_inst_data_valid;	// frontend/src/zaqal/frontend/IBUF.scala:24:33, src/main/scala/chisel3/util/Decoupled.scala:51:35
+    indices_temp_15 > 7'h2F ? indices_temp_15[5:0] + 6'h10 : indices_temp_15[5:0];	// frontend/src/zaqal/frontend/IBUF.scala:29:21, :30:{22,28,48}, :47:21, :92:42
   wire              _GEN_13 = io_inst_data_bits_mask[0] & indices_wrapped == 6'h0;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :18:23, :22:27, :30:22, :37:25, :47:21
   wire              _GEN_14 = io_inst_data_bits_mask[0] & indices_wrapped == 6'h1;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :22:27, :30:22, :37:25, :47:21
   wire              _GEN_15 = io_inst_data_bits_mask[0] & indices_wrapped == 6'h2;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :22:27, :30:22, :37:25, :47:21
@@ -4136,9 +4146,9 @@ module IBUF(	// frontend/src/zaqal/frontend/IBUF.scala:9:7
     io_inst_data_bits_mask[13] ? _GEN_1304 | _GEN_1739 : _GEN_1163 | _GEN_1739;	// frontend/src/zaqal/frontend/IBUF.scala:22:27, :37:25, :47:21, :48:20
   wire              _GEN_1788 =
     io_inst_data_bits_mask[13] ? _GEN_1307 | _GEN_1740 : _GEN_1164 | _GEN_1740;	// frontend/src/zaqal/frontend/IBUF.scala:22:27, :37:25, :47:21, :48:20
-  wire [6:0]        _tail_T_5 = _GEN_11 + {2'h0, enq_count};	// frontend/src/zaqal/frontend/IBUF.scala:17:46, :22:27, :23:39, :29:21, :51:22
+  wire [6:0]        _tail_T_5 = _GEN_12 + {2'h0, enq_count};	// frontend/src/zaqal/frontend/IBUF.scala:17:46, :22:27, :23:39, :29:21, :51:22
   always @(posedge clock) begin	// frontend/src/zaqal/frontend/IBUF.scala:9:7
-    if (_GEN_12) begin	// src/main/scala/chisel3/util/Decoupled.scala:51:35
+    if (_GEN) begin	// src/main/scala/chisel3/util/Decoupled.scala:51:35
       if (io_inst_data_bits_mask[15] & _GEN_1357) begin	// frontend/src/zaqal/frontend/IBUF.scala:22:27, :37:25, :47:21
         buffer_0_pc <= io_inst_data_bits_pc_15;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
         buffer_0_inst_raw <= io_inst_data_bits_instructions_15;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
@@ -10284,7 +10294,7 @@ module IBUF(	// frontend/src/zaqal/frontend/IBUF.scala:9:7
         buffer_47_is_predicted_taken <= entry_is_predicted_taken;	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :44:72
       end
     end
-    if (_GEN_12
+    if (_GEN
         & (io_inst_data_bits_mask[15]
              ? _GEN_1358 | _GEN_1167
              : _GEN_1309 | _GEN_1167)) begin	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :22:27, :34:27, :37:25, :47:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
@@ -10292,7 +10302,7 @@ module IBUF(	// frontend/src/zaqal/frontend/IBUF.scala:9:7
       buffer_0_predicted_target <= io_inst_data_bits_prediction_target;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
       buffer_0_epoch <= io_inst_data_bits_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
     end
-    if (_GEN_12
+    if (_GEN
         & (io_inst_data_bits_mask[15]
              ? _GEN_1360 | _GEN_1170
              : _GEN_1310 | _GEN_1170)) begin	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :22:27, :34:27, :37:25, :47:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
@@ -10300,7 +10310,7 @@ module IBUF(	// frontend/src/zaqal/frontend/IBUF.scala:9:7
       buffer_1_predicted_target <= io_inst_data_bits_prediction_target;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
       buffer_1_epoch <= io_inst_data_bits_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
     end
-    if (_GEN_12
+    if (_GEN
         & (io_inst_data_bits_mask[15]
              ? _GEN_1362 | _GEN_1173
              : _GEN_1311 | _GEN_1173)) begin	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :22:27, :34:27, :37:25, :47:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
@@ -10308,7 +10318,7 @@ module IBUF(	// frontend/src/zaqal/frontend/IBUF.scala:9:7
       buffer_2_predicted_target <= io_inst_data_bits_prediction_target;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
       buffer_2_epoch <= io_inst_data_bits_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
     end
-    if (_GEN_12
+    if (_GEN
         & (io_inst_data_bits_mask[15]
              ? _GEN_1364 | _GEN_1176
              : _GEN_1312 | _GEN_1176)) begin	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :22:27, :34:27, :37:25, :47:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
@@ -10316,7 +10326,7 @@ module IBUF(	// frontend/src/zaqal/frontend/IBUF.scala:9:7
       buffer_3_predicted_target <= io_inst_data_bits_prediction_target;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
       buffer_3_epoch <= io_inst_data_bits_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
     end
-    if (_GEN_12
+    if (_GEN
         & (io_inst_data_bits_mask[15]
              ? _GEN_1366 | _GEN_1179
              : _GEN_1313 | _GEN_1179)) begin	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :22:27, :34:27, :37:25, :47:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
@@ -10324,7 +10334,7 @@ module IBUF(	// frontend/src/zaqal/frontend/IBUF.scala:9:7
       buffer_4_predicted_target <= io_inst_data_bits_prediction_target;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
       buffer_4_epoch <= io_inst_data_bits_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
     end
-    if (_GEN_12
+    if (_GEN
         & (io_inst_data_bits_mask[15]
              ? _GEN_1368 | _GEN_1182
              : _GEN_1314 | _GEN_1182)) begin	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :22:27, :34:27, :37:25, :47:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
@@ -10332,7 +10342,7 @@ module IBUF(	// frontend/src/zaqal/frontend/IBUF.scala:9:7
       buffer_5_predicted_target <= io_inst_data_bits_prediction_target;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
       buffer_5_epoch <= io_inst_data_bits_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
     end
-    if (_GEN_12
+    if (_GEN
         & (io_inst_data_bits_mask[15]
              ? _GEN_1370 | _GEN_1185
              : _GEN_1315 | _GEN_1185)) begin	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :22:27, :34:27, :37:25, :47:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
@@ -10340,7 +10350,7 @@ module IBUF(	// frontend/src/zaqal/frontend/IBUF.scala:9:7
       buffer_6_predicted_target <= io_inst_data_bits_prediction_target;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
       buffer_6_epoch <= io_inst_data_bits_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
     end
-    if (_GEN_12
+    if (_GEN
         & (io_inst_data_bits_mask[15]
              ? _GEN_1372 | _GEN_1188
              : _GEN_1316 | _GEN_1188)) begin	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :22:27, :34:27, :37:25, :47:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
@@ -10348,7 +10358,7 @@ module IBUF(	// frontend/src/zaqal/frontend/IBUF.scala:9:7
       buffer_7_predicted_target <= io_inst_data_bits_prediction_target;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
       buffer_7_epoch <= io_inst_data_bits_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
     end
-    if (_GEN_12
+    if (_GEN
         & (io_inst_data_bits_mask[15]
              ? _GEN_1374 | _GEN_1191
              : _GEN_1317 | _GEN_1191)) begin	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :22:27, :34:27, :37:25, :47:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
@@ -10356,7 +10366,7 @@ module IBUF(	// frontend/src/zaqal/frontend/IBUF.scala:9:7
       buffer_8_predicted_target <= io_inst_data_bits_prediction_target;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
       buffer_8_epoch <= io_inst_data_bits_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
     end
-    if (_GEN_12
+    if (_GEN
         & (io_inst_data_bits_mask[15]
              ? _GEN_1376 | _GEN_1194
              : _GEN_1318 | _GEN_1194)) begin	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :22:27, :34:27, :37:25, :47:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
@@ -10364,7 +10374,7 @@ module IBUF(	// frontend/src/zaqal/frontend/IBUF.scala:9:7
       buffer_9_predicted_target <= io_inst_data_bits_prediction_target;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
       buffer_9_epoch <= io_inst_data_bits_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
     end
-    if (_GEN_12
+    if (_GEN
         & (io_inst_data_bits_mask[15]
              ? _GEN_1378 | _GEN_1197
              : _GEN_1319 | _GEN_1197)) begin	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :22:27, :34:27, :37:25, :47:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
@@ -10372,7 +10382,7 @@ module IBUF(	// frontend/src/zaqal/frontend/IBUF.scala:9:7
       buffer_10_predicted_target <= io_inst_data_bits_prediction_target;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
       buffer_10_epoch <= io_inst_data_bits_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
     end
-    if (_GEN_12
+    if (_GEN
         & (io_inst_data_bits_mask[15]
              ? _GEN_1380 | _GEN_1200
              : _GEN_1320 | _GEN_1200)) begin	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :22:27, :34:27, :37:25, :47:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
@@ -10380,7 +10390,7 @@ module IBUF(	// frontend/src/zaqal/frontend/IBUF.scala:9:7
       buffer_11_predicted_target <= io_inst_data_bits_prediction_target;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
       buffer_11_epoch <= io_inst_data_bits_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
     end
-    if (_GEN_12
+    if (_GEN
         & (io_inst_data_bits_mask[15]
              ? _GEN_1382 | _GEN_1203
              : _GEN_1321 | _GEN_1203)) begin	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :22:27, :34:27, :37:25, :47:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
@@ -10388,7 +10398,7 @@ module IBUF(	// frontend/src/zaqal/frontend/IBUF.scala:9:7
       buffer_12_predicted_target <= io_inst_data_bits_prediction_target;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
       buffer_12_epoch <= io_inst_data_bits_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
     end
-    if (_GEN_12
+    if (_GEN
         & (io_inst_data_bits_mask[15]
              ? _GEN_1384 | _GEN_1206
              : _GEN_1322 | _GEN_1206)) begin	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :22:27, :34:27, :37:25, :47:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
@@ -10396,7 +10406,7 @@ module IBUF(	// frontend/src/zaqal/frontend/IBUF.scala:9:7
       buffer_13_predicted_target <= io_inst_data_bits_prediction_target;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
       buffer_13_epoch <= io_inst_data_bits_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
     end
-    if (_GEN_12
+    if (_GEN
         & (io_inst_data_bits_mask[15]
              ? _GEN_1386 | _GEN_1209
              : _GEN_1323 | _GEN_1209)) begin	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :22:27, :34:27, :37:25, :47:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
@@ -10404,7 +10414,7 @@ module IBUF(	// frontend/src/zaqal/frontend/IBUF.scala:9:7
       buffer_14_predicted_target <= io_inst_data_bits_prediction_target;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
       buffer_14_epoch <= io_inst_data_bits_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
     end
-    if (_GEN_12
+    if (_GEN
         & (io_inst_data_bits_mask[15]
              ? _GEN_1388 | _GEN_1212
              : _GEN_1324 | _GEN_1212)) begin	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :22:27, :34:27, :37:25, :47:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
@@ -10412,7 +10422,7 @@ module IBUF(	// frontend/src/zaqal/frontend/IBUF.scala:9:7
       buffer_15_predicted_target <= io_inst_data_bits_prediction_target;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
       buffer_15_epoch <= io_inst_data_bits_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
     end
-    if (_GEN_12
+    if (_GEN
         & (io_inst_data_bits_mask[15]
              ? _GEN_1390 | _GEN_1215
              : _GEN_1325 | _GEN_1215)) begin	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :22:27, :34:27, :37:25, :47:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
@@ -10420,7 +10430,7 @@ module IBUF(	// frontend/src/zaqal/frontend/IBUF.scala:9:7
       buffer_16_predicted_target <= io_inst_data_bits_prediction_target;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
       buffer_16_epoch <= io_inst_data_bits_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
     end
-    if (_GEN_12
+    if (_GEN
         & (io_inst_data_bits_mask[15]
              ? _GEN_1392 | _GEN_1218
              : _GEN_1326 | _GEN_1218)) begin	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :22:27, :34:27, :37:25, :47:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
@@ -10428,7 +10438,7 @@ module IBUF(	// frontend/src/zaqal/frontend/IBUF.scala:9:7
       buffer_17_predicted_target <= io_inst_data_bits_prediction_target;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
       buffer_17_epoch <= io_inst_data_bits_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
     end
-    if (_GEN_12
+    if (_GEN
         & (io_inst_data_bits_mask[15]
              ? _GEN_1394 | _GEN_1221
              : _GEN_1327 | _GEN_1221)) begin	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :22:27, :34:27, :37:25, :47:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
@@ -10436,7 +10446,7 @@ module IBUF(	// frontend/src/zaqal/frontend/IBUF.scala:9:7
       buffer_18_predicted_target <= io_inst_data_bits_prediction_target;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
       buffer_18_epoch <= io_inst_data_bits_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
     end
-    if (_GEN_12
+    if (_GEN
         & (io_inst_data_bits_mask[15]
              ? _GEN_1396 | _GEN_1224
              : _GEN_1328 | _GEN_1224)) begin	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :22:27, :34:27, :37:25, :47:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
@@ -10444,7 +10454,7 @@ module IBUF(	// frontend/src/zaqal/frontend/IBUF.scala:9:7
       buffer_19_predicted_target <= io_inst_data_bits_prediction_target;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
       buffer_19_epoch <= io_inst_data_bits_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
     end
-    if (_GEN_12
+    if (_GEN
         & (io_inst_data_bits_mask[15]
              ? _GEN_1398 | _GEN_1227
              : _GEN_1329 | _GEN_1227)) begin	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :22:27, :34:27, :37:25, :47:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
@@ -10452,7 +10462,7 @@ module IBUF(	// frontend/src/zaqal/frontend/IBUF.scala:9:7
       buffer_20_predicted_target <= io_inst_data_bits_prediction_target;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
       buffer_20_epoch <= io_inst_data_bits_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
     end
-    if (_GEN_12
+    if (_GEN
         & (io_inst_data_bits_mask[15]
              ? _GEN_1400 | _GEN_1230
              : _GEN_1330 | _GEN_1230)) begin	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :22:27, :34:27, :37:25, :47:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
@@ -10460,7 +10470,7 @@ module IBUF(	// frontend/src/zaqal/frontend/IBUF.scala:9:7
       buffer_21_predicted_target <= io_inst_data_bits_prediction_target;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
       buffer_21_epoch <= io_inst_data_bits_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
     end
-    if (_GEN_12
+    if (_GEN
         & (io_inst_data_bits_mask[15]
              ? _GEN_1402 | _GEN_1233
              : _GEN_1331 | _GEN_1233)) begin	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :22:27, :34:27, :37:25, :47:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
@@ -10468,7 +10478,7 @@ module IBUF(	// frontend/src/zaqal/frontend/IBUF.scala:9:7
       buffer_22_predicted_target <= io_inst_data_bits_prediction_target;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
       buffer_22_epoch <= io_inst_data_bits_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
     end
-    if (_GEN_12
+    if (_GEN
         & (io_inst_data_bits_mask[15]
              ? _GEN_1404 | _GEN_1236
              : _GEN_1332 | _GEN_1236)) begin	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :22:27, :34:27, :37:25, :47:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
@@ -10476,7 +10486,7 @@ module IBUF(	// frontend/src/zaqal/frontend/IBUF.scala:9:7
       buffer_23_predicted_target <= io_inst_data_bits_prediction_target;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
       buffer_23_epoch <= io_inst_data_bits_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
     end
-    if (_GEN_12
+    if (_GEN
         & (io_inst_data_bits_mask[15]
              ? _GEN_1406 | _GEN_1239
              : _GEN_1333 | _GEN_1239)) begin	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :22:27, :34:27, :37:25, :47:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
@@ -10484,7 +10494,7 @@ module IBUF(	// frontend/src/zaqal/frontend/IBUF.scala:9:7
       buffer_24_predicted_target <= io_inst_data_bits_prediction_target;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
       buffer_24_epoch <= io_inst_data_bits_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
     end
-    if (_GEN_12
+    if (_GEN
         & (io_inst_data_bits_mask[15]
              ? _GEN_1408 | _GEN_1242
              : _GEN_1334 | _GEN_1242)) begin	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :22:27, :34:27, :37:25, :47:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
@@ -10492,7 +10502,7 @@ module IBUF(	// frontend/src/zaqal/frontend/IBUF.scala:9:7
       buffer_25_predicted_target <= io_inst_data_bits_prediction_target;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
       buffer_25_epoch <= io_inst_data_bits_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
     end
-    if (_GEN_12
+    if (_GEN
         & (io_inst_data_bits_mask[15]
              ? _GEN_1410 | _GEN_1245
              : _GEN_1335 | _GEN_1245)) begin	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :22:27, :34:27, :37:25, :47:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
@@ -10500,7 +10510,7 @@ module IBUF(	// frontend/src/zaqal/frontend/IBUF.scala:9:7
       buffer_26_predicted_target <= io_inst_data_bits_prediction_target;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
       buffer_26_epoch <= io_inst_data_bits_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
     end
-    if (_GEN_12
+    if (_GEN
         & (io_inst_data_bits_mask[15]
              ? _GEN_1412 | _GEN_1248
              : _GEN_1336 | _GEN_1248)) begin	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :22:27, :34:27, :37:25, :47:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
@@ -10508,7 +10518,7 @@ module IBUF(	// frontend/src/zaqal/frontend/IBUF.scala:9:7
       buffer_27_predicted_target <= io_inst_data_bits_prediction_target;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
       buffer_27_epoch <= io_inst_data_bits_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
     end
-    if (_GEN_12
+    if (_GEN
         & (io_inst_data_bits_mask[15]
              ? _GEN_1414 | _GEN_1251
              : _GEN_1337 | _GEN_1251)) begin	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :22:27, :34:27, :37:25, :47:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
@@ -10516,7 +10526,7 @@ module IBUF(	// frontend/src/zaqal/frontend/IBUF.scala:9:7
       buffer_28_predicted_target <= io_inst_data_bits_prediction_target;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
       buffer_28_epoch <= io_inst_data_bits_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
     end
-    if (_GEN_12
+    if (_GEN
         & (io_inst_data_bits_mask[15]
              ? _GEN_1416 | _GEN_1254
              : _GEN_1338 | _GEN_1254)) begin	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :22:27, :34:27, :37:25, :47:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
@@ -10524,7 +10534,7 @@ module IBUF(	// frontend/src/zaqal/frontend/IBUF.scala:9:7
       buffer_29_predicted_target <= io_inst_data_bits_prediction_target;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
       buffer_29_epoch <= io_inst_data_bits_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
     end
-    if (_GEN_12
+    if (_GEN
         & (io_inst_data_bits_mask[15]
              ? _GEN_1418 | _GEN_1257
              : _GEN_1339 | _GEN_1257)) begin	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :22:27, :34:27, :37:25, :47:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
@@ -10532,7 +10542,7 @@ module IBUF(	// frontend/src/zaqal/frontend/IBUF.scala:9:7
       buffer_30_predicted_target <= io_inst_data_bits_prediction_target;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
       buffer_30_epoch <= io_inst_data_bits_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
     end
-    if (_GEN_12
+    if (_GEN
         & (io_inst_data_bits_mask[15]
              ? _GEN_1420 | _GEN_1260
              : _GEN_1340 | _GEN_1260)) begin	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :22:27, :34:27, :37:25, :47:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
@@ -10540,7 +10550,7 @@ module IBUF(	// frontend/src/zaqal/frontend/IBUF.scala:9:7
       buffer_31_predicted_target <= io_inst_data_bits_prediction_target;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
       buffer_31_epoch <= io_inst_data_bits_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
     end
-    if (_GEN_12
+    if (_GEN
         & (io_inst_data_bits_mask[15]
              ? _GEN_1422 | _GEN_1263
              : _GEN_1341 | _GEN_1263)) begin	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :22:27, :34:27, :37:25, :47:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
@@ -10548,7 +10558,7 @@ module IBUF(	// frontend/src/zaqal/frontend/IBUF.scala:9:7
       buffer_32_predicted_target <= io_inst_data_bits_prediction_target;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
       buffer_32_epoch <= io_inst_data_bits_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
     end
-    if (_GEN_12
+    if (_GEN
         & (io_inst_data_bits_mask[15]
              ? _GEN_1424 | _GEN_1266
              : _GEN_1342 | _GEN_1266)) begin	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :22:27, :34:27, :37:25, :47:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
@@ -10556,7 +10566,7 @@ module IBUF(	// frontend/src/zaqal/frontend/IBUF.scala:9:7
       buffer_33_predicted_target <= io_inst_data_bits_prediction_target;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
       buffer_33_epoch <= io_inst_data_bits_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
     end
-    if (_GEN_12
+    if (_GEN
         & (io_inst_data_bits_mask[15]
              ? _GEN_1426 | _GEN_1269
              : _GEN_1343 | _GEN_1269)) begin	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :22:27, :34:27, :37:25, :47:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
@@ -10564,7 +10574,7 @@ module IBUF(	// frontend/src/zaqal/frontend/IBUF.scala:9:7
       buffer_34_predicted_target <= io_inst_data_bits_prediction_target;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
       buffer_34_epoch <= io_inst_data_bits_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
     end
-    if (_GEN_12
+    if (_GEN
         & (io_inst_data_bits_mask[15]
              ? _GEN_1428 | _GEN_1272
              : _GEN_1344 | _GEN_1272)) begin	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :22:27, :34:27, :37:25, :47:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
@@ -10572,7 +10582,7 @@ module IBUF(	// frontend/src/zaqal/frontend/IBUF.scala:9:7
       buffer_35_predicted_target <= io_inst_data_bits_prediction_target;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
       buffer_35_epoch <= io_inst_data_bits_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
     end
-    if (_GEN_12
+    if (_GEN
         & (io_inst_data_bits_mask[15]
              ? _GEN_1430 | _GEN_1275
              : _GEN_1345 | _GEN_1275)) begin	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :22:27, :34:27, :37:25, :47:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
@@ -10580,7 +10590,7 @@ module IBUF(	// frontend/src/zaqal/frontend/IBUF.scala:9:7
       buffer_36_predicted_target <= io_inst_data_bits_prediction_target;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
       buffer_36_epoch <= io_inst_data_bits_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
     end
-    if (_GEN_12
+    if (_GEN
         & (io_inst_data_bits_mask[15]
              ? _GEN_1432 | _GEN_1278
              : _GEN_1346 | _GEN_1278)) begin	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :22:27, :34:27, :37:25, :47:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
@@ -10588,7 +10598,7 @@ module IBUF(	// frontend/src/zaqal/frontend/IBUF.scala:9:7
       buffer_37_predicted_target <= io_inst_data_bits_prediction_target;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
       buffer_37_epoch <= io_inst_data_bits_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
     end
-    if (_GEN_12
+    if (_GEN
         & (io_inst_data_bits_mask[15]
              ? _GEN_1434 | _GEN_1281
              : _GEN_1347 | _GEN_1281)) begin	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :22:27, :34:27, :37:25, :47:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
@@ -10596,7 +10606,7 @@ module IBUF(	// frontend/src/zaqal/frontend/IBUF.scala:9:7
       buffer_38_predicted_target <= io_inst_data_bits_prediction_target;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
       buffer_38_epoch <= io_inst_data_bits_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
     end
-    if (_GEN_12
+    if (_GEN
         & (io_inst_data_bits_mask[15]
              ? _GEN_1436 | _GEN_1284
              : _GEN_1348 | _GEN_1284)) begin	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :22:27, :34:27, :37:25, :47:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
@@ -10604,7 +10614,7 @@ module IBUF(	// frontend/src/zaqal/frontend/IBUF.scala:9:7
       buffer_39_predicted_target <= io_inst_data_bits_prediction_target;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
       buffer_39_epoch <= io_inst_data_bits_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
     end
-    if (_GEN_12
+    if (_GEN
         & (io_inst_data_bits_mask[15]
              ? _GEN_1438 | _GEN_1287
              : _GEN_1349 | _GEN_1287)) begin	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :22:27, :34:27, :37:25, :47:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
@@ -10612,7 +10622,7 @@ module IBUF(	// frontend/src/zaqal/frontend/IBUF.scala:9:7
       buffer_40_predicted_target <= io_inst_data_bits_prediction_target;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
       buffer_40_epoch <= io_inst_data_bits_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
     end
-    if (_GEN_12
+    if (_GEN
         & (io_inst_data_bits_mask[15]
              ? _GEN_1440 | _GEN_1290
              : _GEN_1350 | _GEN_1290)) begin	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :22:27, :34:27, :37:25, :47:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
@@ -10620,7 +10630,7 @@ module IBUF(	// frontend/src/zaqal/frontend/IBUF.scala:9:7
       buffer_41_predicted_target <= io_inst_data_bits_prediction_target;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
       buffer_41_epoch <= io_inst_data_bits_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
     end
-    if (_GEN_12
+    if (_GEN
         & (io_inst_data_bits_mask[15]
              ? _GEN_1442 | _GEN_1293
              : _GEN_1351 | _GEN_1293)) begin	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :22:27, :34:27, :37:25, :47:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
@@ -10628,7 +10638,7 @@ module IBUF(	// frontend/src/zaqal/frontend/IBUF.scala:9:7
       buffer_42_predicted_target <= io_inst_data_bits_prediction_target;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
       buffer_42_epoch <= io_inst_data_bits_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
     end
-    if (_GEN_12
+    if (_GEN
         & (io_inst_data_bits_mask[15]
              ? _GEN_1444 | _GEN_1296
              : _GEN_1352 | _GEN_1296)) begin	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :22:27, :34:27, :37:25, :47:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
@@ -10636,7 +10646,7 @@ module IBUF(	// frontend/src/zaqal/frontend/IBUF.scala:9:7
       buffer_43_predicted_target <= io_inst_data_bits_prediction_target;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
       buffer_43_epoch <= io_inst_data_bits_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
     end
-    if (_GEN_12
+    if (_GEN
         & (io_inst_data_bits_mask[15]
              ? _GEN_1446 | _GEN_1299
              : _GEN_1353 | _GEN_1299)) begin	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :22:27, :34:27, :37:25, :47:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
@@ -10644,7 +10654,7 @@ module IBUF(	// frontend/src/zaqal/frontend/IBUF.scala:9:7
       buffer_44_predicted_target <= io_inst_data_bits_prediction_target;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
       buffer_44_epoch <= io_inst_data_bits_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
     end
-    if (_GEN_12
+    if (_GEN
         & (io_inst_data_bits_mask[15]
              ? _GEN_1448 | _GEN_1302
              : _GEN_1354 | _GEN_1302)) begin	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :22:27, :34:27, :37:25, :47:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
@@ -10652,7 +10662,7 @@ module IBUF(	// frontend/src/zaqal/frontend/IBUF.scala:9:7
       buffer_45_predicted_target <= io_inst_data_bits_prediction_target;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
       buffer_45_epoch <= io_inst_data_bits_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
     end
-    if (_GEN_12
+    if (_GEN
         & (io_inst_data_bits_mask[15]
              ? _GEN_1450 | _GEN_1305
              : _GEN_1355 | _GEN_1305)) begin	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :22:27, :34:27, :37:25, :47:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
@@ -10660,7 +10670,7 @@ module IBUF(	// frontend/src/zaqal/frontend/IBUF.scala:9:7
       buffer_46_predicted_target <= io_inst_data_bits_prediction_target;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
       buffer_46_epoch <= io_inst_data_bits_epoch;	// frontend/src/zaqal/frontend/IBUF.scala:16:19
     end
-    if (_GEN_12
+    if (_GEN
         & (io_inst_data_bits_mask[15]
              ? _GEN_1452 | _GEN_1308
              : _GEN_1356 | _GEN_1308)) begin	// frontend/src/zaqal/frontend/IBUF.scala:16:19, :22:27, :34:27, :37:25, :47:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
@@ -10726,490 +10736,490 @@ module IBUF(	// frontend/src/zaqal/frontend/IBUF.scala:9:7
           & (_head_T_5 < 7'h31
                ? _fired_T_6 & (|_head_T_5)
                : _fired_T_6 | (|(_head_T_5 - 7'h30))))
-        & (_GEN_12
+        & (_GEN
              ? (io_inst_data_bits_mask[15]
                   ? _GEN_1358 | _GEN_1741
                   : _GEN_1309 | _GEN_1741)
-             : valid_0);	// frontend/src/zaqal/frontend/IBUF.scala:17:23, :22:27, :34:27, :37:25, :47:21, :48:20, :76:27, :85:{18,25}, :88:{22,28,41}, :89:{27,35,42}, :90:{35,42,64}, :91:{19,32}, :96:18, :97:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
+             : valid_0);	// frontend/src/zaqal/frontend/IBUF.scala:17:23, :22:27, :34:27, :37:25, :47:21, :48:20, :79:27, :88:{18,25}, :91:{22,28,41}, :92:{27,35,42}, :93:{35,42,64}, :94:{19,32}, :99:18, :100:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
       valid_1 <=
         ~(io_flush | (|deq_count)
           & (_head_T_5 < 7'h31
                ? _fired_T_18 & (|(_head_T_5[6:1]))
                : _fired_T_18 | (|(_fired_T_20[6:1]))))
-        & (_GEN_12
+        & (_GEN
              ? (io_inst_data_bits_mask[15]
                   ? _GEN_1360 | _GEN_1742
                   : _GEN_1310 | _GEN_1742)
-             : valid_1);	// frontend/src/zaqal/frontend/IBUF.scala:17:23, :22:27, :34:27, :37:25, :47:21, :48:20, :76:27, :85:{18,25}, :88:{22,28,41}, :89:{27,35,42}, :90:{35,42,64}, :91:{19,32}, :96:18, :97:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
+             : valid_1);	// frontend/src/zaqal/frontend/IBUF.scala:17:23, :22:27, :34:27, :37:25, :47:21, :48:20, :79:27, :88:{18,25}, :91:{22,28,41}, :92:{27,35,42}, :93:{35,42,64}, :94:{19,32}, :99:18, :100:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
       valid_2 <=
         ~(io_flush | (|deq_count)
           & (_head_T_5 < 7'h31
                ? _fired_T_30 & _head_T_5 > 7'h2
                : _fired_T_30 | _head_T_5 - 7'h30 > 7'h2))
-        & (_GEN_12
+        & (_GEN
              ? (io_inst_data_bits_mask[15]
                   ? _GEN_1362 | _GEN_1743
                   : _GEN_1311 | _GEN_1743)
-             : valid_2);	// frontend/src/zaqal/frontend/IBUF.scala:17:23, :22:27, :34:27, :37:25, :47:21, :48:20, :56:20, :76:27, :85:{18,25}, :88:{22,28,41}, :89:{27,35,42}, :90:{35,42,64}, :91:{19,32}, :96:18, :97:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
+             : valid_2);	// frontend/src/zaqal/frontend/IBUF.scala:17:23, :22:27, :34:27, :37:25, :47:21, :48:20, :59:20, :79:27, :88:{18,25}, :91:{22,28,41}, :92:{27,35,42}, :93:{35,42,64}, :94:{19,32}, :99:18, :100:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
       valid_3 <=
         ~(io_flush | (|deq_count)
           & (_head_T_5 < 7'h31
                ? _fired_T_42 & (|(_head_T_5[6:2]))
                : _fired_T_42 | (|(_fired_T_44[6:2]))))
-        & (_GEN_12
+        & (_GEN
              ? (io_inst_data_bits_mask[15]
                   ? _GEN_1364 | _GEN_1744
                   : _GEN_1312 | _GEN_1744)
-             : valid_3);	// frontend/src/zaqal/frontend/IBUF.scala:17:23, :22:27, :34:27, :37:25, :47:21, :48:20, :76:27, :85:{18,25}, :88:{22,28,41}, :89:{27,35,42}, :90:{35,42,64}, :91:{19,32}, :96:18, :97:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
+             : valid_3);	// frontend/src/zaqal/frontend/IBUF.scala:17:23, :22:27, :34:27, :37:25, :47:21, :48:20, :79:27, :88:{18,25}, :91:{22,28,41}, :92:{27,35,42}, :93:{35,42,64}, :94:{19,32}, :99:18, :100:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
       valid_4 <=
         ~(io_flush | (|deq_count)
           & (_head_T_5 < 7'h31
                ? _fired_T_54 & _head_T_5 > 7'h4
                : _fired_T_54 | _head_T_5 - 7'h30 > 7'h4))
-        & (_GEN_12
+        & (_GEN
              ? (io_inst_data_bits_mask[15]
                   ? _GEN_1366 | _GEN_1745
                   : _GEN_1313 | _GEN_1745)
-             : valid_4);	// frontend/src/zaqal/frontend/IBUF.scala:17:23, :22:27, :34:27, :37:25, :47:21, :48:20, :56:20, :76:27, :85:{18,25}, :88:{22,28,41}, :89:{27,35,42}, :90:{35,42,64}, :91:{19,32}, :96:18, :97:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
+             : valid_4);	// frontend/src/zaqal/frontend/IBUF.scala:17:23, :22:27, :34:27, :37:25, :47:21, :48:20, :59:20, :79:27, :88:{18,25}, :91:{22,28,41}, :92:{27,35,42}, :93:{35,42,64}, :94:{19,32}, :99:18, :100:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
       valid_5 <=
         ~(io_flush | (|deq_count)
           & (_head_T_5 < 7'h31
                ? _fired_T_66 & _head_T_5 > 7'h5
                : _fired_T_66 | _head_T_5 - 7'h30 > 7'h5))
-        & (_GEN_12
+        & (_GEN
              ? (io_inst_data_bits_mask[15]
                   ? _GEN_1368 | _GEN_1746
                   : _GEN_1314 | _GEN_1746)
-             : valid_5);	// frontend/src/zaqal/frontend/IBUF.scala:17:23, :22:27, :34:27, :37:25, :47:21, :48:20, :56:20, :76:27, :85:{18,25}, :88:{22,28,41}, :89:{27,35,42}, :90:{35,42,64}, :91:{19,32}, :96:18, :97:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
+             : valid_5);	// frontend/src/zaqal/frontend/IBUF.scala:17:23, :22:27, :34:27, :37:25, :47:21, :48:20, :59:20, :79:27, :88:{18,25}, :91:{22,28,41}, :92:{27,35,42}, :93:{35,42,64}, :94:{19,32}, :99:18, :100:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
       valid_6 <=
         ~(io_flush | (|deq_count)
           & (_head_T_5 < 7'h31
                ? _fired_T_78 & _head_T_5 > 7'h6
                : _fired_T_78 | _head_T_5 - 7'h30 > 7'h6))
-        & (_GEN_12
+        & (_GEN
              ? (io_inst_data_bits_mask[15]
                   ? _GEN_1370 | _GEN_1747
                   : _GEN_1315 | _GEN_1747)
-             : valid_6);	// frontend/src/zaqal/frontend/IBUF.scala:17:23, :22:27, :34:27, :37:25, :47:21, :48:20, :76:27, :85:{18,25}, :88:{22,28,41}, :89:{27,35,42}, :90:{35,42,64}, :91:{19,32}, :96:18, :97:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
+             : valid_6);	// frontend/src/zaqal/frontend/IBUF.scala:17:23, :22:27, :34:27, :37:25, :47:21, :48:20, :79:27, :88:{18,25}, :91:{22,28,41}, :92:{27,35,42}, :93:{35,42,64}, :94:{19,32}, :99:18, :100:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
       valid_7 <=
         ~(io_flush | (|deq_count)
           & (_head_T_5 < 7'h31
                ? _fired_T_90 & (|(_head_T_5[6:3]))
                : _fired_T_90 | (|(_fired_T_92[6:3]))))
-        & (_GEN_12
+        & (_GEN
              ? (io_inst_data_bits_mask[15]
                   ? _GEN_1372 | _GEN_1748
                   : _GEN_1316 | _GEN_1748)
-             : valid_7);	// frontend/src/zaqal/frontend/IBUF.scala:17:23, :22:27, :34:27, :37:25, :47:21, :48:20, :76:27, :85:{18,25}, :88:{22,28,41}, :89:{27,35,42}, :90:{35,42,64}, :91:{19,32}, :96:18, :97:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
+             : valid_7);	// frontend/src/zaqal/frontend/IBUF.scala:17:23, :22:27, :34:27, :37:25, :47:21, :48:20, :79:27, :88:{18,25}, :91:{22,28,41}, :92:{27,35,42}, :93:{35,42,64}, :94:{19,32}, :99:18, :100:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
       valid_8 <=
         ~(io_flush | (|deq_count)
           & (_head_T_5 < 7'h31
                ? _fired_T_102 & _head_T_5 > 7'h8
                : _fired_T_102 | _head_T_5 - 7'h30 > 7'h8))
-        & (_GEN_12
+        & (_GEN
              ? (io_inst_data_bits_mask[15]
                   ? _GEN_1374 | _GEN_1749
                   : _GEN_1317 | _GEN_1749)
-             : valid_8);	// frontend/src/zaqal/frontend/IBUF.scala:17:23, :22:27, :34:27, :37:25, :47:21, :48:20, :76:27, :85:{18,25}, :88:{22,28,41}, :89:{27,35,42}, :90:{35,42,64}, :91:{19,32}, :96:18, :97:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
+             : valid_8);	// frontend/src/zaqal/frontend/IBUF.scala:17:23, :22:27, :34:27, :37:25, :47:21, :48:20, :79:27, :88:{18,25}, :91:{22,28,41}, :92:{27,35,42}, :93:{35,42,64}, :94:{19,32}, :99:18, :100:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
       valid_9 <=
         ~(io_flush | (|deq_count)
           & (_head_T_5 < 7'h31
                ? _fired_T_114 & _head_T_5 > 7'h9
                : _fired_T_114 | _head_T_5 - 7'h30 > 7'h9))
-        & (_GEN_12
+        & (_GEN
              ? (io_inst_data_bits_mask[15]
                   ? _GEN_1376 | _GEN_1750
                   : _GEN_1318 | _GEN_1750)
-             : valid_9);	// frontend/src/zaqal/frontend/IBUF.scala:17:23, :22:27, :34:27, :37:25, :47:21, :48:20, :76:27, :85:{18,25}, :88:{22,28,41}, :89:{27,35,42}, :90:{35,42,64}, :91:{19,32}, :96:18, :97:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
+             : valid_9);	// frontend/src/zaqal/frontend/IBUF.scala:17:23, :22:27, :34:27, :37:25, :47:21, :48:20, :79:27, :88:{18,25}, :91:{22,28,41}, :92:{27,35,42}, :93:{35,42,64}, :94:{19,32}, :99:18, :100:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
       valid_10 <=
         ~(io_flush | (|deq_count)
           & (_head_T_5 < 7'h31
                ? _fired_T_126 & _head_T_5 > 7'hA
                : _fired_T_126 | _head_T_5 - 7'h30 > 7'hA))
-        & (_GEN_12
+        & (_GEN
              ? (io_inst_data_bits_mask[15]
                   ? _GEN_1378 | _GEN_1751
                   : _GEN_1319 | _GEN_1751)
-             : valid_10);	// frontend/src/zaqal/frontend/IBUF.scala:17:23, :22:27, :34:27, :37:25, :47:21, :48:20, :76:27, :85:{18,25}, :88:{22,28,41}, :89:{27,35,42}, :90:{35,42,64}, :91:{19,32}, :96:18, :97:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
+             : valid_10);	// frontend/src/zaqal/frontend/IBUF.scala:17:23, :22:27, :34:27, :37:25, :47:21, :48:20, :79:27, :88:{18,25}, :91:{22,28,41}, :92:{27,35,42}, :93:{35,42,64}, :94:{19,32}, :99:18, :100:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
       valid_11 <=
         ~(io_flush | (|deq_count)
           & (_head_T_5 < 7'h31
                ? _fired_T_138 & _head_T_5 > 7'hB
                : _fired_T_138 | _head_T_5 - 7'h30 > 7'hB))
-        & (_GEN_12
+        & (_GEN
              ? (io_inst_data_bits_mask[15]
                   ? _GEN_1380 | _GEN_1752
                   : _GEN_1320 | _GEN_1752)
-             : valid_11);	// frontend/src/zaqal/frontend/IBUF.scala:17:23, :22:27, :34:27, :37:25, :47:21, :48:20, :76:27, :85:{18,25}, :88:{22,28,41}, :89:{27,35,42}, :90:{35,42,64}, :91:{19,32}, :96:18, :97:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
+             : valid_11);	// frontend/src/zaqal/frontend/IBUF.scala:17:23, :22:27, :34:27, :37:25, :47:21, :48:20, :79:27, :88:{18,25}, :91:{22,28,41}, :92:{27,35,42}, :93:{35,42,64}, :94:{19,32}, :99:18, :100:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
       valid_12 <=
         ~(io_flush | (|deq_count)
           & (_head_T_5 < 7'h31
                ? _fired_T_150 & _head_T_5 > 7'hC
                : _fired_T_150 | _head_T_5 - 7'h30 > 7'hC))
-        & (_GEN_12
+        & (_GEN
              ? (io_inst_data_bits_mask[15]
                   ? _GEN_1382 | _GEN_1753
                   : _GEN_1321 | _GEN_1753)
-             : valid_12);	// frontend/src/zaqal/frontend/IBUF.scala:17:23, :22:27, :34:27, :37:25, :47:21, :48:20, :76:27, :85:{18,25}, :88:{22,28,41}, :89:{27,35,42}, :90:{35,42,64}, :91:{19,32}, :96:18, :97:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
+             : valid_12);	// frontend/src/zaqal/frontend/IBUF.scala:17:23, :22:27, :34:27, :37:25, :47:21, :48:20, :79:27, :88:{18,25}, :91:{22,28,41}, :92:{27,35,42}, :93:{35,42,64}, :94:{19,32}, :99:18, :100:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
       valid_13 <=
         ~(io_flush | (|deq_count)
           & (_head_T_5 < 7'h31
                ? _fired_T_162 & _head_T_5 > 7'hD
                : _fired_T_162 | _head_T_5 - 7'h30 > 7'hD))
-        & (_GEN_12
+        & (_GEN
              ? (io_inst_data_bits_mask[15]
                   ? _GEN_1384 | _GEN_1754
                   : _GEN_1322 | _GEN_1754)
-             : valid_13);	// frontend/src/zaqal/frontend/IBUF.scala:17:23, :22:27, :34:27, :37:25, :47:21, :48:20, :76:27, :85:{18,25}, :88:{22,28,41}, :89:{27,35,42}, :90:{35,42,64}, :91:{19,32}, :96:18, :97:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
+             : valid_13);	// frontend/src/zaqal/frontend/IBUF.scala:17:23, :22:27, :34:27, :37:25, :47:21, :48:20, :79:27, :88:{18,25}, :91:{22,28,41}, :92:{27,35,42}, :93:{35,42,64}, :94:{19,32}, :99:18, :100:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
       valid_14 <=
         ~(io_flush | (|deq_count)
           & (_head_T_5 < 7'h31
                ? _fired_T_174 & _head_T_5 > 7'hE
                : _fired_T_174 | _head_T_5 - 7'h30 > 7'hE))
-        & (_GEN_12
+        & (_GEN
              ? (io_inst_data_bits_mask[15]
                   ? _GEN_1386 | _GEN_1755
                   : _GEN_1323 | _GEN_1755)
-             : valid_14);	// frontend/src/zaqal/frontend/IBUF.scala:17:23, :22:27, :34:27, :37:25, :47:21, :48:20, :76:27, :85:{18,25}, :88:{22,28,41}, :89:{27,35,42}, :90:{35,42,64}, :91:{19,32}, :96:18, :97:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
+             : valid_14);	// frontend/src/zaqal/frontend/IBUF.scala:17:23, :22:27, :34:27, :37:25, :47:21, :48:20, :79:27, :88:{18,25}, :91:{22,28,41}, :92:{27,35,42}, :93:{35,42,64}, :94:{19,32}, :99:18, :100:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
       valid_15 <=
         ~(io_flush | (|deq_count)
           & (_head_T_5 < 7'h31
                ? _fired_T_186 & (|(_head_T_5[6:4]))
                : _fired_T_186 | (|(_fired_T_188[6:4]))))
-        & (_GEN_12
+        & (_GEN
              ? (io_inst_data_bits_mask[15]
                   ? _GEN_1388 | _GEN_1756
                   : _GEN_1324 | _GEN_1756)
-             : valid_15);	// frontend/src/zaqal/frontend/IBUF.scala:17:23, :22:27, :34:27, :37:25, :47:21, :48:20, :76:27, :85:{18,25}, :88:{22,28,41}, :89:{27,35,42}, :90:{35,42,64}, :91:{19,32}, :96:18, :97:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
+             : valid_15);	// frontend/src/zaqal/frontend/IBUF.scala:17:23, :22:27, :34:27, :37:25, :47:21, :48:20, :79:27, :88:{18,25}, :91:{22,28,41}, :92:{27,35,42}, :93:{35,42,64}, :94:{19,32}, :99:18, :100:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
       valid_16 <=
         ~(io_flush | (|deq_count)
           & (_head_T_5 < 7'h31
                ? _fired_T_198 & _head_T_5 > 7'h10
                : _fired_T_198 | _head_T_5 - 7'h30 > 7'h10))
-        & (_GEN_12
+        & (_GEN
              ? (io_inst_data_bits_mask[15]
                   ? _GEN_1390 | _GEN_1757
                   : _GEN_1325 | _GEN_1757)
-             : valid_16);	// frontend/src/zaqal/frontend/IBUF.scala:17:23, :22:27, :34:27, :37:25, :47:21, :48:20, :76:27, :85:{18,25}, :88:{22,28,41}, :89:{27,35,42}, :90:{35,42,64}, :91:{19,32}, :96:18, :97:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
+             : valid_16);	// frontend/src/zaqal/frontend/IBUF.scala:17:23, :22:27, :34:27, :37:25, :47:21, :48:20, :79:27, :88:{18,25}, :91:{22,28,41}, :92:{27,35,42}, :93:{35,42,64}, :94:{19,32}, :99:18, :100:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
       valid_17 <=
         ~(io_flush | (|deq_count)
           & (_head_T_5 < 7'h31
                ? _fired_T_210 & _head_T_5 > 7'h11
                : _fired_T_210 | _head_T_5 - 7'h30 > 7'h11))
-        & (_GEN_12
+        & (_GEN
              ? (io_inst_data_bits_mask[15]
                   ? _GEN_1392 | _GEN_1758
                   : _GEN_1326 | _GEN_1758)
-             : valid_17);	// frontend/src/zaqal/frontend/IBUF.scala:17:23, :22:27, :34:27, :37:25, :47:21, :48:20, :76:27, :85:{18,25}, :88:{22,28,41}, :89:{27,35,42}, :90:{35,42,64}, :91:{19,32}, :96:18, :97:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
+             : valid_17);	// frontend/src/zaqal/frontend/IBUF.scala:17:23, :22:27, :34:27, :37:25, :47:21, :48:20, :79:27, :88:{18,25}, :91:{22,28,41}, :92:{27,35,42}, :93:{35,42,64}, :94:{19,32}, :99:18, :100:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
       valid_18 <=
         ~(io_flush | (|deq_count)
           & (_head_T_5 < 7'h31
                ? _fired_T_222 & _head_T_5 > 7'h12
                : _fired_T_222 | _head_T_5 - 7'h30 > 7'h12))
-        & (_GEN_12
+        & (_GEN
              ? (io_inst_data_bits_mask[15]
                   ? _GEN_1394 | _GEN_1759
                   : _GEN_1327 | _GEN_1759)
-             : valid_18);	// frontend/src/zaqal/frontend/IBUF.scala:17:23, :22:27, :34:27, :37:25, :47:21, :48:20, :76:27, :85:{18,25}, :88:{22,28,41}, :89:{27,35,42}, :90:{35,42,64}, :91:{19,32}, :96:18, :97:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
+             : valid_18);	// frontend/src/zaqal/frontend/IBUF.scala:17:23, :22:27, :34:27, :37:25, :47:21, :48:20, :79:27, :88:{18,25}, :91:{22,28,41}, :92:{27,35,42}, :93:{35,42,64}, :94:{19,32}, :99:18, :100:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
       valid_19 <=
         ~(io_flush | (|deq_count)
           & (_head_T_5 < 7'h31
                ? _fired_T_234 & _head_T_5 > 7'h13
                : _fired_T_234 | _head_T_5 - 7'h30 > 7'h13))
-        & (_GEN_12
+        & (_GEN
              ? (io_inst_data_bits_mask[15]
                   ? _GEN_1396 | _GEN_1760
                   : _GEN_1328 | _GEN_1760)
-             : valid_19);	// frontend/src/zaqal/frontend/IBUF.scala:17:23, :22:27, :34:27, :37:25, :47:21, :48:20, :76:27, :85:{18,25}, :88:{22,28,41}, :89:{27,35,42}, :90:{35,42,64}, :91:{19,32}, :96:18, :97:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
+             : valid_19);	// frontend/src/zaqal/frontend/IBUF.scala:17:23, :22:27, :34:27, :37:25, :47:21, :48:20, :79:27, :88:{18,25}, :91:{22,28,41}, :92:{27,35,42}, :93:{35,42,64}, :94:{19,32}, :99:18, :100:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
       valid_20 <=
         ~(io_flush | (|deq_count)
           & (_head_T_5 < 7'h31
                ? _fired_T_246 & _head_T_5 > 7'h14
                : _fired_T_246 | _head_T_5 - 7'h30 > 7'h14))
-        & (_GEN_12
+        & (_GEN
              ? (io_inst_data_bits_mask[15]
                   ? _GEN_1398 | _GEN_1761
                   : _GEN_1329 | _GEN_1761)
-             : valid_20);	// frontend/src/zaqal/frontend/IBUF.scala:17:23, :22:27, :34:27, :37:25, :47:21, :48:20, :76:27, :85:{18,25}, :88:{22,28,41}, :89:{27,35,42}, :90:{35,42,64}, :91:{19,32}, :96:18, :97:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
+             : valid_20);	// frontend/src/zaqal/frontend/IBUF.scala:17:23, :22:27, :34:27, :37:25, :47:21, :48:20, :79:27, :88:{18,25}, :91:{22,28,41}, :92:{27,35,42}, :93:{35,42,64}, :94:{19,32}, :99:18, :100:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
       valid_21 <=
         ~(io_flush | (|deq_count)
           & (_head_T_5 < 7'h31
                ? _fired_T_258 & _head_T_5 > 7'h15
                : _fired_T_258 | _head_T_5 - 7'h30 > 7'h15))
-        & (_GEN_12
+        & (_GEN
              ? (io_inst_data_bits_mask[15]
                   ? _GEN_1400 | _GEN_1762
                   : _GEN_1330 | _GEN_1762)
-             : valid_21);	// frontend/src/zaqal/frontend/IBUF.scala:17:23, :22:27, :34:27, :37:25, :47:21, :48:20, :76:27, :85:{18,25}, :88:{22,28,41}, :89:{27,35,42}, :90:{35,42,64}, :91:{19,32}, :96:18, :97:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
+             : valid_21);	// frontend/src/zaqal/frontend/IBUF.scala:17:23, :22:27, :34:27, :37:25, :47:21, :48:20, :79:27, :88:{18,25}, :91:{22,28,41}, :92:{27,35,42}, :93:{35,42,64}, :94:{19,32}, :99:18, :100:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
       valid_22 <=
         ~(io_flush | (|deq_count)
           & (_head_T_5 < 7'h31
                ? _fired_T_270 & _head_T_5 > 7'h16
                : _fired_T_270 | _head_T_5 - 7'h30 > 7'h16))
-        & (_GEN_12
+        & (_GEN
              ? (io_inst_data_bits_mask[15]
                   ? _GEN_1402 | _GEN_1763
                   : _GEN_1331 | _GEN_1763)
-             : valid_22);	// frontend/src/zaqal/frontend/IBUF.scala:17:23, :22:27, :34:27, :37:25, :47:21, :48:20, :76:27, :85:{18,25}, :88:{22,28,41}, :89:{27,35,42}, :90:{35,42,64}, :91:{19,32}, :96:18, :97:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
+             : valid_22);	// frontend/src/zaqal/frontend/IBUF.scala:17:23, :22:27, :34:27, :37:25, :47:21, :48:20, :79:27, :88:{18,25}, :91:{22,28,41}, :92:{27,35,42}, :93:{35,42,64}, :94:{19,32}, :99:18, :100:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
       valid_23 <=
         ~(io_flush | (|deq_count)
           & (_head_T_5 < 7'h31
                ? _fired_T_282 & _head_T_5 > 7'h17
                : _fired_T_282 | _head_T_5 - 7'h30 > 7'h17))
-        & (_GEN_12
+        & (_GEN
              ? (io_inst_data_bits_mask[15]
                   ? _GEN_1404 | _GEN_1764
                   : _GEN_1332 | _GEN_1764)
-             : valid_23);	// frontend/src/zaqal/frontend/IBUF.scala:17:23, :22:27, :34:27, :37:25, :47:21, :48:20, :76:27, :85:{18,25}, :88:{22,28,41}, :89:{27,35,42}, :90:{35,42,64}, :91:{19,32}, :96:18, :97:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
+             : valid_23);	// frontend/src/zaqal/frontend/IBUF.scala:17:23, :22:27, :34:27, :37:25, :47:21, :48:20, :79:27, :88:{18,25}, :91:{22,28,41}, :92:{27,35,42}, :93:{35,42,64}, :94:{19,32}, :99:18, :100:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
       valid_24 <=
         ~(io_flush | (|deq_count)
           & (_head_T_5 < 7'h31
                ? _fired_T_294 & _head_T_5 > 7'h18
                : _fired_T_294 | _head_T_5 - 7'h30 > 7'h18))
-        & (_GEN_12
+        & (_GEN
              ? (io_inst_data_bits_mask[15]
                   ? _GEN_1406 | _GEN_1765
                   : _GEN_1333 | _GEN_1765)
-             : valid_24);	// frontend/src/zaqal/frontend/IBUF.scala:17:23, :22:27, :34:27, :37:25, :47:21, :48:20, :76:27, :85:{18,25}, :88:{22,28,41}, :89:{27,35,42}, :90:{35,42,64}, :91:{19,32}, :96:18, :97:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
+             : valid_24);	// frontend/src/zaqal/frontend/IBUF.scala:17:23, :22:27, :34:27, :37:25, :47:21, :48:20, :79:27, :88:{18,25}, :91:{22,28,41}, :92:{27,35,42}, :93:{35,42,64}, :94:{19,32}, :99:18, :100:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
       valid_25 <=
         ~(io_flush | (|deq_count)
           & (_head_T_5 < 7'h31
                ? _fired_T_306 & _head_T_5 > 7'h19
                : _fired_T_306 | _head_T_5 - 7'h30 > 7'h19))
-        & (_GEN_12
+        & (_GEN
              ? (io_inst_data_bits_mask[15]
                   ? _GEN_1408 | _GEN_1766
                   : _GEN_1334 | _GEN_1766)
-             : valid_25);	// frontend/src/zaqal/frontend/IBUF.scala:17:23, :22:27, :34:27, :37:25, :47:21, :48:20, :76:27, :85:{18,25}, :88:{22,28,41}, :89:{27,35,42}, :90:{35,42,64}, :91:{19,32}, :96:18, :97:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
+             : valid_25);	// frontend/src/zaqal/frontend/IBUF.scala:17:23, :22:27, :34:27, :37:25, :47:21, :48:20, :79:27, :88:{18,25}, :91:{22,28,41}, :92:{27,35,42}, :93:{35,42,64}, :94:{19,32}, :99:18, :100:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
       valid_26 <=
         ~(io_flush | (|deq_count)
           & (_head_T_5 < 7'h31
                ? _fired_T_318 & _head_T_5 > 7'h1A
                : _fired_T_318 | _head_T_5 - 7'h30 > 7'h1A))
-        & (_GEN_12
+        & (_GEN
              ? (io_inst_data_bits_mask[15]
                   ? _GEN_1410 | _GEN_1767
                   : _GEN_1335 | _GEN_1767)
-             : valid_26);	// frontend/src/zaqal/frontend/IBUF.scala:17:23, :22:27, :34:27, :37:25, :47:21, :48:20, :76:27, :85:{18,25}, :88:{22,28,41}, :89:{27,35,42}, :90:{35,42,64}, :91:{19,32}, :96:18, :97:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
+             : valid_26);	// frontend/src/zaqal/frontend/IBUF.scala:17:23, :22:27, :34:27, :37:25, :47:21, :48:20, :79:27, :88:{18,25}, :91:{22,28,41}, :92:{27,35,42}, :93:{35,42,64}, :94:{19,32}, :99:18, :100:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
       valid_27 <=
         ~(io_flush | (|deq_count)
           & (_head_T_5 < 7'h31
                ? _fired_T_330 & _head_T_5 > 7'h1B
                : _fired_T_330 | _head_T_5 - 7'h30 > 7'h1B))
-        & (_GEN_12
+        & (_GEN
              ? (io_inst_data_bits_mask[15]
                   ? _GEN_1412 | _GEN_1768
                   : _GEN_1336 | _GEN_1768)
-             : valid_27);	// frontend/src/zaqal/frontend/IBUF.scala:17:23, :22:27, :34:27, :37:25, :47:21, :48:20, :76:27, :85:{18,25}, :88:{22,28,41}, :89:{27,35,42}, :90:{35,42,64}, :91:{19,32}, :96:18, :97:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
+             : valid_27);	// frontend/src/zaqal/frontend/IBUF.scala:17:23, :22:27, :34:27, :37:25, :47:21, :48:20, :79:27, :88:{18,25}, :91:{22,28,41}, :92:{27,35,42}, :93:{35,42,64}, :94:{19,32}, :99:18, :100:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
       valid_28 <=
         ~(io_flush | (|deq_count)
           & (_head_T_5 < 7'h31
                ? _fired_T_342 & _head_T_5 > 7'h1C
                : _fired_T_342 | _head_T_5 - 7'h30 > 7'h1C))
-        & (_GEN_12
+        & (_GEN
              ? (io_inst_data_bits_mask[15]
                   ? _GEN_1414 | _GEN_1769
                   : _GEN_1337 | _GEN_1769)
-             : valid_28);	// frontend/src/zaqal/frontend/IBUF.scala:17:23, :22:27, :34:27, :37:25, :47:21, :48:20, :76:27, :85:{18,25}, :88:{22,28,41}, :89:{27,35,42}, :90:{35,42,64}, :91:{19,32}, :96:18, :97:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
+             : valid_28);	// frontend/src/zaqal/frontend/IBUF.scala:17:23, :22:27, :34:27, :37:25, :47:21, :48:20, :79:27, :88:{18,25}, :91:{22,28,41}, :92:{27,35,42}, :93:{35,42,64}, :94:{19,32}, :99:18, :100:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
       valid_29 <=
         ~(io_flush | (|deq_count)
           & (_head_T_5 < 7'h31
                ? _fired_T_354 & _head_T_5 > 7'h1D
                : _fired_T_354 | _head_T_5 - 7'h30 > 7'h1D))
-        & (_GEN_12
+        & (_GEN
              ? (io_inst_data_bits_mask[15]
                   ? _GEN_1416 | _GEN_1770
                   : _GEN_1338 | _GEN_1770)
-             : valid_29);	// frontend/src/zaqal/frontend/IBUF.scala:17:23, :22:27, :34:27, :37:25, :47:21, :48:20, :76:27, :85:{18,25}, :88:{22,28,41}, :89:{27,35,42}, :90:{35,42,64}, :91:{19,32}, :96:18, :97:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
+             : valid_29);	// frontend/src/zaqal/frontend/IBUF.scala:17:23, :22:27, :34:27, :37:25, :47:21, :48:20, :79:27, :88:{18,25}, :91:{22,28,41}, :92:{27,35,42}, :93:{35,42,64}, :94:{19,32}, :99:18, :100:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
       valid_30 <=
         ~(io_flush | (|deq_count)
           & (_head_T_5 < 7'h31
                ? _fired_T_366 & _head_T_5 > 7'h1E
                : _fired_T_366 | _head_T_5 - 7'h30 > 7'h1E))
-        & (_GEN_12
+        & (_GEN
              ? (io_inst_data_bits_mask[15]
                   ? _GEN_1418 | _GEN_1771
                   : _GEN_1339 | _GEN_1771)
-             : valid_30);	// frontend/src/zaqal/frontend/IBUF.scala:17:23, :22:27, :34:27, :37:25, :47:21, :48:20, :76:27, :85:{18,25}, :88:{22,28,41}, :89:{27,35,42}, :90:{35,42,64}, :91:{19,32}, :96:18, :97:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
+             : valid_30);	// frontend/src/zaqal/frontend/IBUF.scala:17:23, :22:27, :34:27, :37:25, :47:21, :48:20, :79:27, :88:{18,25}, :91:{22,28,41}, :92:{27,35,42}, :93:{35,42,64}, :94:{19,32}, :99:18, :100:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
       valid_31 <=
         ~(io_flush | (|deq_count)
           & (_head_T_5 < 7'h31
                ? ~(head[5]) & (|(_head_T_5[6:5]))
                : ~(head[5]) | (|(_fired_T_380[6:5]))))
-        & (_GEN_12
+        & (_GEN
              ? (io_inst_data_bits_mask[15]
                   ? _GEN_1420 | _GEN_1772
                   : _GEN_1340 | _GEN_1772)
-             : valid_31);	// frontend/src/zaqal/frontend/IBUF.scala:17:23, :18:23, :22:27, :34:27, :37:25, :47:21, :48:20, :76:27, :85:{18,25}, :88:{22,28,41}, :89:{27,35,42}, :90:{35,42,64}, :91:{19,32}, :96:18, :97:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
+             : valid_31);	// frontend/src/zaqal/frontend/IBUF.scala:17:23, :18:23, :22:27, :34:27, :37:25, :47:21, :48:20, :79:27, :88:{18,25}, :91:{22,28,41}, :92:{27,35,42}, :93:{35,42,64}, :94:{19,32}, :99:18, :100:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
       valid_32 <=
         ~(io_flush | (|deq_count)
           & (_head_T_5 < 7'h31
                ? _fired_T_390 & _head_T_5 > 7'h20
                : _fired_T_390 | _head_T_5 - 7'h30 > 7'h20))
-        & (_GEN_12
+        & (_GEN
              ? (io_inst_data_bits_mask[15]
                   ? _GEN_1422 | _GEN_1773
                   : _GEN_1341 | _GEN_1773)
-             : valid_32);	// frontend/src/zaqal/frontend/IBUF.scala:17:23, :22:27, :34:27, :37:25, :47:21, :48:20, :76:27, :85:{18,25}, :88:{22,28,41}, :89:{27,35,42}, :90:{35,42,64}, :91:{19,32}, :96:18, :97:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
+             : valid_32);	// frontend/src/zaqal/frontend/IBUF.scala:17:23, :22:27, :34:27, :37:25, :47:21, :48:20, :79:27, :88:{18,25}, :91:{22,28,41}, :92:{27,35,42}, :93:{35,42,64}, :94:{19,32}, :99:18, :100:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
       valid_33 <=
         ~(io_flush | (|deq_count)
           & (_head_T_5 < 7'h31
                ? _fired_T_402 & _head_T_5 > 7'h21
                : _fired_T_402 | _head_T_5 - 7'h30 > 7'h21))
-        & (_GEN_12
+        & (_GEN
              ? (io_inst_data_bits_mask[15]
                   ? _GEN_1424 | _GEN_1774
                   : _GEN_1342 | _GEN_1774)
-             : valid_33);	// frontend/src/zaqal/frontend/IBUF.scala:17:23, :22:27, :34:27, :37:25, :47:21, :48:20, :76:27, :85:{18,25}, :88:{22,28,41}, :89:{27,35,42}, :90:{35,42,64}, :91:{19,32}, :96:18, :97:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
+             : valid_33);	// frontend/src/zaqal/frontend/IBUF.scala:17:23, :22:27, :34:27, :37:25, :47:21, :48:20, :79:27, :88:{18,25}, :91:{22,28,41}, :92:{27,35,42}, :93:{35,42,64}, :94:{19,32}, :99:18, :100:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
       valid_34 <=
         ~(io_flush | (|deq_count)
           & (_head_T_5 < 7'h31
                ? _fired_T_414 & _head_T_5 > 7'h22
                : _fired_T_414 | _head_T_5 - 7'h30 > 7'h22))
-        & (_GEN_12
+        & (_GEN
              ? (io_inst_data_bits_mask[15]
                   ? _GEN_1426 | _GEN_1775
                   : _GEN_1343 | _GEN_1775)
-             : valid_34);	// frontend/src/zaqal/frontend/IBUF.scala:17:23, :22:27, :34:27, :37:25, :47:21, :48:20, :76:27, :85:{18,25}, :88:{22,28,41}, :89:{27,35,42}, :90:{35,42,64}, :91:{19,32}, :96:18, :97:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
+             : valid_34);	// frontend/src/zaqal/frontend/IBUF.scala:17:23, :22:27, :34:27, :37:25, :47:21, :48:20, :79:27, :88:{18,25}, :91:{22,28,41}, :92:{27,35,42}, :93:{35,42,64}, :94:{19,32}, :99:18, :100:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
       valid_35 <=
         ~(io_flush | (|deq_count)
           & (_head_T_5 < 7'h31
                ? _fired_T_426 & _head_T_5 > 7'h23
                : _fired_T_426 | _head_T_5 - 7'h30 > 7'h23))
-        & (_GEN_12
+        & (_GEN
              ? (io_inst_data_bits_mask[15]
                   ? _GEN_1428 | _GEN_1776
                   : _GEN_1344 | _GEN_1776)
-             : valid_35);	// frontend/src/zaqal/frontend/IBUF.scala:17:23, :22:27, :34:27, :37:25, :47:21, :48:20, :76:27, :85:{18,25}, :88:{22,28,41}, :89:{27,35,42}, :90:{35,42,64}, :91:{19,32}, :96:18, :97:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
+             : valid_35);	// frontend/src/zaqal/frontend/IBUF.scala:17:23, :22:27, :34:27, :37:25, :47:21, :48:20, :79:27, :88:{18,25}, :91:{22,28,41}, :92:{27,35,42}, :93:{35,42,64}, :94:{19,32}, :99:18, :100:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
       valid_36 <=
         ~(io_flush | (|deq_count)
           & (_head_T_5 < 7'h31
                ? _fired_T_438 & _head_T_5 > 7'h24
                : _fired_T_438 | _head_T_5 - 7'h30 > 7'h24))
-        & (_GEN_12
+        & (_GEN
              ? (io_inst_data_bits_mask[15]
                   ? _GEN_1430 | _GEN_1777
                   : _GEN_1345 | _GEN_1777)
-             : valid_36);	// frontend/src/zaqal/frontend/IBUF.scala:17:23, :22:27, :34:27, :37:25, :47:21, :48:20, :76:27, :85:{18,25}, :88:{22,28,41}, :89:{27,35,42}, :90:{35,42,64}, :91:{19,32}, :96:18, :97:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
+             : valid_36);	// frontend/src/zaqal/frontend/IBUF.scala:17:23, :22:27, :34:27, :37:25, :47:21, :48:20, :79:27, :88:{18,25}, :91:{22,28,41}, :92:{27,35,42}, :93:{35,42,64}, :94:{19,32}, :99:18, :100:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
       valid_37 <=
         ~(io_flush | (|deq_count)
           & (_head_T_5 < 7'h31
                ? _fired_T_450 & _head_T_5 > 7'h25
                : _fired_T_450 | _head_T_5 - 7'h30 > 7'h25))
-        & (_GEN_12
+        & (_GEN
              ? (io_inst_data_bits_mask[15]
                   ? _GEN_1432 | _GEN_1778
                   : _GEN_1346 | _GEN_1778)
-             : valid_37);	// frontend/src/zaqal/frontend/IBUF.scala:17:23, :22:27, :34:27, :37:25, :47:21, :48:20, :76:27, :85:{18,25}, :88:{22,28,41}, :89:{27,35,42}, :90:{35,42,64}, :91:{19,32}, :96:18, :97:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
+             : valid_37);	// frontend/src/zaqal/frontend/IBUF.scala:17:23, :22:27, :34:27, :37:25, :47:21, :48:20, :79:27, :88:{18,25}, :91:{22,28,41}, :92:{27,35,42}, :93:{35,42,64}, :94:{19,32}, :99:18, :100:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
       valid_38 <=
         ~(io_flush | (|deq_count)
           & (_head_T_5 < 7'h31
                ? _fired_T_462 & _head_T_5 > 7'h26
                : _fired_T_462 | _head_T_5 - 7'h30 > 7'h26))
-        & (_GEN_12
+        & (_GEN
              ? (io_inst_data_bits_mask[15]
                   ? _GEN_1434 | _GEN_1779
                   : _GEN_1347 | _GEN_1779)
-             : valid_38);	// frontend/src/zaqal/frontend/IBUF.scala:17:23, :22:27, :34:27, :37:25, :47:21, :48:20, :76:27, :85:{18,25}, :88:{22,28,41}, :89:{27,35,42}, :90:{35,42,64}, :91:{19,32}, :96:18, :97:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
+             : valid_38);	// frontend/src/zaqal/frontend/IBUF.scala:17:23, :22:27, :34:27, :37:25, :47:21, :48:20, :79:27, :88:{18,25}, :91:{22,28,41}, :92:{27,35,42}, :93:{35,42,64}, :94:{19,32}, :99:18, :100:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
       valid_39 <=
         ~(io_flush | (|deq_count)
           & (_head_T_5 < 7'h31
                ? _fired_T_474 & _head_T_5 > 7'h27
                : _fired_T_474 | _head_T_5 - 7'h30 > 7'h27))
-        & (_GEN_12
+        & (_GEN
              ? (io_inst_data_bits_mask[15]
                   ? _GEN_1436 | _GEN_1780
                   : _GEN_1348 | _GEN_1780)
-             : valid_39);	// frontend/src/zaqal/frontend/IBUF.scala:17:23, :22:27, :34:27, :37:25, :47:21, :48:20, :76:27, :85:{18,25}, :88:{22,28,41}, :89:{27,35,42}, :90:{35,42,64}, :91:{19,32}, :96:18, :97:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
+             : valid_39);	// frontend/src/zaqal/frontend/IBUF.scala:17:23, :22:27, :34:27, :37:25, :47:21, :48:20, :79:27, :88:{18,25}, :91:{22,28,41}, :92:{27,35,42}, :93:{35,42,64}, :94:{19,32}, :99:18, :100:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
       valid_40 <=
         ~(io_flush | (|deq_count)
           & (_head_T_5 < 7'h31
                ? _fired_T_486 & _head_T_5 > 7'h28
                : _fired_T_486 | _head_T_5 - 7'h30 > 7'h28))
-        & (_GEN_12
+        & (_GEN
              ? (io_inst_data_bits_mask[15]
                   ? _GEN_1438 | _GEN_1781
                   : _GEN_1349 | _GEN_1781)
-             : valid_40);	// frontend/src/zaqal/frontend/IBUF.scala:17:23, :22:27, :34:27, :37:25, :47:21, :48:20, :76:27, :85:{18,25}, :88:{22,28,41}, :89:{27,35,42}, :90:{35,42,64}, :91:{19,32}, :96:18, :97:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
+             : valid_40);	// frontend/src/zaqal/frontend/IBUF.scala:17:23, :22:27, :34:27, :37:25, :47:21, :48:20, :79:27, :88:{18,25}, :91:{22,28,41}, :92:{27,35,42}, :93:{35,42,64}, :94:{19,32}, :99:18, :100:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
       valid_41 <=
         ~(io_flush | (|deq_count)
           & (_head_T_5 < 7'h31
                ? _fired_T_498 & _head_T_5 > 7'h29
                : _fired_T_498 | _head_T_5 - 7'h30 > 7'h29))
-        & (_GEN_12
+        & (_GEN
              ? (io_inst_data_bits_mask[15]
                   ? _GEN_1440 | _GEN_1782
                   : _GEN_1350 | _GEN_1782)
-             : valid_41);	// frontend/src/zaqal/frontend/IBUF.scala:17:23, :22:27, :34:27, :37:25, :47:21, :48:20, :76:27, :85:{18,25}, :88:{22,28,41}, :89:{27,35,42}, :90:{35,42,64}, :91:{19,32}, :96:18, :97:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
+             : valid_41);	// frontend/src/zaqal/frontend/IBUF.scala:17:23, :22:27, :34:27, :37:25, :47:21, :48:20, :79:27, :88:{18,25}, :91:{22,28,41}, :92:{27,35,42}, :93:{35,42,64}, :94:{19,32}, :99:18, :100:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
       valid_42 <=
         ~(io_flush | (|deq_count)
           & (_head_T_5 < 7'h31
                ? _fired_T_510 & _head_T_5 > 7'h2A
                : _fired_T_510 | _head_T_5 - 7'h30 > 7'h2A))
-        & (_GEN_12
+        & (_GEN
              ? (io_inst_data_bits_mask[15]
                   ? _GEN_1442 | _GEN_1783
                   : _GEN_1351 | _GEN_1783)
-             : valid_42);	// frontend/src/zaqal/frontend/IBUF.scala:17:23, :22:27, :34:27, :37:25, :47:21, :48:20, :76:27, :85:{18,25}, :88:{22,28,41}, :89:{27,35,42}, :90:{35,42,64}, :91:{19,32}, :96:18, :97:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
+             : valid_42);	// frontend/src/zaqal/frontend/IBUF.scala:17:23, :22:27, :34:27, :37:25, :47:21, :48:20, :79:27, :88:{18,25}, :91:{22,28,41}, :92:{27,35,42}, :93:{35,42,64}, :94:{19,32}, :99:18, :100:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
       valid_43 <=
         ~(io_flush | (|deq_count)
           & (_head_T_5 < 7'h31
                ? _fired_T_522 & _head_T_5 > 7'h2B
                : _fired_T_522 | _head_T_5 - 7'h30 > 7'h2B))
-        & (_GEN_12
+        & (_GEN
              ? (io_inst_data_bits_mask[15]
                   ? _GEN_1444 | _GEN_1784
                   : _GEN_1352 | _GEN_1784)
-             : valid_43);	// frontend/src/zaqal/frontend/IBUF.scala:17:23, :22:27, :34:27, :37:25, :47:21, :48:20, :76:27, :85:{18,25}, :88:{22,28,41}, :89:{27,35,42}, :90:{35,42,64}, :91:{19,32}, :96:18, :97:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
+             : valid_43);	// frontend/src/zaqal/frontend/IBUF.scala:17:23, :22:27, :34:27, :37:25, :47:21, :48:20, :79:27, :88:{18,25}, :91:{22,28,41}, :92:{27,35,42}, :93:{35,42,64}, :94:{19,32}, :99:18, :100:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
       valid_44 <=
         ~(io_flush | (|deq_count)
           & (_head_T_5 < 7'h31
                ? _fired_T_534 & _head_T_5 > 7'h2C
                : _fired_T_534 | _head_T_5 - 7'h30 > 7'h2C))
-        & (_GEN_12
+        & (_GEN
              ? (io_inst_data_bits_mask[15]
                   ? _GEN_1446 | _GEN_1785
                   : _GEN_1353 | _GEN_1785)
-             : valid_44);	// frontend/src/zaqal/frontend/IBUF.scala:17:23, :22:27, :34:27, :37:25, :47:21, :48:20, :76:27, :85:{18,25}, :88:{22,28,41}, :89:{27,35,42}, :90:{35,42,64}, :91:{19,32}, :96:18, :97:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
+             : valid_44);	// frontend/src/zaqal/frontend/IBUF.scala:17:23, :22:27, :34:27, :37:25, :47:21, :48:20, :79:27, :88:{18,25}, :91:{22,28,41}, :92:{27,35,42}, :93:{35,42,64}, :94:{19,32}, :99:18, :100:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
       valid_45 <=
         ~(io_flush | (|deq_count)
           & (_head_T_5 < 7'h31
                ? _fired_T_546 & _head_T_5 > 7'h2D
                : _fired_T_546 | _head_T_5 - 7'h30 > 7'h2D))
-        & (_GEN_12
+        & (_GEN
              ? (io_inst_data_bits_mask[15]
                   ? _GEN_1448 | _GEN_1786
                   : _GEN_1354 | _GEN_1786)
-             : valid_45);	// frontend/src/zaqal/frontend/IBUF.scala:17:23, :22:27, :34:27, :37:25, :47:21, :48:20, :76:27, :85:{18,25}, :88:{22,28,41}, :89:{27,35,42}, :90:{35,42,64}, :91:{19,32}, :96:18, :97:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
+             : valid_45);	// frontend/src/zaqal/frontend/IBUF.scala:17:23, :22:27, :34:27, :37:25, :47:21, :48:20, :79:27, :88:{18,25}, :91:{22,28,41}, :92:{27,35,42}, :93:{35,42,64}, :94:{19,32}, :99:18, :100:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
       valid_46 <=
         ~(io_flush | (|deq_count)
           & (_head_T_5 < 7'h31
                ? _fired_T_558 & _head_T_5 > 7'h2E
                : _fired_T_558 | _head_T_5 - 7'h30 > 7'h2E))
-        & (_GEN_12
+        & (_GEN
              ? (io_inst_data_bits_mask[15]
                   ? _GEN_1450 | _GEN_1787
                   : _GEN_1355 | _GEN_1787)
-             : valid_46);	// frontend/src/zaqal/frontend/IBUF.scala:17:23, :22:27, :34:27, :37:25, :47:21, :48:20, :76:27, :85:{18,25}, :88:{22,28,41}, :89:{27,35,42}, :90:{35,42,64}, :91:{19,32}, :96:18, :97:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
+             : valid_46);	// frontend/src/zaqal/frontend/IBUF.scala:17:23, :22:27, :34:27, :37:25, :47:21, :48:20, :79:27, :88:{18,25}, :91:{22,28,41}, :92:{27,35,42}, :93:{35,42,64}, :94:{19,32}, :99:18, :100:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
       valid_47 <=
         ~(io_flush | (|deq_count)
           & (_head_T_5 < 7'h31
                ? _fired_T_570 & _head_T_5 > 7'h2F
                : _fired_T_570 | _head_T_5 - 7'h30 > 7'h2F))
-        & (_GEN_12
+        & (_GEN
              ? (io_inst_data_bits_mask[15]
                   ? _GEN_1452 | _GEN_1788
                   : _GEN_1356 | _GEN_1788)
-             : valid_47);	// frontend/src/zaqal/frontend/IBUF.scala:17:23, :22:27, :34:27, :37:25, :47:21, :48:20, :76:27, :85:{18,25}, :88:{22,28,41}, :89:{27,35,42}, :90:{35,42,64}, :91:{19,32}, :96:18, :97:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
+             : valid_47);	// frontend/src/zaqal/frontend/IBUF.scala:17:23, :22:27, :34:27, :37:25, :47:21, :48:20, :79:27, :88:{18,25}, :91:{22,28,41}, :92:{27,35,42}, :93:{35,42,64}, :94:{19,32}, :99:18, :100:21, src/main/scala/chisel3/util/Decoupled.scala:51:35
       if (io_flush) begin	// frontend/src/zaqal/frontend/IBUF.scala:10:14
         head <= 6'h0;	// frontend/src/zaqal/frontend/IBUF.scala:18:23
         tail <= 6'h0;	// frontend/src/zaqal/frontend/IBUF.scala:18:23, :19:23
       end
       else begin	// frontend/src/zaqal/frontend/IBUF.scala:10:14
-        if (|deq_count)	// frontend/src/zaqal/frontend/IBUF.scala:76:27, :85:18
-          head <= _head_T_5 > 7'h2F ? _head_T_5[5:0] + 6'h10 : _head_T_5[5:0];	// frontend/src/zaqal/frontend/IBUF.scala:18:23, :47:21, :88:28, :89:42, :93:{16,35,68}
-        if (_GEN_12)	// src/main/scala/chisel3/util/Decoupled.scala:51:35
-          tail <= _tail_T_5 > 7'h2F ? _tail_T_5[5:0] + 6'h10 : _tail_T_5[5:0];	// frontend/src/zaqal/frontend/IBUF.scala:19:23, :47:21, :51:{16,22,35,68}, :89:42
+        if (|deq_count)	// frontend/src/zaqal/frontend/IBUF.scala:79:27, :88:18
+          head <= _head_T_5 > 7'h2F ? _head_T_5[5:0] + 6'h10 : _head_T_5[5:0];	// frontend/src/zaqal/frontend/IBUF.scala:18:23, :47:21, :91:28, :92:42, :96:{16,35,68}
+        if (_GEN)	// src/main/scala/chisel3/util/Decoupled.scala:51:35
+          tail <= _tail_T_5 > 7'h2F ? _tail_T_5[5:0] + 6'h10 : _tail_T_5[5:0];	// frontend/src/zaqal/frontend/IBUF.scala:19:23, :47:21, :51:{16,22,35,68}, :92:42
       end
     end
   end // always @(posedge)
@@ -11763,59 +11773,59 @@ module IBUF(	// frontend/src/zaqal/frontend/IBUF.scala:9:7
     `endif // FIRRTL_AFTER_INITIAL
   `endif // ENABLE_INITIAL_REG_
   assign io_inst_data_ready = io_inst_data_ready_0;	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :24:33
-  assign io_out_0_valid = io_out_0_valid_0;	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :81:42
-  assign io_out_0_bits_pc = _GEN_3[wrapped_ptr];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :80:26, :82:21
-  assign io_out_0_bits_inst_raw = _GEN_4[wrapped_ptr];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :80:26, :82:21
-  assign io_out_0_bits_pre_is_rvc = _GEN_5[wrapped_ptr];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :80:26, :82:21
-  assign io_out_0_bits_pre_expanded_inst = _GEN_6[wrapped_ptr];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :80:26, :82:21
-  assign io_out_0_bits_ftqPtr = _GEN_7[wrapped_ptr];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :80:26, :82:21
-  assign io_out_0_bits_is_predicted_taken = _GEN_8[wrapped_ptr];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :80:26, :82:21
-  assign io_out_0_bits_predicted_target = _GEN_9[wrapped_ptr];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :80:26, :82:21
-  assign io_out_0_bits_epoch = _GEN_10[wrapped_ptr];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :80:26, :82:21
-  assign io_out_1_valid = io_out_1_valid_0;	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :81:42
-  assign io_out_1_bits_pc = _GEN_3[wrapped_ptr_1];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :80:26, :82:21
-  assign io_out_1_bits_inst_raw = _GEN_4[wrapped_ptr_1];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :80:26, :82:21
-  assign io_out_1_bits_pre_is_rvc = _GEN_5[wrapped_ptr_1];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :80:26, :82:21
-  assign io_out_1_bits_pre_expanded_inst = _GEN_6[wrapped_ptr_1];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :80:26, :82:21
-  assign io_out_1_bits_ftqPtr = _GEN_7[wrapped_ptr_1];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :80:26, :82:21
-  assign io_out_1_bits_is_predicted_taken = _GEN_8[wrapped_ptr_1];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :80:26, :82:21
-  assign io_out_1_bits_predicted_target = _GEN_9[wrapped_ptr_1];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :80:26, :82:21
-  assign io_out_1_bits_epoch = _GEN_10[wrapped_ptr_1];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :80:26, :82:21
-  assign io_out_2_valid = io_out_2_valid_0;	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :81:42
-  assign io_out_2_bits_pc = _GEN_3[wrapped_ptr_2];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :80:26, :82:21
-  assign io_out_2_bits_inst_raw = _GEN_4[wrapped_ptr_2];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :80:26, :82:21
-  assign io_out_2_bits_pre_is_rvc = _GEN_5[wrapped_ptr_2];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :80:26, :82:21
-  assign io_out_2_bits_pre_expanded_inst = _GEN_6[wrapped_ptr_2];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :80:26, :82:21
-  assign io_out_2_bits_ftqPtr = _GEN_7[wrapped_ptr_2];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :80:26, :82:21
-  assign io_out_2_bits_is_predicted_taken = _GEN_8[wrapped_ptr_2];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :80:26, :82:21
-  assign io_out_2_bits_predicted_target = _GEN_9[wrapped_ptr_2];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :80:26, :82:21
-  assign io_out_2_bits_epoch = _GEN_10[wrapped_ptr_2];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :80:26, :82:21
-  assign io_out_3_valid = io_out_3_valid_0;	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :81:42
-  assign io_out_3_bits_pc = _GEN_3[wrapped_ptr_3];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :80:26, :82:21
-  assign io_out_3_bits_inst_raw = _GEN_4[wrapped_ptr_3];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :80:26, :82:21
-  assign io_out_3_bits_pre_is_rvc = _GEN_5[wrapped_ptr_3];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :80:26, :82:21
-  assign io_out_3_bits_pre_expanded_inst = _GEN_6[wrapped_ptr_3];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :80:26, :82:21
-  assign io_out_3_bits_ftqPtr = _GEN_7[wrapped_ptr_3];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :80:26, :82:21
-  assign io_out_3_bits_is_predicted_taken = _GEN_8[wrapped_ptr_3];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :80:26, :82:21
-  assign io_out_3_bits_predicted_target = _GEN_9[wrapped_ptr_3];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :80:26, :82:21
-  assign io_out_3_bits_epoch = _GEN_10[wrapped_ptr_3];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :80:26, :82:21
-  assign io_out_4_valid = io_out_4_valid_0;	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :81:42
-  assign io_out_4_bits_pc = _GEN_3[wrapped_ptr_4];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :80:26, :82:21
-  assign io_out_4_bits_inst_raw = _GEN_4[wrapped_ptr_4];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :80:26, :82:21
-  assign io_out_4_bits_pre_is_rvc = _GEN_5[wrapped_ptr_4];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :80:26, :82:21
-  assign io_out_4_bits_pre_expanded_inst = _GEN_6[wrapped_ptr_4];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :80:26, :82:21
-  assign io_out_4_bits_ftqPtr = _GEN_7[wrapped_ptr_4];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :80:26, :82:21
-  assign io_out_4_bits_is_predicted_taken = _GEN_8[wrapped_ptr_4];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :80:26, :82:21
-  assign io_out_4_bits_predicted_target = _GEN_9[wrapped_ptr_4];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :80:26, :82:21
-  assign io_out_4_bits_epoch = _GEN_10[wrapped_ptr_4];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :80:26, :82:21
-  assign io_out_5_valid = io_out_5_valid_0;	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :81:42
-  assign io_out_5_bits_pc = _GEN_3[wrapped_ptr_5];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :80:26, :82:21
-  assign io_out_5_bits_inst_raw = _GEN_4[wrapped_ptr_5];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :80:26, :82:21
-  assign io_out_5_bits_pre_is_rvc = _GEN_5[wrapped_ptr_5];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :80:26, :82:21
-  assign io_out_5_bits_pre_expanded_inst = _GEN_6[wrapped_ptr_5];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :80:26, :82:21
-  assign io_out_5_bits_ftqPtr = _GEN_7[wrapped_ptr_5];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :80:26, :82:21
-  assign io_out_5_bits_is_predicted_taken = _GEN_8[wrapped_ptr_5];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :80:26, :82:21
-  assign io_out_5_bits_predicted_target = _GEN_9[wrapped_ptr_5];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :80:26, :82:21
-  assign io_out_5_bits_epoch = _GEN_10[wrapped_ptr_5];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :80:26, :82:21
+  assign io_out_0_valid = io_out_0_valid_0;	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :84:42
+  assign io_out_0_bits_pc = _GEN_4[wrapped_ptr];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :83:26, :85:21
+  assign io_out_0_bits_inst_raw = _GEN_5[wrapped_ptr];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :83:26, :85:21
+  assign io_out_0_bits_pre_is_rvc = _GEN_6[wrapped_ptr];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :83:26, :85:21
+  assign io_out_0_bits_pre_expanded_inst = _GEN_7[wrapped_ptr];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :83:26, :85:21
+  assign io_out_0_bits_ftqPtr = _GEN_8[wrapped_ptr];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :83:26, :85:21
+  assign io_out_0_bits_is_predicted_taken = _GEN_9[wrapped_ptr];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :83:26, :85:21
+  assign io_out_0_bits_predicted_target = _GEN_10[wrapped_ptr];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :83:26, :85:21
+  assign io_out_0_bits_epoch = _GEN_11[wrapped_ptr];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :83:26, :85:21
+  assign io_out_1_valid = io_out_1_valid_0;	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :84:42
+  assign io_out_1_bits_pc = _GEN_4[wrapped_ptr_1];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :83:26, :85:21
+  assign io_out_1_bits_inst_raw = _GEN_5[wrapped_ptr_1];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :83:26, :85:21
+  assign io_out_1_bits_pre_is_rvc = _GEN_6[wrapped_ptr_1];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :83:26, :85:21
+  assign io_out_1_bits_pre_expanded_inst = _GEN_7[wrapped_ptr_1];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :83:26, :85:21
+  assign io_out_1_bits_ftqPtr = _GEN_8[wrapped_ptr_1];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :83:26, :85:21
+  assign io_out_1_bits_is_predicted_taken = _GEN_9[wrapped_ptr_1];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :83:26, :85:21
+  assign io_out_1_bits_predicted_target = _GEN_10[wrapped_ptr_1];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :83:26, :85:21
+  assign io_out_1_bits_epoch = _GEN_11[wrapped_ptr_1];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :83:26, :85:21
+  assign io_out_2_valid = io_out_2_valid_0;	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :84:42
+  assign io_out_2_bits_pc = _GEN_4[wrapped_ptr_2];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :83:26, :85:21
+  assign io_out_2_bits_inst_raw = _GEN_5[wrapped_ptr_2];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :83:26, :85:21
+  assign io_out_2_bits_pre_is_rvc = _GEN_6[wrapped_ptr_2];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :83:26, :85:21
+  assign io_out_2_bits_pre_expanded_inst = _GEN_7[wrapped_ptr_2];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :83:26, :85:21
+  assign io_out_2_bits_ftqPtr = _GEN_8[wrapped_ptr_2];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :83:26, :85:21
+  assign io_out_2_bits_is_predicted_taken = _GEN_9[wrapped_ptr_2];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :83:26, :85:21
+  assign io_out_2_bits_predicted_target = _GEN_10[wrapped_ptr_2];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :83:26, :85:21
+  assign io_out_2_bits_epoch = _GEN_11[wrapped_ptr_2];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :83:26, :85:21
+  assign io_out_3_valid = io_out_3_valid_0;	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :84:42
+  assign io_out_3_bits_pc = _GEN_4[wrapped_ptr_3];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :83:26, :85:21
+  assign io_out_3_bits_inst_raw = _GEN_5[wrapped_ptr_3];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :83:26, :85:21
+  assign io_out_3_bits_pre_is_rvc = _GEN_6[wrapped_ptr_3];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :83:26, :85:21
+  assign io_out_3_bits_pre_expanded_inst = _GEN_7[wrapped_ptr_3];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :83:26, :85:21
+  assign io_out_3_bits_ftqPtr = _GEN_8[wrapped_ptr_3];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :83:26, :85:21
+  assign io_out_3_bits_is_predicted_taken = _GEN_9[wrapped_ptr_3];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :83:26, :85:21
+  assign io_out_3_bits_predicted_target = _GEN_10[wrapped_ptr_3];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :83:26, :85:21
+  assign io_out_3_bits_epoch = _GEN_11[wrapped_ptr_3];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :83:26, :85:21
+  assign io_out_4_valid = io_out_4_valid_0;	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :84:42
+  assign io_out_4_bits_pc = _GEN_4[wrapped_ptr_4];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :83:26, :85:21
+  assign io_out_4_bits_inst_raw = _GEN_5[wrapped_ptr_4];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :83:26, :85:21
+  assign io_out_4_bits_pre_is_rvc = _GEN_6[wrapped_ptr_4];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :83:26, :85:21
+  assign io_out_4_bits_pre_expanded_inst = _GEN_7[wrapped_ptr_4];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :83:26, :85:21
+  assign io_out_4_bits_ftqPtr = _GEN_8[wrapped_ptr_4];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :83:26, :85:21
+  assign io_out_4_bits_is_predicted_taken = _GEN_9[wrapped_ptr_4];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :83:26, :85:21
+  assign io_out_4_bits_predicted_target = _GEN_10[wrapped_ptr_4];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :83:26, :85:21
+  assign io_out_4_bits_epoch = _GEN_11[wrapped_ptr_4];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :83:26, :85:21
+  assign io_out_5_valid = io_out_5_valid_0;	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :84:42
+  assign io_out_5_bits_pc = _GEN_4[wrapped_ptr_5];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :83:26, :85:21
+  assign io_out_5_bits_inst_raw = _GEN_5[wrapped_ptr_5];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :83:26, :85:21
+  assign io_out_5_bits_pre_is_rvc = _GEN_6[wrapped_ptr_5];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :83:26, :85:21
+  assign io_out_5_bits_pre_expanded_inst = _GEN_7[wrapped_ptr_5];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :83:26, :85:21
+  assign io_out_5_bits_ftqPtr = _GEN_8[wrapped_ptr_5];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :83:26, :85:21
+  assign io_out_5_bits_is_predicted_taken = _GEN_9[wrapped_ptr_5];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :83:26, :85:21
+  assign io_out_5_bits_predicted_target = _GEN_10[wrapped_ptr_5];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :83:26, :85:21
+  assign io_out_5_bits_epoch = _GEN_11[wrapped_ptr_5];	// frontend/src/zaqal/frontend/IBUF.scala:9:7, :83:26, :85:21
 endmodule
 

@@ -147,12 +147,16 @@ class Rob(val numWb: Int = 14)(implicit val p: Parameters) extends Module with H
       }
       maybeFull := false.B
     } .otherwise {
-      // Flush branch misprediction: only younger speculative entries
+      // Flush branch misprediction or replay: only younger speculative entries
       val dist_branch = robDist(io.bpu_redirect.robIdx)
-      enqPtr := Mux(io.bpu_redirect.robIdx === (robSize - 1).U, 0.U, io.bpu_redirect.robIdx + 1.U)
+      val next_enq = Mux(io.bpu_redirect.is_cfi,
+                         Mux(io.bpu_redirect.robIdx === (robSize - 1).U, 0.U, io.bpu_redirect.robIdx + 1.U),
+                         io.bpu_redirect.robIdx)
+      enqPtr := next_enq
       for (i <- 0 until robSize) {
         val dist_i = robDist(i.U)
-        when(robEntries(i).valid && (dist_i > dist_branch)) {
+        val should_clear = Mux(io.bpu_redirect.is_cfi, dist_i > dist_branch, dist_i >= dist_branch)
+        when(robEntries(i).valid && should_clear) {
           robEntries(i).valid := false.B
         }
       }
@@ -163,7 +167,7 @@ class Rob(val numWb: Int = 14)(implicit val p: Parameters) extends Module with H
   val dist_branch_flush = robDist(io.bpu_redirect.robIdx)
   for (i <- 0 until robSize) {
     val dist_i = robDist(i.U)
-    val is_flushed = headHasException || (io.bpu_redirect.valid && (io.bpu_redirect.is_exception || (dist_i > dist_branch_flush)))
+    val is_flushed = headHasException || (io.bpu_redirect.valid && (io.bpu_redirect.is_exception || Mux(io.bpu_redirect.is_cfi, dist_i > dist_branch_flush, dist_i >= dist_branch_flush)))
     io.flushed_pdest(i).valid := is_flushed && robEntries(i).valid && robEntries(i).rfWen && (robEntries(i).pdest =/= 0.U)
     io.flushed_pdest(i).bits  := robEntries(i).pdest
   }

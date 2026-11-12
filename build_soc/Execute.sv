@@ -3619,15 +3619,17 @@ module Execute(	// backend/src/zaqal/backend/exu/Execute.scala:11:7
      {exe_uop_int_1_robIdx},
      {exe_uop_int_0_robIdx}};	// backend/src/zaqal/backend/exu/Execute.scala:269:24, :896:36
   wire              _GEN_28 =
-    _lq_io_violation_valid | _csr_io_flush_pipe | trap_valid | (|_has_mret_T_4)
-    | (|_has_sret_T_4);	// backend/src/zaqal/backend/exu/Execute.scala:88:20, :98:18, :702:{92,99}, :705:{92,99}, :728:55, :846:38, :847:23, :864:34, :865:23, :878:27, :879:23, :897:24, :898:23, :911:24, :912:23, :925:30
-  assign io_redirect_valid_0 = _GEN_23 | r0_valid | r1_valid | _GEN_28 | is_sfence_vma;	// backend/src/zaqal/backend/exu/Execute.scala:712:38, :801:33, :802:33, :804:{17,30}, :805:23, :818:25, :819:23, :832:25, :833:23, :846:38, :847:23, :864:34, :865:23, :878:27, :879:23, :897:24, :898:23, :911:24, :912:23, :925:30
+    _csr_io_flush_pipe | trap_valid | (|_has_mret_T_4) | (|_has_sret_T_4);	// backend/src/zaqal/backend/exu/Execute.scala:88:20, :702:{92,99}, :705:{92,99}, :728:55, :864:34, :865:23, :878:27, :879:23, :897:24, :898:23, :911:24, :912:23, :925:30
+  assign io_redirect_valid_0 =
+    _GEN_23 | r0_valid | r1_valid | _lq_io_violation_valid | _GEN_28 | is_sfence_vma;	// backend/src/zaqal/backend/exu/Execute.scala:98:18, :712:38, :801:33, :802:33, :804:{17,30}, :805:23, :818:25, :819:23, :832:25, :833:23, :846:38, :847:23, :864:34, :865:23, :878:27, :879:23, :897:24, :898:23, :911:24, :912:23, :925:30
   assign io_redirect_is_exception_0 =
     _GEN_23
       ? (lane0_is_older ? _bru_0_io_exc_valid : _bru_1_io_exc_valid)
       : r0_valid
           ? _bru_0_io_exc_valid
-          : r1_valid ? _bru_1_io_exc_valid : _GEN_28 | is_sfence_vma;	// backend/src/zaqal/backend/exu/Execute.scala:79:32, :712:38, :799:30, :801:33, :802:33, :804:{17,30}, :808:{30,36}, :818:25, :822:30, :832:25, :836:30, :846:38, :847:23, :850:30, :864:34, :865:23, :868:30, :878:27, :879:23, :883:30, :897:24, :898:23, :901:30, :911:24, :912:23, :915:30, :925:30
+          : r1_valid
+              ? _bru_1_io_exc_valid
+              : ~_lq_io_violation_valid & (_GEN_28 | is_sfence_vma);	// backend/src/zaqal/backend/exu/Execute.scala:79:32, :98:18, :712:38, :799:30, :801:33, :802:33, :804:{17,30}, :808:{30,36}, :818:25, :822:30, :832:25, :836:30, :846:38, :849:24, :850:30, :864:34, :865:23, :868:30, :878:27, :879:23, :883:30, :897:24, :898:23, :901:30, :911:24, :912:23, :915:30, :925:30
   assign io_redirect_robIdx_0 =
     _GEN_23
       ? (lane0_is_older ? exe_uop_int_0_robIdx : exe_uop_int_1_robIdx)

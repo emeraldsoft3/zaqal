@@ -337,7 +337,10 @@ class BPU(implicit val p: Parameters) extends Module with HasZaqalParameter {
   io.out.bits.epoch      := epoch
   io.out.bits.ras_tos    := ras.io.spec_sp
 
-  // when(io.out.fire && meta.taken) {
-  //   printf(p"[BPU PREDICT] pc=${Hexadecimal(exact_pc)} -> target=${Hexadecimal(meta.target)} slot=${meta.slot}\n")
-  // }
+  when(io.out.fire && (s0_pc === "h800120c0".U || s0_pc === "h800120c8".U)) {
+    printf(p"[BPU FIRE pc=0x${Hexadecimal(s0_pc)}] out_mask=0x${Hexadecimal(io.out.bits.mask)} meta_taken=${meta.taken} slot=${meta.slot} cur_mask=0x${Hexadecimal(current_mask)}\n")
+  }
+  when(io.redirect.valid && (io.redirect.target >= "h800120b0".U && io.redirect.target <= "h80012100".U)) {
+    printf(p"[BPU REDIRECT] target=0x${Hexadecimal(io.redirect.target)} pc=0x${Hexadecimal(io.redirect.pc)} is_cfi=${io.redirect.is_cfi} taken=${io.redirect.taken}\n")
+  }
 }

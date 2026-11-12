@@ -134,11 +134,22 @@ class IssueQueue(val numEntries: Int, val numEnq: Int, val numDeq: Int, val numW
     d.is_store || d.is_fstore
   }).asUInt
 
+  val block_load = if (isMem) {
+    VecInit((0 until numEntries).map { j =>
+      val has_older_store = (0 until numEntries).map { i =>
+        entries(i).valid && store_mask(i) && ageDetector.io.isOlder(i)(j) && (i.U =/= j.U)
+      }.reduce(_ || _)
+      has_older_store
+    }).asUInt
+  } else {
+    0.U(numEntries.W)
+  }
+
   var current_can_issue = can_issue.asUInt
   val issue_onehot = Wire(Vec(numDeq, UInt(numEntries.W)))
   for (k <- 0 until numDeq) {
     val port_can_issue = if (isMem) {
-      if (k < 2) current_can_issue & load_mask
+      if (k < 2) current_can_issue & load_mask & ~block_load
       else current_can_issue & store_mask
     } else {
       if (k == 0) {

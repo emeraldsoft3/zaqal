@@ -234,93 +234,173 @@ module IFU(	// frontend/src/zaqal/frontend/IFU.scala:9:7
     & io_fetch_req_bits_pc == cross_line_pc;	// frontend/src/zaqal/frontend/IFU.scala:20:31, :21:31, :23:{86,90,115}
   wire [31:0] slot0_inst =
     is_cross_match ? {io_insts_in_0[15:0], cross_half_reg} : io_insts_in_0;	// frontend/src/zaqal/frontend/IFU.scala:19:31, :23:90, :40:{23,43,52}
-  wire [31:0] inst = {io_insts_in_1[15:0], io_insts_in_0[31:16]};	// frontend/src/zaqal/frontend/IFU.scala:44:{54,62,70}
-  wire [31:0] inst_2 = {io_insts_in_2[15:0], io_insts_in_1[31:16]};	// frontend/src/zaqal/frontend/IFU.scala:44:{54,62,70}
-  wire [31:0] inst_4 = {io_insts_in_3[15:0], io_insts_in_2[31:16]};	// frontend/src/zaqal/frontend/IFU.scala:44:{54,62,70}
-  wire [31:0] inst_6 = {io_insts_in_4[15:0], io_insts_in_3[31:16]};	// frontend/src/zaqal/frontend/IFU.scala:44:{54,62,70}
-  wire [31:0] inst_8 = {io_insts_in_5[15:0], io_insts_in_4[31:16]};	// frontend/src/zaqal/frontend/IFU.scala:44:{54,62,70}
-  wire [31:0] inst_10 = {io_insts_in_6[15:0], io_insts_in_5[31:16]};	// frontend/src/zaqal/frontend/IFU.scala:44:{54,62,70}
-  wire [31:0] inst_12 = {io_insts_in_7[15:0], io_insts_in_6[31:16]};	// frontend/src/zaqal/frontend/IFU.scala:44:{54,62,70}
-  wire [31:0] inst_14 = {16'h0, io_insts_in_7[31:16]};	// frontend/src/zaqal/frontend/IFU.scala:19:31, :44:{54,62,70}
+  wire [63:0] slot0_pc =
+    is_cross_match ? io_fetch_req_bits_pc - 64'h2 : io_fetch_req_bits_pc;	// frontend/src/zaqal/frontend/IFU.scala:23:90, :41:{23,61}
+  wire [31:0] inst = {io_insts_in_1[15:0], io_insts_in_0[31:16]};	// frontend/src/zaqal/frontend/IFU.scala:45:{56,68}
+  wire [63:0] _packet_pc_1_T = io_fetch_req_bits_pc + 64'h2;	// frontend/src/zaqal/frontend/IFU.scala:41:61, :50:81
+  wire [63:0] _packet_pc_2_T = io_fetch_req_bits_pc + 64'h4;	// frontend/src/zaqal/frontend/IFU.scala:50:81
+  wire [31:0] inst_2 = {io_insts_in_2[15:0], io_insts_in_1[31:16]};	// frontend/src/zaqal/frontend/IFU.scala:45:{56,68}
+  wire [63:0] _packet_pc_3_T = io_fetch_req_bits_pc + 64'h6;	// frontend/src/zaqal/frontend/IFU.scala:50:81
+  wire [63:0] _packet_pc_4_T = io_fetch_req_bits_pc + 64'h8;	// frontend/src/zaqal/frontend/IFU.scala:50:81
+  wire [31:0] inst_4 = {io_insts_in_3[15:0], io_insts_in_2[31:16]};	// frontend/src/zaqal/frontend/IFU.scala:45:{56,68}
+  wire [63:0] _packet_pc_5_T = io_fetch_req_bits_pc + 64'hA;	// frontend/src/zaqal/frontend/IFU.scala:50:81
+  wire [63:0] _packet_pc_6_T = io_fetch_req_bits_pc + 64'hC;	// frontend/src/zaqal/frontend/IFU.scala:50:81
+  wire [31:0] inst_6 = {io_insts_in_4[15:0], io_insts_in_3[31:16]};	// frontend/src/zaqal/frontend/IFU.scala:45:{56,68}
+  wire [63:0] _packet_pc_7_T = io_fetch_req_bits_pc + 64'hE;	// frontend/src/zaqal/frontend/IFU.scala:50:81
+  wire [63:0] _packet_pc_8_T = io_fetch_req_bits_pc + 64'h10;	// frontend/src/zaqal/frontend/IFU.scala:50:81
+  wire [31:0] inst_8 = {io_insts_in_5[15:0], io_insts_in_4[31:16]};	// frontend/src/zaqal/frontend/IFU.scala:45:{56,68}
+  wire [63:0] _packet_pc_9_T = io_fetch_req_bits_pc + 64'h12;	// frontend/src/zaqal/frontend/IFU.scala:50:81
+  wire [63:0] _packet_pc_10_T = io_fetch_req_bits_pc + 64'h14;	// frontend/src/zaqal/frontend/IFU.scala:50:81
+  wire [31:0] inst_10 = {io_insts_in_6[15:0], io_insts_in_5[31:16]};	// frontend/src/zaqal/frontend/IFU.scala:45:{56,68}
+  wire [63:0] _packet_pc_11_T = io_fetch_req_bits_pc + 64'h16;	// frontend/src/zaqal/frontend/IFU.scala:50:81
+  wire [63:0] _packet_pc_12_T = io_fetch_req_bits_pc + 64'h18;	// frontend/src/zaqal/frontend/IFU.scala:50:81
+  wire [31:0] inst_12 = {io_insts_in_7[15:0], io_insts_in_6[31:16]};	// frontend/src/zaqal/frontend/IFU.scala:45:{56,68}
+  wire [63:0] _packet_pc_13_T = io_fetch_req_bits_pc + 64'h1A;	// frontend/src/zaqal/frontend/IFU.scala:50:81
+  wire [63:0] _packet_pc_14_T = io_fetch_req_bits_pc + 64'h1C;	// frontend/src/zaqal/frontend/IFU.scala:50:81
+  wire [31:0] inst_14 = {16'h0, io_insts_in_7[31:16]};	// frontend/src/zaqal/frontend/IFU.scala:19:31, :45:56
+  wire [63:0] _packet_pc_15_T = io_fetch_req_bits_pc + 64'h1E;	// frontend/src/zaqal/frontend/IFU.scala:50:81
   wire        raw_mask_0 =
     (is_cross_match | io_fetch_req_bits_mask[0])
-    & (is_cross_match | io_fetch_req_bits_mask[0]);	// frontend/src/zaqal/frontend/IFU.scala:23:{86,90}, :59:22, :68:53, :69:36
+    & (is_cross_match | io_fetch_req_bits_mask[0]);	// frontend/src/zaqal/frontend/IFU.scala:23:{86,90}, :60:22, :69:53, :70:36
   wire        raw_mask_1 =
     io_fetch_req_bits_mask[1]
     & (~is_cross_match & io_fetch_req_bits_mask[1] & ~(io_fetch_req_bits_mask[0])
-       | raw_mask_0 & _predecoders_0_io_out_is_rvc | is_cross_match & raw_mask_0);	// frontend/src/zaqal/frontend/IFU.scala:23:{86,90}, :29:50, :61:{7,48,52,55}, :63:51, :64:53, :67:55, :69:36
+       | raw_mask_0 & _predecoders_0_io_out_is_rvc | is_cross_match & raw_mask_0);	// frontend/src/zaqal/frontend/IFU.scala:23:{86,90}, :29:50, :62:{7,48,52,55}, :64:51, :65:53, :68:55, :70:36
   wire        raw_mask_2 =
     io_fetch_req_bits_mask[2]
     & (~is_cross_match & io_fetch_req_bits_mask[2] & io_fetch_req_bits_mask[1:0] == 2'h0
        | raw_mask_1 & _predecoders_1_io_out_is_rvc | ~is_cross_match & raw_mask_0
-       & ~_predecoders_0_io_out_is_rvc);	// frontend/src/zaqal/frontend/IFU.scala:9:7, :23:90, :29:50, :61:{7,48,52,78,87}, :63:51, :65:{74,77}, :67:55, :69:36
+       & ~_predecoders_0_io_out_is_rvc);	// frontend/src/zaqal/frontend/IFU.scala:9:7, :23:90, :29:50, :62:{7,48,52,78,87}, :64:51, :66:{74,77}, :68:55, :70:36
   wire        raw_mask_3 =
     io_fetch_req_bits_mask[3]
     & (~is_cross_match & io_fetch_req_bits_mask[3] & io_fetch_req_bits_mask[2:0] == 3'h0
        | raw_mask_2 & _predecoders_2_io_out_is_rvc | raw_mask_1
-       & ~_predecoders_1_io_out_is_rvc);	// frontend/src/zaqal/frontend/IFU.scala:23:90, :29:50, :61:{7,48,52,78,87}, :63:51, :66:{57,60}, :67:55, :69:36
+       & ~_predecoders_1_io_out_is_rvc);	// frontend/src/zaqal/frontend/IFU.scala:23:90, :29:50, :62:{7,48,52,78,87}, :64:51, :67:{57,60}, :68:55, :70:36
   wire        raw_mask_4 =
     io_fetch_req_bits_mask[4]
     & (~is_cross_match & io_fetch_req_bits_mask[4] & io_fetch_req_bits_mask[3:0] == 4'h0
        | raw_mask_3 & _predecoders_3_io_out_is_rvc | raw_mask_2
-       & ~_predecoders_2_io_out_is_rvc);	// frontend/src/zaqal/frontend/IFU.scala:23:90, :29:50, :61:{7,48,52,78,87}, :63:51, :66:{57,60}, :67:55, :69:36
+       & ~_predecoders_2_io_out_is_rvc);	// frontend/src/zaqal/frontend/IFU.scala:23:90, :29:50, :62:{7,48,52,78,87}, :64:51, :67:{57,60}, :68:55, :70:36
   wire        raw_mask_5 =
     io_fetch_req_bits_mask[5]
     & (~is_cross_match & io_fetch_req_bits_mask[5] & io_fetch_req_bits_mask[4:0] == 5'h0
        | raw_mask_4 & _predecoders_4_io_out_is_rvc | raw_mask_3
-       & ~_predecoders_3_io_out_is_rvc);	// frontend/src/zaqal/frontend/IFU.scala:23:90, :29:50, :61:{7,48,52,78,87}, :63:51, :66:{57,60}, :67:55, :69:36
+       & ~_predecoders_3_io_out_is_rvc);	// frontend/src/zaqal/frontend/IFU.scala:23:90, :29:50, :62:{7,48,52,78,87}, :64:51, :67:{57,60}, :68:55, :70:36
   wire        raw_mask_6 =
     io_fetch_req_bits_mask[6]
     & (~is_cross_match & io_fetch_req_bits_mask[6] & io_fetch_req_bits_mask[5:0] == 6'h0
        | raw_mask_5 & _predecoders_5_io_out_is_rvc | raw_mask_4
-       & ~_predecoders_4_io_out_is_rvc);	// frontend/src/zaqal/frontend/IFU.scala:23:90, :29:50, :61:{7,48,52,78,87}, :63:51, :66:{57,60}, :67:55, :69:36
+       & ~_predecoders_4_io_out_is_rvc);	// frontend/src/zaqal/frontend/IFU.scala:23:90, :29:50, :62:{7,48,52,78,87}, :64:51, :67:{57,60}, :68:55, :70:36
   wire        raw_mask_7 =
     io_fetch_req_bits_mask[7]
     & (~is_cross_match & io_fetch_req_bits_mask[7] & io_fetch_req_bits_mask[6:0] == 7'h0
        | raw_mask_6 & _predecoders_6_io_out_is_rvc | raw_mask_5
-       & ~_predecoders_5_io_out_is_rvc);	// frontend/src/zaqal/frontend/IFU.scala:23:90, :29:50, :61:{7,48,52,78,87}, :63:51, :66:{57,60}, :67:55, :69:36
+       & ~_predecoders_5_io_out_is_rvc);	// frontend/src/zaqal/frontend/IFU.scala:23:90, :29:50, :62:{7,48,52,78,87}, :64:51, :67:{57,60}, :68:55, :70:36
   wire        raw_mask_8 =
     io_fetch_req_bits_mask[8]
     & (~is_cross_match & io_fetch_req_bits_mask[8] & io_fetch_req_bits_mask[7:0] == 8'h0
        | raw_mask_7 & _predecoders_7_io_out_is_rvc | raw_mask_6
-       & ~_predecoders_6_io_out_is_rvc);	// frontend/src/zaqal/frontend/IFU.scala:23:90, :29:50, :61:{7,48,52,78,87}, :63:51, :66:{57,60}, :67:55, :69:36
+       & ~_predecoders_6_io_out_is_rvc);	// frontend/src/zaqal/frontend/IFU.scala:23:90, :29:50, :62:{7,48,52,78,87}, :64:51, :67:{57,60}, :68:55, :70:36
   wire        raw_mask_9 =
     io_fetch_req_bits_mask[9]
     & (~is_cross_match & io_fetch_req_bits_mask[9] & io_fetch_req_bits_mask[8:0] == 9'h0
        | raw_mask_8 & _predecoders_8_io_out_is_rvc | raw_mask_7
-       & ~_predecoders_7_io_out_is_rvc);	// frontend/src/zaqal/frontend/IFU.scala:23:90, :29:50, :61:{7,48,52,78,87}, :63:51, :66:{57,60}, :67:55, :69:36
+       & ~_predecoders_7_io_out_is_rvc);	// frontend/src/zaqal/frontend/IFU.scala:23:90, :29:50, :62:{7,48,52,78,87}, :64:51, :67:{57,60}, :68:55, :70:36
   wire        raw_mask_10 =
     io_fetch_req_bits_mask[10]
     & (~is_cross_match & io_fetch_req_bits_mask[10] & io_fetch_req_bits_mask[9:0] == 10'h0
        | raw_mask_9 & _predecoders_9_io_out_is_rvc | raw_mask_8
-       & ~_predecoders_8_io_out_is_rvc);	// frontend/src/zaqal/frontend/IFU.scala:23:90, :29:50, :61:{7,48,52,78,87}, :63:51, :66:{57,60}, :67:55, :69:36
+       & ~_predecoders_8_io_out_is_rvc);	// frontend/src/zaqal/frontend/IFU.scala:23:90, :29:50, :62:{7,48,52,78,87}, :64:51, :67:{57,60}, :68:55, :70:36
   wire        raw_mask_11 =
     io_fetch_req_bits_mask[11]
     & (~is_cross_match & io_fetch_req_bits_mask[11]
        & io_fetch_req_bits_mask[10:0] == 11'h0 | raw_mask_10
-       & _predecoders_10_io_out_is_rvc | raw_mask_9 & ~_predecoders_9_io_out_is_rvc);	// frontend/src/zaqal/frontend/IFU.scala:23:90, :29:50, :61:{7,48,52,78,87}, :63:51, :66:{57,60}, :67:55, :69:36
+       & _predecoders_10_io_out_is_rvc | raw_mask_9 & ~_predecoders_9_io_out_is_rvc);	// frontend/src/zaqal/frontend/IFU.scala:23:90, :29:50, :62:{7,48,52,78,87}, :64:51, :67:{57,60}, :68:55, :70:36
   wire        raw_mask_12 =
     io_fetch_req_bits_mask[12]
     & (~is_cross_match & io_fetch_req_bits_mask[12]
        & io_fetch_req_bits_mask[11:0] == 12'h0 | raw_mask_11
-       & _predecoders_11_io_out_is_rvc | raw_mask_10 & ~_predecoders_10_io_out_is_rvc);	// frontend/src/zaqal/frontend/IFU.scala:23:90, :29:50, :61:{7,48,52,78,87}, :63:51, :66:{57,60}, :67:55, :69:36
+       & _predecoders_11_io_out_is_rvc | raw_mask_10 & ~_predecoders_10_io_out_is_rvc);	// frontend/src/zaqal/frontend/IFU.scala:23:90, :29:50, :62:{7,48,52,78,87}, :64:51, :67:{57,60}, :68:55, :70:36
   wire        raw_mask_13 =
     io_fetch_req_bits_mask[13]
     & (~is_cross_match & io_fetch_req_bits_mask[13]
        & io_fetch_req_bits_mask[12:0] == 13'h0 | raw_mask_12
-       & _predecoders_12_io_out_is_rvc | raw_mask_11 & ~_predecoders_11_io_out_is_rvc);	// frontend/src/zaqal/frontend/IFU.scala:23:90, :29:50, :61:{7,48,52,78,87}, :63:51, :66:{57,60}, :67:55, :69:36
+       & _predecoders_12_io_out_is_rvc | raw_mask_11 & ~_predecoders_11_io_out_is_rvc);	// frontend/src/zaqal/frontend/IFU.scala:23:90, :29:50, :62:{7,48,52,78,87}, :64:51, :67:{57,60}, :68:55, :70:36
   wire        raw_mask_14 =
     io_fetch_req_bits_mask[14]
     & (~is_cross_match & io_fetch_req_bits_mask[14]
        & io_fetch_req_bits_mask[13:0] == 14'h0 | raw_mask_13
-       & _predecoders_13_io_out_is_rvc | raw_mask_12 & ~_predecoders_12_io_out_is_rvc);	// frontend/src/zaqal/frontend/IFU.scala:23:90, :29:50, :61:{7,48,52,78,87}, :63:51, :66:{57,60}, :67:55, :69:36
+       & _predecoders_13_io_out_is_rvc | raw_mask_12 & ~_predecoders_12_io_out_is_rvc);	// frontend/src/zaqal/frontend/IFU.scala:23:90, :29:50, :62:{7,48,52,78,87}, :64:51, :67:{57,60}, :68:55, :70:36
   wire        raw_mask_15 =
     io_fetch_req_bits_mask[15]
     & (~is_cross_match & io_fetch_req_bits_mask[15]
        & io_fetch_req_bits_mask[14:0] == 15'h0 | raw_mask_14
-       & _predecoders_14_io_out_is_rvc | raw_mask_13 & ~_predecoders_13_io_out_is_rvc);	// frontend/src/zaqal/frontend/IFU.scala:23:90, :29:50, :61:{7,48,52,78,87}, :63:51, :66:{57,60}, :67:55, :69:36
-  wire        slot15_crosses = raw_mask_15 & ~_predecoders_15_io_out_is_rvc;	// frontend/src/zaqal/frontend/IFU.scala:29:50, :69:36, :73:{51,54}
+       & _predecoders_14_io_out_is_rvc | raw_mask_13 & ~_predecoders_13_io_out_is_rvc);	// frontend/src/zaqal/frontend/IFU.scala:23:90, :29:50, :62:{7,48,52,78,87}, :64:51, :67:{57,60}, :68:55, :70:36
+  wire        slot15_crosses = raw_mask_15 & ~_predecoders_15_io_out_is_rvc;	// frontend/src/zaqal/frontend/IFU.scala:29:50, :70:36, :74:{51,54}
+  wire [15:0] packet_mask =
+    {raw_mask_15 & ~slot15_crosses,
+     raw_mask_14,
+     raw_mask_13,
+     raw_mask_12,
+     raw_mask_11,
+     raw_mask_10,
+     raw_mask_9,
+     raw_mask_8,
+     raw_mask_7,
+     raw_mask_6,
+     raw_mask_5,
+     raw_mask_4,
+     raw_mask_3,
+     raw_mask_2,
+     raw_mask_1,
+     raw_mask_0};	// frontend/src/zaqal/frontend/IFU.scala:70:36, :74:51, :76:{60,63}, :79:27
   wire        _GEN = io_toIbuffer_ready & io_fetch_req_valid;	// src/main/scala/chisel3/util/Decoupled.scala:51:35
+  `ifndef SYNTHESIS	// frontend/src/zaqal/frontend/IFU.scala:92:11
+    always @(posedge clock) begin	// frontend/src/zaqal/frontend/IFU.scala:92:11
+      if ((`PRINTF_COND_) & _GEN
+          & (io_fetch_req_bits_pc == 64'h800120C0 | io_fetch_req_bits_pc == 64'h800120C8)
+          & ~reset) begin	// frontend/src/zaqal/frontend/IFU.scala:91:{51,69,93}, :92:11, :94:13, src/main/scala/chisel3/util/Decoupled.scala:51:35
+        $fwrite(32'h80000002, "[IFU FIRE pc=0x%x] in_mask=0x%x out_mask=0x%x cross=%d\n",
+                io_fetch_req_bits_pc, io_fetch_req_bits_mask, packet_mask,
+                is_cross_match);	// frontend/src/zaqal/frontend/IFU.scala:23:90, :79:27, :92:11
+        $fwrite(32'h80000002, "  slot 0: pc=0x%x rvc=%d raw_mask=%d inst=0x%x\n",
+                slot0_pc, _predecoders_0_io_out_is_rvc, raw_mask_0, slot0_inst);	// frontend/src/zaqal/frontend/IFU.scala:29:50, :40:23, :41:23, :70:36, :92:11, :94:13
+        $fwrite(32'h80000002, "  slot 1: pc=0x%x rvc=%d raw_mask=%d inst=0x%x\n",
+                _packet_pc_1_T, _predecoders_1_io_out_is_rvc, raw_mask_1, inst);	// frontend/src/zaqal/frontend/IFU.scala:29:50, :45:{56,68}, :50:81, :70:36, :92:11, :94:13
+        $fwrite(32'h80000002, "  slot 2: pc=0x%x rvc=%d raw_mask=%d inst=0x%x\n",
+                _packet_pc_2_T, _predecoders_2_io_out_is_rvc, raw_mask_2, io_insts_in_1);	// frontend/src/zaqal/frontend/IFU.scala:29:50, :50:81, :70:36, :92:11, :94:13
+        $fwrite(32'h80000002, "  slot 3: pc=0x%x rvc=%d raw_mask=%d inst=0x%x\n",
+                _packet_pc_3_T, _predecoders_3_io_out_is_rvc, raw_mask_3, inst_2);	// frontend/src/zaqal/frontend/IFU.scala:29:50, :45:{56,68}, :50:81, :70:36, :92:11, :94:13
+        $fwrite(32'h80000002, "  slot 4: pc=0x%x rvc=%d raw_mask=%d inst=0x%x\n",
+                _packet_pc_4_T, _predecoders_4_io_out_is_rvc, raw_mask_4, io_insts_in_2);	// frontend/src/zaqal/frontend/IFU.scala:29:50, :50:81, :70:36, :92:11, :94:13
+        $fwrite(32'h80000002, "  slot 5: pc=0x%x rvc=%d raw_mask=%d inst=0x%x\n",
+                _packet_pc_5_T, _predecoders_5_io_out_is_rvc, raw_mask_5, inst_4);	// frontend/src/zaqal/frontend/IFU.scala:29:50, :45:{56,68}, :50:81, :70:36, :92:11, :94:13
+        $fwrite(32'h80000002, "  slot 6: pc=0x%x rvc=%d raw_mask=%d inst=0x%x\n",
+                _packet_pc_6_T, _predecoders_6_io_out_is_rvc, raw_mask_6, io_insts_in_3);	// frontend/src/zaqal/frontend/IFU.scala:29:50, :50:81, :70:36, :92:11, :94:13
+        $fwrite(32'h80000002, "  slot 7: pc=0x%x rvc=%d raw_mask=%d inst=0x%x\n",
+                _packet_pc_7_T, _predecoders_7_io_out_is_rvc, raw_mask_7, inst_6);	// frontend/src/zaqal/frontend/IFU.scala:29:50, :45:{56,68}, :50:81, :70:36, :92:11, :94:13
+        $fwrite(32'h80000002, "  slot 8: pc=0x%x rvc=%d raw_mask=%d inst=0x%x\n",
+                _packet_pc_8_T, _predecoders_8_io_out_is_rvc, raw_mask_8, io_insts_in_4);	// frontend/src/zaqal/frontend/IFU.scala:29:50, :50:81, :70:36, :92:11, :94:13
+        $fwrite(32'h80000002, "  slot 9: pc=0x%x rvc=%d raw_mask=%d inst=0x%x\n",
+                _packet_pc_9_T, _predecoders_9_io_out_is_rvc, raw_mask_9, inst_8);	// frontend/src/zaqal/frontend/IFU.scala:29:50, :45:{56,68}, :50:81, :70:36, :92:11, :94:13
+        $fwrite(32'h80000002, "  slot 10: pc=0x%x rvc=%d raw_mask=%d inst=0x%x\n",
+                _packet_pc_10_T, _predecoders_10_io_out_is_rvc, raw_mask_10,
+                io_insts_in_5);	// frontend/src/zaqal/frontend/IFU.scala:29:50, :50:81, :70:36, :92:11, :94:13
+        $fwrite(32'h80000002, "  slot 11: pc=0x%x rvc=%d raw_mask=%d inst=0x%x\n",
+                _packet_pc_11_T, _predecoders_11_io_out_is_rvc, raw_mask_11, inst_10);	// frontend/src/zaqal/frontend/IFU.scala:29:50, :45:{56,68}, :50:81, :70:36, :92:11, :94:13
+        $fwrite(32'h80000002, "  slot 12: pc=0x%x rvc=%d raw_mask=%d inst=0x%x\n",
+                _packet_pc_12_T, _predecoders_12_io_out_is_rvc, raw_mask_12,
+                io_insts_in_6);	// frontend/src/zaqal/frontend/IFU.scala:29:50, :50:81, :70:36, :92:11, :94:13
+        $fwrite(32'h80000002, "  slot 13: pc=0x%x rvc=%d raw_mask=%d inst=0x%x\n",
+                _packet_pc_13_T, _predecoders_13_io_out_is_rvc, raw_mask_13, inst_12);	// frontend/src/zaqal/frontend/IFU.scala:29:50, :45:{56,68}, :50:81, :70:36, :92:11, :94:13
+        $fwrite(32'h80000002, "  slot 14: pc=0x%x rvc=%d raw_mask=%d inst=0x%x\n",
+                _packet_pc_14_T, _predecoders_14_io_out_is_rvc, raw_mask_14,
+                io_insts_in_7);	// frontend/src/zaqal/frontend/IFU.scala:29:50, :50:81, :70:36, :92:11, :94:13
+        $fwrite(32'h80000002, "  slot 15: pc=0x%x rvc=%d raw_mask=%d inst=0x%x\n",
+                _packet_pc_15_T, _predecoders_15_io_out_is_rvc, raw_mask_15, inst_14);	// frontend/src/zaqal/frontend/IFU.scala:29:50, :45:56, :50:81, :70:36, :92:11, :94:13
+      end
+    end // always @(posedge)
+  `endif // not def SYNTHESIS
   always @(posedge clock) begin	// frontend/src/zaqal/frontend/IFU.scala:9:7
     if (reset) begin	// frontend/src/zaqal/frontend/IFU.scala:9:7
       cross_half_reg <= 16'h0;	// frontend/src/zaqal/frontend/IFU.scala:19:31
@@ -328,12 +408,12 @@ module IFU(	// frontend/src/zaqal/frontend/IFU.scala:9:7
       has_cross_half <= 1'h0;	// frontend/src/zaqal/frontend/IFU.scala:21:31
     end
     else begin	// frontend/src/zaqal/frontend/IFU.scala:9:7
-      if (_GEN & slot15_crosses) begin	// frontend/src/zaqal/frontend/IFU.scala:19:31, :73:51, :80:27, :81:26, :82:22, src/main/scala/chisel3/util/Decoupled.scala:51:35
-        cross_half_reg <= io_insts_in_7[31:16];	// frontend/src/zaqal/frontend/IFU.scala:19:31, :82:35
-        cross_line_pc <= io_fetch_req_bits_pc + 64'h20;	// frontend/src/zaqal/frontend/IFU.scala:20:31, :83:46
+      if (_GEN & slot15_crosses) begin	// frontend/src/zaqal/frontend/IFU.scala:19:31, :74:51, :81:27, :82:26, :83:22, src/main/scala/chisel3/util/Decoupled.scala:51:35
+        cross_half_reg <= io_insts_in_7[31:16];	// frontend/src/zaqal/frontend/IFU.scala:19:31, :83:35
+        cross_line_pc <= io_fetch_req_bits_pc + 64'h20;	// frontend/src/zaqal/frontend/IFU.scala:20:31, :84:46
       end
       if (_GEN)	// src/main/scala/chisel3/util/Decoupled.scala:51:35
-        has_cross_half <= slot15_crosses;	// frontend/src/zaqal/frontend/IFU.scala:21:31, :73:51
+        has_cross_half <= slot15_crosses;	// frontend/src/zaqal/frontend/IFU.scala:21:31, :74:51
       else	// src/main/scala/chisel3/util/Decoupled.scala:51:35
         has_cross_half <= ~io_flush & has_cross_half;	// frontend/src/zaqal/frontend/IFU.scala:21:31, :25:18, :26:20
     end
@@ -369,7 +449,7 @@ module IFU(	// frontend/src/zaqal/frontend/IFU.scala:9:7
     .io_out_expanded_inst (io_toIbuffer_bits_pre_decoded_0_expanded_inst)
   );
   Predecoder predecoders_1 (	// frontend/src/zaqal/frontend/IFU.scala:29:50
-    .io_inst              (inst),	// frontend/src/zaqal/frontend/IFU.scala:44:70
+    .io_inst              (inst),	// frontend/src/zaqal/frontend/IFU.scala:45:{56,68}
     .io_out_is_rvc        (_predecoders_1_io_out_is_rvc),
     .io_out_is_cfi        (io_toIbuffer_bits_pre_decoded_1_is_cfi),
     .io_out_is_call       (io_toIbuffer_bits_pre_decoded_1_is_call),
@@ -385,7 +465,7 @@ module IFU(	// frontend/src/zaqal/frontend/IFU.scala:9:7
     .io_out_expanded_inst (io_toIbuffer_bits_pre_decoded_2_expanded_inst)
   );
   Predecoder predecoders_3 (	// frontend/src/zaqal/frontend/IFU.scala:29:50
-    .io_inst              (inst_2),	// frontend/src/zaqal/frontend/IFU.scala:44:70
+    .io_inst              (inst_2),	// frontend/src/zaqal/frontend/IFU.scala:45:{56,68}
     .io_out_is_rvc        (_predecoders_3_io_out_is_rvc),
     .io_out_is_cfi        (io_toIbuffer_bits_pre_decoded_3_is_cfi),
     .io_out_is_call       (io_toIbuffer_bits_pre_decoded_3_is_call),
@@ -401,7 +481,7 @@ module IFU(	// frontend/src/zaqal/frontend/IFU.scala:9:7
     .io_out_expanded_inst (io_toIbuffer_bits_pre_decoded_4_expanded_inst)
   );
   Predecoder predecoders_5 (	// frontend/src/zaqal/frontend/IFU.scala:29:50
-    .io_inst              (inst_4),	// frontend/src/zaqal/frontend/IFU.scala:44:70
+    .io_inst              (inst_4),	// frontend/src/zaqal/frontend/IFU.scala:45:{56,68}
     .io_out_is_rvc        (_predecoders_5_io_out_is_rvc),
     .io_out_is_cfi        (io_toIbuffer_bits_pre_decoded_5_is_cfi),
     .io_out_is_call       (io_toIbuffer_bits_pre_decoded_5_is_call),
@@ -417,7 +497,7 @@ module IFU(	// frontend/src/zaqal/frontend/IFU.scala:9:7
     .io_out_expanded_inst (io_toIbuffer_bits_pre_decoded_6_expanded_inst)
   );
   Predecoder predecoders_7 (	// frontend/src/zaqal/frontend/IFU.scala:29:50
-    .io_inst              (inst_6),	// frontend/src/zaqal/frontend/IFU.scala:44:70
+    .io_inst              (inst_6),	// frontend/src/zaqal/frontend/IFU.scala:45:{56,68}
     .io_out_is_rvc        (_predecoders_7_io_out_is_rvc),
     .io_out_is_cfi        (io_toIbuffer_bits_pre_decoded_7_is_cfi),
     .io_out_is_call       (io_toIbuffer_bits_pre_decoded_7_is_call),
@@ -433,7 +513,7 @@ module IFU(	// frontend/src/zaqal/frontend/IFU.scala:9:7
     .io_out_expanded_inst (io_toIbuffer_bits_pre_decoded_8_expanded_inst)
   );
   Predecoder predecoders_9 (	// frontend/src/zaqal/frontend/IFU.scala:29:50
-    .io_inst              (inst_8),	// frontend/src/zaqal/frontend/IFU.scala:44:70
+    .io_inst              (inst_8),	// frontend/src/zaqal/frontend/IFU.scala:45:{56,68}
     .io_out_is_rvc        (_predecoders_9_io_out_is_rvc),
     .io_out_is_cfi        (io_toIbuffer_bits_pre_decoded_9_is_cfi),
     .io_out_is_call       (io_toIbuffer_bits_pre_decoded_9_is_call),
@@ -449,7 +529,7 @@ module IFU(	// frontend/src/zaqal/frontend/IFU.scala:9:7
     .io_out_expanded_inst (io_toIbuffer_bits_pre_decoded_10_expanded_inst)
   );
   Predecoder predecoders_11 (	// frontend/src/zaqal/frontend/IFU.scala:29:50
-    .io_inst              (inst_10),	// frontend/src/zaqal/frontend/IFU.scala:44:70
+    .io_inst              (inst_10),	// frontend/src/zaqal/frontend/IFU.scala:45:{56,68}
     .io_out_is_rvc        (_predecoders_11_io_out_is_rvc),
     .io_out_is_cfi        (io_toIbuffer_bits_pre_decoded_11_is_cfi),
     .io_out_is_call       (io_toIbuffer_bits_pre_decoded_11_is_call),
@@ -465,7 +545,7 @@ module IFU(	// frontend/src/zaqal/frontend/IFU.scala:9:7
     .io_out_expanded_inst (io_toIbuffer_bits_pre_decoded_12_expanded_inst)
   );
   Predecoder predecoders_13 (	// frontend/src/zaqal/frontend/IFU.scala:29:50
-    .io_inst              (inst_12),	// frontend/src/zaqal/frontend/IFU.scala:44:70
+    .io_inst              (inst_12),	// frontend/src/zaqal/frontend/IFU.scala:45:{56,68}
     .io_out_is_rvc        (_predecoders_13_io_out_is_rvc),
     .io_out_is_cfi        (io_toIbuffer_bits_pre_decoded_13_is_cfi),
     .io_out_is_call       (io_toIbuffer_bits_pre_decoded_13_is_call),
@@ -481,48 +561,47 @@ module IFU(	// frontend/src/zaqal/frontend/IFU.scala:9:7
     .io_out_expanded_inst (io_toIbuffer_bits_pre_decoded_14_expanded_inst)
   );
   Predecoder predecoders_15 (	// frontend/src/zaqal/frontend/IFU.scala:29:50
-    .io_inst              (inst_14),	// frontend/src/zaqal/frontend/IFU.scala:44:70
+    .io_inst              (inst_14),	// frontend/src/zaqal/frontend/IFU.scala:45:56
     .io_out_is_rvc        (_predecoders_15_io_out_is_rvc),
     .io_out_is_cfi        (io_toIbuffer_bits_pre_decoded_15_is_cfi),
     .io_out_is_call       (io_toIbuffer_bits_pre_decoded_15_is_call),
     .io_out_is_ret        (io_toIbuffer_bits_pre_decoded_15_is_ret),
     .io_out_expanded_inst (io_toIbuffer_bits_pre_decoded_15_expanded_inst)
   );
-  assign io_fetch_req_ready = io_toIbuffer_ready & io_icache_ready;	// frontend/src/zaqal/frontend/IFU.scala:9:7, :93:44
+  assign io_fetch_req_ready = io_toIbuffer_ready & io_icache_ready;	// frontend/src/zaqal/frontend/IFU.scala:9:7, :101:44
   assign io_toIbuffer_valid = io_fetch_req_valid;	// frontend/src/zaqal/frontend/IFU.scala:9:7
-  assign io_toIbuffer_bits_pc_0 =
-    is_cross_match ? io_fetch_req_bits_pc - 64'h2 : io_fetch_req_bits_pc;	// frontend/src/zaqal/frontend/IFU.scala:9:7, :23:90, :41:{23,61}
-  assign io_toIbuffer_bits_pc_1 = io_fetch_req_bits_pc + 64'h2;	// frontend/src/zaqal/frontend/IFU.scala:9:7, :41:61, :49:81
-  assign io_toIbuffer_bits_pc_2 = io_fetch_req_bits_pc + 64'h4;	// frontend/src/zaqal/frontend/IFU.scala:9:7, :49:81
-  assign io_toIbuffer_bits_pc_3 = io_fetch_req_bits_pc + 64'h6;	// frontend/src/zaqal/frontend/IFU.scala:9:7, :49:81
-  assign io_toIbuffer_bits_pc_4 = io_fetch_req_bits_pc + 64'h8;	// frontend/src/zaqal/frontend/IFU.scala:9:7, :49:81
-  assign io_toIbuffer_bits_pc_5 = io_fetch_req_bits_pc + 64'hA;	// frontend/src/zaqal/frontend/IFU.scala:9:7, :49:81
-  assign io_toIbuffer_bits_pc_6 = io_fetch_req_bits_pc + 64'hC;	// frontend/src/zaqal/frontend/IFU.scala:9:7, :49:81
-  assign io_toIbuffer_bits_pc_7 = io_fetch_req_bits_pc + 64'hE;	// frontend/src/zaqal/frontend/IFU.scala:9:7, :49:81
-  assign io_toIbuffer_bits_pc_8 = io_fetch_req_bits_pc + 64'h10;	// frontend/src/zaqal/frontend/IFU.scala:9:7, :49:81
-  assign io_toIbuffer_bits_pc_9 = io_fetch_req_bits_pc + 64'h12;	// frontend/src/zaqal/frontend/IFU.scala:9:7, :49:81
-  assign io_toIbuffer_bits_pc_10 = io_fetch_req_bits_pc + 64'h14;	// frontend/src/zaqal/frontend/IFU.scala:9:7, :49:81
-  assign io_toIbuffer_bits_pc_11 = io_fetch_req_bits_pc + 64'h16;	// frontend/src/zaqal/frontend/IFU.scala:9:7, :49:81
-  assign io_toIbuffer_bits_pc_12 = io_fetch_req_bits_pc + 64'h18;	// frontend/src/zaqal/frontend/IFU.scala:9:7, :49:81
-  assign io_toIbuffer_bits_pc_13 = io_fetch_req_bits_pc + 64'h1A;	// frontend/src/zaqal/frontend/IFU.scala:9:7, :49:81
-  assign io_toIbuffer_bits_pc_14 = io_fetch_req_bits_pc + 64'h1C;	// frontend/src/zaqal/frontend/IFU.scala:9:7, :49:81
-  assign io_toIbuffer_bits_pc_15 = io_fetch_req_bits_pc + 64'h1E;	// frontend/src/zaqal/frontend/IFU.scala:9:7, :49:81
+  assign io_toIbuffer_bits_pc_0 = slot0_pc;	// frontend/src/zaqal/frontend/IFU.scala:9:7, :41:23
+  assign io_toIbuffer_bits_pc_1 = _packet_pc_1_T;	// frontend/src/zaqal/frontend/IFU.scala:9:7, :50:81
+  assign io_toIbuffer_bits_pc_2 = _packet_pc_2_T;	// frontend/src/zaqal/frontend/IFU.scala:9:7, :50:81
+  assign io_toIbuffer_bits_pc_3 = _packet_pc_3_T;	// frontend/src/zaqal/frontend/IFU.scala:9:7, :50:81
+  assign io_toIbuffer_bits_pc_4 = _packet_pc_4_T;	// frontend/src/zaqal/frontend/IFU.scala:9:7, :50:81
+  assign io_toIbuffer_bits_pc_5 = _packet_pc_5_T;	// frontend/src/zaqal/frontend/IFU.scala:9:7, :50:81
+  assign io_toIbuffer_bits_pc_6 = _packet_pc_6_T;	// frontend/src/zaqal/frontend/IFU.scala:9:7, :50:81
+  assign io_toIbuffer_bits_pc_7 = _packet_pc_7_T;	// frontend/src/zaqal/frontend/IFU.scala:9:7, :50:81
+  assign io_toIbuffer_bits_pc_8 = _packet_pc_8_T;	// frontend/src/zaqal/frontend/IFU.scala:9:7, :50:81
+  assign io_toIbuffer_bits_pc_9 = _packet_pc_9_T;	// frontend/src/zaqal/frontend/IFU.scala:9:7, :50:81
+  assign io_toIbuffer_bits_pc_10 = _packet_pc_10_T;	// frontend/src/zaqal/frontend/IFU.scala:9:7, :50:81
+  assign io_toIbuffer_bits_pc_11 = _packet_pc_11_T;	// frontend/src/zaqal/frontend/IFU.scala:9:7, :50:81
+  assign io_toIbuffer_bits_pc_12 = _packet_pc_12_T;	// frontend/src/zaqal/frontend/IFU.scala:9:7, :50:81
+  assign io_toIbuffer_bits_pc_13 = _packet_pc_13_T;	// frontend/src/zaqal/frontend/IFU.scala:9:7, :50:81
+  assign io_toIbuffer_bits_pc_14 = _packet_pc_14_T;	// frontend/src/zaqal/frontend/IFU.scala:9:7, :50:81
+  assign io_toIbuffer_bits_pc_15 = _packet_pc_15_T;	// frontend/src/zaqal/frontend/IFU.scala:9:7, :50:81
   assign io_toIbuffer_bits_instructions_0 = slot0_inst;	// frontend/src/zaqal/frontend/IFU.scala:9:7, :40:23
-  assign io_toIbuffer_bits_instructions_1 = inst;	// frontend/src/zaqal/frontend/IFU.scala:9:7, :44:70
+  assign io_toIbuffer_bits_instructions_1 = inst;	// frontend/src/zaqal/frontend/IFU.scala:9:7, :45:{56,68}
   assign io_toIbuffer_bits_instructions_2 = io_insts_in_1;	// frontend/src/zaqal/frontend/IFU.scala:9:7
-  assign io_toIbuffer_bits_instructions_3 = inst_2;	// frontend/src/zaqal/frontend/IFU.scala:9:7, :44:70
+  assign io_toIbuffer_bits_instructions_3 = inst_2;	// frontend/src/zaqal/frontend/IFU.scala:9:7, :45:{56,68}
   assign io_toIbuffer_bits_instructions_4 = io_insts_in_2;	// frontend/src/zaqal/frontend/IFU.scala:9:7
-  assign io_toIbuffer_bits_instructions_5 = inst_4;	// frontend/src/zaqal/frontend/IFU.scala:9:7, :44:70
+  assign io_toIbuffer_bits_instructions_5 = inst_4;	// frontend/src/zaqal/frontend/IFU.scala:9:7, :45:{56,68}
   assign io_toIbuffer_bits_instructions_6 = io_insts_in_3;	// frontend/src/zaqal/frontend/IFU.scala:9:7
-  assign io_toIbuffer_bits_instructions_7 = inst_6;	// frontend/src/zaqal/frontend/IFU.scala:9:7, :44:70
+  assign io_toIbuffer_bits_instructions_7 = inst_6;	// frontend/src/zaqal/frontend/IFU.scala:9:7, :45:{56,68}
   assign io_toIbuffer_bits_instructions_8 = io_insts_in_4;	// frontend/src/zaqal/frontend/IFU.scala:9:7
-  assign io_toIbuffer_bits_instructions_9 = inst_8;	// frontend/src/zaqal/frontend/IFU.scala:9:7, :44:70
+  assign io_toIbuffer_bits_instructions_9 = inst_8;	// frontend/src/zaqal/frontend/IFU.scala:9:7, :45:{56,68}
   assign io_toIbuffer_bits_instructions_10 = io_insts_in_5;	// frontend/src/zaqal/frontend/IFU.scala:9:7
-  assign io_toIbuffer_bits_instructions_11 = inst_10;	// frontend/src/zaqal/frontend/IFU.scala:9:7, :44:70
+  assign io_toIbuffer_bits_instructions_11 = inst_10;	// frontend/src/zaqal/frontend/IFU.scala:9:7, :45:{56,68}
   assign io_toIbuffer_bits_instructions_12 = io_insts_in_6;	// frontend/src/zaqal/frontend/IFU.scala:9:7
-  assign io_toIbuffer_bits_instructions_13 = inst_12;	// frontend/src/zaqal/frontend/IFU.scala:9:7, :44:70
+  assign io_toIbuffer_bits_instructions_13 = inst_12;	// frontend/src/zaqal/frontend/IFU.scala:9:7, :45:{56,68}
   assign io_toIbuffer_bits_instructions_14 = io_insts_in_7;	// frontend/src/zaqal/frontend/IFU.scala:9:7
-  assign io_toIbuffer_bits_instructions_15 = inst_14;	// frontend/src/zaqal/frontend/IFU.scala:9:7, :44:70
+  assign io_toIbuffer_bits_instructions_15 = inst_14;	// frontend/src/zaqal/frontend/IFU.scala:9:7, :45:56
   assign io_toIbuffer_bits_pre_decoded_0_is_rvc = _predecoders_0_io_out_is_rvc;	// frontend/src/zaqal/frontend/IFU.scala:9:7, :29:50
   assign io_toIbuffer_bits_pre_decoded_1_is_rvc = _predecoders_1_io_out_is_rvc;	// frontend/src/zaqal/frontend/IFU.scala:9:7, :29:50
   assign io_toIbuffer_bits_pre_decoded_2_is_rvc = _predecoders_2_io_out_is_rvc;	// frontend/src/zaqal/frontend/IFU.scala:9:7, :29:50
@@ -539,23 +618,7 @@ module IFU(	// frontend/src/zaqal/frontend/IFU.scala:9:7
   assign io_toIbuffer_bits_pre_decoded_13_is_rvc = _predecoders_13_io_out_is_rvc;	// frontend/src/zaqal/frontend/IFU.scala:9:7, :29:50
   assign io_toIbuffer_bits_pre_decoded_14_is_rvc = _predecoders_14_io_out_is_rvc;	// frontend/src/zaqal/frontend/IFU.scala:9:7, :29:50
   assign io_toIbuffer_bits_pre_decoded_15_is_rvc = _predecoders_15_io_out_is_rvc;	// frontend/src/zaqal/frontend/IFU.scala:9:7, :29:50
-  assign io_toIbuffer_bits_mask =
-    {raw_mask_15 & ~slot15_crosses,
-     raw_mask_14,
-     raw_mask_13,
-     raw_mask_12,
-     raw_mask_11,
-     raw_mask_10,
-     raw_mask_9,
-     raw_mask_8,
-     raw_mask_7,
-     raw_mask_6,
-     raw_mask_5,
-     raw_mask_4,
-     raw_mask_3,
-     raw_mask_2,
-     raw_mask_1,
-     raw_mask_0};	// frontend/src/zaqal/frontend/IFU.scala:9:7, :69:36, :73:51, :75:{60,63}, :78:27
+  assign io_toIbuffer_bits_mask = packet_mask;	// frontend/src/zaqal/frontend/IFU.scala:9:7, :79:27
   assign io_toIbuffer_bits_prediction_target = io_fetch_req_bits_prediction_target;	// frontend/src/zaqal/frontend/IFU.scala:9:7
   assign io_toIbuffer_bits_prediction_taken = io_fetch_req_bits_prediction_taken;	// frontend/src/zaqal/frontend/IFU.scala:9:7
   assign io_toIbuffer_bits_prediction_slot = io_fetch_req_bits_prediction_slot;	// frontend/src/zaqal/frontend/IFU.scala:9:7

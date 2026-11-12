@@ -21,7 +21,7 @@ VZaqalSoCTop__Syms::VZaqalSoCTop__Syms(VerilatedContext* contextp, const char* n
     , TOP____024unit{this, Verilated::catName(namep, "$unit")}
 {
         // Check resources
-        Verilated::stackCheck(1804511);
+        Verilated::stackCheck(2830430);
     // Configure time unit / time precision
     _vm_contextp__->timeunit(-12);
     _vm_contextp__->timeprecision(-12);

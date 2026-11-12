@@ -147,7 +147,15 @@ int main(int argc, char **argv) {
 
     if (top->io_uart_tx_valid) {
       char ch = (char)(top->io_uart_tx_char & 0xFF);
-      std::cout << ch << std::flush;
+      static uint64_t null_cnt = 0;
+      if (ch == 0) {
+        null_cnt++;
+        if (null_cnt <= 5 || null_cnt % 500 == 0) {
+          std::cerr << "\n[UART NULL #" << std::dec << null_cnt << " at cycle " << cycle << "]" << std::endl;
+        }
+      } else {
+        std::cout << ch << std::flush;
+      }
       uart_chars++;
     }
 

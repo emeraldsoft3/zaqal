@@ -10,13 +10,6 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___ctor_var_reset_1(VZaqalSoCTop___024ro
     VZaqalSoCTop__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
     auto& vlSelfRef = std::ref(*vlSelf).get();
     // Body
-    vlSelf->ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_51_pre_decoded_4_is_rvc = 0;
-    vlSelf->ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_51_pre_decoded_4_is_cfi = 0;
-    vlSelf->ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_51_pre_decoded_4_is_call = 0;
-    vlSelf->ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_51_pre_decoded_4_is_ret = 0;
-    vlSelf->ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_51_pre_decoded_4_expanded_inst = 0;
-    vlSelf->ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_51_pre_decoded_5_is_rvc = 0;
-    vlSelf->ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_51_pre_decoded_5_is_cfi = 0;
     vlSelf->ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_51_pre_decoded_5_is_call = 0;
     vlSelf->ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_51_pre_decoded_5_is_ret = 0;
     vlSelf->ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_51_pre_decoded_5_expanded_inst = 0;
@@ -20011,4 +20004,11 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___ctor_var_reset_1(VZaqalSoCTop___024ro
     vlSelf->ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_14_pre_decoded_4_is_ret = 0;
     vlSelf->ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_14_pre_decoded_4_expanded_inst = 0;
     vlSelf->ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_14_pre_decoded_5_is_rvc = 0;
+    vlSelf->ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_14_pre_decoded_5_is_cfi = 0;
+    vlSelf->ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_14_pre_decoded_5_is_call = 0;
+    vlSelf->ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_14_pre_decoded_5_is_ret = 0;
+    vlSelf->ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_14_pre_decoded_5_expanded_inst = 0;
+    vlSelf->ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_14_pre_decoded_6_is_rvc = 0;
+    vlSelf->ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_14_pre_decoded_6_is_cfi = 0;
+    vlSelf->ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_14_pre_decoded_6_is_call = 0;
 }

@@ -31,7 +31,6 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
     VlWide<3>/*95:0*/ __Vtemp_11;
     VlWide<4>/*127:0*/ __Vtemp_15;
     VlWide<8>/*255:0*/ __Vtemp_21;
-    VlWide<3>/*95:0*/ __Vtemp_22;
     VlWide<4>/*127:0*/ __Vtemp_23;
     VlWide<8>/*255:0*/ __Vtemp_27;
     VlWide<4>/*127:0*/ __Vtemp_28;
@@ -46,6 +45,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
     VlWide<3>/*95:0*/ __Vtemp_39;
     VlWide<4>/*127:0*/ __Vtemp_43;
     VlWide<8>/*255:0*/ __Vtemp_49;
+    VlWide<3>/*95:0*/ __Vtemp_50;
     VlWide<4>/*127:0*/ __Vtemp_51;
     VlWide<8>/*255:0*/ __Vtemp_55;
     VlWide<4>/*127:0*/ __Vtemp_56;
@@ -60,7 +60,6 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
     VlWide<3>/*95:0*/ __Vtemp_67;
     VlWide<4>/*127:0*/ __Vtemp_71;
     VlWide<8>/*255:0*/ __Vtemp_77;
-    VlWide<3>/*95:0*/ __Vtemp_78;
     VlWide<4>/*127:0*/ __Vtemp_79;
     VlWide<8>/*255:0*/ __Vtemp_83;
     VlWide<4>/*127:0*/ __Vtemp_84;
@@ -75,324 +74,339 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
     VlWide<3>/*95:0*/ __Vtemp_95;
     VlWide<4>/*127:0*/ __Vtemp_99;
     VlWide<8>/*255:0*/ __Vtemp_105;
+    VlWide<3>/*95:0*/ __Vtemp_106;
     VlWide<4>/*127:0*/ __Vtemp_107;
     VlWide<8>/*255:0*/ __Vtemp_111;
     VlWide<4>/*127:0*/ __Vtemp_112;
-    VlWide<64>/*2047:0*/ __Vtemp_159;
-    VlWide<66>/*2111:0*/ __Vtemp_160;
-    VlWide<68>/*2175:0*/ __Vtemp_161;
-    VlWide<70>/*2239:0*/ __Vtemp_162;
-    VlWide<72>/*2303:0*/ __Vtemp_163;
-    VlWide<74>/*2367:0*/ __Vtemp_164;
-    VlWide<76>/*2431:0*/ __Vtemp_165;
-    VlWide<78>/*2495:0*/ __Vtemp_166;
-    VlWide<80>/*2559:0*/ __Vtemp_167;
-    VlWide<82>/*2623:0*/ __Vtemp_168;
-    VlWide<84>/*2687:0*/ __Vtemp_169;
-    VlWide<86>/*2751:0*/ __Vtemp_170;
-    VlWide<88>/*2815:0*/ __Vtemp_171;
-    VlWide<90>/*2879:0*/ __Vtemp_172;
-    VlWide<92>/*2943:0*/ __Vtemp_173;
-    VlWide<94>/*3007:0*/ __Vtemp_174;
-    VlWide<96>/*3071:0*/ __Vtemp_175;
-    VlWide<98>/*3135:0*/ __Vtemp_176;
-    VlWide<100>/*3199:0*/ __Vtemp_177;
-    VlWide<102>/*3263:0*/ __Vtemp_178;
-    VlWide<104>/*3327:0*/ __Vtemp_179;
-    VlWide<106>/*3391:0*/ __Vtemp_180;
-    VlWide<108>/*3455:0*/ __Vtemp_181;
-    VlWide<110>/*3519:0*/ __Vtemp_182;
-    VlWide<112>/*3583:0*/ __Vtemp_183;
-    VlWide<114>/*3647:0*/ __Vtemp_184;
-    VlWide<116>/*3711:0*/ __Vtemp_185;
-    VlWide<118>/*3775:0*/ __Vtemp_186;
-    VlWide<120>/*3839:0*/ __Vtemp_187;
-    VlWide<122>/*3903:0*/ __Vtemp_188;
-    VlWide<124>/*3967:0*/ __Vtemp_189;
-    VlWide<126>/*4031:0*/ __Vtemp_190;
-    VlWide<128>/*4095:0*/ __Vtemp_191;
-    VlWide<64>/*2047:0*/ __Vtemp_222;
-    VlWide<66>/*2111:0*/ __Vtemp_223;
-    VlWide<68>/*2175:0*/ __Vtemp_224;
-    VlWide<70>/*2239:0*/ __Vtemp_225;
-    VlWide<72>/*2303:0*/ __Vtemp_226;
-    VlWide<74>/*2367:0*/ __Vtemp_227;
-    VlWide<76>/*2431:0*/ __Vtemp_228;
-    VlWide<78>/*2495:0*/ __Vtemp_229;
-    VlWide<80>/*2559:0*/ __Vtemp_230;
-    VlWide<82>/*2623:0*/ __Vtemp_231;
-    VlWide<84>/*2687:0*/ __Vtemp_232;
-    VlWide<86>/*2751:0*/ __Vtemp_233;
-    VlWide<88>/*2815:0*/ __Vtemp_234;
-    VlWide<90>/*2879:0*/ __Vtemp_235;
-    VlWide<92>/*2943:0*/ __Vtemp_236;
-    VlWide<94>/*3007:0*/ __Vtemp_237;
-    VlWide<96>/*3071:0*/ __Vtemp_238;
-    VlWide<98>/*3135:0*/ __Vtemp_239;
-    VlWide<100>/*3199:0*/ __Vtemp_240;
-    VlWide<102>/*3263:0*/ __Vtemp_241;
-    VlWide<104>/*3327:0*/ __Vtemp_242;
-    VlWide<106>/*3391:0*/ __Vtemp_243;
-    VlWide<108>/*3455:0*/ __Vtemp_244;
-    VlWide<110>/*3519:0*/ __Vtemp_245;
-    VlWide<112>/*3583:0*/ __Vtemp_246;
-    VlWide<114>/*3647:0*/ __Vtemp_247;
-    VlWide<116>/*3711:0*/ __Vtemp_248;
-    VlWide<118>/*3775:0*/ __Vtemp_249;
-    VlWide<120>/*3839:0*/ __Vtemp_250;
-    VlWide<122>/*3903:0*/ __Vtemp_251;
-    VlWide<124>/*3967:0*/ __Vtemp_252;
-    VlWide<126>/*4031:0*/ __Vtemp_253;
-    VlWide<128>/*4095:0*/ __Vtemp_254;
-    VlWide<64>/*2047:0*/ __Vtemp_285;
-    VlWide<66>/*2111:0*/ __Vtemp_286;
-    VlWide<68>/*2175:0*/ __Vtemp_287;
-    VlWide<70>/*2239:0*/ __Vtemp_288;
-    VlWide<72>/*2303:0*/ __Vtemp_289;
-    VlWide<74>/*2367:0*/ __Vtemp_290;
-    VlWide<76>/*2431:0*/ __Vtemp_291;
-    VlWide<78>/*2495:0*/ __Vtemp_292;
-    VlWide<80>/*2559:0*/ __Vtemp_293;
-    VlWide<82>/*2623:0*/ __Vtemp_294;
-    VlWide<84>/*2687:0*/ __Vtemp_295;
-    VlWide<86>/*2751:0*/ __Vtemp_296;
-    VlWide<88>/*2815:0*/ __Vtemp_297;
-    VlWide<90>/*2879:0*/ __Vtemp_298;
-    VlWide<92>/*2943:0*/ __Vtemp_299;
-    VlWide<94>/*3007:0*/ __Vtemp_300;
-    VlWide<96>/*3071:0*/ __Vtemp_301;
-    VlWide<98>/*3135:0*/ __Vtemp_302;
-    VlWide<100>/*3199:0*/ __Vtemp_303;
-    VlWide<102>/*3263:0*/ __Vtemp_304;
-    VlWide<104>/*3327:0*/ __Vtemp_305;
-    VlWide<106>/*3391:0*/ __Vtemp_306;
-    VlWide<108>/*3455:0*/ __Vtemp_307;
-    VlWide<110>/*3519:0*/ __Vtemp_308;
-    VlWide<112>/*3583:0*/ __Vtemp_309;
-    VlWide<114>/*3647:0*/ __Vtemp_310;
-    VlWide<116>/*3711:0*/ __Vtemp_311;
-    VlWide<118>/*3775:0*/ __Vtemp_312;
-    VlWide<120>/*3839:0*/ __Vtemp_313;
-    VlWide<122>/*3903:0*/ __Vtemp_314;
-    VlWide<124>/*3967:0*/ __Vtemp_315;
-    VlWide<126>/*4031:0*/ __Vtemp_316;
-    VlWide<128>/*4095:0*/ __Vtemp_317;
-    VlWide<64>/*2047:0*/ __Vtemp_348;
-    VlWide<66>/*2111:0*/ __Vtemp_349;
-    VlWide<68>/*2175:0*/ __Vtemp_350;
-    VlWide<70>/*2239:0*/ __Vtemp_351;
-    VlWide<72>/*2303:0*/ __Vtemp_352;
-    VlWide<74>/*2367:0*/ __Vtemp_353;
-    VlWide<76>/*2431:0*/ __Vtemp_354;
-    VlWide<78>/*2495:0*/ __Vtemp_355;
-    VlWide<80>/*2559:0*/ __Vtemp_356;
-    VlWide<82>/*2623:0*/ __Vtemp_357;
-    VlWide<84>/*2687:0*/ __Vtemp_358;
-    VlWide<86>/*2751:0*/ __Vtemp_359;
-    VlWide<88>/*2815:0*/ __Vtemp_360;
-    VlWide<90>/*2879:0*/ __Vtemp_361;
-    VlWide<92>/*2943:0*/ __Vtemp_362;
-    VlWide<94>/*3007:0*/ __Vtemp_363;
-    VlWide<96>/*3071:0*/ __Vtemp_364;
-    VlWide<98>/*3135:0*/ __Vtemp_365;
-    VlWide<100>/*3199:0*/ __Vtemp_366;
-    VlWide<102>/*3263:0*/ __Vtemp_367;
-    VlWide<104>/*3327:0*/ __Vtemp_368;
-    VlWide<106>/*3391:0*/ __Vtemp_369;
-    VlWide<108>/*3455:0*/ __Vtemp_370;
-    VlWide<110>/*3519:0*/ __Vtemp_371;
-    VlWide<112>/*3583:0*/ __Vtemp_372;
-    VlWide<114>/*3647:0*/ __Vtemp_373;
-    VlWide<116>/*3711:0*/ __Vtemp_374;
-    VlWide<118>/*3775:0*/ __Vtemp_375;
-    VlWide<120>/*3839:0*/ __Vtemp_376;
-    VlWide<122>/*3903:0*/ __Vtemp_377;
-    VlWide<124>/*3967:0*/ __Vtemp_378;
-    VlWide<126>/*4031:0*/ __Vtemp_379;
-    VlWide<128>/*4095:0*/ __Vtemp_380;
-    VlWide<64>/*2047:0*/ __Vtemp_411;
-    VlWide<66>/*2111:0*/ __Vtemp_412;
-    VlWide<68>/*2175:0*/ __Vtemp_413;
-    VlWide<70>/*2239:0*/ __Vtemp_414;
-    VlWide<72>/*2303:0*/ __Vtemp_415;
-    VlWide<74>/*2367:0*/ __Vtemp_416;
-    VlWide<76>/*2431:0*/ __Vtemp_417;
-    VlWide<78>/*2495:0*/ __Vtemp_418;
-    VlWide<80>/*2559:0*/ __Vtemp_419;
-    VlWide<82>/*2623:0*/ __Vtemp_420;
-    VlWide<84>/*2687:0*/ __Vtemp_421;
-    VlWide<86>/*2751:0*/ __Vtemp_422;
-    VlWide<88>/*2815:0*/ __Vtemp_423;
-    VlWide<90>/*2879:0*/ __Vtemp_424;
-    VlWide<92>/*2943:0*/ __Vtemp_425;
-    VlWide<94>/*3007:0*/ __Vtemp_426;
-    VlWide<96>/*3071:0*/ __Vtemp_427;
-    VlWide<98>/*3135:0*/ __Vtemp_428;
-    VlWide<100>/*3199:0*/ __Vtemp_429;
-    VlWide<102>/*3263:0*/ __Vtemp_430;
-    VlWide<104>/*3327:0*/ __Vtemp_431;
-    VlWide<106>/*3391:0*/ __Vtemp_432;
-    VlWide<108>/*3455:0*/ __Vtemp_433;
-    VlWide<110>/*3519:0*/ __Vtemp_434;
-    VlWide<112>/*3583:0*/ __Vtemp_435;
-    VlWide<114>/*3647:0*/ __Vtemp_436;
-    VlWide<116>/*3711:0*/ __Vtemp_437;
-    VlWide<118>/*3775:0*/ __Vtemp_438;
-    VlWide<120>/*3839:0*/ __Vtemp_439;
-    VlWide<122>/*3903:0*/ __Vtemp_440;
-    VlWide<124>/*3967:0*/ __Vtemp_441;
-    VlWide<126>/*4031:0*/ __Vtemp_442;
-    VlWide<128>/*4095:0*/ __Vtemp_443;
-    VlWide<64>/*2047:0*/ __Vtemp_474;
-    VlWide<66>/*2111:0*/ __Vtemp_475;
-    VlWide<68>/*2175:0*/ __Vtemp_476;
-    VlWide<70>/*2239:0*/ __Vtemp_477;
-    VlWide<72>/*2303:0*/ __Vtemp_478;
-    VlWide<74>/*2367:0*/ __Vtemp_479;
-    VlWide<76>/*2431:0*/ __Vtemp_480;
-    VlWide<78>/*2495:0*/ __Vtemp_481;
-    VlWide<80>/*2559:0*/ __Vtemp_482;
-    VlWide<82>/*2623:0*/ __Vtemp_483;
-    VlWide<84>/*2687:0*/ __Vtemp_484;
-    VlWide<86>/*2751:0*/ __Vtemp_485;
-    VlWide<88>/*2815:0*/ __Vtemp_486;
-    VlWide<90>/*2879:0*/ __Vtemp_487;
-    VlWide<92>/*2943:0*/ __Vtemp_488;
-    VlWide<94>/*3007:0*/ __Vtemp_489;
-    VlWide<96>/*3071:0*/ __Vtemp_490;
-    VlWide<98>/*3135:0*/ __Vtemp_491;
-    VlWide<100>/*3199:0*/ __Vtemp_492;
-    VlWide<102>/*3263:0*/ __Vtemp_493;
-    VlWide<104>/*3327:0*/ __Vtemp_494;
-    VlWide<106>/*3391:0*/ __Vtemp_495;
-    VlWide<108>/*3455:0*/ __Vtemp_496;
-    VlWide<110>/*3519:0*/ __Vtemp_497;
-    VlWide<112>/*3583:0*/ __Vtemp_498;
-    VlWide<114>/*3647:0*/ __Vtemp_499;
-    VlWide<116>/*3711:0*/ __Vtemp_500;
-    VlWide<118>/*3775:0*/ __Vtemp_501;
-    VlWide<120>/*3839:0*/ __Vtemp_502;
-    VlWide<122>/*3903:0*/ __Vtemp_503;
-    VlWide<124>/*3967:0*/ __Vtemp_504;
-    VlWide<126>/*4031:0*/ __Vtemp_505;
-    VlWide<128>/*4095:0*/ __Vtemp_506;
-    VlWide<64>/*2047:0*/ __Vtemp_537;
-    VlWide<66>/*2111:0*/ __Vtemp_538;
-    VlWide<68>/*2175:0*/ __Vtemp_539;
-    VlWide<70>/*2239:0*/ __Vtemp_540;
-    VlWide<72>/*2303:0*/ __Vtemp_541;
-    VlWide<74>/*2367:0*/ __Vtemp_542;
-    VlWide<76>/*2431:0*/ __Vtemp_543;
-    VlWide<78>/*2495:0*/ __Vtemp_544;
-    VlWide<80>/*2559:0*/ __Vtemp_545;
-    VlWide<82>/*2623:0*/ __Vtemp_546;
-    VlWide<84>/*2687:0*/ __Vtemp_547;
-    VlWide<86>/*2751:0*/ __Vtemp_548;
-    VlWide<88>/*2815:0*/ __Vtemp_549;
-    VlWide<90>/*2879:0*/ __Vtemp_550;
-    VlWide<92>/*2943:0*/ __Vtemp_551;
-    VlWide<94>/*3007:0*/ __Vtemp_552;
-    VlWide<96>/*3071:0*/ __Vtemp_553;
-    VlWide<98>/*3135:0*/ __Vtemp_554;
-    VlWide<100>/*3199:0*/ __Vtemp_555;
-    VlWide<102>/*3263:0*/ __Vtemp_556;
-    VlWide<104>/*3327:0*/ __Vtemp_557;
-    VlWide<106>/*3391:0*/ __Vtemp_558;
-    VlWide<108>/*3455:0*/ __Vtemp_559;
-    VlWide<110>/*3519:0*/ __Vtemp_560;
-    VlWide<112>/*3583:0*/ __Vtemp_561;
-    VlWide<114>/*3647:0*/ __Vtemp_562;
-    VlWide<116>/*3711:0*/ __Vtemp_563;
-    VlWide<118>/*3775:0*/ __Vtemp_564;
-    VlWide<120>/*3839:0*/ __Vtemp_565;
-    VlWide<122>/*3903:0*/ __Vtemp_566;
-    VlWide<124>/*3967:0*/ __Vtemp_567;
-    VlWide<126>/*4031:0*/ __Vtemp_568;
-    VlWide<128>/*4095:0*/ __Vtemp_569;
-    VlWide<3>/*95:0*/ __Vtemp_570;
-    VlWide<4>/*127:0*/ __Vtemp_571;
-    VlWide<6>/*191:0*/ __Vtemp_572;
-    VlWide<8>/*255:0*/ __Vtemp_574;
-    VlWide<4>/*127:0*/ __Vtemp_576;
-    VlWide<3>/*95:0*/ __Vtemp_577;
-    VlWide<4>/*127:0*/ __Vtemp_578;
-    VlWide<3>/*95:0*/ __Vtemp_579;
-    VlWide<3>/*95:0*/ __Vtemp_580;
-    VlWide<4>/*127:0*/ __Vtemp_584;
-    VlWide<8>/*255:0*/ __Vtemp_590;
-    VlWide<4>/*127:0*/ __Vtemp_592;
-    VlWide<8>/*255:0*/ __Vtemp_596;
-    VlWide<4>/*127:0*/ __Vtemp_597;
+    VlWide<3>/*95:0*/ __Vtemp_113;
+    VlWide<4>/*127:0*/ __Vtemp_114;
+    VlWide<6>/*191:0*/ __Vtemp_115;
+    VlWide<8>/*255:0*/ __Vtemp_117;
+    VlWide<4>/*127:0*/ __Vtemp_119;
+    VlWide<3>/*95:0*/ __Vtemp_120;
+    VlWide<4>/*127:0*/ __Vtemp_121;
+    VlWide<3>/*95:0*/ __Vtemp_122;
+    VlWide<3>/*95:0*/ __Vtemp_123;
+    VlWide<4>/*127:0*/ __Vtemp_127;
+    VlWide<8>/*255:0*/ __Vtemp_133;
+    VlWide<4>/*127:0*/ __Vtemp_135;
+    VlWide<8>/*255:0*/ __Vtemp_139;
+    VlWide<4>/*127:0*/ __Vtemp_140;
+    VlWide<64>/*2047:0*/ __Vtemp_187;
+    VlWide<66>/*2111:0*/ __Vtemp_188;
+    VlWide<68>/*2175:0*/ __Vtemp_189;
+    VlWide<70>/*2239:0*/ __Vtemp_190;
+    VlWide<72>/*2303:0*/ __Vtemp_191;
+    VlWide<74>/*2367:0*/ __Vtemp_192;
+    VlWide<76>/*2431:0*/ __Vtemp_193;
+    VlWide<78>/*2495:0*/ __Vtemp_194;
+    VlWide<80>/*2559:0*/ __Vtemp_195;
+    VlWide<82>/*2623:0*/ __Vtemp_196;
+    VlWide<84>/*2687:0*/ __Vtemp_197;
+    VlWide<86>/*2751:0*/ __Vtemp_198;
+    VlWide<88>/*2815:0*/ __Vtemp_199;
+    VlWide<90>/*2879:0*/ __Vtemp_200;
+    VlWide<92>/*2943:0*/ __Vtemp_201;
+    VlWide<94>/*3007:0*/ __Vtemp_202;
+    VlWide<96>/*3071:0*/ __Vtemp_203;
+    VlWide<98>/*3135:0*/ __Vtemp_204;
+    VlWide<100>/*3199:0*/ __Vtemp_205;
+    VlWide<102>/*3263:0*/ __Vtemp_206;
+    VlWide<104>/*3327:0*/ __Vtemp_207;
+    VlWide<106>/*3391:0*/ __Vtemp_208;
+    VlWide<108>/*3455:0*/ __Vtemp_209;
+    VlWide<110>/*3519:0*/ __Vtemp_210;
+    VlWide<112>/*3583:0*/ __Vtemp_211;
+    VlWide<114>/*3647:0*/ __Vtemp_212;
+    VlWide<116>/*3711:0*/ __Vtemp_213;
+    VlWide<118>/*3775:0*/ __Vtemp_214;
+    VlWide<120>/*3839:0*/ __Vtemp_215;
+    VlWide<122>/*3903:0*/ __Vtemp_216;
+    VlWide<124>/*3967:0*/ __Vtemp_217;
+    VlWide<126>/*4031:0*/ __Vtemp_218;
+    VlWide<128>/*4095:0*/ __Vtemp_219;
+    VlWide<64>/*2047:0*/ __Vtemp_250;
+    VlWide<66>/*2111:0*/ __Vtemp_251;
+    VlWide<68>/*2175:0*/ __Vtemp_252;
+    VlWide<70>/*2239:0*/ __Vtemp_253;
+    VlWide<72>/*2303:0*/ __Vtemp_254;
+    VlWide<74>/*2367:0*/ __Vtemp_255;
+    VlWide<76>/*2431:0*/ __Vtemp_256;
+    VlWide<78>/*2495:0*/ __Vtemp_257;
+    VlWide<80>/*2559:0*/ __Vtemp_258;
+    VlWide<82>/*2623:0*/ __Vtemp_259;
+    VlWide<84>/*2687:0*/ __Vtemp_260;
+    VlWide<86>/*2751:0*/ __Vtemp_261;
+    VlWide<88>/*2815:0*/ __Vtemp_262;
+    VlWide<90>/*2879:0*/ __Vtemp_263;
+    VlWide<92>/*2943:0*/ __Vtemp_264;
+    VlWide<94>/*3007:0*/ __Vtemp_265;
+    VlWide<96>/*3071:0*/ __Vtemp_266;
+    VlWide<98>/*3135:0*/ __Vtemp_267;
+    VlWide<100>/*3199:0*/ __Vtemp_268;
+    VlWide<102>/*3263:0*/ __Vtemp_269;
+    VlWide<104>/*3327:0*/ __Vtemp_270;
+    VlWide<106>/*3391:0*/ __Vtemp_271;
+    VlWide<108>/*3455:0*/ __Vtemp_272;
+    VlWide<110>/*3519:0*/ __Vtemp_273;
+    VlWide<112>/*3583:0*/ __Vtemp_274;
+    VlWide<114>/*3647:0*/ __Vtemp_275;
+    VlWide<116>/*3711:0*/ __Vtemp_276;
+    VlWide<118>/*3775:0*/ __Vtemp_277;
+    VlWide<120>/*3839:0*/ __Vtemp_278;
+    VlWide<122>/*3903:0*/ __Vtemp_279;
+    VlWide<124>/*3967:0*/ __Vtemp_280;
+    VlWide<126>/*4031:0*/ __Vtemp_281;
+    VlWide<128>/*4095:0*/ __Vtemp_282;
+    VlWide<64>/*2047:0*/ __Vtemp_313;
+    VlWide<66>/*2111:0*/ __Vtemp_314;
+    VlWide<68>/*2175:0*/ __Vtemp_315;
+    VlWide<70>/*2239:0*/ __Vtemp_316;
+    VlWide<72>/*2303:0*/ __Vtemp_317;
+    VlWide<74>/*2367:0*/ __Vtemp_318;
+    VlWide<76>/*2431:0*/ __Vtemp_319;
+    VlWide<78>/*2495:0*/ __Vtemp_320;
+    VlWide<80>/*2559:0*/ __Vtemp_321;
+    VlWide<82>/*2623:0*/ __Vtemp_322;
+    VlWide<84>/*2687:0*/ __Vtemp_323;
+    VlWide<86>/*2751:0*/ __Vtemp_324;
+    VlWide<88>/*2815:0*/ __Vtemp_325;
+    VlWide<90>/*2879:0*/ __Vtemp_326;
+    VlWide<92>/*2943:0*/ __Vtemp_327;
+    VlWide<94>/*3007:0*/ __Vtemp_328;
+    VlWide<96>/*3071:0*/ __Vtemp_329;
+    VlWide<98>/*3135:0*/ __Vtemp_330;
+    VlWide<100>/*3199:0*/ __Vtemp_331;
+    VlWide<102>/*3263:0*/ __Vtemp_332;
+    VlWide<104>/*3327:0*/ __Vtemp_333;
+    VlWide<106>/*3391:0*/ __Vtemp_334;
+    VlWide<108>/*3455:0*/ __Vtemp_335;
+    VlWide<110>/*3519:0*/ __Vtemp_336;
+    VlWide<112>/*3583:0*/ __Vtemp_337;
+    VlWide<114>/*3647:0*/ __Vtemp_338;
+    VlWide<116>/*3711:0*/ __Vtemp_339;
+    VlWide<118>/*3775:0*/ __Vtemp_340;
+    VlWide<120>/*3839:0*/ __Vtemp_341;
+    VlWide<122>/*3903:0*/ __Vtemp_342;
+    VlWide<124>/*3967:0*/ __Vtemp_343;
+    VlWide<126>/*4031:0*/ __Vtemp_344;
+    VlWide<128>/*4095:0*/ __Vtemp_345;
+    VlWide<64>/*2047:0*/ __Vtemp_376;
+    VlWide<66>/*2111:0*/ __Vtemp_377;
+    VlWide<68>/*2175:0*/ __Vtemp_378;
+    VlWide<70>/*2239:0*/ __Vtemp_379;
+    VlWide<72>/*2303:0*/ __Vtemp_380;
+    VlWide<74>/*2367:0*/ __Vtemp_381;
+    VlWide<76>/*2431:0*/ __Vtemp_382;
+    VlWide<78>/*2495:0*/ __Vtemp_383;
+    VlWide<80>/*2559:0*/ __Vtemp_384;
+    VlWide<82>/*2623:0*/ __Vtemp_385;
+    VlWide<84>/*2687:0*/ __Vtemp_386;
+    VlWide<86>/*2751:0*/ __Vtemp_387;
+    VlWide<88>/*2815:0*/ __Vtemp_388;
+    VlWide<90>/*2879:0*/ __Vtemp_389;
+    VlWide<92>/*2943:0*/ __Vtemp_390;
+    VlWide<94>/*3007:0*/ __Vtemp_391;
+    VlWide<96>/*3071:0*/ __Vtemp_392;
+    VlWide<98>/*3135:0*/ __Vtemp_393;
+    VlWide<100>/*3199:0*/ __Vtemp_394;
+    VlWide<102>/*3263:0*/ __Vtemp_395;
+    VlWide<104>/*3327:0*/ __Vtemp_396;
+    VlWide<106>/*3391:0*/ __Vtemp_397;
+    VlWide<108>/*3455:0*/ __Vtemp_398;
+    VlWide<110>/*3519:0*/ __Vtemp_399;
+    VlWide<112>/*3583:0*/ __Vtemp_400;
+    VlWide<114>/*3647:0*/ __Vtemp_401;
+    VlWide<116>/*3711:0*/ __Vtemp_402;
+    VlWide<118>/*3775:0*/ __Vtemp_403;
+    VlWide<120>/*3839:0*/ __Vtemp_404;
+    VlWide<122>/*3903:0*/ __Vtemp_405;
+    VlWide<124>/*3967:0*/ __Vtemp_406;
+    VlWide<126>/*4031:0*/ __Vtemp_407;
+    VlWide<128>/*4095:0*/ __Vtemp_408;
+    VlWide<64>/*2047:0*/ __Vtemp_439;
+    VlWide<66>/*2111:0*/ __Vtemp_440;
+    VlWide<68>/*2175:0*/ __Vtemp_441;
+    VlWide<70>/*2239:0*/ __Vtemp_442;
+    VlWide<72>/*2303:0*/ __Vtemp_443;
+    VlWide<74>/*2367:0*/ __Vtemp_444;
+    VlWide<76>/*2431:0*/ __Vtemp_445;
+    VlWide<78>/*2495:0*/ __Vtemp_446;
+    VlWide<80>/*2559:0*/ __Vtemp_447;
+    VlWide<82>/*2623:0*/ __Vtemp_448;
+    VlWide<84>/*2687:0*/ __Vtemp_449;
+    VlWide<86>/*2751:0*/ __Vtemp_450;
+    VlWide<88>/*2815:0*/ __Vtemp_451;
+    VlWide<90>/*2879:0*/ __Vtemp_452;
+    VlWide<92>/*2943:0*/ __Vtemp_453;
+    VlWide<94>/*3007:0*/ __Vtemp_454;
+    VlWide<96>/*3071:0*/ __Vtemp_455;
+    VlWide<98>/*3135:0*/ __Vtemp_456;
+    VlWide<100>/*3199:0*/ __Vtemp_457;
+    VlWide<102>/*3263:0*/ __Vtemp_458;
+    VlWide<104>/*3327:0*/ __Vtemp_459;
+    VlWide<106>/*3391:0*/ __Vtemp_460;
+    VlWide<108>/*3455:0*/ __Vtemp_461;
+    VlWide<110>/*3519:0*/ __Vtemp_462;
+    VlWide<112>/*3583:0*/ __Vtemp_463;
+    VlWide<114>/*3647:0*/ __Vtemp_464;
+    VlWide<116>/*3711:0*/ __Vtemp_465;
+    VlWide<118>/*3775:0*/ __Vtemp_466;
+    VlWide<120>/*3839:0*/ __Vtemp_467;
+    VlWide<122>/*3903:0*/ __Vtemp_468;
+    VlWide<124>/*3967:0*/ __Vtemp_469;
+    VlWide<126>/*4031:0*/ __Vtemp_470;
+    VlWide<128>/*4095:0*/ __Vtemp_471;
+    VlWide<64>/*2047:0*/ __Vtemp_502;
+    VlWide<66>/*2111:0*/ __Vtemp_503;
+    VlWide<68>/*2175:0*/ __Vtemp_504;
+    VlWide<70>/*2239:0*/ __Vtemp_505;
+    VlWide<72>/*2303:0*/ __Vtemp_506;
+    VlWide<74>/*2367:0*/ __Vtemp_507;
+    VlWide<76>/*2431:0*/ __Vtemp_508;
+    VlWide<78>/*2495:0*/ __Vtemp_509;
+    VlWide<80>/*2559:0*/ __Vtemp_510;
+    VlWide<82>/*2623:0*/ __Vtemp_511;
+    VlWide<84>/*2687:0*/ __Vtemp_512;
+    VlWide<86>/*2751:0*/ __Vtemp_513;
+    VlWide<88>/*2815:0*/ __Vtemp_514;
+    VlWide<90>/*2879:0*/ __Vtemp_515;
+    VlWide<92>/*2943:0*/ __Vtemp_516;
+    VlWide<94>/*3007:0*/ __Vtemp_517;
+    VlWide<96>/*3071:0*/ __Vtemp_518;
+    VlWide<98>/*3135:0*/ __Vtemp_519;
+    VlWide<100>/*3199:0*/ __Vtemp_520;
+    VlWide<102>/*3263:0*/ __Vtemp_521;
+    VlWide<104>/*3327:0*/ __Vtemp_522;
+    VlWide<106>/*3391:0*/ __Vtemp_523;
+    VlWide<108>/*3455:0*/ __Vtemp_524;
+    VlWide<110>/*3519:0*/ __Vtemp_525;
+    VlWide<112>/*3583:0*/ __Vtemp_526;
+    VlWide<114>/*3647:0*/ __Vtemp_527;
+    VlWide<116>/*3711:0*/ __Vtemp_528;
+    VlWide<118>/*3775:0*/ __Vtemp_529;
+    VlWide<120>/*3839:0*/ __Vtemp_530;
+    VlWide<122>/*3903:0*/ __Vtemp_531;
+    VlWide<124>/*3967:0*/ __Vtemp_532;
+    VlWide<126>/*4031:0*/ __Vtemp_533;
+    VlWide<128>/*4095:0*/ __Vtemp_534;
+    VlWide<64>/*2047:0*/ __Vtemp_565;
+    VlWide<66>/*2111:0*/ __Vtemp_566;
+    VlWide<68>/*2175:0*/ __Vtemp_567;
+    VlWide<70>/*2239:0*/ __Vtemp_568;
+    VlWide<72>/*2303:0*/ __Vtemp_569;
+    VlWide<74>/*2367:0*/ __Vtemp_570;
+    VlWide<76>/*2431:0*/ __Vtemp_571;
+    VlWide<78>/*2495:0*/ __Vtemp_572;
+    VlWide<80>/*2559:0*/ __Vtemp_573;
+    VlWide<82>/*2623:0*/ __Vtemp_574;
+    VlWide<84>/*2687:0*/ __Vtemp_575;
+    VlWide<86>/*2751:0*/ __Vtemp_576;
+    VlWide<88>/*2815:0*/ __Vtemp_577;
+    VlWide<90>/*2879:0*/ __Vtemp_578;
+    VlWide<92>/*2943:0*/ __Vtemp_579;
+    VlWide<94>/*3007:0*/ __Vtemp_580;
+    VlWide<96>/*3071:0*/ __Vtemp_581;
+    VlWide<98>/*3135:0*/ __Vtemp_582;
+    VlWide<100>/*3199:0*/ __Vtemp_583;
+    VlWide<102>/*3263:0*/ __Vtemp_584;
+    VlWide<104>/*3327:0*/ __Vtemp_585;
+    VlWide<106>/*3391:0*/ __Vtemp_586;
+    VlWide<108>/*3455:0*/ __Vtemp_587;
+    VlWide<110>/*3519:0*/ __Vtemp_588;
+    VlWide<112>/*3583:0*/ __Vtemp_589;
+    VlWide<114>/*3647:0*/ __Vtemp_590;
+    VlWide<116>/*3711:0*/ __Vtemp_591;
+    VlWide<118>/*3775:0*/ __Vtemp_592;
+    VlWide<120>/*3839:0*/ __Vtemp_593;
+    VlWide<122>/*3903:0*/ __Vtemp_594;
+    VlWide<124>/*3967:0*/ __Vtemp_595;
+    VlWide<126>/*4031:0*/ __Vtemp_596;
+    VlWide<128>/*4095:0*/ __Vtemp_597;
+    VlWide<3>/*95:0*/ __Vtemp_598;
     VlWide<4>/*127:0*/ __Vtemp_599;
-    VlWide<4>/*127:0*/ __Vtemp_600;
-    VlWide<4>/*127:0*/ __Vtemp_602;
-    VlWide<4>/*127:0*/ __Vtemp_603;
-    VlWide<4>/*127:0*/ __Vtemp_605;
+    VlWide<6>/*191:0*/ __Vtemp_600;
+    VlWide<8>/*255:0*/ __Vtemp_602;
+    VlWide<4>/*127:0*/ __Vtemp_604;
+    VlWide<3>/*95:0*/ __Vtemp_605;
     VlWide<4>/*127:0*/ __Vtemp_606;
-    VlWide<4>/*127:0*/ __Vtemp_608;
-    VlWide<4>/*127:0*/ __Vtemp_609;
-    VlWide<4>/*127:0*/ __Vtemp_611;
+    VlWide<3>/*95:0*/ __Vtemp_607;
+    VlWide<3>/*95:0*/ __Vtemp_608;
     VlWide<4>/*127:0*/ __Vtemp_612;
-    VlWide<4>/*127:0*/ __Vtemp_614;
-    VlWide<4>/*127:0*/ __Vtemp_615;
-    VlWide<3>/*95:0*/ __Vtemp_623;
-    VlWide<3>/*95:0*/ __Vtemp_625;
-    VlWide<4>/*127:0*/ __Vtemp_632;
+    VlWide<8>/*255:0*/ __Vtemp_618;
+    VlWide<4>/*127:0*/ __Vtemp_620;
+    VlWide<8>/*255:0*/ __Vtemp_624;
+    VlWide<4>/*127:0*/ __Vtemp_625;
+    VlWide<4>/*127:0*/ __Vtemp_627;
+    VlWide<4>/*127:0*/ __Vtemp_628;
+    VlWide<4>/*127:0*/ __Vtemp_630;
+    VlWide<4>/*127:0*/ __Vtemp_631;
     VlWide<4>/*127:0*/ __Vtemp_633;
-    VlWide<8>/*255:0*/ __Vtemp_635;
-    VlWide<8>/*255:0*/ __Vtemp_641;
-    VlWide<3>/*95:0*/ __Vtemp_642;
+    VlWide<4>/*127:0*/ __Vtemp_634;
+    VlWide<4>/*127:0*/ __Vtemp_636;
+    VlWide<4>/*127:0*/ __Vtemp_637;
+    VlWide<4>/*127:0*/ __Vtemp_639;
+    VlWide<4>/*127:0*/ __Vtemp_640;
+    VlWide<4>/*127:0*/ __Vtemp_642;
     VlWide<4>/*127:0*/ __Vtemp_643;
-    VlWide<64>/*2047:0*/ __Vtemp_658;
-    VlWide<64>/*2047:0*/ __Vtemp_689;
-    VlWide<66>/*2111:0*/ __Vtemp_690;
-    VlWide<68>/*2175:0*/ __Vtemp_691;
-    VlWide<70>/*2239:0*/ __Vtemp_692;
-    VlWide<72>/*2303:0*/ __Vtemp_693;
-    VlWide<74>/*2367:0*/ __Vtemp_694;
-    VlWide<76>/*2431:0*/ __Vtemp_695;
-    VlWide<78>/*2495:0*/ __Vtemp_696;
-    VlWide<80>/*2559:0*/ __Vtemp_697;
-    VlWide<82>/*2623:0*/ __Vtemp_698;
-    VlWide<84>/*2687:0*/ __Vtemp_699;
-    VlWide<86>/*2751:0*/ __Vtemp_700;
-    VlWide<88>/*2815:0*/ __Vtemp_701;
-    VlWide<90>/*2879:0*/ __Vtemp_702;
-    VlWide<92>/*2943:0*/ __Vtemp_703;
-    VlWide<94>/*3007:0*/ __Vtemp_704;
-    VlWide<96>/*3071:0*/ __Vtemp_705;
-    VlWide<98>/*3135:0*/ __Vtemp_706;
-    VlWide<100>/*3199:0*/ __Vtemp_707;
-    VlWide<102>/*3263:0*/ __Vtemp_708;
-    VlWide<104>/*3327:0*/ __Vtemp_709;
-    VlWide<106>/*3391:0*/ __Vtemp_710;
-    VlWide<108>/*3455:0*/ __Vtemp_711;
-    VlWide<110>/*3519:0*/ __Vtemp_712;
-    VlWide<112>/*3583:0*/ __Vtemp_713;
-    VlWide<114>/*3647:0*/ __Vtemp_714;
-    VlWide<116>/*3711:0*/ __Vtemp_715;
-    VlWide<118>/*3775:0*/ __Vtemp_716;
-    VlWide<120>/*3839:0*/ __Vtemp_717;
-    VlWide<122>/*3903:0*/ __Vtemp_718;
-    VlWide<124>/*3967:0*/ __Vtemp_719;
-    VlWide<126>/*4031:0*/ __Vtemp_720;
-    VlWide<128>/*4095:0*/ __Vtemp_721;
-    VlWide<4>/*127:0*/ __Vtemp_725;
-    VlWide<4>/*127:0*/ __Vtemp_726;
-    VlWide<4>/*127:0*/ __Vtemp_727;
-    VlWide<4>/*127:0*/ __Vtemp_728;
-    VlWide<4>/*127:0*/ __Vtemp_734;
-    VlWide<4>/*127:0*/ __Vtemp_735;
-    VlWide<4>/*127:0*/ __Vtemp_736;
-    VlWide<4>/*127:0*/ __Vtemp_737;
-    VlWide<4>/*127:0*/ __Vtemp_743;
-    VlWide<4>/*127:0*/ __Vtemp_744;
-    VlWide<4>/*127:0*/ __Vtemp_745;
-    VlWide<4>/*127:0*/ __Vtemp_746;
-    VlWide<4>/*127:0*/ __Vtemp_752;
+    VlWide<3>/*95:0*/ __Vtemp_651;
+    VlWide<3>/*95:0*/ __Vtemp_653;
+    VlWide<4>/*127:0*/ __Vtemp_660;
+    VlWide<4>/*127:0*/ __Vtemp_661;
+    VlWide<8>/*255:0*/ __Vtemp_663;
+    VlWide<8>/*255:0*/ __Vtemp_669;
+    VlWide<3>/*95:0*/ __Vtemp_670;
+    VlWide<4>/*127:0*/ __Vtemp_671;
+    VlWide<64>/*2047:0*/ __Vtemp_686;
+    VlWide<64>/*2047:0*/ __Vtemp_717;
+    VlWide<66>/*2111:0*/ __Vtemp_718;
+    VlWide<68>/*2175:0*/ __Vtemp_719;
+    VlWide<70>/*2239:0*/ __Vtemp_720;
+    VlWide<72>/*2303:0*/ __Vtemp_721;
+    VlWide<74>/*2367:0*/ __Vtemp_722;
+    VlWide<76>/*2431:0*/ __Vtemp_723;
+    VlWide<78>/*2495:0*/ __Vtemp_724;
+    VlWide<80>/*2559:0*/ __Vtemp_725;
+    VlWide<82>/*2623:0*/ __Vtemp_726;
+    VlWide<84>/*2687:0*/ __Vtemp_727;
+    VlWide<86>/*2751:0*/ __Vtemp_728;
+    VlWide<88>/*2815:0*/ __Vtemp_729;
+    VlWide<90>/*2879:0*/ __Vtemp_730;
+    VlWide<92>/*2943:0*/ __Vtemp_731;
+    VlWide<94>/*3007:0*/ __Vtemp_732;
+    VlWide<96>/*3071:0*/ __Vtemp_733;
+    VlWide<98>/*3135:0*/ __Vtemp_734;
+    VlWide<100>/*3199:0*/ __Vtemp_735;
+    VlWide<102>/*3263:0*/ __Vtemp_736;
+    VlWide<104>/*3327:0*/ __Vtemp_737;
+    VlWide<106>/*3391:0*/ __Vtemp_738;
+    VlWide<108>/*3455:0*/ __Vtemp_739;
+    VlWide<110>/*3519:0*/ __Vtemp_740;
+    VlWide<112>/*3583:0*/ __Vtemp_741;
+    VlWide<114>/*3647:0*/ __Vtemp_742;
+    VlWide<116>/*3711:0*/ __Vtemp_743;
+    VlWide<118>/*3775:0*/ __Vtemp_744;
+    VlWide<120>/*3839:0*/ __Vtemp_745;
+    VlWide<122>/*3903:0*/ __Vtemp_746;
+    VlWide<124>/*3967:0*/ __Vtemp_747;
+    VlWide<126>/*4031:0*/ __Vtemp_748;
+    VlWide<128>/*4095:0*/ __Vtemp_749;
     VlWide<4>/*127:0*/ __Vtemp_753;
     VlWide<4>/*127:0*/ __Vtemp_754;
     VlWide<4>/*127:0*/ __Vtemp_755;
+    VlWide<4>/*127:0*/ __Vtemp_756;
+    VlWide<4>/*127:0*/ __Vtemp_762;
+    VlWide<4>/*127:0*/ __Vtemp_763;
+    VlWide<4>/*127:0*/ __Vtemp_764;
+    VlWide<4>/*127:0*/ __Vtemp_765;
+    VlWide<4>/*127:0*/ __Vtemp_771;
+    VlWide<4>/*127:0*/ __Vtemp_772;
+    VlWide<4>/*127:0*/ __Vtemp_773;
+    VlWide<4>/*127:0*/ __Vtemp_774;
+    VlWide<4>/*127:0*/ __Vtemp_780;
+    VlWide<4>/*127:0*/ __Vtemp_781;
+    VlWide<4>/*127:0*/ __Vtemp_782;
+    VlWide<4>/*127:0*/ __Vtemp_783;
     IData/*31:0*/ __VExpandSel_WordIdx_1;
     IData/*31:0*/ __VExpandSel_LoShift_1;
     CData/*0:0*/ __VExpandSel_Aligned_1;
@@ -634,6 +648,1262 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
     IData/*31:0*/ __VExpandSel_HiShift_48;
     IData/*31:0*/ __VExpandSel_HiMask_48;
     // Body
+    __Vtemp_1[1U] = (IData)((((QData)((IData)((0x4cU 
+                                               | (((0x70000U 
+                                                    & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                       >> 7U)) 
+                                                   | (0x8000U 
+                                                      & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                         >> 0xdU))) 
+                                                  | ((0x7c00U 
+                                                      & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                         >> 8U)) 
+                                                     | (3U 
+                                                        & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                           >> 0x1aU))))))) 
+                              << 0x2aU) | (((QData)((IData)(
+                                                            (0x1180U 
+                                                             | ((6U 
+                                                                 & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                                    >> 0x16U)) 
+                                                                | (1U 
+                                                                   & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                                      >> 0x1cU)))))) 
+                                            << 0x19U) 
+                                           | (QData)((IData)(
+                                                             (0x12023U 
+                                                              | ((0x1f00000U 
+                                                                  & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                                     << 2U)) 
+                                                                 | (0xe00U 
+                                                                    & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                                       >> 0x10U)))))))));
+    __Vtemp_1[2U] = (IData)(((((QData)((IData)((0x4cU 
+                                                | (((0x70000U 
+                                                     & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                        >> 7U)) 
+                                                    | (0x8000U 
+                                                       & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                          >> 0xdU))) 
+                                                   | ((0x7c00U 
+                                                       & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                          >> 8U)) 
+                                                      | (3U 
+                                                         & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                            >> 0x1aU))))))) 
+                               << 0x2aU) | (((QData)((IData)(
+                                                             (0x1180U 
+                                                              | ((6U 
+                                                                  & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                                     >> 0x16U)) 
+                                                                 | (1U 
+                                                                    & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                                       >> 0x1cU)))))) 
+                                             << 0x19U) 
+                                            | (QData)((IData)(
+                                                              (0x12023U 
+                                                               | ((0x1f00000U 
+                                                                   & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                                      << 2U)) 
+                                                                  | (0xe00U 
+                                                                     & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                                        >> 0x10U)))))))) 
+                             >> 0x20U));
+    __Vtemp_2[0U] = ((0x10000000U & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3)
+                      ? ((0U == (0x1fU & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                          >> 0x12U)))
+                          ? ((0U != (0x1fU & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                              >> 0x17U)))
+                              ? (0xe7U | (0xf8000U 
+                                          & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                             >> 8U)))
+                              : 0x100073U) : (0x33U 
+                                              | ((0x1f00000U 
+                                                  & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                     << 2U)) 
+                                                 | ((0xf8000U 
+                                                     & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                        >> 8U)) 
+                                                    | (0xf80U 
+                                                       & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                          >> 0x10U))))))
+                      : ((0U == (0x1fU & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                          >> 0x12U)))
+                          ? (0x67U | (0xf8000U & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                  >> 8U)))
+                          : (0x13U | ((0xf8000U & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                   >> 3U)) 
+                                      | (0xf80U & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                   >> 0x10U))))));
+    __Vtemp_3[0U] = (IData)((((QData)((IData)((0x260U 
+                                               | (((0x380000U 
+                                                    & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                       << 1U)) 
+                                                   | ((0x40000U 
+                                                       & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                          >> 0xaU)) 
+                                                      | (0x30000U 
+                                                         & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                            >> 5U)))) 
+                                                  | (0x1fU 
+                                                     & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                        >> 0x17U)))))) 
+                              << 0x27U) | (((QData)((IData)(
+                                                            (0xc00U 
+                                                             | ((0x30U 
+                                                                 & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                                    >> 0xeU)) 
+                                                                | ((8U 
+                                                                    & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                                       >> 0x19U)) 
+                                                                   | (7U 
+                                                                      & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                                         >> 0x14U))))))) 
+                                            << 0x16U) 
+                                           | (QData)((IData)(
+                                                             (0x12003U 
+                                                              | (0xf80U 
+                                                                 & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                                    >> 0x10U))))))));
+    __Vtemp_3[1U] = (IData)(((((QData)((IData)((0x260U 
+                                                | (((0x380000U 
+                                                     & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                        << 1U)) 
+                                                    | ((0x40000U 
+                                                        & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                           >> 0xaU)) 
+                                                       | (0x30000U 
+                                                          & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                             >> 5U)))) 
+                                                   | (0x1fU 
+                                                      & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                         >> 0x17U)))))) 
+                               << 0x27U) | (((QData)((IData)(
+                                                             (0xc00U 
+                                                              | ((0x30U 
+                                                                  & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                                     >> 0xeU)) 
+                                                                 | ((8U 
+                                                                     & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                                        >> 0x19U)) 
+                                                                    | (7U 
+                                                                       & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                                          >> 0x14U))))))) 
+                                             << 0x16U) 
+                                            | (QData)((IData)(
+                                                              (0x12003U 
+                                                               | (0xf80U 
+                                                                  & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                                     >> 0x10U))))))) 
+                             >> 0x20U));
+    __Vtemp_5[0U] = (0x1013U | (((0x2000000U & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                >> 3U)) 
+                                 | (0x1f00000U & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                  << 2U))) 
+                                | ((0xf8000U & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                >> 8U)) 
+                                   | (0xf80U & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                >> 0x10U)))));
+    __Vtemp_5[1U] = (0x13007U | (((0x1c000000U & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                  << 8U)) 
+                                  | ((0x2000000U & 
+                                      (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                       >> 3U)) | (0x1800000U 
+                                                  & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                     << 2U)))) 
+                                 | (0xf80U & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                              >> 0x10U))));
+    __Vtemp_5[2U] = __Vtemp_3[0U];
+    __Vtemp_5[3U] = __Vtemp_3[1U];
+    __Vtemp_5[4U] = __Vtemp_2[0U];
+    __Vtemp_5[5U] = (0x13027U | (((0x1c000000U & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                  << 3U)) 
+                                  | ((0x2000000U & 
+                                      (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                       >> 3U)) | (0x1f00000U 
+                                                  & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                     << 2U)))) 
+                                 | (0xc00U & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                              >> 0x10U))));
+    __Vtemp_5[6U] = __Vtemp_1[1U];
+    __Vtemp_5[7U] = __Vtemp_1[2U];
+    __Vtemp_7[0U] = (IData)((((QData)((IData)((0x33408U 
+                                               | (7U 
+                                                  & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                     >> 0x12U))))) 
+                              << 0x14U) | (QData)((IData)(
+                                                          (0x40433U 
+                                                           | ((0x38000U 
+                                                               & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                                  >> 8U)) 
+                                                              | ((0x380U 
+                                                                  & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                                     >> 0x10U)) 
+                                                                 | (8U 
+                                                                    & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                                       >> 0x19U)))))))));
+    __Vtemp_7[1U] = ((0xffffff80U & (0x844400U | ((
+                                                   (0x700000U 
+                                                    & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                       << 2U)) 
+                                                   | (0x38000U 
+                                                      & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                         >> 8U))) 
+                                                  | (0x380U 
+                                                     & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                        >> 0x10U))))) 
+                     | (IData)(((((QData)((IData)((0x33408U 
+                                                   | (7U 
+                                                      & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                         >> 0x12U))))) 
+                                  << 0x14U) | (QData)((IData)(
+                                                              (0x40433U 
+                                                               | ((0x38000U 
+                                                                   & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                                      >> 8U)) 
+                                                                  | ((0x380U 
+                                                                      & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                                         >> 0x10U)) 
+                                                                     | (8U 
+                                                                        & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                                           >> 0x19U)))))))) 
+                                >> 0x20U)));
+    __Vtemp_7[2U] = (0x33U | ((IData)((((QData)((IData)(
+                                                        (0x108e8U 
+                                                         | ((0xe000U 
+                                                             & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                                >> 5U)) 
+                                                            | ((0x700U 
+                                                                & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                                   >> 0xfU)) 
+                                                               | (7U 
+                                                                  & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                                     >> 0x17U))))))) 
+                                        << 0x20U) | (QData)((IData)(
+                                                                    (0x660108c8U 
+                                                                     | (((0xe000U 
+                                                                          & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                                             >> 5U)) 
+                                                                         | (0x700U 
+                                                                            & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                                               >> 0xfU))) 
+                                                                        | (7U 
+                                                                           & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                                              >> 0x17U)))))))) 
+                              << 7U));
+    __Vtemp_7[3U] = (((IData)((((QData)((IData)((0x108e8U 
+                                                 | ((0xe000U 
+                                                     & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                        >> 5U)) 
+                                                    | ((0x700U 
+                                                        & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                           >> 0xfU)) 
+                                                       | (7U 
+                                                          & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                             >> 0x17U))))))) 
+                                << 0x20U) | (QData)((IData)(
+                                                            (0x660108c8U 
+                                                             | (((0xe000U 
+                                                                  & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                                     >> 5U)) 
+                                                                 | (0x700U 
+                                                                    & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                                       >> 0xfU))) 
+                                                                | (7U 
+                                                                   & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                                      >> 0x17U)))))))) 
+                      >> 0x19U) | ((IData)(((((QData)((IData)(
+                                                              (0x108e8U 
+                                                               | ((0xe000U 
+                                                                   & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                                      >> 5U)) 
+                                                                  | ((0x700U 
+                                                                      & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                                         >> 0xfU)) 
+                                                                     | (7U 
+                                                                        & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                                           >> 0x17U))))))) 
+                                              << 0x20U) 
+                                             | (QData)((IData)(
+                                                               (0x660108c8U 
+                                                                | (((0xe000U 
+                                                                     & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                                        >> 5U)) 
+                                                                    | (0x700U 
+                                                                       & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                                          >> 0xfU))) 
+                                                                   | (7U 
+                                                                      & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                                         >> 0x17U))))))) 
+                                            >> 0x20U)) 
+                                   << 7U));
+    __Vtemp_8[0U] = (IData)((((QData)((IData)((0x8e8U 
+                                               | (((0x1fc0000U 
+                                                    & ((- (IData)(
+                                                                  (1U 
+                                                                   & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                                      >> 0x1cU)))) 
+                                                       << 0x12U)) 
+                                                   | (0x3e000U 
+                                                      & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                         >> 5U))) 
+                                                  | ((0x700U 
+                                                      & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                         >> 0xfU)) 
+                                                     | (7U 
+                                                        & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                           >> 0x17U))))))) 
+                              << 0x27U) | (((QData)((IData)(
+                                                            (0x13400U 
+                                                             | ((0x20U 
+                                                                 & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                                    >> 0x17U)) 
+                                                                | (0x1fU 
+                                                                   & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                                      >> 0x12U)))))) 
+                                            << 0x14U) 
+                                           | (QData)((IData)(
+                                                             (0x45413U 
+                                                              | ((0x38000U 
+                                                                  & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                                     >> 8U)) 
+                                                                 | (0x380U 
+                                                                    & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                                       >> 0x10U)))))))));
+    __Vtemp_8[1U] = (IData)(((((QData)((IData)((0x8e8U 
+                                                | (((0x1fc0000U 
+                                                     & ((- (IData)(
+                                                                   (1U 
+                                                                    & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                                       >> 0x1cU)))) 
+                                                        << 0x12U)) 
+                                                    | (0x3e000U 
+                                                       & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                          >> 5U))) 
+                                                   | ((0x700U 
+                                                       & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                          >> 0xfU)) 
+                                                      | (7U 
+                                                         & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                            >> 0x17U))))))) 
+                               << 0x27U) | (((QData)((IData)(
+                                                             (0x13400U 
+                                                              | ((0x20U 
+                                                                  & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                                     >> 0x17U)) 
+                                                                 | (0x1fU 
+                                                                    & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                                       >> 0x12U)))))) 
+                                             << 0x14U) 
+                                            | (QData)((IData)(
+                                                              (0x45413U 
+                                                               | ((0x38000U 
+                                                                   & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                                      >> 8U)) 
+                                                                  | (0x380U 
+                                                                     & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                                        >> 0x10U)))))))) 
+                             >> 0x20U));
+    __Vtemp_8[2U] = ((IData)((0x10200000U == (0x10600000U 
+                                              & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3)))
+                      ? (0x84043bU | ((0x700000U & 
+                                       (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                        << 2U)) | (
+                                                   (0x38000U 
+                                                    & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                       >> 8U)) 
+                                                   | (0x380U 
+                                                      & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                         >> 0x10U)))))
+                      : (((0U == (0x1fU & VL_SHIFTL_III(7,7,32, 
+                                                        (3U 
+                                                         & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                            >> 0x15U)), 5U)))
+                           ? 0U : (__Vtemp_7[(((IData)(0x1fU) 
+                                               + (0x7fU 
+                                                  & VL_SHIFTL_III(7,7,32, 
+                                                                  (3U 
+                                                                   & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                                      >> 0x15U)), 5U))) 
+                                              >> 5U)] 
+                                   << ((IData)(0x20U) 
+                                       - (0x1fU & VL_SHIFTL_III(7,7,32, 
+                                                                (3U 
+                                                                 & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                                    >> 0x15U)), 5U))))) 
+                         | (__Vtemp_7[(3U & (VL_SHIFTL_III(7,7,32, 
+                                                           (3U 
+                                                            & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                               >> 0x15U)), 5U) 
+                                             >> 5U))] 
+                            >> (0x1fU & VL_SHIFTL_III(7,7,32, 
+                                                      (3U 
+                                                       & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                          >> 0x15U)), 5U)))));
+    __Vtemp_9[0U] = (0x45413U | (((0x2000000U & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                 >> 3U)) 
+                                  | (0x1f00000U & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                   << 2U))) 
+                                 | ((0x38000U & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                 >> 8U)) 
+                                    | (0x380U & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                 >> 0x10U)))));
+    __Vtemp_9[1U] = __Vtemp_8[0U];
+    __Vtemp_9[2U] = __Vtemp_8[1U];
+    __Vtemp_9[3U] = __Vtemp_8[2U];
+    __Vtemp_10[0U] = (IData)((((QData)((IData)((0x6fU 
+                                                | (((((0x80000000U 
+                                                       & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                          << 3U)) 
+                                                      | (0x40000000U 
+                                                         & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                            << 6U))) 
+                                                     | ((0x30000000U 
+                                                         & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                            << 3U)) 
+                                                        | ((0x8000000U 
+                                                            & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                               << 5U)) 
+                                                           | (0x4000000U 
+                                                              & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                                 << 3U))))) 
+                                                    | ((0x2000000U 
+                                                        & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                           << 7U)) 
+                                                       | ((0x1000000U 
+                                                           & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                              >> 3U)) 
+                                                          | (0xe00000U 
+                                                             & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                                << 2U))))) 
+                                                   | (0x1ff000U 
+                                                      & ((- (IData)(
+                                                                    (1U 
+                                                                     & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                                        >> 0x1cU)))) 
+                                                         << 0xcU)))))) 
+                               << 0x20U) | (QData)((IData)(
+                                                           (((0U 
+                                                              == 
+                                                              (0x1fU 
+                                                               & VL_SHIFTL_III(7,7,32, 
+                                                                               (3U 
+                                                                                & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                                                >> 0x1aU)), 5U)))
+                                                              ? 0U
+                                                              : 
+                                                             (__Vtemp_9[
+                                                              (((IData)(0x1fU) 
+                                                                + 
+                                                                (0x7fU 
+                                                                 & VL_SHIFTL_III(7,7,32, 
+                                                                                (3U 
+                                                                                & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                                                >> 0x1aU)), 5U))) 
+                                                               >> 5U)] 
+                                                              << 
+                                                              ((IData)(0x20U) 
+                                                               - 
+                                                               (0x1fU 
+                                                                & VL_SHIFTL_III(7,7,32, 
+                                                                                (3U 
+                                                                                & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                                                >> 0x1aU)), 5U))))) 
+                                                            | (__Vtemp_9[
+                                                               (3U 
+                                                                & (VL_SHIFTL_III(7,7,32, 
+                                                                                (3U 
+                                                                                & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                                                >> 0x1aU)), 5U) 
+                                                                   >> 5U))] 
+                                                               >> 
+                                                               (0x1fU 
+                                                                & VL_SHIFTL_III(7,7,32, 
+                                                                                (3U 
+                                                                                & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                                                >> 0x1aU)), 5U))))))));
+    __Vtemp_10[1U] = (IData)(((((QData)((IData)((0x6fU 
+                                                 | (((((0x80000000U 
+                                                        & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                           << 3U)) 
+                                                       | (0x40000000U 
+                                                          & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                             << 6U))) 
+                                                      | ((0x30000000U 
+                                                          & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                             << 3U)) 
+                                                         | ((0x8000000U 
+                                                             & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                                << 5U)) 
+                                                            | (0x4000000U 
+                                                               & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                                  << 3U))))) 
+                                                     | ((0x2000000U 
+                                                         & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                            << 7U)) 
+                                                        | ((0x1000000U 
+                                                            & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                               >> 3U)) 
+                                                           | (0xe00000U 
+                                                              & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                                 << 2U))))) 
+                                                    | (0x1ff000U 
+                                                       & ((- (IData)(
+                                                                     (1U 
+                                                                      & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                                         >> 0x1cU)))) 
+                                                          << 0xcU)))))) 
+                                << 0x20U) | (QData)((IData)(
+                                                            (((0U 
+                                                               == 
+                                                               (0x1fU 
+                                                                & VL_SHIFTL_III(7,7,32, 
+                                                                                (3U 
+                                                                                & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                                                >> 0x1aU)), 5U)))
+                                                               ? 0U
+                                                               : 
+                                                              (__Vtemp_9[
+                                                               (((IData)(0x1fU) 
+                                                                 + 
+                                                                 (0x7fU 
+                                                                  & VL_SHIFTL_III(7,7,32, 
+                                                                                (3U 
+                                                                                & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                                                >> 0x1aU)), 5U))) 
+                                                                >> 5U)] 
+                                                               << 
+                                                               ((IData)(0x20U) 
+                                                                - 
+                                                                (0x1fU 
+                                                                 & VL_SHIFTL_III(7,7,32, 
+                                                                                (3U 
+                                                                                & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                                                >> 0x1aU)), 5U))))) 
+                                                             | (__Vtemp_9[
+                                                                (3U 
+                                                                 & (VL_SHIFTL_III(7,7,32, 
+                                                                                (3U 
+                                                                                & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                                                >> 0x1aU)), 5U) 
+                                                                    >> 5U))] 
+                                                                >> 
+                                                                (0x1fU 
+                                                                 & VL_SHIFTL_III(7,7,32, 
+                                                                                (3U 
+                                                                                & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                                                >> 0x1aU)), 5U))))))) 
+                              >> 0x20U));
+    __Vtemp_11[0U] = (IData)((0x1b00000000ULL | (((QData)((IData)(
+                                                                  (0x7fU 
+                                                                   & (- (IData)(
+                                                                                (1U 
+                                                                                & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                                                >> 0x1cU))))))) 
+                                                  << 0x39U) 
+                                                 | (((QData)((IData)(
+                                                                     (0x1fU 
+                                                                      & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                                         >> 0x12U)))) 
+                                                     << 0x34U) 
+                                                    | (((QData)((IData)(
+                                                                        (0x1fU 
+                                                                         & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                                            >> 0x17U)))) 
+                                                        << 0x2fU) 
+                                                       | (((QData)((IData)(
+                                                                           (0x1fU 
+                                                                            & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                                               >> 0x17U)))) 
+                                                           << 0x27U) 
+                                                          | (QData)((IData)(
+                                                                            ((0U 
+                                                                              != 
+                                                                              (0x1fU 
+                                                                               & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                                                >> 0x17U)))
+                                                                              ? 
+                                                                             (0x13U 
+                                                                              | ((((- (IData)(
+                                                                                (1U 
+                                                                                & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                                                >> 0x1cU)))) 
+                                                                                << 0x19U) 
+                                                                                | (0x1f00000U 
+                                                                                & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                                                << 2U))) 
+                                                                                | ((0xf8000U 
+                                                                                & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                                                >> 8U)) 
+                                                                                | (0xf80U 
+                                                                                & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                                                >> 0x10U)))))
+                                                                              : 0x13U)))))))));
+    __Vtemp_11[1U] = (IData)(((0x1b00000000ULL | (((QData)((IData)(
+                                                                   (0x7fU 
+                                                                    & (- (IData)(
+                                                                                (1U 
+                                                                                & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                                                >> 0x1cU))))))) 
+                                                   << 0x39U) 
+                                                  | (((QData)((IData)(
+                                                                      (0x1fU 
+                                                                       & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                                          >> 0x12U)))) 
+                                                      << 0x34U) 
+                                                     | (((QData)((IData)(
+                                                                         (0x1fU 
+                                                                          & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                                             >> 0x17U)))) 
+                                                         << 0x2fU) 
+                                                        | (((QData)((IData)(
+                                                                            (0x1fU 
+                                                                             & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                                                >> 0x17U)))) 
+                                                            << 0x27U) 
+                                                           | (QData)((IData)(
+                                                                             ((0U 
+                                                                               != 
+                                                                               (0x1fU 
+                                                                                & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                                                >> 0x17U)))
+                                                                               ? 
+                                                                              (0x13U 
+                                                                               | ((((- (IData)(
+                                                                                (1U 
+                                                                                & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                                                >> 0x1cU)))) 
+                                                                                << 0x19U) 
+                                                                                | (0x1f00000U 
+                                                                                & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                                                << 2U))) 
+                                                                                | ((0xf8000U 
+                                                                                & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                                                >> 8U)) 
+                                                                                | (0xf80U 
+                                                                                & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                                                >> 0x10U)))))
+                                                                               : 0x13U)))))))) 
+                              >> 0x20U));
+    __Vtemp_15[3U] = ((2U == (0x1fU & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                       >> 0x17U))) ? 
+                      (0x10113U | (((- (IData)((1U 
+                                                & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                   >> 0x1cU)))) 
+                                    << 0x1dU) | (((0x18000000U 
+                                                   & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                      << 8U)) 
+                                                  | (0x4000000U 
+                                                     & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                        << 5U))) 
+                                                 | ((0x2000000U 
+                                                     & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                        << 7U)) 
+                                                    | (0x1000000U 
+                                                       & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                          << 2U))))))
+                       : (0x37U | (((- (IData)((1U 
+                                                & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                   >> 0x1cU)))) 
+                                    << 0x11U) | ((0x1f000U 
+                                                  & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                     >> 6U)) 
+                                                 | (0xf80U 
+                                                    & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                       >> 0x10U))))));
+    __Vtemp_21[0U] = __Vtemp_11[0U];
+    __Vtemp_21[1U] = __Vtemp_11[1U];
+    __Vtemp_21[2U] = (0x13U | (((- (IData)((1U & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                  >> 0x1cU)))) 
+                                << 0x19U) | ((0x1f00000U 
+                                              & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                 << 2U)) 
+                                             | (0xf80U 
+                                                & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                   >> 0x10U)))));
+    __Vtemp_21[3U] = __Vtemp_15[3U];
+    __Vtemp_21[4U] = __Vtemp_10[0U];
+    __Vtemp_21[5U] = __Vtemp_10[1U];
+    __Vtemp_21[6U] = (0x40063U | ((0xfe000000U & ((
+                                                   (- (IData)(
+                                                              (1U 
+                                                               & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                                  >> 0x1cU)))) 
+                                                   << 0x1cU) 
+                                                  | ((0xc000000U 
+                                                      & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                         << 5U)) 
+                                                     | (0x2000000U 
+                                                        & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                           << 7U))))) 
+                                  | ((0x38000U & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                  >> 8U)) 
+                                     | ((0xc00U & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                   >> 0x10U)) 
+                                        | ((0x300U 
+                                            & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                               >> 0xbU)) 
+                                           | (0x80U 
+                                              & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                 >> 0x15U)))))));
+    __Vtemp_21[7U] = (0x41063U | ((((- (IData)((1U 
+                                                & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                   >> 0x1cU)))) 
+                                    << 0x1cU) | ((0xc000000U 
+                                                  & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                     << 5U)) 
+                                                 | (0x2000000U 
+                                                    & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                       << 7U)))) 
+                                  | (((0x38000U & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                   >> 8U)) 
+                                      | (0xc00U & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                   >> 0x10U))) 
+                                     | ((0x300U & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                   >> 0xbU)) 
+                                        | (0x80U & 
+                                           (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                            >> 0x15U))))));
+    __Vtemp_23[2U] = (IData)((((QData)((IData)((0x843023U 
+                                                | ((((0xc000000U 
+                                                      & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                         << 5U)) 
+                                                     | (0x2000000U 
+                                                        & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                           >> 3U))) 
+                                                    | (0x700000U 
+                                                       & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                          << 2U))) 
+                                                   | ((0x38000U 
+                                                       & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                          >> 8U)) 
+                                                      | (0xc00U 
+                                                         & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                            >> 0x10U))))))) 
+                               << 0x20U) | (QData)((IData)(
+                                                           (0x842023U 
+                                                            | ((((0x4000000U 
+                                                                  & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                                     << 5U)) 
+                                                                 | (0x2000000U 
+                                                                    & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                                       >> 3U))) 
+                                                                | (0x700000U 
+                                                                   & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                                      << 2U))) 
+                                                               | ((0x38000U 
+                                                                   & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                                      >> 8U)) 
+                                                                  | ((0xc00U 
+                                                                      & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                                         >> 0x10U)) 
+                                                                     | (0x200U 
+                                                                        & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                                           >> 0xdU))))))))));
+    __Vtemp_23[3U] = (IData)(((((QData)((IData)((0x843023U 
+                                                 | ((((0xc000000U 
+                                                       & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                          << 5U)) 
+                                                      | (0x2000000U 
+                                                         & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                            >> 3U))) 
+                                                     | (0x700000U 
+                                                        & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                           << 2U))) 
+                                                    | ((0x38000U 
+                                                        & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                           >> 8U)) 
+                                                       | (0xc00U 
+                                                          & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                             >> 0x10U))))))) 
+                                << 0x20U) | (QData)((IData)(
+                                                            (0x842023U 
+                                                             | ((((0x4000000U 
+                                                                   & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                                      << 5U)) 
+                                                                  | (0x2000000U 
+                                                                     & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                                        >> 3U))) 
+                                                                 | (0x700000U 
+                                                                    & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                                       << 2U))) 
+                                                                | ((0x38000U 
+                                                                    & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                                       >> 8U)) 
+                                                                   | ((0xc00U 
+                                                                       & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                                          >> 0x10U)) 
+                                                                      | (0x200U 
+                                                                         & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                                            >> 0xdU))))))))) 
+                              >> 0x20U));
+    __Vtemp_27[0U] = ((IData)((0U != (0x1fe00000U & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3)))
+                       ? (0x10413U | (((0x3c000000U 
+                                        & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                           << 3U)) 
+                                       | ((0x3000000U 
+                                           & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                              >> 3U)) 
+                                          | ((0x800000U 
+                                              & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                 << 2U)) 
+                                             | (0x400000U 
+                                                & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3)))) 
+                                      | (0x380U & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                   >> 0xbU))))
+                       : 0x13U);
+    __Vtemp_27[1U] = (0x43407U | (((0xc000000U & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                  << 5U)) 
+                                   | (0x3800000U & 
+                                      (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                       >> 3U))) | (
+                                                   (0x38000U 
+                                                    & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                       >> 8U)) 
+                                                   | (0x380U 
+                                                      & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                         >> 0xbU)))));
+    __Vtemp_27[2U] = (0x42403U | (((0x4000000U & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                  << 5U)) 
+                                   | ((0x3800000U & 
+                                       (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                        >> 3U)) | (0x400000U 
+                                                   & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3))) 
+                                  | ((0x38000U & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                  >> 8U)) 
+                                     | (0x380U & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                  >> 0xbU)))));
+    __Vtemp_27[3U] = (0x43403U | (((0xc000000U & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                  << 5U)) 
+                                   | (0x3800000U & 
+                                      (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                       >> 3U))) | (
+                                                   (0x38000U 
+                                                    & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                       >> 8U)) 
+                                                   | (0x380U 
+                                                      & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                         >> 0xbU)))));
+    __Vtemp_27[4U] = (IData)((0x302700000013ULL | (
+                                                   ((QData)((IData)(
+                                                                    (1U 
+                                                                     | ((0x18U 
+                                                                         & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                                            >> 0x12U)) 
+                                                                        | (4U 
+                                                                           & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                                              >> 0x1aU)))))) 
+                                                    << 0x37U) 
+                                                   | (((QData)((IData)(
+                                                                       (1U 
+                                                                        | (0x1cU 
+                                                                           & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                                              >> 0x10U))))) 
+                                                       << 0x32U) 
+                                                      | (((QData)((IData)(
+                                                                          (7U 
+                                                                           & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                                              >> 0x17U)))) 
+                                                          << 0x2fU) 
+                                                         | ((QData)((IData)(
+                                                                            (3U 
+                                                                             & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                                                >> 0x1aU)))) 
+                                                            << 0x2aU))))));
+    __Vtemp_27[5U] = (IData)(((0x302700000013ULL | 
+                               (((QData)((IData)((1U 
+                                                  | ((0x18U 
+                                                      & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                         >> 0x12U)) 
+                                                     | (4U 
+                                                        & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                           >> 0x1aU)))))) 
+                                 << 0x37U) | (((QData)((IData)(
+                                                               (1U 
+                                                                | (0x1cU 
+                                                                   & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                                      >> 0x10U))))) 
+                                               << 0x32U) 
+                                              | (((QData)((IData)(
+                                                                  (7U 
+                                                                   & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                                      >> 0x17U)))) 
+                                                  << 0x2fU) 
+                                                 | ((QData)((IData)(
+                                                                    (3U 
+                                                                     & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                                        >> 0x1aU)))) 
+                                                    << 0x2aU))))) 
+                              >> 0x20U));
+    __Vtemp_27[6U] = __Vtemp_23[2U];
+    __Vtemp_27[7U] = __Vtemp_23[3U];
+    __Vtemp_28[0U] = (((0U == (0x1fU & VL_SHIFTL_III(8,8,32, 
+                                                     (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                      >> 0x1dU), 5U)))
+                        ? 0U : (__Vtemp_27[(((IData)(0x1fU) 
+                                             + (0xffU 
+                                                & VL_SHIFTL_III(8,8,32, 
+                                                                (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                                 >> 0x1dU), 5U))) 
+                                            >> 5U)] 
+                                << ((IData)(0x20U) 
+                                    - (0x1fU & VL_SHIFTL_III(8,8,32, 
+                                                             (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                              >> 0x1dU), 5U))))) 
+                      | (__Vtemp_27[(7U & (VL_SHIFTL_III(8,8,32, 
+                                                         (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                          >> 0x1dU), 5U) 
+                                           >> 5U))] 
+                         >> (0x1fU & VL_SHIFTL_III(8,8,32, 
+                                                   (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                    >> 0x1dU), 5U))));
+    __Vtemp_28[1U] = (((0U == (0x1fU & VL_SHIFTL_III(8,8,32, 
+                                                     (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                      >> 0x1dU), 5U)))
+                        ? 0U : (__Vtemp_21[(((IData)(0x1fU) 
+                                             + (0xffU 
+                                                & VL_SHIFTL_III(8,8,32, 
+                                                                (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                                 >> 0x1dU), 5U))) 
+                                            >> 5U)] 
+                                << ((IData)(0x20U) 
+                                    - (0x1fU & VL_SHIFTL_III(8,8,32, 
+                                                             (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                              >> 0x1dU), 5U))))) 
+                      | (__Vtemp_21[(7U & (VL_SHIFTL_III(8,8,32, 
+                                                         (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                          >> 0x1dU), 5U) 
+                                           >> 5U))] 
+                         >> (0x1fU & VL_SHIFTL_III(8,8,32, 
+                                                   (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                    >> 0x1dU), 5U))));
+    __Vtemp_28[2U] = (IData)((0x1300000000ULL | (QData)((IData)(
+                                                                (((0U 
+                                                                   == 
+                                                                   (0x1fU 
+                                                                    & VL_SHIFTL_III(8,8,32, 
+                                                                                (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                                                >> 0x1dU), 5U)))
+                                                                   ? 0U
+                                                                   : 
+                                                                  (__Vtemp_5[
+                                                                   (((IData)(0x1fU) 
+                                                                     + 
+                                                                     (0xffU 
+                                                                      & VL_SHIFTL_III(8,8,32, 
+                                                                                (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                                                >> 0x1dU), 5U))) 
+                                                                    >> 5U)] 
+                                                                   << 
+                                                                   ((IData)(0x20U) 
+                                                                    - 
+                                                                    (0x1fU 
+                                                                     & VL_SHIFTL_III(8,8,32, 
+                                                                                (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                                                >> 0x1dU), 5U))))) 
+                                                                 | (__Vtemp_5[
+                                                                    (7U 
+                                                                     & (VL_SHIFTL_III(8,8,32, 
+                                                                                (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                                                >> 0x1dU), 5U) 
+                                                                        >> 5U))] 
+                                                                    >> 
+                                                                    (0x1fU 
+                                                                     & VL_SHIFTL_III(8,8,32, 
+                                                                                (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                                                >> 0x1dU), 5U))))))));
+    __Vtemp_28[3U] = (IData)(((0x1300000000ULL | (QData)((IData)(
+                                                                 (((0U 
+                                                                    == 
+                                                                    (0x1fU 
+                                                                     & VL_SHIFTL_III(8,8,32, 
+                                                                                (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                                                >> 0x1dU), 5U)))
+                                                                    ? 0U
+                                                                    : 
+                                                                   (__Vtemp_5[
+                                                                    (((IData)(0x1fU) 
+                                                                      + 
+                                                                      (0xffU 
+                                                                       & VL_SHIFTL_III(8,8,32, 
+                                                                                (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                                                >> 0x1dU), 5U))) 
+                                                                     >> 5U)] 
+                                                                    << 
+                                                                    ((IData)(0x20U) 
+                                                                     - 
+                                                                     (0x1fU 
+                                                                      & VL_SHIFTL_III(8,8,32, 
+                                                                                (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                                                >> 0x1dU), 5U))))) 
+                                                                  | (__Vtemp_5[
+                                                                     (7U 
+                                                                      & (VL_SHIFTL_III(8,8,32, 
+                                                                                (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                                                >> 0x1dU), 5U) 
+                                                                         >> 5U))] 
+                                                                     >> 
+                                                                     (0x1fU 
+                                                                      & VL_SHIFTL_III(8,8,32, 
+                                                                                (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                                                >> 0x1dU), 5U))))))) 
+                              >> 0x20U));
+    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ifu__DOT__predecoders_7__DOT___rvc_expander_io_out 
+        = (((0U == (0x1fU & VL_SHIFTL_III(7,7,32, (3U 
+                                                   & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                      >> 0x10U)), 5U)))
+             ? 0U : (__Vtemp_28[(((IData)(0x1fU) + 
+                                  (0x7fU & VL_SHIFTL_III(7,7,32, 
+                                                         (3U 
+                                                          & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                             >> 0x10U)), 5U))) 
+                                 >> 5U)] << ((IData)(0x20U) 
+                                             - (0x1fU 
+                                                & VL_SHIFTL_III(7,7,32, 
+                                                                (3U 
+                                                                 & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                                    >> 0x10U)), 5U))))) 
+           | (__Vtemp_28[(3U & (VL_SHIFTL_III(7,7,32, 
+                                              (3U & 
+                                               (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                >> 0x10U)), 5U) 
+                                >> 5U))] >> (0x1fU 
+                                             & VL_SHIFTL_III(7,7,32, 
+                                                             (3U 
+                                                              & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                                                                 >> 0x10U)), 5U))));
+    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___ifu_io_toIbuffer_bits_instructions_7 
+        = ((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_4 
+            << 0x10U) | (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_3 
+                         >> 0x10U));
+    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT____VdfgRegularize_h258fc8ed_0_125 
+        = (3U & ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT____VdfgRegularize_h258fc8ed_0_11) 
+                 + (1U & ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ifu_skid__DOT__slot0_data_mask) 
+                          >> 8U))));
+    if (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT__has_recent_branch) {
+        vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT___GEN_34 
+            = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT____VdfgRegularize_h5d9e275b_0_1;
+        vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT___GEN_35 
+            = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT____VdfgRegularize_h5d9e275b_0_2;
+    } else {
+        vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT___GEN_34 
+            = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT__trainTag;
+        vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT___GEN_35 
+            = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT__trainTag;
+    }
+    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT__matchVec_1_0 
+        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT__valids_0) 
+           & (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT__entries_0_branch_tag) 
+               == (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT__trainTag)) 
+              | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT__entries_0_target_tag) 
+                  == (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT__trainTag)) 
+                 | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT__has_recent_branch) 
+                    & (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT__entries_0_branch_tag) 
+                        == (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT____VdfgRegularize_h5d9e275b_0_1)) 
+                       | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT__entries_0_target_tag) 
+                          == (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT____VdfgRegularize_h5d9e275b_0_2)))))));
+    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT__matchVec_1_1 
+        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT__valids_1) 
+           & (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT__entries_1_branch_tag) 
+               == (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT__trainTag)) 
+              | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT__entries_1_target_tag) 
+                  == (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT__trainTag)) 
+                 | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT__has_recent_branch) 
+                    & (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT__entries_1_branch_tag) 
+                        == (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT____VdfgRegularize_h5d9e275b_0_1)) 
+                       | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT__entries_1_target_tag) 
+                          == (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT____VdfgRegularize_h5d9e275b_0_2)))))));
+    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT__matchVec_1_2 
+        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT__valids_2) 
+           & (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT__entries_2_branch_tag) 
+               == (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT__trainTag)) 
+              | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT__entries_2_target_tag) 
+                  == (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT__trainTag)) 
+                 | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT__has_recent_branch) 
+                    & (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT__entries_2_branch_tag) 
+                        == (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT____VdfgRegularize_h5d9e275b_0_1)) 
+                       | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT__entries_2_target_tag) 
+                          == (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT____VdfgRegularize_h5d9e275b_0_2)))))));
+    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT__matchVec_1_3 
+        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT__valids_3) 
+           & (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT__entries_3_branch_tag) 
+               == (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT__trainTag)) 
+              | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT__entries_3_target_tag) 
+                  == (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT__trainTag)) 
+                 | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT__has_recent_branch) 
+                    & (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT__entries_3_branch_tag) 
+                        == (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT____VdfgRegularize_h5d9e275b_0_1)) 
+                       | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT__entries_3_target_tag) 
+                          == (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT____VdfgRegularize_h5d9e275b_0_2)))))));
+    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT__matchVec_1_4 
+        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT__valids_4) 
+           & (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT__entries_4_branch_tag) 
+               == (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT__trainTag)) 
+              | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT__entries_4_target_tag) 
+                  == (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT__trainTag)) 
+                 | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT__has_recent_branch) 
+                    & (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT__entries_4_branch_tag) 
+                        == (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT____VdfgRegularize_h5d9e275b_0_1)) 
+                       | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT__entries_4_target_tag) 
+                          == (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT____VdfgRegularize_h5d9e275b_0_2)))))));
+    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT__matchVec_1_5 
+        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT__valids_5) 
+           & (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT__entries_5_branch_tag) 
+               == (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT__trainTag)) 
+              | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT__entries_5_target_tag) 
+                  == (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT__trainTag)) 
+                 | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT__has_recent_branch) 
+                    & (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT__entries_5_branch_tag) 
+                        == (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT____VdfgRegularize_h5d9e275b_0_1)) 
+                       | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT__entries_5_target_tag) 
+                          == (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT____VdfgRegularize_h5d9e275b_0_2)))))));
+    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT__matchVec_1_6 
+        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT__valids_6) 
+           & (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT__entries_6_branch_tag) 
+               == (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT__trainTag)) 
+              | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT__entries_6_target_tag) 
+                  == (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT__trainTag)) 
+                 | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT__has_recent_branch) 
+                    & (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT__entries_6_branch_tag) 
+                        == (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT____VdfgRegularize_h5d9e275b_0_1)) 
+                       | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT__entries_6_target_tag) 
+                          == (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT____VdfgRegularize_h5d9e275b_0_2)))))));
+    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT__matchVec_1_7 
+        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT__valids_7) 
+           & (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT__entries_7_branch_tag) 
+               == (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT__trainTag)) 
+              | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT__entries_7_target_tag) 
+                  == (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT__trainTag)) 
+                 | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT__has_recent_branch) 
+                    & (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT__entries_7_branch_tag) 
+                        == (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT____VdfgRegularize_h5d9e275b_0_1)) 
+                       | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT__entries_7_target_tag) 
+                          == (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT____VdfgRegularize_h5d9e275b_0_2)))))));
+    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT__matchVec_1_8 
+        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT__valids_8) 
+           & (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT__entries_8_branch_tag) 
+               == (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT__trainTag)) 
+              | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT__entries_8_target_tag) 
+                  == (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT__trainTag)) 
+                 | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT__has_recent_branch) 
+                    & (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT__entries_8_branch_tag) 
+                        == (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT____VdfgRegularize_h5d9e275b_0_1)) 
+                       | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT__entries_8_target_tag) 
+                          == (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT____VdfgRegularize_h5d9e275b_0_2)))))));
+    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT__matchVec_1_9 
+        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT__valids_9) 
+           & (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT__entries_9_branch_tag) 
+               == (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT__trainTag)) 
+              | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT__entries_9_target_tag) 
+                  == (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT__trainTag)) 
+                 | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT__has_recent_branch) 
+                    & (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT__entries_9_branch_tag) 
+                        == (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT____VdfgRegularize_h5d9e275b_0_1)) 
+                       | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT__entries_9_target_tag) 
+                          == (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT____VdfgRegularize_h5d9e275b_0_2)))))));
+    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT__matchVec_1_10 
+        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT__valids_10) 
+           & (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT__entries_10_branch_tag) 
+               == (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT__trainTag)) 
+              | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT__entries_10_target_tag) 
+                  == (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT__trainTag)) 
+                 | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT__has_recent_branch) 
+                    & (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT__entries_10_branch_tag) 
+                        == (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT____VdfgRegularize_h5d9e275b_0_1)) 
+                       | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT__entries_10_target_tag) 
+                          == (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT____VdfgRegularize_h5d9e275b_0_2)))))));
+    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT__matchVec_1_11 
+        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT__valids_11) 
+           & (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT__entries_11_branch_tag) 
+               == (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT__trainTag)) 
+              | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT__entries_11_target_tag) 
+                  == (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT__trainTag)) 
+                 | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT__has_recent_branch) 
+                    & (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT__entries_11_branch_tag) 
+                        == (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT____VdfgRegularize_h5d9e275b_0_1)) 
+                       | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT__entries_11_target_tag) 
+                          == (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT____VdfgRegularize_h5d9e275b_0_2)))))));
+    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT__matchVec_1_12 
+        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT__valids_12) 
+           & (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT__entries_12_branch_tag) 
+               == (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT__trainTag)) 
+              | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT__entries_12_target_tag) 
+                  == (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT__trainTag)) 
+                 | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT__has_recent_branch) 
+                    & (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT__entries_12_branch_tag) 
+                        == (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT____VdfgRegularize_h5d9e275b_0_1)) 
+                       | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT__entries_12_target_tag) 
+                          == (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT____VdfgRegularize_h5d9e275b_0_2)))))));
+    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT__matchVec_1_13 
+        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT__valids_13) 
+           & (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT__entries_13_branch_tag) 
+               == (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT__trainTag)) 
+              | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT__entries_13_target_tag) 
+                  == (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT__trainTag)) 
+                 | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT__has_recent_branch) 
+                    & (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT__entries_13_branch_tag) 
+                        == (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT____VdfgRegularize_h5d9e275b_0_1)) 
+                       | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT__entries_13_target_tag) 
+                          == (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT____VdfgRegularize_h5d9e275b_0_2)))))));
+    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT__matchVec_1_14 
+        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT__valids_14) 
+           & (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT__entries_14_branch_tag) 
+               == (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT__trainTag)) 
+              | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT__entries_14_target_tag) 
+                  == (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT__trainTag)) 
+                 | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT__has_recent_branch) 
+                    & (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT__entries_14_branch_tag) 
+                        == (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT____VdfgRegularize_h5d9e275b_0_1)) 
+                       | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT__entries_14_target_tag) 
+                          == (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT____VdfgRegularize_h5d9e275b_0_2)))))));
+    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__stridePrefetcher__DOT__matchVec_0 
+        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__stridePrefetcher__DOT__valids_0) 
+           & ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__stridePrefetcher__DOT__entries_0_tag) 
+              == (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT__trainTag)));
+    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__stridePrefetcher__DOT__matchVec_1 
+        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__stridePrefetcher__DOT__valids_1) 
+           & ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__stridePrefetcher__DOT__entries_1_tag) 
+              == (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT__trainTag)));
+    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__stridePrefetcher__DOT__matchVec_2 
+        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__stridePrefetcher__DOT__valids_2) 
+           & ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__stridePrefetcher__DOT__entries_2_tag) 
+              == (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT__trainTag)));
+    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__stridePrefetcher__DOT__matchVec_3 
+        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__stridePrefetcher__DOT__valids_3) 
+           & ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__stridePrefetcher__DOT__entries_3_tag) 
+              == (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT__trainTag)));
+    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__stridePrefetcher__DOT__matchVec_4 
+        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__stridePrefetcher__DOT__valids_4) 
+           & ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__stridePrefetcher__DOT__entries_4_tag) 
+              == (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT__trainTag)));
+    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__stridePrefetcher__DOT__matchVec_5 
+        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__stridePrefetcher__DOT__valids_5) 
+           & ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__stridePrefetcher__DOT__entries_5_tag) 
+              == (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT__trainTag)));
+    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__stridePrefetcher__DOT__matchVec_6 
+        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__stridePrefetcher__DOT__valids_6) 
+           & ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__stridePrefetcher__DOT__entries_6_tag) 
+              == (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT__trainTag)));
+    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__stridePrefetcher__DOT__matchVec_7 
+        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__stridePrefetcher__DOT__valids_7) 
+           & ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__stridePrefetcher__DOT__entries_7_tag) 
+              == (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT__trainTag)));
+    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__stridePrefetcher__DOT__matchVec_8 
+        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__stridePrefetcher__DOT__valids_8) 
+           & ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__stridePrefetcher__DOT__entries_8_tag) 
+              == (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT__trainTag)));
+    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__stridePrefetcher__DOT__matchVec_9 
+        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__stridePrefetcher__DOT__valids_9) 
+           & ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__stridePrefetcher__DOT__entries_9_tag) 
+              == (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT__trainTag)));
+    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__stridePrefetcher__DOT__matchVec_10 
+        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__stridePrefetcher__DOT__valids_10) 
+           & ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__stridePrefetcher__DOT__entries_10_tag) 
+              == (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT__trainTag)));
+    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__stridePrefetcher__DOT__matchVec_11 
+        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__stridePrefetcher__DOT__valids_11) 
+           & ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__stridePrefetcher__DOT__entries_11_tag) 
+              == (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT__trainTag)));
     vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__stridePrefetcher__DOT__matchVec_12 
         = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__stridePrefetcher__DOT__valids_12) 
            & ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__stridePrefetcher__DOT__entries_12_tag) 
@@ -770,36 +2040,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
         = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__smsPrefetcher__DOT__pht_30_valid) 
            & ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__smsPrefetcher__DOT__pht_30_tag) 
               == (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__fdpPrefetcher__DOT__trainTag)));
-    __Vtemp_1[1U] = (IData)((((QData)((IData)((0x4cU 
-                                               | (((0x70000U 
-                                                    & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
-                                                       << 9U)) 
-                                                   | (0x8000U 
-                                                      & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
-                                                         << 3U))) 
-                                                  | ((0x7c00U 
-                                                      & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
-                                                         << 8U)) 
-                                                     | (3U 
-                                                        & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
-                                                           >> 0xaU))))))) 
-                              << 0x2aU) | (((QData)((IData)(
-                                                            (0x1180U 
-                                                             | ((6U 
-                                                                 & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
-                                                                    >> 6U)) 
-                                                                | (1U 
-                                                                   & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
-                                                                      >> 0xcU)))))) 
-                                            << 0x19U) 
-                                           | (QData)((IData)(
-                                                             (0x12023U 
-                                                              | ((0x1f00000U 
-                                                                  & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
-                                                                     << 0x12U)) 
-                                                                 | (0xe00U 
-                                                                    & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2))))))));
-    __Vtemp_1[2U] = (IData)(((((QData)((IData)((0x4cU 
+    __Vtemp_29[1U] = (IData)((((QData)((IData)((0x4cU 
                                                 | (((0x70000U 
                                                      & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
                                                         << 9U)) 
@@ -827,61 +2068,63 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                                    & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
                                                                       << 0x12U)) 
                                                                   | (0xe00U 
-                                                                     & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2))))))) 
-                             >> 0x20U));
-    __Vtemp_2[0U] = ((0x1000U & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2)
-                      ? ((0U == (0x1fU & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
-                                          >> 2U))) ? 
-                         ((0U != (0x1fU & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
-                                           >> 7U)))
-                           ? (0xe7U | (0xf8000U & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
-                                                   << 8U)))
-                           : 0x100073U) : (0x33U | 
-                                           ((0x1f00000U 
-                                             & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
-                                                << 0x12U)) 
-                                            | ((0xf8000U 
-                                                & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
-                                                   << 8U)) 
-                                               | (0xf80U 
-                                                  & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2)))))
-                      : ((0U == (0x1fU & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
-                                          >> 2U))) ? 
-                         (0x67U | (0xf8000U & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
-                                               << 8U)))
-                          : (0x13U | ((0xf8000U & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
-                                                   << 0xdU)) 
-                                      | (0xf80U & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2)))));
-    __Vtemp_3[0U] = (IData)((((QData)((IData)((0x260U 
-                                               | (((0x380000U 
-                                                    & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
-                                                       << 0x11U)) 
-                                                   | ((0x40000U 
-                                                       & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
-                                                          << 6U)) 
-                                                      | (0x30000U 
-                                                         & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
-                                                            << 0xbU)))) 
-                                                  | (0x1fU 
-                                                     & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
-                                                        >> 7U)))))) 
-                              << 0x27U) | (((QData)((IData)(
-                                                            (0xc00U 
-                                                             | ((0x30U 
-                                                                 & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
-                                                                    << 2U)) 
-                                                                | ((8U 
+                                                                     & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2))))))));
+    __Vtemp_29[2U] = (IData)(((((QData)((IData)((0x4cU 
+                                                 | (((0x70000U 
+                                                      & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
+                                                         << 9U)) 
+                                                     | (0x8000U 
+                                                        & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
+                                                           << 3U))) 
+                                                    | ((0x7c00U 
+                                                        & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
+                                                           << 8U)) 
+                                                       | (3U 
+                                                          & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
+                                                             >> 0xaU))))))) 
+                                << 0x2aU) | (((QData)((IData)(
+                                                              (0x1180U 
+                                                               | ((6U 
+                                                                   & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
+                                                                      >> 6U)) 
+                                                                  | (1U 
+                                                                     & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
+                                                                        >> 0xcU)))))) 
+                                              << 0x19U) 
+                                             | (QData)((IData)(
+                                                               (0x12023U 
+                                                                | ((0x1f00000U 
                                                                     & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
-                                                                       >> 9U)) 
-                                                                   | (7U 
-                                                                      & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
-                                                                         >> 4U))))))) 
-                                            << 0x16U) 
-                                           | (QData)((IData)(
-                                                             (0x12003U 
-                                                              | (0xf80U 
-                                                                 & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2)))))));
-    __Vtemp_3[1U] = (IData)(((((QData)((IData)((0x260U 
+                                                                       << 0x12U)) 
+                                                                   | (0xe00U 
+                                                                      & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2))))))) 
+                              >> 0x20U));
+    __Vtemp_30[0U] = ((0x1000U & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2)
+                       ? ((0U == (0x1fU & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
+                                           >> 2U)))
+                           ? ((0U != (0x1fU & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
+                                               >> 7U)))
+                               ? (0xe7U | (0xf8000U 
+                                           & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
+                                              << 8U)))
+                               : 0x100073U) : (0x33U 
+                                               | ((0x1f00000U 
+                                                   & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
+                                                      << 0x12U)) 
+                                                  | ((0xf8000U 
+                                                      & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
+                                                         << 8U)) 
+                                                     | (0xf80U 
+                                                        & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2)))))
+                       : ((0U == (0x1fU & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
+                                           >> 2U)))
+                           ? (0x67U | (0xf8000U & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
+                                                   << 8U)))
+                           : (0x13U | ((0xf8000U & 
+                                        (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
+                                         << 0xdU)) 
+                                       | (0xf80U & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2)))));
+    __Vtemp_31[0U] = (IData)((((QData)((IData)((0x260U 
                                                 | (((0x380000U 
                                                      & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
                                                         << 0x11U)) 
@@ -909,178 +2152,177 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                             | (QData)((IData)(
                                                               (0x12003U 
                                                                | (0xf80U 
-                                                                  & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2)))))) 
-                             >> 0x20U));
-    __Vtemp_5[0U] = (0x1013U | (((0x2000000U & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
-                                                << 0xdU)) 
-                                 | (0x1f00000U & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
-                                                  << 0x12U))) 
-                                | ((0xf8000U & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
-                                                << 8U)) 
-                                   | (0xf80U & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2))));
-    __Vtemp_5[1U] = (0x13007U | (((0x1c000000U & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
-                                                  << 0x18U)) 
-                                  | ((0x2000000U & 
-                                      (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
-                                       << 0xdU)) | 
-                                     (0x1800000U & 
-                                      (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
-                                       << 0x12U)))) 
-                                 | (0xf80U & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2)));
-    __Vtemp_5[2U] = __Vtemp_3[0U];
-    __Vtemp_5[3U] = __Vtemp_3[1U];
-    __Vtemp_5[4U] = __Vtemp_2[0U];
-    __Vtemp_5[5U] = (0x13027U | (((0x1c000000U & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
-                                                  << 0x13U)) 
-                                  | ((0x2000000U & 
-                                      (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
-                                       << 0xdU)) | 
-                                     (0x1f00000U & 
-                                      (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
-                                       << 0x12U)))) 
-                                 | (0xc00U & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2)));
-    __Vtemp_5[6U] = __Vtemp_1[1U];
-    __Vtemp_5[7U] = __Vtemp_1[2U];
-    __Vtemp_7[0U] = (IData)((((QData)((IData)((0x33408U 
-                                               | (7U 
-                                                  & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
-                                                     >> 2U))))) 
-                              << 0x14U) | (QData)((IData)(
-                                                          (0x40433U 
-                                                           | ((0x38000U 
-                                                               & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
-                                                                  << 8U)) 
-                                                              | ((0x380U 
-                                                                  & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2) 
-                                                                 | (8U 
-                                                                    & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
-                                                                       >> 9U)))))))));
-    __Vtemp_7[1U] = ((0xffffff80U & (0x844400U | ((
-                                                   (0x700000U 
-                                                    & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
-                                                       << 0x12U)) 
-                                                   | (0x38000U 
+                                                                  & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2)))))));
+    __Vtemp_31[1U] = (IData)(((((QData)((IData)((0x260U 
+                                                 | (((0x380000U 
                                                       & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
-                                                         << 8U))) 
-                                                  | (0x380U 
-                                                     & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2)))) 
-                     | (IData)(((((QData)((IData)((0x33408U 
-                                                   | (7U 
-                                                      & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
-                                                         >> 2U))))) 
-                                  << 0x14U) | (QData)((IData)(
-                                                              (0x40433U 
-                                                               | ((0x38000U 
+                                                         << 0x11U)) 
+                                                     | ((0x40000U 
+                                                         & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
+                                                            << 6U)) 
+                                                        | (0x30000U 
+                                                           & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
+                                                              << 0xbU)))) 
+                                                    | (0x1fU 
+                                                       & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
+                                                          >> 7U)))))) 
+                                << 0x27U) | (((QData)((IData)(
+                                                              (0xc00U 
+                                                               | ((0x30U 
                                                                    & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
-                                                                      << 8U)) 
-                                                                  | ((0x380U 
-                                                                      & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2) 
-                                                                     | (8U 
-                                                                        & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
-                                                                           >> 9U)))))))) 
-                                >> 0x20U)));
-    __Vtemp_7[2U] = (0x33U | ((IData)((((QData)((IData)(
-                                                        (0x108e8U 
-                                                         | ((0xe000U 
-                                                             & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
-                                                                << 0xbU)) 
-                                                            | ((0x700U 
-                                                                & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
-                                                                   << 1U)) 
-                                                               | (7U 
-                                                                  & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
-                                                                     >> 7U))))))) 
-                                        << 0x20U) | (QData)((IData)(
-                                                                    (0x660108c8U 
-                                                                     | (((0xe000U 
-                                                                          & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
-                                                                             << 0xbU)) 
-                                                                         | (0x700U 
-                                                                            & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
-                                                                               << 1U))) 
-                                                                        | (7U 
-                                                                           & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
-                                                                              >> 7U)))))))) 
-                              << 7U));
-    __Vtemp_7[3U] = (((IData)((((QData)((IData)((0x108e8U 
-                                                 | ((0xe000U 
-                                                     & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
-                                                        << 0xbU)) 
-                                                    | ((0x700U 
-                                                        & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
-                                                           << 1U)) 
-                                                       | (7U 
-                                                          & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
-                                                             >> 7U))))))) 
-                                << 0x20U) | (QData)((IData)(
-                                                            (0x660108c8U 
-                                                             | (((0xe000U 
-                                                                  & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
-                                                                     << 0xbU)) 
-                                                                 | (0x700U 
-                                                                    & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
-                                                                       << 1U))) 
-                                                                | (7U 
-                                                                   & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
-                                                                      >> 7U)))))))) 
-                      >> 0x19U) | ((IData)(((((QData)((IData)(
-                                                              (0x108e8U 
-                                                               | ((0xe000U 
-                                                                   & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
-                                                                      << 0xbU)) 
-                                                                  | ((0x700U 
+                                                                      << 2U)) 
+                                                                  | ((8U 
                                                                       & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
-                                                                         << 1U)) 
+                                                                         >> 9U)) 
                                                                      | (7U 
                                                                         & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
-                                                                           >> 7U))))))) 
-                                              << 0x20U) 
+                                                                           >> 4U))))))) 
+                                              << 0x16U) 
                                              | (QData)((IData)(
-                                                               (0x660108c8U 
-                                                                | (((0xe000U 
+                                                               (0x12003U 
+                                                                | (0xf80U 
+                                                                   & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2)))))) 
+                              >> 0x20U));
+    __Vtemp_33[0U] = (0x1013U | (((0x2000000U & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
+                                                 << 0xdU)) 
+                                  | (0x1f00000U & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
+                                                   << 0x12U))) 
+                                 | ((0xf8000U & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
+                                                 << 8U)) 
+                                    | (0xf80U & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2))));
+    __Vtemp_33[1U] = (0x13007U | (((0x1c000000U & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
+                                                   << 0x18U)) 
+                                   | ((0x2000000U & 
+                                       (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
+                                        << 0xdU)) | 
+                                      (0x1800000U & 
+                                       (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
+                                        << 0x12U)))) 
+                                  | (0xf80U & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2)));
+    __Vtemp_33[2U] = __Vtemp_31[0U];
+    __Vtemp_33[3U] = __Vtemp_31[1U];
+    __Vtemp_33[4U] = __Vtemp_30[0U];
+    __Vtemp_33[5U] = (0x13027U | (((0x1c000000U & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
+                                                   << 0x13U)) 
+                                   | ((0x2000000U & 
+                                       (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
+                                        << 0xdU)) | 
+                                      (0x1f00000U & 
+                                       (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
+                                        << 0x12U)))) 
+                                  | (0xc00U & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2)));
+    __Vtemp_33[6U] = __Vtemp_29[1U];
+    __Vtemp_33[7U] = __Vtemp_29[2U];
+    __Vtemp_35[0U] = (IData)((((QData)((IData)((0x33408U 
+                                                | (7U 
+                                                   & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
+                                                      >> 2U))))) 
+                               << 0x14U) | (QData)((IData)(
+                                                           (0x40433U 
+                                                            | ((0x38000U 
+                                                                & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
+                                                                   << 8U)) 
+                                                               | ((0x380U 
+                                                                   & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2) 
+                                                                  | (8U 
                                                                      & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
-                                                                        << 0xbU)) 
-                                                                    | (0x700U 
-                                                                       & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
-                                                                          << 1U))) 
-                                                                   | (7U 
-                                                                      & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
-                                                                         >> 7U))))))) 
-                                            >> 0x20U)) 
-                                   << 7U));
-    __Vtemp_8[0U] = (IData)((((QData)((IData)((0x8e8U 
-                                               | (((0x1fc0000U 
-                                                    & ((- (IData)(
-                                                                  (1U 
-                                                                   & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
-                                                                      >> 0xcU)))) 
-                                                       << 0x12U)) 
-                                                   | (0x3e000U 
-                                                      & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
-                                                         << 0xbU))) 
-                                                  | ((0x700U 
-                                                      & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
-                                                         << 1U)) 
-                                                     | (7U 
-                                                        & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
-                                                           >> 7U))))))) 
-                              << 0x27U) | (((QData)((IData)(
-                                                            (0x13400U 
-                                                             | ((0x20U 
+                                                                        >> 9U)))))))));
+    __Vtemp_35[1U] = ((0xffffff80U & (0x844400U | (
+                                                   ((0x700000U 
+                                                     & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
+                                                        << 0x12U)) 
+                                                    | (0x38000U 
+                                                       & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
+                                                          << 8U))) 
+                                                   | (0x380U 
+                                                      & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2)))) 
+                      | (IData)(((((QData)((IData)(
+                                                   (0x33408U 
+                                                    | (7U 
+                                                       & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
+                                                          >> 2U))))) 
+                                   << 0x14U) | (QData)((IData)(
+                                                               (0x40433U 
+                                                                | ((0x38000U 
+                                                                    & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
+                                                                       << 8U)) 
+                                                                   | ((0x380U 
+                                                                       & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2) 
+                                                                      | (8U 
+                                                                         & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
+                                                                            >> 9U)))))))) 
+                                 >> 0x20U)));
+    __Vtemp_35[2U] = (0x33U | ((IData)((((QData)((IData)(
+                                                         (0x108e8U 
+                                                          | ((0xe000U 
+                                                              & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
+                                                                 << 0xbU)) 
+                                                             | ((0x700U 
                                                                  & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
-                                                                    >> 7U)) 
-                                                                | (0x1fU 
+                                                                    << 1U)) 
+                                                                | (7U 
                                                                    & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
-                                                                      >> 2U)))))) 
-                                            << 0x14U) 
-                                           | (QData)((IData)(
-                                                             (0x45413U 
-                                                              | ((0x38000U 
+                                                                      >> 7U))))))) 
+                                         << 0x20U) 
+                                        | (QData)((IData)(
+                                                          (0x660108c8U 
+                                                           | (((0xe000U 
+                                                                & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
+                                                                   << 0xbU)) 
+                                                               | (0x700U 
                                                                   & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
-                                                                     << 8U)) 
-                                                                 | (0x380U 
-                                                                    & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2))))))));
-    __Vtemp_8[1U] = (IData)(((((QData)((IData)((0x8e8U 
+                                                                     << 1U))) 
+                                                              | (7U 
+                                                                 & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
+                                                                    >> 7U)))))))) 
+                               << 7U));
+    __Vtemp_35[3U] = (((IData)((((QData)((IData)((0x108e8U 
+                                                  | ((0xe000U 
+                                                      & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
+                                                         << 0xbU)) 
+                                                     | ((0x700U 
+                                                         & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
+                                                            << 1U)) 
+                                                        | (7U 
+                                                           & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
+                                                              >> 7U))))))) 
+                                 << 0x20U) | (QData)((IData)(
+                                                             (0x660108c8U 
+                                                              | (((0xe000U 
+                                                                   & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
+                                                                      << 0xbU)) 
+                                                                  | (0x700U 
+                                                                     & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
+                                                                        << 1U))) 
+                                                                 | (7U 
+                                                                    & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
+                                                                       >> 7U)))))))) 
+                       >> 0x19U) | ((IData)(((((QData)((IData)(
+                                                               (0x108e8U 
+                                                                | ((0xe000U 
+                                                                    & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
+                                                                       << 0xbU)) 
+                                                                   | ((0x700U 
+                                                                       & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
+                                                                          << 1U)) 
+                                                                      | (7U 
+                                                                         & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
+                                                                            >> 7U))))))) 
+                                               << 0x20U) 
+                                              | (QData)((IData)(
+                                                                (0x660108c8U 
+                                                                 | (((0xe000U 
+                                                                      & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
+                                                                         << 0xbU)) 
+                                                                     | (0x700U 
+                                                                        & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
+                                                                           << 1U))) 
+                                                                    | (7U 
+                                                                       & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
+                                                                          >> 7U))))))) 
+                                             >> 0x20U)) 
+                                    << 7U));
+    __Vtemp_36[0U] = (IData)((((QData)((IData)((0x8e8U 
                                                 | (((0x1fc0000U 
                                                      & ((- (IData)(
                                                                    (1U 
@@ -1111,53 +2353,89 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                                    & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
                                                                       << 8U)) 
                                                                   | (0x380U 
-                                                                     & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2))))))) 
-                             >> 0x20U));
-    __Vtemp_8[2U] = ((IData)((0x1020U == (0x1060U & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2)))
-                      ? (0x84043bU | ((0x700000U & 
-                                       (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
-                                        << 0x12U)) 
-                                      | ((0x38000U 
-                                          & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
-                                             << 8U)) 
-                                         | (0x380U 
-                                            & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2))))
-                      : (((0U == (0x1fU & VL_SHIFTL_III(7,7,32, 
-                                                        (3U 
-                                                         & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
-                                                            >> 5U)), 5U)))
-                           ? 0U : (__Vtemp_7[(((IData)(0x1fU) 
-                                               + (0x7fU 
+                                                                     & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2))))))));
+    __Vtemp_36[1U] = (IData)(((((QData)((IData)((0x8e8U 
+                                                 | (((0x1fc0000U 
+                                                      & ((- (IData)(
+                                                                    (1U 
+                                                                     & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
+                                                                        >> 0xcU)))) 
+                                                         << 0x12U)) 
+                                                     | (0x3e000U 
+                                                        & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
+                                                           << 0xbU))) 
+                                                    | ((0x700U 
+                                                        & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
+                                                           << 1U)) 
+                                                       | (7U 
+                                                          & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
+                                                             >> 7U))))))) 
+                                << 0x27U) | (((QData)((IData)(
+                                                              (0x13400U 
+                                                               | ((0x20U 
+                                                                   & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
+                                                                      >> 7U)) 
+                                                                  | (0x1fU 
+                                                                     & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
+                                                                        >> 2U)))))) 
+                                              << 0x14U) 
+                                             | (QData)((IData)(
+                                                               (0x45413U 
+                                                                | ((0x38000U 
+                                                                    & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
+                                                                       << 8U)) 
+                                                                   | (0x380U 
+                                                                      & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2))))))) 
+                              >> 0x20U));
+    __Vtemp_36[2U] = ((IData)((0x1020U == (0x1060U 
+                                           & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2)))
+                       ? (0x84043bU | ((0x700000U & 
+                                        (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
+                                         << 0x12U)) 
+                                       | ((0x38000U 
+                                           & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
+                                              << 8U)) 
+                                          | (0x380U 
+                                             & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2))))
+                       : (((0U == (0x1fU & VL_SHIFTL_III(7,7,32, 
+                                                         (3U 
+                                                          & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
+                                                             >> 5U)), 5U)))
+                            ? 0U : (__Vtemp_35[(((IData)(0x1fU) 
+                                                 + 
+                                                 (0x7fU 
                                                   & VL_SHIFTL_III(7,7,32, 
                                                                   (3U 
                                                                    & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
                                                                       >> 5U)), 5U))) 
-                                              >> 5U)] 
-                                   << ((IData)(0x20U) 
-                                       - (0x1fU & VL_SHIFTL_III(7,7,32, 
-                                                                (3U 
-                                                                 & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
-                                                                    >> 5U)), 5U))))) 
-                         | (__Vtemp_7[(3U & (VL_SHIFTL_III(7,7,32, 
-                                                           (3U 
-                                                            & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
-                                                               >> 5U)), 5U) 
-                                             >> 5U))] 
-                            >> (0x1fU & VL_SHIFTL_III(7,7,32, 
-                                                      (3U 
-                                                       & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
-                                                          >> 5U)), 5U)))));
-    __Vtemp_9[0U] = (0x45413U | (((0x2000000U & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
-                                                 << 0xdU)) 
-                                  | (0x1f00000U & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
-                                                   << 0x12U))) 
-                                 | ((0x38000U & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
-                                                 << 8U)) 
-                                    | (0x380U & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2))));
-    __Vtemp_9[1U] = __Vtemp_8[0U];
-    __Vtemp_9[2U] = __Vtemp_8[1U];
-    __Vtemp_9[3U] = __Vtemp_8[2U];
-    __Vtemp_10[0U] = (IData)((((QData)((IData)((0x6fU 
+                                                >> 5U)] 
+                                    << ((IData)(0x20U) 
+                                        - (0x1fU & 
+                                           VL_SHIFTL_III(7,7,32, 
+                                                         (3U 
+                                                          & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
+                                                             >> 5U)), 5U))))) 
+                          | (__Vtemp_35[(3U & (VL_SHIFTL_III(7,7,32, 
+                                                             (3U 
+                                                              & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
+                                                                 >> 5U)), 5U) 
+                                               >> 5U))] 
+                             >> (0x1fU & VL_SHIFTL_III(7,7,32, 
+                                                       (3U 
+                                                        & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
+                                                           >> 5U)), 5U)))));
+    __Vtemp_37[0U] = (0x45413U | (((0x2000000U & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
+                                                  << 0xdU)) 
+                                   | (0x1f00000U & 
+                                      (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
+                                       << 0x12U))) 
+                                  | ((0x38000U & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
+                                                  << 8U)) 
+                                     | (0x380U & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2))));
+    __Vtemp_37[1U] = __Vtemp_36[0U];
+    __Vtemp_37[2U] = __Vtemp_36[1U];
+    __Vtemp_37[3U] = __Vtemp_36[2U];
+    __Vtemp_38[0U] = (IData)((((QData)((IData)((0x6fU 
                                                 | (((((0x80000000U 
                                                        & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
                                                           << 0x13U)) 
@@ -1198,7 +2476,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                                                 >> 0xaU)), 5U)))
                                                               ? 0U
                                                               : 
-                                                             (__Vtemp_9[
+                                                             (__Vtemp_37[
                                                               (((IData)(0x1fU) 
                                                                 + 
                                                                 (0x7fU 
@@ -1215,7 +2493,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                                                 (3U 
                                                                                 & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
                                                                                 >> 0xaU)), 5U))))) 
-                                                            | (__Vtemp_9[
+                                                            | (__Vtemp_37[
                                                                (3U 
                                                                 & (VL_SHIFTL_III(7,7,32, 
                                                                                 (3U 
@@ -1228,7 +2506,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                                                 (3U 
                                                                                 & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
                                                                                 >> 0xaU)), 5U))))))));
-    __Vtemp_10[1U] = (IData)(((((QData)((IData)((0x6fU 
+    __Vtemp_38[1U] = (IData)(((((QData)((IData)((0x6fU 
                                                  | (((((0x80000000U 
                                                         & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
                                                            << 0x13U)) 
@@ -1269,7 +2547,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                                                 >> 0xaU)), 5U)))
                                                                ? 0U
                                                                : 
-                                                              (__Vtemp_9[
+                                                              (__Vtemp_37[
                                                                (((IData)(0x1fU) 
                                                                  + 
                                                                  (0x7fU 
@@ -1286,7 +2564,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                                                 (3U 
                                                                                 & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
                                                                                 >> 0xaU)), 5U))))) 
-                                                             | (__Vtemp_9[
+                                                             | (__Vtemp_37[
                                                                 (3U 
                                                                  & (VL_SHIFTL_III(7,7,32, 
                                                                                 (3U 
@@ -1300,7 +2578,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                                                 & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
                                                                                 >> 0xaU)), 5U))))))) 
                               >> 0x20U));
-    __Vtemp_11[0U] = (IData)((0x1b00000000ULL | (((QData)((IData)(
+    __Vtemp_39[0U] = (IData)((0x1b00000000ULL | (((QData)((IData)(
                                                                   (0x7fU 
                                                                    & (- (IData)(
                                                                                 (1U 
@@ -1344,7 +2622,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                                                 | (0xf80U 
                                                                                 & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2))))
                                                                               : 0x13U)))))))));
-    __Vtemp_11[1U] = (IData)(((0x1b00000000ULL | (((QData)((IData)(
+    __Vtemp_39[1U] = (IData)(((0x1b00000000ULL | (((QData)((IData)(
                                                                    (0x7fU 
                                                                     & (- (IData)(
                                                                                 (1U 
@@ -1389,7 +2667,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                                                 & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2))))
                                                                                : 0x13U)))))))) 
                               >> 0x20U));
-    __Vtemp_15[3U] = ((2U == (0x1fU & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
+    __Vtemp_43[3U] = ((2U == (0x1fU & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
                                        >> 7U))) ? (0x10113U 
                                                    | (((- (IData)(
                                                                   (1U 
@@ -1416,19 +2694,19 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                      << 0xaU)) 
                                                  | (0xf80U 
                                                     & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2)))));
-    __Vtemp_21[0U] = __Vtemp_11[0U];
-    __Vtemp_21[1U] = __Vtemp_11[1U];
-    __Vtemp_21[2U] = (0x13U | (((- (IData)((1U & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
+    __Vtemp_49[0U] = __Vtemp_39[0U];
+    __Vtemp_49[1U] = __Vtemp_39[1U];
+    __Vtemp_49[2U] = (0x13U | (((- (IData)((1U & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
                                                   >> 0xcU)))) 
                                 << 0x19U) | ((0x1f00000U 
                                               & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
                                                  << 0x12U)) 
                                              | (0xf80U 
                                                 & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2))));
-    __Vtemp_21[3U] = __Vtemp_15[3U];
-    __Vtemp_21[4U] = __Vtemp_10[0U];
-    __Vtemp_21[5U] = __Vtemp_10[1U];
-    __Vtemp_21[6U] = (0x40063U | ((0xfe000000U & ((
+    __Vtemp_49[3U] = __Vtemp_43[3U];
+    __Vtemp_49[4U] = __Vtemp_38[0U];
+    __Vtemp_49[5U] = __Vtemp_38[1U];
+    __Vtemp_49[6U] = (0x40063U | ((0xfe000000U & ((
                                                    (- (IData)(
                                                               (1U 
                                                                & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
@@ -1449,7 +2727,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                            | (0x80U 
                                               & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
                                                  >> 5U)))))));
-    __Vtemp_21[7U] = (0x41063U | ((((- (IData)((1U 
+    __Vtemp_49[7U] = (0x41063U | ((((- (IData)((1U 
                                                 & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
                                                    >> 0xcU)))) 
                                     << 0x1cU) | ((0xc000000U 
@@ -1466,7 +2744,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                         | (0x80U & 
                                            (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
                                             >> 5U))))));
-    __Vtemp_22[1U] = (IData)((0x1300000000ULL | (QData)((IData)(
+    __Vtemp_50[1U] = (IData)((0x1300000000ULL | (QData)((IData)(
                                                                 (((0U 
                                                                    == 
                                                                    (0x1fU 
@@ -1476,7 +2754,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                                                 >> 0xdU)), 5U)))
                                                                    ? 0U
                                                                    : 
-                                                                  (__Vtemp_5[
+                                                                  (__Vtemp_33[
                                                                    (((IData)(0x1fU) 
                                                                      + 
                                                                      (0xffU 
@@ -1493,7 +2771,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                                                 (7U 
                                                                                 & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
                                                                                 >> 0xdU)), 5U))))) 
-                                                                 | (__Vtemp_5[
+                                                                 | (__Vtemp_33[
                                                                     (7U 
                                                                      & (VL_SHIFTL_III(8,8,32, 
                                                                                 (7U 
@@ -1506,7 +2784,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                                                 (7U 
                                                                                 & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
                                                                                 >> 0xdU)), 5U))))))));
-    __Vtemp_22[2U] = (IData)(((0x1300000000ULL | (QData)((IData)(
+    __Vtemp_50[2U] = (IData)(((0x1300000000ULL | (QData)((IData)(
                                                                  (((0U 
                                                                     == 
                                                                     (0x1fU 
@@ -1516,7 +2794,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                                                 >> 0xdU)), 5U)))
                                                                     ? 0U
                                                                     : 
-                                                                   (__Vtemp_5[
+                                                                   (__Vtemp_33[
                                                                     (((IData)(0x1fU) 
                                                                       + 
                                                                       (0xffU 
@@ -1533,7 +2811,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                                                 (7U 
                                                                                 & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
                                                                                 >> 0xdU)), 5U))))) 
-                                                                  | (__Vtemp_5[
+                                                                  | (__Vtemp_33[
                                                                      (7U 
                                                                       & (VL_SHIFTL_III(8,8,32, 
                                                                                 (7U 
@@ -1547,7 +2825,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                                                 & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
                                                                                 >> 0xdU)), 5U))))))) 
                               >> 0x20U));
-    __Vtemp_23[2U] = (IData)((((QData)((IData)((0x843023U 
+    __Vtemp_51[2U] = (IData)((((QData)((IData)((0x843023U 
                                                 | ((((0xc000000U 
                                                       & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
                                                          << 0x15U)) 
@@ -1581,7 +2859,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                                      | (0x200U 
                                                                         & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
                                                                            << 3U))))))))));
-    __Vtemp_23[3U] = (IData)(((((QData)((IData)((0x843023U 
+    __Vtemp_51[3U] = (IData)(((((QData)((IData)((0x843023U 
                                                  | ((((0xc000000U 
                                                        & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
                                                           << 0x15U)) 
@@ -1616,7 +2894,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                                          & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
                                                                             << 3U))))))))) 
                               >> 0x20U));
-    __Vtemp_27[0U] = ((IData)((0U != (0x1fe0U & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2)))
+    __Vtemp_55[0U] = ((IData)((0U != (0x1fe0U & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2)))
                        ? (0x10413U | (((0x3c000000U 
                                         & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
                                            << 0x13U)) 
@@ -1632,7 +2910,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                       | (0x380U & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
                                                    << 5U))))
                        : 0x13U);
-    __Vtemp_27[1U] = (0x43407U | (((0xc000000U & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
+    __Vtemp_55[1U] = (0x43407U | (((0xc000000U & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
                                                   << 0x15U)) 
                                    | (0x3800000U & 
                                       (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
@@ -1641,7 +2919,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                 << 8U)) 
                                    | (0x380U & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
                                                 << 5U)))));
-    __Vtemp_27[2U] = (0x42403U | (((0x4000000U & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
+    __Vtemp_55[2U] = (0x42403U | (((0x4000000U & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
                                                   << 0x15U)) 
                                    | ((0x3800000U & 
                                        (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
@@ -1653,7 +2931,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                   << 8U)) 
                                      | (0x380U & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
                                                   << 5U)))));
-    __Vtemp_27[3U] = (0x43403U | (((0xc000000U & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
+    __Vtemp_55[3U] = (0x43403U | (((0xc000000U & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
                                                   << 0x15U)) 
                                    | (0x3800000U & 
                                       (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
@@ -1662,7 +2940,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                 << 8U)) 
                                    | (0x380U & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
                                                 << 5U)))));
-    __Vtemp_27[4U] = (IData)((0x302700000013ULL | (
+    __Vtemp_55[4U] = (IData)((0x302700000013ULL | (
                                                    ((QData)((IData)(
                                                                     (1U 
                                                                      | ((0x18U 
@@ -1687,7 +2965,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                                              & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
                                                                                 >> 0xaU)))) 
                                                             << 0x2aU))))));
-    __Vtemp_27[5U] = (IData)(((0x302700000013ULL | 
+    __Vtemp_55[5U] = (IData)(((0x302700000013ULL | 
                                (((QData)((IData)((1U 
                                                   | ((0x18U 
                                                       & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
@@ -1711,13 +2989,13 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                                         >> 0xaU)))) 
                                                     << 0x2aU))))) 
                               >> 0x20U));
-    __Vtemp_27[6U] = __Vtemp_23[2U];
-    __Vtemp_27[7U] = __Vtemp_23[3U];
-    __Vtemp_28[0U] = (((0U == (0x1fU & VL_SHIFTL_III(8,8,32, 
+    __Vtemp_55[6U] = __Vtemp_51[2U];
+    __Vtemp_55[7U] = __Vtemp_51[3U];
+    __Vtemp_56[0U] = (((0U == (0x1fU & VL_SHIFTL_III(8,8,32, 
                                                      (7U 
                                                       & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
                                                          >> 0xdU)), 5U)))
-                        ? 0U : (__Vtemp_27[(((IData)(0x1fU) 
+                        ? 0U : (__Vtemp_55[(((IData)(0x1fU) 
                                              + (0xffU 
                                                 & VL_SHIFTL_III(8,8,32, 
                                                                 (7U 
@@ -1729,7 +3007,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                              (7U 
                                                               & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
                                                                  >> 0xdU)), 5U))))) 
-                      | (__Vtemp_27[(7U & (VL_SHIFTL_III(8,8,32, 
+                      | (__Vtemp_55[(7U & (VL_SHIFTL_III(8,8,32, 
                                                          (7U 
                                                           & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
                                                              >> 0xdU)), 5U) 
@@ -1738,11 +3016,11 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                    (7U 
                                                     & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
                                                        >> 0xdU)), 5U))));
-    __Vtemp_28[1U] = (((0U == (0x1fU & VL_SHIFTL_III(8,8,32, 
+    __Vtemp_56[1U] = (((0U == (0x1fU & VL_SHIFTL_III(8,8,32, 
                                                      (7U 
                                                       & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
                                                          >> 0xdU)), 5U)))
-                        ? 0U : (__Vtemp_21[(((IData)(0x1fU) 
+                        ? 0U : (__Vtemp_49[(((IData)(0x1fU) 
                                              + (0xffU 
                                                 & VL_SHIFTL_III(8,8,32, 
                                                                 (7U 
@@ -1754,7 +3032,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                              (7U 
                                                               & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
                                                                  >> 0xdU)), 5U))))) 
-                      | (__Vtemp_21[(7U & (VL_SHIFTL_III(8,8,32, 
+                      | (__Vtemp_49[(7U & (VL_SHIFTL_III(8,8,32, 
                                                          (7U 
                                                           & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
                                                              >> 0xdU)), 5U) 
@@ -1763,12 +3041,12 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                    (7U 
                                                     & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
                                                        >> 0xdU)), 5U))));
-    __Vtemp_28[2U] = __Vtemp_22[1U];
-    __Vtemp_28[3U] = __Vtemp_22[2U];
+    __Vtemp_56[2U] = __Vtemp_50[1U];
+    __Vtemp_56[3U] = __Vtemp_50[2U];
     vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ifu__DOT__predecoders_4__DOT___rvc_expander_io_out 
         = (((0U == (0x1fU & VL_SHIFTL_III(7,7,32, (3U 
                                                    & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2), 5U)))
-             ? 0U : (__Vtemp_28[(((IData)(0x1fU) + 
+             ? 0U : (__Vtemp_56[(((IData)(0x1fU) + 
                                   (0x7fU & VL_SHIFTL_III(7,7,32, 
                                                          (3U 
                                                           & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2), 5U))) 
@@ -1777,13 +3055,13 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                 & VL_SHIFTL_III(7,7,32, 
                                                                 (3U 
                                                                  & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2), 5U))))) 
-           | (__Vtemp_28[(3U & (VL_SHIFTL_III(7,7,32, 
+           | (__Vtemp_56[(3U & (VL_SHIFTL_III(7,7,32, 
                                               (3U & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2), 5U) 
                                 >> 5U))] >> (0x1fU 
                                              & VL_SHIFTL_III(7,7,32, 
                                                              (3U 
                                                               & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2), 5U))));
-    __Vtemp_29[1U] = (IData)((((QData)((IData)((0x4cU 
+    __Vtemp_57[1U] = (IData)((((QData)((IData)((0x4cU 
                                                 | (((0x70000U 
                                                      & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
                                                         >> 7U)) 
@@ -1813,7 +3091,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                                   | (0xe00U 
                                                                      & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
                                                                         >> 0x10U)))))))));
-    __Vtemp_29[2U] = (IData)(((((QData)((IData)((0x4cU 
+    __Vtemp_57[2U] = (IData)(((((QData)((IData)((0x4cU 
                                                  | (((0x70000U 
                                                       & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
                                                          >> 7U)) 
@@ -1844,7 +3122,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                                       & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
                                                                          >> 0x10U)))))))) 
                               >> 0x20U));
-    __Vtemp_30[0U] = ((0x10000000U & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2)
+    __Vtemp_58[0U] = ((0x10000000U & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2)
                        ? ((0U == (0x1fU & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
                                            >> 0x12U)))
                            ? ((0U != (0x1fU & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
@@ -1871,7 +3149,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                          >> 3U)) | 
                                        (0xf80U & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
                                                   >> 0x10U))))));
-    __Vtemp_31[0U] = (IData)((((QData)((IData)((0x260U 
+    __Vtemp_59[0U] = (IData)((((QData)((IData)((0x260U 
                                                 | (((0x380000U 
                                                      & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
                                                         << 1U)) 
@@ -1901,7 +3179,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                                | (0xf80U 
                                                                   & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
                                                                      >> 0x10U))))))));
-    __Vtemp_31[1U] = (IData)(((((QData)((IData)((0x260U 
+    __Vtemp_59[1U] = (IData)(((((QData)((IData)((0x260U 
                                                  | (((0x380000U 
                                                       & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
                                                          << 1U)) 
@@ -1932,7 +3210,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                                    & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
                                                                       >> 0x10U))))))) 
                               >> 0x20U));
-    __Vtemp_33[0U] = (0x1013U | (((0x2000000U & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
+    __Vtemp_61[0U] = (0x1013U | (((0x2000000U & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
                                                  >> 3U)) 
                                   | (0x1f00000U & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
                                                    << 2U))) 
@@ -1940,7 +3218,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                  >> 8U)) 
                                     | (0xf80U & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
                                                  >> 0x10U)))));
-    __Vtemp_33[1U] = (0x13007U | (((0x1c000000U & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
+    __Vtemp_61[1U] = (0x13007U | (((0x1c000000U & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
                                                    << 8U)) 
                                    | ((0x2000000U & 
                                        (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
@@ -1949,10 +3227,10 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                       << 2U)))) 
                                   | (0xf80U & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
                                                >> 0x10U))));
-    __Vtemp_33[2U] = __Vtemp_31[0U];
-    __Vtemp_33[3U] = __Vtemp_31[1U];
-    __Vtemp_33[4U] = __Vtemp_30[0U];
-    __Vtemp_33[5U] = (0x13027U | (((0x1c000000U & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
+    __Vtemp_61[2U] = __Vtemp_59[0U];
+    __Vtemp_61[3U] = __Vtemp_59[1U];
+    __Vtemp_61[4U] = __Vtemp_58[0U];
+    __Vtemp_61[5U] = (0x13027U | (((0x1c000000U & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
                                                    << 3U)) 
                                    | ((0x2000000U & 
                                        (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
@@ -1961,9 +3239,9 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                       << 2U)))) 
                                   | (0xc00U & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
                                                >> 0x10U))));
-    __Vtemp_33[6U] = __Vtemp_29[1U];
-    __Vtemp_33[7U] = __Vtemp_29[2U];
-    __Vtemp_35[0U] = (IData)((((QData)((IData)((0x33408U 
+    __Vtemp_61[6U] = __Vtemp_57[1U];
+    __Vtemp_61[7U] = __Vtemp_57[2U];
+    __Vtemp_63[0U] = (IData)((((QData)((IData)((0x33408U 
                                                 | (7U 
                                                    & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
                                                       >> 0x12U))))) 
@@ -1978,7 +3256,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                                   | (8U 
                                                                      & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
                                                                         >> 0x19U)))))))));
-    __Vtemp_35[1U] = ((0xffffff80U & (0x844400U | (
+    __Vtemp_63[1U] = ((0xffffff80U & (0x844400U | (
                                                    ((0x700000U 
                                                      & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
                                                         << 2U)) 
@@ -2005,7 +3283,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                                          & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
                                                                             >> 0x19U)))))))) 
                                  >> 0x20U)));
-    __Vtemp_35[2U] = (0x33U | ((IData)((((QData)((IData)(
+    __Vtemp_63[2U] = (0x33U | ((IData)((((QData)((IData)(
                                                          (0x108e8U 
                                                           | ((0xe000U 
                                                               & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
@@ -2029,7 +3307,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                                  & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
                                                                     >> 0x17U)))))))) 
                                << 7U));
-    __Vtemp_35[3U] = (((IData)((((QData)((IData)((0x108e8U 
+    __Vtemp_63[3U] = (((IData)((((QData)((IData)((0x108e8U 
                                                   | ((0xe000U 
                                                       & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
                                                          >> 5U)) 
@@ -2075,7 +3353,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                                           >> 0x17U))))))) 
                                              >> 0x20U)) 
                                     << 7U));
-    __Vtemp_36[0U] = (IData)((((QData)((IData)((0x8e8U 
+    __Vtemp_64[0U] = (IData)((((QData)((IData)((0x8e8U 
                                                 | (((0x1fc0000U 
                                                      & ((- (IData)(
                                                                    (1U 
@@ -2108,7 +3386,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                                   | (0x380U 
                                                                      & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
                                                                         >> 0x10U)))))))));
-    __Vtemp_36[1U] = (IData)(((((QData)((IData)((0x8e8U 
+    __Vtemp_64[1U] = (IData)(((((QData)((IData)((0x8e8U 
                                                  | (((0x1fc0000U 
                                                       & ((- (IData)(
                                                                     (1U 
@@ -2142,7 +3420,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                                       & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
                                                                          >> 0x10U)))))))) 
                               >> 0x20U));
-    __Vtemp_36[2U] = ((IData)((0x10200000U == (0x10600000U 
+    __Vtemp_64[2U] = ((IData)((0x10200000U == (0x10600000U 
                                                & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2)))
                        ? (0x84043bU | ((0x700000U & 
                                         (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
@@ -2156,7 +3434,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                          (3U 
                                                           & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
                                                              >> 0x15U)), 5U)))
-                            ? 0U : (__Vtemp_35[(((IData)(0x1fU) 
+                            ? 0U : (__Vtemp_63[(((IData)(0x1fU) 
                                                  + 
                                                  (0x7fU 
                                                   & VL_SHIFTL_III(7,7,32, 
@@ -2170,7 +3448,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                          (3U 
                                                           & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
                                                              >> 0x15U)), 5U))))) 
-                          | (__Vtemp_35[(3U & (VL_SHIFTL_III(7,7,32, 
+                          | (__Vtemp_63[(3U & (VL_SHIFTL_III(7,7,32, 
                                                              (3U 
                                                               & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
                                                                  >> 0x15U)), 5U) 
@@ -2179,7 +3457,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                        (3U 
                                                         & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
                                                            >> 0x15U)), 5U)))));
-    __Vtemp_37[0U] = (0x45413U | (((0x2000000U & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
+    __Vtemp_65[0U] = (0x45413U | (((0x2000000U & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
                                                   >> 3U)) 
                                    | (0x1f00000U & 
                                       (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
@@ -2190,10 +3468,10 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                    | (0x380U 
                                                       & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
                                                          >> 0x10U)))));
-    __Vtemp_37[1U] = __Vtemp_36[0U];
-    __Vtemp_37[2U] = __Vtemp_36[1U];
-    __Vtemp_37[3U] = __Vtemp_36[2U];
-    __Vtemp_38[0U] = (IData)((((QData)((IData)((0x6fU 
+    __Vtemp_65[1U] = __Vtemp_64[0U];
+    __Vtemp_65[2U] = __Vtemp_64[1U];
+    __Vtemp_65[3U] = __Vtemp_64[2U];
+    __Vtemp_66[0U] = (IData)((((QData)((IData)((0x6fU 
                                                 | (((((0x80000000U 
                                                        & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
                                                           << 3U)) 
@@ -2234,7 +3512,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                                                 >> 0x1aU)), 5U)))
                                                               ? 0U
                                                               : 
-                                                             (__Vtemp_37[
+                                                             (__Vtemp_65[
                                                               (((IData)(0x1fU) 
                                                                 + 
                                                                 (0x7fU 
@@ -2251,7 +3529,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                                                 (3U 
                                                                                 & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
                                                                                 >> 0x1aU)), 5U))))) 
-                                                            | (__Vtemp_37[
+                                                            | (__Vtemp_65[
                                                                (3U 
                                                                 & (VL_SHIFTL_III(7,7,32, 
                                                                                 (3U 
@@ -2264,7 +3542,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                                                 (3U 
                                                                                 & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
                                                                                 >> 0x1aU)), 5U))))))));
-    __Vtemp_38[1U] = (IData)(((((QData)((IData)((0x6fU 
+    __Vtemp_66[1U] = (IData)(((((QData)((IData)((0x6fU 
                                                  | (((((0x80000000U 
                                                         & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
                                                            << 3U)) 
@@ -2305,7 +3583,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                                                 >> 0x1aU)), 5U)))
                                                                ? 0U
                                                                : 
-                                                              (__Vtemp_37[
+                                                              (__Vtemp_65[
                                                                (((IData)(0x1fU) 
                                                                  + 
                                                                  (0x7fU 
@@ -2322,7 +3600,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                                                 (3U 
                                                                                 & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
                                                                                 >> 0x1aU)), 5U))))) 
-                                                             | (__Vtemp_37[
+                                                             | (__Vtemp_65[
                                                                 (3U 
                                                                  & (VL_SHIFTL_III(7,7,32, 
                                                                                 (3U 
@@ -2336,7 +3614,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                                                 & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
                                                                                 >> 0x1aU)), 5U))))))) 
                               >> 0x20U));
-    __Vtemp_39[0U] = (IData)((0x1b00000000ULL | (((QData)((IData)(
+    __Vtemp_67[0U] = (IData)((0x1b00000000ULL | (((QData)((IData)(
                                                                   (0x7fU 
                                                                    & (- (IData)(
                                                                                 (1U 
@@ -2381,7 +3659,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                                                 & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
                                                                                 >> 0x10U)))))
                                                                               : 0x13U)))))))));
-    __Vtemp_39[1U] = (IData)(((0x1b00000000ULL | (((QData)((IData)(
+    __Vtemp_67[1U] = (IData)(((0x1b00000000ULL | (((QData)((IData)(
                                                                    (0x7fU 
                                                                     & (- (IData)(
                                                                                 (1U 
@@ -2427,7 +3705,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                                                 >> 0x10U)))))
                                                                                : 0x13U)))))))) 
                               >> 0x20U));
-    __Vtemp_43[3U] = ((2U == (0x1fU & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
+    __Vtemp_71[3U] = ((2U == (0x1fU & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
                                        >> 0x17U))) ? 
                       (0x10113U | (((- (IData)((1U 
                                                 & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
@@ -2453,9 +3731,9 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                  | (0xf80U 
                                                     & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
                                                        >> 0x10U))))));
-    __Vtemp_49[0U] = __Vtemp_39[0U];
-    __Vtemp_49[1U] = __Vtemp_39[1U];
-    __Vtemp_49[2U] = (0x13U | (((- (IData)((1U & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
+    __Vtemp_77[0U] = __Vtemp_67[0U];
+    __Vtemp_77[1U] = __Vtemp_67[1U];
+    __Vtemp_77[2U] = (0x13U | (((- (IData)((1U & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
                                                   >> 0x1cU)))) 
                                 << 0x19U) | ((0x1f00000U 
                                               & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
@@ -2463,10 +3741,10 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                              | (0xf80U 
                                                 & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
                                                    >> 0x10U)))));
-    __Vtemp_49[3U] = __Vtemp_43[3U];
-    __Vtemp_49[4U] = __Vtemp_38[0U];
-    __Vtemp_49[5U] = __Vtemp_38[1U];
-    __Vtemp_49[6U] = (0x40063U | ((0xfe000000U & ((
+    __Vtemp_77[3U] = __Vtemp_71[3U];
+    __Vtemp_77[4U] = __Vtemp_66[0U];
+    __Vtemp_77[5U] = __Vtemp_66[1U];
+    __Vtemp_77[6U] = (0x40063U | ((0xfe000000U & ((
                                                    (- (IData)(
                                                               (1U 
                                                                & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
@@ -2488,7 +3766,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                            | (0x80U 
                                               & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
                                                  >> 0x15U)))))));
-    __Vtemp_49[7U] = (0x41063U | ((((- (IData)((1U 
+    __Vtemp_77[7U] = (0x41063U | ((((- (IData)((1U 
                                                 & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
                                                    >> 0x1cU)))) 
                                     << 0x1cU) | ((0xc000000U 
@@ -2506,7 +3784,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                         | (0x80U & 
                                            (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
                                             >> 0x15U))))));
-    __Vtemp_51[2U] = (IData)((((QData)((IData)((0x843023U 
+    __Vtemp_79[2U] = (IData)((((QData)((IData)((0x843023U 
                                                 | ((((0xc000000U 
                                                       & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
                                                          << 5U)) 
@@ -2542,7 +3820,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                                      | (0x200U 
                                                                         & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
                                                                            >> 0xdU))))))))));
-    __Vtemp_51[3U] = (IData)(((((QData)((IData)((0x843023U 
+    __Vtemp_79[3U] = (IData)(((((QData)((IData)((0x843023U 
                                                  | ((((0xc000000U 
                                                        & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
                                                           << 5U)) 
@@ -2579,7 +3857,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                                          & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
                                                                             >> 0xdU))))))))) 
                               >> 0x20U));
-    __Vtemp_55[0U] = ((IData)((0U != (0x1fe00000U & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2)))
+    __Vtemp_83[0U] = ((IData)((0U != (0x1fe00000U & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2)))
                        ? (0x10413U | (((0x3c000000U 
                                         & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
                                            << 3U)) 
@@ -2594,7 +3872,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                       | (0x380U & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
                                                    >> 0xbU))))
                        : 0x13U);
-    __Vtemp_55[1U] = (0x43407U | (((0xc000000U & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
+    __Vtemp_83[1U] = (0x43407U | (((0xc000000U & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
                                                   << 5U)) 
                                    | (0x3800000U & 
                                       (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
@@ -2605,7 +3883,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                    | (0x380U 
                                                       & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
                                                          >> 0xbU)))));
-    __Vtemp_55[2U] = (0x42403U | (((0x4000000U & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
+    __Vtemp_83[2U] = (0x42403U | (((0x4000000U & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
                                                   << 5U)) 
                                    | ((0x3800000U & 
                                        (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
@@ -2615,7 +3893,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                   >> 8U)) 
                                      | (0x380U & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
                                                   >> 0xbU)))));
-    __Vtemp_55[3U] = (0x43403U | (((0xc000000U & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
+    __Vtemp_83[3U] = (0x43403U | (((0xc000000U & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
                                                   << 5U)) 
                                    | (0x3800000U & 
                                       (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
@@ -2626,7 +3904,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                    | (0x380U 
                                                       & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
                                                          >> 0xbU)))));
-    __Vtemp_55[4U] = (IData)((0x302700000013ULL | (
+    __Vtemp_83[4U] = (IData)((0x302700000013ULL | (
                                                    ((QData)((IData)(
                                                                     (1U 
                                                                      | ((0x18U 
@@ -2652,7 +3930,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                                              & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
                                                                                 >> 0x1aU)))) 
                                                             << 0x2aU))))));
-    __Vtemp_55[5U] = (IData)(((0x302700000013ULL | 
+    __Vtemp_83[5U] = (IData)(((0x302700000013ULL | 
                                (((QData)((IData)((1U 
                                                   | ((0x18U 
                                                       & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
@@ -2677,12 +3955,12 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                                         >> 0x1aU)))) 
                                                     << 0x2aU))))) 
                               >> 0x20U));
-    __Vtemp_55[6U] = __Vtemp_51[2U];
-    __Vtemp_55[7U] = __Vtemp_51[3U];
-    __Vtemp_56[0U] = (((0U == (0x1fU & VL_SHIFTL_III(8,8,32, 
+    __Vtemp_83[6U] = __Vtemp_79[2U];
+    __Vtemp_83[7U] = __Vtemp_79[3U];
+    __Vtemp_84[0U] = (((0U == (0x1fU & VL_SHIFTL_III(8,8,32, 
                                                      (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
                                                       >> 0x1dU), 5U)))
-                        ? 0U : (__Vtemp_55[(((IData)(0x1fU) 
+                        ? 0U : (__Vtemp_83[(((IData)(0x1fU) 
                                              + (0xffU 
                                                 & VL_SHIFTL_III(8,8,32, 
                                                                 (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
@@ -2692,17 +3970,17 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                     - (0x1fU & VL_SHIFTL_III(8,8,32, 
                                                              (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
                                                               >> 0x1dU), 5U))))) 
-                      | (__Vtemp_55[(7U & (VL_SHIFTL_III(8,8,32, 
+                      | (__Vtemp_83[(7U & (VL_SHIFTL_III(8,8,32, 
                                                          (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
                                                           >> 0x1dU), 5U) 
                                            >> 5U))] 
                          >> (0x1fU & VL_SHIFTL_III(8,8,32, 
                                                    (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
                                                     >> 0x1dU), 5U))));
-    __Vtemp_56[1U] = (((0U == (0x1fU & VL_SHIFTL_III(8,8,32, 
+    __Vtemp_84[1U] = (((0U == (0x1fU & VL_SHIFTL_III(8,8,32, 
                                                      (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
                                                       >> 0x1dU), 5U)))
-                        ? 0U : (__Vtemp_49[(((IData)(0x1fU) 
+                        ? 0U : (__Vtemp_77[(((IData)(0x1fU) 
                                              + (0xffU 
                                                 & VL_SHIFTL_III(8,8,32, 
                                                                 (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
@@ -2712,14 +3990,14 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                     - (0x1fU & VL_SHIFTL_III(8,8,32, 
                                                              (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
                                                               >> 0x1dU), 5U))))) 
-                      | (__Vtemp_49[(7U & (VL_SHIFTL_III(8,8,32, 
+                      | (__Vtemp_77[(7U & (VL_SHIFTL_III(8,8,32, 
                                                          (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
                                                           >> 0x1dU), 5U) 
                                            >> 5U))] 
                          >> (0x1fU & VL_SHIFTL_III(8,8,32, 
                                                    (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
                                                     >> 0x1dU), 5U))));
-    __Vtemp_56[2U] = (IData)((0x1300000000ULL | (QData)((IData)(
+    __Vtemp_84[2U] = (IData)((0x1300000000ULL | (QData)((IData)(
                                                                 (((0U 
                                                                    == 
                                                                    (0x1fU 
@@ -2728,7 +4006,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                                                 >> 0x1dU), 5U)))
                                                                    ? 0U
                                                                    : 
-                                                                  (__Vtemp_33[
+                                                                  (__Vtemp_61[
                                                                    (((IData)(0x1fU) 
                                                                      + 
                                                                      (0xffU 
@@ -2743,7 +4021,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                                      & VL_SHIFTL_III(8,8,32, 
                                                                                 (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
                                                                                 >> 0x1dU), 5U))))) 
-                                                                 | (__Vtemp_33[
+                                                                 | (__Vtemp_61[
                                                                     (7U 
                                                                      & (VL_SHIFTL_III(8,8,32, 
                                                                                 (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
@@ -2754,7 +4032,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                                      & VL_SHIFTL_III(8,8,32, 
                                                                                 (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
                                                                                 >> 0x1dU), 5U))))))));
-    __Vtemp_56[3U] = (IData)(((0x1300000000ULL | (QData)((IData)(
+    __Vtemp_84[3U] = (IData)(((0x1300000000ULL | (QData)((IData)(
                                                                  (((0U 
                                                                     == 
                                                                     (0x1fU 
@@ -2763,7 +4041,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                                                 >> 0x1dU), 5U)))
                                                                     ? 0U
                                                                     : 
-                                                                   (__Vtemp_33[
+                                                                   (__Vtemp_61[
                                                                     (((IData)(0x1fU) 
                                                                       + 
                                                                       (0xffU 
@@ -2778,7 +4056,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                                       & VL_SHIFTL_III(8,8,32, 
                                                                                 (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
                                                                                 >> 0x1dU), 5U))))) 
-                                                                  | (__Vtemp_33[
+                                                                  | (__Vtemp_61[
                                                                      (7U 
                                                                       & (VL_SHIFTL_III(8,8,32, 
                                                                                 (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
@@ -2794,7 +4072,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
         = (((0U == (0x1fU & VL_SHIFTL_III(7,7,32, (3U 
                                                    & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
                                                       >> 0x10U)), 5U)))
-             ? 0U : (__Vtemp_56[(((IData)(0x1fU) + 
+             ? 0U : (__Vtemp_84[(((IData)(0x1fU) + 
                                   (0x7fU & VL_SHIFTL_III(7,7,32, 
                                                          (3U 
                                                           & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
@@ -2805,7 +4083,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                                 (3U 
                                                                  & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
                                                                     >> 0x10U)), 5U))))) 
-           | (__Vtemp_56[(3U & (VL_SHIFTL_III(7,7,32, 
+           | (__Vtemp_84[(3U & (VL_SHIFTL_III(7,7,32, 
                                               (3U & 
                                                (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_2 
                                                 >> 0x10U)), 5U) 
@@ -3087,7 +4365,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
         = (3U & ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT____VdfgRegularize_h258fc8ed_0_2) 
                  + (1U & ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ifu_skid__DOT__slot0_data_mask) 
                           >> 2U))));
-    __Vtemp_57[1U] = (IData)((((QData)((IData)((0x4cU 
+    __Vtemp_85[1U] = (IData)((((QData)((IData)((0x4cU 
                                                 | (((0x70000U 
                                                      & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
                                                         << 9U)) 
@@ -3116,7 +4394,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                                       << 0x12U)) 
                                                                   | (0xe00U 
                                                                      & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1))))))));
-    __Vtemp_57[2U] = (IData)(((((QData)((IData)((0x4cU 
+    __Vtemp_85[2U] = (IData)(((((QData)((IData)((0x4cU 
                                                  | (((0x70000U 
                                                       & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
                                                          << 9U)) 
@@ -3146,7 +4424,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                                    | (0xe00U 
                                                                       & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1))))))) 
                               >> 0x20U));
-    __Vtemp_58[0U] = ((0x1000U & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1)
+    __Vtemp_86[0U] = ((0x1000U & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1)
                        ? ((0U == (0x1fU & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
                                            >> 2U)))
                            ? ((0U != (0x1fU & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
@@ -3171,7 +4449,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                         (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
                                          << 0xdU)) 
                                        | (0xf80U & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1)))));
-    __Vtemp_59[0U] = (IData)((((QData)((IData)((0x260U 
+    __Vtemp_87[0U] = (IData)((((QData)((IData)((0x260U 
                                                 | (((0x380000U 
                                                      & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
                                                         << 0x11U)) 
@@ -3200,7 +4478,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                               (0x12003U 
                                                                | (0xf80U 
                                                                   & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1)))))));
-    __Vtemp_59[1U] = (IData)(((((QData)((IData)((0x260U 
+    __Vtemp_87[1U] = (IData)(((((QData)((IData)((0x260U 
                                                  | (((0x380000U 
                                                       & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
                                                          << 0x11U)) 
@@ -3230,14 +4508,14 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                                 | (0xf80U 
                                                                    & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1)))))) 
                               >> 0x20U));
-    __Vtemp_61[0U] = (0x1013U | (((0x2000000U & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
+    __Vtemp_89[0U] = (0x1013U | (((0x2000000U & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
                                                  << 0xdU)) 
                                   | (0x1f00000U & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
                                                    << 0x12U))) 
                                  | ((0xf8000U & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
                                                  << 8U)) 
                                     | (0xf80U & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1))));
-    __Vtemp_61[1U] = (0x13007U | (((0x1c000000U & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
+    __Vtemp_89[1U] = (0x13007U | (((0x1c000000U & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
                                                    << 0x18U)) 
                                    | ((0x2000000U & 
                                        (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
@@ -3246,10 +4524,10 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                        (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
                                         << 0x12U)))) 
                                   | (0xf80U & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1)));
-    __Vtemp_61[2U] = __Vtemp_59[0U];
-    __Vtemp_61[3U] = __Vtemp_59[1U];
-    __Vtemp_61[4U] = __Vtemp_58[0U];
-    __Vtemp_61[5U] = (0x13027U | (((0x1c000000U & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
+    __Vtemp_89[2U] = __Vtemp_87[0U];
+    __Vtemp_89[3U] = __Vtemp_87[1U];
+    __Vtemp_89[4U] = __Vtemp_86[0U];
+    __Vtemp_89[5U] = (0x13027U | (((0x1c000000U & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
                                                    << 0x13U)) 
                                    | ((0x2000000U & 
                                        (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
@@ -3258,9 +4536,9 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                        (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
                                         << 0x12U)))) 
                                   | (0xc00U & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1)));
-    __Vtemp_61[6U] = __Vtemp_57[1U];
-    __Vtemp_61[7U] = __Vtemp_57[2U];
-    __Vtemp_63[0U] = (IData)((((QData)((IData)((0x33408U 
+    __Vtemp_89[6U] = __Vtemp_85[1U];
+    __Vtemp_89[7U] = __Vtemp_85[2U];
+    __Vtemp_91[0U] = (IData)((((QData)((IData)((0x33408U 
                                                 | (7U 
                                                    & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
                                                       >> 2U))))) 
@@ -3274,7 +4552,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                                   | (8U 
                                                                      & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
                                                                         >> 9U)))))))));
-    __Vtemp_63[1U] = ((0xffffff80U & (0x844400U | (
+    __Vtemp_91[1U] = ((0xffffff80U & (0x844400U | (
                                                    ((0x700000U 
                                                      & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
                                                         << 0x12U)) 
@@ -3299,7 +4577,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                                          & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
                                                                             >> 9U)))))))) 
                                  >> 0x20U)));
-    __Vtemp_63[2U] = (0x33U | ((IData)((((QData)((IData)(
+    __Vtemp_91[2U] = (0x33U | ((IData)((((QData)((IData)(
                                                          (0x108e8U 
                                                           | ((0xe000U 
                                                               & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
@@ -3323,7 +4601,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                                  & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
                                                                     >> 7U)))))))) 
                                << 7U));
-    __Vtemp_63[3U] = (((IData)((((QData)((IData)((0x108e8U 
+    __Vtemp_91[3U] = (((IData)((((QData)((IData)((0x108e8U 
                                                   | ((0xe000U 
                                                       & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
                                                          << 0xbU)) 
@@ -3369,7 +4647,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                                           >> 7U))))))) 
                                              >> 0x20U)) 
                                     << 7U));
-    __Vtemp_64[0U] = (IData)((((QData)((IData)((0x8e8U 
+    __Vtemp_92[0U] = (IData)((((QData)((IData)((0x8e8U 
                                                 | (((0x1fc0000U 
                                                      & ((- (IData)(
                                                                    (1U 
@@ -3401,7 +4679,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                                       << 8U)) 
                                                                   | (0x380U 
                                                                      & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1))))))));
-    __Vtemp_64[1U] = (IData)(((((QData)((IData)((0x8e8U 
+    __Vtemp_92[1U] = (IData)(((((QData)((IData)((0x8e8U 
                                                  | (((0x1fc0000U 
                                                       & ((- (IData)(
                                                                     (1U 
@@ -3434,7 +4712,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                                    | (0x380U 
                                                                       & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1))))))) 
                               >> 0x20U));
-    __Vtemp_64[2U] = ((IData)((0x1020U == (0x1060U 
+    __Vtemp_92[2U] = ((IData)((0x1020U == (0x1060U 
                                            & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1)))
                        ? (0x84043bU | ((0x700000U & 
                                         (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
@@ -3448,7 +4726,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                          (3U 
                                                           & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
                                                              >> 5U)), 5U)))
-                            ? 0U : (__Vtemp_63[(((IData)(0x1fU) 
+                            ? 0U : (__Vtemp_91[(((IData)(0x1fU) 
                                                  + 
                                                  (0x7fU 
                                                   & VL_SHIFTL_III(7,7,32, 
@@ -3462,7 +4740,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                          (3U 
                                                           & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
                                                              >> 5U)), 5U))))) 
-                          | (__Vtemp_63[(3U & (VL_SHIFTL_III(7,7,32, 
+                          | (__Vtemp_91[(3U & (VL_SHIFTL_III(7,7,32, 
                                                              (3U 
                                                               & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
                                                                  >> 5U)), 5U) 
@@ -3471,7 +4749,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                        (3U 
                                                         & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
                                                            >> 5U)), 5U)))));
-    __Vtemp_65[0U] = (0x45413U | (((0x2000000U & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
+    __Vtemp_93[0U] = (0x45413U | (((0x2000000U & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
                                                   << 0xdU)) 
                                    | (0x1f00000U & 
                                       (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
@@ -3479,10 +4757,10 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                   | ((0x38000U & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
                                                   << 8U)) 
                                      | (0x380U & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1))));
-    __Vtemp_65[1U] = __Vtemp_64[0U];
-    __Vtemp_65[2U] = __Vtemp_64[1U];
-    __Vtemp_65[3U] = __Vtemp_64[2U];
-    __Vtemp_66[0U] = (IData)((((QData)((IData)((0x6fU 
+    __Vtemp_93[1U] = __Vtemp_92[0U];
+    __Vtemp_93[2U] = __Vtemp_92[1U];
+    __Vtemp_93[3U] = __Vtemp_92[2U];
+    __Vtemp_94[0U] = (IData)((((QData)((IData)((0x6fU 
                                                 | (((((0x80000000U 
                                                        & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
                                                           << 0x13U)) 
@@ -3523,7 +4801,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                                                 >> 0xaU)), 5U)))
                                                               ? 0U
                                                               : 
-                                                             (__Vtemp_65[
+                                                             (__Vtemp_93[
                                                               (((IData)(0x1fU) 
                                                                 + 
                                                                 (0x7fU 
@@ -3540,7 +4818,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                                                 (3U 
                                                                                 & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
                                                                                 >> 0xaU)), 5U))))) 
-                                                            | (__Vtemp_65[
+                                                            | (__Vtemp_93[
                                                                (3U 
                                                                 & (VL_SHIFTL_III(7,7,32, 
                                                                                 (3U 
@@ -3553,7 +4831,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                                                 (3U 
                                                                                 & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
                                                                                 >> 0xaU)), 5U))))))));
-    __Vtemp_66[1U] = (IData)(((((QData)((IData)((0x6fU 
+    __Vtemp_94[1U] = (IData)(((((QData)((IData)((0x6fU 
                                                  | (((((0x80000000U 
                                                         & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
                                                            << 0x13U)) 
@@ -3594,7 +4872,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                                                 >> 0xaU)), 5U)))
                                                                ? 0U
                                                                : 
-                                                              (__Vtemp_65[
+                                                              (__Vtemp_93[
                                                                (((IData)(0x1fU) 
                                                                  + 
                                                                  (0x7fU 
@@ -3611,7 +4889,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                                                 (3U 
                                                                                 & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
                                                                                 >> 0xaU)), 5U))))) 
-                                                             | (__Vtemp_65[
+                                                             | (__Vtemp_93[
                                                                 (3U 
                                                                  & (VL_SHIFTL_III(7,7,32, 
                                                                                 (3U 
@@ -3625,7 +4903,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                                                 & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
                                                                                 >> 0xaU)), 5U))))))) 
                               >> 0x20U));
-    __Vtemp_67[0U] = (IData)((0x1b00000000ULL | (((QData)((IData)(
+    __Vtemp_95[0U] = (IData)((0x1b00000000ULL | (((QData)((IData)(
                                                                   (0x7fU 
                                                                    & (- (IData)(
                                                                                 (1U 
@@ -3669,7 +4947,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                                                 | (0xf80U 
                                                                                 & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1))))
                                                                               : 0x13U)))))))));
-    __Vtemp_67[1U] = (IData)(((0x1b00000000ULL | (((QData)((IData)(
+    __Vtemp_95[1U] = (IData)(((0x1b00000000ULL | (((QData)((IData)(
                                                                    (0x7fU 
                                                                     & (- (IData)(
                                                                                 (1U 
@@ -3714,7 +4992,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                                                 & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1))))
                                                                                : 0x13U)))))))) 
                               >> 0x20U));
-    __Vtemp_71[3U] = ((2U == (0x1fU & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
+    __Vtemp_99[3U] = ((2U == (0x1fU & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
                                        >> 7U))) ? (0x10113U 
                                                    | (((- (IData)(
                                                                   (1U 
@@ -3741,97 +5019,59 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                      << 0xaU)) 
                                                  | (0xf80U 
                                                     & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1)))));
-    __Vtemp_77[0U] = __Vtemp_67[0U];
-    __Vtemp_77[1U] = __Vtemp_67[1U];
-    __Vtemp_77[2U] = (0x13U | (((- (IData)((1U & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
-                                                  >> 0xcU)))) 
-                                << 0x19U) | ((0x1f00000U 
-                                              & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
-                                                 << 0x12U)) 
-                                             | (0xf80U 
-                                                & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1))));
-    __Vtemp_77[3U] = __Vtemp_71[3U];
-    __Vtemp_77[4U] = __Vtemp_66[0U];
-    __Vtemp_77[5U] = __Vtemp_66[1U];
-    __Vtemp_77[6U] = (0x40063U | ((0xfe000000U & ((
-                                                   (- (IData)(
-                                                              (1U 
-                                                               & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
-                                                                  >> 0xcU)))) 
-                                                   << 0x1cU) 
-                                                  | ((0xc000000U 
-                                                      & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
-                                                         << 0x15U)) 
-                                                     | (0x2000000U 
-                                                        & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
-                                                           << 0x17U))))) 
-                                  | ((0x38000U & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
-                                                  << 8U)) 
-                                     | ((0xc00U & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1) 
-                                        | ((0x300U 
-                                            & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
-                                               << 5U)) 
-                                           | (0x80U 
-                                              & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
-                                                 >> 5U)))))));
-    __Vtemp_77[7U] = (0x41063U | ((((- (IData)((1U 
-                                                & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
+    __Vtemp_105[0U] = __Vtemp_95[0U];
+    __Vtemp_105[1U] = __Vtemp_95[1U];
+    __Vtemp_105[2U] = (0x13U | (((- (IData)((1U & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
                                                    >> 0xcU)))) 
-                                    << 0x1cU) | ((0xc000000U 
-                                                  & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
-                                                     << 0x15U)) 
-                                                 | (0x2000000U 
-                                                    & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
-                                                       << 0x17U)))) 
-                                  | (((0x38000U & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
+                                 << 0x19U) | ((0x1f00000U 
+                                               & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
+                                                  << 0x12U)) 
+                                              | (0xf80U 
+                                                 & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1))));
+    __Vtemp_105[3U] = __Vtemp_99[3U];
+    __Vtemp_105[4U] = __Vtemp_94[0U];
+    __Vtemp_105[5U] = __Vtemp_94[1U];
+    __Vtemp_105[6U] = (0x40063U | ((0xfe000000U & (
+                                                   ((- (IData)(
+                                                               (1U 
+                                                                & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
+                                                                   >> 0xcU)))) 
+                                                    << 0x1cU) 
+                                                   | ((0xc000000U 
+                                                       & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
+                                                          << 0x15U)) 
+                                                      | (0x2000000U 
+                                                         & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
+                                                            << 0x17U))))) 
+                                   | ((0x38000U & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
                                                    << 8U)) 
-                                      | (0xc00U & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1)) 
-                                     | ((0x300U & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
-                                                   << 5U)) 
-                                        | (0x80U & 
-                                           (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
-                                            >> 5U))))));
-    __Vtemp_78[1U] = (IData)((0x1300000000ULL | (QData)((IData)(
-                                                                (((0U 
-                                                                   == 
-                                                                   (0x1fU 
-                                                                    & VL_SHIFTL_III(8,8,32, 
-                                                                                (7U 
-                                                                                & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
-                                                                                >> 0xdU)), 5U)))
-                                                                   ? 0U
-                                                                   : 
-                                                                  (__Vtemp_61[
-                                                                   (((IData)(0x1fU) 
-                                                                     + 
-                                                                     (0xffU 
-                                                                      & VL_SHIFTL_III(8,8,32, 
-                                                                                (7U 
-                                                                                & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
-                                                                                >> 0xdU)), 5U))) 
-                                                                    >> 5U)] 
-                                                                   << 
-                                                                   ((IData)(0x20U) 
-                                                                    - 
-                                                                    (0x1fU 
-                                                                     & VL_SHIFTL_III(8,8,32, 
-                                                                                (7U 
-                                                                                & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
-                                                                                >> 0xdU)), 5U))))) 
-                                                                 | (__Vtemp_61[
-                                                                    (7U 
-                                                                     & (VL_SHIFTL_III(8,8,32, 
-                                                                                (7U 
-                                                                                & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
-                                                                                >> 0xdU)), 5U) 
-                                                                        >> 5U))] 
-                                                                    >> 
-                                                                    (0x1fU 
-                                                                     & VL_SHIFTL_III(8,8,32, 
-                                                                                (7U 
-                                                                                & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
-                                                                                >> 0xdU)), 5U))))))));
-    __Vtemp_78[2U] = (IData)(((0x1300000000ULL | (QData)((IData)(
+                                      | ((0xc00U & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1) 
+                                         | ((0x300U 
+                                             & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
+                                                << 5U)) 
+                                            | (0x80U 
+                                               & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
+                                                  >> 5U)))))));
+    __Vtemp_105[7U] = (0x41063U | ((((- (IData)((1U 
+                                                 & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
+                                                    >> 0xcU)))) 
+                                     << 0x1cU) | ((0xc000000U 
+                                                   & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
+                                                      << 0x15U)) 
+                                                  | (0x2000000U 
+                                                     & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
+                                                        << 0x17U)))) 
+                                   | (((0x38000U & 
+                                        (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
+                                         << 8U)) | 
+                                       (0xc00U & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1)) 
+                                      | ((0x300U & 
+                                          (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
+                                           << 5U)) 
+                                         | (0x80U & 
+                                            (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
+                                             >> 5U))))));
+    __Vtemp_106[1U] = (IData)((0x1300000000ULL | (QData)((IData)(
                                                                  (((0U 
                                                                     == 
                                                                     (0x1fU 
@@ -3841,7 +5081,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                                                 >> 0xdU)), 5U)))
                                                                     ? 0U
                                                                     : 
-                                                                   (__Vtemp_61[
+                                                                   (__Vtemp_89[
                                                                     (((IData)(0x1fU) 
                                                                       + 
                                                                       (0xffU 
@@ -3858,7 +5098,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                                                 (7U 
                                                                                 & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
                                                                                 >> 0xdU)), 5U))))) 
-                                                                  | (__Vtemp_61[
+                                                                  | (__Vtemp_89[
                                                                      (7U 
                                                                       & (VL_SHIFTL_III(8,8,32, 
                                                                                 (7U 
@@ -3870,43 +5110,49 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                                       & VL_SHIFTL_III(8,8,32, 
                                                                                 (7U 
                                                                                 & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
+                                                                                >> 0xdU)), 5U))))))));
+    __Vtemp_106[2U] = (IData)(((0x1300000000ULL | (QData)((IData)(
+                                                                  (((0U 
+                                                                     == 
+                                                                     (0x1fU 
+                                                                      & VL_SHIFTL_III(8,8,32, 
+                                                                                (7U 
+                                                                                & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
+                                                                                >> 0xdU)), 5U)))
+                                                                     ? 0U
+                                                                     : 
+                                                                    (__Vtemp_89[
+                                                                     (((IData)(0x1fU) 
+                                                                       + 
+                                                                       (0xffU 
+                                                                        & VL_SHIFTL_III(8,8,32, 
+                                                                                (7U 
+                                                                                & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
+                                                                                >> 0xdU)), 5U))) 
+                                                                      >> 5U)] 
+                                                                     << 
+                                                                     ((IData)(0x20U) 
+                                                                      - 
+                                                                      (0x1fU 
+                                                                       & VL_SHIFTL_III(8,8,32, 
+                                                                                (7U 
+                                                                                & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
+                                                                                >> 0xdU)), 5U))))) 
+                                                                   | (__Vtemp_89[
+                                                                      (7U 
+                                                                       & (VL_SHIFTL_III(8,8,32, 
+                                                                                (7U 
+                                                                                & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
+                                                                                >> 0xdU)), 5U) 
+                                                                          >> 5U))] 
+                                                                      >> 
+                                                                      (0x1fU 
+                                                                       & VL_SHIFTL_III(8,8,32, 
+                                                                                (7U 
+                                                                                & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
                                                                                 >> 0xdU)), 5U))))))) 
-                              >> 0x20U));
-    __Vtemp_79[2U] = (IData)((((QData)((IData)((0x843023U 
-                                                | ((((0xc000000U 
-                                                      & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
-                                                         << 0x15U)) 
-                                                     | (0x2000000U 
-                                                        & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
-                                                           << 0xdU))) 
-                                                    | (0x700000U 
-                                                       & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
-                                                          << 0x12U))) 
-                                                   | ((0x38000U 
-                                                       & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
-                                                          << 8U)) 
-                                                      | (0xc00U 
-                                                         & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1)))))) 
-                               << 0x20U) | (QData)((IData)(
-                                                           (0x842023U 
-                                                            | ((((0x4000000U 
-                                                                  & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
-                                                                     << 0x15U)) 
-                                                                 | (0x2000000U 
-                                                                    & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
-                                                                       << 0xdU))) 
-                                                                | (0x700000U 
-                                                                   & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
-                                                                      << 0x12U))) 
-                                                               | ((0x38000U 
-                                                                   & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
-                                                                      << 8U)) 
-                                                                  | ((0xc00U 
-                                                                      & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1) 
-                                                                     | (0x200U 
-                                                                        & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
-                                                                           << 3U))))))))));
-    __Vtemp_79[3U] = (IData)(((((QData)((IData)((0x843023U 
+                               >> 0x20U));
+    __Vtemp_107[2U] = (IData)((((QData)((IData)((0x843023U 
                                                  | ((((0xc000000U 
                                                        & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
                                                           << 0x15U)) 
@@ -3939,80 +5185,90 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                                        & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1) 
                                                                       | (0x200U 
                                                                          & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
-                                                                            << 3U))))))))) 
-                              >> 0x20U));
-    __Vtemp_83[0U] = ((IData)((0U != (0x1fe0U & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1)))
-                       ? (0x10413U | (((0x3c000000U 
-                                        & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
-                                           << 0x13U)) 
-                                       | ((0x3000000U 
-                                           & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
-                                              << 0xdU)) 
-                                          | ((0x800000U 
-                                              & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
-                                                 << 0x12U)) 
-                                             | (0x400000U 
-                                                & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
-                                                   << 0x10U))))) 
+                                                                            << 3U))))))))));
+    __Vtemp_107[3U] = (IData)(((((QData)((IData)((0x843023U 
+                                                  | ((((0xc000000U 
+                                                        & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
+                                                           << 0x15U)) 
+                                                       | (0x2000000U 
+                                                          & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
+                                                             << 0xdU))) 
+                                                      | (0x700000U 
+                                                         & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
+                                                            << 0x12U))) 
+                                                     | ((0x38000U 
+                                                         & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
+                                                            << 8U)) 
+                                                        | (0xc00U 
+                                                           & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1)))))) 
+                                 << 0x20U) | (QData)((IData)(
+                                                             (0x842023U 
+                                                              | ((((0x4000000U 
+                                                                    & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
+                                                                       << 0x15U)) 
+                                                                   | (0x2000000U 
+                                                                      & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
+                                                                         << 0xdU))) 
+                                                                  | (0x700000U 
+                                                                     & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
+                                                                        << 0x12U))) 
+                                                                 | ((0x38000U 
+                                                                     & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
+                                                                        << 8U)) 
+                                                                    | ((0xc00U 
+                                                                        & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1) 
+                                                                       | (0x200U 
+                                                                          & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
+                                                                             << 3U))))))))) 
+                               >> 0x20U));
+    __Vtemp_111[0U] = ((IData)((0U != (0x1fe0U & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1)))
+                        ? (0x10413U | (((0x3c000000U 
+                                         & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
+                                            << 0x13U)) 
+                                        | ((0x3000000U 
+                                            & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
+                                               << 0xdU)) 
+                                           | ((0x800000U 
+                                               & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
+                                                  << 0x12U)) 
+                                              | (0x400000U 
+                                                 & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
+                                                    << 0x10U))))) 
+                                       | (0x380U & 
+                                          (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
+                                           << 5U))))
+                        : 0x13U);
+    __Vtemp_111[1U] = (0x43407U | (((0xc000000U & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
+                                                   << 0x15U)) 
+                                    | (0x3800000U & 
+                                       (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
+                                        << 0xdU))) 
+                                   | ((0x38000U & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
+                                                   << 8U)) 
                                       | (0x380U & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
-                                                   << 5U))))
-                       : 0x13U);
-    __Vtemp_83[1U] = (0x43407U | (((0xc000000U & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
-                                                  << 0x15U)) 
-                                   | (0x3800000U & 
-                                      (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
-                                       << 0xdU))) | 
-                                  ((0x38000U & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
-                                                << 8U)) 
-                                   | (0x380U & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
-                                                << 5U)))));
-    __Vtemp_83[2U] = (0x42403U | (((0x4000000U & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
-                                                  << 0x15U)) 
-                                   | ((0x3800000U & 
+                                                   << 5U)))));
+    __Vtemp_111[2U] = (0x42403U | (((0x4000000U & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
+                                                   << 0x15U)) 
+                                    | ((0x3800000U 
+                                        & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
+                                           << 0xdU)) 
+                                       | (0x400000U 
+                                          & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
+                                             << 0x10U)))) 
+                                   | ((0x38000U & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
+                                                   << 8U)) 
+                                      | (0x380U & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
+                                                   << 5U)))));
+    __Vtemp_111[3U] = (0x43403U | (((0xc000000U & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
+                                                   << 0x15U)) 
+                                    | (0x3800000U & 
                                        (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
-                                        << 0xdU)) | 
-                                      (0x400000U & 
-                                       (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
-                                        << 0x10U)))) 
-                                  | ((0x38000U & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
-                                                  << 8U)) 
-                                     | (0x380U & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
-                                                  << 5U)))));
-    __Vtemp_83[3U] = (0x43403U | (((0xc000000U & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
-                                                  << 0x15U)) 
-                                   | (0x3800000U & 
-                                      (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
-                                       << 0xdU))) | 
-                                  ((0x38000U & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
-                                                << 8U)) 
-                                   | (0x380U & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
-                                                << 5U)))));
-    __Vtemp_83[4U] = (IData)((0x302700000013ULL | (
-                                                   ((QData)((IData)(
-                                                                    (1U 
-                                                                     | ((0x18U 
-                                                                         & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
-                                                                            >> 2U)) 
-                                                                        | (4U 
-                                                                           & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
-                                                                              >> 0xaU)))))) 
-                                                    << 0x37U) 
-                                                   | (((QData)((IData)(
-                                                                       (1U 
-                                                                        | (0x1cU 
-                                                                           & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1)))) 
-                                                       << 0x32U) 
-                                                      | (((QData)((IData)(
-                                                                          (7U 
-                                                                           & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
-                                                                              >> 7U)))) 
-                                                          << 0x2fU) 
-                                                         | ((QData)((IData)(
-                                                                            (3U 
-                                                                             & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
-                                                                                >> 0xaU)))) 
-                                                            << 0x2aU))))));
-    __Vtemp_83[5U] = (IData)(((0x302700000013ULL | 
+                                        << 0xdU))) 
+                                   | ((0x38000U & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
+                                                   << 8U)) 
+                                      | (0x380U & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
+                                                   << 5U)))));
+    __Vtemp_111[4U] = (IData)((0x302700000013ULL | 
                                (((QData)((IData)((1U 
                                                   | ((0x18U 
                                                       & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
@@ -4034,111 +5290,105 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                                     (3U 
                                                                      & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
                                                                         >> 0xaU)))) 
-                                                    << 0x2aU))))) 
-                              >> 0x20U));
-    __Vtemp_83[6U] = __Vtemp_79[2U];
-    __Vtemp_83[7U] = __Vtemp_79[3U];
-    __Vtemp_84[0U] = (((0U == (0x1fU & VL_SHIFTL_III(8,8,32, 
-                                                     (7U 
-                                                      & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
-                                                         >> 0xdU)), 5U)))
-                        ? 0U : (__Vtemp_83[(((IData)(0x1fU) 
-                                             + (0xffU 
-                                                & VL_SHIFTL_III(8,8,32, 
-                                                                (7U 
-                                                                 & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
-                                                                    >> 0xdU)), 5U))) 
-                                            >> 5U)] 
-                                << ((IData)(0x20U) 
-                                    - (0x1fU & VL_SHIFTL_III(8,8,32, 
-                                                             (7U 
-                                                              & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
-                                                                 >> 0xdU)), 5U))))) 
-                      | (__Vtemp_83[(7U & (VL_SHIFTL_III(8,8,32, 
-                                                         (7U 
-                                                          & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
-                                                             >> 0xdU)), 5U) 
-                                           >> 5U))] 
-                         >> (0x1fU & VL_SHIFTL_III(8,8,32, 
-                                                   (7U 
-                                                    & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
-                                                       >> 0xdU)), 5U))));
-    __Vtemp_84[1U] = (((0U == (0x1fU & VL_SHIFTL_III(8,8,32, 
-                                                     (7U 
-                                                      & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
-                                                         >> 0xdU)), 5U)))
-                        ? 0U : (__Vtemp_77[(((IData)(0x1fU) 
-                                             + (0xffU 
-                                                & VL_SHIFTL_III(8,8,32, 
-                                                                (7U 
-                                                                 & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
-                                                                    >> 0xdU)), 5U))) 
-                                            >> 5U)] 
-                                << ((IData)(0x20U) 
-                                    - (0x1fU & VL_SHIFTL_III(8,8,32, 
-                                                             (7U 
-                                                              & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
-                                                                 >> 0xdU)), 5U))))) 
-                      | (__Vtemp_77[(7U & (VL_SHIFTL_III(8,8,32, 
-                                                         (7U 
-                                                          & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
-                                                             >> 0xdU)), 5U) 
-                                           >> 5U))] 
-                         >> (0x1fU & VL_SHIFTL_III(8,8,32, 
-                                                   (7U 
-                                                    & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
-                                                       >> 0xdU)), 5U))));
-    __Vtemp_84[2U] = __Vtemp_78[1U];
-    __Vtemp_84[3U] = __Vtemp_78[2U];
+                                                    << 0x2aU))))));
+    __Vtemp_111[5U] = (IData)(((0x302700000013ULL | 
+                                (((QData)((IData)((1U 
+                                                   | ((0x18U 
+                                                       & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
+                                                          >> 2U)) 
+                                                      | (4U 
+                                                         & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
+                                                            >> 0xaU)))))) 
+                                  << 0x37U) | (((QData)((IData)(
+                                                                (1U 
+                                                                 | (0x1cU 
+                                                                    & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1)))) 
+                                                << 0x32U) 
+                                               | (((QData)((IData)(
+                                                                   (7U 
+                                                                    & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
+                                                                       >> 7U)))) 
+                                                   << 0x2fU) 
+                                                  | ((QData)((IData)(
+                                                                     (3U 
+                                                                      & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
+                                                                         >> 0xaU)))) 
+                                                     << 0x2aU))))) 
+                               >> 0x20U));
+    __Vtemp_111[6U] = __Vtemp_107[2U];
+    __Vtemp_111[7U] = __Vtemp_107[3U];
+    __Vtemp_112[0U] = (((0U == (0x1fU & VL_SHIFTL_III(8,8,32, 
+                                                      (7U 
+                                                       & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
+                                                          >> 0xdU)), 5U)))
+                         ? 0U : (__Vtemp_111[(((IData)(0x1fU) 
+                                               + (0xffU 
+                                                  & VL_SHIFTL_III(8,8,32, 
+                                                                  (7U 
+                                                                   & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
+                                                                      >> 0xdU)), 5U))) 
+                                              >> 5U)] 
+                                 << ((IData)(0x20U) 
+                                     - (0x1fU & VL_SHIFTL_III(8,8,32, 
+                                                              (7U 
+                                                               & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
+                                                                  >> 0xdU)), 5U))))) 
+                       | (__Vtemp_111[(7U & (VL_SHIFTL_III(8,8,32, 
+                                                           (7U 
+                                                            & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
+                                                               >> 0xdU)), 5U) 
+                                             >> 5U))] 
+                          >> (0x1fU & VL_SHIFTL_III(8,8,32, 
+                                                    (7U 
+                                                     & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
+                                                        >> 0xdU)), 5U))));
+    __Vtemp_112[1U] = (((0U == (0x1fU & VL_SHIFTL_III(8,8,32, 
+                                                      (7U 
+                                                       & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
+                                                          >> 0xdU)), 5U)))
+                         ? 0U : (__Vtemp_105[(((IData)(0x1fU) 
+                                               + (0xffU 
+                                                  & VL_SHIFTL_III(8,8,32, 
+                                                                  (7U 
+                                                                   & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
+                                                                      >> 0xdU)), 5U))) 
+                                              >> 5U)] 
+                                 << ((IData)(0x20U) 
+                                     - (0x1fU & VL_SHIFTL_III(8,8,32, 
+                                                              (7U 
+                                                               & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
+                                                                  >> 0xdU)), 5U))))) 
+                       | (__Vtemp_105[(7U & (VL_SHIFTL_III(8,8,32, 
+                                                           (7U 
+                                                            & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
+                                                               >> 0xdU)), 5U) 
+                                             >> 5U))] 
+                          >> (0x1fU & VL_SHIFTL_III(8,8,32, 
+                                                    (7U 
+                                                     & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
+                                                        >> 0xdU)), 5U))));
+    __Vtemp_112[2U] = __Vtemp_106[1U];
+    __Vtemp_112[3U] = __Vtemp_106[2U];
     vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ifu__DOT__predecoders_2__DOT___rvc_expander_io_out 
         = (((0U == (0x1fU & VL_SHIFTL_III(7,7,32, (3U 
                                                    & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1), 5U)))
-             ? 0U : (__Vtemp_84[(((IData)(0x1fU) + 
-                                  (0x7fU & VL_SHIFTL_III(7,7,32, 
-                                                         (3U 
-                                                          & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1), 5U))) 
-                                 >> 5U)] << ((IData)(0x20U) 
-                                             - (0x1fU 
-                                                & VL_SHIFTL_III(7,7,32, 
-                                                                (3U 
-                                                                 & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1), 5U))))) 
-           | (__Vtemp_84[(3U & (VL_SHIFTL_III(7,7,32, 
-                                              (3U & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1), 5U) 
-                                >> 5U))] >> (0x1fU 
-                                             & VL_SHIFTL_III(7,7,32, 
-                                                             (3U 
-                                                              & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1), 5U))));
-    __Vtemp_85[1U] = (IData)((((QData)((IData)((0x4cU 
-                                                | (((0x70000U 
-                                                     & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
-                                                        >> 7U)) 
-                                                    | (0x8000U 
-                                                       & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
-                                                          >> 0xdU))) 
-                                                   | ((0x7c00U 
-                                                       & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
-                                                          >> 8U)) 
-                                                      | (3U 
-                                                         & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
-                                                            >> 0x1aU))))))) 
-                               << 0x2aU) | (((QData)((IData)(
-                                                             (0x1180U 
-                                                              | ((6U 
-                                                                  & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
-                                                                     >> 0x16U)) 
-                                                                 | (1U 
-                                                                    & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
-                                                                       >> 0x1cU)))))) 
-                                             << 0x19U) 
-                                            | (QData)((IData)(
-                                                              (0x12023U 
-                                                               | ((0x1f00000U 
-                                                                   & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
-                                                                      << 2U)) 
-                                                                  | (0xe00U 
-                                                                     & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
-                                                                        >> 0x10U)))))))));
-    __Vtemp_85[2U] = (IData)(((((QData)((IData)((0x4cU 
+             ? 0U : (__Vtemp_112[(((IData)(0x1fU) + 
+                                   (0x7fU & VL_SHIFTL_III(7,7,32, 
+                                                          (3U 
+                                                           & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1), 5U))) 
+                                  >> 5U)] << ((IData)(0x20U) 
+                                              - (0x1fU 
+                                                 & VL_SHIFTL_III(7,7,32, 
+                                                                 (3U 
+                                                                  & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1), 5U))))) 
+           | (__Vtemp_112[(3U & (VL_SHIFTL_III(7,7,32, 
+                                               (3U 
+                                                & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1), 5U) 
+                                 >> 5U))] >> (0x1fU 
+                                              & VL_SHIFTL_III(7,7,32, 
+                                                              (3U 
+                                                               & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1), 5U))));
+    __Vtemp_113[1U] = (IData)((((QData)((IData)((0x4cU 
                                                  | (((0x70000U 
                                                       & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
                                                          >> 7U)) 
@@ -4167,66 +5417,66 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                                        << 2U)) 
                                                                    | (0xe00U 
                                                                       & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
-                                                                         >> 0x10U)))))))) 
-                              >> 0x20U));
-    __Vtemp_86[0U] = ((0x10000000U & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1)
-                       ? ((0U == (0x1fU & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
-                                           >> 0x12U)))
-                           ? ((0U != (0x1fU & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
-                                               >> 0x17U)))
-                               ? (0xe7U | (0xf8000U 
-                                           & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
-                                              >> 8U)))
-                               : 0x100073U) : (0x33U 
-                                               | ((0x1f00000U 
-                                                   & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
-                                                      << 2U)) 
-                                                  | ((0xf8000U 
-                                                      & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
-                                                         >> 8U)) 
-                                                     | (0xf80U 
-                                                        & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
-                                                           >> 0x10U))))))
-                       : ((0U == (0x1fU & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
-                                           >> 0x12U)))
-                           ? (0x67U | (0xf8000U & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
-                                                   >> 8U)))
-                           : (0x13U | ((0xf8000U & 
-                                        (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
-                                         >> 3U)) | 
-                                       (0xf80U & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
-                                                  >> 0x10U))))));
-    __Vtemp_87[0U] = (IData)((((QData)((IData)((0x260U 
-                                                | (((0x380000U 
-                                                     & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
-                                                        << 1U)) 
-                                                    | ((0x40000U 
-                                                        & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
-                                                           >> 0xaU)) 
-                                                       | (0x30000U 
-                                                          & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
-                                                             >> 5U)))) 
-                                                   | (0x1fU 
-                                                      & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
-                                                         >> 0x17U)))))) 
-                               << 0x27U) | (((QData)((IData)(
-                                                             (0xc00U 
-                                                              | ((0x30U 
-                                                                  & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
-                                                                     >> 0xeU)) 
-                                                                 | ((8U 
+                                                                         >> 0x10U)))))))));
+    __Vtemp_113[2U] = (IData)(((((QData)((IData)((0x4cU 
+                                                  | (((0x70000U 
+                                                       & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
+                                                          >> 7U)) 
+                                                      | (0x8000U 
+                                                         & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
+                                                            >> 0xdU))) 
+                                                     | ((0x7c00U 
+                                                         & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
+                                                            >> 8U)) 
+                                                        | (3U 
+                                                           & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
+                                                              >> 0x1aU))))))) 
+                                 << 0x2aU) | (((QData)((IData)(
+                                                               (0x1180U 
+                                                                | ((6U 
+                                                                    & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
+                                                                       >> 0x16U)) 
+                                                                   | (1U 
+                                                                      & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
+                                                                         >> 0x1cU)))))) 
+                                               << 0x19U) 
+                                              | (QData)((IData)(
+                                                                (0x12023U 
+                                                                 | ((0x1f00000U 
                                                                      & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
-                                                                        >> 0x19U)) 
-                                                                    | (7U 
+                                                                        << 2U)) 
+                                                                    | (0xe00U 
                                                                        & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
-                                                                          >> 0x14U))))))) 
-                                             << 0x16U) 
-                                            | (QData)((IData)(
-                                                              (0x12003U 
-                                                               | (0xf80U 
-                                                                  & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
-                                                                     >> 0x10U))))))));
-    __Vtemp_87[1U] = (IData)(((((QData)((IData)((0x260U 
+                                                                          >> 0x10U)))))))) 
+                               >> 0x20U));
+    __Vtemp_114[0U] = ((0x10000000U & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1)
+                        ? ((0U == (0x1fU & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
+                                            >> 0x12U)))
+                            ? ((0U != (0x1fU & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
+                                                >> 0x17U)))
+                                ? (0xe7U | (0xf8000U 
+                                            & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
+                                               >> 8U)))
+                                : 0x100073U) : (0x33U 
+                                                | ((0x1f00000U 
+                                                    & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
+                                                       << 2U)) 
+                                                   | ((0xf8000U 
+                                                       & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
+                                                          >> 8U)) 
+                                                      | (0xf80U 
+                                                         & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
+                                                            >> 0x10U))))))
+                        : ((0U == (0x1fU & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
+                                            >> 0x12U)))
+                            ? (0x67U | (0xf8000U & 
+                                        (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
+                                         >> 8U))) : 
+                           (0x13U | ((0xf8000U & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
+                                                  >> 3U)) 
+                                     | (0xf80U & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
+                                                  >> 0x10U))))));
+    __Vtemp_115[0U] = (IData)((((QData)((IData)((0x260U 
                                                  | (((0x380000U 
                                                       & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
                                                          << 1U)) 
@@ -4255,185 +5505,187 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                                (0x12003U 
                                                                 | (0xf80U 
                                                                    & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
-                                                                      >> 0x10U))))))) 
-                              >> 0x20U));
-    __Vtemp_89[0U] = (0x1013U | (((0x2000000U & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
-                                                 >> 3U)) 
-                                  | (0x1f00000U & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
-                                                   << 2U))) 
-                                 | ((0xf8000U & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
-                                                 >> 8U)) 
-                                    | (0xf80U & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
-                                                 >> 0x10U)))));
-    __Vtemp_89[1U] = (0x13007U | (((0x1c000000U & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
-                                                   << 8U)) 
-                                   | ((0x2000000U & 
-                                       (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
-                                        >> 3U)) | (0x1800000U 
-                                                   & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
-                                                      << 2U)))) 
-                                  | (0xf80U & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
-                                               >> 0x10U))));
-    __Vtemp_89[2U] = __Vtemp_87[0U];
-    __Vtemp_89[3U] = __Vtemp_87[1U];
-    __Vtemp_89[4U] = __Vtemp_86[0U];
-    __Vtemp_89[5U] = (0x13027U | (((0x1c000000U & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
-                                                   << 3U)) 
-                                   | ((0x2000000U & 
-                                       (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
-                                        >> 3U)) | (0x1f00000U 
-                                                   & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
-                                                      << 2U)))) 
-                                  | (0xc00U & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
-                                               >> 0x10U))));
-    __Vtemp_89[6U] = __Vtemp_85[1U];
-    __Vtemp_89[7U] = __Vtemp_85[2U];
-    __Vtemp_91[0U] = (IData)((((QData)((IData)((0x33408U 
-                                                | (7U 
-                                                   & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
-                                                      >> 0x12U))))) 
-                               << 0x14U) | (QData)((IData)(
-                                                           (0x40433U 
-                                                            | ((0x38000U 
-                                                                & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
-                                                                   >> 8U)) 
-                                                               | ((0x380U 
-                                                                   & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
-                                                                      >> 0x10U)) 
-                                                                  | (8U 
-                                                                     & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
-                                                                        >> 0x19U)))))))));
-    __Vtemp_91[1U] = ((0xffffff80U & (0x844400U | (
-                                                   ((0x700000U 
-                                                     & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
-                                                        << 2U)) 
-                                                    | (0x38000U 
+                                                                      >> 0x10U))))))));
+    __Vtemp_115[1U] = (IData)(((((QData)((IData)((0x260U 
+                                                  | (((0x380000U 
                                                        & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
-                                                          >> 8U))) 
-                                                   | (0x380U 
-                                                      & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
-                                                         >> 0x10U))))) 
-                      | (IData)(((((QData)((IData)(
-                                                   (0x33408U 
-                                                    | (7U 
-                                                       & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
-                                                          >> 0x12U))))) 
-                                   << 0x14U) | (QData)((IData)(
-                                                               (0x40433U 
-                                                                | ((0x38000U 
+                                                          << 1U)) 
+                                                      | ((0x40000U 
+                                                          & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
+                                                             >> 0xaU)) 
+                                                         | (0x30000U 
+                                                            & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
+                                                               >> 5U)))) 
+                                                     | (0x1fU 
+                                                        & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
+                                                           >> 0x17U)))))) 
+                                 << 0x27U) | (((QData)((IData)(
+                                                               (0xc00U 
+                                                                | ((0x30U 
                                                                     & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
-                                                                       >> 8U)) 
-                                                                   | ((0x380U 
+                                                                       >> 0xeU)) 
+                                                                   | ((8U 
                                                                        & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
-                                                                          >> 0x10U)) 
-                                                                      | (8U 
-                                                                         & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
-                                                                            >> 0x19U)))))))) 
-                                 >> 0x20U)));
-    __Vtemp_91[2U] = (0x33U | ((IData)((((QData)((IData)(
-                                                         (0x108e8U 
-                                                          | ((0xe000U 
-                                                              & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
-                                                                 >> 5U)) 
-                                                             | ((0x700U 
-                                                                 & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
-                                                                    >> 0xfU)) 
-                                                                | (7U 
-                                                                   & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
-                                                                      >> 0x17U))))))) 
-                                         << 0x20U) 
-                                        | (QData)((IData)(
-                                                          (0x660108c8U 
-                                                           | (((0xe000U 
-                                                                & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
-                                                                   >> 5U)) 
-                                                               | (0x700U 
-                                                                  & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
-                                                                     >> 0xfU))) 
-                                                              | (7U 
-                                                                 & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
-                                                                    >> 0x17U)))))))) 
-                               << 7U));
-    __Vtemp_91[3U] = (((IData)((((QData)((IData)((0x108e8U 
-                                                  | ((0xe000U 
-                                                      & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
-                                                         >> 5U)) 
-                                                     | ((0x700U 
-                                                         & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
-                                                            >> 0xfU)) 
-                                                        | (7U 
-                                                           & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
-                                                              >> 0x17U))))))) 
-                                 << 0x20U) | (QData)((IData)(
-                                                             (0x660108c8U 
-                                                              | (((0xe000U 
-                                                                   & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
-                                                                      >> 5U)) 
-                                                                  | (0x700U 
-                                                                     & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
-                                                                        >> 0xfU))) 
-                                                                 | (7U 
-                                                                    & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
-                                                                       >> 0x17U)))))))) 
-                       >> 0x19U) | ((IData)(((((QData)((IData)(
-                                                               (0x108e8U 
-                                                                | ((0xe000U 
-                                                                    & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
-                                                                       >> 5U)) 
-                                                                   | ((0x700U 
-                                                                       & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
-                                                                          >> 0xfU)) 
+                                                                          >> 0x19U)) 
                                                                       | (7U 
                                                                          & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
-                                                                            >> 0x17U))))))) 
-                                               << 0x20U) 
+                                                                            >> 0x14U))))))) 
+                                               << 0x16U) 
                                               | (QData)((IData)(
-                                                                (0x660108c8U 
-                                                                 | (((0xe000U 
+                                                                (0x12003U 
+                                                                 | (0xf80U 
+                                                                    & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
+                                                                       >> 0x10U))))))) 
+                               >> 0x20U));
+    __Vtemp_117[0U] = (0x1013U | (((0x2000000U & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
+                                                  >> 3U)) 
+                                   | (0x1f00000U & 
+                                      (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
+                                       << 2U))) | (
+                                                   (0xf8000U 
+                                                    & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
+                                                       >> 8U)) 
+                                                   | (0xf80U 
+                                                      & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
+                                                         >> 0x10U)))));
+    __Vtemp_117[1U] = (0x13007U | (((0x1c000000U & 
+                                     (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
+                                      << 8U)) | ((0x2000000U 
+                                                  & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
+                                                     >> 3U)) 
+                                                 | (0x1800000U 
+                                                    & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
+                                                       << 2U)))) 
+                                   | (0xf80U & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
+                                                >> 0x10U))));
+    __Vtemp_117[2U] = __Vtemp_115[0U];
+    __Vtemp_117[3U] = __Vtemp_115[1U];
+    __Vtemp_117[4U] = __Vtemp_114[0U];
+    __Vtemp_117[5U] = (0x13027U | (((0x1c000000U & 
+                                     (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
+                                      << 3U)) | ((0x2000000U 
+                                                  & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
+                                                     >> 3U)) 
+                                                 | (0x1f00000U 
+                                                    & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
+                                                       << 2U)))) 
+                                   | (0xc00U & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
+                                                >> 0x10U))));
+    __Vtemp_117[6U] = __Vtemp_113[1U];
+    __Vtemp_117[7U] = __Vtemp_113[2U];
+    __Vtemp_119[0U] = (IData)((((QData)((IData)((0x33408U 
+                                                 | (7U 
+                                                    & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
+                                                       >> 0x12U))))) 
+                                << 0x14U) | (QData)((IData)(
+                                                            (0x40433U 
+                                                             | ((0x38000U 
+                                                                 & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
+                                                                    >> 8U)) 
+                                                                | ((0x380U 
+                                                                    & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
+                                                                       >> 0x10U)) 
+                                                                   | (8U 
                                                                       & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
-                                                                         >> 5U)) 
-                                                                     | (0x700U 
-                                                                        & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
-                                                                           >> 0xfU))) 
-                                                                    | (7U 
-                                                                       & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
-                                                                          >> 0x17U))))))) 
-                                             >> 0x20U)) 
-                                    << 7U));
-    __Vtemp_92[0U] = (IData)((((QData)((IData)((0x8e8U 
-                                                | (((0x1fc0000U 
-                                                     & ((- (IData)(
-                                                                   (1U 
-                                                                    & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
-                                                                       >> 0x1cU)))) 
-                                                        << 0x12U)) 
-                                                    | (0x3e000U 
-                                                       & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
-                                                          >> 5U))) 
-                                                   | ((0x700U 
-                                                       & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
-                                                          >> 0xfU)) 
-                                                      | (7U 
-                                                         & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
-                                                            >> 0x17U))))))) 
-                               << 0x27U) | (((QData)((IData)(
-                                                             (0x13400U 
-                                                              | ((0x20U 
-                                                                  & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
-                                                                     >> 0x17U)) 
-                                                                 | (0x1fU 
-                                                                    & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
-                                                                       >> 0x12U)))))) 
-                                             << 0x14U) 
-                                            | (QData)((IData)(
-                                                              (0x45413U 
-                                                               | ((0x38000U 
-                                                                   & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
-                                                                      >> 8U)) 
-                                                                  | (0x380U 
+                                                                         >> 0x19U)))))))));
+    __Vtemp_119[1U] = ((0xffffff80U & (0x844400U | 
+                                       (((0x700000U 
+                                          & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
+                                             << 2U)) 
+                                         | (0x38000U 
+                                            & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
+                                               >> 8U))) 
+                                        | (0x380U & 
+                                           (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
+                                            >> 0x10U))))) 
+                       | (IData)(((((QData)((IData)(
+                                                    (0x33408U 
+                                                     | (7U 
+                                                        & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
+                                                           >> 0x12U))))) 
+                                    << 0x14U) | (QData)((IData)(
+                                                                (0x40433U 
+                                                                 | ((0x38000U 
                                                                      & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
-                                                                        >> 0x10U)))))))));
-    __Vtemp_92[1U] = (IData)(((((QData)((IData)((0x8e8U 
+                                                                        >> 8U)) 
+                                                                    | ((0x380U 
+                                                                        & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
+                                                                           >> 0x10U)) 
+                                                                       | (8U 
+                                                                          & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
+                                                                             >> 0x19U)))))))) 
+                                  >> 0x20U)));
+    __Vtemp_119[2U] = (0x33U | ((IData)((((QData)((IData)(
+                                                          (0x108e8U 
+                                                           | ((0xe000U 
+                                                               & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
+                                                                  >> 5U)) 
+                                                              | ((0x700U 
+                                                                  & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
+                                                                     >> 0xfU)) 
+                                                                 | (7U 
+                                                                    & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
+                                                                       >> 0x17U))))))) 
+                                          << 0x20U) 
+                                         | (QData)((IData)(
+                                                           (0x660108c8U 
+                                                            | (((0xe000U 
+                                                                 & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
+                                                                    >> 5U)) 
+                                                                | (0x700U 
+                                                                   & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
+                                                                      >> 0xfU))) 
+                                                               | (7U 
+                                                                  & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
+                                                                     >> 0x17U)))))))) 
+                                << 7U));
+    __Vtemp_119[3U] = (((IData)((((QData)((IData)((0x108e8U 
+                                                   | ((0xe000U 
+                                                       & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
+                                                          >> 5U)) 
+                                                      | ((0x700U 
+                                                          & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
+                                                             >> 0xfU)) 
+                                                         | (7U 
+                                                            & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
+                                                               >> 0x17U))))))) 
+                                  << 0x20U) | (QData)((IData)(
+                                                              (0x660108c8U 
+                                                               | (((0xe000U 
+                                                                    & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
+                                                                       >> 5U)) 
+                                                                   | (0x700U 
+                                                                      & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
+                                                                         >> 0xfU))) 
+                                                                  | (7U 
+                                                                     & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
+                                                                        >> 0x17U)))))))) 
+                        >> 0x19U) | ((IData)(((((QData)((IData)(
+                                                                (0x108e8U 
+                                                                 | ((0xe000U 
+                                                                     & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
+                                                                        >> 5U)) 
+                                                                    | ((0x700U 
+                                                                        & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
+                                                                           >> 0xfU)) 
+                                                                       | (7U 
+                                                                          & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
+                                                                             >> 0x17U))))))) 
+                                                << 0x20U) 
+                                               | (QData)((IData)(
+                                                                 (0x660108c8U 
+                                                                  | (((0xe000U 
+                                                                       & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
+                                                                          >> 5U)) 
+                                                                      | (0x700U 
+                                                                         & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
+                                                                            >> 0xfU))) 
+                                                                     | (7U 
+                                                                        & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
+                                                                           >> 0x17U))))))) 
+                                              >> 0x20U)) 
+                                     << 7U));
+    __Vtemp_120[0U] = (IData)((((QData)((IData)((0x8e8U 
                                                  | (((0x1fc0000U 
                                                       & ((- (IData)(
                                                                     (1U 
@@ -4465,131 +5717,92 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                                        >> 8U)) 
                                                                    | (0x380U 
                                                                       & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
-                                                                         >> 0x10U)))))))) 
-                              >> 0x20U));
-    __Vtemp_92[2U] = ((IData)((0x10200000U == (0x10600000U 
-                                               & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1)))
-                       ? (0x84043bU | ((0x700000U & 
-                                        (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
-                                         << 2U)) | 
-                                       ((0x38000U & 
-                                         (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
-                                          >> 8U)) | 
-                                        (0x380U & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
-                                                   >> 0x10U)))))
-                       : (((0U == (0x1fU & VL_SHIFTL_III(7,7,32, 
-                                                         (3U 
-                                                          & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
-                                                             >> 0x15U)), 5U)))
-                            ? 0U : (__Vtemp_91[(((IData)(0x1fU) 
-                                                 + 
-                                                 (0x7fU 
-                                                  & VL_SHIFTL_III(7,7,32, 
-                                                                  (3U 
-                                                                   & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
-                                                                      >> 0x15U)), 5U))) 
-                                                >> 5U)] 
-                                    << ((IData)(0x20U) 
-                                        - (0x1fU & 
-                                           VL_SHIFTL_III(7,7,32, 
-                                                         (3U 
-                                                          & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
-                                                             >> 0x15U)), 5U))))) 
-                          | (__Vtemp_91[(3U & (VL_SHIFTL_III(7,7,32, 
-                                                             (3U 
-                                                              & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
-                                                                 >> 0x15U)), 5U) 
-                                               >> 5U))] 
-                             >> (0x1fU & VL_SHIFTL_III(7,7,32, 
-                                                       (3U 
-                                                        & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
-                                                           >> 0x15U)), 5U)))));
-    __Vtemp_93[0U] = (0x45413U | (((0x2000000U & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
-                                                  >> 3U)) 
-                                   | (0x1f00000U & 
-                                      (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
-                                       << 2U))) | (
-                                                   (0x38000U 
-                                                    & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
-                                                       >> 8U)) 
-                                                   | (0x380U 
-                                                      & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
-                                                         >> 0x10U)))));
-    __Vtemp_93[1U] = __Vtemp_92[0U];
-    __Vtemp_93[2U] = __Vtemp_92[1U];
-    __Vtemp_93[3U] = __Vtemp_92[2U];
-    __Vtemp_94[0U] = (IData)((((QData)((IData)((0x6fU 
-                                                | (((((0x80000000U 
-                                                       & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
-                                                          << 3U)) 
-                                                      | (0x40000000U 
+                                                                         >> 0x10U)))))))));
+    __Vtemp_120[1U] = (IData)(((((QData)((IData)((0x8e8U 
+                                                  | (((0x1fc0000U 
+                                                       & ((- (IData)(
+                                                                     (1U 
+                                                                      & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
+                                                                         >> 0x1cU)))) 
+                                                          << 0x12U)) 
+                                                      | (0x3e000U 
                                                          & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
-                                                            << 6U))) 
-                                                     | ((0x30000000U 
+                                                            >> 5U))) 
+                                                     | ((0x700U 
                                                          & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
-                                                            << 3U)) 
-                                                        | ((0x8000000U 
-                                                            & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
-                                                               << 5U)) 
-                                                           | (0x4000000U 
-                                                              & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
-                                                                 << 3U))))) 
-                                                    | ((0x2000000U 
-                                                        & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
-                                                           << 7U)) 
-                                                       | ((0x1000000U 
+                                                            >> 0xfU)) 
+                                                        | (7U 
                                                            & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
-                                                              >> 3U)) 
-                                                          | (0xe00000U 
-                                                             & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
-                                                                << 2U))))) 
-                                                   | (0x1ff000U 
-                                                      & ((- (IData)(
-                                                                    (1U 
+                                                              >> 0x17U))))))) 
+                                 << 0x27U) | (((QData)((IData)(
+                                                               (0x13400U 
+                                                                | ((0x20U 
+                                                                    & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
+                                                                       >> 0x17U)) 
+                                                                   | (0x1fU 
+                                                                      & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
+                                                                         >> 0x12U)))))) 
+                                               << 0x14U) 
+                                              | (QData)((IData)(
+                                                                (0x45413U 
+                                                                 | ((0x38000U 
                                                                      & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
-                                                                        >> 0x1cU)))) 
-                                                         << 0xcU)))))) 
-                               << 0x20U) | (QData)((IData)(
-                                                           (((0U 
-                                                              == 
-                                                              (0x1fU 
-                                                               & VL_SHIFTL_III(7,7,32, 
-                                                                               (3U 
-                                                                                & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
-                                                                                >> 0x1aU)), 5U)))
-                                                              ? 0U
-                                                              : 
-                                                             (__Vtemp_93[
-                                                              (((IData)(0x1fU) 
-                                                                + 
-                                                                (0x7fU 
-                                                                 & VL_SHIFTL_III(7,7,32, 
-                                                                                (3U 
-                                                                                & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
-                                                                                >> 0x1aU)), 5U))) 
-                                                               >> 5U)] 
-                                                              << 
-                                                              ((IData)(0x20U) 
-                                                               - 
-                                                               (0x1fU 
-                                                                & VL_SHIFTL_III(7,7,32, 
-                                                                                (3U 
-                                                                                & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
-                                                                                >> 0x1aU)), 5U))))) 
-                                                            | (__Vtemp_93[
+                                                                        >> 8U)) 
+                                                                    | (0x380U 
+                                                                       & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
+                                                                          >> 0x10U)))))))) 
+                               >> 0x20U));
+    __Vtemp_120[2U] = ((IData)((0x10200000U == (0x10600000U 
+                                                & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1)))
+                        ? (0x84043bU | ((0x700000U 
+                                         & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
+                                            << 2U)) 
+                                        | ((0x38000U 
+                                            & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
+                                               >> 8U)) 
+                                           | (0x380U 
+                                              & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
+                                                 >> 0x10U)))))
+                        : (((0U == (0x1fU & VL_SHIFTL_III(7,7,32, 
+                                                          (3U 
+                                                           & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
+                                                              >> 0x15U)), 5U)))
+                             ? 0U : (__Vtemp_119[(((IData)(0x1fU) 
+                                                   + 
+                                                   (0x7fU 
+                                                    & VL_SHIFTL_III(7,7,32, 
+                                                                    (3U 
+                                                                     & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
+                                                                        >> 0x15U)), 5U))) 
+                                                  >> 5U)] 
+                                     << ((IData)(0x20U) 
+                                         - (0x1fU & 
+                                            VL_SHIFTL_III(7,7,32, 
+                                                          (3U 
+                                                           & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
+                                                              >> 0x15U)), 5U))))) 
+                           | (__Vtemp_119[(3U & (VL_SHIFTL_III(7,7,32, 
                                                                (3U 
-                                                                & (VL_SHIFTL_III(7,7,32, 
-                                                                                (3U 
-                                                                                & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
-                                                                                >> 0x1aU)), 5U) 
-                                                                   >> 5U))] 
-                                                               >> 
-                                                               (0x1fU 
-                                                                & VL_SHIFTL_III(7,7,32, 
-                                                                                (3U 
-                                                                                & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
-                                                                                >> 0x1aU)), 5U))))))));
-    __Vtemp_94[1U] = (IData)(((((QData)((IData)((0x6fU 
+                                                                & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
+                                                                   >> 0x15U)), 5U) 
+                                                 >> 5U))] 
+                              >> (0x1fU & VL_SHIFTL_III(7,7,32, 
+                                                        (3U 
+                                                         & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
+                                                            >> 0x15U)), 5U)))));
+    __Vtemp_121[0U] = (0x45413U | (((0x2000000U & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
+                                                   >> 3U)) 
+                                    | (0x1f00000U & 
+                                       (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
+                                        << 2U))) | 
+                                   ((0x38000U & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
+                                                 >> 8U)) 
+                                    | (0x380U & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
+                                                 >> 0x10U)))));
+    __Vtemp_121[1U] = __Vtemp_120[0U];
+    __Vtemp_121[2U] = __Vtemp_120[1U];
+    __Vtemp_121[3U] = __Vtemp_120[2U];
+    __Vtemp_122[0U] = (IData)((((QData)((IData)((0x6fU 
                                                  | (((((0x80000000U 
                                                         & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
                                                            << 3U)) 
@@ -4630,7 +5843,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                                                 >> 0x1aU)), 5U)))
                                                                ? 0U
                                                                : 
-                                                              (__Vtemp_93[
+                                                              (__Vtemp_121[
                                                                (((IData)(0x1fU) 
                                                                  + 
                                                                  (0x7fU 
@@ -4647,7 +5860,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                                                 (3U 
                                                                                 & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
                                                                                 >> 0x1aU)), 5U))))) 
-                                                             | (__Vtemp_93[
+                                                             | (__Vtemp_121[
                                                                 (3U 
                                                                  & (VL_SHIFTL_III(7,7,32, 
                                                                                 (3U 
@@ -4659,54 +5872,80 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                                  & VL_SHIFTL_III(7,7,32, 
                                                                                 (3U 
                                                                                 & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
-                                                                                >> 0x1aU)), 5U))))))) 
-                              >> 0x20U));
-    __Vtemp_95[0U] = (IData)((0x1b00000000ULL | (((QData)((IData)(
+                                                                                >> 0x1aU)), 5U))))))));
+    __Vtemp_122[1U] = (IData)(((((QData)((IData)((0x6fU 
+                                                  | (((((0x80000000U 
+                                                         & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
+                                                            << 3U)) 
+                                                        | (0x40000000U 
+                                                           & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
+                                                              << 6U))) 
+                                                       | ((0x30000000U 
+                                                           & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
+                                                              << 3U)) 
+                                                          | ((0x8000000U 
+                                                              & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
+                                                                 << 5U)) 
+                                                             | (0x4000000U 
+                                                                & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
+                                                                   << 3U))))) 
+                                                      | ((0x2000000U 
+                                                          & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
+                                                             << 7U)) 
+                                                         | ((0x1000000U 
+                                                             & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
+                                                                >> 3U)) 
+                                                            | (0xe00000U 
+                                                               & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
+                                                                  << 2U))))) 
+                                                     | (0x1ff000U 
+                                                        & ((- (IData)(
+                                                                      (1U 
+                                                                       & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
+                                                                          >> 0x1cU)))) 
+                                                           << 0xcU)))))) 
+                                 << 0x20U) | (QData)((IData)(
+                                                             (((0U 
+                                                                == 
+                                                                (0x1fU 
+                                                                 & VL_SHIFTL_III(7,7,32, 
+                                                                                (3U 
+                                                                                & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
+                                                                                >> 0x1aU)), 5U)))
+                                                                ? 0U
+                                                                : 
+                                                               (__Vtemp_121[
+                                                                (((IData)(0x1fU) 
+                                                                  + 
                                                                   (0x7fU 
-                                                                   & (- (IData)(
-                                                                                (1U 
+                                                                   & VL_SHIFTL_III(7,7,32, 
+                                                                                (3U 
                                                                                 & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
-                                                                                >> 0x1cU))))))) 
-                                                  << 0x39U) 
-                                                 | (((QData)((IData)(
-                                                                     (0x1fU 
-                                                                      & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
-                                                                         >> 0x12U)))) 
-                                                     << 0x34U) 
-                                                    | (((QData)((IData)(
-                                                                        (0x1fU 
-                                                                         & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
-                                                                            >> 0x17U)))) 
-                                                        << 0x2fU) 
-                                                       | (((QData)((IData)(
-                                                                           (0x1fU 
-                                                                            & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
-                                                                               >> 0x17U)))) 
-                                                           << 0x27U) 
-                                                          | (QData)((IData)(
-                                                                            ((0U 
-                                                                              != 
-                                                                              (0x1fU 
-                                                                               & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
-                                                                                >> 0x17U)))
-                                                                              ? 
-                                                                             (0x13U 
-                                                                              | ((((- (IData)(
-                                                                                (1U 
+                                                                                >> 0x1aU)), 5U))) 
+                                                                 >> 5U)] 
+                                                                << 
+                                                                ((IData)(0x20U) 
+                                                                 - 
+                                                                 (0x1fU 
+                                                                  & VL_SHIFTL_III(7,7,32, 
+                                                                                (3U 
                                                                                 & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
-                                                                                >> 0x1cU)))) 
-                                                                                << 0x19U) 
-                                                                                | (0x1f00000U 
+                                                                                >> 0x1aU)), 5U))))) 
+                                                              | (__Vtemp_121[
+                                                                 (3U 
+                                                                  & (VL_SHIFTL_III(7,7,32, 
+                                                                                (3U 
                                                                                 & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
-                                                                                << 2U))) 
-                                                                                | ((0xf8000U 
+                                                                                >> 0x1aU)), 5U) 
+                                                                     >> 5U))] 
+                                                                 >> 
+                                                                 (0x1fU 
+                                                                  & VL_SHIFTL_III(7,7,32, 
+                                                                                (3U 
                                                                                 & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
-                                                                                >> 8U)) 
-                                                                                | (0xf80U 
-                                                                                & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
-                                                                                >> 0x10U)))))
-                                                                              : 0x13U)))))))));
-    __Vtemp_95[1U] = (IData)(((0x1b00000000ULL | (((QData)((IData)(
+                                                                                >> 0x1aU)), 5U))))))) 
+                               >> 0x20U));
+    __Vtemp_123[0U] = (IData)((0x1b00000000ULL | (((QData)((IData)(
                                                                    (0x7fU 
                                                                     & (- (IData)(
                                                                                 (1U 
@@ -4750,37 +5989,85 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                                                 | (0xf80U 
                                                                                 & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
                                                                                 >> 0x10U)))))
-                                                                               : 0x13U)))))))) 
-                              >> 0x20U));
-    __Vtemp_99[3U] = ((2U == (0x1fU & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
-                                       >> 0x17U))) ? 
-                      (0x10113U | (((- (IData)((1U 
-                                                & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
-                                                   >> 0x1cU)))) 
-                                    << 0x1dU) | (((0x18000000U 
-                                                   & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
-                                                      << 8U)) 
-                                                  | (0x4000000U 
-                                                     & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
-                                                        << 5U))) 
-                                                 | ((0x2000000U 
-                                                     & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
-                                                        << 7U)) 
-                                                    | (0x1000000U 
-                                                       & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
-                                                          << 2U))))))
-                       : (0x37U | (((- (IData)((1U 
-                                                & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
-                                                   >> 0x1cU)))) 
-                                    << 0x11U) | ((0x1f000U 
-                                                  & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
-                                                     >> 6U)) 
-                                                 | (0xf80U 
+                                                                               : 0x13U)))))))));
+    __Vtemp_123[1U] = (IData)(((0x1b00000000ULL | (
+                                                   ((QData)((IData)(
+                                                                    (0x7fU 
+                                                                     & (- (IData)(
+                                                                                (1U 
+                                                                                & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
+                                                                                >> 0x1cU))))))) 
+                                                    << 0x39U) 
+                                                   | (((QData)((IData)(
+                                                                       (0x1fU 
+                                                                        & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
+                                                                           >> 0x12U)))) 
+                                                       << 0x34U) 
+                                                      | (((QData)((IData)(
+                                                                          (0x1fU 
+                                                                           & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
+                                                                              >> 0x17U)))) 
+                                                          << 0x2fU) 
+                                                         | (((QData)((IData)(
+                                                                             (0x1fU 
+                                                                              & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
+                                                                                >> 0x17U)))) 
+                                                             << 0x27U) 
+                                                            | (QData)((IData)(
+                                                                              ((0U 
+                                                                                != 
+                                                                                (0x1fU 
+                                                                                & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
+                                                                                >> 0x17U)))
+                                                                                ? 
+                                                                               (0x13U 
+                                                                                | ((((- (IData)(
+                                                                                (1U 
+                                                                                & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
+                                                                                >> 0x1cU)))) 
+                                                                                << 0x19U) 
+                                                                                | (0x1f00000U 
+                                                                                & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
+                                                                                << 2U))) 
+                                                                                | ((0xf8000U 
+                                                                                & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
+                                                                                >> 8U)) 
+                                                                                | (0xf80U 
+                                                                                & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
+                                                                                >> 0x10U)))))
+                                                                                : 0x13U)))))))) 
+                               >> 0x20U));
+    __Vtemp_127[3U] = ((2U == (0x1fU & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
+                                        >> 0x17U)))
+                        ? (0x10113U | (((- (IData)(
+                                                   (1U 
                                                     & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
-                                                       >> 0x10U))))));
-    __Vtemp_105[0U] = __Vtemp_95[0U];
-    __Vtemp_105[1U] = __Vtemp_95[1U];
-    __Vtemp_105[2U] = (0x13U | (((- (IData)((1U & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
+                                                       >> 0x1cU)))) 
+                                        << 0x1dU) | 
+                                       (((0x18000000U 
+                                          & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
+                                             << 8U)) 
+                                         | (0x4000000U 
+                                            & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
+                                               << 5U))) 
+                                        | ((0x2000000U 
+                                            & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
+                                               << 7U)) 
+                                           | (0x1000000U 
+                                              & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
+                                                 << 2U))))))
+                        : (0x37U | (((- (IData)((1U 
+                                                 & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
+                                                    >> 0x1cU)))) 
+                                     << 0x11U) | ((0x1f000U 
+                                                   & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
+                                                      >> 6U)) 
+                                                  | (0xf80U 
+                                                     & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
+                                                        >> 0x10U))))));
+    __Vtemp_133[0U] = __Vtemp_123[0U];
+    __Vtemp_133[1U] = __Vtemp_123[1U];
+    __Vtemp_133[2U] = (0x13U | (((- (IData)((1U & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
                                                    >> 0x1cU)))) 
                                  << 0x19U) | ((0x1f00000U 
                                                & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
@@ -4788,10 +6075,10 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                               | (0xf80U 
                                                  & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
                                                     >> 0x10U)))));
-    __Vtemp_105[3U] = __Vtemp_99[3U];
-    __Vtemp_105[4U] = __Vtemp_94[0U];
-    __Vtemp_105[5U] = __Vtemp_94[1U];
-    __Vtemp_105[6U] = (0x40063U | ((0xfe000000U & (
+    __Vtemp_133[3U] = __Vtemp_127[3U];
+    __Vtemp_133[4U] = __Vtemp_122[0U];
+    __Vtemp_133[5U] = __Vtemp_122[1U];
+    __Vtemp_133[6U] = (0x40063U | ((0xfe000000U & (
                                                    ((- (IData)(
                                                                (1U 
                                                                 & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
@@ -4814,7 +6101,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                             | (0x80U 
                                                & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
                                                   >> 0x15U)))))));
-    __Vtemp_105[7U] = (0x41063U | ((((- (IData)((1U 
+    __Vtemp_133[7U] = (0x41063U | ((((- (IData)((1U 
                                                  & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
                                                     >> 0x1cU)))) 
                                      << 0x1cU) | ((0xc000000U 
@@ -4834,7 +6121,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                          | (0x80U & 
                                             (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
                                              >> 0x15U))))));
-    __Vtemp_107[2U] = (IData)((((QData)((IData)((0x843023U 
+    __Vtemp_135[2U] = (IData)((((QData)((IData)((0x843023U 
                                                  | ((((0xc000000U 
                                                        & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
                                                           << 5U)) 
@@ -4870,7 +6157,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                                       | (0x200U 
                                                                          & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
                                                                             >> 0xdU))))))))));
-    __Vtemp_107[3U] = (IData)(((((QData)((IData)((0x843023U 
+    __Vtemp_135[3U] = (IData)(((((QData)((IData)((0x843023U 
                                                   | ((((0xc000000U 
                                                         & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
                                                            << 5U)) 
@@ -4907,7 +6194,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                                           & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
                                                                              >> 0xdU))))))))) 
                                >> 0x20U));
-    __Vtemp_111[0U] = ((IData)((0U != (0x1fe00000U 
+    __Vtemp_139[0U] = ((IData)((0U != (0x1fe00000U 
                                        & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1)))
                         ? (0x10413U | (((0x3c000000U 
                                          & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
@@ -4924,7 +6211,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                           (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
                                            >> 0xbU))))
                         : 0x13U);
-    __Vtemp_111[1U] = (0x43407U | (((0xc000000U & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
+    __Vtemp_139[1U] = (0x43407U | (((0xc000000U & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
                                                    << 5U)) 
                                     | (0x3800000U & 
                                        (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
@@ -4933,7 +6220,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                  >> 8U)) 
                                     | (0x380U & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
                                                  >> 0xbU)))));
-    __Vtemp_111[2U] = (0x42403U | (((0x4000000U & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
+    __Vtemp_139[2U] = (0x42403U | (((0x4000000U & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
                                                    << 5U)) 
                                     | ((0x3800000U 
                                         & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
@@ -4944,7 +6231,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                    >> 8U)) 
                                       | (0x380U & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
                                                    >> 0xbU)))));
-    __Vtemp_111[3U] = (0x43403U | (((0xc000000U & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
+    __Vtemp_139[3U] = (0x43403U | (((0xc000000U & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
                                                    << 5U)) 
                                     | (0x3800000U & 
                                        (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
@@ -4953,7 +6240,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                  >> 8U)) 
                                     | (0x380U & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
                                                  >> 0xbU)))));
-    __Vtemp_111[4U] = (IData)((0x302700000013ULL | 
+    __Vtemp_139[4U] = (IData)((0x302700000013ULL | 
                                (((QData)((IData)((1U 
                                                   | ((0x18U 
                                                       & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
@@ -4977,7 +6264,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                                      & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
                                                                         >> 0x1aU)))) 
                                                     << 0x2aU))))));
-    __Vtemp_111[5U] = (IData)(((0x302700000013ULL | 
+    __Vtemp_139[5U] = (IData)(((0x302700000013ULL | 
                                 (((QData)((IData)((1U 
                                                    | ((0x18U 
                                                        & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
@@ -5002,12 +6289,12 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                                          >> 0x1aU)))) 
                                                      << 0x2aU))))) 
                                >> 0x20U));
-    __Vtemp_111[6U] = __Vtemp_107[2U];
-    __Vtemp_111[7U] = __Vtemp_107[3U];
-    __Vtemp_112[0U] = (((0U == (0x1fU & VL_SHIFTL_III(8,8,32, 
+    __Vtemp_139[6U] = __Vtemp_135[2U];
+    __Vtemp_139[7U] = __Vtemp_135[3U];
+    __Vtemp_140[0U] = (((0U == (0x1fU & VL_SHIFTL_III(8,8,32, 
                                                       (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
                                                        >> 0x1dU), 5U)))
-                         ? 0U : (__Vtemp_111[(((IData)(0x1fU) 
+                         ? 0U : (__Vtemp_139[(((IData)(0x1fU) 
                                                + (0xffU 
                                                   & VL_SHIFTL_III(8,8,32, 
                                                                   (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
@@ -5017,17 +6304,17 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                      - (0x1fU & VL_SHIFTL_III(8,8,32, 
                                                               (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
                                                                >> 0x1dU), 5U))))) 
-                       | (__Vtemp_111[(7U & (VL_SHIFTL_III(8,8,32, 
+                       | (__Vtemp_139[(7U & (VL_SHIFTL_III(8,8,32, 
                                                            (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
                                                             >> 0x1dU), 5U) 
                                              >> 5U))] 
                           >> (0x1fU & VL_SHIFTL_III(8,8,32, 
                                                     (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
                                                      >> 0x1dU), 5U))));
-    __Vtemp_112[1U] = (((0U == (0x1fU & VL_SHIFTL_III(8,8,32, 
+    __Vtemp_140[1U] = (((0U == (0x1fU & VL_SHIFTL_III(8,8,32, 
                                                       (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
                                                        >> 0x1dU), 5U)))
-                         ? 0U : (__Vtemp_105[(((IData)(0x1fU) 
+                         ? 0U : (__Vtemp_133[(((IData)(0x1fU) 
                                                + (0xffU 
                                                   & VL_SHIFTL_III(8,8,32, 
                                                                   (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
@@ -5037,14 +6324,14 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                      - (0x1fU & VL_SHIFTL_III(8,8,32, 
                                                               (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
                                                                >> 0x1dU), 5U))))) 
-                       | (__Vtemp_105[(7U & (VL_SHIFTL_III(8,8,32, 
+                       | (__Vtemp_133[(7U & (VL_SHIFTL_III(8,8,32, 
                                                            (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
                                                             >> 0x1dU), 5U) 
                                              >> 5U))] 
                           >> (0x1fU & VL_SHIFTL_III(8,8,32, 
                                                     (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
                                                      >> 0x1dU), 5U))));
-    __Vtemp_112[2U] = (IData)((0x1300000000ULL | (QData)((IData)(
+    __Vtemp_140[2U] = (IData)((0x1300000000ULL | (QData)((IData)(
                                                                  (((0U 
                                                                     == 
                                                                     (0x1fU 
@@ -5053,7 +6340,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                                                 >> 0x1dU), 5U)))
                                                                     ? 0U
                                                                     : 
-                                                                   (__Vtemp_89[
+                                                                   (__Vtemp_117[
                                                                     (((IData)(0x1fU) 
                                                                       + 
                                                                       (0xffU 
@@ -5068,7 +6355,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                                       & VL_SHIFTL_III(8,8,32, 
                                                                                 (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
                                                                                 >> 0x1dU), 5U))))) 
-                                                                  | (__Vtemp_89[
+                                                                  | (__Vtemp_117[
                                                                      (7U 
                                                                       & (VL_SHIFTL_III(8,8,32, 
                                                                                 (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
@@ -5079,7 +6366,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                                       & VL_SHIFTL_III(8,8,32, 
                                                                                 (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
                                                                                 >> 0x1dU), 5U))))))));
-    __Vtemp_112[3U] = (IData)(((0x1300000000ULL | (QData)((IData)(
+    __Vtemp_140[3U] = (IData)(((0x1300000000ULL | (QData)((IData)(
                                                                   (((0U 
                                                                      == 
                                                                      (0x1fU 
@@ -5088,7 +6375,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                                                 >> 0x1dU), 5U)))
                                                                      ? 0U
                                                                      : 
-                                                                    (__Vtemp_89[
+                                                                    (__Vtemp_117[
                                                                      (((IData)(0x1fU) 
                                                                        + 
                                                                        (0xffU 
@@ -5103,7 +6390,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                                        & VL_SHIFTL_III(8,8,32, 
                                                                                 (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
                                                                                 >> 0x1dU), 5U))))) 
-                                                                   | (__Vtemp_89[
+                                                                   | (__Vtemp_117[
                                                                       (7U 
                                                                        & (VL_SHIFTL_III(8,8,32, 
                                                                                 (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
@@ -5119,7 +6406,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
         = (((0U == (0x1fU & VL_SHIFTL_III(7,7,32, (3U 
                                                    & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
                                                       >> 0x10U)), 5U)))
-             ? 0U : (__Vtemp_112[(((IData)(0x1fU) + 
+             ? 0U : (__Vtemp_140[(((IData)(0x1fU) + 
                                    (0x7fU & VL_SHIFTL_III(7,7,32, 
                                                           (3U 
                                                            & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
@@ -5130,7 +6417,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                                  (3U 
                                                                   & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
                                                                      >> 0x10U)), 5U))))) 
-           | (__Vtemp_112[(3U & (VL_SHIFTL_III(7,7,32, 
+           | (__Vtemp_140[(3U & (VL_SHIFTL_III(7,7,32, 
                                                (3U 
                                                 & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_1 
                                                    >> 0x10U)), 5U) 
@@ -6967,139 +8254,139 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
            | (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__amx__DOT__trf__DOT___GEN_14[
               ((IData)(3U) + __VExpandSel_WordIdx_45)] 
               >> __VExpandSel_LoShift_45));
-    __Vtemp_159[0U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_32);
-    __Vtemp_159[1U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_32 
+    __Vtemp_187[0U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_32);
+    __Vtemp_187[1U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_32 
                                >> 0x20U));
-    __Vtemp_159[2U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_33);
-    __Vtemp_159[3U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_33 
+    __Vtemp_187[2U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_33);
+    __Vtemp_187[3U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_33 
                                >> 0x20U));
-    __Vtemp_159[4U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_34);
-    __Vtemp_159[5U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_34 
+    __Vtemp_187[4U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_34);
+    __Vtemp_187[5U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_34 
                                >> 0x20U));
-    __Vtemp_159[6U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_35);
-    __Vtemp_159[7U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_35 
+    __Vtemp_187[6U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_35);
+    __Vtemp_187[7U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_35 
                                >> 0x20U));
-    __Vtemp_159[8U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_36);
-    __Vtemp_159[9U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_36 
+    __Vtemp_187[8U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_36);
+    __Vtemp_187[9U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_36 
                                >> 0x20U));
-    __Vtemp_159[0xaU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_37);
-    __Vtemp_159[0xbU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_37 
+    __Vtemp_187[0xaU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_37);
+    __Vtemp_187[0xbU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_37 
                                  >> 0x20U));
-    __Vtemp_159[0xcU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_38);
-    __Vtemp_159[0xdU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_38 
+    __Vtemp_187[0xcU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_38);
+    __Vtemp_187[0xdU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_38 
                                  >> 0x20U));
-    __Vtemp_159[0xeU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_39);
-    __Vtemp_159[0xfU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_39 
+    __Vtemp_187[0xeU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_39);
+    __Vtemp_187[0xfU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_39 
                                  >> 0x20U));
-    __Vtemp_159[0x10U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_40);
-    __Vtemp_159[0x11U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_40 
+    __Vtemp_187[0x10U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_40);
+    __Vtemp_187[0x11U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_40 
                                   >> 0x20U));
-    __Vtemp_159[0x12U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_41);
-    __Vtemp_159[0x13U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_41 
+    __Vtemp_187[0x12U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_41);
+    __Vtemp_187[0x13U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_41 
                                   >> 0x20U));
-    __Vtemp_159[0x14U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_42);
-    __Vtemp_159[0x15U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_42 
+    __Vtemp_187[0x14U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_42);
+    __Vtemp_187[0x15U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_42 
                                   >> 0x20U));
-    __Vtemp_159[0x16U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_43);
-    __Vtemp_159[0x17U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_43 
+    __Vtemp_187[0x16U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_43);
+    __Vtemp_187[0x17U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_43 
                                   >> 0x20U));
-    __Vtemp_159[0x18U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_44);
-    __Vtemp_159[0x19U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_44 
+    __Vtemp_187[0x18U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_44);
+    __Vtemp_187[0x19U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_44 
                                   >> 0x20U));
-    __Vtemp_159[0x1aU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_45);
-    __Vtemp_159[0x1bU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_45 
+    __Vtemp_187[0x1aU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_45);
+    __Vtemp_187[0x1bU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_45 
                                   >> 0x20U));
-    __Vtemp_159[0x1cU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_46);
-    __Vtemp_159[0x1dU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_46 
+    __Vtemp_187[0x1cU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_46);
+    __Vtemp_187[0x1dU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_46 
                                   >> 0x20U));
-    __Vtemp_159[0x1eU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_47);
-    __Vtemp_159[0x1fU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_47 
+    __Vtemp_187[0x1eU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_47);
+    __Vtemp_187[0x1fU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_47 
                                   >> 0x20U));
-    __Vtemp_159[0x20U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_48);
-    __Vtemp_159[0x21U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_48 
+    __Vtemp_187[0x20U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_48);
+    __Vtemp_187[0x21U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_48 
                                   >> 0x20U));
-    __Vtemp_159[0x22U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_49);
-    __Vtemp_159[0x23U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_49 
+    __Vtemp_187[0x22U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_49);
+    __Vtemp_187[0x23U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_49 
                                   >> 0x20U));
-    __Vtemp_159[0x24U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_50);
-    __Vtemp_159[0x25U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_50 
+    __Vtemp_187[0x24U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_50);
+    __Vtemp_187[0x25U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_50 
                                   >> 0x20U));
-    __Vtemp_159[0x26U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_51);
-    __Vtemp_159[0x27U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_51 
+    __Vtemp_187[0x26U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_51);
+    __Vtemp_187[0x27U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_51 
                                   >> 0x20U));
-    __Vtemp_159[0x28U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_52);
-    __Vtemp_159[0x29U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_52 
+    __Vtemp_187[0x28U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_52);
+    __Vtemp_187[0x29U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_52 
                                   >> 0x20U));
-    __Vtemp_159[0x2aU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_53);
-    __Vtemp_159[0x2bU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_53 
+    __Vtemp_187[0x2aU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_53);
+    __Vtemp_187[0x2bU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_53 
                                   >> 0x20U));
-    __Vtemp_159[0x2cU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_54);
-    __Vtemp_159[0x2dU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_54 
+    __Vtemp_187[0x2cU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_54);
+    __Vtemp_187[0x2dU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_54 
                                   >> 0x20U));
-    __Vtemp_159[0x2eU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_55);
-    __Vtemp_159[0x2fU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_55 
+    __Vtemp_187[0x2eU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_55);
+    __Vtemp_187[0x2fU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_55 
                                   >> 0x20U));
-    __Vtemp_159[0x30U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_56);
-    __Vtemp_159[0x31U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_56 
+    __Vtemp_187[0x30U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_56);
+    __Vtemp_187[0x31U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_56 
                                   >> 0x20U));
-    __Vtemp_159[0x32U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_57);
-    __Vtemp_159[0x33U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_57 
+    __Vtemp_187[0x32U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_57);
+    __Vtemp_187[0x33U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_57 
                                   >> 0x20U));
-    __Vtemp_159[0x34U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_58);
-    __Vtemp_159[0x35U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_58 
+    __Vtemp_187[0x34U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_58);
+    __Vtemp_187[0x35U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_58 
                                   >> 0x20U));
-    __Vtemp_159[0x36U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_59);
-    __Vtemp_159[0x37U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_59 
+    __Vtemp_187[0x36U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_59);
+    __Vtemp_187[0x37U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_59 
                                   >> 0x20U));
-    __Vtemp_159[0x38U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_60);
-    __Vtemp_159[0x39U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_60 
+    __Vtemp_187[0x38U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_60);
+    __Vtemp_187[0x39U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_60 
                                   >> 0x20U));
-    __Vtemp_159[0x3aU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_61);
-    __Vtemp_159[0x3bU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_61 
+    __Vtemp_187[0x3aU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_61);
+    __Vtemp_187[0x3bU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_61 
                                   >> 0x20U));
-    __Vtemp_159[0x3cU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_62);
-    __Vtemp_159[0x3dU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_62 
+    __Vtemp_187[0x3cU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_62);
+    __Vtemp_187[0x3dU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_62 
                                   >> 0x20U));
-    __Vtemp_159[0x3eU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_63);
-    __Vtemp_159[0x3fU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_63 
+    __Vtemp_187[0x3eU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_63);
+    __Vtemp_187[0x3fU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_63 
                                   >> 0x20U));
-    VL_CONCAT_WWQ(2112,2048,64, __Vtemp_160, __Vtemp_159, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_31);
-    VL_CONCAT_WWQ(2176,2112,64, __Vtemp_161, __Vtemp_160, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_30);
-    VL_CONCAT_WWQ(2240,2176,64, __Vtemp_162, __Vtemp_161, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_29);
-    VL_CONCAT_WWQ(2304,2240,64, __Vtemp_163, __Vtemp_162, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_28);
-    VL_CONCAT_WWQ(2368,2304,64, __Vtemp_164, __Vtemp_163, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_27);
-    VL_CONCAT_WWQ(2432,2368,64, __Vtemp_165, __Vtemp_164, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_26);
-    VL_CONCAT_WWQ(2496,2432,64, __Vtemp_166, __Vtemp_165, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_25);
-    VL_CONCAT_WWQ(2560,2496,64, __Vtemp_167, __Vtemp_166, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_24);
-    VL_CONCAT_WWQ(2624,2560,64, __Vtemp_168, __Vtemp_167, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_23);
-    VL_CONCAT_WWQ(2688,2624,64, __Vtemp_169, __Vtemp_168, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_22);
-    VL_CONCAT_WWQ(2752,2688,64, __Vtemp_170, __Vtemp_169, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_21);
-    VL_CONCAT_WWQ(2816,2752,64, __Vtemp_171, __Vtemp_170, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_20);
-    VL_CONCAT_WWQ(2880,2816,64, __Vtemp_172, __Vtemp_171, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_19);
-    VL_CONCAT_WWQ(2944,2880,64, __Vtemp_173, __Vtemp_172, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_18);
-    VL_CONCAT_WWQ(3008,2944,64, __Vtemp_174, __Vtemp_173, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_17);
-    VL_CONCAT_WWQ(3072,3008,64, __Vtemp_175, __Vtemp_174, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_16);
-    VL_CONCAT_WWQ(3136,3072,64, __Vtemp_176, __Vtemp_175, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_15);
-    VL_CONCAT_WWQ(3200,3136,64, __Vtemp_177, __Vtemp_176, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_14);
-    VL_CONCAT_WWQ(3264,3200,64, __Vtemp_178, __Vtemp_177, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_13);
-    VL_CONCAT_WWQ(3328,3264,64, __Vtemp_179, __Vtemp_178, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_12);
-    VL_CONCAT_WWQ(3392,3328,64, __Vtemp_180, __Vtemp_179, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_11);
-    VL_CONCAT_WWQ(3456,3392,64, __Vtemp_181, __Vtemp_180, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_10);
-    VL_CONCAT_WWQ(3520,3456,64, __Vtemp_182, __Vtemp_181, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_9);
-    VL_CONCAT_WWQ(3584,3520,64, __Vtemp_183, __Vtemp_182, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_8);
-    VL_CONCAT_WWQ(3648,3584,64, __Vtemp_184, __Vtemp_183, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_7);
-    VL_CONCAT_WWQ(3712,3648,64, __Vtemp_185, __Vtemp_184, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_6);
-    VL_CONCAT_WWQ(3776,3712,64, __Vtemp_186, __Vtemp_185, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_5);
-    VL_CONCAT_WWQ(3840,3776,64, __Vtemp_187, __Vtemp_186, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_4);
-    VL_CONCAT_WWQ(3904,3840,64, __Vtemp_188, __Vtemp_187, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_3);
-    VL_CONCAT_WWQ(3968,3904,64, __Vtemp_189, __Vtemp_188, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_2);
-    VL_CONCAT_WWQ(4032,3968,64, __Vtemp_190, __Vtemp_189, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_1);
-    VL_CONCAT_WWQ(4096,4032,64, __Vtemp_191, __Vtemp_190, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_0);
+    VL_CONCAT_WWQ(2112,2048,64, __Vtemp_188, __Vtemp_187, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_31);
+    VL_CONCAT_WWQ(2176,2112,64, __Vtemp_189, __Vtemp_188, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_30);
+    VL_CONCAT_WWQ(2240,2176,64, __Vtemp_190, __Vtemp_189, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_29);
+    VL_CONCAT_WWQ(2304,2240,64, __Vtemp_191, __Vtemp_190, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_28);
+    VL_CONCAT_WWQ(2368,2304,64, __Vtemp_192, __Vtemp_191, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_27);
+    VL_CONCAT_WWQ(2432,2368,64, __Vtemp_193, __Vtemp_192, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_26);
+    VL_CONCAT_WWQ(2496,2432,64, __Vtemp_194, __Vtemp_193, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_25);
+    VL_CONCAT_WWQ(2560,2496,64, __Vtemp_195, __Vtemp_194, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_24);
+    VL_CONCAT_WWQ(2624,2560,64, __Vtemp_196, __Vtemp_195, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_23);
+    VL_CONCAT_WWQ(2688,2624,64, __Vtemp_197, __Vtemp_196, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_22);
+    VL_CONCAT_WWQ(2752,2688,64, __Vtemp_198, __Vtemp_197, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_21);
+    VL_CONCAT_WWQ(2816,2752,64, __Vtemp_199, __Vtemp_198, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_20);
+    VL_CONCAT_WWQ(2880,2816,64, __Vtemp_200, __Vtemp_199, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_19);
+    VL_CONCAT_WWQ(2944,2880,64, __Vtemp_201, __Vtemp_200, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_18);
+    VL_CONCAT_WWQ(3008,2944,64, __Vtemp_202, __Vtemp_201, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_17);
+    VL_CONCAT_WWQ(3072,3008,64, __Vtemp_203, __Vtemp_202, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_16);
+    VL_CONCAT_WWQ(3136,3072,64, __Vtemp_204, __Vtemp_203, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_15);
+    VL_CONCAT_WWQ(3200,3136,64, __Vtemp_205, __Vtemp_204, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_14);
+    VL_CONCAT_WWQ(3264,3200,64, __Vtemp_206, __Vtemp_205, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_13);
+    VL_CONCAT_WWQ(3328,3264,64, __Vtemp_207, __Vtemp_206, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_12);
+    VL_CONCAT_WWQ(3392,3328,64, __Vtemp_208, __Vtemp_207, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_11);
+    VL_CONCAT_WWQ(3456,3392,64, __Vtemp_209, __Vtemp_208, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_10);
+    VL_CONCAT_WWQ(3520,3456,64, __Vtemp_210, __Vtemp_209, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_9);
+    VL_CONCAT_WWQ(3584,3520,64, __Vtemp_211, __Vtemp_210, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_8);
+    VL_CONCAT_WWQ(3648,3584,64, __Vtemp_212, __Vtemp_211, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_7);
+    VL_CONCAT_WWQ(3712,3648,64, __Vtemp_213, __Vtemp_212, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_6);
+    VL_CONCAT_WWQ(3776,3712,64, __Vtemp_214, __Vtemp_213, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_5);
+    VL_CONCAT_WWQ(3840,3776,64, __Vtemp_215, __Vtemp_214, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_4);
+    VL_CONCAT_WWQ(3904,3840,64, __Vtemp_216, __Vtemp_215, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_3);
+    VL_CONCAT_WWQ(3968,3904,64, __Vtemp_217, __Vtemp_216, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_2);
+    VL_CONCAT_WWQ(4032,3968,64, __Vtemp_218, __Vtemp_217, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_1);
+    VL_CONCAT_WWQ(4096,4032,64, __Vtemp_219, __Vtemp_218, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_4_0);
     vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hits_4 
         = ((IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT___GEN_8 
                     >> (0x3fU & (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc 
                                          >> 2U))))) 
-           & ((((QData)((IData)(__Vtemp_191[(((IData)(0x3fU) 
+           & ((((QData)((IData)(__Vtemp_219[(((IData)(0x3fU) 
                                               + (0xfffU 
                                                  & VL_SHIFTL_III(12,12,32, 
                                                                  (0x3fU 
@@ -7123,7 +8410,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                   & (IData)(
                                                             (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc 
                                                              >> 2U))), 6U)))
-                    ? 0ULL : ((QData)((IData)(__Vtemp_191[
+                    ? 0ULL : ((QData)((IData)(__Vtemp_219[
                                               (((IData)(0x1fU) 
                                                 + (0xfffU 
                                                    & VL_SHIFTL_III(12,12,32, 
@@ -7138,7 +8425,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                           & (IData)(
                                                                     (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc 
                                                                      >> 2U))), 6U))))) 
-                  | ((QData)((IData)(__Vtemp_191[(0x7fU 
+                  | ((QData)((IData)(__Vtemp_219[(0x7fU 
                                                   & (VL_SHIFTL_III(12,12,32, 
                                                                    (0x3fU 
                                                                     & (IData)(
@@ -7151,139 +8438,139 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                           (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc 
                                                            >> 2U))), 6U))))) 
               == vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc));
-    __Vtemp_222[0U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_32);
-    __Vtemp_222[1U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_32 
+    __Vtemp_250[0U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_32);
+    __Vtemp_250[1U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_32 
                                >> 0x20U));
-    __Vtemp_222[2U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_33);
-    __Vtemp_222[3U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_33 
+    __Vtemp_250[2U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_33);
+    __Vtemp_250[3U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_33 
                                >> 0x20U));
-    __Vtemp_222[4U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_34);
-    __Vtemp_222[5U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_34 
+    __Vtemp_250[4U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_34);
+    __Vtemp_250[5U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_34 
                                >> 0x20U));
-    __Vtemp_222[6U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_35);
-    __Vtemp_222[7U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_35 
+    __Vtemp_250[6U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_35);
+    __Vtemp_250[7U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_35 
                                >> 0x20U));
-    __Vtemp_222[8U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_36);
-    __Vtemp_222[9U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_36 
+    __Vtemp_250[8U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_36);
+    __Vtemp_250[9U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_36 
                                >> 0x20U));
-    __Vtemp_222[0xaU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_37);
-    __Vtemp_222[0xbU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_37 
+    __Vtemp_250[0xaU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_37);
+    __Vtemp_250[0xbU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_37 
                                  >> 0x20U));
-    __Vtemp_222[0xcU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_38);
-    __Vtemp_222[0xdU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_38 
+    __Vtemp_250[0xcU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_38);
+    __Vtemp_250[0xdU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_38 
                                  >> 0x20U));
-    __Vtemp_222[0xeU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_39);
-    __Vtemp_222[0xfU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_39 
+    __Vtemp_250[0xeU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_39);
+    __Vtemp_250[0xfU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_39 
                                  >> 0x20U));
-    __Vtemp_222[0x10U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_40);
-    __Vtemp_222[0x11U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_40 
+    __Vtemp_250[0x10U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_40);
+    __Vtemp_250[0x11U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_40 
                                   >> 0x20U));
-    __Vtemp_222[0x12U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_41);
-    __Vtemp_222[0x13U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_41 
+    __Vtemp_250[0x12U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_41);
+    __Vtemp_250[0x13U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_41 
                                   >> 0x20U));
-    __Vtemp_222[0x14U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_42);
-    __Vtemp_222[0x15U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_42 
+    __Vtemp_250[0x14U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_42);
+    __Vtemp_250[0x15U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_42 
                                   >> 0x20U));
-    __Vtemp_222[0x16U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_43);
-    __Vtemp_222[0x17U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_43 
+    __Vtemp_250[0x16U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_43);
+    __Vtemp_250[0x17U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_43 
                                   >> 0x20U));
-    __Vtemp_222[0x18U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_44);
-    __Vtemp_222[0x19U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_44 
+    __Vtemp_250[0x18U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_44);
+    __Vtemp_250[0x19U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_44 
                                   >> 0x20U));
-    __Vtemp_222[0x1aU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_45);
-    __Vtemp_222[0x1bU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_45 
+    __Vtemp_250[0x1aU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_45);
+    __Vtemp_250[0x1bU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_45 
                                   >> 0x20U));
-    __Vtemp_222[0x1cU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_46);
-    __Vtemp_222[0x1dU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_46 
+    __Vtemp_250[0x1cU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_46);
+    __Vtemp_250[0x1dU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_46 
                                   >> 0x20U));
-    __Vtemp_222[0x1eU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_47);
-    __Vtemp_222[0x1fU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_47 
+    __Vtemp_250[0x1eU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_47);
+    __Vtemp_250[0x1fU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_47 
                                   >> 0x20U));
-    __Vtemp_222[0x20U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_48);
-    __Vtemp_222[0x21U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_48 
+    __Vtemp_250[0x20U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_48);
+    __Vtemp_250[0x21U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_48 
                                   >> 0x20U));
-    __Vtemp_222[0x22U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_49);
-    __Vtemp_222[0x23U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_49 
+    __Vtemp_250[0x22U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_49);
+    __Vtemp_250[0x23U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_49 
                                   >> 0x20U));
-    __Vtemp_222[0x24U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_50);
-    __Vtemp_222[0x25U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_50 
+    __Vtemp_250[0x24U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_50);
+    __Vtemp_250[0x25U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_50 
                                   >> 0x20U));
-    __Vtemp_222[0x26U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_51);
-    __Vtemp_222[0x27U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_51 
+    __Vtemp_250[0x26U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_51);
+    __Vtemp_250[0x27U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_51 
                                   >> 0x20U));
-    __Vtemp_222[0x28U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_52);
-    __Vtemp_222[0x29U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_52 
+    __Vtemp_250[0x28U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_52);
+    __Vtemp_250[0x29U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_52 
                                   >> 0x20U));
-    __Vtemp_222[0x2aU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_53);
-    __Vtemp_222[0x2bU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_53 
+    __Vtemp_250[0x2aU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_53);
+    __Vtemp_250[0x2bU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_53 
                                   >> 0x20U));
-    __Vtemp_222[0x2cU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_54);
-    __Vtemp_222[0x2dU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_54 
+    __Vtemp_250[0x2cU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_54);
+    __Vtemp_250[0x2dU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_54 
                                   >> 0x20U));
-    __Vtemp_222[0x2eU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_55);
-    __Vtemp_222[0x2fU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_55 
+    __Vtemp_250[0x2eU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_55);
+    __Vtemp_250[0x2fU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_55 
                                   >> 0x20U));
-    __Vtemp_222[0x30U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_56);
-    __Vtemp_222[0x31U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_56 
+    __Vtemp_250[0x30U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_56);
+    __Vtemp_250[0x31U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_56 
                                   >> 0x20U));
-    __Vtemp_222[0x32U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_57);
-    __Vtemp_222[0x33U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_57 
+    __Vtemp_250[0x32U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_57);
+    __Vtemp_250[0x33U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_57 
                                   >> 0x20U));
-    __Vtemp_222[0x34U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_58);
-    __Vtemp_222[0x35U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_58 
+    __Vtemp_250[0x34U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_58);
+    __Vtemp_250[0x35U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_58 
                                   >> 0x20U));
-    __Vtemp_222[0x36U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_59);
-    __Vtemp_222[0x37U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_59 
+    __Vtemp_250[0x36U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_59);
+    __Vtemp_250[0x37U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_59 
                                   >> 0x20U));
-    __Vtemp_222[0x38U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_60);
-    __Vtemp_222[0x39U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_60 
+    __Vtemp_250[0x38U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_60);
+    __Vtemp_250[0x39U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_60 
                                   >> 0x20U));
-    __Vtemp_222[0x3aU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_61);
-    __Vtemp_222[0x3bU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_61 
+    __Vtemp_250[0x3aU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_61);
+    __Vtemp_250[0x3bU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_61 
                                   >> 0x20U));
-    __Vtemp_222[0x3cU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_62);
-    __Vtemp_222[0x3dU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_62 
+    __Vtemp_250[0x3cU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_62);
+    __Vtemp_250[0x3dU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_62 
                                   >> 0x20U));
-    __Vtemp_222[0x3eU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_63);
-    __Vtemp_222[0x3fU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_63 
+    __Vtemp_250[0x3eU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_63);
+    __Vtemp_250[0x3fU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_63 
                                   >> 0x20U));
-    VL_CONCAT_WWQ(2112,2048,64, __Vtemp_223, __Vtemp_222, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_31);
-    VL_CONCAT_WWQ(2176,2112,64, __Vtemp_224, __Vtemp_223, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_30);
-    VL_CONCAT_WWQ(2240,2176,64, __Vtemp_225, __Vtemp_224, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_29);
-    VL_CONCAT_WWQ(2304,2240,64, __Vtemp_226, __Vtemp_225, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_28);
-    VL_CONCAT_WWQ(2368,2304,64, __Vtemp_227, __Vtemp_226, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_27);
-    VL_CONCAT_WWQ(2432,2368,64, __Vtemp_228, __Vtemp_227, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_26);
-    VL_CONCAT_WWQ(2496,2432,64, __Vtemp_229, __Vtemp_228, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_25);
-    VL_CONCAT_WWQ(2560,2496,64, __Vtemp_230, __Vtemp_229, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_24);
-    VL_CONCAT_WWQ(2624,2560,64, __Vtemp_231, __Vtemp_230, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_23);
-    VL_CONCAT_WWQ(2688,2624,64, __Vtemp_232, __Vtemp_231, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_22);
-    VL_CONCAT_WWQ(2752,2688,64, __Vtemp_233, __Vtemp_232, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_21);
-    VL_CONCAT_WWQ(2816,2752,64, __Vtemp_234, __Vtemp_233, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_20);
-    VL_CONCAT_WWQ(2880,2816,64, __Vtemp_235, __Vtemp_234, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_19);
-    VL_CONCAT_WWQ(2944,2880,64, __Vtemp_236, __Vtemp_235, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_18);
-    VL_CONCAT_WWQ(3008,2944,64, __Vtemp_237, __Vtemp_236, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_17);
-    VL_CONCAT_WWQ(3072,3008,64, __Vtemp_238, __Vtemp_237, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_16);
-    VL_CONCAT_WWQ(3136,3072,64, __Vtemp_239, __Vtemp_238, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_15);
-    VL_CONCAT_WWQ(3200,3136,64, __Vtemp_240, __Vtemp_239, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_14);
-    VL_CONCAT_WWQ(3264,3200,64, __Vtemp_241, __Vtemp_240, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_13);
-    VL_CONCAT_WWQ(3328,3264,64, __Vtemp_242, __Vtemp_241, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_12);
-    VL_CONCAT_WWQ(3392,3328,64, __Vtemp_243, __Vtemp_242, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_11);
-    VL_CONCAT_WWQ(3456,3392,64, __Vtemp_244, __Vtemp_243, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_10);
-    VL_CONCAT_WWQ(3520,3456,64, __Vtemp_245, __Vtemp_244, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_9);
-    VL_CONCAT_WWQ(3584,3520,64, __Vtemp_246, __Vtemp_245, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_8);
-    VL_CONCAT_WWQ(3648,3584,64, __Vtemp_247, __Vtemp_246, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_7);
-    VL_CONCAT_WWQ(3712,3648,64, __Vtemp_248, __Vtemp_247, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_6);
-    VL_CONCAT_WWQ(3776,3712,64, __Vtemp_249, __Vtemp_248, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_5);
-    VL_CONCAT_WWQ(3840,3776,64, __Vtemp_250, __Vtemp_249, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_4);
-    VL_CONCAT_WWQ(3904,3840,64, __Vtemp_251, __Vtemp_250, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_3);
-    VL_CONCAT_WWQ(3968,3904,64, __Vtemp_252, __Vtemp_251, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_2);
-    VL_CONCAT_WWQ(4032,3968,64, __Vtemp_253, __Vtemp_252, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_1);
-    VL_CONCAT_WWQ(4096,4032,64, __Vtemp_254, __Vtemp_253, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_0);
+    VL_CONCAT_WWQ(2112,2048,64, __Vtemp_251, __Vtemp_250, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_31);
+    VL_CONCAT_WWQ(2176,2112,64, __Vtemp_252, __Vtemp_251, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_30);
+    VL_CONCAT_WWQ(2240,2176,64, __Vtemp_253, __Vtemp_252, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_29);
+    VL_CONCAT_WWQ(2304,2240,64, __Vtemp_254, __Vtemp_253, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_28);
+    VL_CONCAT_WWQ(2368,2304,64, __Vtemp_255, __Vtemp_254, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_27);
+    VL_CONCAT_WWQ(2432,2368,64, __Vtemp_256, __Vtemp_255, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_26);
+    VL_CONCAT_WWQ(2496,2432,64, __Vtemp_257, __Vtemp_256, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_25);
+    VL_CONCAT_WWQ(2560,2496,64, __Vtemp_258, __Vtemp_257, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_24);
+    VL_CONCAT_WWQ(2624,2560,64, __Vtemp_259, __Vtemp_258, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_23);
+    VL_CONCAT_WWQ(2688,2624,64, __Vtemp_260, __Vtemp_259, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_22);
+    VL_CONCAT_WWQ(2752,2688,64, __Vtemp_261, __Vtemp_260, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_21);
+    VL_CONCAT_WWQ(2816,2752,64, __Vtemp_262, __Vtemp_261, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_20);
+    VL_CONCAT_WWQ(2880,2816,64, __Vtemp_263, __Vtemp_262, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_19);
+    VL_CONCAT_WWQ(2944,2880,64, __Vtemp_264, __Vtemp_263, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_18);
+    VL_CONCAT_WWQ(3008,2944,64, __Vtemp_265, __Vtemp_264, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_17);
+    VL_CONCAT_WWQ(3072,3008,64, __Vtemp_266, __Vtemp_265, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_16);
+    VL_CONCAT_WWQ(3136,3072,64, __Vtemp_267, __Vtemp_266, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_15);
+    VL_CONCAT_WWQ(3200,3136,64, __Vtemp_268, __Vtemp_267, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_14);
+    VL_CONCAT_WWQ(3264,3200,64, __Vtemp_269, __Vtemp_268, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_13);
+    VL_CONCAT_WWQ(3328,3264,64, __Vtemp_270, __Vtemp_269, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_12);
+    VL_CONCAT_WWQ(3392,3328,64, __Vtemp_271, __Vtemp_270, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_11);
+    VL_CONCAT_WWQ(3456,3392,64, __Vtemp_272, __Vtemp_271, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_10);
+    VL_CONCAT_WWQ(3520,3456,64, __Vtemp_273, __Vtemp_272, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_9);
+    VL_CONCAT_WWQ(3584,3520,64, __Vtemp_274, __Vtemp_273, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_8);
+    VL_CONCAT_WWQ(3648,3584,64, __Vtemp_275, __Vtemp_274, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_7);
+    VL_CONCAT_WWQ(3712,3648,64, __Vtemp_276, __Vtemp_275, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_6);
+    VL_CONCAT_WWQ(3776,3712,64, __Vtemp_277, __Vtemp_276, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_5);
+    VL_CONCAT_WWQ(3840,3776,64, __Vtemp_278, __Vtemp_277, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_4);
+    VL_CONCAT_WWQ(3904,3840,64, __Vtemp_279, __Vtemp_278, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_3);
+    VL_CONCAT_WWQ(3968,3904,64, __Vtemp_280, __Vtemp_279, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_2);
+    VL_CONCAT_WWQ(4032,3968,64, __Vtemp_281, __Vtemp_280, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_1);
+    VL_CONCAT_WWQ(4096,4032,64, __Vtemp_282, __Vtemp_281, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_1_0);
     vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hits_1 
         = ((IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT___GEN_2 
                     >> (0x3fU & (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc 
                                          >> 2U))))) 
-           & ((((QData)((IData)(__Vtemp_254[(((IData)(0x3fU) 
+           & ((((QData)((IData)(__Vtemp_282[(((IData)(0x3fU) 
                                               + (0xfffU 
                                                  & VL_SHIFTL_III(12,12,32, 
                                                                  (0x3fU 
@@ -7307,7 +8594,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                   & (IData)(
                                                             (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc 
                                                              >> 2U))), 6U)))
-                    ? 0ULL : ((QData)((IData)(__Vtemp_254[
+                    ? 0ULL : ((QData)((IData)(__Vtemp_282[
                                               (((IData)(0x1fU) 
                                                 + (0xfffU 
                                                    & VL_SHIFTL_III(12,12,32, 
@@ -7322,7 +8609,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                           & (IData)(
                                                                     (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc 
                                                                      >> 2U))), 6U))))) 
-                  | ((QData)((IData)(__Vtemp_254[(0x7fU 
+                  | ((QData)((IData)(__Vtemp_282[(0x7fU 
                                                   & (VL_SHIFTL_III(12,12,32, 
                                                                    (0x3fU 
                                                                     & (IData)(
@@ -7335,139 +8622,139 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                           (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc 
                                                            >> 2U))), 6U))))) 
               == vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc));
-    __Vtemp_285[0U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_32);
-    __Vtemp_285[1U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_32 
+    __Vtemp_313[0U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_32);
+    __Vtemp_313[1U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_32 
                                >> 0x20U));
-    __Vtemp_285[2U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_33);
-    __Vtemp_285[3U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_33 
+    __Vtemp_313[2U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_33);
+    __Vtemp_313[3U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_33 
                                >> 0x20U));
-    __Vtemp_285[4U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_34);
-    __Vtemp_285[5U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_34 
+    __Vtemp_313[4U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_34);
+    __Vtemp_313[5U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_34 
                                >> 0x20U));
-    __Vtemp_285[6U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_35);
-    __Vtemp_285[7U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_35 
+    __Vtemp_313[6U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_35);
+    __Vtemp_313[7U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_35 
                                >> 0x20U));
-    __Vtemp_285[8U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_36);
-    __Vtemp_285[9U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_36 
+    __Vtemp_313[8U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_36);
+    __Vtemp_313[9U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_36 
                                >> 0x20U));
-    __Vtemp_285[0xaU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_37);
-    __Vtemp_285[0xbU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_37 
+    __Vtemp_313[0xaU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_37);
+    __Vtemp_313[0xbU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_37 
                                  >> 0x20U));
-    __Vtemp_285[0xcU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_38);
-    __Vtemp_285[0xdU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_38 
+    __Vtemp_313[0xcU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_38);
+    __Vtemp_313[0xdU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_38 
                                  >> 0x20U));
-    __Vtemp_285[0xeU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_39);
-    __Vtemp_285[0xfU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_39 
+    __Vtemp_313[0xeU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_39);
+    __Vtemp_313[0xfU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_39 
                                  >> 0x20U));
-    __Vtemp_285[0x10U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_40);
-    __Vtemp_285[0x11U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_40 
+    __Vtemp_313[0x10U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_40);
+    __Vtemp_313[0x11U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_40 
                                   >> 0x20U));
-    __Vtemp_285[0x12U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_41);
-    __Vtemp_285[0x13U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_41 
+    __Vtemp_313[0x12U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_41);
+    __Vtemp_313[0x13U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_41 
                                   >> 0x20U));
-    __Vtemp_285[0x14U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_42);
-    __Vtemp_285[0x15U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_42 
+    __Vtemp_313[0x14U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_42);
+    __Vtemp_313[0x15U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_42 
                                   >> 0x20U));
-    __Vtemp_285[0x16U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_43);
-    __Vtemp_285[0x17U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_43 
+    __Vtemp_313[0x16U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_43);
+    __Vtemp_313[0x17U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_43 
                                   >> 0x20U));
-    __Vtemp_285[0x18U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_44);
-    __Vtemp_285[0x19U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_44 
+    __Vtemp_313[0x18U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_44);
+    __Vtemp_313[0x19U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_44 
                                   >> 0x20U));
-    __Vtemp_285[0x1aU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_45);
-    __Vtemp_285[0x1bU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_45 
+    __Vtemp_313[0x1aU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_45);
+    __Vtemp_313[0x1bU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_45 
                                   >> 0x20U));
-    __Vtemp_285[0x1cU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_46);
-    __Vtemp_285[0x1dU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_46 
+    __Vtemp_313[0x1cU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_46);
+    __Vtemp_313[0x1dU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_46 
                                   >> 0x20U));
-    __Vtemp_285[0x1eU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_47);
-    __Vtemp_285[0x1fU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_47 
+    __Vtemp_313[0x1eU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_47);
+    __Vtemp_313[0x1fU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_47 
                                   >> 0x20U));
-    __Vtemp_285[0x20U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_48);
-    __Vtemp_285[0x21U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_48 
+    __Vtemp_313[0x20U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_48);
+    __Vtemp_313[0x21U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_48 
                                   >> 0x20U));
-    __Vtemp_285[0x22U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_49);
-    __Vtemp_285[0x23U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_49 
+    __Vtemp_313[0x22U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_49);
+    __Vtemp_313[0x23U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_49 
                                   >> 0x20U));
-    __Vtemp_285[0x24U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_50);
-    __Vtemp_285[0x25U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_50 
+    __Vtemp_313[0x24U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_50);
+    __Vtemp_313[0x25U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_50 
                                   >> 0x20U));
-    __Vtemp_285[0x26U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_51);
-    __Vtemp_285[0x27U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_51 
+    __Vtemp_313[0x26U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_51);
+    __Vtemp_313[0x27U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_51 
                                   >> 0x20U));
-    __Vtemp_285[0x28U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_52);
-    __Vtemp_285[0x29U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_52 
+    __Vtemp_313[0x28U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_52);
+    __Vtemp_313[0x29U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_52 
                                   >> 0x20U));
-    __Vtemp_285[0x2aU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_53);
-    __Vtemp_285[0x2bU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_53 
+    __Vtemp_313[0x2aU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_53);
+    __Vtemp_313[0x2bU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_53 
                                   >> 0x20U));
-    __Vtemp_285[0x2cU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_54);
-    __Vtemp_285[0x2dU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_54 
+    __Vtemp_313[0x2cU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_54);
+    __Vtemp_313[0x2dU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_54 
                                   >> 0x20U));
-    __Vtemp_285[0x2eU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_55);
-    __Vtemp_285[0x2fU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_55 
+    __Vtemp_313[0x2eU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_55);
+    __Vtemp_313[0x2fU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_55 
                                   >> 0x20U));
-    __Vtemp_285[0x30U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_56);
-    __Vtemp_285[0x31U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_56 
+    __Vtemp_313[0x30U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_56);
+    __Vtemp_313[0x31U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_56 
                                   >> 0x20U));
-    __Vtemp_285[0x32U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_57);
-    __Vtemp_285[0x33U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_57 
+    __Vtemp_313[0x32U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_57);
+    __Vtemp_313[0x33U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_57 
                                   >> 0x20U));
-    __Vtemp_285[0x34U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_58);
-    __Vtemp_285[0x35U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_58 
+    __Vtemp_313[0x34U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_58);
+    __Vtemp_313[0x35U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_58 
                                   >> 0x20U));
-    __Vtemp_285[0x36U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_59);
-    __Vtemp_285[0x37U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_59 
+    __Vtemp_313[0x36U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_59);
+    __Vtemp_313[0x37U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_59 
                                   >> 0x20U));
-    __Vtemp_285[0x38U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_60);
-    __Vtemp_285[0x39U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_60 
+    __Vtemp_313[0x38U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_60);
+    __Vtemp_313[0x39U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_60 
                                   >> 0x20U));
-    __Vtemp_285[0x3aU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_61);
-    __Vtemp_285[0x3bU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_61 
+    __Vtemp_313[0x3aU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_61);
+    __Vtemp_313[0x3bU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_61 
                                   >> 0x20U));
-    __Vtemp_285[0x3cU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_62);
-    __Vtemp_285[0x3dU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_62 
+    __Vtemp_313[0x3cU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_62);
+    __Vtemp_313[0x3dU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_62 
                                   >> 0x20U));
-    __Vtemp_285[0x3eU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_63);
-    __Vtemp_285[0x3fU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_63 
+    __Vtemp_313[0x3eU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_63);
+    __Vtemp_313[0x3fU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_63 
                                   >> 0x20U));
-    VL_CONCAT_WWQ(2112,2048,64, __Vtemp_286, __Vtemp_285, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_31);
-    VL_CONCAT_WWQ(2176,2112,64, __Vtemp_287, __Vtemp_286, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_30);
-    VL_CONCAT_WWQ(2240,2176,64, __Vtemp_288, __Vtemp_287, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_29);
-    VL_CONCAT_WWQ(2304,2240,64, __Vtemp_289, __Vtemp_288, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_28);
-    VL_CONCAT_WWQ(2368,2304,64, __Vtemp_290, __Vtemp_289, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_27);
-    VL_CONCAT_WWQ(2432,2368,64, __Vtemp_291, __Vtemp_290, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_26);
-    VL_CONCAT_WWQ(2496,2432,64, __Vtemp_292, __Vtemp_291, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_25);
-    VL_CONCAT_WWQ(2560,2496,64, __Vtemp_293, __Vtemp_292, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_24);
-    VL_CONCAT_WWQ(2624,2560,64, __Vtemp_294, __Vtemp_293, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_23);
-    VL_CONCAT_WWQ(2688,2624,64, __Vtemp_295, __Vtemp_294, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_22);
-    VL_CONCAT_WWQ(2752,2688,64, __Vtemp_296, __Vtemp_295, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_21);
-    VL_CONCAT_WWQ(2816,2752,64, __Vtemp_297, __Vtemp_296, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_20);
-    VL_CONCAT_WWQ(2880,2816,64, __Vtemp_298, __Vtemp_297, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_19);
-    VL_CONCAT_WWQ(2944,2880,64, __Vtemp_299, __Vtemp_298, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_18);
-    VL_CONCAT_WWQ(3008,2944,64, __Vtemp_300, __Vtemp_299, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_17);
-    VL_CONCAT_WWQ(3072,3008,64, __Vtemp_301, __Vtemp_300, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_16);
-    VL_CONCAT_WWQ(3136,3072,64, __Vtemp_302, __Vtemp_301, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_15);
-    VL_CONCAT_WWQ(3200,3136,64, __Vtemp_303, __Vtemp_302, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_14);
-    VL_CONCAT_WWQ(3264,3200,64, __Vtemp_304, __Vtemp_303, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_13);
-    VL_CONCAT_WWQ(3328,3264,64, __Vtemp_305, __Vtemp_304, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_12);
-    VL_CONCAT_WWQ(3392,3328,64, __Vtemp_306, __Vtemp_305, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_11);
-    VL_CONCAT_WWQ(3456,3392,64, __Vtemp_307, __Vtemp_306, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_10);
-    VL_CONCAT_WWQ(3520,3456,64, __Vtemp_308, __Vtemp_307, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_9);
-    VL_CONCAT_WWQ(3584,3520,64, __Vtemp_309, __Vtemp_308, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_8);
-    VL_CONCAT_WWQ(3648,3584,64, __Vtemp_310, __Vtemp_309, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_7);
-    VL_CONCAT_WWQ(3712,3648,64, __Vtemp_311, __Vtemp_310, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_6);
-    VL_CONCAT_WWQ(3776,3712,64, __Vtemp_312, __Vtemp_311, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_5);
-    VL_CONCAT_WWQ(3840,3776,64, __Vtemp_313, __Vtemp_312, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_4);
-    VL_CONCAT_WWQ(3904,3840,64, __Vtemp_314, __Vtemp_313, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_3);
-    VL_CONCAT_WWQ(3968,3904,64, __Vtemp_315, __Vtemp_314, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_2);
-    VL_CONCAT_WWQ(4032,3968,64, __Vtemp_316, __Vtemp_315, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_1);
-    VL_CONCAT_WWQ(4096,4032,64, __Vtemp_317, __Vtemp_316, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_0);
+    VL_CONCAT_WWQ(2112,2048,64, __Vtemp_314, __Vtemp_313, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_31);
+    VL_CONCAT_WWQ(2176,2112,64, __Vtemp_315, __Vtemp_314, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_30);
+    VL_CONCAT_WWQ(2240,2176,64, __Vtemp_316, __Vtemp_315, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_29);
+    VL_CONCAT_WWQ(2304,2240,64, __Vtemp_317, __Vtemp_316, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_28);
+    VL_CONCAT_WWQ(2368,2304,64, __Vtemp_318, __Vtemp_317, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_27);
+    VL_CONCAT_WWQ(2432,2368,64, __Vtemp_319, __Vtemp_318, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_26);
+    VL_CONCAT_WWQ(2496,2432,64, __Vtemp_320, __Vtemp_319, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_25);
+    VL_CONCAT_WWQ(2560,2496,64, __Vtemp_321, __Vtemp_320, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_24);
+    VL_CONCAT_WWQ(2624,2560,64, __Vtemp_322, __Vtemp_321, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_23);
+    VL_CONCAT_WWQ(2688,2624,64, __Vtemp_323, __Vtemp_322, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_22);
+    VL_CONCAT_WWQ(2752,2688,64, __Vtemp_324, __Vtemp_323, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_21);
+    VL_CONCAT_WWQ(2816,2752,64, __Vtemp_325, __Vtemp_324, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_20);
+    VL_CONCAT_WWQ(2880,2816,64, __Vtemp_326, __Vtemp_325, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_19);
+    VL_CONCAT_WWQ(2944,2880,64, __Vtemp_327, __Vtemp_326, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_18);
+    VL_CONCAT_WWQ(3008,2944,64, __Vtemp_328, __Vtemp_327, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_17);
+    VL_CONCAT_WWQ(3072,3008,64, __Vtemp_329, __Vtemp_328, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_16);
+    VL_CONCAT_WWQ(3136,3072,64, __Vtemp_330, __Vtemp_329, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_15);
+    VL_CONCAT_WWQ(3200,3136,64, __Vtemp_331, __Vtemp_330, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_14);
+    VL_CONCAT_WWQ(3264,3200,64, __Vtemp_332, __Vtemp_331, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_13);
+    VL_CONCAT_WWQ(3328,3264,64, __Vtemp_333, __Vtemp_332, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_12);
+    VL_CONCAT_WWQ(3392,3328,64, __Vtemp_334, __Vtemp_333, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_11);
+    VL_CONCAT_WWQ(3456,3392,64, __Vtemp_335, __Vtemp_334, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_10);
+    VL_CONCAT_WWQ(3520,3456,64, __Vtemp_336, __Vtemp_335, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_9);
+    VL_CONCAT_WWQ(3584,3520,64, __Vtemp_337, __Vtemp_336, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_8);
+    VL_CONCAT_WWQ(3648,3584,64, __Vtemp_338, __Vtemp_337, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_7);
+    VL_CONCAT_WWQ(3712,3648,64, __Vtemp_339, __Vtemp_338, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_6);
+    VL_CONCAT_WWQ(3776,3712,64, __Vtemp_340, __Vtemp_339, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_5);
+    VL_CONCAT_WWQ(3840,3776,64, __Vtemp_341, __Vtemp_340, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_4);
+    VL_CONCAT_WWQ(3904,3840,64, __Vtemp_342, __Vtemp_341, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_3);
+    VL_CONCAT_WWQ(3968,3904,64, __Vtemp_343, __Vtemp_342, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_2);
+    VL_CONCAT_WWQ(4032,3968,64, __Vtemp_344, __Vtemp_343, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_1);
+    VL_CONCAT_WWQ(4096,4032,64, __Vtemp_345, __Vtemp_344, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_2_0);
     vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hits_2 
         = ((IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT___GEN_4 
                     >> (0x3fU & (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc 
                                          >> 2U))))) 
-           & ((((QData)((IData)(__Vtemp_317[(((IData)(0x3fU) 
+           & ((((QData)((IData)(__Vtemp_345[(((IData)(0x3fU) 
                                               + (0xfffU 
                                                  & VL_SHIFTL_III(12,12,32, 
                                                                  (0x3fU 
@@ -7491,7 +8778,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                   & (IData)(
                                                             (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc 
                                                              >> 2U))), 6U)))
-                    ? 0ULL : ((QData)((IData)(__Vtemp_317[
+                    ? 0ULL : ((QData)((IData)(__Vtemp_345[
                                               (((IData)(0x1fU) 
                                                 + (0xfffU 
                                                    & VL_SHIFTL_III(12,12,32, 
@@ -7506,7 +8793,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                           & (IData)(
                                                                     (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc 
                                                                      >> 2U))), 6U))))) 
-                  | ((QData)((IData)(__Vtemp_317[(0x7fU 
+                  | ((QData)((IData)(__Vtemp_345[(0x7fU 
                                                   & (VL_SHIFTL_III(12,12,32, 
                                                                    (0x3fU 
                                                                     & (IData)(
@@ -7519,139 +8806,139 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                           (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc 
                                                            >> 2U))), 6U))))) 
               == vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc));
-    __Vtemp_348[0U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_32);
-    __Vtemp_348[1U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_32 
+    __Vtemp_376[0U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_32);
+    __Vtemp_376[1U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_32 
                                >> 0x20U));
-    __Vtemp_348[2U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_33);
-    __Vtemp_348[3U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_33 
+    __Vtemp_376[2U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_33);
+    __Vtemp_376[3U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_33 
                                >> 0x20U));
-    __Vtemp_348[4U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_34);
-    __Vtemp_348[5U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_34 
+    __Vtemp_376[4U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_34);
+    __Vtemp_376[5U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_34 
                                >> 0x20U));
-    __Vtemp_348[6U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_35);
-    __Vtemp_348[7U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_35 
+    __Vtemp_376[6U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_35);
+    __Vtemp_376[7U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_35 
                                >> 0x20U));
-    __Vtemp_348[8U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_36);
-    __Vtemp_348[9U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_36 
+    __Vtemp_376[8U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_36);
+    __Vtemp_376[9U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_36 
                                >> 0x20U));
-    __Vtemp_348[0xaU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_37);
-    __Vtemp_348[0xbU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_37 
+    __Vtemp_376[0xaU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_37);
+    __Vtemp_376[0xbU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_37 
                                  >> 0x20U));
-    __Vtemp_348[0xcU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_38);
-    __Vtemp_348[0xdU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_38 
+    __Vtemp_376[0xcU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_38);
+    __Vtemp_376[0xdU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_38 
                                  >> 0x20U));
-    __Vtemp_348[0xeU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_39);
-    __Vtemp_348[0xfU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_39 
+    __Vtemp_376[0xeU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_39);
+    __Vtemp_376[0xfU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_39 
                                  >> 0x20U));
-    __Vtemp_348[0x10U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_40);
-    __Vtemp_348[0x11U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_40 
+    __Vtemp_376[0x10U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_40);
+    __Vtemp_376[0x11U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_40 
                                   >> 0x20U));
-    __Vtemp_348[0x12U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_41);
-    __Vtemp_348[0x13U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_41 
+    __Vtemp_376[0x12U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_41);
+    __Vtemp_376[0x13U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_41 
                                   >> 0x20U));
-    __Vtemp_348[0x14U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_42);
-    __Vtemp_348[0x15U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_42 
+    __Vtemp_376[0x14U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_42);
+    __Vtemp_376[0x15U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_42 
                                   >> 0x20U));
-    __Vtemp_348[0x16U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_43);
-    __Vtemp_348[0x17U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_43 
+    __Vtemp_376[0x16U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_43);
+    __Vtemp_376[0x17U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_43 
                                   >> 0x20U));
-    __Vtemp_348[0x18U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_44);
-    __Vtemp_348[0x19U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_44 
+    __Vtemp_376[0x18U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_44);
+    __Vtemp_376[0x19U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_44 
                                   >> 0x20U));
-    __Vtemp_348[0x1aU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_45);
-    __Vtemp_348[0x1bU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_45 
+    __Vtemp_376[0x1aU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_45);
+    __Vtemp_376[0x1bU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_45 
                                   >> 0x20U));
-    __Vtemp_348[0x1cU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_46);
-    __Vtemp_348[0x1dU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_46 
+    __Vtemp_376[0x1cU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_46);
+    __Vtemp_376[0x1dU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_46 
                                   >> 0x20U));
-    __Vtemp_348[0x1eU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_47);
-    __Vtemp_348[0x1fU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_47 
+    __Vtemp_376[0x1eU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_47);
+    __Vtemp_376[0x1fU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_47 
                                   >> 0x20U));
-    __Vtemp_348[0x20U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_48);
-    __Vtemp_348[0x21U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_48 
+    __Vtemp_376[0x20U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_48);
+    __Vtemp_376[0x21U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_48 
                                   >> 0x20U));
-    __Vtemp_348[0x22U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_49);
-    __Vtemp_348[0x23U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_49 
+    __Vtemp_376[0x22U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_49);
+    __Vtemp_376[0x23U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_49 
                                   >> 0x20U));
-    __Vtemp_348[0x24U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_50);
-    __Vtemp_348[0x25U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_50 
+    __Vtemp_376[0x24U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_50);
+    __Vtemp_376[0x25U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_50 
                                   >> 0x20U));
-    __Vtemp_348[0x26U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_51);
-    __Vtemp_348[0x27U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_51 
+    __Vtemp_376[0x26U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_51);
+    __Vtemp_376[0x27U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_51 
                                   >> 0x20U));
-    __Vtemp_348[0x28U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_52);
-    __Vtemp_348[0x29U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_52 
+    __Vtemp_376[0x28U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_52);
+    __Vtemp_376[0x29U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_52 
                                   >> 0x20U));
-    __Vtemp_348[0x2aU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_53);
-    __Vtemp_348[0x2bU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_53 
+    __Vtemp_376[0x2aU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_53);
+    __Vtemp_376[0x2bU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_53 
                                   >> 0x20U));
-    __Vtemp_348[0x2cU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_54);
-    __Vtemp_348[0x2dU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_54 
+    __Vtemp_376[0x2cU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_54);
+    __Vtemp_376[0x2dU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_54 
                                   >> 0x20U));
-    __Vtemp_348[0x2eU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_55);
-    __Vtemp_348[0x2fU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_55 
+    __Vtemp_376[0x2eU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_55);
+    __Vtemp_376[0x2fU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_55 
                                   >> 0x20U));
-    __Vtemp_348[0x30U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_56);
-    __Vtemp_348[0x31U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_56 
+    __Vtemp_376[0x30U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_56);
+    __Vtemp_376[0x31U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_56 
                                   >> 0x20U));
-    __Vtemp_348[0x32U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_57);
-    __Vtemp_348[0x33U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_57 
+    __Vtemp_376[0x32U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_57);
+    __Vtemp_376[0x33U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_57 
                                   >> 0x20U));
-    __Vtemp_348[0x34U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_58);
-    __Vtemp_348[0x35U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_58 
+    __Vtemp_376[0x34U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_58);
+    __Vtemp_376[0x35U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_58 
                                   >> 0x20U));
-    __Vtemp_348[0x36U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_59);
-    __Vtemp_348[0x37U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_59 
+    __Vtemp_376[0x36U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_59);
+    __Vtemp_376[0x37U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_59 
                                   >> 0x20U));
-    __Vtemp_348[0x38U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_60);
-    __Vtemp_348[0x39U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_60 
+    __Vtemp_376[0x38U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_60);
+    __Vtemp_376[0x39U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_60 
                                   >> 0x20U));
-    __Vtemp_348[0x3aU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_61);
-    __Vtemp_348[0x3bU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_61 
+    __Vtemp_376[0x3aU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_61);
+    __Vtemp_376[0x3bU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_61 
                                   >> 0x20U));
-    __Vtemp_348[0x3cU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_62);
-    __Vtemp_348[0x3dU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_62 
+    __Vtemp_376[0x3cU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_62);
+    __Vtemp_376[0x3dU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_62 
                                   >> 0x20U));
-    __Vtemp_348[0x3eU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_63);
-    __Vtemp_348[0x3fU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_63 
+    __Vtemp_376[0x3eU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_63);
+    __Vtemp_376[0x3fU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_63 
                                   >> 0x20U));
-    VL_CONCAT_WWQ(2112,2048,64, __Vtemp_349, __Vtemp_348, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_31);
-    VL_CONCAT_WWQ(2176,2112,64, __Vtemp_350, __Vtemp_349, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_30);
-    VL_CONCAT_WWQ(2240,2176,64, __Vtemp_351, __Vtemp_350, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_29);
-    VL_CONCAT_WWQ(2304,2240,64, __Vtemp_352, __Vtemp_351, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_28);
-    VL_CONCAT_WWQ(2368,2304,64, __Vtemp_353, __Vtemp_352, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_27);
-    VL_CONCAT_WWQ(2432,2368,64, __Vtemp_354, __Vtemp_353, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_26);
-    VL_CONCAT_WWQ(2496,2432,64, __Vtemp_355, __Vtemp_354, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_25);
-    VL_CONCAT_WWQ(2560,2496,64, __Vtemp_356, __Vtemp_355, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_24);
-    VL_CONCAT_WWQ(2624,2560,64, __Vtemp_357, __Vtemp_356, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_23);
-    VL_CONCAT_WWQ(2688,2624,64, __Vtemp_358, __Vtemp_357, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_22);
-    VL_CONCAT_WWQ(2752,2688,64, __Vtemp_359, __Vtemp_358, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_21);
-    VL_CONCAT_WWQ(2816,2752,64, __Vtemp_360, __Vtemp_359, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_20);
-    VL_CONCAT_WWQ(2880,2816,64, __Vtemp_361, __Vtemp_360, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_19);
-    VL_CONCAT_WWQ(2944,2880,64, __Vtemp_362, __Vtemp_361, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_18);
-    VL_CONCAT_WWQ(3008,2944,64, __Vtemp_363, __Vtemp_362, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_17);
-    VL_CONCAT_WWQ(3072,3008,64, __Vtemp_364, __Vtemp_363, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_16);
-    VL_CONCAT_WWQ(3136,3072,64, __Vtemp_365, __Vtemp_364, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_15);
-    VL_CONCAT_WWQ(3200,3136,64, __Vtemp_366, __Vtemp_365, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_14);
-    VL_CONCAT_WWQ(3264,3200,64, __Vtemp_367, __Vtemp_366, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_13);
-    VL_CONCAT_WWQ(3328,3264,64, __Vtemp_368, __Vtemp_367, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_12);
-    VL_CONCAT_WWQ(3392,3328,64, __Vtemp_369, __Vtemp_368, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_11);
-    VL_CONCAT_WWQ(3456,3392,64, __Vtemp_370, __Vtemp_369, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_10);
-    VL_CONCAT_WWQ(3520,3456,64, __Vtemp_371, __Vtemp_370, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_9);
-    VL_CONCAT_WWQ(3584,3520,64, __Vtemp_372, __Vtemp_371, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_8);
-    VL_CONCAT_WWQ(3648,3584,64, __Vtemp_373, __Vtemp_372, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_7);
-    VL_CONCAT_WWQ(3712,3648,64, __Vtemp_374, __Vtemp_373, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_6);
-    VL_CONCAT_WWQ(3776,3712,64, __Vtemp_375, __Vtemp_374, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_5);
-    VL_CONCAT_WWQ(3840,3776,64, __Vtemp_376, __Vtemp_375, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_4);
-    VL_CONCAT_WWQ(3904,3840,64, __Vtemp_377, __Vtemp_376, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_3);
-    VL_CONCAT_WWQ(3968,3904,64, __Vtemp_378, __Vtemp_377, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_2);
-    VL_CONCAT_WWQ(4032,3968,64, __Vtemp_379, __Vtemp_378, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_1);
-    VL_CONCAT_WWQ(4096,4032,64, __Vtemp_380, __Vtemp_379, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_0);
+    VL_CONCAT_WWQ(2112,2048,64, __Vtemp_377, __Vtemp_376, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_31);
+    VL_CONCAT_WWQ(2176,2112,64, __Vtemp_378, __Vtemp_377, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_30);
+    VL_CONCAT_WWQ(2240,2176,64, __Vtemp_379, __Vtemp_378, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_29);
+    VL_CONCAT_WWQ(2304,2240,64, __Vtemp_380, __Vtemp_379, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_28);
+    VL_CONCAT_WWQ(2368,2304,64, __Vtemp_381, __Vtemp_380, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_27);
+    VL_CONCAT_WWQ(2432,2368,64, __Vtemp_382, __Vtemp_381, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_26);
+    VL_CONCAT_WWQ(2496,2432,64, __Vtemp_383, __Vtemp_382, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_25);
+    VL_CONCAT_WWQ(2560,2496,64, __Vtemp_384, __Vtemp_383, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_24);
+    VL_CONCAT_WWQ(2624,2560,64, __Vtemp_385, __Vtemp_384, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_23);
+    VL_CONCAT_WWQ(2688,2624,64, __Vtemp_386, __Vtemp_385, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_22);
+    VL_CONCAT_WWQ(2752,2688,64, __Vtemp_387, __Vtemp_386, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_21);
+    VL_CONCAT_WWQ(2816,2752,64, __Vtemp_388, __Vtemp_387, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_20);
+    VL_CONCAT_WWQ(2880,2816,64, __Vtemp_389, __Vtemp_388, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_19);
+    VL_CONCAT_WWQ(2944,2880,64, __Vtemp_390, __Vtemp_389, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_18);
+    VL_CONCAT_WWQ(3008,2944,64, __Vtemp_391, __Vtemp_390, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_17);
+    VL_CONCAT_WWQ(3072,3008,64, __Vtemp_392, __Vtemp_391, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_16);
+    VL_CONCAT_WWQ(3136,3072,64, __Vtemp_393, __Vtemp_392, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_15);
+    VL_CONCAT_WWQ(3200,3136,64, __Vtemp_394, __Vtemp_393, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_14);
+    VL_CONCAT_WWQ(3264,3200,64, __Vtemp_395, __Vtemp_394, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_13);
+    VL_CONCAT_WWQ(3328,3264,64, __Vtemp_396, __Vtemp_395, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_12);
+    VL_CONCAT_WWQ(3392,3328,64, __Vtemp_397, __Vtemp_396, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_11);
+    VL_CONCAT_WWQ(3456,3392,64, __Vtemp_398, __Vtemp_397, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_10);
+    VL_CONCAT_WWQ(3520,3456,64, __Vtemp_399, __Vtemp_398, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_9);
+    VL_CONCAT_WWQ(3584,3520,64, __Vtemp_400, __Vtemp_399, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_8);
+    VL_CONCAT_WWQ(3648,3584,64, __Vtemp_401, __Vtemp_400, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_7);
+    VL_CONCAT_WWQ(3712,3648,64, __Vtemp_402, __Vtemp_401, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_6);
+    VL_CONCAT_WWQ(3776,3712,64, __Vtemp_403, __Vtemp_402, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_5);
+    VL_CONCAT_WWQ(3840,3776,64, __Vtemp_404, __Vtemp_403, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_4);
+    VL_CONCAT_WWQ(3904,3840,64, __Vtemp_405, __Vtemp_404, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_3);
+    VL_CONCAT_WWQ(3968,3904,64, __Vtemp_406, __Vtemp_405, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_2);
+    VL_CONCAT_WWQ(4032,3968,64, __Vtemp_407, __Vtemp_406, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_1);
+    VL_CONCAT_WWQ(4096,4032,64, __Vtemp_408, __Vtemp_407, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_3_0);
     vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hits_3 
         = ((IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT___GEN_6 
                     >> (0x3fU & (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc 
                                          >> 2U))))) 
-           & ((((QData)((IData)(__Vtemp_380[(((IData)(0x3fU) 
+           & ((((QData)((IData)(__Vtemp_408[(((IData)(0x3fU) 
                                               + (0xfffU 
                                                  & VL_SHIFTL_III(12,12,32, 
                                                                  (0x3fU 
@@ -7675,7 +8962,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                   & (IData)(
                                                             (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc 
                                                              >> 2U))), 6U)))
-                    ? 0ULL : ((QData)((IData)(__Vtemp_380[
+                    ? 0ULL : ((QData)((IData)(__Vtemp_408[
                                               (((IData)(0x1fU) 
                                                 + (0xfffU 
                                                    & VL_SHIFTL_III(12,12,32, 
@@ -7690,7 +8977,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                           & (IData)(
                                                                     (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc 
                                                                      >> 2U))), 6U))))) 
-                  | ((QData)((IData)(__Vtemp_380[(0x7fU 
+                  | ((QData)((IData)(__Vtemp_408[(0x7fU 
                                                   & (VL_SHIFTL_III(12,12,32, 
                                                                    (0x3fU 
                                                                     & (IData)(
@@ -7706,139 +8993,139 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
     vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dispatch__DOT__req_bru_4 
         = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dispatch__DOT__active_4) 
            & (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dispatch__DOT__is_bru_4));
-    __Vtemp_411[0U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_32);
-    __Vtemp_411[1U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_32 
+    __Vtemp_439[0U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_32);
+    __Vtemp_439[1U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_32 
                                >> 0x20U));
-    __Vtemp_411[2U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_33);
-    __Vtemp_411[3U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_33 
+    __Vtemp_439[2U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_33);
+    __Vtemp_439[3U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_33 
                                >> 0x20U));
-    __Vtemp_411[4U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_34);
-    __Vtemp_411[5U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_34 
+    __Vtemp_439[4U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_34);
+    __Vtemp_439[5U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_34 
                                >> 0x20U));
-    __Vtemp_411[6U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_35);
-    __Vtemp_411[7U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_35 
+    __Vtemp_439[6U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_35);
+    __Vtemp_439[7U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_35 
                                >> 0x20U));
-    __Vtemp_411[8U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_36);
-    __Vtemp_411[9U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_36 
+    __Vtemp_439[8U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_36);
+    __Vtemp_439[9U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_36 
                                >> 0x20U));
-    __Vtemp_411[0xaU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_37);
-    __Vtemp_411[0xbU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_37 
+    __Vtemp_439[0xaU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_37);
+    __Vtemp_439[0xbU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_37 
                                  >> 0x20U));
-    __Vtemp_411[0xcU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_38);
-    __Vtemp_411[0xdU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_38 
+    __Vtemp_439[0xcU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_38);
+    __Vtemp_439[0xdU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_38 
                                  >> 0x20U));
-    __Vtemp_411[0xeU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_39);
-    __Vtemp_411[0xfU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_39 
+    __Vtemp_439[0xeU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_39);
+    __Vtemp_439[0xfU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_39 
                                  >> 0x20U));
-    __Vtemp_411[0x10U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_40);
-    __Vtemp_411[0x11U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_40 
+    __Vtemp_439[0x10U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_40);
+    __Vtemp_439[0x11U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_40 
                                   >> 0x20U));
-    __Vtemp_411[0x12U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_41);
-    __Vtemp_411[0x13U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_41 
+    __Vtemp_439[0x12U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_41);
+    __Vtemp_439[0x13U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_41 
                                   >> 0x20U));
-    __Vtemp_411[0x14U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_42);
-    __Vtemp_411[0x15U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_42 
+    __Vtemp_439[0x14U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_42);
+    __Vtemp_439[0x15U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_42 
                                   >> 0x20U));
-    __Vtemp_411[0x16U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_43);
-    __Vtemp_411[0x17U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_43 
+    __Vtemp_439[0x16U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_43);
+    __Vtemp_439[0x17U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_43 
                                   >> 0x20U));
-    __Vtemp_411[0x18U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_44);
-    __Vtemp_411[0x19U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_44 
+    __Vtemp_439[0x18U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_44);
+    __Vtemp_439[0x19U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_44 
                                   >> 0x20U));
-    __Vtemp_411[0x1aU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_45);
-    __Vtemp_411[0x1bU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_45 
+    __Vtemp_439[0x1aU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_45);
+    __Vtemp_439[0x1bU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_45 
                                   >> 0x20U));
-    __Vtemp_411[0x1cU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_46);
-    __Vtemp_411[0x1dU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_46 
+    __Vtemp_439[0x1cU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_46);
+    __Vtemp_439[0x1dU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_46 
                                   >> 0x20U));
-    __Vtemp_411[0x1eU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_47);
-    __Vtemp_411[0x1fU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_47 
+    __Vtemp_439[0x1eU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_47);
+    __Vtemp_439[0x1fU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_47 
                                   >> 0x20U));
-    __Vtemp_411[0x20U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_48);
-    __Vtemp_411[0x21U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_48 
+    __Vtemp_439[0x20U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_48);
+    __Vtemp_439[0x21U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_48 
                                   >> 0x20U));
-    __Vtemp_411[0x22U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_49);
-    __Vtemp_411[0x23U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_49 
+    __Vtemp_439[0x22U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_49);
+    __Vtemp_439[0x23U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_49 
                                   >> 0x20U));
-    __Vtemp_411[0x24U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_50);
-    __Vtemp_411[0x25U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_50 
+    __Vtemp_439[0x24U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_50);
+    __Vtemp_439[0x25U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_50 
                                   >> 0x20U));
-    __Vtemp_411[0x26U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_51);
-    __Vtemp_411[0x27U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_51 
+    __Vtemp_439[0x26U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_51);
+    __Vtemp_439[0x27U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_51 
                                   >> 0x20U));
-    __Vtemp_411[0x28U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_52);
-    __Vtemp_411[0x29U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_52 
+    __Vtemp_439[0x28U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_52);
+    __Vtemp_439[0x29U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_52 
                                   >> 0x20U));
-    __Vtemp_411[0x2aU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_53);
-    __Vtemp_411[0x2bU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_53 
+    __Vtemp_439[0x2aU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_53);
+    __Vtemp_439[0x2bU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_53 
                                   >> 0x20U));
-    __Vtemp_411[0x2cU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_54);
-    __Vtemp_411[0x2dU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_54 
+    __Vtemp_439[0x2cU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_54);
+    __Vtemp_439[0x2dU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_54 
                                   >> 0x20U));
-    __Vtemp_411[0x2eU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_55);
-    __Vtemp_411[0x2fU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_55 
+    __Vtemp_439[0x2eU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_55);
+    __Vtemp_439[0x2fU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_55 
                                   >> 0x20U));
-    __Vtemp_411[0x30U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_56);
-    __Vtemp_411[0x31U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_56 
+    __Vtemp_439[0x30U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_56);
+    __Vtemp_439[0x31U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_56 
                                   >> 0x20U));
-    __Vtemp_411[0x32U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_57);
-    __Vtemp_411[0x33U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_57 
+    __Vtemp_439[0x32U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_57);
+    __Vtemp_439[0x33U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_57 
                                   >> 0x20U));
-    __Vtemp_411[0x34U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_58);
-    __Vtemp_411[0x35U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_58 
+    __Vtemp_439[0x34U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_58);
+    __Vtemp_439[0x35U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_58 
                                   >> 0x20U));
-    __Vtemp_411[0x36U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_59);
-    __Vtemp_411[0x37U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_59 
+    __Vtemp_439[0x36U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_59);
+    __Vtemp_439[0x37U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_59 
                                   >> 0x20U));
-    __Vtemp_411[0x38U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_60);
-    __Vtemp_411[0x39U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_60 
+    __Vtemp_439[0x38U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_60);
+    __Vtemp_439[0x39U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_60 
                                   >> 0x20U));
-    __Vtemp_411[0x3aU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_61);
-    __Vtemp_411[0x3bU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_61 
+    __Vtemp_439[0x3aU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_61);
+    __Vtemp_439[0x3bU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_61 
                                   >> 0x20U));
-    __Vtemp_411[0x3cU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_62);
-    __Vtemp_411[0x3dU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_62 
+    __Vtemp_439[0x3cU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_62);
+    __Vtemp_439[0x3dU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_62 
                                   >> 0x20U));
-    __Vtemp_411[0x3eU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_63);
-    __Vtemp_411[0x3fU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_63 
+    __Vtemp_439[0x3eU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_63);
+    __Vtemp_439[0x3fU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_63 
                                   >> 0x20U));
-    VL_CONCAT_WWQ(2112,2048,64, __Vtemp_412, __Vtemp_411, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_31);
-    VL_CONCAT_WWQ(2176,2112,64, __Vtemp_413, __Vtemp_412, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_30);
-    VL_CONCAT_WWQ(2240,2176,64, __Vtemp_414, __Vtemp_413, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_29);
-    VL_CONCAT_WWQ(2304,2240,64, __Vtemp_415, __Vtemp_414, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_28);
-    VL_CONCAT_WWQ(2368,2304,64, __Vtemp_416, __Vtemp_415, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_27);
-    VL_CONCAT_WWQ(2432,2368,64, __Vtemp_417, __Vtemp_416, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_26);
-    VL_CONCAT_WWQ(2496,2432,64, __Vtemp_418, __Vtemp_417, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_25);
-    VL_CONCAT_WWQ(2560,2496,64, __Vtemp_419, __Vtemp_418, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_24);
-    VL_CONCAT_WWQ(2624,2560,64, __Vtemp_420, __Vtemp_419, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_23);
-    VL_CONCAT_WWQ(2688,2624,64, __Vtemp_421, __Vtemp_420, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_22);
-    VL_CONCAT_WWQ(2752,2688,64, __Vtemp_422, __Vtemp_421, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_21);
-    VL_CONCAT_WWQ(2816,2752,64, __Vtemp_423, __Vtemp_422, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_20);
-    VL_CONCAT_WWQ(2880,2816,64, __Vtemp_424, __Vtemp_423, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_19);
-    VL_CONCAT_WWQ(2944,2880,64, __Vtemp_425, __Vtemp_424, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_18);
-    VL_CONCAT_WWQ(3008,2944,64, __Vtemp_426, __Vtemp_425, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_17);
-    VL_CONCAT_WWQ(3072,3008,64, __Vtemp_427, __Vtemp_426, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_16);
-    VL_CONCAT_WWQ(3136,3072,64, __Vtemp_428, __Vtemp_427, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_15);
-    VL_CONCAT_WWQ(3200,3136,64, __Vtemp_429, __Vtemp_428, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_14);
-    VL_CONCAT_WWQ(3264,3200,64, __Vtemp_430, __Vtemp_429, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_13);
-    VL_CONCAT_WWQ(3328,3264,64, __Vtemp_431, __Vtemp_430, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_12);
-    VL_CONCAT_WWQ(3392,3328,64, __Vtemp_432, __Vtemp_431, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_11);
-    VL_CONCAT_WWQ(3456,3392,64, __Vtemp_433, __Vtemp_432, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_10);
-    VL_CONCAT_WWQ(3520,3456,64, __Vtemp_434, __Vtemp_433, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_9);
-    VL_CONCAT_WWQ(3584,3520,64, __Vtemp_435, __Vtemp_434, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_8);
-    VL_CONCAT_WWQ(3648,3584,64, __Vtemp_436, __Vtemp_435, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_7);
-    VL_CONCAT_WWQ(3712,3648,64, __Vtemp_437, __Vtemp_436, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_6);
-    VL_CONCAT_WWQ(3776,3712,64, __Vtemp_438, __Vtemp_437, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_5);
-    VL_CONCAT_WWQ(3840,3776,64, __Vtemp_439, __Vtemp_438, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_4);
-    VL_CONCAT_WWQ(3904,3840,64, __Vtemp_440, __Vtemp_439, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_3);
-    VL_CONCAT_WWQ(3968,3904,64, __Vtemp_441, __Vtemp_440, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_2);
-    VL_CONCAT_WWQ(4032,3968,64, __Vtemp_442, __Vtemp_441, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_1);
-    VL_CONCAT_WWQ(4096,4032,64, __Vtemp_443, __Vtemp_442, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_0);
+    VL_CONCAT_WWQ(2112,2048,64, __Vtemp_440, __Vtemp_439, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_31);
+    VL_CONCAT_WWQ(2176,2112,64, __Vtemp_441, __Vtemp_440, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_30);
+    VL_CONCAT_WWQ(2240,2176,64, __Vtemp_442, __Vtemp_441, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_29);
+    VL_CONCAT_WWQ(2304,2240,64, __Vtemp_443, __Vtemp_442, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_28);
+    VL_CONCAT_WWQ(2368,2304,64, __Vtemp_444, __Vtemp_443, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_27);
+    VL_CONCAT_WWQ(2432,2368,64, __Vtemp_445, __Vtemp_444, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_26);
+    VL_CONCAT_WWQ(2496,2432,64, __Vtemp_446, __Vtemp_445, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_25);
+    VL_CONCAT_WWQ(2560,2496,64, __Vtemp_447, __Vtemp_446, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_24);
+    VL_CONCAT_WWQ(2624,2560,64, __Vtemp_448, __Vtemp_447, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_23);
+    VL_CONCAT_WWQ(2688,2624,64, __Vtemp_449, __Vtemp_448, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_22);
+    VL_CONCAT_WWQ(2752,2688,64, __Vtemp_450, __Vtemp_449, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_21);
+    VL_CONCAT_WWQ(2816,2752,64, __Vtemp_451, __Vtemp_450, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_20);
+    VL_CONCAT_WWQ(2880,2816,64, __Vtemp_452, __Vtemp_451, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_19);
+    VL_CONCAT_WWQ(2944,2880,64, __Vtemp_453, __Vtemp_452, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_18);
+    VL_CONCAT_WWQ(3008,2944,64, __Vtemp_454, __Vtemp_453, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_17);
+    VL_CONCAT_WWQ(3072,3008,64, __Vtemp_455, __Vtemp_454, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_16);
+    VL_CONCAT_WWQ(3136,3072,64, __Vtemp_456, __Vtemp_455, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_15);
+    VL_CONCAT_WWQ(3200,3136,64, __Vtemp_457, __Vtemp_456, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_14);
+    VL_CONCAT_WWQ(3264,3200,64, __Vtemp_458, __Vtemp_457, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_13);
+    VL_CONCAT_WWQ(3328,3264,64, __Vtemp_459, __Vtemp_458, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_12);
+    VL_CONCAT_WWQ(3392,3328,64, __Vtemp_460, __Vtemp_459, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_11);
+    VL_CONCAT_WWQ(3456,3392,64, __Vtemp_461, __Vtemp_460, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_10);
+    VL_CONCAT_WWQ(3520,3456,64, __Vtemp_462, __Vtemp_461, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_9);
+    VL_CONCAT_WWQ(3584,3520,64, __Vtemp_463, __Vtemp_462, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_8);
+    VL_CONCAT_WWQ(3648,3584,64, __Vtemp_464, __Vtemp_463, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_7);
+    VL_CONCAT_WWQ(3712,3648,64, __Vtemp_465, __Vtemp_464, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_6);
+    VL_CONCAT_WWQ(3776,3712,64, __Vtemp_466, __Vtemp_465, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_5);
+    VL_CONCAT_WWQ(3840,3776,64, __Vtemp_467, __Vtemp_466, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_4);
+    VL_CONCAT_WWQ(3904,3840,64, __Vtemp_468, __Vtemp_467, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_3);
+    VL_CONCAT_WWQ(3968,3904,64, __Vtemp_469, __Vtemp_468, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_2);
+    VL_CONCAT_WWQ(4032,3968,64, __Vtemp_470, __Vtemp_469, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_1);
+    VL_CONCAT_WWQ(4096,4032,64, __Vtemp_471, __Vtemp_470, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_7_0);
     vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hits_7 
         = ((IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT___GEN_14 
                     >> (0x3fU & (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc 
                                          >> 2U))))) 
-           & ((((QData)((IData)(__Vtemp_443[(((IData)(0x3fU) 
+           & ((((QData)((IData)(__Vtemp_471[(((IData)(0x3fU) 
                                               + (0xfffU 
                                                  & VL_SHIFTL_III(12,12,32, 
                                                                  (0x3fU 
@@ -7862,7 +9149,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                   & (IData)(
                                                             (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc 
                                                              >> 2U))), 6U)))
-                    ? 0ULL : ((QData)((IData)(__Vtemp_443[
+                    ? 0ULL : ((QData)((IData)(__Vtemp_471[
                                               (((IData)(0x1fU) 
                                                 + (0xfffU 
                                                    & VL_SHIFTL_III(12,12,32, 
@@ -7877,7 +9164,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                           & (IData)(
                                                                     (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc 
                                                                      >> 2U))), 6U))))) 
-                  | ((QData)((IData)(__Vtemp_443[(0x7fU 
+                  | ((QData)((IData)(__Vtemp_471[(0x7fU 
                                                   & (VL_SHIFTL_III(12,12,32, 
                                                                    (0x3fU 
                                                                     & (IData)(
@@ -7890,139 +9177,139 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                           (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc 
                                                            >> 2U))), 6U))))) 
               == vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc));
-    __Vtemp_474[0U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_32);
-    __Vtemp_474[1U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_32 
+    __Vtemp_502[0U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_32);
+    __Vtemp_502[1U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_32 
                                >> 0x20U));
-    __Vtemp_474[2U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_33);
-    __Vtemp_474[3U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_33 
+    __Vtemp_502[2U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_33);
+    __Vtemp_502[3U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_33 
                                >> 0x20U));
-    __Vtemp_474[4U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_34);
-    __Vtemp_474[5U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_34 
+    __Vtemp_502[4U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_34);
+    __Vtemp_502[5U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_34 
                                >> 0x20U));
-    __Vtemp_474[6U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_35);
-    __Vtemp_474[7U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_35 
+    __Vtemp_502[6U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_35);
+    __Vtemp_502[7U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_35 
                                >> 0x20U));
-    __Vtemp_474[8U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_36);
-    __Vtemp_474[9U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_36 
+    __Vtemp_502[8U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_36);
+    __Vtemp_502[9U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_36 
                                >> 0x20U));
-    __Vtemp_474[0xaU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_37);
-    __Vtemp_474[0xbU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_37 
+    __Vtemp_502[0xaU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_37);
+    __Vtemp_502[0xbU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_37 
                                  >> 0x20U));
-    __Vtemp_474[0xcU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_38);
-    __Vtemp_474[0xdU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_38 
+    __Vtemp_502[0xcU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_38);
+    __Vtemp_502[0xdU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_38 
                                  >> 0x20U));
-    __Vtemp_474[0xeU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_39);
-    __Vtemp_474[0xfU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_39 
+    __Vtemp_502[0xeU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_39);
+    __Vtemp_502[0xfU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_39 
                                  >> 0x20U));
-    __Vtemp_474[0x10U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_40);
-    __Vtemp_474[0x11U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_40 
+    __Vtemp_502[0x10U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_40);
+    __Vtemp_502[0x11U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_40 
                                   >> 0x20U));
-    __Vtemp_474[0x12U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_41);
-    __Vtemp_474[0x13U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_41 
+    __Vtemp_502[0x12U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_41);
+    __Vtemp_502[0x13U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_41 
                                   >> 0x20U));
-    __Vtemp_474[0x14U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_42);
-    __Vtemp_474[0x15U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_42 
+    __Vtemp_502[0x14U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_42);
+    __Vtemp_502[0x15U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_42 
                                   >> 0x20U));
-    __Vtemp_474[0x16U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_43);
-    __Vtemp_474[0x17U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_43 
+    __Vtemp_502[0x16U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_43);
+    __Vtemp_502[0x17U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_43 
                                   >> 0x20U));
-    __Vtemp_474[0x18U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_44);
-    __Vtemp_474[0x19U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_44 
+    __Vtemp_502[0x18U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_44);
+    __Vtemp_502[0x19U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_44 
                                   >> 0x20U));
-    __Vtemp_474[0x1aU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_45);
-    __Vtemp_474[0x1bU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_45 
+    __Vtemp_502[0x1aU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_45);
+    __Vtemp_502[0x1bU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_45 
                                   >> 0x20U));
-    __Vtemp_474[0x1cU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_46);
-    __Vtemp_474[0x1dU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_46 
+    __Vtemp_502[0x1cU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_46);
+    __Vtemp_502[0x1dU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_46 
                                   >> 0x20U));
-    __Vtemp_474[0x1eU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_47);
-    __Vtemp_474[0x1fU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_47 
+    __Vtemp_502[0x1eU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_47);
+    __Vtemp_502[0x1fU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_47 
                                   >> 0x20U));
-    __Vtemp_474[0x20U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_48);
-    __Vtemp_474[0x21U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_48 
+    __Vtemp_502[0x20U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_48);
+    __Vtemp_502[0x21U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_48 
                                   >> 0x20U));
-    __Vtemp_474[0x22U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_49);
-    __Vtemp_474[0x23U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_49 
+    __Vtemp_502[0x22U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_49);
+    __Vtemp_502[0x23U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_49 
                                   >> 0x20U));
-    __Vtemp_474[0x24U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_50);
-    __Vtemp_474[0x25U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_50 
+    __Vtemp_502[0x24U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_50);
+    __Vtemp_502[0x25U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_50 
                                   >> 0x20U));
-    __Vtemp_474[0x26U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_51);
-    __Vtemp_474[0x27U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_51 
+    __Vtemp_502[0x26U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_51);
+    __Vtemp_502[0x27U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_51 
                                   >> 0x20U));
-    __Vtemp_474[0x28U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_52);
-    __Vtemp_474[0x29U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_52 
+    __Vtemp_502[0x28U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_52);
+    __Vtemp_502[0x29U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_52 
                                   >> 0x20U));
-    __Vtemp_474[0x2aU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_53);
-    __Vtemp_474[0x2bU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_53 
+    __Vtemp_502[0x2aU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_53);
+    __Vtemp_502[0x2bU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_53 
                                   >> 0x20U));
-    __Vtemp_474[0x2cU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_54);
-    __Vtemp_474[0x2dU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_54 
+    __Vtemp_502[0x2cU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_54);
+    __Vtemp_502[0x2dU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_54 
                                   >> 0x20U));
-    __Vtemp_474[0x2eU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_55);
-    __Vtemp_474[0x2fU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_55 
+    __Vtemp_502[0x2eU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_55);
+    __Vtemp_502[0x2fU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_55 
                                   >> 0x20U));
-    __Vtemp_474[0x30U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_56);
-    __Vtemp_474[0x31U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_56 
+    __Vtemp_502[0x30U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_56);
+    __Vtemp_502[0x31U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_56 
                                   >> 0x20U));
-    __Vtemp_474[0x32U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_57);
-    __Vtemp_474[0x33U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_57 
+    __Vtemp_502[0x32U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_57);
+    __Vtemp_502[0x33U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_57 
                                   >> 0x20U));
-    __Vtemp_474[0x34U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_58);
-    __Vtemp_474[0x35U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_58 
+    __Vtemp_502[0x34U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_58);
+    __Vtemp_502[0x35U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_58 
                                   >> 0x20U));
-    __Vtemp_474[0x36U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_59);
-    __Vtemp_474[0x37U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_59 
+    __Vtemp_502[0x36U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_59);
+    __Vtemp_502[0x37U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_59 
                                   >> 0x20U));
-    __Vtemp_474[0x38U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_60);
-    __Vtemp_474[0x39U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_60 
+    __Vtemp_502[0x38U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_60);
+    __Vtemp_502[0x39U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_60 
                                   >> 0x20U));
-    __Vtemp_474[0x3aU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_61);
-    __Vtemp_474[0x3bU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_61 
+    __Vtemp_502[0x3aU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_61);
+    __Vtemp_502[0x3bU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_61 
                                   >> 0x20U));
-    __Vtemp_474[0x3cU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_62);
-    __Vtemp_474[0x3dU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_62 
+    __Vtemp_502[0x3cU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_62);
+    __Vtemp_502[0x3dU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_62 
                                   >> 0x20U));
-    __Vtemp_474[0x3eU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_63);
-    __Vtemp_474[0x3fU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_63 
+    __Vtemp_502[0x3eU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_63);
+    __Vtemp_502[0x3fU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_63 
                                   >> 0x20U));
-    VL_CONCAT_WWQ(2112,2048,64, __Vtemp_475, __Vtemp_474, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_31);
-    VL_CONCAT_WWQ(2176,2112,64, __Vtemp_476, __Vtemp_475, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_30);
-    VL_CONCAT_WWQ(2240,2176,64, __Vtemp_477, __Vtemp_476, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_29);
-    VL_CONCAT_WWQ(2304,2240,64, __Vtemp_478, __Vtemp_477, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_28);
-    VL_CONCAT_WWQ(2368,2304,64, __Vtemp_479, __Vtemp_478, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_27);
-    VL_CONCAT_WWQ(2432,2368,64, __Vtemp_480, __Vtemp_479, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_26);
-    VL_CONCAT_WWQ(2496,2432,64, __Vtemp_481, __Vtemp_480, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_25);
-    VL_CONCAT_WWQ(2560,2496,64, __Vtemp_482, __Vtemp_481, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_24);
-    VL_CONCAT_WWQ(2624,2560,64, __Vtemp_483, __Vtemp_482, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_23);
-    VL_CONCAT_WWQ(2688,2624,64, __Vtemp_484, __Vtemp_483, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_22);
-    VL_CONCAT_WWQ(2752,2688,64, __Vtemp_485, __Vtemp_484, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_21);
-    VL_CONCAT_WWQ(2816,2752,64, __Vtemp_486, __Vtemp_485, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_20);
-    VL_CONCAT_WWQ(2880,2816,64, __Vtemp_487, __Vtemp_486, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_19);
-    VL_CONCAT_WWQ(2944,2880,64, __Vtemp_488, __Vtemp_487, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_18);
-    VL_CONCAT_WWQ(3008,2944,64, __Vtemp_489, __Vtemp_488, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_17);
-    VL_CONCAT_WWQ(3072,3008,64, __Vtemp_490, __Vtemp_489, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_16);
-    VL_CONCAT_WWQ(3136,3072,64, __Vtemp_491, __Vtemp_490, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_15);
-    VL_CONCAT_WWQ(3200,3136,64, __Vtemp_492, __Vtemp_491, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_14);
-    VL_CONCAT_WWQ(3264,3200,64, __Vtemp_493, __Vtemp_492, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_13);
-    VL_CONCAT_WWQ(3328,3264,64, __Vtemp_494, __Vtemp_493, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_12);
-    VL_CONCAT_WWQ(3392,3328,64, __Vtemp_495, __Vtemp_494, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_11);
-    VL_CONCAT_WWQ(3456,3392,64, __Vtemp_496, __Vtemp_495, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_10);
-    VL_CONCAT_WWQ(3520,3456,64, __Vtemp_497, __Vtemp_496, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_9);
-    VL_CONCAT_WWQ(3584,3520,64, __Vtemp_498, __Vtemp_497, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_8);
-    VL_CONCAT_WWQ(3648,3584,64, __Vtemp_499, __Vtemp_498, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_7);
-    VL_CONCAT_WWQ(3712,3648,64, __Vtemp_500, __Vtemp_499, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_6);
-    VL_CONCAT_WWQ(3776,3712,64, __Vtemp_501, __Vtemp_500, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_5);
-    VL_CONCAT_WWQ(3840,3776,64, __Vtemp_502, __Vtemp_501, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_4);
-    VL_CONCAT_WWQ(3904,3840,64, __Vtemp_503, __Vtemp_502, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_3);
-    VL_CONCAT_WWQ(3968,3904,64, __Vtemp_504, __Vtemp_503, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_2);
-    VL_CONCAT_WWQ(4032,3968,64, __Vtemp_505, __Vtemp_504, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_1);
-    VL_CONCAT_WWQ(4096,4032,64, __Vtemp_506, __Vtemp_505, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_0);
+    VL_CONCAT_WWQ(2112,2048,64, __Vtemp_503, __Vtemp_502, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_31);
+    VL_CONCAT_WWQ(2176,2112,64, __Vtemp_504, __Vtemp_503, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_30);
+    VL_CONCAT_WWQ(2240,2176,64, __Vtemp_505, __Vtemp_504, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_29);
+    VL_CONCAT_WWQ(2304,2240,64, __Vtemp_506, __Vtemp_505, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_28);
+    VL_CONCAT_WWQ(2368,2304,64, __Vtemp_507, __Vtemp_506, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_27);
+    VL_CONCAT_WWQ(2432,2368,64, __Vtemp_508, __Vtemp_507, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_26);
+    VL_CONCAT_WWQ(2496,2432,64, __Vtemp_509, __Vtemp_508, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_25);
+    VL_CONCAT_WWQ(2560,2496,64, __Vtemp_510, __Vtemp_509, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_24);
+    VL_CONCAT_WWQ(2624,2560,64, __Vtemp_511, __Vtemp_510, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_23);
+    VL_CONCAT_WWQ(2688,2624,64, __Vtemp_512, __Vtemp_511, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_22);
+    VL_CONCAT_WWQ(2752,2688,64, __Vtemp_513, __Vtemp_512, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_21);
+    VL_CONCAT_WWQ(2816,2752,64, __Vtemp_514, __Vtemp_513, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_20);
+    VL_CONCAT_WWQ(2880,2816,64, __Vtemp_515, __Vtemp_514, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_19);
+    VL_CONCAT_WWQ(2944,2880,64, __Vtemp_516, __Vtemp_515, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_18);
+    VL_CONCAT_WWQ(3008,2944,64, __Vtemp_517, __Vtemp_516, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_17);
+    VL_CONCAT_WWQ(3072,3008,64, __Vtemp_518, __Vtemp_517, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_16);
+    VL_CONCAT_WWQ(3136,3072,64, __Vtemp_519, __Vtemp_518, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_15);
+    VL_CONCAT_WWQ(3200,3136,64, __Vtemp_520, __Vtemp_519, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_14);
+    VL_CONCAT_WWQ(3264,3200,64, __Vtemp_521, __Vtemp_520, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_13);
+    VL_CONCAT_WWQ(3328,3264,64, __Vtemp_522, __Vtemp_521, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_12);
+    VL_CONCAT_WWQ(3392,3328,64, __Vtemp_523, __Vtemp_522, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_11);
+    VL_CONCAT_WWQ(3456,3392,64, __Vtemp_524, __Vtemp_523, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_10);
+    VL_CONCAT_WWQ(3520,3456,64, __Vtemp_525, __Vtemp_524, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_9);
+    VL_CONCAT_WWQ(3584,3520,64, __Vtemp_526, __Vtemp_525, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_8);
+    VL_CONCAT_WWQ(3648,3584,64, __Vtemp_527, __Vtemp_526, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_7);
+    VL_CONCAT_WWQ(3712,3648,64, __Vtemp_528, __Vtemp_527, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_6);
+    VL_CONCAT_WWQ(3776,3712,64, __Vtemp_529, __Vtemp_528, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_5);
+    VL_CONCAT_WWQ(3840,3776,64, __Vtemp_530, __Vtemp_529, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_4);
+    VL_CONCAT_WWQ(3904,3840,64, __Vtemp_531, __Vtemp_530, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_3);
+    VL_CONCAT_WWQ(3968,3904,64, __Vtemp_532, __Vtemp_531, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_2);
+    VL_CONCAT_WWQ(4032,3968,64, __Vtemp_533, __Vtemp_532, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_1);
+    VL_CONCAT_WWQ(4096,4032,64, __Vtemp_534, __Vtemp_533, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_5_0);
     vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hits_5 
         = ((IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT___GEN_10 
                     >> (0x3fU & (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc 
                                          >> 2U))))) 
-           & ((((QData)((IData)(__Vtemp_506[(((IData)(0x3fU) 
+           & ((((QData)((IData)(__Vtemp_534[(((IData)(0x3fU) 
                                               + (0xfffU 
                                                  & VL_SHIFTL_III(12,12,32, 
                                                                  (0x3fU 
@@ -8046,7 +9333,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                   & (IData)(
                                                             (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc 
                                                              >> 2U))), 6U)))
-                    ? 0ULL : ((QData)((IData)(__Vtemp_506[
+                    ? 0ULL : ((QData)((IData)(__Vtemp_534[
                                               (((IData)(0x1fU) 
                                                 + (0xfffU 
                                                    & VL_SHIFTL_III(12,12,32, 
@@ -8061,7 +9348,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                           & (IData)(
                                                                     (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc 
                                                                      >> 2U))), 6U))))) 
-                  | ((QData)((IData)(__Vtemp_506[(0x7fU 
+                  | ((QData)((IData)(__Vtemp_534[(0x7fU 
                                                   & (VL_SHIFTL_III(12,12,32, 
                                                                    (0x3fU 
                                                                     & (IData)(
@@ -8074,139 +9361,139 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                           (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc 
                                                            >> 2U))), 6U))))) 
               == vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc));
-    __Vtemp_537[0U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_32);
-    __Vtemp_537[1U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_32 
+    __Vtemp_565[0U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_32);
+    __Vtemp_565[1U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_32 
                                >> 0x20U));
-    __Vtemp_537[2U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_33);
-    __Vtemp_537[3U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_33 
+    __Vtemp_565[2U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_33);
+    __Vtemp_565[3U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_33 
                                >> 0x20U));
-    __Vtemp_537[4U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_34);
-    __Vtemp_537[5U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_34 
+    __Vtemp_565[4U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_34);
+    __Vtemp_565[5U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_34 
                                >> 0x20U));
-    __Vtemp_537[6U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_35);
-    __Vtemp_537[7U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_35 
+    __Vtemp_565[6U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_35);
+    __Vtemp_565[7U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_35 
                                >> 0x20U));
-    __Vtemp_537[8U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_36);
-    __Vtemp_537[9U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_36 
+    __Vtemp_565[8U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_36);
+    __Vtemp_565[9U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_36 
                                >> 0x20U));
-    __Vtemp_537[0xaU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_37);
-    __Vtemp_537[0xbU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_37 
+    __Vtemp_565[0xaU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_37);
+    __Vtemp_565[0xbU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_37 
                                  >> 0x20U));
-    __Vtemp_537[0xcU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_38);
-    __Vtemp_537[0xdU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_38 
+    __Vtemp_565[0xcU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_38);
+    __Vtemp_565[0xdU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_38 
                                  >> 0x20U));
-    __Vtemp_537[0xeU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_39);
-    __Vtemp_537[0xfU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_39 
+    __Vtemp_565[0xeU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_39);
+    __Vtemp_565[0xfU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_39 
                                  >> 0x20U));
-    __Vtemp_537[0x10U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_40);
-    __Vtemp_537[0x11U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_40 
+    __Vtemp_565[0x10U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_40);
+    __Vtemp_565[0x11U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_40 
                                   >> 0x20U));
-    __Vtemp_537[0x12U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_41);
-    __Vtemp_537[0x13U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_41 
+    __Vtemp_565[0x12U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_41);
+    __Vtemp_565[0x13U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_41 
                                   >> 0x20U));
-    __Vtemp_537[0x14U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_42);
-    __Vtemp_537[0x15U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_42 
+    __Vtemp_565[0x14U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_42);
+    __Vtemp_565[0x15U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_42 
                                   >> 0x20U));
-    __Vtemp_537[0x16U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_43);
-    __Vtemp_537[0x17U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_43 
+    __Vtemp_565[0x16U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_43);
+    __Vtemp_565[0x17U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_43 
                                   >> 0x20U));
-    __Vtemp_537[0x18U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_44);
-    __Vtemp_537[0x19U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_44 
+    __Vtemp_565[0x18U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_44);
+    __Vtemp_565[0x19U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_44 
                                   >> 0x20U));
-    __Vtemp_537[0x1aU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_45);
-    __Vtemp_537[0x1bU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_45 
+    __Vtemp_565[0x1aU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_45);
+    __Vtemp_565[0x1bU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_45 
                                   >> 0x20U));
-    __Vtemp_537[0x1cU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_46);
-    __Vtemp_537[0x1dU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_46 
+    __Vtemp_565[0x1cU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_46);
+    __Vtemp_565[0x1dU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_46 
                                   >> 0x20U));
-    __Vtemp_537[0x1eU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_47);
-    __Vtemp_537[0x1fU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_47 
+    __Vtemp_565[0x1eU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_47);
+    __Vtemp_565[0x1fU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_47 
                                   >> 0x20U));
-    __Vtemp_537[0x20U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_48);
-    __Vtemp_537[0x21U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_48 
+    __Vtemp_565[0x20U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_48);
+    __Vtemp_565[0x21U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_48 
                                   >> 0x20U));
-    __Vtemp_537[0x22U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_49);
-    __Vtemp_537[0x23U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_49 
+    __Vtemp_565[0x22U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_49);
+    __Vtemp_565[0x23U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_49 
                                   >> 0x20U));
-    __Vtemp_537[0x24U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_50);
-    __Vtemp_537[0x25U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_50 
+    __Vtemp_565[0x24U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_50);
+    __Vtemp_565[0x25U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_50 
                                   >> 0x20U));
-    __Vtemp_537[0x26U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_51);
-    __Vtemp_537[0x27U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_51 
+    __Vtemp_565[0x26U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_51);
+    __Vtemp_565[0x27U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_51 
                                   >> 0x20U));
-    __Vtemp_537[0x28U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_52);
-    __Vtemp_537[0x29U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_52 
+    __Vtemp_565[0x28U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_52);
+    __Vtemp_565[0x29U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_52 
                                   >> 0x20U));
-    __Vtemp_537[0x2aU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_53);
-    __Vtemp_537[0x2bU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_53 
+    __Vtemp_565[0x2aU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_53);
+    __Vtemp_565[0x2bU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_53 
                                   >> 0x20U));
-    __Vtemp_537[0x2cU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_54);
-    __Vtemp_537[0x2dU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_54 
+    __Vtemp_565[0x2cU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_54);
+    __Vtemp_565[0x2dU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_54 
                                   >> 0x20U));
-    __Vtemp_537[0x2eU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_55);
-    __Vtemp_537[0x2fU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_55 
+    __Vtemp_565[0x2eU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_55);
+    __Vtemp_565[0x2fU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_55 
                                   >> 0x20U));
-    __Vtemp_537[0x30U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_56);
-    __Vtemp_537[0x31U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_56 
+    __Vtemp_565[0x30U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_56);
+    __Vtemp_565[0x31U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_56 
                                   >> 0x20U));
-    __Vtemp_537[0x32U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_57);
-    __Vtemp_537[0x33U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_57 
+    __Vtemp_565[0x32U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_57);
+    __Vtemp_565[0x33U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_57 
                                   >> 0x20U));
-    __Vtemp_537[0x34U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_58);
-    __Vtemp_537[0x35U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_58 
+    __Vtemp_565[0x34U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_58);
+    __Vtemp_565[0x35U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_58 
                                   >> 0x20U));
-    __Vtemp_537[0x36U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_59);
-    __Vtemp_537[0x37U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_59 
+    __Vtemp_565[0x36U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_59);
+    __Vtemp_565[0x37U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_59 
                                   >> 0x20U));
-    __Vtemp_537[0x38U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_60);
-    __Vtemp_537[0x39U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_60 
+    __Vtemp_565[0x38U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_60);
+    __Vtemp_565[0x39U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_60 
                                   >> 0x20U));
-    __Vtemp_537[0x3aU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_61);
-    __Vtemp_537[0x3bU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_61 
+    __Vtemp_565[0x3aU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_61);
+    __Vtemp_565[0x3bU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_61 
                                   >> 0x20U));
-    __Vtemp_537[0x3cU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_62);
-    __Vtemp_537[0x3dU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_62 
+    __Vtemp_565[0x3cU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_62);
+    __Vtemp_565[0x3dU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_62 
                                   >> 0x20U));
-    __Vtemp_537[0x3eU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_63);
-    __Vtemp_537[0x3fU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_63 
+    __Vtemp_565[0x3eU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_63);
+    __Vtemp_565[0x3fU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_63 
                                   >> 0x20U));
-    VL_CONCAT_WWQ(2112,2048,64, __Vtemp_538, __Vtemp_537, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_31);
-    VL_CONCAT_WWQ(2176,2112,64, __Vtemp_539, __Vtemp_538, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_30);
-    VL_CONCAT_WWQ(2240,2176,64, __Vtemp_540, __Vtemp_539, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_29);
-    VL_CONCAT_WWQ(2304,2240,64, __Vtemp_541, __Vtemp_540, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_28);
-    VL_CONCAT_WWQ(2368,2304,64, __Vtemp_542, __Vtemp_541, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_27);
-    VL_CONCAT_WWQ(2432,2368,64, __Vtemp_543, __Vtemp_542, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_26);
-    VL_CONCAT_WWQ(2496,2432,64, __Vtemp_544, __Vtemp_543, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_25);
-    VL_CONCAT_WWQ(2560,2496,64, __Vtemp_545, __Vtemp_544, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_24);
-    VL_CONCAT_WWQ(2624,2560,64, __Vtemp_546, __Vtemp_545, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_23);
-    VL_CONCAT_WWQ(2688,2624,64, __Vtemp_547, __Vtemp_546, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_22);
-    VL_CONCAT_WWQ(2752,2688,64, __Vtemp_548, __Vtemp_547, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_21);
-    VL_CONCAT_WWQ(2816,2752,64, __Vtemp_549, __Vtemp_548, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_20);
-    VL_CONCAT_WWQ(2880,2816,64, __Vtemp_550, __Vtemp_549, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_19);
-    VL_CONCAT_WWQ(2944,2880,64, __Vtemp_551, __Vtemp_550, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_18);
-    VL_CONCAT_WWQ(3008,2944,64, __Vtemp_552, __Vtemp_551, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_17);
-    VL_CONCAT_WWQ(3072,3008,64, __Vtemp_553, __Vtemp_552, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_16);
-    VL_CONCAT_WWQ(3136,3072,64, __Vtemp_554, __Vtemp_553, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_15);
-    VL_CONCAT_WWQ(3200,3136,64, __Vtemp_555, __Vtemp_554, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_14);
-    VL_CONCAT_WWQ(3264,3200,64, __Vtemp_556, __Vtemp_555, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_13);
-    VL_CONCAT_WWQ(3328,3264,64, __Vtemp_557, __Vtemp_556, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_12);
-    VL_CONCAT_WWQ(3392,3328,64, __Vtemp_558, __Vtemp_557, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_11);
-    VL_CONCAT_WWQ(3456,3392,64, __Vtemp_559, __Vtemp_558, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_10);
-    VL_CONCAT_WWQ(3520,3456,64, __Vtemp_560, __Vtemp_559, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_9);
-    VL_CONCAT_WWQ(3584,3520,64, __Vtemp_561, __Vtemp_560, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_8);
-    VL_CONCAT_WWQ(3648,3584,64, __Vtemp_562, __Vtemp_561, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_7);
-    VL_CONCAT_WWQ(3712,3648,64, __Vtemp_563, __Vtemp_562, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_6);
-    VL_CONCAT_WWQ(3776,3712,64, __Vtemp_564, __Vtemp_563, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_5);
-    VL_CONCAT_WWQ(3840,3776,64, __Vtemp_565, __Vtemp_564, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_4);
-    VL_CONCAT_WWQ(3904,3840,64, __Vtemp_566, __Vtemp_565, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_3);
-    VL_CONCAT_WWQ(3968,3904,64, __Vtemp_567, __Vtemp_566, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_2);
-    VL_CONCAT_WWQ(4032,3968,64, __Vtemp_568, __Vtemp_567, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_1);
-    VL_CONCAT_WWQ(4096,4032,64, __Vtemp_569, __Vtemp_568, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_0);
+    VL_CONCAT_WWQ(2112,2048,64, __Vtemp_566, __Vtemp_565, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_31);
+    VL_CONCAT_WWQ(2176,2112,64, __Vtemp_567, __Vtemp_566, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_30);
+    VL_CONCAT_WWQ(2240,2176,64, __Vtemp_568, __Vtemp_567, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_29);
+    VL_CONCAT_WWQ(2304,2240,64, __Vtemp_569, __Vtemp_568, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_28);
+    VL_CONCAT_WWQ(2368,2304,64, __Vtemp_570, __Vtemp_569, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_27);
+    VL_CONCAT_WWQ(2432,2368,64, __Vtemp_571, __Vtemp_570, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_26);
+    VL_CONCAT_WWQ(2496,2432,64, __Vtemp_572, __Vtemp_571, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_25);
+    VL_CONCAT_WWQ(2560,2496,64, __Vtemp_573, __Vtemp_572, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_24);
+    VL_CONCAT_WWQ(2624,2560,64, __Vtemp_574, __Vtemp_573, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_23);
+    VL_CONCAT_WWQ(2688,2624,64, __Vtemp_575, __Vtemp_574, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_22);
+    VL_CONCAT_WWQ(2752,2688,64, __Vtemp_576, __Vtemp_575, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_21);
+    VL_CONCAT_WWQ(2816,2752,64, __Vtemp_577, __Vtemp_576, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_20);
+    VL_CONCAT_WWQ(2880,2816,64, __Vtemp_578, __Vtemp_577, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_19);
+    VL_CONCAT_WWQ(2944,2880,64, __Vtemp_579, __Vtemp_578, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_18);
+    VL_CONCAT_WWQ(3008,2944,64, __Vtemp_580, __Vtemp_579, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_17);
+    VL_CONCAT_WWQ(3072,3008,64, __Vtemp_581, __Vtemp_580, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_16);
+    VL_CONCAT_WWQ(3136,3072,64, __Vtemp_582, __Vtemp_581, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_15);
+    VL_CONCAT_WWQ(3200,3136,64, __Vtemp_583, __Vtemp_582, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_14);
+    VL_CONCAT_WWQ(3264,3200,64, __Vtemp_584, __Vtemp_583, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_13);
+    VL_CONCAT_WWQ(3328,3264,64, __Vtemp_585, __Vtemp_584, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_12);
+    VL_CONCAT_WWQ(3392,3328,64, __Vtemp_586, __Vtemp_585, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_11);
+    VL_CONCAT_WWQ(3456,3392,64, __Vtemp_587, __Vtemp_586, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_10);
+    VL_CONCAT_WWQ(3520,3456,64, __Vtemp_588, __Vtemp_587, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_9);
+    VL_CONCAT_WWQ(3584,3520,64, __Vtemp_589, __Vtemp_588, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_8);
+    VL_CONCAT_WWQ(3648,3584,64, __Vtemp_590, __Vtemp_589, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_7);
+    VL_CONCAT_WWQ(3712,3648,64, __Vtemp_591, __Vtemp_590, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_6);
+    VL_CONCAT_WWQ(3776,3712,64, __Vtemp_592, __Vtemp_591, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_5);
+    VL_CONCAT_WWQ(3840,3776,64, __Vtemp_593, __Vtemp_592, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_4);
+    VL_CONCAT_WWQ(3904,3840,64, __Vtemp_594, __Vtemp_593, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_3);
+    VL_CONCAT_WWQ(3968,3904,64, __Vtemp_595, __Vtemp_594, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_2);
+    VL_CONCAT_WWQ(4032,3968,64, __Vtemp_596, __Vtemp_595, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_1);
+    VL_CONCAT_WWQ(4096,4032,64, __Vtemp_597, __Vtemp_596, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_6_0);
     vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hits_6 
         = ((IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT___GEN_12 
                     >> (0x3fU & (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc 
                                          >> 2U))))) 
-           & ((((QData)((IData)(__Vtemp_569[(((IData)(0x3fU) 
+           & ((((QData)((IData)(__Vtemp_597[(((IData)(0x3fU) 
                                               + (0xfffU 
                                                  & VL_SHIFTL_III(12,12,32, 
                                                                  (0x3fU 
@@ -8230,7 +9517,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                   & (IData)(
                                                             (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc 
                                                              >> 2U))), 6U)))
-                    ? 0ULL : ((QData)((IData)(__Vtemp_569[
+                    ? 0ULL : ((QData)((IData)(__Vtemp_597[
                                               (((IData)(0x1fU) 
                                                 + (0xfffU 
                                                    & VL_SHIFTL_III(12,12,32, 
@@ -8245,7 +9532,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                           & (IData)(
                                                                     (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc 
                                                                      >> 2U))), 6U))))) 
-                  | ((QData)((IData)(__Vtemp_569[(0x7fU 
+                  | ((QData)((IData)(__Vtemp_597[(0x7fU 
                                                   & (VL_SHIFTL_III(12,12,32, 
                                                                    (0x3fU 
                                                                     & (IData)(
@@ -8265,7 +9552,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
               | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dispatch_in_buffered_4_buf__DOT__slot0_data_decode_is_fload) 
                  | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dispatch_in_buffered_4_buf__DOT__slot0_data_decode_is_atomic) 
                     | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dispatch_in_buffered_4_buf__DOT__slot0_data_decode_is_fstore)))));
-    __Vtemp_570[1U] = (IData)((((QData)((IData)((0x4cU 
+    __Vtemp_598[1U] = (IData)((((QData)((IData)((0x4cU 
                                                  | (((0x70000U 
                                                       & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_0 
                                                          >> 7U)) 
@@ -8295,7 +9582,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                                    | (0xe00U 
                                                                       & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_0 
                                                                          >> 0x10U)))))))));
-    __Vtemp_570[2U] = (IData)(((((QData)((IData)((0x4cU 
+    __Vtemp_598[2U] = (IData)(((((QData)((IData)((0x4cU 
                                                   | (((0x70000U 
                                                        & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_0 
                                                           >> 7U)) 
@@ -8326,7 +9613,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                                        & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_0 
                                                                           >> 0x10U)))))))) 
                                >> 0x20U));
-    __Vtemp_571[0U] = ((0x10000000U & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_0)
+    __Vtemp_599[0U] = ((0x10000000U & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_0)
                         ? ((0U == (0x1fU & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_0 
                                             >> 0x12U)))
                             ? ((0U != (0x1fU & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_0 
@@ -8353,7 +9640,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                   >> 3U)) 
                                      | (0xf80U & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_0 
                                                   >> 0x10U))))));
-    __Vtemp_572[0U] = (IData)((((QData)((IData)((0x260U 
+    __Vtemp_600[0U] = (IData)((((QData)((IData)((0x260U 
                                                  | (((0x380000U 
                                                       & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_0 
                                                          << 1U)) 
@@ -8383,7 +9670,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                                 | (0xf80U 
                                                                    & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_0 
                                                                       >> 0x10U))))))));
-    __Vtemp_572[1U] = (IData)(((((QData)((IData)((0x260U 
+    __Vtemp_600[1U] = (IData)(((((QData)((IData)((0x260U 
                                                   | (((0x380000U 
                                                        & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_0 
                                                           << 1U)) 
@@ -8414,7 +9701,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                                     & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_0 
                                                                        >> 0x10U))))))) 
                                >> 0x20U));
-    __Vtemp_574[0U] = (0x1013U | (((0x2000000U & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_0 
+    __Vtemp_602[0U] = (0x1013U | (((0x2000000U & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_0 
                                                   >> 3U)) 
                                    | (0x1f00000U & 
                                       (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_0 
@@ -8425,7 +9712,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                    | (0xf80U 
                                                       & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_0 
                                                          >> 0x10U)))));
-    __Vtemp_574[1U] = (0x13007U | (((0x1c000000U & 
+    __Vtemp_602[1U] = (0x13007U | (((0x1c000000U & 
                                      (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_0 
                                       << 8U)) | ((0x2000000U 
                                                   & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_0 
@@ -8435,10 +9722,10 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                        << 2U)))) 
                                    | (0xf80U & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_0 
                                                 >> 0x10U))));
-    __Vtemp_574[2U] = __Vtemp_572[0U];
-    __Vtemp_574[3U] = __Vtemp_572[1U];
-    __Vtemp_574[4U] = __Vtemp_571[0U];
-    __Vtemp_574[5U] = (0x13027U | (((0x1c000000U & 
+    __Vtemp_602[2U] = __Vtemp_600[0U];
+    __Vtemp_602[3U] = __Vtemp_600[1U];
+    __Vtemp_602[4U] = __Vtemp_599[0U];
+    __Vtemp_602[5U] = (0x13027U | (((0x1c000000U & 
                                      (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_0 
                                       << 3U)) | ((0x2000000U 
                                                   & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_0 
@@ -8448,9 +9735,9 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                        << 2U)))) 
                                    | (0xc00U & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_0 
                                                 >> 0x10U))));
-    __Vtemp_574[6U] = __Vtemp_570[1U];
-    __Vtemp_574[7U] = __Vtemp_570[2U];
-    __Vtemp_576[0U] = (IData)((((QData)((IData)((0x33408U 
+    __Vtemp_602[6U] = __Vtemp_598[1U];
+    __Vtemp_602[7U] = __Vtemp_598[2U];
+    __Vtemp_604[0U] = (IData)((((QData)((IData)((0x33408U 
                                                  | (7U 
                                                     & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_0 
                                                        >> 0x12U))))) 
@@ -8465,7 +9752,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                                    | (8U 
                                                                       & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_0 
                                                                          >> 0x19U)))))))));
-    __Vtemp_576[1U] = ((0xffffff80U & (0x844400U | 
+    __Vtemp_604[1U] = ((0xffffff80U & (0x844400U | 
                                        (((0x700000U 
                                           & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_0 
                                              << 2U)) 
@@ -8492,7 +9779,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                                           & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_0 
                                                                              >> 0x19U)))))))) 
                                   >> 0x20U)));
-    __Vtemp_576[2U] = (0x33U | ((IData)((((QData)((IData)(
+    __Vtemp_604[2U] = (0x33U | ((IData)((((QData)((IData)(
                                                           (0x108e8U 
                                                            | ((0xe000U 
                                                                & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_0 
@@ -8516,7 +9803,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                                   & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_0 
                                                                      >> 0x17U)))))))) 
                                 << 7U));
-    __Vtemp_576[3U] = (((IData)((((QData)((IData)((0x108e8U 
+    __Vtemp_604[3U] = (((IData)((((QData)((IData)((0x108e8U 
                                                    | ((0xe000U 
                                                        & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_0 
                                                           >> 5U)) 
@@ -8562,7 +9849,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                                            >> 0x17U))))))) 
                                               >> 0x20U)) 
                                      << 7U));
-    __Vtemp_577[0U] = (IData)((((QData)((IData)((0x8e8U 
+    __Vtemp_605[0U] = (IData)((((QData)((IData)((0x8e8U 
                                                  | (((0x1fc0000U 
                                                       & ((- (IData)(
                                                                     (1U 
@@ -8595,7 +9882,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                                    | (0x380U 
                                                                       & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_0 
                                                                          >> 0x10U)))))))));
-    __Vtemp_577[1U] = (IData)(((((QData)((IData)((0x8e8U 
+    __Vtemp_605[1U] = (IData)(((((QData)((IData)((0x8e8U 
                                                   | (((0x1fc0000U 
                                                        & ((- (IData)(
                                                                      (1U 
@@ -8629,7 +9916,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                                        & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_0 
                                                                           >> 0x10U)))))))) 
                                >> 0x20U));
-    __Vtemp_577[2U] = ((IData)((0x10200000U == (0x10600000U 
+    __Vtemp_605[2U] = ((IData)((0x10200000U == (0x10600000U 
                                                 & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_0)))
                         ? (0x84043bU | ((0x700000U 
                                          & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_0 
@@ -8644,7 +9931,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                           (3U 
                                                            & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_0 
                                                               >> 0x15U)), 5U)))
-                             ? 0U : (__Vtemp_576[(((IData)(0x1fU) 
+                             ? 0U : (__Vtemp_604[(((IData)(0x1fU) 
                                                    + 
                                                    (0x7fU 
                                                     & VL_SHIFTL_III(7,7,32, 
@@ -8658,7 +9945,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                           (3U 
                                                            & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_0 
                                                               >> 0x15U)), 5U))))) 
-                           | (__Vtemp_576[(3U & (VL_SHIFTL_III(7,7,32, 
+                           | (__Vtemp_604[(3U & (VL_SHIFTL_III(7,7,32, 
                                                                (3U 
                                                                 & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_0 
                                                                    >> 0x15U)), 5U) 
@@ -8667,7 +9954,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                         (3U 
                                                          & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_0 
                                                             >> 0x15U)), 5U)))));
-    __Vtemp_578[0U] = (0x45413U | (((0x2000000U & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_0 
+    __Vtemp_606[0U] = (0x45413U | (((0x2000000U & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_0 
                                                    >> 3U)) 
                                     | (0x1f00000U & 
                                        (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_0 
@@ -8676,10 +9963,10 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                  >> 8U)) 
                                     | (0x380U & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_0 
                                                  >> 0x10U)))));
-    __Vtemp_578[1U] = __Vtemp_577[0U];
-    __Vtemp_578[2U] = __Vtemp_577[1U];
-    __Vtemp_578[3U] = __Vtemp_577[2U];
-    __Vtemp_579[0U] = (IData)((((QData)((IData)((0x6fU 
+    __Vtemp_606[1U] = __Vtemp_605[0U];
+    __Vtemp_606[2U] = __Vtemp_605[1U];
+    __Vtemp_606[3U] = __Vtemp_605[2U];
+    __Vtemp_607[0U] = (IData)((((QData)((IData)((0x6fU 
                                                  | (((((0x80000000U 
                                                         & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_0 
                                                            << 3U)) 
@@ -8720,7 +10007,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                                                 >> 0x1aU)), 5U)))
                                                                ? 0U
                                                                : 
-                                                              (__Vtemp_578[
+                                                              (__Vtemp_606[
                                                                (((IData)(0x1fU) 
                                                                  + 
                                                                  (0x7fU 
@@ -8737,7 +10024,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                                                 (3U 
                                                                                 & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_0 
                                                                                 >> 0x1aU)), 5U))))) 
-                                                             | (__Vtemp_578[
+                                                             | (__Vtemp_606[
                                                                 (3U 
                                                                  & (VL_SHIFTL_III(7,7,32, 
                                                                                 (3U 
@@ -8750,7 +10037,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                                                 (3U 
                                                                                 & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_0 
                                                                                 >> 0x1aU)), 5U))))))));
-    __Vtemp_579[1U] = (IData)(((((QData)((IData)((0x6fU 
+    __Vtemp_607[1U] = (IData)(((((QData)((IData)((0x6fU 
                                                   | (((((0x80000000U 
                                                          & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_0 
                                                             << 3U)) 
@@ -8791,7 +10078,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                                                 >> 0x1aU)), 5U)))
                                                                 ? 0U
                                                                 : 
-                                                               (__Vtemp_578[
+                                                               (__Vtemp_606[
                                                                 (((IData)(0x1fU) 
                                                                   + 
                                                                   (0x7fU 
@@ -8808,7 +10095,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                                                 (3U 
                                                                                 & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_0 
                                                                                 >> 0x1aU)), 5U))))) 
-                                                              | (__Vtemp_578[
+                                                              | (__Vtemp_606[
                                                                  (3U 
                                                                   & (VL_SHIFTL_III(7,7,32, 
                                                                                 (3U 
@@ -8822,7 +10109,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                                                 & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_0 
                                                                                 >> 0x1aU)), 5U))))))) 
                                >> 0x20U));
-    __Vtemp_580[0U] = (IData)((0x1b00000000ULL | (((QData)((IData)(
+    __Vtemp_608[0U] = (IData)((0x1b00000000ULL | (((QData)((IData)(
                                                                    (0x7fU 
                                                                     & (- (IData)(
                                                                                 (1U 
@@ -8867,7 +10154,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                                                 & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_0 
                                                                                 >> 0x10U)))))
                                                                                : 0x13U)))))))));
-    __Vtemp_580[1U] = (IData)(((0x1b00000000ULL | (
+    __Vtemp_608[1U] = (IData)(((0x1b00000000ULL | (
                                                    ((QData)((IData)(
                                                                     (0x7fU 
                                                                      & (- (IData)(
@@ -8914,7 +10201,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                                                 >> 0x10U)))))
                                                                                 : 0x13U)))))))) 
                                >> 0x20U));
-    __Vtemp_584[3U] = ((2U == (0x1fU & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_0 
+    __Vtemp_612[3U] = ((2U == (0x1fU & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_0 
                                         >> 0x17U)))
                         ? (0x10113U | (((- (IData)(
                                                    (1U 
@@ -8942,9 +10229,9 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                   | (0xf80U 
                                                      & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_0 
                                                         >> 0x10U))))));
-    __Vtemp_590[0U] = __Vtemp_580[0U];
-    __Vtemp_590[1U] = __Vtemp_580[1U];
-    __Vtemp_590[2U] = (0x13U | (((- (IData)((1U & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_0 
+    __Vtemp_618[0U] = __Vtemp_608[0U];
+    __Vtemp_618[1U] = __Vtemp_608[1U];
+    __Vtemp_618[2U] = (0x13U | (((- (IData)((1U & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_0 
                                                    >> 0x1cU)))) 
                                  << 0x19U) | ((0x1f00000U 
                                                & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_0 
@@ -8952,10 +10239,10 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                               | (0xf80U 
                                                  & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_0 
                                                     >> 0x10U)))));
-    __Vtemp_590[3U] = __Vtemp_584[3U];
-    __Vtemp_590[4U] = __Vtemp_579[0U];
-    __Vtemp_590[5U] = __Vtemp_579[1U];
-    __Vtemp_590[6U] = (0x40063U | ((0xfe000000U & (
+    __Vtemp_618[3U] = __Vtemp_612[3U];
+    __Vtemp_618[4U] = __Vtemp_607[0U];
+    __Vtemp_618[5U] = __Vtemp_607[1U];
+    __Vtemp_618[6U] = (0x40063U | ((0xfe000000U & (
                                                    ((- (IData)(
                                                                (1U 
                                                                 & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_0 
@@ -8978,7 +10265,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                             | (0x80U 
                                                & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_0 
                                                   >> 0x15U)))))));
-    __Vtemp_590[7U] = (0x41063U | ((((- (IData)((1U 
+    __Vtemp_618[7U] = (0x41063U | ((((- (IData)((1U 
                                                  & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_0 
                                                     >> 0x1cU)))) 
                                      << 0x1cU) | ((0xc000000U 
@@ -8998,7 +10285,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                          | (0x80U & 
                                             (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_0 
                                              >> 0x15U))))));
-    __Vtemp_592[2U] = (IData)((((QData)((IData)((0x843023U 
+    __Vtemp_620[2U] = (IData)((((QData)((IData)((0x843023U 
                                                  | ((((0xc000000U 
                                                        & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_0 
                                                           << 5U)) 
@@ -9034,7 +10321,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                                       | (0x200U 
                                                                          & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_0 
                                                                             >> 0xdU))))))))));
-    __Vtemp_592[3U] = (IData)(((((QData)((IData)((0x843023U 
+    __Vtemp_620[3U] = (IData)(((((QData)((IData)((0x843023U 
                                                   | ((((0xc000000U 
                                                         & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_0 
                                                            << 5U)) 
@@ -9071,7 +10358,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                                           & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_0 
                                                                              >> 0xdU))))))))) 
                                >> 0x20U));
-    __Vtemp_596[0U] = ((IData)((0U != (0x1fe00000U 
+    __Vtemp_624[0U] = ((IData)((0U != (0x1fe00000U 
                                        & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_0)))
                         ? (0x10413U | (((0x3c000000U 
                                          & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_0 
@@ -9088,7 +10375,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                           (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_0 
                                            >> 0xbU))))
                         : 0x13U);
-    __Vtemp_596[1U] = (0x43407U | (((0xc000000U & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_0 
+    __Vtemp_624[1U] = (0x43407U | (((0xc000000U & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_0 
                                                    << 5U)) 
                                     | (0x3800000U & 
                                        (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_0 
@@ -9097,7 +10384,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                  >> 8U)) 
                                     | (0x380U & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_0 
                                                  >> 0xbU)))));
-    __Vtemp_596[2U] = (0x42403U | (((0x4000000U & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_0 
+    __Vtemp_624[2U] = (0x42403U | (((0x4000000U & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_0 
                                                    << 5U)) 
                                     | ((0x3800000U 
                                         & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_0 
@@ -9108,7 +10395,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                    >> 8U)) 
                                       | (0x380U & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_0 
                                                    >> 0xbU)))));
-    __Vtemp_596[3U] = (0x43403U | (((0xc000000U & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_0 
+    __Vtemp_624[3U] = (0x43403U | (((0xc000000U & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_0 
                                                    << 5U)) 
                                     | (0x3800000U & 
                                        (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_0 
@@ -9117,7 +10404,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                  >> 8U)) 
                                     | (0x380U & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_0 
                                                  >> 0xbU)))));
-    __Vtemp_596[4U] = (IData)((0x302700000013ULL | 
+    __Vtemp_624[4U] = (IData)((0x302700000013ULL | 
                                (((QData)((IData)((1U 
                                                   | ((0x18U 
                                                       & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_0 
@@ -9141,7 +10428,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                                      & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_0 
                                                                         >> 0x1aU)))) 
                                                     << 0x2aU))))));
-    __Vtemp_596[5U] = (IData)(((0x302700000013ULL | 
+    __Vtemp_624[5U] = (IData)(((0x302700000013ULL | 
                                 (((QData)((IData)((1U 
                                                    | ((0x18U 
                                                        & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_0 
@@ -9166,12 +10453,12 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                                          >> 0x1aU)))) 
                                                      << 0x2aU))))) 
                                >> 0x20U));
-    __Vtemp_596[6U] = __Vtemp_592[2U];
-    __Vtemp_596[7U] = __Vtemp_592[3U];
-    __Vtemp_597[0U] = (((0U == (0x1fU & VL_SHIFTL_III(8,8,32, 
+    __Vtemp_624[6U] = __Vtemp_620[2U];
+    __Vtemp_624[7U] = __Vtemp_620[3U];
+    __Vtemp_625[0U] = (((0U == (0x1fU & VL_SHIFTL_III(8,8,32, 
                                                       (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_0 
                                                        >> 0x1dU), 5U)))
-                         ? 0U : (__Vtemp_596[(((IData)(0x1fU) 
+                         ? 0U : (__Vtemp_624[(((IData)(0x1fU) 
                                                + (0xffU 
                                                   & VL_SHIFTL_III(8,8,32, 
                                                                   (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_0 
@@ -9181,17 +10468,17 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                      - (0x1fU & VL_SHIFTL_III(8,8,32, 
                                                               (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_0 
                                                                >> 0x1dU), 5U))))) 
-                       | (__Vtemp_596[(7U & (VL_SHIFTL_III(8,8,32, 
+                       | (__Vtemp_624[(7U & (VL_SHIFTL_III(8,8,32, 
                                                            (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_0 
                                                             >> 0x1dU), 5U) 
                                              >> 5U))] 
                           >> (0x1fU & VL_SHIFTL_III(8,8,32, 
                                                     (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_0 
                                                      >> 0x1dU), 5U))));
-    __Vtemp_597[1U] = (((0U == (0x1fU & VL_SHIFTL_III(8,8,32, 
+    __Vtemp_625[1U] = (((0U == (0x1fU & VL_SHIFTL_III(8,8,32, 
                                                       (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_0 
                                                        >> 0x1dU), 5U)))
-                         ? 0U : (__Vtemp_590[(((IData)(0x1fU) 
+                         ? 0U : (__Vtemp_618[(((IData)(0x1fU) 
                                                + (0xffU 
                                                   & VL_SHIFTL_III(8,8,32, 
                                                                   (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_0 
@@ -9201,14 +10488,14 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                      - (0x1fU & VL_SHIFTL_III(8,8,32, 
                                                               (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_0 
                                                                >> 0x1dU), 5U))))) 
-                       | (__Vtemp_590[(7U & (VL_SHIFTL_III(8,8,32, 
+                       | (__Vtemp_618[(7U & (VL_SHIFTL_III(8,8,32, 
                                                            (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_0 
                                                             >> 0x1dU), 5U) 
                                              >> 5U))] 
                           >> (0x1fU & VL_SHIFTL_III(8,8,32, 
                                                     (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_0 
                                                      >> 0x1dU), 5U))));
-    __Vtemp_597[2U] = (IData)((0x1300000000ULL | (QData)((IData)(
+    __Vtemp_625[2U] = (IData)((0x1300000000ULL | (QData)((IData)(
                                                                  (((0U 
                                                                     == 
                                                                     (0x1fU 
@@ -9217,7 +10504,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                                                 >> 0x1dU), 5U)))
                                                                     ? 0U
                                                                     : 
-                                                                   (__Vtemp_574[
+                                                                   (__Vtemp_602[
                                                                     (((IData)(0x1fU) 
                                                                       + 
                                                                       (0xffU 
@@ -9232,7 +10519,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                                       & VL_SHIFTL_III(8,8,32, 
                                                                                 (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_0 
                                                                                 >> 0x1dU), 5U))))) 
-                                                                  | (__Vtemp_574[
+                                                                  | (__Vtemp_602[
                                                                      (7U 
                                                                       & (VL_SHIFTL_III(8,8,32, 
                                                                                 (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_0 
@@ -9243,7 +10530,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                                       & VL_SHIFTL_III(8,8,32, 
                                                                                 (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_0 
                                                                                 >> 0x1dU), 5U))))))));
-    __Vtemp_597[3U] = (IData)(((0x1300000000ULL | (QData)((IData)(
+    __Vtemp_625[3U] = (IData)(((0x1300000000ULL | (QData)((IData)(
                                                                   (((0U 
                                                                      == 
                                                                      (0x1fU 
@@ -9252,7 +10539,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                                                 >> 0x1dU), 5U)))
                                                                      ? 0U
                                                                      : 
-                                                                    (__Vtemp_574[
+                                                                    (__Vtemp_602[
                                                                      (((IData)(0x1fU) 
                                                                        + 
                                                                        (0xffU 
@@ -9267,7 +10554,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                                        & VL_SHIFTL_III(8,8,32, 
                                                                                 (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_0 
                                                                                 >> 0x1dU), 5U))))) 
-                                                                   | (__Vtemp_574[
+                                                                   | (__Vtemp_602[
                                                                       (7U 
                                                                        & (VL_SHIFTL_III(8,8,32, 
                                                                                 (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_0 
@@ -9283,7 +10570,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
         = (((0U == (0x1fU & VL_SHIFTL_III(7,7,32, (3U 
                                                    & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_0 
                                                       >> 0x10U)), 5U)))
-             ? 0U : (__Vtemp_597[(((IData)(0x1fU) + 
+             ? 0U : (__Vtemp_625[(((IData)(0x1fU) + 
                                    (0x7fU & VL_SHIFTL_III(7,7,32, 
                                                           (3U 
                                                            & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_0 
@@ -9294,7 +10581,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                                  (3U 
                                                                   & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_0 
                                                                      >> 0x10U)), 5U))))) 
-           | (__Vtemp_597[(3U & (VL_SHIFTL_III(7,7,32, 
+           | (__Vtemp_625[(3U & (VL_SHIFTL_III(7,7,32, 
                                                (3U 
                                                 & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_insts_0 
                                                    >> 0x10U)), 5U) 
@@ -9310,7 +10597,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
     vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dispatch__DOT__req_bru_3 
         = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dispatch__DOT__active_3) 
            & (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dispatch__DOT__is_bru_3));
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT____VdfgRegularize_ha7c02441_0_49 
+    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT____VdfgRegularize_ha7c02441_0_50 
         = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT___is_fpu_core_T_5) 
            | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__exe_uop_fp_1_decode_is_fmul) 
               | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__exe_uop_fp_1_decode_is_fmadd) 
@@ -9374,7 +10661,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
     vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_ready 
         = ((~ (0U != (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__icache__DOT__state))) 
            & (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__icache__DOT__isHit));
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT____VdfgRegularize_ha7c02441_0_48 
+    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT____VdfgRegularize_ha7c02441_0_49 
         = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT___is_fpu_core_T_15) 
            | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__exe_uop_fp_3_decode_is_fmul) 
               | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__exe_uop_fp_3_decode_is_fmadd) 
@@ -9493,6 +10780,14 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
     vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__intBusyTable__DOT___GEN_24576 
         = ((~ vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__intBusyTable__DOT____VdfgBinToOneHot_Tab_h7374a686_0_128
             [0U]) & (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__r_wu_val));
+    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT__dist_i_254 
+        = (0xffU & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgBinToOneHot_Tab_h9d2b670c_0_0
+                    [0x7fU] ? ((IData)(0xfeU) - (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT__deqPtr))
+                     : (0x7fU & ((IData)(0x7eU) - (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT__deqPtr)))));
+    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT__dist_i_128 
+        = (0xffU & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgBinToOneHot_Tab_h9d2b670c_0_0
+                    [0U] ? (0x7fU & (- (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT__deqPtr)))
+                     : ((IData)(0x80U) - (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT__deqPtr))));
     vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dispatch__DOT__is_mem_2 
         = ((~ (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dispatch__DOT__is_vec_2)) 
            & (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dispatch_in_buffered_2_buf__DOT__slot0_data_decode_is_load) 
@@ -9571,13 +10866,13 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
            & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN[
               ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__fpdiv_robIdx_latch) 
                >> 5U)] >> (0x1fU & (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__fpdiv_robIdx_latch))));
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5267 
+    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5268 
         = (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__exe_val_fp_0) 
             | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__exe_val_fp_2)) 
            & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN[
               ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT___exec_io_exuWriteback_11_bits_robIdx) 
                >> 5U)] >> (0x1fU & (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT___exec_io_exuWriteback_11_bits_robIdx))));
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_4755 
+    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_4756 
         = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__r2_mul_val_0) 
            & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN[
               ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__r2_mul_robIdx_0) 
@@ -9587,7 +10882,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
            & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN[
               ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__r2_mul_robIdx_1) 
                >> 5U)] >> (0x1fU & (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__r2_mul_robIdx_1))));
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_4243 
+    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_4244 
         = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT___exec_io_exuWriteback_7_valid) 
            & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN[
               ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__div_robIdx_latch_0) 
@@ -9597,7 +10892,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
            & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN[
               ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__div_robIdx_latch_1) 
                >> 5U)] >> (0x1fU & (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__div_robIdx_latch_1))));
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_3731 
+    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_3732 
         = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__r_agu_val_1) 
            & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN[
               ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__r_agu_uop_1_robIdx) 
@@ -9613,7 +10908,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
               ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__r_agu_uop_0_robIdx) 
                >> 5U)] >> (0x1fU & (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__r_agu_uop_0_robIdx))));
     vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT___fusionDecoder_io_out_5_uop_pc 
-        = (((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT___GEN_3[
+        = (((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT___GEN_4[
                             (((IData)(0x3fU) + (0xfffU 
                                                 & VL_SHIFTL_III(12,12,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr_5), 6U))) 
                              >> 5U)])) << ((0U == (0x1fU 
@@ -9623,34 +10918,34 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                - (0x1fU 
                                                   & VL_SHIFTL_III(12,12,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr_5), 6U))))) 
            | (((0U == (0x1fU & VL_SHIFTL_III(12,12,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr_5), 6U)))
-                ? 0ULL : ((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT___GEN_3[
+                ? 0ULL : ((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT___GEN_4[
                                           (((IData)(0x1fU) 
                                             + (0xfffU 
                                                & VL_SHIFTL_III(12,12,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr_5), 6U))) 
                                            >> 5U)])) 
                           << ((IData)(0x20U) - (0x1fU 
                                                 & VL_SHIFTL_III(12,12,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr_5), 6U))))) 
-              | ((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT___GEN_3[
+              | ((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT___GEN_4[
                                  (0x7fU & (VL_SHIFTL_III(12,12,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr_5), 6U) 
                                            >> 5U))])) 
                  >> (0x1fU & VL_SHIFTL_III(12,12,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr_5), 6U)))));
     vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT___fusionDecoder_io_out_5_uop_inst_raw 
         = (((0U == (0x1fU & VL_SHIFTL_III(11,11,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr_5), 5U)))
-             ? 0U : (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT___GEN_4[
+             ? 0U : (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT___GEN_5[
                      (((IData)(0x1fU) + (0x7ffU & VL_SHIFTL_III(11,11,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr_5), 5U))) 
                       >> 5U)] << ((IData)(0x20U) - 
                                   (0x1fU & VL_SHIFTL_III(11,11,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr_5), 5U))))) 
-           | (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT___GEN_4[
+           | (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT___GEN_5[
               (0x3fU & (VL_SHIFTL_III(11,11,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr_5), 5U) 
                         >> 5U))] >> (0x1fU & VL_SHIFTL_III(11,11,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr_5), 5U))));
     vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT___fusionDecoder_io_out_5_uop_pre_is_rvc 
-        = (1U & (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT___GEN_5 
+        = (1U & (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT___GEN_6 
                          >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr_5))));
     vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT___fusionDecoder_io_out_5_uop_ftqPtr 
         = ((0x17fU >= (0x1ffU & ((IData)(6U) * (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr_5))))
             ? (0x3fU & (((0U == (0x1fU & ((IData)(6U) 
                                           * (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr_5))))
-                          ? 0U : (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT___GEN_7[
+                          ? 0U : (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT___GEN_8[
                                   (((IData)(5U) + (0x1ffU 
                                                    & ((IData)(6U) 
                                                       * (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr_5)))) 
@@ -9658,17 +10953,17 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                - (0x1fU 
                                                   & ((IData)(6U) 
                                                      * (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr_5)))))) 
-                        | (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT___GEN_7[
+                        | (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT___GEN_8[
                            (0xfU & (((IData)(6U) * (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr_5)) 
                                     >> 5U))] >> (0x1fU 
                                                  & ((IData)(6U) 
                                                     * (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr_5))))))
             : 0U);
     vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT___fusionDecoder_io_out_5_uop_is_predicted_taken 
-        = (1U & (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT___GEN_8 
+        = (1U & (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT___GEN_9 
                          >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr_5))));
     vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT___fusionDecoder_io_out_5_uop_predicted_target 
-        = (((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT___GEN_9[
+        = (((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT___GEN_10[
                             (((IData)(0x3fU) + (0xfffU 
                                                 & VL_SHIFTL_III(12,12,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr_5), 6U))) 
                              >> 5U)])) << ((0U == (0x1fU 
@@ -9678,22 +10973,22 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                - (0x1fU 
                                                   & VL_SHIFTL_III(12,12,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr_5), 6U))))) 
            | (((0U == (0x1fU & VL_SHIFTL_III(12,12,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr_5), 6U)))
-                ? 0ULL : ((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT___GEN_9[
+                ? 0ULL : ((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT___GEN_10[
                                           (((IData)(0x1fU) 
                                             + (0xfffU 
                                                & VL_SHIFTL_III(12,12,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr_5), 6U))) 
                                            >> 5U)])) 
                           << ((IData)(0x20U) - (0x1fU 
                                                 & VL_SHIFTL_III(12,12,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr_5), 6U))))) 
-              | ((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT___GEN_9[
+              | ((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT___GEN_10[
                                  (0x7fU & (VL_SHIFTL_III(12,12,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr_5), 6U) 
                                            >> 5U))])) 
                  >> (0x1fU & VL_SHIFTL_III(12,12,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr_5), 6U)))));
     vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT___fusionDecoder_io_out_5_uop_epoch 
-        = (1U & (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT___GEN_10 
+        = (1U & (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT___GEN_11 
                          >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr_5))));
     vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT___fusionDecoder_io_out_4_uop_pc 
-        = (((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT___GEN_3[
+        = (((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT___GEN_4[
                             (((IData)(0x3fU) + (0xfffU 
                                                 & VL_SHIFTL_III(12,12,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr_4), 6U))) 
                              >> 5U)])) << ((0U == (0x1fU 
@@ -9703,34 +10998,34 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                - (0x1fU 
                                                   & VL_SHIFTL_III(12,12,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr_4), 6U))))) 
            | (((0U == (0x1fU & VL_SHIFTL_III(12,12,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr_4), 6U)))
-                ? 0ULL : ((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT___GEN_3[
+                ? 0ULL : ((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT___GEN_4[
                                           (((IData)(0x1fU) 
                                             + (0xfffU 
                                                & VL_SHIFTL_III(12,12,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr_4), 6U))) 
                                            >> 5U)])) 
                           << ((IData)(0x20U) - (0x1fU 
                                                 & VL_SHIFTL_III(12,12,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr_4), 6U))))) 
-              | ((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT___GEN_3[
+              | ((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT___GEN_4[
                                  (0x7fU & (VL_SHIFTL_III(12,12,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr_4), 6U) 
                                            >> 5U))])) 
                  >> (0x1fU & VL_SHIFTL_III(12,12,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr_4), 6U)))));
     vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT___fusionDecoder_io_out_4_uop_inst_raw 
         = (((0U == (0x1fU & VL_SHIFTL_III(11,11,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr_4), 5U)))
-             ? 0U : (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT___GEN_4[
+             ? 0U : (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT___GEN_5[
                      (((IData)(0x1fU) + (0x7ffU & VL_SHIFTL_III(11,11,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr_4), 5U))) 
                       >> 5U)] << ((IData)(0x20U) - 
                                   (0x1fU & VL_SHIFTL_III(11,11,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr_4), 5U))))) 
-           | (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT___GEN_4[
+           | (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT___GEN_5[
               (0x3fU & (VL_SHIFTL_III(11,11,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr_4), 5U) 
                         >> 5U))] >> (0x1fU & VL_SHIFTL_III(11,11,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr_4), 5U))));
     vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT___fusionDecoder_io_out_4_uop_pre_is_rvc 
-        = (1U & (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT___GEN_5 
+        = (1U & (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT___GEN_6 
                          >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr_4))));
     vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT___fusionDecoder_io_out_4_uop_ftqPtr 
         = ((0x17fU >= (0x1ffU & ((IData)(6U) * (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr_4))))
             ? (0x3fU & (((0U == (0x1fU & ((IData)(6U) 
                                           * (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr_4))))
-                          ? 0U : (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT___GEN_7[
+                          ? 0U : (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT___GEN_8[
                                   (((IData)(5U) + (0x1ffU 
                                                    & ((IData)(6U) 
                                                       * (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr_4)))) 
@@ -9738,17 +11033,17 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                - (0x1fU 
                                                   & ((IData)(6U) 
                                                      * (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr_4)))))) 
-                        | (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT___GEN_7[
+                        | (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT___GEN_8[
                            (0xfU & (((IData)(6U) * (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr_4)) 
                                     >> 5U))] >> (0x1fU 
                                                  & ((IData)(6U) 
                                                     * (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr_4))))))
             : 0U);
     vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT___fusionDecoder_io_out_4_uop_is_predicted_taken 
-        = (1U & (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT___GEN_8 
+        = (1U & (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT___GEN_9 
                          >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr_4))));
     vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT___fusionDecoder_io_out_4_uop_predicted_target 
-        = (((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT___GEN_9[
+        = (((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT___GEN_10[
                             (((IData)(0x3fU) + (0xfffU 
                                                 & VL_SHIFTL_III(12,12,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr_4), 6U))) 
                              >> 5U)])) << ((0U == (0x1fU 
@@ -9758,22 +11053,22 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                - (0x1fU 
                                                   & VL_SHIFTL_III(12,12,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr_4), 6U))))) 
            | (((0U == (0x1fU & VL_SHIFTL_III(12,12,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr_4), 6U)))
-                ? 0ULL : ((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT___GEN_9[
+                ? 0ULL : ((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT___GEN_10[
                                           (((IData)(0x1fU) 
                                             + (0xfffU 
                                                & VL_SHIFTL_III(12,12,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr_4), 6U))) 
                                            >> 5U)])) 
                           << ((IData)(0x20U) - (0x1fU 
                                                 & VL_SHIFTL_III(12,12,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr_4), 6U))))) 
-              | ((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT___GEN_9[
+              | ((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT___GEN_10[
                                  (0x7fU & (VL_SHIFTL_III(12,12,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr_4), 6U) 
                                            >> 5U))])) 
                  >> (0x1fU & VL_SHIFTL_III(12,12,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr_4), 6U)))));
     vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT___fusionDecoder_io_out_4_uop_epoch 
-        = (1U & (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT___GEN_10 
+        = (1U & (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT___GEN_11 
                          >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr_4))));
     vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT___fusionDecoder_io_out_3_uop_pc 
-        = (((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT___GEN_3[
+        = (((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT___GEN_4[
                             (((IData)(0x3fU) + (0xfffU 
                                                 & VL_SHIFTL_III(12,12,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr_3), 6U))) 
                              >> 5U)])) << ((0U == (0x1fU 
@@ -9783,34 +11078,34 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                - (0x1fU 
                                                   & VL_SHIFTL_III(12,12,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr_3), 6U))))) 
            | (((0U == (0x1fU & VL_SHIFTL_III(12,12,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr_3), 6U)))
-                ? 0ULL : ((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT___GEN_3[
+                ? 0ULL : ((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT___GEN_4[
                                           (((IData)(0x1fU) 
                                             + (0xfffU 
                                                & VL_SHIFTL_III(12,12,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr_3), 6U))) 
                                            >> 5U)])) 
                           << ((IData)(0x20U) - (0x1fU 
                                                 & VL_SHIFTL_III(12,12,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr_3), 6U))))) 
-              | ((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT___GEN_3[
+              | ((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT___GEN_4[
                                  (0x7fU & (VL_SHIFTL_III(12,12,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr_3), 6U) 
                                            >> 5U))])) 
                  >> (0x1fU & VL_SHIFTL_III(12,12,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr_3), 6U)))));
     vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT___fusionDecoder_io_out_3_uop_inst_raw 
         = (((0U == (0x1fU & VL_SHIFTL_III(11,11,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr_3), 5U)))
-             ? 0U : (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT___GEN_4[
+             ? 0U : (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT___GEN_5[
                      (((IData)(0x1fU) + (0x7ffU & VL_SHIFTL_III(11,11,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr_3), 5U))) 
                       >> 5U)] << ((IData)(0x20U) - 
                                   (0x1fU & VL_SHIFTL_III(11,11,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr_3), 5U))))) 
-           | (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT___GEN_4[
+           | (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT___GEN_5[
               (0x3fU & (VL_SHIFTL_III(11,11,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr_3), 5U) 
                         >> 5U))] >> (0x1fU & VL_SHIFTL_III(11,11,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr_3), 5U))));
     vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT___fusionDecoder_io_out_3_uop_pre_is_rvc 
-        = (1U & (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT___GEN_5 
+        = (1U & (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT___GEN_6 
                          >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr_3))));
     vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT___fusionDecoder_io_out_3_uop_ftqPtr 
         = ((0x17fU >= (0x1ffU & ((IData)(6U) * (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr_3))))
             ? (0x3fU & (((0U == (0x1fU & ((IData)(6U) 
                                           * (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr_3))))
-                          ? 0U : (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT___GEN_7[
+                          ? 0U : (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT___GEN_8[
                                   (((IData)(5U) + (0x1ffU 
                                                    & ((IData)(6U) 
                                                       * (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr_3)))) 
@@ -9818,17 +11113,17 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                - (0x1fU 
                                                   & ((IData)(6U) 
                                                      * (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr_3)))))) 
-                        | (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT___GEN_7[
+                        | (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT___GEN_8[
                            (0xfU & (((IData)(6U) * (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr_3)) 
                                     >> 5U))] >> (0x1fU 
                                                  & ((IData)(6U) 
                                                     * (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr_3))))))
             : 0U);
     vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT___fusionDecoder_io_out_3_uop_is_predicted_taken 
-        = (1U & (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT___GEN_8 
+        = (1U & (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT___GEN_9 
                          >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr_3))));
     vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT___fusionDecoder_io_out_3_uop_predicted_target 
-        = (((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT___GEN_9[
+        = (((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT___GEN_10[
                             (((IData)(0x3fU) + (0xfffU 
                                                 & VL_SHIFTL_III(12,12,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr_3), 6U))) 
                              >> 5U)])) << ((0U == (0x1fU 
@@ -9838,19 +11133,19 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                - (0x1fU 
                                                   & VL_SHIFTL_III(12,12,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr_3), 6U))))) 
            | (((0U == (0x1fU & VL_SHIFTL_III(12,12,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr_3), 6U)))
-                ? 0ULL : ((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT___GEN_9[
+                ? 0ULL : ((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT___GEN_10[
                                           (((IData)(0x1fU) 
                                             + (0xfffU 
                                                & VL_SHIFTL_III(12,12,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr_3), 6U))) 
                                            >> 5U)])) 
                           << ((IData)(0x20U) - (0x1fU 
                                                 & VL_SHIFTL_III(12,12,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr_3), 6U))))) 
-              | ((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT___GEN_9[
+              | ((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT___GEN_10[
                                  (0x7fU & (VL_SHIFTL_III(12,12,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr_3), 6U) 
                                            >> 5U))])) 
                  >> (0x1fU & VL_SHIFTL_III(12,12,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr_3), 6U)))));
     vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT___fusionDecoder_io_out_3_uop_epoch 
-        = (1U & (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT___GEN_10 
+        = (1U & (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT___GEN_11 
                          >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr_3))));
     vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgRegularize_h9d2b670c_0_1291 
         = (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__exe_val_fp_1) 
@@ -9875,7 +11170,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                      ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT___GEN_21) 
                                                       - (IData)(0x100U)))));
     vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT___fusionDecoder_io_out_2_uop_pc 
-        = (((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT___GEN_3[
+        = (((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT___GEN_4[
                             (((IData)(0x3fU) + (0xfffU 
                                                 & VL_SHIFTL_III(12,12,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr_2), 6U))) 
                              >> 5U)])) << ((0U == (0x1fU 
@@ -9885,34 +11180,34 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                - (0x1fU 
                                                   & VL_SHIFTL_III(12,12,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr_2), 6U))))) 
            | (((0U == (0x1fU & VL_SHIFTL_III(12,12,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr_2), 6U)))
-                ? 0ULL : ((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT___GEN_3[
+                ? 0ULL : ((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT___GEN_4[
                                           (((IData)(0x1fU) 
                                             + (0xfffU 
                                                & VL_SHIFTL_III(12,12,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr_2), 6U))) 
                                            >> 5U)])) 
                           << ((IData)(0x20U) - (0x1fU 
                                                 & VL_SHIFTL_III(12,12,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr_2), 6U))))) 
-              | ((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT___GEN_3[
+              | ((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT___GEN_4[
                                  (0x7fU & (VL_SHIFTL_III(12,12,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr_2), 6U) 
                                            >> 5U))])) 
                  >> (0x1fU & VL_SHIFTL_III(12,12,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr_2), 6U)))));
     vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT___fusionDecoder_io_out_2_uop_inst_raw 
         = (((0U == (0x1fU & VL_SHIFTL_III(11,11,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr_2), 5U)))
-             ? 0U : (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT___GEN_4[
+             ? 0U : (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT___GEN_5[
                      (((IData)(0x1fU) + (0x7ffU & VL_SHIFTL_III(11,11,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr_2), 5U))) 
                       >> 5U)] << ((IData)(0x20U) - 
                                   (0x1fU & VL_SHIFTL_III(11,11,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr_2), 5U))))) 
-           | (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT___GEN_4[
+           | (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT___GEN_5[
               (0x3fU & (VL_SHIFTL_III(11,11,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr_2), 5U) 
                         >> 5U))] >> (0x1fU & VL_SHIFTL_III(11,11,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr_2), 5U))));
     vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT___fusionDecoder_io_out_2_uop_pre_is_rvc 
-        = (1U & (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT___GEN_5 
+        = (1U & (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT___GEN_6 
                          >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr_2))));
     vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT___fusionDecoder_io_out_2_uop_ftqPtr 
         = ((0x17fU >= (0x1ffU & ((IData)(6U) * (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr_2))))
             ? (0x3fU & (((0U == (0x1fU & ((IData)(6U) 
                                           * (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr_2))))
-                          ? 0U : (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT___GEN_7[
+                          ? 0U : (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT___GEN_8[
                                   (((IData)(5U) + (0x1ffU 
                                                    & ((IData)(6U) 
                                                       * (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr_2)))) 
@@ -9920,17 +11215,17 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                - (0x1fU 
                                                   & ((IData)(6U) 
                                                      * (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr_2)))))) 
-                        | (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT___GEN_7[
+                        | (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT___GEN_8[
                            (0xfU & (((IData)(6U) * (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr_2)) 
                                     >> 5U))] >> (0x1fU 
                                                  & ((IData)(6U) 
                                                     * (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr_2))))))
             : 0U);
     vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT___fusionDecoder_io_out_2_uop_is_predicted_taken 
-        = (1U & (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT___GEN_8 
+        = (1U & (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT___GEN_9 
                          >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr_2))));
     vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT___fusionDecoder_io_out_2_uop_predicted_target 
-        = (((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT___GEN_9[
+        = (((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT___GEN_10[
                             (((IData)(0x3fU) + (0xfffU 
                                                 & VL_SHIFTL_III(12,12,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr_2), 6U))) 
                              >> 5U)])) << ((0U == (0x1fU 
@@ -9940,22 +11235,22 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                - (0x1fU 
                                                   & VL_SHIFTL_III(12,12,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr_2), 6U))))) 
            | (((0U == (0x1fU & VL_SHIFTL_III(12,12,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr_2), 6U)))
-                ? 0ULL : ((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT___GEN_9[
+                ? 0ULL : ((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT___GEN_10[
                                           (((IData)(0x1fU) 
                                             + (0xfffU 
                                                & VL_SHIFTL_III(12,12,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr_2), 6U))) 
                                            >> 5U)])) 
                           << ((IData)(0x20U) - (0x1fU 
                                                 & VL_SHIFTL_III(12,12,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr_2), 6U))))) 
-              | ((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT___GEN_9[
+              | ((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT___GEN_10[
                                  (0x7fU & (VL_SHIFTL_III(12,12,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr_2), 6U) 
                                            >> 5U))])) 
                  >> (0x1fU & VL_SHIFTL_III(12,12,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr_2), 6U)))));
     vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT___fusionDecoder_io_out_2_uop_epoch 
-        = (1U & (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT___GEN_10 
+        = (1U & (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT___GEN_11 
                          >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr_2))));
     vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT___fusionDecoder_io_out_1_uop_pc 
-        = (((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT___GEN_3[
+        = (((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT___GEN_4[
                             (((IData)(0x3fU) + (0xfffU 
                                                 & VL_SHIFTL_III(12,12,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr_1), 6U))) 
                              >> 5U)])) << ((0U == (0x1fU 
@@ -9965,34 +11260,34 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                - (0x1fU 
                                                   & VL_SHIFTL_III(12,12,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr_1), 6U))))) 
            | (((0U == (0x1fU & VL_SHIFTL_III(12,12,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr_1), 6U)))
-                ? 0ULL : ((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT___GEN_3[
+                ? 0ULL : ((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT___GEN_4[
                                           (((IData)(0x1fU) 
                                             + (0xfffU 
                                                & VL_SHIFTL_III(12,12,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr_1), 6U))) 
                                            >> 5U)])) 
                           << ((IData)(0x20U) - (0x1fU 
                                                 & VL_SHIFTL_III(12,12,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr_1), 6U))))) 
-              | ((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT___GEN_3[
+              | ((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT___GEN_4[
                                  (0x7fU & (VL_SHIFTL_III(12,12,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr_1), 6U) 
                                            >> 5U))])) 
                  >> (0x1fU & VL_SHIFTL_III(12,12,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr_1), 6U)))));
     vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT___fusionDecoder_io_out_1_uop_inst_raw 
         = (((0U == (0x1fU & VL_SHIFTL_III(11,11,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr_1), 5U)))
-             ? 0U : (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT___GEN_4[
+             ? 0U : (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT___GEN_5[
                      (((IData)(0x1fU) + (0x7ffU & VL_SHIFTL_III(11,11,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr_1), 5U))) 
                       >> 5U)] << ((IData)(0x20U) - 
                                   (0x1fU & VL_SHIFTL_III(11,11,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr_1), 5U))))) 
-           | (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT___GEN_4[
+           | (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT___GEN_5[
               (0x3fU & (VL_SHIFTL_III(11,11,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr_1), 5U) 
                         >> 5U))] >> (0x1fU & VL_SHIFTL_III(11,11,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr_1), 5U))));
     vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT___fusionDecoder_io_out_1_uop_pre_is_rvc 
-        = (1U & (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT___GEN_5 
+        = (1U & (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT___GEN_6 
                          >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr_1))));
     vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT___fusionDecoder_io_out_1_uop_ftqPtr 
         = ((0x17fU >= (0x1ffU & ((IData)(6U) * (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr_1))))
             ? (0x3fU & (((0U == (0x1fU & ((IData)(6U) 
                                           * (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr_1))))
-                          ? 0U : (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT___GEN_7[
+                          ? 0U : (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT___GEN_8[
                                   (((IData)(5U) + (0x1ffU 
                                                    & ((IData)(6U) 
                                                       * (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr_1)))) 
@@ -10000,17 +11295,17 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                - (0x1fU 
                                                   & ((IData)(6U) 
                                                      * (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr_1)))))) 
-                        | (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT___GEN_7[
+                        | (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT___GEN_8[
                            (0xfU & (((IData)(6U) * (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr_1)) 
                                     >> 5U))] >> (0x1fU 
                                                  & ((IData)(6U) 
                                                     * (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr_1))))))
             : 0U);
     vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT___fusionDecoder_io_out_1_uop_is_predicted_taken 
-        = (1U & (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT___GEN_8 
+        = (1U & (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT___GEN_9 
                          >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr_1))));
     vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT___fusionDecoder_io_out_1_uop_predicted_target 
-        = (((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT___GEN_9[
+        = (((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT___GEN_10[
                             (((IData)(0x3fU) + (0xfffU 
                                                 & VL_SHIFTL_III(12,12,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr_1), 6U))) 
                              >> 5U)])) << ((0U == (0x1fU 
@@ -10020,22 +11315,22 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                - (0x1fU 
                                                   & VL_SHIFTL_III(12,12,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr_1), 6U))))) 
            | (((0U == (0x1fU & VL_SHIFTL_III(12,12,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr_1), 6U)))
-                ? 0ULL : ((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT___GEN_9[
+                ? 0ULL : ((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT___GEN_10[
                                           (((IData)(0x1fU) 
                                             + (0xfffU 
                                                & VL_SHIFTL_III(12,12,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr_1), 6U))) 
                                            >> 5U)])) 
                           << ((IData)(0x20U) - (0x1fU 
                                                 & VL_SHIFTL_III(12,12,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr_1), 6U))))) 
-              | ((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT___GEN_9[
+              | ((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT___GEN_10[
                                  (0x7fU & (VL_SHIFTL_III(12,12,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr_1), 6U) 
                                            >> 5U))])) 
                  >> (0x1fU & VL_SHIFTL_III(12,12,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr_1), 6U)))));
     vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT___fusionDecoder_io_out_1_uop_epoch 
-        = (1U & (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT___GEN_10 
+        = (1U & (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT___GEN_11 
                          >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr_1))));
     vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT___fusionDecoder_io_out_0_uop_pc 
-        = (((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT___GEN_3[
+        = (((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT___GEN_4[
                             (((IData)(0x3fU) + (0xfffU 
                                                 & VL_SHIFTL_III(12,12,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr), 6U))) 
                              >> 5U)])) << ((0U == (0x1fU 
@@ -10045,34 +11340,34 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                - (0x1fU 
                                                   & VL_SHIFTL_III(12,12,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr), 6U))))) 
            | (((0U == (0x1fU & VL_SHIFTL_III(12,12,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr), 6U)))
-                ? 0ULL : ((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT___GEN_3[
+                ? 0ULL : ((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT___GEN_4[
                                           (((IData)(0x1fU) 
                                             + (0xfffU 
                                                & VL_SHIFTL_III(12,12,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr), 6U))) 
                                            >> 5U)])) 
                           << ((IData)(0x20U) - (0x1fU 
                                                 & VL_SHIFTL_III(12,12,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr), 6U))))) 
-              | ((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT___GEN_3[
+              | ((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT___GEN_4[
                                  (0x7fU & (VL_SHIFTL_III(12,12,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr), 6U) 
                                            >> 5U))])) 
                  >> (0x1fU & VL_SHIFTL_III(12,12,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr), 6U)))));
     vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT___fusionDecoder_io_out_0_uop_inst_raw 
         = (((0U == (0x1fU & VL_SHIFTL_III(11,11,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr), 5U)))
-             ? 0U : (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT___GEN_4[
+             ? 0U : (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT___GEN_5[
                      (((IData)(0x1fU) + (0x7ffU & VL_SHIFTL_III(11,11,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr), 5U))) 
                       >> 5U)] << ((IData)(0x20U) - 
                                   (0x1fU & VL_SHIFTL_III(11,11,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr), 5U))))) 
-           | (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT___GEN_4[
+           | (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT___GEN_5[
               (0x3fU & (VL_SHIFTL_III(11,11,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr), 5U) 
                         >> 5U))] >> (0x1fU & VL_SHIFTL_III(11,11,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr), 5U))));
     vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT___fusionDecoder_io_out_0_uop_pre_is_rvc 
-        = (1U & (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT___GEN_5 
+        = (1U & (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT___GEN_6 
                          >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr))));
     vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT___fusionDecoder_io_out_0_uop_ftqPtr 
         = ((0x17fU >= (0x1ffU & ((IData)(6U) * (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr))))
             ? (0x3fU & (((0U == (0x1fU & ((IData)(6U) 
                                           * (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr))))
-                          ? 0U : (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT___GEN_7[
+                          ? 0U : (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT___GEN_8[
                                   (((IData)(5U) + (0x1ffU 
                                                    & ((IData)(6U) 
                                                       * (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr)))) 
@@ -10080,17 +11375,17 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                - (0x1fU 
                                                   & ((IData)(6U) 
                                                      * (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr)))))) 
-                        | (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT___GEN_7[
+                        | (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT___GEN_8[
                            (0xfU & (((IData)(6U) * (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr)) 
                                     >> 5U))] >> (0x1fU 
                                                  & ((IData)(6U) 
                                                     * (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr))))))
             : 0U);
     vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT___fusionDecoder_io_out_0_uop_is_predicted_taken 
-        = (1U & (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT___GEN_8 
+        = (1U & (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT___GEN_9 
                          >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr))));
     vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT___fusionDecoder_io_out_0_uop_predicted_target 
-        = (((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT___GEN_9[
+        = (((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT___GEN_10[
                             (((IData)(0x3fU) + (0xfffU 
                                                 & VL_SHIFTL_III(12,12,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr), 6U))) 
                              >> 5U)])) << ((0U == (0x1fU 
@@ -10100,19 +11395,19 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                - (0x1fU 
                                                   & VL_SHIFTL_III(12,12,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr), 6U))))) 
            | (((0U == (0x1fU & VL_SHIFTL_III(12,12,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr), 6U)))
-                ? 0ULL : ((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT___GEN_9[
+                ? 0ULL : ((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT___GEN_10[
                                           (((IData)(0x1fU) 
                                             + (0xfffU 
                                                & VL_SHIFTL_III(12,12,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr), 6U))) 
                                            >> 5U)])) 
                           << ((IData)(0x20U) - (0x1fU 
                                                 & VL_SHIFTL_III(12,12,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr), 6U))))) 
-              | ((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT___GEN_9[
+              | ((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT___GEN_10[
                                  (0x7fU & (VL_SHIFTL_III(12,12,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr), 6U) 
                                            >> 5U))])) 
                  >> (0x1fU & VL_SHIFTL_III(12,12,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr), 6U)))));
     vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT___fusionDecoder_io_out_0_uop_epoch 
-        = (1U & (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT___GEN_10 
+        = (1U & (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT___GEN_11 
                          >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr))));
     vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT____VdfgRegularize_ha7c02441_0_20 
         = (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__exe_uop_int_3_decode_is_ecall) 
@@ -10128,69 +11423,69 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                  | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT___ebreak_lane_T))));
     vlSelfRef.ZaqalSoCTop__DOT__core__DOT___frontend_io_dispatch_5_bits_pre_expanded_inst 
         = (((0U == (0x1fU & VL_SHIFTL_III(11,11,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr_5), 5U)))
-             ? 0U : (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT___GEN_6[
+             ? 0U : (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT___GEN_7[
                      (((IData)(0x1fU) + (0x7ffU & VL_SHIFTL_III(11,11,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr_5), 5U))) 
                       >> 5U)] << ((IData)(0x20U) - 
                                   (0x1fU & VL_SHIFTL_III(11,11,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr_5), 5U))))) 
-           | (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT___GEN_6[
+           | (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT___GEN_7[
               (0x3fU & (VL_SHIFTL_III(11,11,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr_5), 5U) 
                         >> 5U))] >> (0x1fU & VL_SHIFTL_III(11,11,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr_5), 5U))));
     vlSelfRef.ZaqalSoCTop__DOT__core__DOT___frontend_io_dispatch_4_bits_pre_expanded_inst 
         = (((0U == (0x1fU & VL_SHIFTL_III(11,11,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr_4), 5U)))
-             ? 0U : (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT___GEN_6[
+             ? 0U : (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT___GEN_7[
                      (((IData)(0x1fU) + (0x7ffU & VL_SHIFTL_III(11,11,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr_4), 5U))) 
                       >> 5U)] << ((IData)(0x20U) - 
                                   (0x1fU & VL_SHIFTL_III(11,11,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr_4), 5U))))) 
-           | (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT___GEN_6[
+           | (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT___GEN_7[
               (0x3fU & (VL_SHIFTL_III(11,11,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr_4), 5U) 
                         >> 5U))] >> (0x1fU & VL_SHIFTL_III(11,11,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr_4), 5U))));
     vlSelfRef.ZaqalSoCTop__DOT__core__DOT___frontend_io_dispatch_3_bits_pre_expanded_inst 
         = (((0U == (0x1fU & VL_SHIFTL_III(11,11,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr_3), 5U)))
-             ? 0U : (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT___GEN_6[
+             ? 0U : (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT___GEN_7[
                      (((IData)(0x1fU) + (0x7ffU & VL_SHIFTL_III(11,11,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr_3), 5U))) 
                       >> 5U)] << ((IData)(0x20U) - 
                                   (0x1fU & VL_SHIFTL_III(11,11,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr_3), 5U))))) 
-           | (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT___GEN_6[
+           | (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT___GEN_7[
               (0x3fU & (VL_SHIFTL_III(11,11,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr_3), 5U) 
                         >> 5U))] >> (0x1fU & VL_SHIFTL_III(11,11,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr_3), 5U))));
     vlSelfRef.ZaqalSoCTop__DOT__core__DOT___frontend_io_dispatch_2_bits_pre_expanded_inst 
         = (((0U == (0x1fU & VL_SHIFTL_III(11,11,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr_2), 5U)))
-             ? 0U : (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT___GEN_6[
+             ? 0U : (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT___GEN_7[
                      (((IData)(0x1fU) + (0x7ffU & VL_SHIFTL_III(11,11,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr_2), 5U))) 
                       >> 5U)] << ((IData)(0x20U) - 
                                   (0x1fU & VL_SHIFTL_III(11,11,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr_2), 5U))))) 
-           | (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT___GEN_6[
+           | (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT___GEN_7[
               (0x3fU & (VL_SHIFTL_III(11,11,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr_2), 5U) 
                         >> 5U))] >> (0x1fU & VL_SHIFTL_III(11,11,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr_2), 5U))));
     vlSelfRef.ZaqalSoCTop__DOT__core__DOT___frontend_io_dispatch_1_bits_pre_expanded_inst 
         = (((0U == (0x1fU & VL_SHIFTL_III(11,11,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr_1), 5U)))
-             ? 0U : (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT___GEN_6[
+             ? 0U : (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT___GEN_7[
                      (((IData)(0x1fU) + (0x7ffU & VL_SHIFTL_III(11,11,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr_1), 5U))) 
                       >> 5U)] << ((IData)(0x20U) - 
                                   (0x1fU & VL_SHIFTL_III(11,11,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr_1), 5U))))) 
-           | (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT___GEN_6[
+           | (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT___GEN_7[
               (0x3fU & (VL_SHIFTL_III(11,11,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr_1), 5U) 
                         >> 5U))] >> (0x1fU & VL_SHIFTL_III(11,11,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr_1), 5U))));
     vlSelfRef.ZaqalSoCTop__DOT__core__DOT___frontend_io_dispatch_0_bits_pre_expanded_inst 
         = (((0U == (0x1fU & VL_SHIFTL_III(11,11,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr), 5U)))
-             ? 0U : (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT___GEN_6[
+             ? 0U : (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT___GEN_7[
                      (((IData)(0x1fU) + (0x7ffU & VL_SHIFTL_III(11,11,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr), 5U))) 
                       >> 5U)] << ((IData)(0x20U) - 
                                   (0x1fU & VL_SHIFTL_III(11,11,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr), 5U))))) 
-           | (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT___GEN_6[
+           | (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT___GEN_7[
               (0x3fU & (VL_SHIFTL_III(11,11,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr), 5U) 
                         >> 5U))] >> (0x1fU & VL_SHIFTL_III(11,11,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr), 5U))));
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT___GEN_1 
-        = (1U & (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT___GEN_0 
+    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT___GEN_2 
+        = (1U & (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT___GEN_1 
                          >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ibuf__DOT__wrapped_ptr))));
     vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT___rat_io_isFull 
         = (1U & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT___GEN_22[
                  ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rat__DOT__intRat__DOT__snapshots__DOT__snptEnqPtr) 
                   >> 5U)] >> (0x1fU & (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rat__DOT__intRat__DOT__snapshots__DOT__snptEnqPtr))));
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT____VdfgRegularize_ha7c02441_0_51 
+    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT____VdfgRegularize_ha7c02441_0_52 
         = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__exe_uop_int_0_decode_is_branch) 
            | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__exe_is_link0));
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT____VdfgRegularize_ha7c02441_0_50 
+    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT____VdfgRegularize_ha7c02441_0_51 
         = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__exe_uop_int_1_decode_is_branch) 
            | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__exe_is_link1));
     vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__mret_lane 
@@ -10213,7 +11508,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
              << 3U) | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT___sret_lane_T_2) 
                        << 2U)) | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT___sret_lane_T_1) 
                                    << 1U) | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT___sret_lane_T)));
-    __Vtemp_599[0U] = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__r_agu_uop_2_decode_is_amoadd)
+    __Vtemp_627[0U] = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__r_agu_uop_2_decode_is_amoadd)
                         ? (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT____Vcellinp__lsu_2__io_src2)
                         : ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__r_agu_uop_2_decode_is_amoswap)
                             ? (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT____Vcellinp__lsu_2__io_src2)
@@ -10244,13 +11539,13 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                   ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__r_agu_uop_2_decode_is_amomaxu)
                                                     ? (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT____Vcellinp__lsu_2__io_src2)
                                                     : 0U)))))))));
-    __Vtemp_599[1U] = 0U;
-    __Vtemp_599[2U] = 0U;
-    __Vtemp_599[3U] = 0U;
-    VL_SHIFTL_WWI(128,128,6, __Vtemp_600, __Vtemp_599, 
+    __Vtemp_627[1U] = 0U;
+    __Vtemp_627[2U] = 0U;
+    __Vtemp_627[3U] = 0U;
+    VL_SHIFTL_WWI(128,128,6, __Vtemp_628, __Vtemp_627, 
                   (0x38U & ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__r_agu_paddr_2) 
                             << 3U)));
-    __Vtemp_602[0U] = (IData)(((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__r_agu_uop_2_decode_is_amoadd)
+    __Vtemp_630[0U] = (IData)(((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__r_agu_uop_2_decode_is_amoadd)
                                 ? vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT____Vcellinp__lsu_2__io_src2
                                 : ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__r_agu_uop_2_decode_is_amoswap)
                                     ? vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT____Vcellinp__lsu_2__io_src2
@@ -10282,7 +11577,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                   ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__r_agu_uop_2_decode_is_amomaxu)
                                                     ? vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT____Vcellinp__lsu_2__io_src2
                                                     : 0ULL))))))))));
-    __Vtemp_602[1U] = (IData)((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__r_agu_uop_2_decode_is_amoadd)
+    __Vtemp_630[1U] = (IData)((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__r_agu_uop_2_decode_is_amoadd)
                                  ? vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT____Vcellinp__lsu_2__io_src2
                                  : ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__r_agu_uop_2_decode_is_amoswap)
                                      ? vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT____Vcellinp__lsu_2__io_src2
@@ -10316,94 +11611,94 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                      ? vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT____Vcellinp__lsu_2__io_src2
                                                      : 0ULL))))))))) 
                                >> 0x20U));
-    __Vtemp_602[2U] = 0U;
-    __Vtemp_602[3U] = 0U;
-    VL_SHIFTL_WWI(128,128,6, __Vtemp_603, __Vtemp_602, 
+    __Vtemp_630[2U] = 0U;
+    __Vtemp_630[3U] = 0U;
+    VL_SHIFTL_WWI(128,128,6, __Vtemp_631, __Vtemp_630, 
                   (0x38U & ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__r_agu_paddr_2) 
                             << 3U)));
-    __Vtemp_605[0U] = (0xffU & (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT____Vcellinp__lsu_2__io_src2));
-    __Vtemp_605[1U] = 0U;
-    __Vtemp_605[2U] = 0U;
-    __Vtemp_605[3U] = 0U;
-    VL_SHIFTL_WWI(128,128,6, __Vtemp_606, __Vtemp_605, 
+    __Vtemp_633[0U] = (0xffU & (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT____Vcellinp__lsu_2__io_src2));
+    __Vtemp_633[1U] = 0U;
+    __Vtemp_633[2U] = 0U;
+    __Vtemp_633[3U] = 0U;
+    VL_SHIFTL_WWI(128,128,6, __Vtemp_634, __Vtemp_633, 
                   (0x38U & ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__r_agu_paddr_2) 
                             << 3U)));
-    __Vtemp_608[0U] = (0xffffU & (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT____Vcellinp__lsu_2__io_src2));
-    __Vtemp_608[1U] = 0U;
-    __Vtemp_608[2U] = 0U;
-    __Vtemp_608[3U] = 0U;
-    VL_SHIFTL_WWI(128,128,6, __Vtemp_609, __Vtemp_608, 
+    __Vtemp_636[0U] = (0xffffU & (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT____Vcellinp__lsu_2__io_src2));
+    __Vtemp_636[1U] = 0U;
+    __Vtemp_636[2U] = 0U;
+    __Vtemp_636[3U] = 0U;
+    VL_SHIFTL_WWI(128,128,6, __Vtemp_637, __Vtemp_636, 
                   (0x38U & ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__r_agu_paddr_2) 
                             << 3U)));
-    __Vtemp_611[0U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT____Vcellinp__lsu_2__io_src2);
-    __Vtemp_611[1U] = 0U;
-    __Vtemp_611[2U] = 0U;
-    __Vtemp_611[3U] = 0U;
-    VL_SHIFTL_WWI(128,128,6, __Vtemp_612, __Vtemp_611, 
+    __Vtemp_639[0U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT____Vcellinp__lsu_2__io_src2);
+    __Vtemp_639[1U] = 0U;
+    __Vtemp_639[2U] = 0U;
+    __Vtemp_639[3U] = 0U;
+    VL_SHIFTL_WWI(128,128,6, __Vtemp_640, __Vtemp_639, 
                   (0x38U & ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__r_agu_paddr_2) 
                             << 3U)));
-    __Vtemp_614[0U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT____Vcellinp__lsu_2__io_src2);
-    __Vtemp_614[1U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT____Vcellinp__lsu_2__io_src2 
+    __Vtemp_642[0U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT____Vcellinp__lsu_2__io_src2);
+    __Vtemp_642[1U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT____Vcellinp__lsu_2__io_src2 
                                >> 0x20U));
-    __Vtemp_614[2U] = 0U;
-    __Vtemp_614[3U] = 0U;
-    VL_SHIFTL_WWI(128,128,6, __Vtemp_615, __Vtemp_614, 
+    __Vtemp_642[2U] = 0U;
+    __Vtemp_642[3U] = 0U;
+    VL_SHIFTL_WWI(128,128,6, __Vtemp_643, __Vtemp_642, 
                   (0x38U & ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__r_agu_paddr_2) 
                             << 3U)));
     if (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__r_agu_uop_2_decode_is_amo_w) {
         vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT___lsu_2_io_mem_wdata[0U] 
-            = __Vtemp_600[0U];
+            = __Vtemp_628[0U];
         vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT___lsu_2_io_mem_wdata[1U] 
-            = __Vtemp_600[1U];
+            = __Vtemp_628[1U];
         vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT___lsu_2_io_mem_wdata[2U] 
-            = __Vtemp_600[2U];
+            = __Vtemp_628[2U];
         vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT___lsu_2_io_mem_wdata[3U] 
-            = __Vtemp_600[3U];
+            = __Vtemp_628[3U];
     } else if (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__r_agu_uop_2_decode_is_amo_d) {
         vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT___lsu_2_io_mem_wdata[0U] 
-            = __Vtemp_603[0U];
+            = __Vtemp_631[0U];
         vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT___lsu_2_io_mem_wdata[1U] 
-            = __Vtemp_603[1U];
+            = __Vtemp_631[1U];
         vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT___lsu_2_io_mem_wdata[2U] 
-            = __Vtemp_603[2U];
+            = __Vtemp_631[2U];
         vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT___lsu_2_io_mem_wdata[3U] 
-            = __Vtemp_603[3U];
+            = __Vtemp_631[3U];
     } else if (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__r_agu_uop_2_decode_is_sb) {
         vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT___lsu_2_io_mem_wdata[0U] 
-            = __Vtemp_606[0U];
+            = __Vtemp_634[0U];
         vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT___lsu_2_io_mem_wdata[1U] 
-            = __Vtemp_606[1U];
+            = __Vtemp_634[1U];
         vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT___lsu_2_io_mem_wdata[2U] 
-            = __Vtemp_606[2U];
+            = __Vtemp_634[2U];
         vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT___lsu_2_io_mem_wdata[3U] 
-            = __Vtemp_606[3U];
+            = __Vtemp_634[3U];
     } else if (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__r_agu_uop_2_decode_is_sh) {
         vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT___lsu_2_io_mem_wdata[0U] 
-            = __Vtemp_609[0U];
+            = __Vtemp_637[0U];
         vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT___lsu_2_io_mem_wdata[1U] 
-            = __Vtemp_609[1U];
+            = __Vtemp_637[1U];
         vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT___lsu_2_io_mem_wdata[2U] 
-            = __Vtemp_609[2U];
+            = __Vtemp_637[2U];
         vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT___lsu_2_io_mem_wdata[3U] 
-            = __Vtemp_609[3U];
+            = __Vtemp_637[3U];
     } else if (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__lsu_2__DOT___GEN_2) {
         vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT___lsu_2_io_mem_wdata[0U] 
-            = __Vtemp_612[0U];
+            = __Vtemp_640[0U];
         vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT___lsu_2_io_mem_wdata[1U] 
-            = __Vtemp_612[1U];
+            = __Vtemp_640[1U];
         vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT___lsu_2_io_mem_wdata[2U] 
-            = __Vtemp_612[2U];
+            = __Vtemp_640[2U];
         vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT___lsu_2_io_mem_wdata[3U] 
-            = __Vtemp_612[3U];
+            = __Vtemp_640[3U];
     } else if (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__lsu_2__DOT___GEN_3) {
         vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT___lsu_2_io_mem_wdata[0U] 
-            = __Vtemp_615[0U];
+            = __Vtemp_643[0U];
         vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT___lsu_2_io_mem_wdata[1U] 
-            = __Vtemp_615[1U];
+            = __Vtemp_643[1U];
         vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT___lsu_2_io_mem_wdata[2U] 
-            = __Vtemp_615[2U];
+            = __Vtemp_643[2U];
         vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT___lsu_2_io_mem_wdata[3U] 
-            = __Vtemp_615[3U];
+            = __Vtemp_643[3U];
     } else {
         vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT___lsu_2_io_mem_wdata[0U] = 0U;
         vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT___lsu_2_io_mem_wdata[1U] = 0U;
@@ -10951,6 +12246,54 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
               | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__exe_uop_int_1_decode_is_rem) 
                  | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__exe_uop_int_1_decode_is_remu) 
                     | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__div_1__DOT__is_w)))));
+    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT____VdfgRegularize_heae28a10_0_400 
+        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT__entries_0_valid) 
+           & (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT___store_mask_T));
+    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT____VdfgRegularize_heae28a10_0_401 
+        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT__entries_1_valid) 
+           & (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT___store_mask_T_1));
+    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT____VdfgRegularize_heae28a10_0_402 
+        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT__entries_2_valid) 
+           & (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT___store_mask_T_2));
+    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT____VdfgRegularize_heae28a10_0_403 
+        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT__entries_3_valid) 
+           & (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT___store_mask_T_3));
+    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT____VdfgRegularize_heae28a10_0_404 
+        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT__entries_4_valid) 
+           & (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT___store_mask_T_4));
+    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT____VdfgRegularize_heae28a10_0_405 
+        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT__entries_5_valid) 
+           & (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT___store_mask_T_5));
+    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT____VdfgRegularize_heae28a10_0_406 
+        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT__entries_6_valid) 
+           & (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT___store_mask_T_6));
+    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT____VdfgRegularize_heae28a10_0_407 
+        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT__entries_7_valid) 
+           & (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT___store_mask_T_7));
+    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT____VdfgRegularize_heae28a10_0_408 
+        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT__entries_8_valid) 
+           & (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT___store_mask_T_8));
+    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT____VdfgRegularize_heae28a10_0_409 
+        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT__entries_9_valid) 
+           & (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT___store_mask_T_9));
+    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT____VdfgRegularize_heae28a10_0_410 
+        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT__entries_10_valid) 
+           & (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT___store_mask_T_10));
+    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT____VdfgRegularize_heae28a10_0_411 
+        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT__entries_11_valid) 
+           & (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT___store_mask_T_11));
+    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT____VdfgRegularize_heae28a10_0_412 
+        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT__entries_12_valid) 
+           & (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT___store_mask_T_12));
+    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT____VdfgRegularize_heae28a10_0_413 
+        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT__entries_13_valid) 
+           & (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT___store_mask_T_13));
+    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT____VdfgRegularize_heae28a10_0_414 
+        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT__entries_14_valid) 
+           & (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT___store_mask_T_14));
+    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT____VdfgRegularize_heae28a10_0_415 
+        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT__entries_15_valid) 
+           & (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT___store_mask_T_15));
     vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT____VdfgRegularize_heae28a10_0_398 
         = (0xffU & ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT___entry_is_younger_T_16)
                      ? (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT___GEN_737)
@@ -11481,289 +12824,289 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
         = (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__r_wu_val) 
             & (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__r_wu_pdest) 
                 == (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT__entries_0_uop_psrs1)) 
-               & (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT____VdfgRegularize_heae28a10_0_724))) 
+               & (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT____VdfgRegularize_heae28a10_0_741))) 
            | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT__entries_0_rs1_ready));
     vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT____VdfgRegularize_heae28a10_0_4 
         = (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__r_wu_val) 
             & (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__r_wu_pdest) 
                 == (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT__entries_0_uop_psrs2)) 
-               & (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT____VdfgRegularize_heae28a10_0_723))) 
+               & (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT____VdfgRegularize_heae28a10_0_740))) 
            | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT__entries_0_rs2_ready));
     vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT____VdfgRegularize_heae28a10_0_5 
         = (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__r_wu_val) 
             & (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__r_wu_pdest) 
                 == (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT__entries_0_uop_psrs3)) 
-               & (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT____VdfgRegularize_heae28a10_0_722))) 
+               & (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT____VdfgRegularize_heae28a10_0_739))) 
            | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT__entries_0_rs3_ready));
     vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT____VdfgRegularize_heae28a10_0_24 
         = (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__r_wu_val) 
             & (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__r_wu_pdest) 
                 == (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT__entries_1_uop_psrs1)) 
-               & (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT____VdfgRegularize_heae28a10_0_718))) 
+               & (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT____VdfgRegularize_heae28a10_0_735))) 
            | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT__entries_1_rs1_ready));
     vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT____VdfgRegularize_heae28a10_0_25 
         = (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__r_wu_val) 
             & (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__r_wu_pdest) 
                 == (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT__entries_1_uop_psrs2)) 
-               & (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT____VdfgRegularize_heae28a10_0_717))) 
+               & (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT____VdfgRegularize_heae28a10_0_734))) 
            | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT__entries_1_rs2_ready));
     vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT____VdfgRegularize_heae28a10_0_26 
         = (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__r_wu_val) 
             & (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__r_wu_pdest) 
                 == (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT__entries_1_uop_psrs3)) 
-               & (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT____VdfgRegularize_heae28a10_0_716))) 
+               & (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT____VdfgRegularize_heae28a10_0_733))) 
            | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT__entries_1_rs3_ready));
     vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT____VdfgRegularize_heae28a10_0_45 
         = (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__r_wu_val) 
             & (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__r_wu_pdest) 
                 == (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT__entries_2_uop_psrs1)) 
-               & (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT____VdfgRegularize_heae28a10_0_712))) 
+               & (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT____VdfgRegularize_heae28a10_0_729))) 
            | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT__entries_2_rs1_ready));
     vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT____VdfgRegularize_heae28a10_0_46 
         = (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__r_wu_val) 
             & (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__r_wu_pdest) 
                 == (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT__entries_2_uop_psrs2)) 
-               & (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT____VdfgRegularize_heae28a10_0_711))) 
+               & (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT____VdfgRegularize_heae28a10_0_728))) 
            | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT__entries_2_rs2_ready));
     vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT____VdfgRegularize_heae28a10_0_47 
         = (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__r_wu_val) 
             & (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__r_wu_pdest) 
                 == (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT__entries_2_uop_psrs3)) 
-               & (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT____VdfgRegularize_heae28a10_0_710))) 
+               & (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT____VdfgRegularize_heae28a10_0_727))) 
            | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT__entries_2_rs3_ready));
     vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT____VdfgRegularize_heae28a10_0_66 
         = (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__r_wu_val) 
             & (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__r_wu_pdest) 
                 == (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT__entries_3_uop_psrs1)) 
-               & (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT____VdfgRegularize_heae28a10_0_706))) 
+               & (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT____VdfgRegularize_heae28a10_0_723))) 
            | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT__entries_3_rs1_ready));
     vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT____VdfgRegularize_heae28a10_0_67 
         = (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__r_wu_val) 
             & (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__r_wu_pdest) 
                 == (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT__entries_3_uop_psrs2)) 
-               & (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT____VdfgRegularize_heae28a10_0_705))) 
+               & (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT____VdfgRegularize_heae28a10_0_722))) 
            | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT__entries_3_rs2_ready));
     vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT____VdfgRegularize_heae28a10_0_68 
         = (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__r_wu_val) 
             & (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__r_wu_pdest) 
                 == (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT__entries_3_uop_psrs3)) 
-               & (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT____VdfgRegularize_heae28a10_0_704))) 
+               & (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT____VdfgRegularize_heae28a10_0_721))) 
            | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT__entries_3_rs3_ready));
     vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT____VdfgRegularize_heae28a10_0_87 
         = (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__r_wu_val) 
             & (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__r_wu_pdest) 
                 == (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT__entries_4_uop_psrs1)) 
-               & (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT____VdfgRegularize_heae28a10_0_700))) 
+               & (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT____VdfgRegularize_heae28a10_0_717))) 
            | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT__entries_4_rs1_ready));
     vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT____VdfgRegularize_heae28a10_0_88 
         = (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__r_wu_val) 
             & (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__r_wu_pdest) 
                 == (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT__entries_4_uop_psrs2)) 
-               & (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT____VdfgRegularize_heae28a10_0_699))) 
+               & (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT____VdfgRegularize_heae28a10_0_716))) 
            | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT__entries_4_rs2_ready));
     vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT____VdfgRegularize_heae28a10_0_89 
         = (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__r_wu_val) 
             & (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__r_wu_pdest) 
                 == (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT__entries_4_uop_psrs3)) 
-               & (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT____VdfgRegularize_heae28a10_0_698))) 
+               & (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT____VdfgRegularize_heae28a10_0_715))) 
            | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT__entries_4_rs3_ready));
     vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT____VdfgRegularize_heae28a10_0_108 
         = (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__r_wu_val) 
             & (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__r_wu_pdest) 
                 == (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT__entries_5_uop_psrs1)) 
-               & (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT____VdfgRegularize_heae28a10_0_694))) 
+               & (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT____VdfgRegularize_heae28a10_0_711))) 
            | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT__entries_5_rs1_ready));
     vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT____VdfgRegularize_heae28a10_0_109 
         = (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__r_wu_val) 
             & (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__r_wu_pdest) 
                 == (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT__entries_5_uop_psrs2)) 
-               & (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT____VdfgRegularize_heae28a10_0_693))) 
+               & (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT____VdfgRegularize_heae28a10_0_710))) 
            | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT__entries_5_rs2_ready));
     vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT____VdfgRegularize_heae28a10_0_110 
         = (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__r_wu_val) 
             & (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__r_wu_pdest) 
                 == (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT__entries_5_uop_psrs3)) 
-               & (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT____VdfgRegularize_heae28a10_0_692))) 
+               & (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT____VdfgRegularize_heae28a10_0_709))) 
            | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT__entries_5_rs3_ready));
     vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT____VdfgRegularize_heae28a10_0_129 
         = (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__r_wu_val) 
             & (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__r_wu_pdest) 
                 == (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT__entries_6_uop_psrs1)) 
-               & (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT____VdfgRegularize_heae28a10_0_688))) 
+               & (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT____VdfgRegularize_heae28a10_0_705))) 
            | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT__entries_6_rs1_ready));
     vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT____VdfgRegularize_heae28a10_0_130 
         = (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__r_wu_val) 
             & (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__r_wu_pdest) 
                 == (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT__entries_6_uop_psrs2)) 
-               & (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT____VdfgRegularize_heae28a10_0_687))) 
+               & (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT____VdfgRegularize_heae28a10_0_704))) 
            | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT__entries_6_rs2_ready));
     vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT____VdfgRegularize_heae28a10_0_131 
         = (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__r_wu_val) 
             & (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__r_wu_pdest) 
                 == (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT__entries_6_uop_psrs3)) 
-               & (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT____VdfgRegularize_heae28a10_0_686))) 
+               & (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT____VdfgRegularize_heae28a10_0_703))) 
            | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT__entries_6_rs3_ready));
     vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT____VdfgRegularize_heae28a10_0_150 
         = (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__r_wu_val) 
             & (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__r_wu_pdest) 
                 == (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT__entries_7_uop_psrs1)) 
-               & (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT____VdfgRegularize_heae28a10_0_682))) 
+               & (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT____VdfgRegularize_heae28a10_0_699))) 
            | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT__entries_7_rs1_ready));
     vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT____VdfgRegularize_heae28a10_0_151 
         = (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__r_wu_val) 
             & (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__r_wu_pdest) 
                 == (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT__entries_7_uop_psrs2)) 
-               & (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT____VdfgRegularize_heae28a10_0_681))) 
+               & (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT____VdfgRegularize_heae28a10_0_698))) 
            | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT__entries_7_rs2_ready));
     vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT____VdfgRegularize_heae28a10_0_152 
         = (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__r_wu_val) 
             & (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__r_wu_pdest) 
                 == (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT__entries_7_uop_psrs3)) 
-               & (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT____VdfgRegularize_heae28a10_0_680))) 
+               & (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT____VdfgRegularize_heae28a10_0_697))) 
            | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT__entries_7_rs3_ready));
     vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT____VdfgRegularize_heae28a10_0_171 
         = (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__r_wu_val) 
             & (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__r_wu_pdest) 
                 == (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT__entries_8_uop_psrs1)) 
-               & (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT____VdfgRegularize_heae28a10_0_676))) 
+               & (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT____VdfgRegularize_heae28a10_0_693))) 
            | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT__entries_8_rs1_ready));
     vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT____VdfgRegularize_heae28a10_0_172 
         = (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__r_wu_val) 
             & (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__r_wu_pdest) 
                 == (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT__entries_8_uop_psrs2)) 
-               & (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT____VdfgRegularize_heae28a10_0_675))) 
+               & (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT____VdfgRegularize_heae28a10_0_692))) 
            | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT__entries_8_rs2_ready));
     vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT____VdfgRegularize_heae28a10_0_173 
         = (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__r_wu_val) 
             & (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__r_wu_pdest) 
                 == (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT__entries_8_uop_psrs3)) 
-               & (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT____VdfgRegularize_heae28a10_0_674))) 
+               & (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT____VdfgRegularize_heae28a10_0_691))) 
            | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT__entries_8_rs3_ready));
     vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT____VdfgRegularize_heae28a10_0_192 
         = (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__r_wu_val) 
             & (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__r_wu_pdest) 
                 == (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT__entries_9_uop_psrs1)) 
-               & (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT____VdfgRegularize_heae28a10_0_670))) 
+               & (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT____VdfgRegularize_heae28a10_0_687))) 
            | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT__entries_9_rs1_ready));
     vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT____VdfgRegularize_heae28a10_0_193 
         = (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__r_wu_val) 
             & (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__r_wu_pdest) 
                 == (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT__entries_9_uop_psrs2)) 
-               & (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT____VdfgRegularize_heae28a10_0_669))) 
+               & (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT____VdfgRegularize_heae28a10_0_686))) 
            | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT__entries_9_rs2_ready));
     vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT____VdfgRegularize_heae28a10_0_194 
         = (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__r_wu_val) 
             & (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__r_wu_pdest) 
                 == (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT__entries_9_uop_psrs3)) 
-               & (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT____VdfgRegularize_heae28a10_0_668))) 
+               & (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT____VdfgRegularize_heae28a10_0_685))) 
            | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT__entries_9_rs3_ready));
     vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT____VdfgRegularize_heae28a10_0_213 
         = (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__r_wu_val) 
             & (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__r_wu_pdest) 
                 == (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT__entries_10_uop_psrs1)) 
-               & (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT____VdfgRegularize_heae28a10_0_664))) 
+               & (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT____VdfgRegularize_heae28a10_0_681))) 
            | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT__entries_10_rs1_ready));
     vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT____VdfgRegularize_heae28a10_0_214 
         = (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__r_wu_val) 
             & (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__r_wu_pdest) 
                 == (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT__entries_10_uop_psrs2)) 
-               & (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT____VdfgRegularize_heae28a10_0_663))) 
+               & (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT____VdfgRegularize_heae28a10_0_680))) 
            | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT__entries_10_rs2_ready));
     vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT____VdfgRegularize_heae28a10_0_215 
         = (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__r_wu_val) 
             & (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__r_wu_pdest) 
                 == (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT__entries_10_uop_psrs3)) 
-               & (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT____VdfgRegularize_heae28a10_0_662))) 
+               & (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT____VdfgRegularize_heae28a10_0_679))) 
            | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT__entries_10_rs3_ready));
     vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT____VdfgRegularize_heae28a10_0_234 
         = (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__r_wu_val) 
             & (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__r_wu_pdest) 
                 == (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT__entries_11_uop_psrs1)) 
-               & (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT____VdfgRegularize_heae28a10_0_658))) 
+               & (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT____VdfgRegularize_heae28a10_0_675))) 
            | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT__entries_11_rs1_ready));
     vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT____VdfgRegularize_heae28a10_0_235 
         = (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__r_wu_val) 
             & (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__r_wu_pdest) 
                 == (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT__entries_11_uop_psrs2)) 
-               & (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT____VdfgRegularize_heae28a10_0_657))) 
+               & (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT____VdfgRegularize_heae28a10_0_674))) 
            | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT__entries_11_rs2_ready));
     vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT____VdfgRegularize_heae28a10_0_236 
         = (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__r_wu_val) 
             & (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__r_wu_pdest) 
                 == (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT__entries_11_uop_psrs3)) 
-               & (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT____VdfgRegularize_heae28a10_0_656))) 
+               & (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT____VdfgRegularize_heae28a10_0_673))) 
            | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT__entries_11_rs3_ready));
     vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT____VdfgRegularize_heae28a10_0_255 
         = (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__r_wu_val) 
             & (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__r_wu_pdest) 
                 == (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT__entries_12_uop_psrs1)) 
-               & (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT____VdfgRegularize_heae28a10_0_652))) 
+               & (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT____VdfgRegularize_heae28a10_0_669))) 
            | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT__entries_12_rs1_ready));
     vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT____VdfgRegularize_heae28a10_0_256 
         = (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__r_wu_val) 
             & (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__r_wu_pdest) 
                 == (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT__entries_12_uop_psrs2)) 
-               & (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT____VdfgRegularize_heae28a10_0_651))) 
+               & (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT____VdfgRegularize_heae28a10_0_668))) 
            | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT__entries_12_rs2_ready));
     vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT____VdfgRegularize_heae28a10_0_257 
         = (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__r_wu_val) 
             & (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__r_wu_pdest) 
                 == (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT__entries_12_uop_psrs3)) 
-               & (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT____VdfgRegularize_heae28a10_0_650))) 
+               & (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT____VdfgRegularize_heae28a10_0_667))) 
            | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT__entries_12_rs3_ready));
     vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT____VdfgRegularize_heae28a10_0_276 
         = (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__r_wu_val) 
             & (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__r_wu_pdest) 
                 == (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT__entries_13_uop_psrs1)) 
-               & (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT____VdfgRegularize_heae28a10_0_646))) 
+               & (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT____VdfgRegularize_heae28a10_0_663))) 
            | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT__entries_13_rs1_ready));
     vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT____VdfgRegularize_heae28a10_0_277 
         = (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__r_wu_val) 
             & (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__r_wu_pdest) 
                 == (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT__entries_13_uop_psrs2)) 
-               & (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT____VdfgRegularize_heae28a10_0_645))) 
+               & (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT____VdfgRegularize_heae28a10_0_662))) 
            | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT__entries_13_rs2_ready));
     vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT____VdfgRegularize_heae28a10_0_278 
         = (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__r_wu_val) 
             & (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__r_wu_pdest) 
                 == (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT__entries_13_uop_psrs3)) 
-               & (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT____VdfgRegularize_heae28a10_0_644))) 
+               & (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT____VdfgRegularize_heae28a10_0_661))) 
            | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT__entries_13_rs3_ready));
     vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT____VdfgRegularize_heae28a10_0_297 
         = (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__r_wu_val) 
             & (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__r_wu_pdest) 
                 == (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT__entries_14_uop_psrs1)) 
-               & (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT____VdfgRegularize_heae28a10_0_640))) 
+               & (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT____VdfgRegularize_heae28a10_0_657))) 
            | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT__entries_14_rs1_ready));
     vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT____VdfgRegularize_heae28a10_0_298 
         = (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__r_wu_val) 
             & (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__r_wu_pdest) 
                 == (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT__entries_14_uop_psrs2)) 
-               & (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT____VdfgRegularize_heae28a10_0_639))) 
+               & (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT____VdfgRegularize_heae28a10_0_656))) 
            | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT__entries_14_rs2_ready));
     vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT____VdfgRegularize_heae28a10_0_299 
         = (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__r_wu_val) 
             & (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__r_wu_pdest) 
                 == (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT__entries_14_uop_psrs3)) 
-               & (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT____VdfgRegularize_heae28a10_0_638))) 
+               & (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT____VdfgRegularize_heae28a10_0_655))) 
            | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT__entries_14_rs3_ready));
     vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT____VdfgRegularize_heae28a10_0_318 
         = (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__r_wu_val) 
             & (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__r_wu_pdest) 
                 == (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT__entries_15_uop_psrs1)) 
-               & (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT____VdfgRegularize_heae28a10_0_634))) 
+               & (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT____VdfgRegularize_heae28a10_0_651))) 
            | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT__entries_15_rs1_ready));
     vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT____VdfgRegularize_heae28a10_0_319 
         = (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__r_wu_val) 
             & (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__r_wu_pdest) 
                 == (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT__entries_15_uop_psrs2)) 
-               & (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT____VdfgRegularize_heae28a10_0_633))) 
+               & (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT____VdfgRegularize_heae28a10_0_650))) 
            | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT__entries_15_rs2_ready));
     vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT____VdfgRegularize_heae28a10_0_320 
         = (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__r_wu_val) 
             & (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__r_wu_pdest) 
                 == (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT__entries_15_uop_psrs3)) 
-               & (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT____VdfgRegularize_heae28a10_0_632))) 
+               & (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT____VdfgRegularize_heae28a10_0_649))) 
            | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__memIq__DOT__entries_15_rs3_ready));
     vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT____Vcellinp__lq__io_exec_update_1_valid 
         = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__r_agu_val_1) 
@@ -13086,7 +14429,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
     vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__amx__DOT___GEN_14 
         = (1U & ((~ (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__amx__DOT___mma_io_write_en)) 
                  | (2U == (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__amx__DOT__state))));
-    __Vtemp_623[1U] = (IData)((((QData)((IData)((((
+    __Vtemp_651[1U] = (IData)((((QData)((IData)((((
                                                    (VL_LTS_III(32, 0x7fU, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__amx__DOT__mma__DOT___GEN_37)
                                                      ? 0x7fU
                                                      : 
@@ -13158,7 +14501,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                                      : 
                                                                     (0xffU 
                                                                      & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__amx__DOT__mma__DOT___GEN_23)))))))));
-    __Vtemp_623[2U] = (IData)(((((QData)((IData)(((
+    __Vtemp_651[2U] = (IData)(((((QData)((IData)(((
                                                    ((VL_LTS_III(32, 0x7fU, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__amx__DOT__mma__DOT___GEN_37)
                                                       ? 0x7fU
                                                       : 
@@ -13231,7 +14574,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                                      (0xffU 
                                                                       & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__amx__DOT__mma__DOT___GEN_23)))))))) 
                                >> 0x20U));
-    __Vtemp_625[1U] = (IData)((((QData)((IData)((((
+    __Vtemp_653[1U] = (IData)((((QData)((IData)((((
                                                    (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__amx__DOT__mma__DOT___GEN_53 
                                                     >> 0x10U) 
                                                    + 
@@ -13281,7 +14624,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                                                 != 
                                                                                 (0x17fffU 
                                                                                 & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__amx__DOT__mma__DOT___GEN_47))))))))))));
-    __Vtemp_625[2U] = (IData)(((((QData)((IData)(((
+    __Vtemp_653[2U] = (IData)(((((QData)((IData)(((
                                                    ((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__amx__DOT__mma__DOT___GEN_53 
                                                      >> 0x10U) 
                                                     + 
@@ -13333,7 +14676,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                                                 & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__amx__DOT__mma__DOT___GEN_47))))))))))) 
                                >> 0x20U));
     if ((0U == (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__amx__DOT__mma__DOT__r_prec))) {
-        __Vtemp_632[0U] = ((((VL_LTS_III(32, 0x7fU, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__amx__DOT__mma__DOT___GEN_13)
+        __Vtemp_660[0U] = ((((VL_LTS_III(32, 0x7fU, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__amx__DOT__mma__DOT___GEN_13)
                                ? 0x7fU : (VL_GTS_III(32, 0xffffff80U, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__amx__DOT__mma__DOT___GEN_13)
                                            ? 0x80U : 
                                           (0xffU & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__amx__DOT__mma__DOT___GEN_13))) 
@@ -13354,7 +14697,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                          (VL_GTS_III(32, 0xffffff80U, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__amx__DOT__mma__DOT___GEN_7)
                                            ? 0x80U : 
                                           (0xffU & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__amx__DOT__mma__DOT___GEN_7)))));
-        __Vtemp_632[1U] = ((((VL_LTS_III(32, 0x7fU, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__amx__DOT__mma__DOT___GEN_21)
+        __Vtemp_660[1U] = ((((VL_LTS_III(32, 0x7fU, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__amx__DOT__mma__DOT___GEN_21)
                                ? 0x7fU : (VL_GTS_III(32, 0xffffff80U, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__amx__DOT__mma__DOT___GEN_21)
                                            ? 0x80U : 
                                           (0xffU & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__amx__DOT__mma__DOT___GEN_21))) 
@@ -13376,7 +14719,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                            ? 0x80U : 
                                           (0xffU & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__amx__DOT__mma__DOT___GEN_15)))));
     } else if ((1U == (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__amx__DOT__mma__DOT__r_prec))) {
-        __Vtemp_632[0U] = ((((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__amx__DOT__mma__DOT___GEN_41 
+        __Vtemp_660[0U] = ((((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__amx__DOT__mma__DOT___GEN_41 
                               >> 0x10U) + (1U & ((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__amx__DOT__mma__DOT___GEN_41 
                                                   >> 0xfU) 
                                                  & (IData)(
@@ -13395,7 +14738,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                               != 
                                                               (0x17fffU 
                                                                & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__amx__DOT__mma__DOT___GEN_39))))))));
-        __Vtemp_632[1U] = ((((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__amx__DOT__mma__DOT___GEN_45 
+        __Vtemp_660[1U] = ((((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__amx__DOT__mma__DOT___GEN_45 
                               >> 0x10U) + (1U & ((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__amx__DOT__mma__DOT___GEN_45 
                                                   >> 0xfU) 
                                                  & (IData)(
@@ -13415,8 +14758,8 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                               (0x17fffU 
                                                                & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__amx__DOT__mma__DOT___GEN_43))))))));
     } else {
-        __Vtemp_632[0U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__amx__DOT__mma__DOT___GEN_39;
-        __Vtemp_632[1U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__amx__DOT__mma__DOT___GEN_41;
+        __Vtemp_660[0U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__amx__DOT__mma__DOT___GEN_39;
+        __Vtemp_660[1U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__amx__DOT__mma__DOT___GEN_41;
     }
     if (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__amx__DOT__mma__DOT___GEN_5) {
         vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__amx__DOT___mma_io_write_row = 0U;
@@ -13428,19 +14771,19 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
         vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__amx__DOT___mma_io_write_row 
             = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__amx__DOT__mma__DOT__r_wb_row;
         vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__amx__DOT___mma_io_write_data[0U] 
-            = __Vtemp_632[0U];
+            = __Vtemp_660[0U];
         vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__amx__DOT___mma_io_write_data[1U] 
-            = __Vtemp_632[1U];
+            = __Vtemp_660[1U];
         if ((0U == (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__amx__DOT__mma__DOT__r_prec))) {
             vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__amx__DOT___mma_io_write_data[2U] 
-                = __Vtemp_623[1U];
+                = __Vtemp_651[1U];
             vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__amx__DOT___mma_io_write_data[3U] 
-                = __Vtemp_623[2U];
+                = __Vtemp_651[2U];
         } else if ((1U == (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__amx__DOT__mma__DOT__r_prec))) {
             vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__amx__DOT___mma_io_write_data[2U] 
-                = __Vtemp_625[1U];
+                = __Vtemp_653[1U];
             vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__amx__DOT___mma_io_write_data[3U] 
-                = __Vtemp_625[2U];
+                = __Vtemp_653[2U];
         } else {
             vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__amx__DOT___mma_io_write_data[2U] 
                 = (IData)((((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__amx__DOT__mma__DOT___GEN_45)) 
@@ -13923,7 +15266,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                               << 2U)) | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__uart__DOT__r_state) 
                                           << 1U) | (IData)(vlSelfRef.ZaqalSoCTop__DOT__bootrom__DOT__r_state))) 
                  >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__xbar__DOT__r_arbiter__DOT__io_chosen_choice)));
-    __Vtemp_633[0U] = (IData)((QData)((IData)(((0U 
+    __Vtemp_661[0U] = (IData)((QData)((IData)(((0U 
                                                 == 
                                                 (0x1fU 
                                                  & (IData)(vlSelfRef.ZaqalSoCTop__DOT__spi__DOT__r_addr)))
@@ -13972,7 +15315,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                         & (IData)(vlSelfRef.ZaqalSoCTop__DOT__spi__DOT__r_addr)))
                                                        ? (IData)(vlSelfRef.ZaqalSoCTop__DOT__spi__DOT__r_spidiv)
                                                        : 0U))))))));
-    __Vtemp_633[1U] = (IData)(((QData)((IData)(((0U 
+    __Vtemp_661[1U] = (IData)(((QData)((IData)(((0U 
                                                  == 
                                                  (0x1fU 
                                                   & (IData)(vlSelfRef.ZaqalSoCTop__DOT__spi__DOT__r_addr)))
@@ -14022,7 +15365,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                      ? (IData)(vlSelfRef.ZaqalSoCTop__DOT__spi__DOT__r_spidiv)
                                                      : 0U))))))) 
                                >> 0x20U));
-    __Vtemp_635[0U] = (IData)((((QData)((IData)(VZaqalSoCTop__ConstPool__CONST_h16e80455_0[
+    __Vtemp_663[0U] = (IData)((((QData)((IData)(VZaqalSoCTop__ConstPool__CONST_h16e80455_0[
                                                 (((IData)(0x3fU) 
                                                   + 
                                                   (0x7ffffU 
@@ -14084,7 +15427,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                                 & (IData)(
                                                                           (vlSelfRef.ZaqalSoCTop__DOT__bootrom__DOT__r_addr 
                                                                            >> 3U))), 6U))))));
-    __Vtemp_635[1U] = (IData)(((((QData)((IData)(VZaqalSoCTop__ConstPool__CONST_h16e80455_0[
+    __Vtemp_663[1U] = (IData)(((((QData)((IData)(VZaqalSoCTop__ConstPool__CONST_h16e80455_0[
                                                  (((IData)(0x3fU) 
                                                    + 
                                                    (0x7ffffU 
@@ -14148,30 +15491,30 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                                            (vlSelfRef.ZaqalSoCTop__DOT__bootrom__DOT__r_addr 
                                                                             >> 3U))), 6U))))) 
                                >> 0x20U));
-    __Vtemp_635[2U] = (IData)(((((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__uart__DOT____VdfgRegularize_hd783d967_0_2[1U])) 
+    __Vtemp_663[2U] = (IData)(((((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__uart__DOT____VdfgRegularize_hd783d967_0_2[1U])) 
                                  << 0x20U) | (QData)((IData)(
                                                              vlSelfRef.ZaqalSoCTop__DOT__uart__DOT____VdfgRegularize_hd783d967_0_2[0U]))) 
                                << (0x38U & ((IData)(vlSelfRef.ZaqalSoCTop__DOT__uart__DOT__r_addr) 
                                             << 3U))));
-    __Vtemp_635[3U] = (IData)((((((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__uart__DOT____VdfgRegularize_hd783d967_0_2[1U])) 
+    __Vtemp_663[3U] = (IData)((((((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__uart__DOT____VdfgRegularize_hd783d967_0_2[1U])) 
                                   << 0x20U) | (QData)((IData)(
                                                               vlSelfRef.ZaqalSoCTop__DOT__uart__DOT____VdfgRegularize_hd783d967_0_2[0U]))) 
                                 << (0x38U & ((IData)(vlSelfRef.ZaqalSoCTop__DOT__uart__DOT__r_addr) 
                                              << 3U))) 
                                >> 0x20U));
-    __Vtemp_635[4U] = __Vtemp_633[0U];
-    __Vtemp_635[5U] = __Vtemp_633[1U];
-    __Vtemp_635[6U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__dram__DOT__mem_ext__DOT__Memory
+    __Vtemp_663[4U] = __Vtemp_661[0U];
+    __Vtemp_663[5U] = __Vtemp_661[1U];
+    __Vtemp_663[6U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__dram__DOT__mem_ext__DOT__Memory
                               [(0x1fffffU & (IData)(
                                                     (vlSelfRef.ZaqalSoCTop__DOT__dram__DOT__r_addr 
                                                      >> 3U)))]);
-    __Vtemp_635[7U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__dram__DOT__mem_ext__DOT__Memory
+    __Vtemp_663[7U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__dram__DOT__mem_ext__DOT__Memory
                                [(0x1fffffU & (IData)(
                                                      (vlSelfRef.ZaqalSoCTop__DOT__dram__DOT__r_addr 
                                                       >> 3U)))] 
                                >> 0x20U));
     vlSelfRef.ZaqalSoCTop__DOT__xbar__DOT___r_arbiter_io_out_bits_data 
-        = (((QData)((IData)(__Vtemp_635[(((IData)(0x3fU) 
+        = (((QData)((IData)(__Vtemp_663[(((IData)(0x3fU) 
                                           + (0xffU 
                                              & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__xbar__DOT__r_arbiter__DOT__io_chosen_choice), 6U))) 
                                          >> 5U)])) 
@@ -14179,14 +15522,14 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                  ? 0x20U : ((IData)(0x40U) - (0x1fU 
                                               & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__xbar__DOT__r_arbiter__DOT__io_chosen_choice), 6U))))) 
            | (((0U == (0x1fU & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__xbar__DOT__r_arbiter__DOT__io_chosen_choice), 6U)))
-                ? 0ULL : ((QData)((IData)(__Vtemp_635[
+                ? 0ULL : ((QData)((IData)(__Vtemp_663[
                                           (((IData)(0x1fU) 
                                             + (0xffU 
                                                & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__xbar__DOT__r_arbiter__DOT__io_chosen_choice), 6U))) 
                                            >> 5U)])) 
                           << ((IData)(0x20U) - (0x1fU 
                                                 & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__xbar__DOT__r_arbiter__DOT__io_chosen_choice), 6U))))) 
-              | ((QData)((IData)(__Vtemp_635[(7U & 
+              | ((QData)((IData)(__Vtemp_663[(7U & 
                                               (VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__xbar__DOT__r_arbiter__DOT__io_chosen_choice), 6U) 
                                                >> 5U))])) 
                  >> (0x1fU & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__xbar__DOT__r_arbiter__DOT__io_chosen_choice), 6U)))));
@@ -14208,25 +15551,25 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                    & ((IData)(6U) 
                                                       * (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__streamPrefetcher__DOT__hitIdx)))))
                                     : 0U)));
-    __Vtemp_641[0U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__streamPrefetcher__DOT__streams_0_bit_vec;
-    __Vtemp_641[1U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__streamPrefetcher__DOT__streams_1_bit_vec;
-    __Vtemp_641[2U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__streamPrefetcher__DOT__streams_2_bit_vec;
-    __Vtemp_641[3U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__streamPrefetcher__DOT__streams_3_bit_vec;
-    __Vtemp_641[4U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__streamPrefetcher__DOT__streams_4_bit_vec;
-    __Vtemp_641[5U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__streamPrefetcher__DOT__streams_5_bit_vec;
-    __Vtemp_641[6U] = (IData)((((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__streamPrefetcher__DOT__streams_7_bit_vec)) 
+    __Vtemp_669[0U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__streamPrefetcher__DOT__streams_0_bit_vec;
+    __Vtemp_669[1U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__streamPrefetcher__DOT__streams_1_bit_vec;
+    __Vtemp_669[2U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__streamPrefetcher__DOT__streams_2_bit_vec;
+    __Vtemp_669[3U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__streamPrefetcher__DOT__streams_3_bit_vec;
+    __Vtemp_669[4U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__streamPrefetcher__DOT__streams_4_bit_vec;
+    __Vtemp_669[5U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__streamPrefetcher__DOT__streams_5_bit_vec;
+    __Vtemp_669[6U] = (IData)((((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__streamPrefetcher__DOT__streams_7_bit_vec)) 
                                 << 0x20U) | (QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__streamPrefetcher__DOT__streams_6_bit_vec))));
-    __Vtemp_641[7U] = (IData)(((((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__streamPrefetcher__DOT__streams_7_bit_vec)) 
+    __Vtemp_669[7U] = (IData)(((((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__streamPrefetcher__DOT__streams_7_bit_vec)) 
                                  << 0x20U) | (QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__streamPrefetcher__DOT__streams_6_bit_vec))) 
                                >> 0x20U));
     vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__streamPrefetcher__DOT____VdfgRegularize_h85be0440_0_2 
         = (((0U == (0x1fU & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__streamPrefetcher__DOT__hitIdx), 5U)))
-             ? 0U : (__Vtemp_641[(((IData)(0x1fU) + 
+             ? 0U : (__Vtemp_669[(((IData)(0x1fU) + 
                                    (0xffU & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__streamPrefetcher__DOT__hitIdx), 5U))) 
                                   >> 5U)] << ((IData)(0x20U) 
                                               - (0x1fU 
                                                  & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__streamPrefetcher__DOT__hitIdx), 5U))))) 
-           | (__Vtemp_641[(7U & (VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__streamPrefetcher__DOT__hitIdx), 5U) 
+           | (__Vtemp_669[(7U & (VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__streamPrefetcher__DOT__hitIdx), 5U) 
                                  >> 5U))] >> (0x1fU 
                                               & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__streamPrefetcher__DOT__hitIdx), 5U))));
     vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dcache__DOT__prefetcher__DOT__streamPrefetcher__DOT____VdfgRegularize_h85be0440_0_5 
@@ -14474,7 +15817,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
     vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__icache__DOT___GEN_13 
         = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__icache__DOT__io_mem_resp_ready_0) 
            & (3U == (IData)(vlSelfRef.ZaqalSoCTop__DOT__icache_bridge__DOT__r_state)));
-    __Vtemp_642[0U] = (((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__bpu__DOT__tage__DOT__tables_0__DOT__valids_63) 
+    __Vtemp_670[0U] = (((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__bpu__DOT__tage__DOT__tables_0__DOT__valids_63) 
                             << 0x1fU) | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__bpu__DOT__tage__DOT__tables_0__DOT__valids_62) 
                                          << 0x1eU)) 
                           | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__bpu__DOT__tage__DOT__tables_0__DOT__valids_61) 
@@ -14521,7 +15864,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                             << 2U)) 
                                 | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__bpu__DOT__tage__DOT__tables_0__DOT__valids_33) 
                                     << 1U) | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__bpu__DOT__tage__DOT__tables_0__DOT__valids_32))))));
-    __Vtemp_642[1U] = (IData)((((QData)((IData)((((
+    __Vtemp_670[1U] = (IData)((((QData)((IData)((((
                                                    ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__bpu__DOT__tage__DOT__tables_0__DOT__valids_127) 
                                                       << 0x1fU) 
                                                      | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__bpu__DOT__tage__DOT__tables_0__DOT__valids_126) 
@@ -14649,7 +15992,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                                       | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__bpu__DOT__tage__DOT__tables_0__DOT__valids_65) 
                                                                           << 1U) 
                                                                          | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__bpu__DOT__tage__DOT__tables_0__DOT__valids_64))))))))));
-    __Vtemp_642[2U] = (IData)(((((QData)((IData)(((
+    __Vtemp_670[2U] = (IData)(((((QData)((IData)(((
                                                    (((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__bpu__DOT__tage__DOT__tables_0__DOT__valids_127) 
                                                        << 0x1fU) 
                                                       | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__bpu__DOT__tage__DOT__tables_0__DOT__valids_126) 
@@ -14778,7 +16121,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                                            << 1U) 
                                                                           | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__bpu__DOT__tage__DOT__tables_0__DOT__valids_64))))))))) 
                                >> 0x20U));
-    __Vtemp_643[0U] = (((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__bpu__DOT__tage__DOT__tables_0__DOT__valids_31) 
+    __Vtemp_671[0U] = (((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__bpu__DOT__tage__DOT__tables_0__DOT__valids_31) 
                             << 0x1fU) | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__bpu__DOT__tage__DOT__tables_0__DOT__valids_30) 
                                          << 0x1eU)) 
                           | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__bpu__DOT__tage__DOT__tables_0__DOT__valids_29) 
@@ -14825,11 +16168,11 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                             << 2U)) 
                                 | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__bpu__DOT__tage__DOT__tables_0__DOT__valids_1) 
                                     << 1U) | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__bpu__DOT__tage__DOT__tables_0__DOT__valids_0))))));
-    __Vtemp_643[1U] = __Vtemp_642[0U];
-    __Vtemp_643[2U] = __Vtemp_642[1U];
-    __Vtemp_643[3U] = __Vtemp_642[2U];
+    __Vtemp_671[1U] = __Vtemp_670[0U];
+    __Vtemp_671[2U] = __Vtemp_670[1U];
+    __Vtemp_671[3U] = __Vtemp_670[2U];
     vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__bpu__DOT__tage__DOT___tables_0_io_hit 
-        = ((__Vtemp_643[((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__bpu__DOT__tage__DOT__tables_0__DOT__req_idx) 
+        = ((__Vtemp_671[((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__bpu__DOT__tage__DOT__tables_0__DOT__req_idx) 
                          >> 5U)] >> (0x1fU & (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__bpu__DOT__tage__DOT__tables_0__DOT__req_idx))) 
            & (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__bpu__DOT__tage__DOT__tables_0__DOT__tags_ext__DOT__Memory
               [vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__bpu__DOT__tage__DOT__tables_0__DOT__req_idx] 
@@ -16625,70 +17968,70 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                              & VL_SHIFTL_III(7,7,32, 
                                                              (7U 
                                                               & (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__amx__DOT__mma__DOT__r_step)), 4U)))));
-    __Vtemp_658[0U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__amx__DOT___trf_io_mma_matrix_c_0[0U];
-    __Vtemp_658[1U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__amx__DOT___trf_io_mma_matrix_c_0[1U];
-    __Vtemp_658[2U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__amx__DOT___trf_io_mma_matrix_c_0[2U];
-    __Vtemp_658[3U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__amx__DOT___trf_io_mma_matrix_c_0[3U];
-    __Vtemp_658[4U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__amx__DOT___trf_io_mma_matrix_c_1[0U];
-    __Vtemp_658[5U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__amx__DOT___trf_io_mma_matrix_c_1[1U];
-    __Vtemp_658[6U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__amx__DOT___trf_io_mma_matrix_c_1[2U];
-    __Vtemp_658[7U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__amx__DOT___trf_io_mma_matrix_c_1[3U];
-    __Vtemp_658[8U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__amx__DOT___trf_io_mma_matrix_c_2[0U];
-    __Vtemp_658[9U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__amx__DOT___trf_io_mma_matrix_c_2[1U];
-    __Vtemp_658[0xaU] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__amx__DOT___trf_io_mma_matrix_c_2[2U];
-    __Vtemp_658[0xbU] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__amx__DOT___trf_io_mma_matrix_c_2[3U];
-    __Vtemp_658[0xcU] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__amx__DOT___trf_io_mma_matrix_c_3[0U];
-    __Vtemp_658[0xdU] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__amx__DOT___trf_io_mma_matrix_c_3[1U];
-    __Vtemp_658[0xeU] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__amx__DOT___trf_io_mma_matrix_c_3[2U];
-    __Vtemp_658[0xfU] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__amx__DOT___trf_io_mma_matrix_c_3[3U];
-    __Vtemp_658[0x10U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__amx__DOT___trf_io_mma_matrix_c_4[0U];
-    __Vtemp_658[0x11U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__amx__DOT___trf_io_mma_matrix_c_4[1U];
-    __Vtemp_658[0x12U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__amx__DOT___trf_io_mma_matrix_c_4[2U];
-    __Vtemp_658[0x13U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__amx__DOT___trf_io_mma_matrix_c_4[3U];
-    __Vtemp_658[0x14U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__amx__DOT___trf_io_mma_matrix_c_5[0U];
-    __Vtemp_658[0x15U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__amx__DOT___trf_io_mma_matrix_c_5[1U];
-    __Vtemp_658[0x16U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__amx__DOT___trf_io_mma_matrix_c_5[2U];
-    __Vtemp_658[0x17U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__amx__DOT___trf_io_mma_matrix_c_5[3U];
-    __Vtemp_658[0x18U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__amx__DOT___trf_io_mma_matrix_c_6[0U];
-    __Vtemp_658[0x19U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__amx__DOT___trf_io_mma_matrix_c_6[1U];
-    __Vtemp_658[0x1aU] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__amx__DOT___trf_io_mma_matrix_c_6[2U];
-    __Vtemp_658[0x1bU] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__amx__DOT___trf_io_mma_matrix_c_6[3U];
-    __Vtemp_658[0x1cU] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__amx__DOT___trf_io_mma_matrix_c_7[0U];
-    __Vtemp_658[0x1dU] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__amx__DOT___trf_io_mma_matrix_c_7[1U];
-    __Vtemp_658[0x1eU] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__amx__DOT___trf_io_mma_matrix_c_7[2U];
-    __Vtemp_658[0x1fU] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__amx__DOT___trf_io_mma_matrix_c_7[3U];
-    __Vtemp_658[0x20U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__amx__DOT___trf_io_mma_matrix_c_8[0U];
-    __Vtemp_658[0x21U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__amx__DOT___trf_io_mma_matrix_c_8[1U];
-    __Vtemp_658[0x22U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__amx__DOT___trf_io_mma_matrix_c_8[2U];
-    __Vtemp_658[0x23U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__amx__DOT___trf_io_mma_matrix_c_8[3U];
-    __Vtemp_658[0x24U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__amx__DOT___trf_io_mma_matrix_c_9[0U];
-    __Vtemp_658[0x25U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__amx__DOT___trf_io_mma_matrix_c_9[1U];
-    __Vtemp_658[0x26U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__amx__DOT___trf_io_mma_matrix_c_9[2U];
-    __Vtemp_658[0x27U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__amx__DOT___trf_io_mma_matrix_c_9[3U];
-    __Vtemp_658[0x28U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__amx__DOT___trf_io_mma_matrix_c_10[0U];
-    __Vtemp_658[0x29U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__amx__DOT___trf_io_mma_matrix_c_10[1U];
-    __Vtemp_658[0x2aU] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__amx__DOT___trf_io_mma_matrix_c_10[2U];
-    __Vtemp_658[0x2bU] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__amx__DOT___trf_io_mma_matrix_c_10[3U];
-    __Vtemp_658[0x2cU] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__amx__DOT___trf_io_mma_matrix_c_11[0U];
-    __Vtemp_658[0x2dU] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__amx__DOT___trf_io_mma_matrix_c_11[1U];
-    __Vtemp_658[0x2eU] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__amx__DOT___trf_io_mma_matrix_c_11[2U];
-    __Vtemp_658[0x2fU] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__amx__DOT___trf_io_mma_matrix_c_11[3U];
-    __Vtemp_658[0x30U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__amx__DOT___trf_io_mma_matrix_c_12[0U];
-    __Vtemp_658[0x31U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__amx__DOT___trf_io_mma_matrix_c_12[1U];
-    __Vtemp_658[0x32U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__amx__DOT___trf_io_mma_matrix_c_12[2U];
-    __Vtemp_658[0x33U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__amx__DOT___trf_io_mma_matrix_c_12[3U];
-    __Vtemp_658[0x34U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__amx__DOT___trf_io_mma_matrix_c_13[0U];
-    __Vtemp_658[0x35U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__amx__DOT___trf_io_mma_matrix_c_13[1U];
-    __Vtemp_658[0x36U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__amx__DOT___trf_io_mma_matrix_c_13[2U];
-    __Vtemp_658[0x37U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__amx__DOT___trf_io_mma_matrix_c_13[3U];
-    __Vtemp_658[0x38U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__amx__DOT___trf_io_mma_matrix_c_14[0U];
-    __Vtemp_658[0x39U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__amx__DOT___trf_io_mma_matrix_c_14[1U];
-    __Vtemp_658[0x3aU] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__amx__DOT___trf_io_mma_matrix_c_14[2U];
-    __Vtemp_658[0x3bU] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__amx__DOT___trf_io_mma_matrix_c_14[3U];
-    __Vtemp_658[0x3cU] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__amx__DOT___trf_io_mma_matrix_c_15[0U];
-    __Vtemp_658[0x3dU] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__amx__DOT___trf_io_mma_matrix_c_15[1U];
-    __Vtemp_658[0x3eU] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__amx__DOT___trf_io_mma_matrix_c_15[2U];
-    __Vtemp_658[0x3fU] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__amx__DOT___trf_io_mma_matrix_c_15[3U];
+    __Vtemp_686[0U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__amx__DOT___trf_io_mma_matrix_c_0[0U];
+    __Vtemp_686[1U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__amx__DOT___trf_io_mma_matrix_c_0[1U];
+    __Vtemp_686[2U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__amx__DOT___trf_io_mma_matrix_c_0[2U];
+    __Vtemp_686[3U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__amx__DOT___trf_io_mma_matrix_c_0[3U];
+    __Vtemp_686[4U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__amx__DOT___trf_io_mma_matrix_c_1[0U];
+    __Vtemp_686[5U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__amx__DOT___trf_io_mma_matrix_c_1[1U];
+    __Vtemp_686[6U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__amx__DOT___trf_io_mma_matrix_c_1[2U];
+    __Vtemp_686[7U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__amx__DOT___trf_io_mma_matrix_c_1[3U];
+    __Vtemp_686[8U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__amx__DOT___trf_io_mma_matrix_c_2[0U];
+    __Vtemp_686[9U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__amx__DOT___trf_io_mma_matrix_c_2[1U];
+    __Vtemp_686[0xaU] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__amx__DOT___trf_io_mma_matrix_c_2[2U];
+    __Vtemp_686[0xbU] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__amx__DOT___trf_io_mma_matrix_c_2[3U];
+    __Vtemp_686[0xcU] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__amx__DOT___trf_io_mma_matrix_c_3[0U];
+    __Vtemp_686[0xdU] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__amx__DOT___trf_io_mma_matrix_c_3[1U];
+    __Vtemp_686[0xeU] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__amx__DOT___trf_io_mma_matrix_c_3[2U];
+    __Vtemp_686[0xfU] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__amx__DOT___trf_io_mma_matrix_c_3[3U];
+    __Vtemp_686[0x10U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__amx__DOT___trf_io_mma_matrix_c_4[0U];
+    __Vtemp_686[0x11U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__amx__DOT___trf_io_mma_matrix_c_4[1U];
+    __Vtemp_686[0x12U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__amx__DOT___trf_io_mma_matrix_c_4[2U];
+    __Vtemp_686[0x13U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__amx__DOT___trf_io_mma_matrix_c_4[3U];
+    __Vtemp_686[0x14U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__amx__DOT___trf_io_mma_matrix_c_5[0U];
+    __Vtemp_686[0x15U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__amx__DOT___trf_io_mma_matrix_c_5[1U];
+    __Vtemp_686[0x16U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__amx__DOT___trf_io_mma_matrix_c_5[2U];
+    __Vtemp_686[0x17U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__amx__DOT___trf_io_mma_matrix_c_5[3U];
+    __Vtemp_686[0x18U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__amx__DOT___trf_io_mma_matrix_c_6[0U];
+    __Vtemp_686[0x19U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__amx__DOT___trf_io_mma_matrix_c_6[1U];
+    __Vtemp_686[0x1aU] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__amx__DOT___trf_io_mma_matrix_c_6[2U];
+    __Vtemp_686[0x1bU] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__amx__DOT___trf_io_mma_matrix_c_6[3U];
+    __Vtemp_686[0x1cU] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__amx__DOT___trf_io_mma_matrix_c_7[0U];
+    __Vtemp_686[0x1dU] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__amx__DOT___trf_io_mma_matrix_c_7[1U];
+    __Vtemp_686[0x1eU] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__amx__DOT___trf_io_mma_matrix_c_7[2U];
+    __Vtemp_686[0x1fU] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__amx__DOT___trf_io_mma_matrix_c_7[3U];
+    __Vtemp_686[0x20U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__amx__DOT___trf_io_mma_matrix_c_8[0U];
+    __Vtemp_686[0x21U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__amx__DOT___trf_io_mma_matrix_c_8[1U];
+    __Vtemp_686[0x22U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__amx__DOT___trf_io_mma_matrix_c_8[2U];
+    __Vtemp_686[0x23U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__amx__DOT___trf_io_mma_matrix_c_8[3U];
+    __Vtemp_686[0x24U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__amx__DOT___trf_io_mma_matrix_c_9[0U];
+    __Vtemp_686[0x25U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__amx__DOT___trf_io_mma_matrix_c_9[1U];
+    __Vtemp_686[0x26U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__amx__DOT___trf_io_mma_matrix_c_9[2U];
+    __Vtemp_686[0x27U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__amx__DOT___trf_io_mma_matrix_c_9[3U];
+    __Vtemp_686[0x28U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__amx__DOT___trf_io_mma_matrix_c_10[0U];
+    __Vtemp_686[0x29U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__amx__DOT___trf_io_mma_matrix_c_10[1U];
+    __Vtemp_686[0x2aU] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__amx__DOT___trf_io_mma_matrix_c_10[2U];
+    __Vtemp_686[0x2bU] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__amx__DOT___trf_io_mma_matrix_c_10[3U];
+    __Vtemp_686[0x2cU] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__amx__DOT___trf_io_mma_matrix_c_11[0U];
+    __Vtemp_686[0x2dU] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__amx__DOT___trf_io_mma_matrix_c_11[1U];
+    __Vtemp_686[0x2eU] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__amx__DOT___trf_io_mma_matrix_c_11[2U];
+    __Vtemp_686[0x2fU] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__amx__DOT___trf_io_mma_matrix_c_11[3U];
+    __Vtemp_686[0x30U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__amx__DOT___trf_io_mma_matrix_c_12[0U];
+    __Vtemp_686[0x31U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__amx__DOT___trf_io_mma_matrix_c_12[1U];
+    __Vtemp_686[0x32U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__amx__DOT___trf_io_mma_matrix_c_12[2U];
+    __Vtemp_686[0x33U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__amx__DOT___trf_io_mma_matrix_c_12[3U];
+    __Vtemp_686[0x34U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__amx__DOT___trf_io_mma_matrix_c_13[0U];
+    __Vtemp_686[0x35U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__amx__DOT___trf_io_mma_matrix_c_13[1U];
+    __Vtemp_686[0x36U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__amx__DOT___trf_io_mma_matrix_c_13[2U];
+    __Vtemp_686[0x37U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__amx__DOT___trf_io_mma_matrix_c_13[3U];
+    __Vtemp_686[0x38U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__amx__DOT___trf_io_mma_matrix_c_14[0U];
+    __Vtemp_686[0x39U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__amx__DOT___trf_io_mma_matrix_c_14[1U];
+    __Vtemp_686[0x3aU] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__amx__DOT___trf_io_mma_matrix_c_14[2U];
+    __Vtemp_686[0x3bU] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__amx__DOT___trf_io_mma_matrix_c_14[3U];
+    __Vtemp_686[0x3cU] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__amx__DOT___trf_io_mma_matrix_c_15[0U];
+    __Vtemp_686[0x3dU] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__amx__DOT___trf_io_mma_matrix_c_15[1U];
+    __Vtemp_686[0x3eU] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__amx__DOT___trf_io_mma_matrix_c_15[2U];
+    __Vtemp_686[0x3fU] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__amx__DOT___trf_io_mma_matrix_c_15[3U];
     __VExpandSel_WordIdx_46 = (0x3fU & (VL_SHIFTL_III(11,11,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__amx__DOT__r_row), 7U) 
                                         >> 5U));
     __VExpandSel_LoShift_46 = (0x1fU & VL_SHIFTL_III(11,11,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__amx__DOT__r_row), 7U));
@@ -16701,25 +18044,25 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
         __VExpandSel_HiMask_46 = 0xffffffffU;
     }
     vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT___amx_io_mem_wdata[0U] 
-        = (((__Vtemp_658[((IData)(1U) + __VExpandSel_WordIdx_46)] 
+        = (((__Vtemp_686[((IData)(1U) + __VExpandSel_WordIdx_46)] 
              << __VExpandSel_HiShift_46) & __VExpandSel_HiMask_46) 
-           | (__Vtemp_658[__VExpandSel_WordIdx_46] 
+           | (__Vtemp_686[__VExpandSel_WordIdx_46] 
               >> __VExpandSel_LoShift_46));
     vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT___amx_io_mem_wdata[1U] 
-        = (((__Vtemp_658[((IData)(2U) + __VExpandSel_WordIdx_46)] 
+        = (((__Vtemp_686[((IData)(2U) + __VExpandSel_WordIdx_46)] 
              << __VExpandSel_HiShift_46) & __VExpandSel_HiMask_46) 
-           | (__Vtemp_658[((IData)(1U) + __VExpandSel_WordIdx_46)] 
+           | (__Vtemp_686[((IData)(1U) + __VExpandSel_WordIdx_46)] 
               >> __VExpandSel_LoShift_46));
     vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT___amx_io_mem_wdata[2U] 
-        = (((__Vtemp_658[((IData)(3U) + __VExpandSel_WordIdx_46)] 
+        = (((__Vtemp_686[((IData)(3U) + __VExpandSel_WordIdx_46)] 
              << __VExpandSel_HiShift_46) & __VExpandSel_HiMask_46) 
-           | (__Vtemp_658[((IData)(2U) + __VExpandSel_WordIdx_46)] 
+           | (__Vtemp_686[((IData)(2U) + __VExpandSel_WordIdx_46)] 
               >> __VExpandSel_LoShift_46));
     vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT___amx_io_mem_wdata[3U] 
         = (((((0x3cU <= __VExpandSel_WordIdx_46) ? 0U
-               : __Vtemp_658[((IData)(4U) + __VExpandSel_WordIdx_46)]) 
+               : __Vtemp_686[((IData)(4U) + __VExpandSel_WordIdx_46)]) 
              << __VExpandSel_HiShift_46) & __VExpandSel_HiMask_46) 
-           | (__Vtemp_658[((IData)(3U) + __VExpandSel_WordIdx_46)] 
+           | (__Vtemp_686[((IData)(3U) + __VExpandSel_WordIdx_46)] 
               >> __VExpandSel_LoShift_46));
     vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__amx__DOT__mma__DOT__a_col_i8_3 
         = (0xffU & (((0U == (0x1fU & VL_SHIFTL_III(7,7,32, 
@@ -16865,134 +18208,134 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
            | (ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__amx__DOT__mma__DOT___GEN_90[
               ((IData)(3U) + __VExpandSel_WordIdx_48)] 
               >> __VExpandSel_LoShift_48));
-    __Vtemp_689[0U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_32);
-    __Vtemp_689[1U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_32 
+    __Vtemp_717[0U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_32);
+    __Vtemp_717[1U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_32 
                                >> 0x20U));
-    __Vtemp_689[2U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_33);
-    __Vtemp_689[3U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_33 
+    __Vtemp_717[2U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_33);
+    __Vtemp_717[3U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_33 
                                >> 0x20U));
-    __Vtemp_689[4U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_34);
-    __Vtemp_689[5U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_34 
+    __Vtemp_717[4U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_34);
+    __Vtemp_717[5U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_34 
                                >> 0x20U));
-    __Vtemp_689[6U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_35);
-    __Vtemp_689[7U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_35 
+    __Vtemp_717[6U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_35);
+    __Vtemp_717[7U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_35 
                                >> 0x20U));
-    __Vtemp_689[8U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_36);
-    __Vtemp_689[9U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_36 
+    __Vtemp_717[8U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_36);
+    __Vtemp_717[9U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_36 
                                >> 0x20U));
-    __Vtemp_689[0xaU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_37);
-    __Vtemp_689[0xbU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_37 
+    __Vtemp_717[0xaU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_37);
+    __Vtemp_717[0xbU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_37 
                                  >> 0x20U));
-    __Vtemp_689[0xcU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_38);
-    __Vtemp_689[0xdU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_38 
+    __Vtemp_717[0xcU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_38);
+    __Vtemp_717[0xdU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_38 
                                  >> 0x20U));
-    __Vtemp_689[0xeU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_39);
-    __Vtemp_689[0xfU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_39 
+    __Vtemp_717[0xeU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_39);
+    __Vtemp_717[0xfU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_39 
                                  >> 0x20U));
-    __Vtemp_689[0x10U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_40);
-    __Vtemp_689[0x11U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_40 
+    __Vtemp_717[0x10U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_40);
+    __Vtemp_717[0x11U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_40 
                                   >> 0x20U));
-    __Vtemp_689[0x12U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_41);
-    __Vtemp_689[0x13U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_41 
+    __Vtemp_717[0x12U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_41);
+    __Vtemp_717[0x13U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_41 
                                   >> 0x20U));
-    __Vtemp_689[0x14U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_42);
-    __Vtemp_689[0x15U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_42 
+    __Vtemp_717[0x14U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_42);
+    __Vtemp_717[0x15U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_42 
                                   >> 0x20U));
-    __Vtemp_689[0x16U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_43);
-    __Vtemp_689[0x17U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_43 
+    __Vtemp_717[0x16U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_43);
+    __Vtemp_717[0x17U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_43 
                                   >> 0x20U));
-    __Vtemp_689[0x18U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_44);
-    __Vtemp_689[0x19U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_44 
+    __Vtemp_717[0x18U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_44);
+    __Vtemp_717[0x19U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_44 
                                   >> 0x20U));
-    __Vtemp_689[0x1aU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_45);
-    __Vtemp_689[0x1bU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_45 
+    __Vtemp_717[0x1aU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_45);
+    __Vtemp_717[0x1bU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_45 
                                   >> 0x20U));
-    __Vtemp_689[0x1cU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_46);
-    __Vtemp_689[0x1dU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_46 
+    __Vtemp_717[0x1cU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_46);
+    __Vtemp_717[0x1dU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_46 
                                   >> 0x20U));
-    __Vtemp_689[0x1eU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_47);
-    __Vtemp_689[0x1fU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_47 
+    __Vtemp_717[0x1eU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_47);
+    __Vtemp_717[0x1fU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_47 
                                   >> 0x20U));
-    __Vtemp_689[0x20U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_48);
-    __Vtemp_689[0x21U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_48 
+    __Vtemp_717[0x20U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_48);
+    __Vtemp_717[0x21U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_48 
                                   >> 0x20U));
-    __Vtemp_689[0x22U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_49);
-    __Vtemp_689[0x23U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_49 
+    __Vtemp_717[0x22U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_49);
+    __Vtemp_717[0x23U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_49 
                                   >> 0x20U));
-    __Vtemp_689[0x24U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_50);
-    __Vtemp_689[0x25U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_50 
+    __Vtemp_717[0x24U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_50);
+    __Vtemp_717[0x25U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_50 
                                   >> 0x20U));
-    __Vtemp_689[0x26U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_51);
-    __Vtemp_689[0x27U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_51 
+    __Vtemp_717[0x26U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_51);
+    __Vtemp_717[0x27U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_51 
                                   >> 0x20U));
-    __Vtemp_689[0x28U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_52);
-    __Vtemp_689[0x29U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_52 
+    __Vtemp_717[0x28U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_52);
+    __Vtemp_717[0x29U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_52 
                                   >> 0x20U));
-    __Vtemp_689[0x2aU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_53);
-    __Vtemp_689[0x2bU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_53 
+    __Vtemp_717[0x2aU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_53);
+    __Vtemp_717[0x2bU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_53 
                                   >> 0x20U));
-    __Vtemp_689[0x2cU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_54);
-    __Vtemp_689[0x2dU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_54 
+    __Vtemp_717[0x2cU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_54);
+    __Vtemp_717[0x2dU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_54 
                                   >> 0x20U));
-    __Vtemp_689[0x2eU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_55);
-    __Vtemp_689[0x2fU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_55 
+    __Vtemp_717[0x2eU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_55);
+    __Vtemp_717[0x2fU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_55 
                                   >> 0x20U));
-    __Vtemp_689[0x30U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_56);
-    __Vtemp_689[0x31U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_56 
+    __Vtemp_717[0x30U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_56);
+    __Vtemp_717[0x31U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_56 
                                   >> 0x20U));
-    __Vtemp_689[0x32U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_57);
-    __Vtemp_689[0x33U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_57 
+    __Vtemp_717[0x32U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_57);
+    __Vtemp_717[0x33U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_57 
                                   >> 0x20U));
-    __Vtemp_689[0x34U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_58);
-    __Vtemp_689[0x35U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_58 
+    __Vtemp_717[0x34U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_58);
+    __Vtemp_717[0x35U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_58 
                                   >> 0x20U));
-    __Vtemp_689[0x36U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_59);
-    __Vtemp_689[0x37U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_59 
+    __Vtemp_717[0x36U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_59);
+    __Vtemp_717[0x37U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_59 
                                   >> 0x20U));
-    __Vtemp_689[0x38U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_60);
-    __Vtemp_689[0x39U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_60 
+    __Vtemp_717[0x38U] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_60);
+    __Vtemp_717[0x39U] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_60 
                                   >> 0x20U));
-    __Vtemp_689[0x3aU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_61);
-    __Vtemp_689[0x3bU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_61 
+    __Vtemp_717[0x3aU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_61);
+    __Vtemp_717[0x3bU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_61 
                                   >> 0x20U));
-    __Vtemp_689[0x3cU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_62);
-    __Vtemp_689[0x3dU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_62 
+    __Vtemp_717[0x3cU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_62);
+    __Vtemp_717[0x3dU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_62 
                                   >> 0x20U));
-    __Vtemp_689[0x3eU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_63);
-    __Vtemp_689[0x3fU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_63 
+    __Vtemp_717[0x3eU] = (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_63);
+    __Vtemp_717[0x3fU] = (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_63 
                                   >> 0x20U));
-    VL_CONCAT_WWQ(2112,2048,64, __Vtemp_690, __Vtemp_689, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_31);
-    VL_CONCAT_WWQ(2176,2112,64, __Vtemp_691, __Vtemp_690, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_30);
-    VL_CONCAT_WWQ(2240,2176,64, __Vtemp_692, __Vtemp_691, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_29);
-    VL_CONCAT_WWQ(2304,2240,64, __Vtemp_693, __Vtemp_692, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_28);
-    VL_CONCAT_WWQ(2368,2304,64, __Vtemp_694, __Vtemp_693, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_27);
-    VL_CONCAT_WWQ(2432,2368,64, __Vtemp_695, __Vtemp_694, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_26);
-    VL_CONCAT_WWQ(2496,2432,64, __Vtemp_696, __Vtemp_695, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_25);
-    VL_CONCAT_WWQ(2560,2496,64, __Vtemp_697, __Vtemp_696, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_24);
-    VL_CONCAT_WWQ(2624,2560,64, __Vtemp_698, __Vtemp_697, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_23);
-    VL_CONCAT_WWQ(2688,2624,64, __Vtemp_699, __Vtemp_698, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_22);
-    VL_CONCAT_WWQ(2752,2688,64, __Vtemp_700, __Vtemp_699, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_21);
-    VL_CONCAT_WWQ(2816,2752,64, __Vtemp_701, __Vtemp_700, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_20);
-    VL_CONCAT_WWQ(2880,2816,64, __Vtemp_702, __Vtemp_701, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_19);
-    VL_CONCAT_WWQ(2944,2880,64, __Vtemp_703, __Vtemp_702, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_18);
-    VL_CONCAT_WWQ(3008,2944,64, __Vtemp_704, __Vtemp_703, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_17);
-    VL_CONCAT_WWQ(3072,3008,64, __Vtemp_705, __Vtemp_704, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_16);
-    VL_CONCAT_WWQ(3136,3072,64, __Vtemp_706, __Vtemp_705, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_15);
-    VL_CONCAT_WWQ(3200,3136,64, __Vtemp_707, __Vtemp_706, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_14);
-    VL_CONCAT_WWQ(3264,3200,64, __Vtemp_708, __Vtemp_707, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_13);
-    VL_CONCAT_WWQ(3328,3264,64, __Vtemp_709, __Vtemp_708, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_12);
-    VL_CONCAT_WWQ(3392,3328,64, __Vtemp_710, __Vtemp_709, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_11);
-    VL_CONCAT_WWQ(3456,3392,64, __Vtemp_711, __Vtemp_710, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_10);
-    VL_CONCAT_WWQ(3520,3456,64, __Vtemp_712, __Vtemp_711, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_9);
-    VL_CONCAT_WWQ(3584,3520,64, __Vtemp_713, __Vtemp_712, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_8);
-    VL_CONCAT_WWQ(3648,3584,64, __Vtemp_714, __Vtemp_713, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_7);
-    VL_CONCAT_WWQ(3712,3648,64, __Vtemp_715, __Vtemp_714, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_6);
-    VL_CONCAT_WWQ(3776,3712,64, __Vtemp_716, __Vtemp_715, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_5);
-    VL_CONCAT_WWQ(3840,3776,64, __Vtemp_717, __Vtemp_716, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_4);
-    VL_CONCAT_WWQ(3904,3840,64, __Vtemp_718, __Vtemp_717, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_3);
-    VL_CONCAT_WWQ(3968,3904,64, __Vtemp_719, __Vtemp_718, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_2);
-    VL_CONCAT_WWQ(4032,3968,64, __Vtemp_720, __Vtemp_719, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_1);
-    VL_CONCAT_WWQ(4096,4032,64, __Vtemp_721, __Vtemp_720, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_0);
+    VL_CONCAT_WWQ(2112,2048,64, __Vtemp_718, __Vtemp_717, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_31);
+    VL_CONCAT_WWQ(2176,2112,64, __Vtemp_719, __Vtemp_718, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_30);
+    VL_CONCAT_WWQ(2240,2176,64, __Vtemp_720, __Vtemp_719, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_29);
+    VL_CONCAT_WWQ(2304,2240,64, __Vtemp_721, __Vtemp_720, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_28);
+    VL_CONCAT_WWQ(2368,2304,64, __Vtemp_722, __Vtemp_721, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_27);
+    VL_CONCAT_WWQ(2432,2368,64, __Vtemp_723, __Vtemp_722, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_26);
+    VL_CONCAT_WWQ(2496,2432,64, __Vtemp_724, __Vtemp_723, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_25);
+    VL_CONCAT_WWQ(2560,2496,64, __Vtemp_725, __Vtemp_724, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_24);
+    VL_CONCAT_WWQ(2624,2560,64, __Vtemp_726, __Vtemp_725, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_23);
+    VL_CONCAT_WWQ(2688,2624,64, __Vtemp_727, __Vtemp_726, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_22);
+    VL_CONCAT_WWQ(2752,2688,64, __Vtemp_728, __Vtemp_727, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_21);
+    VL_CONCAT_WWQ(2816,2752,64, __Vtemp_729, __Vtemp_728, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_20);
+    VL_CONCAT_WWQ(2880,2816,64, __Vtemp_730, __Vtemp_729, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_19);
+    VL_CONCAT_WWQ(2944,2880,64, __Vtemp_731, __Vtemp_730, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_18);
+    VL_CONCAT_WWQ(3008,2944,64, __Vtemp_732, __Vtemp_731, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_17);
+    VL_CONCAT_WWQ(3072,3008,64, __Vtemp_733, __Vtemp_732, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_16);
+    VL_CONCAT_WWQ(3136,3072,64, __Vtemp_734, __Vtemp_733, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_15);
+    VL_CONCAT_WWQ(3200,3136,64, __Vtemp_735, __Vtemp_734, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_14);
+    VL_CONCAT_WWQ(3264,3200,64, __Vtemp_736, __Vtemp_735, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_13);
+    VL_CONCAT_WWQ(3328,3264,64, __Vtemp_737, __Vtemp_736, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_12);
+    VL_CONCAT_WWQ(3392,3328,64, __Vtemp_738, __Vtemp_737, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_11);
+    VL_CONCAT_WWQ(3456,3392,64, __Vtemp_739, __Vtemp_738, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_10);
+    VL_CONCAT_WWQ(3520,3456,64, __Vtemp_740, __Vtemp_739, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_9);
+    VL_CONCAT_WWQ(3584,3520,64, __Vtemp_741, __Vtemp_740, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_8);
+    VL_CONCAT_WWQ(3648,3584,64, __Vtemp_742, __Vtemp_741, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_7);
+    VL_CONCAT_WWQ(3712,3648,64, __Vtemp_743, __Vtemp_742, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_6);
+    VL_CONCAT_WWQ(3776,3712,64, __Vtemp_744, __Vtemp_743, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_5);
+    VL_CONCAT_WWQ(3840,3776,64, __Vtemp_745, __Vtemp_744, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_4);
+    VL_CONCAT_WWQ(3904,3840,64, __Vtemp_746, __Vtemp_745, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_3);
+    VL_CONCAT_WWQ(3968,3904,64, __Vtemp_747, __Vtemp_746, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_2);
+    VL_CONCAT_WWQ(4032,3968,64, __Vtemp_748, __Vtemp_747, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_1);
+    VL_CONCAT_WWQ(4096,4032,64, __Vtemp_749, __Vtemp_748, vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__tags_0_0);
     vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__io_read_resp_hit 
         = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ftq_skid__DOT__slot0_valid) 
            & ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hits_7) 
@@ -17008,7 +18351,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                           (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc 
                                                            >> 2U))))) 
                                    & ((((QData)((IData)(
-                                                        __Vtemp_721[
+                                                        __Vtemp_749[
                                                         (((IData)(0x3fU) 
                                                           + 
                                                           (0xfffU 
@@ -17041,7 +18384,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                                                >> 2U))), 6U)))
                                             ? 0ULL : 
                                            ((QData)((IData)(
-                                                            __Vtemp_721[
+                                                            __Vtemp_749[
                                                             (((IData)(0x1fU) 
                                                               + 
                                                               (0xfffU 
@@ -17059,7 +18402,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                                               (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc 
                                                                                >> 2U))), 6U))))) 
                                           | ((QData)((IData)(
-                                                             __Vtemp_721[
+                                                             __Vtemp_749[
                                                              (0x7fU 
                                                               & (VL_SHIFTL_III(12,12,32, 
                                                                                (0x3fU 
@@ -17099,7 +18442,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
     vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT___GEN_47 
         = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__exe_val_fp_1) 
            & ((0U != (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__exe_uop_fp_1_pdest)) 
-              & ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT____VdfgRegularize_ha7c02441_0_49) 
+              & ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT____VdfgRegularize_ha7c02441_0_50) 
                  | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__exe_uop_fp_1_decode_is_fmv_w_x) 
                     | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__exe_uop_fp_1_decode_is_fcvt_i2f) 
                        | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__exe_uop_fp_1_decode_is_fmv_d_x) 
@@ -17191,7 +18534,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
     vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__fpu_1__DOT___op1_wide_T_3[1U] = 0U;
     vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__fpu_1__DOT___op1_wide_T_3[2U] 
         = (0xffff0000U & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__fpu_1__DOT___op1_wide_T_3[2U]);
-    __Vtemp_725[0U] = (IData)((((QData)((IData)((0U 
+    __Vtemp_753[0U] = (IData)((((QData)((IData)((0U 
                                                  != 
                                                  (0x7ffU 
                                                   & (IData)(
@@ -17199,7 +18542,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                              >> 0x34U)))))) 
                                 << 0x34U) | (0xfffffffffffffULL 
                                              & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__r_fp_rdata_3)));
-    __Vtemp_725[1U] = (IData)(((((QData)((IData)((0U 
+    __Vtemp_753[1U] = (IData)(((((QData)((IData)((0U 
                                                   != 
                                                   (0x7ffU 
                                                    & (IData)(
@@ -17208,9 +18551,9 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                  << 0x34U) | (0xfffffffffffffULL 
                                               & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__r_fp_rdata_3)) 
                                >> 0x20U));
-    __Vtemp_725[2U] = 0U;
-    __Vtemp_725[3U] = 0U;
-    __Vtemp_726[0U] = (IData)((((QData)((IData)((0U 
+    __Vtemp_753[2U] = 0U;
+    __Vtemp_753[3U] = 0U;
+    __Vtemp_754[0U] = (IData)((((QData)((IData)((0U 
                                                  != 
                                                  (0x7ffU 
                                                   & (IData)(
@@ -17218,7 +18561,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                              >> 0x34U)))))) 
                                 << 0x34U) | (0xfffffffffffffULL 
                                              & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__fpu_1__DOT__rs2_dp)));
-    __Vtemp_726[1U] = (IData)(((((QData)((IData)((0U 
+    __Vtemp_754[1U] = (IData)(((((QData)((IData)((0U 
                                                   != 
                                                   (0x7ffU 
                                                    & (IData)(
@@ -17227,10 +18570,10 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                  << 0x34U) | (0xfffffffffffffULL 
                                               & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__fpu_1__DOT__rs2_dp)) 
                                >> 0x20U));
-    __Vtemp_726[2U] = 0U;
-    __Vtemp_726[3U] = 0U;
-    VL_MUL_W(4, __Vtemp_727, __Vtemp_725, __Vtemp_726);
-    __Vtemp_728[2U] = (((IData)((0xffffffffffffULL 
+    __Vtemp_754[2U] = 0U;
+    __Vtemp_754[3U] = 0U;
+    VL_MUL_W(4, __Vtemp_755, __Vtemp_753, __Vtemp_754);
+    __Vtemp_756[2U] = (((IData)((0xffffffffffffULL 
                                  & ((QData)((IData)(
                                                     (((0U 
                                                        != 
@@ -17275,13 +18618,13 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
     vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__fpu_1__DOT___op1_wide_T_3[2U] 
         = ((0xffffU & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__fpu_1__DOT___op1_wide_T_3[2U]) 
            | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__exe_uop_fp_1_decode_is_fp_double)
-                ? __Vtemp_727[0U] : 0U) << 0x10U));
+                ? __Vtemp_755[0U] : 0U) << 0x10U));
     vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__fpu_1__DOT___op1_wide_T_3[3U] 
         = ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__exe_uop_fp_1_decode_is_fp_double)
-              ? __Vtemp_727[0U] : 0U) >> 0x10U) | (
+              ? __Vtemp_755[0U] : 0U) >> 0x10U) | (
                                                    ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__exe_uop_fp_1_decode_is_fp_double)
                                                      ? 
-                                                    __Vtemp_727[1U]
+                                                    __Vtemp_755[1U]
                                                      : 
                                                     ((IData)(
                                                              (0xffffffffffffULL 
@@ -17308,7 +18651,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                    << 0x10U));
     vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__fpu_1__DOT___op1_wide_T_3[4U] 
         = ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__exe_uop_fp_1_decode_is_fp_double)
-              ? __Vtemp_727[1U] : ((IData)((0xffffffffffffULL 
+              ? __Vtemp_755[1U] : ((IData)((0xffffffffffffULL 
                                             & ((QData)((IData)(
                                                                (((0U 
                                                                   != 
@@ -17330,14 +18673,14 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                                      & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__fpu_1__DOT__rs2_sp))))))) 
                                    << 0x1aU)) >> 0x10U) 
            | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__exe_uop_fp_1_decode_is_fp_double)
-                ? __Vtemp_727[2U] : __Vtemp_728[2U]) 
+                ? __Vtemp_755[2U] : __Vtemp_756[2U]) 
               << 0x10U));
     vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__fpu_1__DOT___op1_wide_T_3[5U] 
         = (0x3ffffffU & ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__exe_uop_fp_1_decode_is_fp_double)
-                            ? __Vtemp_727[2U] : __Vtemp_728[2U]) 
+                            ? __Vtemp_755[2U] : __Vtemp_756[2U]) 
                           >> 0x10U) | (0x3ff0000U & 
                                        (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__exe_uop_fp_1_decode_is_fp_double)
-                                          ? __Vtemp_727[3U]
+                                          ? __Vtemp_755[3U]
                                           : ((IData)(
                                                      ((0xffffffffffffULL 
                                                        & ((QData)((IData)(
@@ -17473,7 +18816,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
     vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__fpu_0__DOT___op1_wide_T_3[1U] = 0U;
     vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__fpu_0__DOT___op1_wide_T_3[2U] 
         = (0xffff0000U & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__fpu_0__DOT___op1_wide_T_3[2U]);
-    __Vtemp_734[0U] = (IData)((((QData)((IData)((0U 
+    __Vtemp_762[0U] = (IData)((((QData)((IData)((0U 
                                                  != 
                                                  (0x7ffU 
                                                   & (IData)(
@@ -17481,7 +18824,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                              >> 0x34U)))))) 
                                 << 0x34U) | (0xfffffffffffffULL 
                                              & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__r_fp_rdata_0)));
-    __Vtemp_734[1U] = (IData)(((((QData)((IData)((0U 
+    __Vtemp_762[1U] = (IData)(((((QData)((IData)((0U 
                                                   != 
                                                   (0x7ffU 
                                                    & (IData)(
@@ -17490,9 +18833,9 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                  << 0x34U) | (0xfffffffffffffULL 
                                               & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__r_fp_rdata_0)) 
                                >> 0x20U));
-    __Vtemp_734[2U] = 0U;
-    __Vtemp_734[3U] = 0U;
-    __Vtemp_735[0U] = (IData)((((QData)((IData)((0U 
+    __Vtemp_762[2U] = 0U;
+    __Vtemp_762[3U] = 0U;
+    __Vtemp_763[0U] = (IData)((((QData)((IData)((0U 
                                                  != 
                                                  (0x7ffU 
                                                   & (IData)(
@@ -17500,7 +18843,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                              >> 0x34U)))))) 
                                 << 0x34U) | (0xfffffffffffffULL 
                                              & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__fpu_0__DOT__rs2_dp)));
-    __Vtemp_735[1U] = (IData)(((((QData)((IData)((0U 
+    __Vtemp_763[1U] = (IData)(((((QData)((IData)((0U 
                                                   != 
                                                   (0x7ffU 
                                                    & (IData)(
@@ -17509,10 +18852,10 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                  << 0x34U) | (0xfffffffffffffULL 
                                               & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__fpu_0__DOT__rs2_dp)) 
                                >> 0x20U));
-    __Vtemp_735[2U] = 0U;
-    __Vtemp_735[3U] = 0U;
-    VL_MUL_W(4, __Vtemp_736, __Vtemp_734, __Vtemp_735);
-    __Vtemp_737[2U] = (((IData)((0xffffffffffffULL 
+    __Vtemp_763[2U] = 0U;
+    __Vtemp_763[3U] = 0U;
+    VL_MUL_W(4, __Vtemp_764, __Vtemp_762, __Vtemp_763);
+    __Vtemp_765[2U] = (((IData)((0xffffffffffffULL 
                                  & ((QData)((IData)(
                                                     (((0U 
                                                        != 
@@ -17557,13 +18900,13 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
     vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__fpu_0__DOT___op1_wide_T_3[2U] 
         = ((0xffffU & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__fpu_0__DOT___op1_wide_T_3[2U]) 
            | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__exe_uop_fp_0_decode_is_fp_double)
-                ? __Vtemp_736[0U] : 0U) << 0x10U));
+                ? __Vtemp_764[0U] : 0U) << 0x10U));
     vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__fpu_0__DOT___op1_wide_T_3[3U] 
         = ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__exe_uop_fp_0_decode_is_fp_double)
-              ? __Vtemp_736[0U] : 0U) >> 0x10U) | (
+              ? __Vtemp_764[0U] : 0U) >> 0x10U) | (
                                                    ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__exe_uop_fp_0_decode_is_fp_double)
                                                      ? 
-                                                    __Vtemp_736[1U]
+                                                    __Vtemp_764[1U]
                                                      : 
                                                     ((IData)(
                                                              (0xffffffffffffULL 
@@ -17590,7 +18933,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                    << 0x10U));
     vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__fpu_0__DOT___op1_wide_T_3[4U] 
         = ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__exe_uop_fp_0_decode_is_fp_double)
-              ? __Vtemp_736[1U] : ((IData)((0xffffffffffffULL 
+              ? __Vtemp_764[1U] : ((IData)((0xffffffffffffULL 
                                             & ((QData)((IData)(
                                                                (((0U 
                                                                   != 
@@ -17612,14 +18955,14 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                                      & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__fpu_0__DOT__rs2_sp))))))) 
                                    << 0x1aU)) >> 0x10U) 
            | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__exe_uop_fp_0_decode_is_fp_double)
-                ? __Vtemp_736[2U] : __Vtemp_737[2U]) 
+                ? __Vtemp_764[2U] : __Vtemp_765[2U]) 
               << 0x10U));
     vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__fpu_0__DOT___op1_wide_T_3[5U] 
         = (0x3ffffffU & ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__exe_uop_fp_0_decode_is_fp_double)
-                            ? __Vtemp_736[2U] : __Vtemp_737[2U]) 
+                            ? __Vtemp_764[2U] : __Vtemp_765[2U]) 
                           >> 0x10U) | (0x3ff0000U & 
                                        (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__exe_uop_fp_0_decode_is_fp_double)
-                                          ? __Vtemp_736[3U]
+                                          ? __Vtemp_764[3U]
                                           : ((IData)(
                                                      ((0xffffffffffffULL 
                                                        & ((QData)((IData)(
@@ -17667,8 +19010,8 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
         = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ftq_skid__DOT__slot0_valid) 
            & (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT___icache_io_ready));
     vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT___GEN_55 
-        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT____VdfgRegularize_ha7c02441_0_29) 
-           & ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT____VdfgRegularize_ha7c02441_0_48) 
+        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT____VdfgRegularize_ha7c02441_0_30) 
+           & ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT____VdfgRegularize_ha7c02441_0_49) 
               | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__exe_uop_fp_3_decode_is_fmv_w_x) 
                  | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__exe_uop_fp_3_decode_is_fcvt_i2f) 
                     | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__exe_uop_fp_3_decode_is_fmv_d_x) 
@@ -17760,7 +19103,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
     vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__fpu_3__DOT___op1_wide_T_3[1U] = 0U;
     vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__fpu_3__DOT___op1_wide_T_3[2U] 
         = (0xffff0000U & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__fpu_3__DOT___op1_wide_T_3[2U]);
-    __Vtemp_743[0U] = (IData)((((QData)((IData)((0U 
+    __Vtemp_771[0U] = (IData)((((QData)((IData)((0U 
                                                  != 
                                                  (0x7ffU 
                                                   & (IData)(
@@ -17768,7 +19111,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                              >> 0x34U)))))) 
                                 << 0x34U) | (0xfffffffffffffULL 
                                              & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__r_fp_rdata_9)));
-    __Vtemp_743[1U] = (IData)(((((QData)((IData)((0U 
+    __Vtemp_771[1U] = (IData)(((((QData)((IData)((0U 
                                                   != 
                                                   (0x7ffU 
                                                    & (IData)(
@@ -17777,9 +19120,9 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                  << 0x34U) | (0xfffffffffffffULL 
                                               & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__r_fp_rdata_9)) 
                                >> 0x20U));
-    __Vtemp_743[2U] = 0U;
-    __Vtemp_743[3U] = 0U;
-    __Vtemp_744[0U] = (IData)((((QData)((IData)((0U 
+    __Vtemp_771[2U] = 0U;
+    __Vtemp_771[3U] = 0U;
+    __Vtemp_772[0U] = (IData)((((QData)((IData)((0U 
                                                  != 
                                                  (0x7ffU 
                                                   & (IData)(
@@ -17787,7 +19130,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                              >> 0x34U)))))) 
                                 << 0x34U) | (0xfffffffffffffULL 
                                              & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__fpu_3__DOT__rs2_dp)));
-    __Vtemp_744[1U] = (IData)(((((QData)((IData)((0U 
+    __Vtemp_772[1U] = (IData)(((((QData)((IData)((0U 
                                                   != 
                                                   (0x7ffU 
                                                    & (IData)(
@@ -17796,10 +19139,10 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                  << 0x34U) | (0xfffffffffffffULL 
                                               & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__fpu_3__DOT__rs2_dp)) 
                                >> 0x20U));
-    __Vtemp_744[2U] = 0U;
-    __Vtemp_744[3U] = 0U;
-    VL_MUL_W(4, __Vtemp_745, __Vtemp_743, __Vtemp_744);
-    __Vtemp_746[2U] = (((IData)((0xffffffffffffULL 
+    __Vtemp_772[2U] = 0U;
+    __Vtemp_772[3U] = 0U;
+    VL_MUL_W(4, __Vtemp_773, __Vtemp_771, __Vtemp_772);
+    __Vtemp_774[2U] = (((IData)((0xffffffffffffULL 
                                  & ((QData)((IData)(
                                                     (((0U 
                                                        != 
@@ -17844,13 +19187,13 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
     vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__fpu_3__DOT___op1_wide_T_3[2U] 
         = ((0xffffU & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__fpu_3__DOT___op1_wide_T_3[2U]) 
            | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__exe_uop_fp_3_decode_is_fp_double)
-                ? __Vtemp_745[0U] : 0U) << 0x10U));
+                ? __Vtemp_773[0U] : 0U) << 0x10U));
     vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__fpu_3__DOT___op1_wide_T_3[3U] 
         = ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__exe_uop_fp_3_decode_is_fp_double)
-              ? __Vtemp_745[0U] : 0U) >> 0x10U) | (
+              ? __Vtemp_773[0U] : 0U) >> 0x10U) | (
                                                    ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__exe_uop_fp_3_decode_is_fp_double)
                                                      ? 
-                                                    __Vtemp_745[1U]
+                                                    __Vtemp_773[1U]
                                                      : 
                                                     ((IData)(
                                                              (0xffffffffffffULL 
@@ -17877,7 +19220,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                    << 0x10U));
     vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__fpu_3__DOT___op1_wide_T_3[4U] 
         = ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__exe_uop_fp_3_decode_is_fp_double)
-              ? __Vtemp_745[1U] : ((IData)((0xffffffffffffULL 
+              ? __Vtemp_773[1U] : ((IData)((0xffffffffffffULL 
                                             & ((QData)((IData)(
                                                                (((0U 
                                                                   != 
@@ -17899,14 +19242,14 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                                      & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__fpu_3__DOT__rs2_sp))))))) 
                                    << 0x1aU)) >> 0x10U) 
            | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__exe_uop_fp_3_decode_is_fp_double)
-                ? __Vtemp_745[2U] : __Vtemp_746[2U]) 
+                ? __Vtemp_773[2U] : __Vtemp_774[2U]) 
               << 0x10U));
     vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__fpu_3__DOT___op1_wide_T_3[5U] 
         = (0x3ffffffU & ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__exe_uop_fp_3_decode_is_fp_double)
-                            ? __Vtemp_745[2U] : __Vtemp_746[2U]) 
+                            ? __Vtemp_773[2U] : __Vtemp_774[2U]) 
                           >> 0x10U) | (0x3ff0000U & 
                                        (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__exe_uop_fp_3_decode_is_fp_double)
-                                          ? __Vtemp_745[3U]
+                                          ? __Vtemp_773[3U]
                                           : ((IData)(
                                                      ((0xffffffffffffULL 
                                                        & ((QData)((IData)(
@@ -18041,7 +19384,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
     vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__fpu_2__DOT___op1_wide_T_3[1U] = 0U;
     vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__fpu_2__DOT___op1_wide_T_3[2U] 
         = (0xffff0000U & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__fpu_2__DOT___op1_wide_T_3[2U]);
-    __Vtemp_752[0U] = (IData)((((QData)((IData)((0U 
+    __Vtemp_780[0U] = (IData)((((QData)((IData)((0U 
                                                  != 
                                                  (0x7ffU 
                                                   & (IData)(
@@ -18049,7 +19392,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                              >> 0x34U)))))) 
                                 << 0x34U) | (0xfffffffffffffULL 
                                              & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__r_fp_rdata_6)));
-    __Vtemp_752[1U] = (IData)(((((QData)((IData)((0U 
+    __Vtemp_780[1U] = (IData)(((((QData)((IData)((0U 
                                                   != 
                                                   (0x7ffU 
                                                    & (IData)(
@@ -18058,9 +19401,9 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                  << 0x34U) | (0xfffffffffffffULL 
                                               & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__r_fp_rdata_6)) 
                                >> 0x20U));
-    __Vtemp_752[2U] = 0U;
-    __Vtemp_752[3U] = 0U;
-    __Vtemp_753[0U] = (IData)((((QData)((IData)((0U 
+    __Vtemp_780[2U] = 0U;
+    __Vtemp_780[3U] = 0U;
+    __Vtemp_781[0U] = (IData)((((QData)((IData)((0U 
                                                  != 
                                                  (0x7ffU 
                                                   & (IData)(
@@ -18068,7 +19411,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                              >> 0x34U)))))) 
                                 << 0x34U) | (0xfffffffffffffULL 
                                              & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__fpu_2__DOT__rs2_dp)));
-    __Vtemp_753[1U] = (IData)(((((QData)((IData)((0U 
+    __Vtemp_781[1U] = (IData)(((((QData)((IData)((0U 
                                                   != 
                                                   (0x7ffU 
                                                    & (IData)(
@@ -18077,10 +19420,10 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                  << 0x34U) | (0xfffffffffffffULL 
                                               & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__fpu_2__DOT__rs2_dp)) 
                                >> 0x20U));
-    __Vtemp_753[2U] = 0U;
-    __Vtemp_753[3U] = 0U;
-    VL_MUL_W(4, __Vtemp_754, __Vtemp_752, __Vtemp_753);
-    __Vtemp_755[2U] = (((IData)((0xffffffffffffULL 
+    __Vtemp_781[2U] = 0U;
+    __Vtemp_781[3U] = 0U;
+    VL_MUL_W(4, __Vtemp_782, __Vtemp_780, __Vtemp_781);
+    __Vtemp_783[2U] = (((IData)((0xffffffffffffULL 
                                  & ((QData)((IData)(
                                                     (((0U 
                                                        != 
@@ -18125,13 +19468,13 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
     vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__fpu_2__DOT___op1_wide_T_3[2U] 
         = ((0xffffU & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__fpu_2__DOT___op1_wide_T_3[2U]) 
            | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__exe_uop_fp_2_decode_is_fp_double)
-                ? __Vtemp_754[0U] : 0U) << 0x10U));
+                ? __Vtemp_782[0U] : 0U) << 0x10U));
     vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__fpu_2__DOT___op1_wide_T_3[3U] 
         = ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__exe_uop_fp_2_decode_is_fp_double)
-              ? __Vtemp_754[0U] : 0U) >> 0x10U) | (
+              ? __Vtemp_782[0U] : 0U) >> 0x10U) | (
                                                    ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__exe_uop_fp_2_decode_is_fp_double)
                                                      ? 
-                                                    __Vtemp_754[1U]
+                                                    __Vtemp_782[1U]
                                                      : 
                                                     ((IData)(
                                                              (0xffffffffffffULL 
@@ -18158,7 +19501,7 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                    << 0x10U));
     vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__fpu_2__DOT___op1_wide_T_3[4U] 
         = ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__exe_uop_fp_2_decode_is_fp_double)
-              ? __Vtemp_754[1U] : ((IData)((0xffffffffffffULL 
+              ? __Vtemp_782[1U] : ((IData)((0xffffffffffffULL 
                                             & ((QData)((IData)(
                                                                (((0U 
                                                                   != 
@@ -18180,14 +19523,14 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
                                                                      & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__fpu_2__DOT__rs2_sp))))))) 
                                    << 0x1aU)) >> 0x10U) 
            | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__exe_uop_fp_2_decode_is_fp_double)
-                ? __Vtemp_754[2U] : __Vtemp_755[2U]) 
+                ? __Vtemp_782[2U] : __Vtemp_783[2U]) 
               << 0x10U));
     vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__fpu_2__DOT___op1_wide_T_3[5U] 
         = (0x3ffffffU & ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__exe_uop_fp_2_decode_is_fp_double)
-                            ? __Vtemp_754[2U] : __Vtemp_755[2U]) 
+                            ? __Vtemp_782[2U] : __Vtemp_783[2U]) 
                           >> 0x10U) | (0x3ff0000U & 
                                        (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__exec__DOT__exe_uop_fp_2_decode_is_fp_double)
-                                          ? __Vtemp_754[3U]
+                                          ? __Vtemp_782[3U]
                                           : ((IData)(
                                                      ((0xffffffffffffULL 
                                                        & ((QData)((IData)(
@@ -18983,787 +20326,4 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__3(VZaqalSoCTop___02
         = (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__fpBusyTable__DOT___GEN_25344) 
             & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__fpBusyTable__DOT____VdfgBinToOneHot_Tab_h7374a686_0_132
             [0xbaU]) | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__fpBusyTable__DOT__ready_table_186));
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__fpBusyTable__DOT____VdfgRegularize_h7374a686_0_12792 
-        = (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__fpBusyTable__DOT___GEN_25344) 
-            & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__fpBusyTable__DOT____VdfgBinToOneHot_Tab_h7374a686_0_132
-            [0xbbU]) | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__fpBusyTable__DOT__ready_table_187));
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__fpBusyTable__DOT____VdfgRegularize_h7374a686_0_12793 
-        = (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__fpBusyTable__DOT___GEN_25344) 
-            & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__fpBusyTable__DOT____VdfgBinToOneHot_Tab_h7374a686_0_132
-            [0xbcU]) | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__fpBusyTable__DOT__ready_table_188));
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__fpBusyTable__DOT____VdfgRegularize_h7374a686_0_12794 
-        = (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__fpBusyTable__DOT___GEN_25344) 
-            & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__fpBusyTable__DOT____VdfgBinToOneHot_Tab_h7374a686_0_132
-            [0xbdU]) | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__fpBusyTable__DOT__ready_table_189));
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__fpBusyTable__DOT____VdfgRegularize_h7374a686_0_12795 
-        = (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__fpBusyTable__DOT___GEN_25344) 
-            & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__fpBusyTable__DOT____VdfgBinToOneHot_Tab_h7374a686_0_132
-            [0xbeU]) | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__fpBusyTable__DOT__ready_table_190));
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__fpBusyTable__DOT____VdfgRegularize_h7374a686_0_12796 
-        = (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__fpBusyTable__DOT___GEN_25344) 
-            & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__fpBusyTable__DOT____VdfgBinToOneHot_Tab_h7374a686_0_132
-            [0xbfU]) | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__fpBusyTable__DOT__ready_table_191));
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dispatch__DOT__req_mem_2 
-        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dispatch__DOT__active_2) 
-           & (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dispatch__DOT__is_mem_2));
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dispatch__DOT__is_fpu_2 
-        = ((~ (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dispatch__DOT__is_mem_2)) 
-           & ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dispatch_in_buffered_2_buf__DOT__slot0_data_decode_rd_is_fp) 
-                | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dispatch_in_buffered_2_buf__DOT__slot0_data_decode_rs1_is_fp)) 
-               | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dispatch_in_buffered_2_buf__DOT__slot0_data_decode_rs2_is_fp) 
-                  | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dispatch_in_buffered_2_buf__DOT__slot0_data_decode_rs3_is_fp))) 
-              & ((~ (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dispatch__DOT__is_vec_2)) 
-                 & (~ (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dispatch_in_buffered_2_buf__DOT__slot0_data_decode_is_csr)))));
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dispatch__DOT___total_allocated_3_T_1 
-        = (7U & ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dispatch__DOT___total_allocated_2_T_1) 
-                 + (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dispatch__DOT__active_2)));
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dispatch__DOT___bru_allocated_3_T_1 
-        = (7U & ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dispatch__DOT___bru_allocated_2_T_1) 
-                 + (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dispatch__DOT__req_bru_2)));
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dispatch__DOT__is_fpu_1 
-        = ((~ (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dispatch__DOT__is_mem_1)) 
-           & ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dispatch_in_buffered_1_buf__DOT__slot0_data_decode_rd_is_fp) 
-                | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dispatch_in_buffered_1_buf__DOT__slot0_data_decode_rs1_is_fp)) 
-               | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dispatch_in_buffered_1_buf__DOT__slot0_data_decode_rs2_is_fp) 
-                  | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dispatch_in_buffered_1_buf__DOT__slot0_data_decode_rs3_is_fp))) 
-              & ((~ (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dispatch__DOT__is_vec_1)) 
-                 & (~ (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dispatch_in_buffered_1_buf__DOT__slot0_data_decode_is_csr)))));
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dispatch__DOT___mem_allocated_2_T_1 
-        = (7U & (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dispatch__DOT__active) 
-                  & (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dispatch__DOT__is_mem)) 
-                 + ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dispatch__DOT__active_1) 
-                    & (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dispatch__DOT__is_mem_1))));
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dispatch__DOT__is_fpu 
-        = ((~ (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dispatch__DOT__is_mem)) 
-           & ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dispatch_in_buffered_0_buf__DOT__slot0_data_decode_rd_is_fp) 
-                | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dispatch_in_buffered_0_buf__DOT__slot0_data_decode_rs1_is_fp)) 
-               | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dispatch_in_buffered_0_buf__DOT__slot0_data_decode_rs2_is_fp) 
-                  | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dispatch_in_buffered_0_buf__DOT__slot0_data_decode_rs3_is_fp))) 
-              & ((~ (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dispatch__DOT__is_vec)) 
-                 & (~ (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__dispatch_in_buffered_0_buf__DOT__slot0_data_decode_is_csr)))));
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgRegularize_h9d2b670c_0_0 
-        = ((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN[
-            ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT__deqPtr) 
-             >> 5U)] >> (0x1fU & (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT__deqPtr))) 
-           & (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT___rob_io_commits_info_0_commit_w));
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5905 
-        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgRegularize_h9d2b670c_0_1292) 
-           & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgBinToOneHot_Tab_h9d2b670c_0_19
-           [0U]);
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5906 
-        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgRegularize_h9d2b670c_0_1292) 
-           & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgBinToOneHot_Tab_h9d2b670c_0_19
-           [1U]);
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5907 
-        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgRegularize_h9d2b670c_0_1292) 
-           & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgBinToOneHot_Tab_h9d2b670c_0_19
-           [2U]);
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5908 
-        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgRegularize_h9d2b670c_0_1292) 
-           & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgBinToOneHot_Tab_h9d2b670c_0_19
-           [3U]);
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5909 
-        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgRegularize_h9d2b670c_0_1292) 
-           & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgBinToOneHot_Tab_h9d2b670c_0_19
-           [4U]);
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5910 
-        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgRegularize_h9d2b670c_0_1292) 
-           & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgBinToOneHot_Tab_h9d2b670c_0_19
-           [5U]);
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5911 
-        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgRegularize_h9d2b670c_0_1292) 
-           & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgBinToOneHot_Tab_h9d2b670c_0_19
-           [6U]);
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5912 
-        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgRegularize_h9d2b670c_0_1292) 
-           & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgBinToOneHot_Tab_h9d2b670c_0_19
-           [7U]);
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5913 
-        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgRegularize_h9d2b670c_0_1292) 
-           & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgBinToOneHot_Tab_h9d2b670c_0_19
-           [8U]);
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5914 
-        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgRegularize_h9d2b670c_0_1292) 
-           & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgBinToOneHot_Tab_h9d2b670c_0_19
-           [9U]);
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5915 
-        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgRegularize_h9d2b670c_0_1292) 
-           & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgBinToOneHot_Tab_h9d2b670c_0_19
-           [0xaU]);
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5916 
-        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgRegularize_h9d2b670c_0_1292) 
-           & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgBinToOneHot_Tab_h9d2b670c_0_19
-           [0xbU]);
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5917 
-        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgRegularize_h9d2b670c_0_1292) 
-           & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgBinToOneHot_Tab_h9d2b670c_0_19
-           [0xcU]);
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5918 
-        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgRegularize_h9d2b670c_0_1292) 
-           & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgBinToOneHot_Tab_h9d2b670c_0_19
-           [0xdU]);
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5919 
-        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgRegularize_h9d2b670c_0_1292) 
-           & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgBinToOneHot_Tab_h9d2b670c_0_19
-           [0xeU]);
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5920 
-        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgRegularize_h9d2b670c_0_1292) 
-           & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgBinToOneHot_Tab_h9d2b670c_0_19
-           [0xfU]);
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5921 
-        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgRegularize_h9d2b670c_0_1292) 
-           & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgBinToOneHot_Tab_h9d2b670c_0_19
-           [0x10U]);
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5922 
-        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgRegularize_h9d2b670c_0_1292) 
-           & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgBinToOneHot_Tab_h9d2b670c_0_19
-           [0x11U]);
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5923 
-        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgRegularize_h9d2b670c_0_1292) 
-           & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgBinToOneHot_Tab_h9d2b670c_0_19
-           [0x12U]);
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5924 
-        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgRegularize_h9d2b670c_0_1292) 
-           & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgBinToOneHot_Tab_h9d2b670c_0_19
-           [0x13U]);
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5925 
-        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgRegularize_h9d2b670c_0_1292) 
-           & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgBinToOneHot_Tab_h9d2b670c_0_19
-           [0x14U]);
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5926 
-        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgRegularize_h9d2b670c_0_1292) 
-           & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgBinToOneHot_Tab_h9d2b670c_0_19
-           [0x15U]);
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5927 
-        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgRegularize_h9d2b670c_0_1292) 
-           & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgBinToOneHot_Tab_h9d2b670c_0_19
-           [0x16U]);
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5928 
-        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgRegularize_h9d2b670c_0_1292) 
-           & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgBinToOneHot_Tab_h9d2b670c_0_19
-           [0x17U]);
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5929 
-        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgRegularize_h9d2b670c_0_1292) 
-           & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgBinToOneHot_Tab_h9d2b670c_0_19
-           [0x18U]);
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5930 
-        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgRegularize_h9d2b670c_0_1292) 
-           & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgBinToOneHot_Tab_h9d2b670c_0_19
-           [0x19U]);
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5931 
-        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgRegularize_h9d2b670c_0_1292) 
-           & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgBinToOneHot_Tab_h9d2b670c_0_19
-           [0x1aU]);
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5932 
-        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgRegularize_h9d2b670c_0_1292) 
-           & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgBinToOneHot_Tab_h9d2b670c_0_19
-           [0x1bU]);
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5933 
-        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgRegularize_h9d2b670c_0_1292) 
-           & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgBinToOneHot_Tab_h9d2b670c_0_19
-           [0x1cU]);
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5934 
-        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgRegularize_h9d2b670c_0_1292) 
-           & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgBinToOneHot_Tab_h9d2b670c_0_19
-           [0x1dU]);
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5935 
-        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgRegularize_h9d2b670c_0_1292) 
-           & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgBinToOneHot_Tab_h9d2b670c_0_19
-           [0x1eU]);
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5936 
-        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgRegularize_h9d2b670c_0_1292) 
-           & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgBinToOneHot_Tab_h9d2b670c_0_19
-           [0x1fU]);
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5937 
-        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgRegularize_h9d2b670c_0_1292) 
-           & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgBinToOneHot_Tab_h9d2b670c_0_19
-           [0x20U]);
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5938 
-        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgRegularize_h9d2b670c_0_1292) 
-           & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgBinToOneHot_Tab_h9d2b670c_0_19
-           [0x21U]);
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5939 
-        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgRegularize_h9d2b670c_0_1292) 
-           & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgBinToOneHot_Tab_h9d2b670c_0_19
-           [0x22U]);
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5940 
-        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgRegularize_h9d2b670c_0_1292) 
-           & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgBinToOneHot_Tab_h9d2b670c_0_19
-           [0x23U]);
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5941 
-        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgRegularize_h9d2b670c_0_1292) 
-           & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgBinToOneHot_Tab_h9d2b670c_0_19
-           [0x24U]);
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5942 
-        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgRegularize_h9d2b670c_0_1292) 
-           & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgBinToOneHot_Tab_h9d2b670c_0_19
-           [0x25U]);
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5943 
-        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgRegularize_h9d2b670c_0_1292) 
-           & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgBinToOneHot_Tab_h9d2b670c_0_19
-           [0x26U]);
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5944 
-        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgRegularize_h9d2b670c_0_1292) 
-           & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgBinToOneHot_Tab_h9d2b670c_0_19
-           [0x27U]);
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5945 
-        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgRegularize_h9d2b670c_0_1292) 
-           & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgBinToOneHot_Tab_h9d2b670c_0_19
-           [0x28U]);
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5946 
-        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgRegularize_h9d2b670c_0_1292) 
-           & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgBinToOneHot_Tab_h9d2b670c_0_19
-           [0x29U]);
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5947 
-        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgRegularize_h9d2b670c_0_1292) 
-           & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgBinToOneHot_Tab_h9d2b670c_0_19
-           [0x2aU]);
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5948 
-        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgRegularize_h9d2b670c_0_1292) 
-           & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgBinToOneHot_Tab_h9d2b670c_0_19
-           [0x2bU]);
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5949 
-        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgRegularize_h9d2b670c_0_1292) 
-           & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgBinToOneHot_Tab_h9d2b670c_0_19
-           [0x2cU]);
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5950 
-        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgRegularize_h9d2b670c_0_1292) 
-           & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgBinToOneHot_Tab_h9d2b670c_0_19
-           [0x2dU]);
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5951 
-        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgRegularize_h9d2b670c_0_1292) 
-           & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgBinToOneHot_Tab_h9d2b670c_0_19
-           [0x2eU]);
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5952 
-        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgRegularize_h9d2b670c_0_1292) 
-           & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgBinToOneHot_Tab_h9d2b670c_0_19
-           [0x2fU]);
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5953 
-        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgRegularize_h9d2b670c_0_1292) 
-           & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgBinToOneHot_Tab_h9d2b670c_0_19
-           [0x30U]);
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5954 
-        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgRegularize_h9d2b670c_0_1292) 
-           & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgBinToOneHot_Tab_h9d2b670c_0_19
-           [0x31U]);
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5955 
-        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgRegularize_h9d2b670c_0_1292) 
-           & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgBinToOneHot_Tab_h9d2b670c_0_19
-           [0x32U]);
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5956 
-        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgRegularize_h9d2b670c_0_1292) 
-           & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgBinToOneHot_Tab_h9d2b670c_0_19
-           [0x33U]);
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5957 
-        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgRegularize_h9d2b670c_0_1292) 
-           & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgBinToOneHot_Tab_h9d2b670c_0_19
-           [0x34U]);
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5958 
-        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgRegularize_h9d2b670c_0_1292) 
-           & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgBinToOneHot_Tab_h9d2b670c_0_19
-           [0x35U]);
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5959 
-        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgRegularize_h9d2b670c_0_1292) 
-           & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgBinToOneHot_Tab_h9d2b670c_0_19
-           [0x36U]);
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5960 
-        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgRegularize_h9d2b670c_0_1292) 
-           & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgBinToOneHot_Tab_h9d2b670c_0_19
-           [0x37U]);
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5961 
-        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgRegularize_h9d2b670c_0_1292) 
-           & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgBinToOneHot_Tab_h9d2b670c_0_19
-           [0x38U]);
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5962 
-        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgRegularize_h9d2b670c_0_1292) 
-           & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgBinToOneHot_Tab_h9d2b670c_0_19
-           [0x39U]);
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5963 
-        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgRegularize_h9d2b670c_0_1292) 
-           & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgBinToOneHot_Tab_h9d2b670c_0_19
-           [0x3aU]);
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5964 
-        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgRegularize_h9d2b670c_0_1292) 
-           & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgBinToOneHot_Tab_h9d2b670c_0_19
-           [0x3bU]);
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5965 
-        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgRegularize_h9d2b670c_0_1292) 
-           & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgBinToOneHot_Tab_h9d2b670c_0_19
-           [0x3cU]);
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5966 
-        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgRegularize_h9d2b670c_0_1292) 
-           & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgBinToOneHot_Tab_h9d2b670c_0_19
-           [0x3dU]);
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5967 
-        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgRegularize_h9d2b670c_0_1292) 
-           & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgBinToOneHot_Tab_h9d2b670c_0_19
-           [0x3eU]);
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5968 
-        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgRegularize_h9d2b670c_0_1292) 
-           & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgBinToOneHot_Tab_h9d2b670c_0_19
-           [0x3fU]);
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5969 
-        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgRegularize_h9d2b670c_0_1292) 
-           & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgBinToOneHot_Tab_h9d2b670c_0_19
-           [0x40U]);
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5970 
-        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgRegularize_h9d2b670c_0_1292) 
-           & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgBinToOneHot_Tab_h9d2b670c_0_19
-           [0x41U]);
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5971 
-        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgRegularize_h9d2b670c_0_1292) 
-           & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgBinToOneHot_Tab_h9d2b670c_0_19
-           [0x42U]);
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5972 
-        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgRegularize_h9d2b670c_0_1292) 
-           & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgBinToOneHot_Tab_h9d2b670c_0_19
-           [0x43U]);
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5973 
-        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgRegularize_h9d2b670c_0_1292) 
-           & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgBinToOneHot_Tab_h9d2b670c_0_19
-           [0x44U]);
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5974 
-        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgRegularize_h9d2b670c_0_1292) 
-           & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgBinToOneHot_Tab_h9d2b670c_0_19
-           [0x45U]);
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5975 
-        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgRegularize_h9d2b670c_0_1292) 
-           & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgBinToOneHot_Tab_h9d2b670c_0_19
-           [0x46U]);
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5976 
-        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgRegularize_h9d2b670c_0_1292) 
-           & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgBinToOneHot_Tab_h9d2b670c_0_19
-           [0x47U]);
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5977 
-        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgRegularize_h9d2b670c_0_1292) 
-           & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgBinToOneHot_Tab_h9d2b670c_0_19
-           [0x48U]);
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5978 
-        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgRegularize_h9d2b670c_0_1292) 
-           & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgBinToOneHot_Tab_h9d2b670c_0_19
-           [0x49U]);
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5979 
-        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgRegularize_h9d2b670c_0_1292) 
-           & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgBinToOneHot_Tab_h9d2b670c_0_19
-           [0x4aU]);
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5980 
-        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgRegularize_h9d2b670c_0_1292) 
-           & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgBinToOneHot_Tab_h9d2b670c_0_19
-           [0x4bU]);
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5981 
-        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgRegularize_h9d2b670c_0_1292) 
-           & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgBinToOneHot_Tab_h9d2b670c_0_19
-           [0x4cU]);
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5982 
-        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgRegularize_h9d2b670c_0_1292) 
-           & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgBinToOneHot_Tab_h9d2b670c_0_19
-           [0x4dU]);
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5983 
-        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgRegularize_h9d2b670c_0_1292) 
-           & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgBinToOneHot_Tab_h9d2b670c_0_19
-           [0x4eU]);
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5984 
-        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgRegularize_h9d2b670c_0_1292) 
-           & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgBinToOneHot_Tab_h9d2b670c_0_19
-           [0x4fU]);
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5985 
-        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgRegularize_h9d2b670c_0_1292) 
-           & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgBinToOneHot_Tab_h9d2b670c_0_19
-           [0x50U]);
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5986 
-        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgRegularize_h9d2b670c_0_1292) 
-           & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgBinToOneHot_Tab_h9d2b670c_0_19
-           [0x51U]);
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5987 
-        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgRegularize_h9d2b670c_0_1292) 
-           & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgBinToOneHot_Tab_h9d2b670c_0_19
-           [0x52U]);
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5988 
-        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgRegularize_h9d2b670c_0_1292) 
-           & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgBinToOneHot_Tab_h9d2b670c_0_19
-           [0x53U]);
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5989 
-        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgRegularize_h9d2b670c_0_1292) 
-           & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgBinToOneHot_Tab_h9d2b670c_0_19
-           [0x54U]);
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5990 
-        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgRegularize_h9d2b670c_0_1292) 
-           & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgBinToOneHot_Tab_h9d2b670c_0_19
-           [0x55U]);
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5991 
-        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgRegularize_h9d2b670c_0_1292) 
-           & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgBinToOneHot_Tab_h9d2b670c_0_19
-           [0x56U]);
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5992 
-        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgRegularize_h9d2b670c_0_1292) 
-           & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgBinToOneHot_Tab_h9d2b670c_0_19
-           [0x57U]);
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5993 
-        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgRegularize_h9d2b670c_0_1292) 
-           & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgBinToOneHot_Tab_h9d2b670c_0_19
-           [0x58U]);
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5994 
-        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgRegularize_h9d2b670c_0_1292) 
-           & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgBinToOneHot_Tab_h9d2b670c_0_19
-           [0x59U]);
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5995 
-        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgRegularize_h9d2b670c_0_1292) 
-           & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgBinToOneHot_Tab_h9d2b670c_0_19
-           [0x5aU]);
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5996 
-        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgRegularize_h9d2b670c_0_1292) 
-           & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgBinToOneHot_Tab_h9d2b670c_0_19
-           [0x5bU]);
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5997 
-        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgRegularize_h9d2b670c_0_1292) 
-           & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgBinToOneHot_Tab_h9d2b670c_0_19
-           [0x5cU]);
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5998 
-        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgRegularize_h9d2b670c_0_1292) 
-           & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgBinToOneHot_Tab_h9d2b670c_0_19
-           [0x5dU]);
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5999 
-        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgRegularize_h9d2b670c_0_1292) 
-           & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgBinToOneHot_Tab_h9d2b670c_0_19
-           [0x5eU]);
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_6000 
-        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgRegularize_h9d2b670c_0_1292) 
-           & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgBinToOneHot_Tab_h9d2b670c_0_19
-           [0x5fU]);
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_6001 
-        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgRegularize_h9d2b670c_0_1292) 
-           & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgBinToOneHot_Tab_h9d2b670c_0_19
-           [0x60U]);
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_6002 
-        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgRegularize_h9d2b670c_0_1292) 
-           & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgBinToOneHot_Tab_h9d2b670c_0_19
-           [0x61U]);
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_6003 
-        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgRegularize_h9d2b670c_0_1292) 
-           & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgBinToOneHot_Tab_h9d2b670c_0_19
-           [0x62U]);
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_6004 
-        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgRegularize_h9d2b670c_0_1292) 
-           & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgBinToOneHot_Tab_h9d2b670c_0_19
-           [0x63U]);
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_6005 
-        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgRegularize_h9d2b670c_0_1292) 
-           & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgBinToOneHot_Tab_h9d2b670c_0_19
-           [0x64U]);
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_6006 
-        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgRegularize_h9d2b670c_0_1292) 
-           & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgBinToOneHot_Tab_h9d2b670c_0_19
-           [0x65U]);
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_6007 
-        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgRegularize_h9d2b670c_0_1292) 
-           & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgBinToOneHot_Tab_h9d2b670c_0_19
-           [0x66U]);
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_6008 
-        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgRegularize_h9d2b670c_0_1292) 
-           & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgBinToOneHot_Tab_h9d2b670c_0_19
-           [0x67U]);
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_6009 
-        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgRegularize_h9d2b670c_0_1292) 
-           & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgBinToOneHot_Tab_h9d2b670c_0_19
-           [0x68U]);
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_6010 
-        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgRegularize_h9d2b670c_0_1292) 
-           & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgBinToOneHot_Tab_h9d2b670c_0_19
-           [0x69U]);
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_6011 
-        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgRegularize_h9d2b670c_0_1292) 
-           & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgBinToOneHot_Tab_h9d2b670c_0_19
-           [0x6aU]);
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_6012 
-        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgRegularize_h9d2b670c_0_1292) 
-           & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgBinToOneHot_Tab_h9d2b670c_0_19
-           [0x6bU]);
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_6013 
-        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgRegularize_h9d2b670c_0_1292) 
-           & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgBinToOneHot_Tab_h9d2b670c_0_19
-           [0x6cU]);
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_6014 
-        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgRegularize_h9d2b670c_0_1292) 
-           & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgBinToOneHot_Tab_h9d2b670c_0_19
-           [0x6dU]);
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_6015 
-        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgRegularize_h9d2b670c_0_1292) 
-           & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgBinToOneHot_Tab_h9d2b670c_0_19
-           [0x6eU]);
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_6016 
-        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgRegularize_h9d2b670c_0_1292) 
-           & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgBinToOneHot_Tab_h9d2b670c_0_19
-           [0x6fU]);
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_6017 
-        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgRegularize_h9d2b670c_0_1292) 
-           & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgBinToOneHot_Tab_h9d2b670c_0_19
-           [0x70U]);
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_6018 
-        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgRegularize_h9d2b670c_0_1292) 
-           & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgBinToOneHot_Tab_h9d2b670c_0_19
-           [0x71U]);
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_6019 
-        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgRegularize_h9d2b670c_0_1292) 
-           & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgBinToOneHot_Tab_h9d2b670c_0_19
-           [0x72U]);
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_6020 
-        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgRegularize_h9d2b670c_0_1292) 
-           & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgBinToOneHot_Tab_h9d2b670c_0_19
-           [0x73U]);
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_6021 
-        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgRegularize_h9d2b670c_0_1292) 
-           & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgBinToOneHot_Tab_h9d2b670c_0_19
-           [0x74U]);
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_6022 
-        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgRegularize_h9d2b670c_0_1292) 
-           & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgBinToOneHot_Tab_h9d2b670c_0_19
-           [0x75U]);
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_6023 
-        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgRegularize_h9d2b670c_0_1292) 
-           & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgBinToOneHot_Tab_h9d2b670c_0_19
-           [0x76U]);
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_6024 
-        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgRegularize_h9d2b670c_0_1292) 
-           & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgBinToOneHot_Tab_h9d2b670c_0_19
-           [0x77U]);
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_6025 
-        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgRegularize_h9d2b670c_0_1292) 
-           & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgBinToOneHot_Tab_h9d2b670c_0_19
-           [0x78U]);
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_6026 
-        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgRegularize_h9d2b670c_0_1292) 
-           & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgBinToOneHot_Tab_h9d2b670c_0_19
-           [0x79U]);
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_6027 
-        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgRegularize_h9d2b670c_0_1292) 
-           & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgBinToOneHot_Tab_h9d2b670c_0_19
-           [0x7aU]);
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_6028 
-        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgRegularize_h9d2b670c_0_1292) 
-           & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgBinToOneHot_Tab_h9d2b670c_0_19
-           [0x7bU]);
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_6029 
-        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgRegularize_h9d2b670c_0_1292) 
-           & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgBinToOneHot_Tab_h9d2b670c_0_19
-           [0x7cU]);
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_6030 
-        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgRegularize_h9d2b670c_0_1292) 
-           & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgBinToOneHot_Tab_h9d2b670c_0_19
-           [0x7dU]);
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_6031 
-        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgRegularize_h9d2b670c_0_1292) 
-           & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgBinToOneHot_Tab_h9d2b670c_0_19
-           [0x7eU]);
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_6032 
-        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgRegularize_h9d2b670c_0_1292) 
-           & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgBinToOneHot_Tab_h9d2b670c_0_19
-           [0x7fU]);
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5522 
-        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5267) 
-           & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgBinToOneHot_Tab_h9d2b670c_0_17
-           [0U]);
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5523 
-        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5267) 
-           & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgBinToOneHot_Tab_h9d2b670c_0_17
-           [1U]);
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5524 
-        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5267) 
-           & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgBinToOneHot_Tab_h9d2b670c_0_17
-           [2U]);
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5525 
-        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5267) 
-           & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgBinToOneHot_Tab_h9d2b670c_0_17
-           [3U]);
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5526 
-        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5267) 
-           & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgBinToOneHot_Tab_h9d2b670c_0_17
-           [4U]);
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5527 
-        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5267) 
-           & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgBinToOneHot_Tab_h9d2b670c_0_17
-           [5U]);
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5528 
-        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5267) 
-           & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgBinToOneHot_Tab_h9d2b670c_0_17
-           [6U]);
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5529 
-        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5267) 
-           & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgBinToOneHot_Tab_h9d2b670c_0_17
-           [7U]);
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5530 
-        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5267) 
-           & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgBinToOneHot_Tab_h9d2b670c_0_17
-           [8U]);
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5531 
-        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5267) 
-           & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgBinToOneHot_Tab_h9d2b670c_0_17
-           [9U]);
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5532 
-        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5267) 
-           & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgBinToOneHot_Tab_h9d2b670c_0_17
-           [0xaU]);
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5533 
-        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5267) 
-           & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgBinToOneHot_Tab_h9d2b670c_0_17
-           [0xbU]);
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5534 
-        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5267) 
-           & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgBinToOneHot_Tab_h9d2b670c_0_17
-           [0xcU]);
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5535 
-        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5267) 
-           & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgBinToOneHot_Tab_h9d2b670c_0_17
-           [0xdU]);
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5536 
-        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5267) 
-           & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgBinToOneHot_Tab_h9d2b670c_0_17
-           [0xeU]);
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5537 
-        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5267) 
-           & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgBinToOneHot_Tab_h9d2b670c_0_17
-           [0xfU]);
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5538 
-        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5267) 
-           & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgBinToOneHot_Tab_h9d2b670c_0_17
-           [0x10U]);
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5539 
-        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5267) 
-           & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgBinToOneHot_Tab_h9d2b670c_0_17
-           [0x11U]);
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5540 
-        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5267) 
-           & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgBinToOneHot_Tab_h9d2b670c_0_17
-           [0x12U]);
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5541 
-        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5267) 
-           & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgBinToOneHot_Tab_h9d2b670c_0_17
-           [0x13U]);
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5542 
-        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5267) 
-           & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgBinToOneHot_Tab_h9d2b670c_0_17
-           [0x14U]);
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5543 
-        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5267) 
-           & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgBinToOneHot_Tab_h9d2b670c_0_17
-           [0x15U]);
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5544 
-        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5267) 
-           & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgBinToOneHot_Tab_h9d2b670c_0_17
-           [0x16U]);
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5545 
-        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5267) 
-           & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgBinToOneHot_Tab_h9d2b670c_0_17
-           [0x17U]);
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5546 
-        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5267) 
-           & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgBinToOneHot_Tab_h9d2b670c_0_17
-           [0x18U]);
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5547 
-        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5267) 
-           & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgBinToOneHot_Tab_h9d2b670c_0_17
-           [0x19U]);
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5548 
-        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5267) 
-           & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgBinToOneHot_Tab_h9d2b670c_0_17
-           [0x1aU]);
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5549 
-        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5267) 
-           & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgBinToOneHot_Tab_h9d2b670c_0_17
-           [0x1bU]);
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5550 
-        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5267) 
-           & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgBinToOneHot_Tab_h9d2b670c_0_17
-           [0x1cU]);
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5551 
-        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5267) 
-           & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgBinToOneHot_Tab_h9d2b670c_0_17
-           [0x1dU]);
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5552 
-        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5267) 
-           & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgBinToOneHot_Tab_h9d2b670c_0_17
-           [0x1eU]);
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5553 
-        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5267) 
-           & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgBinToOneHot_Tab_h9d2b670c_0_17
-           [0x1fU]);
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5554 
-        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5267) 
-           & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgBinToOneHot_Tab_h9d2b670c_0_17
-           [0x20U]);
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5555 
-        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5267) 
-           & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgBinToOneHot_Tab_h9d2b670c_0_17
-           [0x21U]);
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5556 
-        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5267) 
-           & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgBinToOneHot_Tab_h9d2b670c_0_17
-           [0x22U]);
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5557 
-        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5267) 
-           & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgBinToOneHot_Tab_h9d2b670c_0_17
-           [0x23U]);
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5558 
-        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5267) 
-           & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgBinToOneHot_Tab_h9d2b670c_0_17
-           [0x24U]);
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5559 
-        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5267) 
-           & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgBinToOneHot_Tab_h9d2b670c_0_17
-           [0x25U]);
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5560 
-        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5267) 
-           & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgBinToOneHot_Tab_h9d2b670c_0_17
-           [0x26U]);
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5561 
-        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5267) 
-           & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgBinToOneHot_Tab_h9d2b670c_0_17
-           [0x27U]);
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5562 
-        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5267) 
-           & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgBinToOneHot_Tab_h9d2b670c_0_17
-           [0x28U]);
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5563 
-        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5267) 
-           & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgBinToOneHot_Tab_h9d2b670c_0_17
-           [0x29U]);
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5564 
-        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5267) 
-           & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgBinToOneHot_Tab_h9d2b670c_0_17
-           [0x2aU]);
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5565 
-        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5267) 
-           & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgBinToOneHot_Tab_h9d2b670c_0_17
-           [0x2bU]);
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5566 
-        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5267) 
-           & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgBinToOneHot_Tab_h9d2b670c_0_17
-           [0x2cU]);
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5567 
-        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5267) 
-           & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgBinToOneHot_Tab_h9d2b670c_0_17
-           [0x2dU]);
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5568 
-        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5267) 
-           & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgBinToOneHot_Tab_h9d2b670c_0_17
-           [0x2eU]);
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5569 
-        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5267) 
-           & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgBinToOneHot_Tab_h9d2b670c_0_17
-           [0x2fU]);
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5570 
-        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5267) 
-           & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgBinToOneHot_Tab_h9d2b670c_0_17
-           [0x30U]);
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5571 
-        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5267) 
-           & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgBinToOneHot_Tab_h9d2b670c_0_17
-           [0x31U]);
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5572 
-        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5267) 
-           & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgBinToOneHot_Tab_h9d2b670c_0_17
-           [0x32U]);
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5573 
-        = ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT___GEN_5267) 
-           & vlSelfRef.ZaqalSoCTop__DOT__core__DOT__backend__DOT__rob__DOT____VdfgBinToOneHot_Tab_h9d2b670c_0_17
-           [0x33U]);
 }

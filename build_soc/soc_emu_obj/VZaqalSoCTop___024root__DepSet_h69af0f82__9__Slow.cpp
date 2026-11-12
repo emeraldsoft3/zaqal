@@ -208,73 +208,2313 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__10(VZaqalSoCTop___0
     VlWide<8>/*255:0*/ __Vtemp_1330;
     VlWide<8>/*255:0*/ __Vtemp_1337;
     VlWide<64>/*2047:0*/ __Vtemp_1338;
-    VlWide<8>/*255:0*/ __Vtemp_1344;
-    VlWide<8>/*255:0*/ __Vtemp_1350;
-    VlWide<8>/*255:0*/ __Vtemp_1356;
-    VlWide<3>/*95:0*/ __Vtemp_1357;
-    VlWide<8>/*255:0*/ __Vtemp_1363;
-    VlWide<8>/*255:0*/ __Vtemp_1370;
-    VlWide<8>/*255:0*/ __Vtemp_1377;
-    VlWide<8>/*255:0*/ __Vtemp_1384;
-    VlWide<8>/*255:0*/ __Vtemp_1391;
-    VlWide<8>/*255:0*/ __Vtemp_1398;
-    VlWide<8>/*255:0*/ __Vtemp_1405;
-    VlWide<8>/*255:0*/ __Vtemp_1412;
-    VlWide<8>/*255:0*/ __Vtemp_1419;
-    VlWide<8>/*255:0*/ __Vtemp_1426;
-    VlWide<8>/*255:0*/ __Vtemp_1433;
-    VlWide<8>/*255:0*/ __Vtemp_1440;
-    VlWide<8>/*255:0*/ __Vtemp_1447;
-    VlWide<8>/*255:0*/ __Vtemp_1454;
-    VlWide<8>/*255:0*/ __Vtemp_1461;
-    VlWide<8>/*255:0*/ __Vtemp_1468;
-    VlWide<8>/*255:0*/ __Vtemp_1475;
-    VlWide<8>/*255:0*/ __Vtemp_1482;
-    VlWide<8>/*255:0*/ __Vtemp_1489;
-    VlWide<8>/*255:0*/ __Vtemp_1496;
-    VlWide<8>/*255:0*/ __Vtemp_1503;
-    VlWide<8>/*255:0*/ __Vtemp_1510;
-    VlWide<8>/*255:0*/ __Vtemp_1517;
-    VlWide<8>/*255:0*/ __Vtemp_1524;
-    VlWide<8>/*255:0*/ __Vtemp_1531;
-    VlWide<8>/*255:0*/ __Vtemp_1538;
-    VlWide<8>/*255:0*/ __Vtemp_1545;
-    VlWide<8>/*255:0*/ __Vtemp_1552;
-    VlWide<8>/*255:0*/ __Vtemp_1559;
-    VlWide<8>/*255:0*/ __Vtemp_1566;
-    VlWide<8>/*255:0*/ __Vtemp_1573;
-    VlWide<8>/*255:0*/ __Vtemp_1580;
-    VlWide<8>/*255:0*/ __Vtemp_1587;
-    VlWide<8>/*255:0*/ __Vtemp_1594;
-    VlWide<8>/*255:0*/ __Vtemp_1601;
-    VlWide<8>/*255:0*/ __Vtemp_1608;
-    VlWide<8>/*255:0*/ __Vtemp_1615;
-    VlWide<8>/*255:0*/ __Vtemp_1622;
-    VlWide<8>/*255:0*/ __Vtemp_1629;
-    VlWide<8>/*255:0*/ __Vtemp_1636;
-    VlWide<8>/*255:0*/ __Vtemp_1643;
-    VlWide<8>/*255:0*/ __Vtemp_1650;
-    VlWide<8>/*255:0*/ __Vtemp_1657;
-    VlWide<8>/*255:0*/ __Vtemp_1664;
-    VlWide<8>/*255:0*/ __Vtemp_1671;
-    VlWide<8>/*255:0*/ __Vtemp_1678;
-    VlWide<8>/*255:0*/ __Vtemp_1685;
-    VlWide<8>/*255:0*/ __Vtemp_1692;
-    VlWide<8>/*255:0*/ __Vtemp_1699;
-    VlWide<8>/*255:0*/ __Vtemp_1706;
-    VlWide<8>/*255:0*/ __Vtemp_1713;
-    VlWide<8>/*255:0*/ __Vtemp_1720;
-    VlWide<8>/*255:0*/ __Vtemp_1727;
-    VlWide<8>/*255:0*/ __Vtemp_1734;
-    VlWide<8>/*255:0*/ __Vtemp_1741;
-    VlWide<8>/*255:0*/ __Vtemp_1748;
-    VlWide<8>/*255:0*/ __Vtemp_1755;
-    VlWide<8>/*255:0*/ __Vtemp_1762;
-    VlWide<8>/*255:0*/ __Vtemp_1769;
-    VlWide<8>/*255:0*/ __Vtemp_1776;
-    VlWide<8>/*255:0*/ __Vtemp_1783;
-    VlWide<64>/*2047:0*/ __Vtemp_1784;
     // Body
+    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__io_read_resp_data_pre_decoded_4_is_cfi 
+        = (1U & (IData)(((((QData)((IData)(((((((((
+                                                   ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_63_pre_decoded_4_is_cfi) 
+                                                      << 7U) 
+                                                     | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_63_pre_decoded_4_is_cfi) 
+                                                        << 6U)) 
+                                                    | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_63_pre_decoded_4_is_cfi) 
+                                                        << 5U) 
+                                                       | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_63_pre_decoded_4_is_cfi) 
+                                                          << 4U))) 
+                                                   | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_63_pre_decoded_4_is_cfi) 
+                                                        << 3U) 
+                                                       | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_63_pre_decoded_4_is_cfi) 
+                                                          << 2U)) 
+                                                      | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_63_pre_decoded_4_is_cfi) 
+                                                          << 1U) 
+                                                         | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_63_pre_decoded_4_is_cfi)))) 
+                                                  >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)) 
+                                                 << 0x1fU) 
+                                                | (0x40000000U 
+                                                   & (((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_62_pre_decoded_4_is_cfi) 
+                                                           << 7U) 
+                                                          | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_62_pre_decoded_4_is_cfi) 
+                                                             << 6U)) 
+                                                         | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_62_pre_decoded_4_is_cfi) 
+                                                             << 5U) 
+                                                            | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_62_pre_decoded_4_is_cfi) 
+                                                               << 4U))) 
+                                                        | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_62_pre_decoded_4_is_cfi) 
+                                                             << 3U) 
+                                                            | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_62_pre_decoded_4_is_cfi) 
+                                                               << 2U)) 
+                                                           | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_62_pre_decoded_4_is_cfi) 
+                                                               << 1U) 
+                                                              | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_62_pre_decoded_4_is_cfi)))) 
+                                                       >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)) 
+                                                      << 0x1eU))) 
+                                               | ((0x20000000U 
+                                                   & (((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_61_pre_decoded_4_is_cfi) 
+                                                           << 7U) 
+                                                          | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_61_pre_decoded_4_is_cfi) 
+                                                             << 6U)) 
+                                                         | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_61_pre_decoded_4_is_cfi) 
+                                                             << 5U) 
+                                                            | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_61_pre_decoded_4_is_cfi) 
+                                                               << 4U))) 
+                                                        | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_61_pre_decoded_4_is_cfi) 
+                                                             << 3U) 
+                                                            | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_61_pre_decoded_4_is_cfi) 
+                                                               << 2U)) 
+                                                           | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_61_pre_decoded_4_is_cfi) 
+                                                               << 1U) 
+                                                              | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_61_pre_decoded_4_is_cfi)))) 
+                                                       >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)) 
+                                                      << 0x1dU)) 
+                                                  | (0x10000000U 
+                                                     & (((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_60_pre_decoded_4_is_cfi) 
+                                                             << 7U) 
+                                                            | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_60_pre_decoded_4_is_cfi) 
+                                                               << 6U)) 
+                                                           | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_60_pre_decoded_4_is_cfi) 
+                                                               << 5U) 
+                                                              | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_60_pre_decoded_4_is_cfi) 
+                                                                 << 4U))) 
+                                                          | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_60_pre_decoded_4_is_cfi) 
+                                                               << 3U) 
+                                                              | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_60_pre_decoded_4_is_cfi) 
+                                                                 << 2U)) 
+                                                             | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_60_pre_decoded_4_is_cfi) 
+                                                                 << 1U) 
+                                                                | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_60_pre_decoded_4_is_cfi)))) 
+                                                         >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)) 
+                                                        << 0x1cU)))) 
+                                              | (((0x8000000U 
+                                                   & (((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_59_pre_decoded_4_is_cfi) 
+                                                           << 7U) 
+                                                          | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_59_pre_decoded_4_is_cfi) 
+                                                             << 6U)) 
+                                                         | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_59_pre_decoded_4_is_cfi) 
+                                                             << 5U) 
+                                                            | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_59_pre_decoded_4_is_cfi) 
+                                                               << 4U))) 
+                                                        | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_59_pre_decoded_4_is_cfi) 
+                                                             << 3U) 
+                                                            | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_59_pre_decoded_4_is_cfi) 
+                                                               << 2U)) 
+                                                           | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_59_pre_decoded_4_is_cfi) 
+                                                               << 1U) 
+                                                              | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_59_pre_decoded_4_is_cfi)))) 
+                                                       >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)) 
+                                                      << 0x1bU)) 
+                                                  | (0x4000000U 
+                                                     & (((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_58_pre_decoded_4_is_cfi) 
+                                                             << 7U) 
+                                                            | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_58_pre_decoded_4_is_cfi) 
+                                                               << 6U)) 
+                                                           | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_58_pre_decoded_4_is_cfi) 
+                                                               << 5U) 
+                                                              | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_58_pre_decoded_4_is_cfi) 
+                                                                 << 4U))) 
+                                                          | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_58_pre_decoded_4_is_cfi) 
+                                                               << 3U) 
+                                                              | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_58_pre_decoded_4_is_cfi) 
+                                                                 << 2U)) 
+                                                             | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_58_pre_decoded_4_is_cfi) 
+                                                                 << 1U) 
+                                                                | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_58_pre_decoded_4_is_cfi)))) 
+                                                         >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)) 
+                                                        << 0x1aU))) 
+                                                 | ((0x2000000U 
+                                                     & (((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_57_pre_decoded_4_is_cfi) 
+                                                             << 7U) 
+                                                            | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_57_pre_decoded_4_is_cfi) 
+                                                               << 6U)) 
+                                                           | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_57_pre_decoded_4_is_cfi) 
+                                                               << 5U) 
+                                                              | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_57_pre_decoded_4_is_cfi) 
+                                                                 << 4U))) 
+                                                          | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_57_pre_decoded_4_is_cfi) 
+                                                               << 3U) 
+                                                              | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_57_pre_decoded_4_is_cfi) 
+                                                                 << 2U)) 
+                                                             | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_57_pre_decoded_4_is_cfi) 
+                                                                 << 1U) 
+                                                                | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_57_pre_decoded_4_is_cfi)))) 
+                                                         >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)) 
+                                                        << 0x19U)) 
+                                                    | (0x1000000U 
+                                                       & (((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_56_pre_decoded_4_is_cfi) 
+                                                               << 7U) 
+                                                              | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_56_pre_decoded_4_is_cfi) 
+                                                                 << 6U)) 
+                                                             | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_56_pre_decoded_4_is_cfi) 
+                                                                 << 5U) 
+                                                                | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_56_pre_decoded_4_is_cfi) 
+                                                                   << 4U))) 
+                                                            | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_56_pre_decoded_4_is_cfi) 
+                                                                 << 3U) 
+                                                                | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_56_pre_decoded_4_is_cfi) 
+                                                                   << 2U)) 
+                                                               | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_56_pre_decoded_4_is_cfi) 
+                                                                   << 1U) 
+                                                                  | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_56_pre_decoded_4_is_cfi)))) 
+                                                           >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)) 
+                                                          << 0x18U))))) 
+                                             | ((((0x800000U 
+                                                   & (((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_55_pre_decoded_4_is_cfi) 
+                                                           << 7U) 
+                                                          | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_55_pre_decoded_4_is_cfi) 
+                                                             << 6U)) 
+                                                         | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_55_pre_decoded_4_is_cfi) 
+                                                             << 5U) 
+                                                            | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_55_pre_decoded_4_is_cfi) 
+                                                               << 4U))) 
+                                                        | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_55_pre_decoded_4_is_cfi) 
+                                                             << 3U) 
+                                                            | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_55_pre_decoded_4_is_cfi) 
+                                                               << 2U)) 
+                                                           | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_55_pre_decoded_4_is_cfi) 
+                                                               << 1U) 
+                                                              | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_55_pre_decoded_4_is_cfi)))) 
+                                                       >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)) 
+                                                      << 0x17U)) 
+                                                  | (0x400000U 
+                                                     & (((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_54_pre_decoded_4_is_cfi) 
+                                                             << 7U) 
+                                                            | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_54_pre_decoded_4_is_cfi) 
+                                                               << 6U)) 
+                                                           | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_54_pre_decoded_4_is_cfi) 
+                                                               << 5U) 
+                                                              | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_54_pre_decoded_4_is_cfi) 
+                                                                 << 4U))) 
+                                                          | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_54_pre_decoded_4_is_cfi) 
+                                                               << 3U) 
+                                                              | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_54_pre_decoded_4_is_cfi) 
+                                                                 << 2U)) 
+                                                             | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_54_pre_decoded_4_is_cfi) 
+                                                                 << 1U) 
+                                                                | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_54_pre_decoded_4_is_cfi)))) 
+                                                         >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)) 
+                                                        << 0x16U))) 
+                                                 | ((0x200000U 
+                                                     & (((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_53_pre_decoded_4_is_cfi) 
+                                                             << 7U) 
+                                                            | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_53_pre_decoded_4_is_cfi) 
+                                                               << 6U)) 
+                                                           | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_53_pre_decoded_4_is_cfi) 
+                                                               << 5U) 
+                                                              | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_53_pre_decoded_4_is_cfi) 
+                                                                 << 4U))) 
+                                                          | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_53_pre_decoded_4_is_cfi) 
+                                                               << 3U) 
+                                                              | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_53_pre_decoded_4_is_cfi) 
+                                                                 << 2U)) 
+                                                             | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_53_pre_decoded_4_is_cfi) 
+                                                                 << 1U) 
+                                                                | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_53_pre_decoded_4_is_cfi)))) 
+                                                         >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)) 
+                                                        << 0x15U)) 
+                                                    | (0x100000U 
+                                                       & (((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_52_pre_decoded_4_is_cfi) 
+                                                               << 7U) 
+                                                              | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_52_pre_decoded_4_is_cfi) 
+                                                                 << 6U)) 
+                                                             | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_52_pre_decoded_4_is_cfi) 
+                                                                 << 5U) 
+                                                                | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_52_pre_decoded_4_is_cfi) 
+                                                                   << 4U))) 
+                                                            | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_52_pre_decoded_4_is_cfi) 
+                                                                 << 3U) 
+                                                                | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_52_pre_decoded_4_is_cfi) 
+                                                                   << 2U)) 
+                                                               | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_52_pre_decoded_4_is_cfi) 
+                                                                   << 1U) 
+                                                                  | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_52_pre_decoded_4_is_cfi)))) 
+                                                           >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)) 
+                                                          << 0x14U)))) 
+                                                | (((0x80000U 
+                                                     & (((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_51_pre_decoded_4_is_cfi) 
+                                                             << 7U) 
+                                                            | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_51_pre_decoded_4_is_cfi) 
+                                                               << 6U)) 
+                                                           | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_51_pre_decoded_4_is_cfi) 
+                                                               << 5U) 
+                                                              | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_51_pre_decoded_4_is_cfi) 
+                                                                 << 4U))) 
+                                                          | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_51_pre_decoded_4_is_cfi) 
+                                                               << 3U) 
+                                                              | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_51_pre_decoded_4_is_cfi) 
+                                                                 << 2U)) 
+                                                             | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_51_pre_decoded_4_is_cfi) 
+                                                                 << 1U) 
+                                                                | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_51_pre_decoded_4_is_cfi)))) 
+                                                         >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)) 
+                                                        << 0x13U)) 
+                                                    | (0x40000U 
+                                                       & (((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_50_pre_decoded_4_is_cfi) 
+                                                               << 7U) 
+                                                              | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_50_pre_decoded_4_is_cfi) 
+                                                                 << 6U)) 
+                                                             | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_50_pre_decoded_4_is_cfi) 
+                                                                 << 5U) 
+                                                                | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_50_pre_decoded_4_is_cfi) 
+                                                                   << 4U))) 
+                                                            | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_50_pre_decoded_4_is_cfi) 
+                                                                 << 3U) 
+                                                                | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_50_pre_decoded_4_is_cfi) 
+                                                                   << 2U)) 
+                                                               | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_50_pre_decoded_4_is_cfi) 
+                                                                   << 1U) 
+                                                                  | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_50_pre_decoded_4_is_cfi)))) 
+                                                           >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)) 
+                                                          << 0x12U))) 
+                                                   | ((0x20000U 
+                                                       & (((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_49_pre_decoded_4_is_cfi) 
+                                                               << 7U) 
+                                                              | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_49_pre_decoded_4_is_cfi) 
+                                                                 << 6U)) 
+                                                             | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_49_pre_decoded_4_is_cfi) 
+                                                                 << 5U) 
+                                                                | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_49_pre_decoded_4_is_cfi) 
+                                                                   << 4U))) 
+                                                            | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_49_pre_decoded_4_is_cfi) 
+                                                                 << 3U) 
+                                                                | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_49_pre_decoded_4_is_cfi) 
+                                                                   << 2U)) 
+                                                               | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_49_pre_decoded_4_is_cfi) 
+                                                                   << 1U) 
+                                                                  | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_49_pre_decoded_4_is_cfi)))) 
+                                                           >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)) 
+                                                          << 0x11U)) 
+                                                      | (0x10000U 
+                                                         & (((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_48_pre_decoded_4_is_cfi) 
+                                                                 << 7U) 
+                                                                | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_48_pre_decoded_4_is_cfi) 
+                                                                   << 6U)) 
+                                                               | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_48_pre_decoded_4_is_cfi) 
+                                                                   << 5U) 
+                                                                  | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_48_pre_decoded_4_is_cfi) 
+                                                                     << 4U))) 
+                                                              | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_48_pre_decoded_4_is_cfi) 
+                                                                   << 3U) 
+                                                                  | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_48_pre_decoded_4_is_cfi) 
+                                                                     << 2U)) 
+                                                                 | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_48_pre_decoded_4_is_cfi) 
+                                                                     << 1U) 
+                                                                    | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_48_pre_decoded_4_is_cfi)))) 
+                                                             >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)) 
+                                                            << 0x10U)))))) 
+                                            | (((((0x8000U 
+                                                   & (((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_47_pre_decoded_4_is_cfi) 
+                                                           << 7U) 
+                                                          | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_47_pre_decoded_4_is_cfi) 
+                                                             << 6U)) 
+                                                         | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_47_pre_decoded_4_is_cfi) 
+                                                             << 5U) 
+                                                            | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_47_pre_decoded_4_is_cfi) 
+                                                               << 4U))) 
+                                                        | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_47_pre_decoded_4_is_cfi) 
+                                                             << 3U) 
+                                                            | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_47_pre_decoded_4_is_cfi) 
+                                                               << 2U)) 
+                                                           | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_47_pre_decoded_4_is_cfi) 
+                                                               << 1U) 
+                                                              | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_47_pre_decoded_4_is_cfi)))) 
+                                                       >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)) 
+                                                      << 0xfU)) 
+                                                  | (0x4000U 
+                                                     & (((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_46_pre_decoded_4_is_cfi) 
+                                                             << 7U) 
+                                                            | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_46_pre_decoded_4_is_cfi) 
+                                                               << 6U)) 
+                                                           | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_46_pre_decoded_4_is_cfi) 
+                                                               << 5U) 
+                                                              | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_46_pre_decoded_4_is_cfi) 
+                                                                 << 4U))) 
+                                                          | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_46_pre_decoded_4_is_cfi) 
+                                                               << 3U) 
+                                                              | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_46_pre_decoded_4_is_cfi) 
+                                                                 << 2U)) 
+                                                             | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_46_pre_decoded_4_is_cfi) 
+                                                                 << 1U) 
+                                                                | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_46_pre_decoded_4_is_cfi)))) 
+                                                         >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)) 
+                                                        << 0xeU))) 
+                                                 | ((0x2000U 
+                                                     & (((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_45_pre_decoded_4_is_cfi) 
+                                                             << 7U) 
+                                                            | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_45_pre_decoded_4_is_cfi) 
+                                                               << 6U)) 
+                                                           | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_45_pre_decoded_4_is_cfi) 
+                                                               << 5U) 
+                                                              | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_45_pre_decoded_4_is_cfi) 
+                                                                 << 4U))) 
+                                                          | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_45_pre_decoded_4_is_cfi) 
+                                                               << 3U) 
+                                                              | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_45_pre_decoded_4_is_cfi) 
+                                                                 << 2U)) 
+                                                             | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_45_pre_decoded_4_is_cfi) 
+                                                                 << 1U) 
+                                                                | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_45_pre_decoded_4_is_cfi)))) 
+                                                         >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)) 
+                                                        << 0xdU)) 
+                                                    | (0x1000U 
+                                                       & (((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_44_pre_decoded_4_is_cfi) 
+                                                               << 7U) 
+                                                              | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_44_pre_decoded_4_is_cfi) 
+                                                                 << 6U)) 
+                                                             | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_44_pre_decoded_4_is_cfi) 
+                                                                 << 5U) 
+                                                                | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_44_pre_decoded_4_is_cfi) 
+                                                                   << 4U))) 
+                                                            | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_44_pre_decoded_4_is_cfi) 
+                                                                 << 3U) 
+                                                                | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_44_pre_decoded_4_is_cfi) 
+                                                                   << 2U)) 
+                                                               | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_44_pre_decoded_4_is_cfi) 
+                                                                   << 1U) 
+                                                                  | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_44_pre_decoded_4_is_cfi)))) 
+                                                           >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)) 
+                                                          << 0xcU)))) 
+                                                | (((0x800U 
+                                                     & (((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_43_pre_decoded_4_is_cfi) 
+                                                             << 7U) 
+                                                            | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_43_pre_decoded_4_is_cfi) 
+                                                               << 6U)) 
+                                                           | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_43_pre_decoded_4_is_cfi) 
+                                                               << 5U) 
+                                                              | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_43_pre_decoded_4_is_cfi) 
+                                                                 << 4U))) 
+                                                          | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_43_pre_decoded_4_is_cfi) 
+                                                               << 3U) 
+                                                              | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_43_pre_decoded_4_is_cfi) 
+                                                                 << 2U)) 
+                                                             | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_43_pre_decoded_4_is_cfi) 
+                                                                 << 1U) 
+                                                                | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_43_pre_decoded_4_is_cfi)))) 
+                                                         >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)) 
+                                                        << 0xbU)) 
+                                                    | (0x400U 
+                                                       & (((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_42_pre_decoded_4_is_cfi) 
+                                                               << 7U) 
+                                                              | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_42_pre_decoded_4_is_cfi) 
+                                                                 << 6U)) 
+                                                             | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_42_pre_decoded_4_is_cfi) 
+                                                                 << 5U) 
+                                                                | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_42_pre_decoded_4_is_cfi) 
+                                                                   << 4U))) 
+                                                            | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_42_pre_decoded_4_is_cfi) 
+                                                                 << 3U) 
+                                                                | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_42_pre_decoded_4_is_cfi) 
+                                                                   << 2U)) 
+                                                               | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_42_pre_decoded_4_is_cfi) 
+                                                                   << 1U) 
+                                                                  | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_42_pre_decoded_4_is_cfi)))) 
+                                                           >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)) 
+                                                          << 0xaU))) 
+                                                   | ((0x200U 
+                                                       & (((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_41_pre_decoded_4_is_cfi) 
+                                                               << 7U) 
+                                                              | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_41_pre_decoded_4_is_cfi) 
+                                                                 << 6U)) 
+                                                             | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_41_pre_decoded_4_is_cfi) 
+                                                                 << 5U) 
+                                                                | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_41_pre_decoded_4_is_cfi) 
+                                                                   << 4U))) 
+                                                            | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_41_pre_decoded_4_is_cfi) 
+                                                                 << 3U) 
+                                                                | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_41_pre_decoded_4_is_cfi) 
+                                                                   << 2U)) 
+                                                               | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_41_pre_decoded_4_is_cfi) 
+                                                                   << 1U) 
+                                                                  | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_41_pre_decoded_4_is_cfi)))) 
+                                                           >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)) 
+                                                          << 9U)) 
+                                                      | (0x100U 
+                                                         & (((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_40_pre_decoded_4_is_cfi) 
+                                                                 << 7U) 
+                                                                | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_40_pre_decoded_4_is_cfi) 
+                                                                   << 6U)) 
+                                                               | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_40_pre_decoded_4_is_cfi) 
+                                                                   << 5U) 
+                                                                  | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_40_pre_decoded_4_is_cfi) 
+                                                                     << 4U))) 
+                                                              | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_40_pre_decoded_4_is_cfi) 
+                                                                   << 3U) 
+                                                                  | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_40_pre_decoded_4_is_cfi) 
+                                                                     << 2U)) 
+                                                                 | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_40_pre_decoded_4_is_cfi) 
+                                                                     << 1U) 
+                                                                    | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_40_pre_decoded_4_is_cfi)))) 
+                                                             >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)) 
+                                                            << 8U))))) 
+                                               | ((((0x80U 
+                                                     & (((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_39_pre_decoded_4_is_cfi) 
+                                                             << 7U) 
+                                                            | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_39_pre_decoded_4_is_cfi) 
+                                                               << 6U)) 
+                                                           | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_39_pre_decoded_4_is_cfi) 
+                                                               << 5U) 
+                                                              | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_39_pre_decoded_4_is_cfi) 
+                                                                 << 4U))) 
+                                                          | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_39_pre_decoded_4_is_cfi) 
+                                                               << 3U) 
+                                                              | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_39_pre_decoded_4_is_cfi) 
+                                                                 << 2U)) 
+                                                             | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_39_pre_decoded_4_is_cfi) 
+                                                                 << 1U) 
+                                                                | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_39_pre_decoded_4_is_cfi)))) 
+                                                         >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)) 
+                                                        << 7U)) 
+                                                    | (0x40U 
+                                                       & (((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_38_pre_decoded_4_is_cfi) 
+                                                               << 7U) 
+                                                              | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_38_pre_decoded_4_is_cfi) 
+                                                                 << 6U)) 
+                                                             | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_38_pre_decoded_4_is_cfi) 
+                                                                 << 5U) 
+                                                                | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_38_pre_decoded_4_is_cfi) 
+                                                                   << 4U))) 
+                                                            | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_38_pre_decoded_4_is_cfi) 
+                                                                 << 3U) 
+                                                                | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_38_pre_decoded_4_is_cfi) 
+                                                                   << 2U)) 
+                                                               | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_38_pre_decoded_4_is_cfi) 
+                                                                   << 1U) 
+                                                                  | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_38_pre_decoded_4_is_cfi)))) 
+                                                           >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)) 
+                                                          << 6U))) 
+                                                   | ((0x20U 
+                                                       & (((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_37_pre_decoded_4_is_cfi) 
+                                                               << 7U) 
+                                                              | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_37_pre_decoded_4_is_cfi) 
+                                                                 << 6U)) 
+                                                             | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_37_pre_decoded_4_is_cfi) 
+                                                                 << 5U) 
+                                                                | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_37_pre_decoded_4_is_cfi) 
+                                                                   << 4U))) 
+                                                            | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_37_pre_decoded_4_is_cfi) 
+                                                                 << 3U) 
+                                                                | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_37_pre_decoded_4_is_cfi) 
+                                                                   << 2U)) 
+                                                               | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_37_pre_decoded_4_is_cfi) 
+                                                                   << 1U) 
+                                                                  | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_37_pre_decoded_4_is_cfi)))) 
+                                                           >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)) 
+                                                          << 5U)) 
+                                                      | (0x10U 
+                                                         & (((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_36_pre_decoded_4_is_cfi) 
+                                                                 << 7U) 
+                                                                | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_36_pre_decoded_4_is_cfi) 
+                                                                   << 6U)) 
+                                                               | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_36_pre_decoded_4_is_cfi) 
+                                                                   << 5U) 
+                                                                  | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_36_pre_decoded_4_is_cfi) 
+                                                                     << 4U))) 
+                                                              | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_36_pre_decoded_4_is_cfi) 
+                                                                   << 3U) 
+                                                                  | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_36_pre_decoded_4_is_cfi) 
+                                                                     << 2U)) 
+                                                                 | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_36_pre_decoded_4_is_cfi) 
+                                                                     << 1U) 
+                                                                    | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_36_pre_decoded_4_is_cfi)))) 
+                                                             >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)) 
+                                                            << 4U)))) 
+                                                  | (((8U 
+                                                       & (((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_35_pre_decoded_4_is_cfi) 
+                                                               << 7U) 
+                                                              | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_35_pre_decoded_4_is_cfi) 
+                                                                 << 6U)) 
+                                                             | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_35_pre_decoded_4_is_cfi) 
+                                                                 << 5U) 
+                                                                | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_35_pre_decoded_4_is_cfi) 
+                                                                   << 4U))) 
+                                                            | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_35_pre_decoded_4_is_cfi) 
+                                                                 << 3U) 
+                                                                | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_35_pre_decoded_4_is_cfi) 
+                                                                   << 2U)) 
+                                                               | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_35_pre_decoded_4_is_cfi) 
+                                                                   << 1U) 
+                                                                  | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_35_pre_decoded_4_is_cfi)))) 
+                                                           >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)) 
+                                                          << 3U)) 
+                                                      | (4U 
+                                                         & (((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_34_pre_decoded_4_is_cfi) 
+                                                                 << 7U) 
+                                                                | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_34_pre_decoded_4_is_cfi) 
+                                                                   << 6U)) 
+                                                               | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_34_pre_decoded_4_is_cfi) 
+                                                                   << 5U) 
+                                                                  | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_34_pre_decoded_4_is_cfi) 
+                                                                     << 4U))) 
+                                                              | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_34_pre_decoded_4_is_cfi) 
+                                                                   << 3U) 
+                                                                  | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_34_pre_decoded_4_is_cfi) 
+                                                                     << 2U)) 
+                                                                 | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_34_pre_decoded_4_is_cfi) 
+                                                                     << 1U) 
+                                                                    | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_34_pre_decoded_4_is_cfi)))) 
+                                                             >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)) 
+                                                            << 2U))) 
+                                                     | ((2U 
+                                                         & (((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_33_pre_decoded_4_is_cfi) 
+                                                                 << 7U) 
+                                                                | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_33_pre_decoded_4_is_cfi) 
+                                                                   << 6U)) 
+                                                               | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_33_pre_decoded_4_is_cfi) 
+                                                                   << 5U) 
+                                                                  | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_33_pre_decoded_4_is_cfi) 
+                                                                     << 4U))) 
+                                                              | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_33_pre_decoded_4_is_cfi) 
+                                                                   << 3U) 
+                                                                  | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_33_pre_decoded_4_is_cfi) 
+                                                                     << 2U)) 
+                                                                 | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_33_pre_decoded_4_is_cfi) 
+                                                                     << 1U) 
+                                                                    | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_33_pre_decoded_4_is_cfi)))) 
+                                                             >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)) 
+                                                            << 1U)) 
+                                                        | (1U 
+                                                           & ((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_32_pre_decoded_4_is_cfi) 
+                                                                  << 7U) 
+                                                                 | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_32_pre_decoded_4_is_cfi) 
+                                                                    << 6U)) 
+                                                                | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_32_pre_decoded_4_is_cfi) 
+                                                                    << 5U) 
+                                                                   | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_32_pre_decoded_4_is_cfi) 
+                                                                      << 4U))) 
+                                                               | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_32_pre_decoded_4_is_cfi) 
+                                                                    << 3U) 
+                                                                   | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_32_pre_decoded_4_is_cfi) 
+                                                                      << 2U)) 
+                                                                  | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_32_pre_decoded_4_is_cfi) 
+                                                                      << 1U) 
+                                                                     | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_32_pre_decoded_4_is_cfi)))) 
+                                                              >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)))))))))) 
+                           << 0x20U) | (QData)((IData)(
+                                                       ((((((((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_31_pre_decoded_4_is_cfi) 
+                                                                  << 7U) 
+                                                                 | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_31_pre_decoded_4_is_cfi) 
+                                                                    << 6U)) 
+                                                                | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_31_pre_decoded_4_is_cfi) 
+                                                                    << 5U) 
+                                                                   | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_31_pre_decoded_4_is_cfi) 
+                                                                      << 4U))) 
+                                                               | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_31_pre_decoded_4_is_cfi) 
+                                                                    << 3U) 
+                                                                   | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_31_pre_decoded_4_is_cfi) 
+                                                                      << 2U)) 
+                                                                  | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_31_pre_decoded_4_is_cfi) 
+                                                                      << 1U) 
+                                                                     | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_31_pre_decoded_4_is_cfi)))) 
+                                                              >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)) 
+                                                             << 0x1fU) 
+                                                            | (0x40000000U 
+                                                               & (((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_30_pre_decoded_4_is_cfi) 
+                                                                       << 7U) 
+                                                                      | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_30_pre_decoded_4_is_cfi) 
+                                                                         << 6U)) 
+                                                                     | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_30_pre_decoded_4_is_cfi) 
+                                                                         << 5U) 
+                                                                        | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_30_pre_decoded_4_is_cfi) 
+                                                                           << 4U))) 
+                                                                    | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_30_pre_decoded_4_is_cfi) 
+                                                                         << 3U) 
+                                                                        | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_30_pre_decoded_4_is_cfi) 
+                                                                           << 2U)) 
+                                                                       | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_30_pre_decoded_4_is_cfi) 
+                                                                           << 1U) 
+                                                                          | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_30_pre_decoded_4_is_cfi)))) 
+                                                                   >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)) 
+                                                                  << 0x1eU))) 
+                                                           | ((0x20000000U 
+                                                               & (((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_29_pre_decoded_4_is_cfi) 
+                                                                       << 7U) 
+                                                                      | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_29_pre_decoded_4_is_cfi) 
+                                                                         << 6U)) 
+                                                                     | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_29_pre_decoded_4_is_cfi) 
+                                                                         << 5U) 
+                                                                        | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_29_pre_decoded_4_is_cfi) 
+                                                                           << 4U))) 
+                                                                    | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_29_pre_decoded_4_is_cfi) 
+                                                                         << 3U) 
+                                                                        | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_29_pre_decoded_4_is_cfi) 
+                                                                           << 2U)) 
+                                                                       | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_29_pre_decoded_4_is_cfi) 
+                                                                           << 1U) 
+                                                                          | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_29_pre_decoded_4_is_cfi)))) 
+                                                                   >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)) 
+                                                                  << 0x1dU)) 
+                                                              | (0x10000000U 
+                                                                 & (((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_28_pre_decoded_4_is_cfi) 
+                                                                         << 7U) 
+                                                                        | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_28_pre_decoded_4_is_cfi) 
+                                                                           << 6U)) 
+                                                                       | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_28_pre_decoded_4_is_cfi) 
+                                                                           << 5U) 
+                                                                          | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_28_pre_decoded_4_is_cfi) 
+                                                                             << 4U))) 
+                                                                      | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_28_pre_decoded_4_is_cfi) 
+                                                                           << 3U) 
+                                                                          | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_28_pre_decoded_4_is_cfi) 
+                                                                             << 2U)) 
+                                                                         | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_28_pre_decoded_4_is_cfi) 
+                                                                             << 1U) 
+                                                                            | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_28_pre_decoded_4_is_cfi)))) 
+                                                                     >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)) 
+                                                                    << 0x1cU)))) 
+                                                          | (((0x8000000U 
+                                                               & (((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_27_pre_decoded_4_is_cfi) 
+                                                                       << 7U) 
+                                                                      | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_27_pre_decoded_4_is_cfi) 
+                                                                         << 6U)) 
+                                                                     | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_27_pre_decoded_4_is_cfi) 
+                                                                         << 5U) 
+                                                                        | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_27_pre_decoded_4_is_cfi) 
+                                                                           << 4U))) 
+                                                                    | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_27_pre_decoded_4_is_cfi) 
+                                                                         << 3U) 
+                                                                        | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_27_pre_decoded_4_is_cfi) 
+                                                                           << 2U)) 
+                                                                       | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_27_pre_decoded_4_is_cfi) 
+                                                                           << 1U) 
+                                                                          | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_27_pre_decoded_4_is_cfi)))) 
+                                                                   >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)) 
+                                                                  << 0x1bU)) 
+                                                              | (0x4000000U 
+                                                                 & (((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_26_pre_decoded_4_is_cfi) 
+                                                                         << 7U) 
+                                                                        | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_26_pre_decoded_4_is_cfi) 
+                                                                           << 6U)) 
+                                                                       | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_26_pre_decoded_4_is_cfi) 
+                                                                           << 5U) 
+                                                                          | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_26_pre_decoded_4_is_cfi) 
+                                                                             << 4U))) 
+                                                                      | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_26_pre_decoded_4_is_cfi) 
+                                                                           << 3U) 
+                                                                          | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_26_pre_decoded_4_is_cfi) 
+                                                                             << 2U)) 
+                                                                         | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_26_pre_decoded_4_is_cfi) 
+                                                                             << 1U) 
+                                                                            | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_26_pre_decoded_4_is_cfi)))) 
+                                                                     >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)) 
+                                                                    << 0x1aU))) 
+                                                             | ((0x2000000U 
+                                                                 & (((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_25_pre_decoded_4_is_cfi) 
+                                                                         << 7U) 
+                                                                        | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_25_pre_decoded_4_is_cfi) 
+                                                                           << 6U)) 
+                                                                       | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_25_pre_decoded_4_is_cfi) 
+                                                                           << 5U) 
+                                                                          | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_25_pre_decoded_4_is_cfi) 
+                                                                             << 4U))) 
+                                                                      | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_25_pre_decoded_4_is_cfi) 
+                                                                           << 3U) 
+                                                                          | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_25_pre_decoded_4_is_cfi) 
+                                                                             << 2U)) 
+                                                                         | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_25_pre_decoded_4_is_cfi) 
+                                                                             << 1U) 
+                                                                            | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_25_pre_decoded_4_is_cfi)))) 
+                                                                     >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)) 
+                                                                    << 0x19U)) 
+                                                                | (0x1000000U 
+                                                                   & (((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_24_pre_decoded_4_is_cfi) 
+                                                                           << 7U) 
+                                                                          | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_24_pre_decoded_4_is_cfi) 
+                                                                             << 6U)) 
+                                                                         | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_24_pre_decoded_4_is_cfi) 
+                                                                             << 5U) 
+                                                                            | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_24_pre_decoded_4_is_cfi) 
+                                                                               << 4U))) 
+                                                                        | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_24_pre_decoded_4_is_cfi) 
+                                                                             << 3U) 
+                                                                            | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_24_pre_decoded_4_is_cfi) 
+                                                                               << 2U)) 
+                                                                           | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_24_pre_decoded_4_is_cfi) 
+                                                                               << 1U) 
+                                                                              | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_24_pre_decoded_4_is_cfi)))) 
+                                                                       >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)) 
+                                                                      << 0x18U))))) 
+                                                         | ((((0x800000U 
+                                                               & (((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_23_pre_decoded_4_is_cfi) 
+                                                                       << 7U) 
+                                                                      | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_23_pre_decoded_4_is_cfi) 
+                                                                         << 6U)) 
+                                                                     | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_23_pre_decoded_4_is_cfi) 
+                                                                         << 5U) 
+                                                                        | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_23_pre_decoded_4_is_cfi) 
+                                                                           << 4U))) 
+                                                                    | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_23_pre_decoded_4_is_cfi) 
+                                                                         << 3U) 
+                                                                        | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_23_pre_decoded_4_is_cfi) 
+                                                                           << 2U)) 
+                                                                       | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_23_pre_decoded_4_is_cfi) 
+                                                                           << 1U) 
+                                                                          | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_23_pre_decoded_4_is_cfi)))) 
+                                                                   >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)) 
+                                                                  << 0x17U)) 
+                                                              | (0x400000U 
+                                                                 & (((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_22_pre_decoded_4_is_cfi) 
+                                                                         << 7U) 
+                                                                        | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_22_pre_decoded_4_is_cfi) 
+                                                                           << 6U)) 
+                                                                       | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_22_pre_decoded_4_is_cfi) 
+                                                                           << 5U) 
+                                                                          | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_22_pre_decoded_4_is_cfi) 
+                                                                             << 4U))) 
+                                                                      | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_22_pre_decoded_4_is_cfi) 
+                                                                           << 3U) 
+                                                                          | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_22_pre_decoded_4_is_cfi) 
+                                                                             << 2U)) 
+                                                                         | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_22_pre_decoded_4_is_cfi) 
+                                                                             << 1U) 
+                                                                            | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_22_pre_decoded_4_is_cfi)))) 
+                                                                     >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)) 
+                                                                    << 0x16U))) 
+                                                             | ((0x200000U 
+                                                                 & (((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_21_pre_decoded_4_is_cfi) 
+                                                                         << 7U) 
+                                                                        | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_21_pre_decoded_4_is_cfi) 
+                                                                           << 6U)) 
+                                                                       | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_21_pre_decoded_4_is_cfi) 
+                                                                           << 5U) 
+                                                                          | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_21_pre_decoded_4_is_cfi) 
+                                                                             << 4U))) 
+                                                                      | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_21_pre_decoded_4_is_cfi) 
+                                                                           << 3U) 
+                                                                          | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_21_pre_decoded_4_is_cfi) 
+                                                                             << 2U)) 
+                                                                         | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_21_pre_decoded_4_is_cfi) 
+                                                                             << 1U) 
+                                                                            | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_21_pre_decoded_4_is_cfi)))) 
+                                                                     >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)) 
+                                                                    << 0x15U)) 
+                                                                | (0x100000U 
+                                                                   & (((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_20_pre_decoded_4_is_cfi) 
+                                                                           << 7U) 
+                                                                          | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_20_pre_decoded_4_is_cfi) 
+                                                                             << 6U)) 
+                                                                         | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_20_pre_decoded_4_is_cfi) 
+                                                                             << 5U) 
+                                                                            | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_20_pre_decoded_4_is_cfi) 
+                                                                               << 4U))) 
+                                                                        | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_20_pre_decoded_4_is_cfi) 
+                                                                             << 3U) 
+                                                                            | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_20_pre_decoded_4_is_cfi) 
+                                                                               << 2U)) 
+                                                                           | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_20_pre_decoded_4_is_cfi) 
+                                                                               << 1U) 
+                                                                              | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_20_pre_decoded_4_is_cfi)))) 
+                                                                       >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)) 
+                                                                      << 0x14U)))) 
+                                                            | (((0x80000U 
+                                                                 & (((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_19_pre_decoded_4_is_cfi) 
+                                                                         << 7U) 
+                                                                        | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_19_pre_decoded_4_is_cfi) 
+                                                                           << 6U)) 
+                                                                       | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_19_pre_decoded_4_is_cfi) 
+                                                                           << 5U) 
+                                                                          | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_19_pre_decoded_4_is_cfi) 
+                                                                             << 4U))) 
+                                                                      | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_19_pre_decoded_4_is_cfi) 
+                                                                           << 3U) 
+                                                                          | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_19_pre_decoded_4_is_cfi) 
+                                                                             << 2U)) 
+                                                                         | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_19_pre_decoded_4_is_cfi) 
+                                                                             << 1U) 
+                                                                            | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_19_pre_decoded_4_is_cfi)))) 
+                                                                     >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)) 
+                                                                    << 0x13U)) 
+                                                                | (0x40000U 
+                                                                   & (((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_18_pre_decoded_4_is_cfi) 
+                                                                           << 7U) 
+                                                                          | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_18_pre_decoded_4_is_cfi) 
+                                                                             << 6U)) 
+                                                                         | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_18_pre_decoded_4_is_cfi) 
+                                                                             << 5U) 
+                                                                            | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_18_pre_decoded_4_is_cfi) 
+                                                                               << 4U))) 
+                                                                        | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_18_pre_decoded_4_is_cfi) 
+                                                                             << 3U) 
+                                                                            | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_18_pre_decoded_4_is_cfi) 
+                                                                               << 2U)) 
+                                                                           | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_18_pre_decoded_4_is_cfi) 
+                                                                               << 1U) 
+                                                                              | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_18_pre_decoded_4_is_cfi)))) 
+                                                                       >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)) 
+                                                                      << 0x12U))) 
+                                                               | ((0x20000U 
+                                                                   & (((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_17_pre_decoded_4_is_cfi) 
+                                                                           << 7U) 
+                                                                          | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_17_pre_decoded_4_is_cfi) 
+                                                                             << 6U)) 
+                                                                         | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_17_pre_decoded_4_is_cfi) 
+                                                                             << 5U) 
+                                                                            | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_17_pre_decoded_4_is_cfi) 
+                                                                               << 4U))) 
+                                                                        | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_17_pre_decoded_4_is_cfi) 
+                                                                             << 3U) 
+                                                                            | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_17_pre_decoded_4_is_cfi) 
+                                                                               << 2U)) 
+                                                                           | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_17_pre_decoded_4_is_cfi) 
+                                                                               << 1U) 
+                                                                              | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_17_pre_decoded_4_is_cfi)))) 
+                                                                       >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)) 
+                                                                      << 0x11U)) 
+                                                                  | (0x10000U 
+                                                                     & (((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_16_pre_decoded_4_is_cfi) 
+                                                                             << 7U) 
+                                                                            | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_16_pre_decoded_4_is_cfi) 
+                                                                               << 6U)) 
+                                                                           | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_16_pre_decoded_4_is_cfi) 
+                                                                               << 5U) 
+                                                                              | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_16_pre_decoded_4_is_cfi) 
+                                                                                << 4U))) 
+                                                                          | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_16_pre_decoded_4_is_cfi) 
+                                                                               << 3U) 
+                                                                              | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_16_pre_decoded_4_is_cfi) 
+                                                                                << 2U)) 
+                                                                             | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_16_pre_decoded_4_is_cfi) 
+                                                                                << 1U) 
+                                                                                | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_16_pre_decoded_4_is_cfi)))) 
+                                                                         >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)) 
+                                                                        << 0x10U)))))) 
+                                                        | (((((0x8000U 
+                                                               & (((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_15_pre_decoded_4_is_cfi) 
+                                                                       << 7U) 
+                                                                      | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_15_pre_decoded_4_is_cfi) 
+                                                                         << 6U)) 
+                                                                     | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_15_pre_decoded_4_is_cfi) 
+                                                                         << 5U) 
+                                                                        | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_15_pre_decoded_4_is_cfi) 
+                                                                           << 4U))) 
+                                                                    | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_15_pre_decoded_4_is_cfi) 
+                                                                         << 3U) 
+                                                                        | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_15_pre_decoded_4_is_cfi) 
+                                                                           << 2U)) 
+                                                                       | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_15_pre_decoded_4_is_cfi) 
+                                                                           << 1U) 
+                                                                          | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_15_pre_decoded_4_is_cfi)))) 
+                                                                   >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)) 
+                                                                  << 0xfU)) 
+                                                              | (0x4000U 
+                                                                 & (((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_14_pre_decoded_4_is_cfi) 
+                                                                         << 7U) 
+                                                                        | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_14_pre_decoded_4_is_cfi) 
+                                                                           << 6U)) 
+                                                                       | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_14_pre_decoded_4_is_cfi) 
+                                                                           << 5U) 
+                                                                          | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_14_pre_decoded_4_is_cfi) 
+                                                                             << 4U))) 
+                                                                      | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_14_pre_decoded_4_is_cfi) 
+                                                                           << 3U) 
+                                                                          | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_14_pre_decoded_4_is_cfi) 
+                                                                             << 2U)) 
+                                                                         | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_14_pre_decoded_4_is_cfi) 
+                                                                             << 1U) 
+                                                                            | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_14_pre_decoded_4_is_cfi)))) 
+                                                                     >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)) 
+                                                                    << 0xeU))) 
+                                                             | ((0x2000U 
+                                                                 & (((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_13_pre_decoded_4_is_cfi) 
+                                                                         << 7U) 
+                                                                        | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_13_pre_decoded_4_is_cfi) 
+                                                                           << 6U)) 
+                                                                       | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_13_pre_decoded_4_is_cfi) 
+                                                                           << 5U) 
+                                                                          | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_13_pre_decoded_4_is_cfi) 
+                                                                             << 4U))) 
+                                                                      | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_13_pre_decoded_4_is_cfi) 
+                                                                           << 3U) 
+                                                                          | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_13_pre_decoded_4_is_cfi) 
+                                                                             << 2U)) 
+                                                                         | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_13_pre_decoded_4_is_cfi) 
+                                                                             << 1U) 
+                                                                            | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_13_pre_decoded_4_is_cfi)))) 
+                                                                     >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)) 
+                                                                    << 0xdU)) 
+                                                                | (0x1000U 
+                                                                   & (((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_12_pre_decoded_4_is_cfi) 
+                                                                           << 7U) 
+                                                                          | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_12_pre_decoded_4_is_cfi) 
+                                                                             << 6U)) 
+                                                                         | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_12_pre_decoded_4_is_cfi) 
+                                                                             << 5U) 
+                                                                            | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_12_pre_decoded_4_is_cfi) 
+                                                                               << 4U))) 
+                                                                        | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_12_pre_decoded_4_is_cfi) 
+                                                                             << 3U) 
+                                                                            | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_12_pre_decoded_4_is_cfi) 
+                                                                               << 2U)) 
+                                                                           | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_12_pre_decoded_4_is_cfi) 
+                                                                               << 1U) 
+                                                                              | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_12_pre_decoded_4_is_cfi)))) 
+                                                                       >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)) 
+                                                                      << 0xcU)))) 
+                                                            | (((0x800U 
+                                                                 & (((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_11_pre_decoded_4_is_cfi) 
+                                                                         << 7U) 
+                                                                        | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_11_pre_decoded_4_is_cfi) 
+                                                                           << 6U)) 
+                                                                       | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_11_pre_decoded_4_is_cfi) 
+                                                                           << 5U) 
+                                                                          | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_11_pre_decoded_4_is_cfi) 
+                                                                             << 4U))) 
+                                                                      | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_11_pre_decoded_4_is_cfi) 
+                                                                           << 3U) 
+                                                                          | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_11_pre_decoded_4_is_cfi) 
+                                                                             << 2U)) 
+                                                                         | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_11_pre_decoded_4_is_cfi) 
+                                                                             << 1U) 
+                                                                            | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_11_pre_decoded_4_is_cfi)))) 
+                                                                     >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)) 
+                                                                    << 0xbU)) 
+                                                                | (0x400U 
+                                                                   & (((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_10_pre_decoded_4_is_cfi) 
+                                                                           << 7U) 
+                                                                          | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_10_pre_decoded_4_is_cfi) 
+                                                                             << 6U)) 
+                                                                         | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_10_pre_decoded_4_is_cfi) 
+                                                                             << 5U) 
+                                                                            | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_10_pre_decoded_4_is_cfi) 
+                                                                               << 4U))) 
+                                                                        | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_10_pre_decoded_4_is_cfi) 
+                                                                             << 3U) 
+                                                                            | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_10_pre_decoded_4_is_cfi) 
+                                                                               << 2U)) 
+                                                                           | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_10_pre_decoded_4_is_cfi) 
+                                                                               << 1U) 
+                                                                              | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_10_pre_decoded_4_is_cfi)))) 
+                                                                       >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)) 
+                                                                      << 0xaU))) 
+                                                               | ((0x200U 
+                                                                   & (((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_9_pre_decoded_4_is_cfi) 
+                                                                           << 7U) 
+                                                                          | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_9_pre_decoded_4_is_cfi) 
+                                                                             << 6U)) 
+                                                                         | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_9_pre_decoded_4_is_cfi) 
+                                                                             << 5U) 
+                                                                            | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_9_pre_decoded_4_is_cfi) 
+                                                                               << 4U))) 
+                                                                        | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_9_pre_decoded_4_is_cfi) 
+                                                                             << 3U) 
+                                                                            | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_9_pre_decoded_4_is_cfi) 
+                                                                               << 2U)) 
+                                                                           | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_9_pre_decoded_4_is_cfi) 
+                                                                               << 1U) 
+                                                                              | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_9_pre_decoded_4_is_cfi)))) 
+                                                                       >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)) 
+                                                                      << 9U)) 
+                                                                  | (0x100U 
+                                                                     & (((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_8_pre_decoded_4_is_cfi) 
+                                                                             << 7U) 
+                                                                            | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_8_pre_decoded_4_is_cfi) 
+                                                                               << 6U)) 
+                                                                           | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_8_pre_decoded_4_is_cfi) 
+                                                                               << 5U) 
+                                                                              | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_8_pre_decoded_4_is_cfi) 
+                                                                                << 4U))) 
+                                                                          | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_8_pre_decoded_4_is_cfi) 
+                                                                               << 3U) 
+                                                                              | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_8_pre_decoded_4_is_cfi) 
+                                                                                << 2U)) 
+                                                                             | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_8_pre_decoded_4_is_cfi) 
+                                                                                << 1U) 
+                                                                                | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_8_pre_decoded_4_is_cfi)))) 
+                                                                         >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)) 
+                                                                        << 8U))))) 
+                                                           | ((((0x80U 
+                                                                 & (((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_7_pre_decoded_4_is_cfi) 
+                                                                         << 7U) 
+                                                                        | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_7_pre_decoded_4_is_cfi) 
+                                                                           << 6U)) 
+                                                                       | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_7_pre_decoded_4_is_cfi) 
+                                                                           << 5U) 
+                                                                          | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_7_pre_decoded_4_is_cfi) 
+                                                                             << 4U))) 
+                                                                      | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_7_pre_decoded_4_is_cfi) 
+                                                                           << 3U) 
+                                                                          | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_7_pre_decoded_4_is_cfi) 
+                                                                             << 2U)) 
+                                                                         | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_7_pre_decoded_4_is_cfi) 
+                                                                             << 1U) 
+                                                                            | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_7_pre_decoded_4_is_cfi)))) 
+                                                                     >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)) 
+                                                                    << 7U)) 
+                                                                | (0x40U 
+                                                                   & (((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_6_pre_decoded_4_is_cfi) 
+                                                                           << 7U) 
+                                                                          | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_6_pre_decoded_4_is_cfi) 
+                                                                             << 6U)) 
+                                                                         | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_6_pre_decoded_4_is_cfi) 
+                                                                             << 5U) 
+                                                                            | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_6_pre_decoded_4_is_cfi) 
+                                                                               << 4U))) 
+                                                                        | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_6_pre_decoded_4_is_cfi) 
+                                                                             << 3U) 
+                                                                            | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_6_pre_decoded_4_is_cfi) 
+                                                                               << 2U)) 
+                                                                           | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_6_pre_decoded_4_is_cfi) 
+                                                                               << 1U) 
+                                                                              | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_6_pre_decoded_4_is_cfi)))) 
+                                                                       >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)) 
+                                                                      << 6U))) 
+                                                               | ((0x20U 
+                                                                   & (((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_5_pre_decoded_4_is_cfi) 
+                                                                           << 7U) 
+                                                                          | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_5_pre_decoded_4_is_cfi) 
+                                                                             << 6U)) 
+                                                                         | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_5_pre_decoded_4_is_cfi) 
+                                                                             << 5U) 
+                                                                            | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_5_pre_decoded_4_is_cfi) 
+                                                                               << 4U))) 
+                                                                        | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_5_pre_decoded_4_is_cfi) 
+                                                                             << 3U) 
+                                                                            | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_5_pre_decoded_4_is_cfi) 
+                                                                               << 2U)) 
+                                                                           | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_5_pre_decoded_4_is_cfi) 
+                                                                               << 1U) 
+                                                                              | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_5_pre_decoded_4_is_cfi)))) 
+                                                                       >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)) 
+                                                                      << 5U)) 
+                                                                  | (0x10U 
+                                                                     & (((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_4_pre_decoded_4_is_cfi) 
+                                                                             << 7U) 
+                                                                            | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_4_pre_decoded_4_is_cfi) 
+                                                                               << 6U)) 
+                                                                           | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_4_pre_decoded_4_is_cfi) 
+                                                                               << 5U) 
+                                                                              | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_4_pre_decoded_4_is_cfi) 
+                                                                                << 4U))) 
+                                                                          | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_4_pre_decoded_4_is_cfi) 
+                                                                               << 3U) 
+                                                                              | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_4_pre_decoded_4_is_cfi) 
+                                                                                << 2U)) 
+                                                                             | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_4_pre_decoded_4_is_cfi) 
+                                                                                << 1U) 
+                                                                                | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_4_pre_decoded_4_is_cfi)))) 
+                                                                         >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)) 
+                                                                        << 4U)))) 
+                                                              | (((8U 
+                                                                   & (((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_3_pre_decoded_4_is_cfi) 
+                                                                           << 7U) 
+                                                                          | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_3_pre_decoded_4_is_cfi) 
+                                                                             << 6U)) 
+                                                                         | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_3_pre_decoded_4_is_cfi) 
+                                                                             << 5U) 
+                                                                            | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_3_pre_decoded_4_is_cfi) 
+                                                                               << 4U))) 
+                                                                        | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_3_pre_decoded_4_is_cfi) 
+                                                                             << 3U) 
+                                                                            | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_3_pre_decoded_4_is_cfi) 
+                                                                               << 2U)) 
+                                                                           | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_3_pre_decoded_4_is_cfi) 
+                                                                               << 1U) 
+                                                                              | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_3_pre_decoded_4_is_cfi)))) 
+                                                                       >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)) 
+                                                                      << 3U)) 
+                                                                  | (4U 
+                                                                     & (((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_2_pre_decoded_4_is_cfi) 
+                                                                             << 7U) 
+                                                                            | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_2_pre_decoded_4_is_cfi) 
+                                                                               << 6U)) 
+                                                                           | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_2_pre_decoded_4_is_cfi) 
+                                                                               << 5U) 
+                                                                              | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_2_pre_decoded_4_is_cfi) 
+                                                                                << 4U))) 
+                                                                          | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_2_pre_decoded_4_is_cfi) 
+                                                                               << 3U) 
+                                                                              | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_2_pre_decoded_4_is_cfi) 
+                                                                                << 2U)) 
+                                                                             | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_2_pre_decoded_4_is_cfi) 
+                                                                                << 1U) 
+                                                                                | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_2_pre_decoded_4_is_cfi)))) 
+                                                                         >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)) 
+                                                                        << 2U))) 
+                                                                 | ((2U 
+                                                                     & (((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_1_pre_decoded_4_is_cfi) 
+                                                                             << 7U) 
+                                                                            | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_1_pre_decoded_4_is_cfi) 
+                                                                               << 6U)) 
+                                                                           | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_1_pre_decoded_4_is_cfi) 
+                                                                               << 5U) 
+                                                                              | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_1_pre_decoded_4_is_cfi) 
+                                                                                << 4U))) 
+                                                                          | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_1_pre_decoded_4_is_cfi) 
+                                                                               << 3U) 
+                                                                              | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_1_pre_decoded_4_is_cfi) 
+                                                                                << 2U)) 
+                                                                             | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_1_pre_decoded_4_is_cfi) 
+                                                                                << 1U) 
+                                                                                | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_1_pre_decoded_4_is_cfi)))) 
+                                                                         >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)) 
+                                                                        << 1U)) 
+                                                                    | (1U 
+                                                                       & ((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_0_pre_decoded_4_is_cfi) 
+                                                                              << 7U) 
+                                                                             | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_0_pre_decoded_4_is_cfi) 
+                                                                                << 6U)) 
+                                                                            | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_0_pre_decoded_4_is_cfi) 
+                                                                                << 5U) 
+                                                                               | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_0_pre_decoded_4_is_cfi) 
+                                                                                << 4U))) 
+                                                                           | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_0_pre_decoded_4_is_cfi) 
+                                                                                << 3U) 
+                                                                               | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_0_pre_decoded_4_is_cfi) 
+                                                                                << 2U)) 
+                                                                              | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_0_pre_decoded_4_is_cfi) 
+                                                                                << 1U) 
+                                                                                | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_0_pre_decoded_4_is_cfi)))) 
+                                                                          >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay))))))))))) 
+                         >> (0x3fU & (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc 
+                                              >> 2U))))));
+    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__io_read_resp_data_pre_decoded_4_is_call 
+        = (1U & (IData)(((((QData)((IData)(((((((((
+                                                   ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_63_pre_decoded_4_is_call) 
+                                                      << 7U) 
+                                                     | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_63_pre_decoded_4_is_call) 
+                                                        << 6U)) 
+                                                    | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_63_pre_decoded_4_is_call) 
+                                                        << 5U) 
+                                                       | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_63_pre_decoded_4_is_call) 
+                                                          << 4U))) 
+                                                   | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_63_pre_decoded_4_is_call) 
+                                                        << 3U) 
+                                                       | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_63_pre_decoded_4_is_call) 
+                                                          << 2U)) 
+                                                      | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_63_pre_decoded_4_is_call) 
+                                                          << 1U) 
+                                                         | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_63_pre_decoded_4_is_call)))) 
+                                                  >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)) 
+                                                 << 0x1fU) 
+                                                | (0x40000000U 
+                                                   & (((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_62_pre_decoded_4_is_call) 
+                                                           << 7U) 
+                                                          | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_62_pre_decoded_4_is_call) 
+                                                             << 6U)) 
+                                                         | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_62_pre_decoded_4_is_call) 
+                                                             << 5U) 
+                                                            | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_62_pre_decoded_4_is_call) 
+                                                               << 4U))) 
+                                                        | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_62_pre_decoded_4_is_call) 
+                                                             << 3U) 
+                                                            | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_62_pre_decoded_4_is_call) 
+                                                               << 2U)) 
+                                                           | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_62_pre_decoded_4_is_call) 
+                                                               << 1U) 
+                                                              | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_62_pre_decoded_4_is_call)))) 
+                                                       >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)) 
+                                                      << 0x1eU))) 
+                                               | ((0x20000000U 
+                                                   & (((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_61_pre_decoded_4_is_call) 
+                                                           << 7U) 
+                                                          | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_61_pre_decoded_4_is_call) 
+                                                             << 6U)) 
+                                                         | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_61_pre_decoded_4_is_call) 
+                                                             << 5U) 
+                                                            | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_61_pre_decoded_4_is_call) 
+                                                               << 4U))) 
+                                                        | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_61_pre_decoded_4_is_call) 
+                                                             << 3U) 
+                                                            | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_61_pre_decoded_4_is_call) 
+                                                               << 2U)) 
+                                                           | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_61_pre_decoded_4_is_call) 
+                                                               << 1U) 
+                                                              | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_61_pre_decoded_4_is_call)))) 
+                                                       >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)) 
+                                                      << 0x1dU)) 
+                                                  | (0x10000000U 
+                                                     & (((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_60_pre_decoded_4_is_call) 
+                                                             << 7U) 
+                                                            | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_60_pre_decoded_4_is_call) 
+                                                               << 6U)) 
+                                                           | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_60_pre_decoded_4_is_call) 
+                                                               << 5U) 
+                                                              | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_60_pre_decoded_4_is_call) 
+                                                                 << 4U))) 
+                                                          | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_60_pre_decoded_4_is_call) 
+                                                               << 3U) 
+                                                              | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_60_pre_decoded_4_is_call) 
+                                                                 << 2U)) 
+                                                             | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_60_pre_decoded_4_is_call) 
+                                                                 << 1U) 
+                                                                | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_60_pre_decoded_4_is_call)))) 
+                                                         >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)) 
+                                                        << 0x1cU)))) 
+                                              | (((0x8000000U 
+                                                   & (((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_59_pre_decoded_4_is_call) 
+                                                           << 7U) 
+                                                          | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_59_pre_decoded_4_is_call) 
+                                                             << 6U)) 
+                                                         | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_59_pre_decoded_4_is_call) 
+                                                             << 5U) 
+                                                            | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_59_pre_decoded_4_is_call) 
+                                                               << 4U))) 
+                                                        | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_59_pre_decoded_4_is_call) 
+                                                             << 3U) 
+                                                            | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_59_pre_decoded_4_is_call) 
+                                                               << 2U)) 
+                                                           | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_59_pre_decoded_4_is_call) 
+                                                               << 1U) 
+                                                              | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_59_pre_decoded_4_is_call)))) 
+                                                       >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)) 
+                                                      << 0x1bU)) 
+                                                  | (0x4000000U 
+                                                     & (((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_58_pre_decoded_4_is_call) 
+                                                             << 7U) 
+                                                            | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_58_pre_decoded_4_is_call) 
+                                                               << 6U)) 
+                                                           | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_58_pre_decoded_4_is_call) 
+                                                               << 5U) 
+                                                              | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_58_pre_decoded_4_is_call) 
+                                                                 << 4U))) 
+                                                          | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_58_pre_decoded_4_is_call) 
+                                                               << 3U) 
+                                                              | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_58_pre_decoded_4_is_call) 
+                                                                 << 2U)) 
+                                                             | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_58_pre_decoded_4_is_call) 
+                                                                 << 1U) 
+                                                                | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_58_pre_decoded_4_is_call)))) 
+                                                         >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)) 
+                                                        << 0x1aU))) 
+                                                 | ((0x2000000U 
+                                                     & (((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_57_pre_decoded_4_is_call) 
+                                                             << 7U) 
+                                                            | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_57_pre_decoded_4_is_call) 
+                                                               << 6U)) 
+                                                           | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_57_pre_decoded_4_is_call) 
+                                                               << 5U) 
+                                                              | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_57_pre_decoded_4_is_call) 
+                                                                 << 4U))) 
+                                                          | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_57_pre_decoded_4_is_call) 
+                                                               << 3U) 
+                                                              | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_57_pre_decoded_4_is_call) 
+                                                                 << 2U)) 
+                                                             | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_57_pre_decoded_4_is_call) 
+                                                                 << 1U) 
+                                                                | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_57_pre_decoded_4_is_call)))) 
+                                                         >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)) 
+                                                        << 0x19U)) 
+                                                    | (0x1000000U 
+                                                       & (((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_56_pre_decoded_4_is_call) 
+                                                               << 7U) 
+                                                              | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_56_pre_decoded_4_is_call) 
+                                                                 << 6U)) 
+                                                             | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_56_pre_decoded_4_is_call) 
+                                                                 << 5U) 
+                                                                | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_56_pre_decoded_4_is_call) 
+                                                                   << 4U))) 
+                                                            | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_56_pre_decoded_4_is_call) 
+                                                                 << 3U) 
+                                                                | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_56_pre_decoded_4_is_call) 
+                                                                   << 2U)) 
+                                                               | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_56_pre_decoded_4_is_call) 
+                                                                   << 1U) 
+                                                                  | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_56_pre_decoded_4_is_call)))) 
+                                                           >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)) 
+                                                          << 0x18U))))) 
+                                             | ((((0x800000U 
+                                                   & (((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_55_pre_decoded_4_is_call) 
+                                                           << 7U) 
+                                                          | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_55_pre_decoded_4_is_call) 
+                                                             << 6U)) 
+                                                         | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_55_pre_decoded_4_is_call) 
+                                                             << 5U) 
+                                                            | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_55_pre_decoded_4_is_call) 
+                                                               << 4U))) 
+                                                        | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_55_pre_decoded_4_is_call) 
+                                                             << 3U) 
+                                                            | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_55_pre_decoded_4_is_call) 
+                                                               << 2U)) 
+                                                           | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_55_pre_decoded_4_is_call) 
+                                                               << 1U) 
+                                                              | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_55_pre_decoded_4_is_call)))) 
+                                                       >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)) 
+                                                      << 0x17U)) 
+                                                  | (0x400000U 
+                                                     & (((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_54_pre_decoded_4_is_call) 
+                                                             << 7U) 
+                                                            | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_54_pre_decoded_4_is_call) 
+                                                               << 6U)) 
+                                                           | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_54_pre_decoded_4_is_call) 
+                                                               << 5U) 
+                                                              | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_54_pre_decoded_4_is_call) 
+                                                                 << 4U))) 
+                                                          | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_54_pre_decoded_4_is_call) 
+                                                               << 3U) 
+                                                              | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_54_pre_decoded_4_is_call) 
+                                                                 << 2U)) 
+                                                             | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_54_pre_decoded_4_is_call) 
+                                                                 << 1U) 
+                                                                | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_54_pre_decoded_4_is_call)))) 
+                                                         >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)) 
+                                                        << 0x16U))) 
+                                                 | ((0x200000U 
+                                                     & (((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_53_pre_decoded_4_is_call) 
+                                                             << 7U) 
+                                                            | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_53_pre_decoded_4_is_call) 
+                                                               << 6U)) 
+                                                           | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_53_pre_decoded_4_is_call) 
+                                                               << 5U) 
+                                                              | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_53_pre_decoded_4_is_call) 
+                                                                 << 4U))) 
+                                                          | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_53_pre_decoded_4_is_call) 
+                                                               << 3U) 
+                                                              | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_53_pre_decoded_4_is_call) 
+                                                                 << 2U)) 
+                                                             | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_53_pre_decoded_4_is_call) 
+                                                                 << 1U) 
+                                                                | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_53_pre_decoded_4_is_call)))) 
+                                                         >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)) 
+                                                        << 0x15U)) 
+                                                    | (0x100000U 
+                                                       & (((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_52_pre_decoded_4_is_call) 
+                                                               << 7U) 
+                                                              | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_52_pre_decoded_4_is_call) 
+                                                                 << 6U)) 
+                                                             | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_52_pre_decoded_4_is_call) 
+                                                                 << 5U) 
+                                                                | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_52_pre_decoded_4_is_call) 
+                                                                   << 4U))) 
+                                                            | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_52_pre_decoded_4_is_call) 
+                                                                 << 3U) 
+                                                                | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_52_pre_decoded_4_is_call) 
+                                                                   << 2U)) 
+                                                               | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_52_pre_decoded_4_is_call) 
+                                                                   << 1U) 
+                                                                  | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_52_pre_decoded_4_is_call)))) 
+                                                           >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)) 
+                                                          << 0x14U)))) 
+                                                | (((0x80000U 
+                                                     & (((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_51_pre_decoded_4_is_call) 
+                                                             << 7U) 
+                                                            | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_51_pre_decoded_4_is_call) 
+                                                               << 6U)) 
+                                                           | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_51_pre_decoded_4_is_call) 
+                                                               << 5U) 
+                                                              | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_51_pre_decoded_4_is_call) 
+                                                                 << 4U))) 
+                                                          | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_51_pre_decoded_4_is_call) 
+                                                               << 3U) 
+                                                              | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_51_pre_decoded_4_is_call) 
+                                                                 << 2U)) 
+                                                             | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_51_pre_decoded_4_is_call) 
+                                                                 << 1U) 
+                                                                | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_51_pre_decoded_4_is_call)))) 
+                                                         >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)) 
+                                                        << 0x13U)) 
+                                                    | (0x40000U 
+                                                       & (((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_50_pre_decoded_4_is_call) 
+                                                               << 7U) 
+                                                              | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_50_pre_decoded_4_is_call) 
+                                                                 << 6U)) 
+                                                             | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_50_pre_decoded_4_is_call) 
+                                                                 << 5U) 
+                                                                | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_50_pre_decoded_4_is_call) 
+                                                                   << 4U))) 
+                                                            | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_50_pre_decoded_4_is_call) 
+                                                                 << 3U) 
+                                                                | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_50_pre_decoded_4_is_call) 
+                                                                   << 2U)) 
+                                                               | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_50_pre_decoded_4_is_call) 
+                                                                   << 1U) 
+                                                                  | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_50_pre_decoded_4_is_call)))) 
+                                                           >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)) 
+                                                          << 0x12U))) 
+                                                   | ((0x20000U 
+                                                       & (((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_49_pre_decoded_4_is_call) 
+                                                               << 7U) 
+                                                              | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_49_pre_decoded_4_is_call) 
+                                                                 << 6U)) 
+                                                             | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_49_pre_decoded_4_is_call) 
+                                                                 << 5U) 
+                                                                | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_49_pre_decoded_4_is_call) 
+                                                                   << 4U))) 
+                                                            | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_49_pre_decoded_4_is_call) 
+                                                                 << 3U) 
+                                                                | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_49_pre_decoded_4_is_call) 
+                                                                   << 2U)) 
+                                                               | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_49_pre_decoded_4_is_call) 
+                                                                   << 1U) 
+                                                                  | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_49_pre_decoded_4_is_call)))) 
+                                                           >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)) 
+                                                          << 0x11U)) 
+                                                      | (0x10000U 
+                                                         & (((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_48_pre_decoded_4_is_call) 
+                                                                 << 7U) 
+                                                                | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_48_pre_decoded_4_is_call) 
+                                                                   << 6U)) 
+                                                               | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_48_pre_decoded_4_is_call) 
+                                                                   << 5U) 
+                                                                  | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_48_pre_decoded_4_is_call) 
+                                                                     << 4U))) 
+                                                              | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_48_pre_decoded_4_is_call) 
+                                                                   << 3U) 
+                                                                  | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_48_pre_decoded_4_is_call) 
+                                                                     << 2U)) 
+                                                                 | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_48_pre_decoded_4_is_call) 
+                                                                     << 1U) 
+                                                                    | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_48_pre_decoded_4_is_call)))) 
+                                                             >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)) 
+                                                            << 0x10U)))))) 
+                                            | (((((0x8000U 
+                                                   & (((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_47_pre_decoded_4_is_call) 
+                                                           << 7U) 
+                                                          | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_47_pre_decoded_4_is_call) 
+                                                             << 6U)) 
+                                                         | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_47_pre_decoded_4_is_call) 
+                                                             << 5U) 
+                                                            | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_47_pre_decoded_4_is_call) 
+                                                               << 4U))) 
+                                                        | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_47_pre_decoded_4_is_call) 
+                                                             << 3U) 
+                                                            | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_47_pre_decoded_4_is_call) 
+                                                               << 2U)) 
+                                                           | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_47_pre_decoded_4_is_call) 
+                                                               << 1U) 
+                                                              | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_47_pre_decoded_4_is_call)))) 
+                                                       >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)) 
+                                                      << 0xfU)) 
+                                                  | (0x4000U 
+                                                     & (((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_46_pre_decoded_4_is_call) 
+                                                             << 7U) 
+                                                            | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_46_pre_decoded_4_is_call) 
+                                                               << 6U)) 
+                                                           | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_46_pre_decoded_4_is_call) 
+                                                               << 5U) 
+                                                              | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_46_pre_decoded_4_is_call) 
+                                                                 << 4U))) 
+                                                          | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_46_pre_decoded_4_is_call) 
+                                                               << 3U) 
+                                                              | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_46_pre_decoded_4_is_call) 
+                                                                 << 2U)) 
+                                                             | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_46_pre_decoded_4_is_call) 
+                                                                 << 1U) 
+                                                                | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_46_pre_decoded_4_is_call)))) 
+                                                         >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)) 
+                                                        << 0xeU))) 
+                                                 | ((0x2000U 
+                                                     & (((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_45_pre_decoded_4_is_call) 
+                                                             << 7U) 
+                                                            | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_45_pre_decoded_4_is_call) 
+                                                               << 6U)) 
+                                                           | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_45_pre_decoded_4_is_call) 
+                                                               << 5U) 
+                                                              | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_45_pre_decoded_4_is_call) 
+                                                                 << 4U))) 
+                                                          | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_45_pre_decoded_4_is_call) 
+                                                               << 3U) 
+                                                              | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_45_pre_decoded_4_is_call) 
+                                                                 << 2U)) 
+                                                             | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_45_pre_decoded_4_is_call) 
+                                                                 << 1U) 
+                                                                | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_45_pre_decoded_4_is_call)))) 
+                                                         >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)) 
+                                                        << 0xdU)) 
+                                                    | (0x1000U 
+                                                       & (((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_44_pre_decoded_4_is_call) 
+                                                               << 7U) 
+                                                              | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_44_pre_decoded_4_is_call) 
+                                                                 << 6U)) 
+                                                             | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_44_pre_decoded_4_is_call) 
+                                                                 << 5U) 
+                                                                | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_44_pre_decoded_4_is_call) 
+                                                                   << 4U))) 
+                                                            | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_44_pre_decoded_4_is_call) 
+                                                                 << 3U) 
+                                                                | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_44_pre_decoded_4_is_call) 
+                                                                   << 2U)) 
+                                                               | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_44_pre_decoded_4_is_call) 
+                                                                   << 1U) 
+                                                                  | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_44_pre_decoded_4_is_call)))) 
+                                                           >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)) 
+                                                          << 0xcU)))) 
+                                                | (((0x800U 
+                                                     & (((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_43_pre_decoded_4_is_call) 
+                                                             << 7U) 
+                                                            | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_43_pre_decoded_4_is_call) 
+                                                               << 6U)) 
+                                                           | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_43_pre_decoded_4_is_call) 
+                                                               << 5U) 
+                                                              | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_43_pre_decoded_4_is_call) 
+                                                                 << 4U))) 
+                                                          | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_43_pre_decoded_4_is_call) 
+                                                               << 3U) 
+                                                              | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_43_pre_decoded_4_is_call) 
+                                                                 << 2U)) 
+                                                             | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_43_pre_decoded_4_is_call) 
+                                                                 << 1U) 
+                                                                | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_43_pre_decoded_4_is_call)))) 
+                                                         >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)) 
+                                                        << 0xbU)) 
+                                                    | (0x400U 
+                                                       & (((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_42_pre_decoded_4_is_call) 
+                                                               << 7U) 
+                                                              | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_42_pre_decoded_4_is_call) 
+                                                                 << 6U)) 
+                                                             | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_42_pre_decoded_4_is_call) 
+                                                                 << 5U) 
+                                                                | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_42_pre_decoded_4_is_call) 
+                                                                   << 4U))) 
+                                                            | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_42_pre_decoded_4_is_call) 
+                                                                 << 3U) 
+                                                                | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_42_pre_decoded_4_is_call) 
+                                                                   << 2U)) 
+                                                               | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_42_pre_decoded_4_is_call) 
+                                                                   << 1U) 
+                                                                  | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_42_pre_decoded_4_is_call)))) 
+                                                           >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)) 
+                                                          << 0xaU))) 
+                                                   | ((0x200U 
+                                                       & (((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_41_pre_decoded_4_is_call) 
+                                                               << 7U) 
+                                                              | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_41_pre_decoded_4_is_call) 
+                                                                 << 6U)) 
+                                                             | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_41_pre_decoded_4_is_call) 
+                                                                 << 5U) 
+                                                                | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_41_pre_decoded_4_is_call) 
+                                                                   << 4U))) 
+                                                            | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_41_pre_decoded_4_is_call) 
+                                                                 << 3U) 
+                                                                | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_41_pre_decoded_4_is_call) 
+                                                                   << 2U)) 
+                                                               | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_41_pre_decoded_4_is_call) 
+                                                                   << 1U) 
+                                                                  | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_41_pre_decoded_4_is_call)))) 
+                                                           >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)) 
+                                                          << 9U)) 
+                                                      | (0x100U 
+                                                         & (((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_40_pre_decoded_4_is_call) 
+                                                                 << 7U) 
+                                                                | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_40_pre_decoded_4_is_call) 
+                                                                   << 6U)) 
+                                                               | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_40_pre_decoded_4_is_call) 
+                                                                   << 5U) 
+                                                                  | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_40_pre_decoded_4_is_call) 
+                                                                     << 4U))) 
+                                                              | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_40_pre_decoded_4_is_call) 
+                                                                   << 3U) 
+                                                                  | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_40_pre_decoded_4_is_call) 
+                                                                     << 2U)) 
+                                                                 | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_40_pre_decoded_4_is_call) 
+                                                                     << 1U) 
+                                                                    | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_40_pre_decoded_4_is_call)))) 
+                                                             >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)) 
+                                                            << 8U))))) 
+                                               | ((((0x80U 
+                                                     & (((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_39_pre_decoded_4_is_call) 
+                                                             << 7U) 
+                                                            | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_39_pre_decoded_4_is_call) 
+                                                               << 6U)) 
+                                                           | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_39_pre_decoded_4_is_call) 
+                                                               << 5U) 
+                                                              | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_39_pre_decoded_4_is_call) 
+                                                                 << 4U))) 
+                                                          | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_39_pre_decoded_4_is_call) 
+                                                               << 3U) 
+                                                              | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_39_pre_decoded_4_is_call) 
+                                                                 << 2U)) 
+                                                             | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_39_pre_decoded_4_is_call) 
+                                                                 << 1U) 
+                                                                | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_39_pre_decoded_4_is_call)))) 
+                                                         >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)) 
+                                                        << 7U)) 
+                                                    | (0x40U 
+                                                       & (((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_38_pre_decoded_4_is_call) 
+                                                               << 7U) 
+                                                              | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_38_pre_decoded_4_is_call) 
+                                                                 << 6U)) 
+                                                             | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_38_pre_decoded_4_is_call) 
+                                                                 << 5U) 
+                                                                | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_38_pre_decoded_4_is_call) 
+                                                                   << 4U))) 
+                                                            | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_38_pre_decoded_4_is_call) 
+                                                                 << 3U) 
+                                                                | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_38_pre_decoded_4_is_call) 
+                                                                   << 2U)) 
+                                                               | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_38_pre_decoded_4_is_call) 
+                                                                   << 1U) 
+                                                                  | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_38_pre_decoded_4_is_call)))) 
+                                                           >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)) 
+                                                          << 6U))) 
+                                                   | ((0x20U 
+                                                       & (((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_37_pre_decoded_4_is_call) 
+                                                               << 7U) 
+                                                              | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_37_pre_decoded_4_is_call) 
+                                                                 << 6U)) 
+                                                             | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_37_pre_decoded_4_is_call) 
+                                                                 << 5U) 
+                                                                | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_37_pre_decoded_4_is_call) 
+                                                                   << 4U))) 
+                                                            | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_37_pre_decoded_4_is_call) 
+                                                                 << 3U) 
+                                                                | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_37_pre_decoded_4_is_call) 
+                                                                   << 2U)) 
+                                                               | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_37_pre_decoded_4_is_call) 
+                                                                   << 1U) 
+                                                                  | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_37_pre_decoded_4_is_call)))) 
+                                                           >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)) 
+                                                          << 5U)) 
+                                                      | (0x10U 
+                                                         & (((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_36_pre_decoded_4_is_call) 
+                                                                 << 7U) 
+                                                                | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_36_pre_decoded_4_is_call) 
+                                                                   << 6U)) 
+                                                               | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_36_pre_decoded_4_is_call) 
+                                                                   << 5U) 
+                                                                  | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_36_pre_decoded_4_is_call) 
+                                                                     << 4U))) 
+                                                              | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_36_pre_decoded_4_is_call) 
+                                                                   << 3U) 
+                                                                  | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_36_pre_decoded_4_is_call) 
+                                                                     << 2U)) 
+                                                                 | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_36_pre_decoded_4_is_call) 
+                                                                     << 1U) 
+                                                                    | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_36_pre_decoded_4_is_call)))) 
+                                                             >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)) 
+                                                            << 4U)))) 
+                                                  | (((8U 
+                                                       & (((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_35_pre_decoded_4_is_call) 
+                                                               << 7U) 
+                                                              | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_35_pre_decoded_4_is_call) 
+                                                                 << 6U)) 
+                                                             | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_35_pre_decoded_4_is_call) 
+                                                                 << 5U) 
+                                                                | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_35_pre_decoded_4_is_call) 
+                                                                   << 4U))) 
+                                                            | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_35_pre_decoded_4_is_call) 
+                                                                 << 3U) 
+                                                                | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_35_pre_decoded_4_is_call) 
+                                                                   << 2U)) 
+                                                               | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_35_pre_decoded_4_is_call) 
+                                                                   << 1U) 
+                                                                  | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_35_pre_decoded_4_is_call)))) 
+                                                           >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)) 
+                                                          << 3U)) 
+                                                      | (4U 
+                                                         & (((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_34_pre_decoded_4_is_call) 
+                                                                 << 7U) 
+                                                                | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_34_pre_decoded_4_is_call) 
+                                                                   << 6U)) 
+                                                               | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_34_pre_decoded_4_is_call) 
+                                                                   << 5U) 
+                                                                  | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_34_pre_decoded_4_is_call) 
+                                                                     << 4U))) 
+                                                              | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_34_pre_decoded_4_is_call) 
+                                                                   << 3U) 
+                                                                  | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_34_pre_decoded_4_is_call) 
+                                                                     << 2U)) 
+                                                                 | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_34_pre_decoded_4_is_call) 
+                                                                     << 1U) 
+                                                                    | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_34_pre_decoded_4_is_call)))) 
+                                                             >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)) 
+                                                            << 2U))) 
+                                                     | ((2U 
+                                                         & (((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_33_pre_decoded_4_is_call) 
+                                                                 << 7U) 
+                                                                | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_33_pre_decoded_4_is_call) 
+                                                                   << 6U)) 
+                                                               | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_33_pre_decoded_4_is_call) 
+                                                                   << 5U) 
+                                                                  | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_33_pre_decoded_4_is_call) 
+                                                                     << 4U))) 
+                                                              | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_33_pre_decoded_4_is_call) 
+                                                                   << 3U) 
+                                                                  | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_33_pre_decoded_4_is_call) 
+                                                                     << 2U)) 
+                                                                 | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_33_pre_decoded_4_is_call) 
+                                                                     << 1U) 
+                                                                    | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_33_pre_decoded_4_is_call)))) 
+                                                             >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)) 
+                                                            << 1U)) 
+                                                        | (1U 
+                                                           & ((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_32_pre_decoded_4_is_call) 
+                                                                  << 7U) 
+                                                                 | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_32_pre_decoded_4_is_call) 
+                                                                    << 6U)) 
+                                                                | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_32_pre_decoded_4_is_call) 
+                                                                    << 5U) 
+                                                                   | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_32_pre_decoded_4_is_call) 
+                                                                      << 4U))) 
+                                                               | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_32_pre_decoded_4_is_call) 
+                                                                    << 3U) 
+                                                                   | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_32_pre_decoded_4_is_call) 
+                                                                      << 2U)) 
+                                                                  | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_32_pre_decoded_4_is_call) 
+                                                                      << 1U) 
+                                                                     | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_32_pre_decoded_4_is_call)))) 
+                                                              >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)))))))))) 
+                           << 0x20U) | (QData)((IData)(
+                                                       ((((((((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_31_pre_decoded_4_is_call) 
+                                                                  << 7U) 
+                                                                 | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_31_pre_decoded_4_is_call) 
+                                                                    << 6U)) 
+                                                                | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_31_pre_decoded_4_is_call) 
+                                                                    << 5U) 
+                                                                   | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_31_pre_decoded_4_is_call) 
+                                                                      << 4U))) 
+                                                               | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_31_pre_decoded_4_is_call) 
+                                                                    << 3U) 
+                                                                   | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_31_pre_decoded_4_is_call) 
+                                                                      << 2U)) 
+                                                                  | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_31_pre_decoded_4_is_call) 
+                                                                      << 1U) 
+                                                                     | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_31_pre_decoded_4_is_call)))) 
+                                                              >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)) 
+                                                             << 0x1fU) 
+                                                            | (0x40000000U 
+                                                               & (((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_30_pre_decoded_4_is_call) 
+                                                                       << 7U) 
+                                                                      | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_30_pre_decoded_4_is_call) 
+                                                                         << 6U)) 
+                                                                     | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_30_pre_decoded_4_is_call) 
+                                                                         << 5U) 
+                                                                        | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_30_pre_decoded_4_is_call) 
+                                                                           << 4U))) 
+                                                                    | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_30_pre_decoded_4_is_call) 
+                                                                         << 3U) 
+                                                                        | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_30_pre_decoded_4_is_call) 
+                                                                           << 2U)) 
+                                                                       | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_30_pre_decoded_4_is_call) 
+                                                                           << 1U) 
+                                                                          | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_30_pre_decoded_4_is_call)))) 
+                                                                   >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)) 
+                                                                  << 0x1eU))) 
+                                                           | ((0x20000000U 
+                                                               & (((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_29_pre_decoded_4_is_call) 
+                                                                       << 7U) 
+                                                                      | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_29_pre_decoded_4_is_call) 
+                                                                         << 6U)) 
+                                                                     | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_29_pre_decoded_4_is_call) 
+                                                                         << 5U) 
+                                                                        | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_29_pre_decoded_4_is_call) 
+                                                                           << 4U))) 
+                                                                    | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_29_pre_decoded_4_is_call) 
+                                                                         << 3U) 
+                                                                        | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_29_pre_decoded_4_is_call) 
+                                                                           << 2U)) 
+                                                                       | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_29_pre_decoded_4_is_call) 
+                                                                           << 1U) 
+                                                                          | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_29_pre_decoded_4_is_call)))) 
+                                                                   >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)) 
+                                                                  << 0x1dU)) 
+                                                              | (0x10000000U 
+                                                                 & (((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_28_pre_decoded_4_is_call) 
+                                                                         << 7U) 
+                                                                        | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_28_pre_decoded_4_is_call) 
+                                                                           << 6U)) 
+                                                                       | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_28_pre_decoded_4_is_call) 
+                                                                           << 5U) 
+                                                                          | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_28_pre_decoded_4_is_call) 
+                                                                             << 4U))) 
+                                                                      | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_28_pre_decoded_4_is_call) 
+                                                                           << 3U) 
+                                                                          | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_28_pre_decoded_4_is_call) 
+                                                                             << 2U)) 
+                                                                         | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_28_pre_decoded_4_is_call) 
+                                                                             << 1U) 
+                                                                            | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_28_pre_decoded_4_is_call)))) 
+                                                                     >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)) 
+                                                                    << 0x1cU)))) 
+                                                          | (((0x8000000U 
+                                                               & (((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_27_pre_decoded_4_is_call) 
+                                                                       << 7U) 
+                                                                      | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_27_pre_decoded_4_is_call) 
+                                                                         << 6U)) 
+                                                                     | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_27_pre_decoded_4_is_call) 
+                                                                         << 5U) 
+                                                                        | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_27_pre_decoded_4_is_call) 
+                                                                           << 4U))) 
+                                                                    | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_27_pre_decoded_4_is_call) 
+                                                                         << 3U) 
+                                                                        | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_27_pre_decoded_4_is_call) 
+                                                                           << 2U)) 
+                                                                       | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_27_pre_decoded_4_is_call) 
+                                                                           << 1U) 
+                                                                          | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_27_pre_decoded_4_is_call)))) 
+                                                                   >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)) 
+                                                                  << 0x1bU)) 
+                                                              | (0x4000000U 
+                                                                 & (((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_26_pre_decoded_4_is_call) 
+                                                                         << 7U) 
+                                                                        | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_26_pre_decoded_4_is_call) 
+                                                                           << 6U)) 
+                                                                       | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_26_pre_decoded_4_is_call) 
+                                                                           << 5U) 
+                                                                          | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_26_pre_decoded_4_is_call) 
+                                                                             << 4U))) 
+                                                                      | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_26_pre_decoded_4_is_call) 
+                                                                           << 3U) 
+                                                                          | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_26_pre_decoded_4_is_call) 
+                                                                             << 2U)) 
+                                                                         | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_26_pre_decoded_4_is_call) 
+                                                                             << 1U) 
+                                                                            | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_26_pre_decoded_4_is_call)))) 
+                                                                     >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)) 
+                                                                    << 0x1aU))) 
+                                                             | ((0x2000000U 
+                                                                 & (((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_25_pre_decoded_4_is_call) 
+                                                                         << 7U) 
+                                                                        | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_25_pre_decoded_4_is_call) 
+                                                                           << 6U)) 
+                                                                       | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_25_pre_decoded_4_is_call) 
+                                                                           << 5U) 
+                                                                          | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_25_pre_decoded_4_is_call) 
+                                                                             << 4U))) 
+                                                                      | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_25_pre_decoded_4_is_call) 
+                                                                           << 3U) 
+                                                                          | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_25_pre_decoded_4_is_call) 
+                                                                             << 2U)) 
+                                                                         | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_25_pre_decoded_4_is_call) 
+                                                                             << 1U) 
+                                                                            | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_25_pre_decoded_4_is_call)))) 
+                                                                     >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)) 
+                                                                    << 0x19U)) 
+                                                                | (0x1000000U 
+                                                                   & (((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_24_pre_decoded_4_is_call) 
+                                                                           << 7U) 
+                                                                          | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_24_pre_decoded_4_is_call) 
+                                                                             << 6U)) 
+                                                                         | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_24_pre_decoded_4_is_call) 
+                                                                             << 5U) 
+                                                                            | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_24_pre_decoded_4_is_call) 
+                                                                               << 4U))) 
+                                                                        | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_24_pre_decoded_4_is_call) 
+                                                                             << 3U) 
+                                                                            | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_24_pre_decoded_4_is_call) 
+                                                                               << 2U)) 
+                                                                           | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_24_pre_decoded_4_is_call) 
+                                                                               << 1U) 
+                                                                              | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_24_pre_decoded_4_is_call)))) 
+                                                                       >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)) 
+                                                                      << 0x18U))))) 
+                                                         | ((((0x800000U 
+                                                               & (((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_23_pre_decoded_4_is_call) 
+                                                                       << 7U) 
+                                                                      | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_23_pre_decoded_4_is_call) 
+                                                                         << 6U)) 
+                                                                     | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_23_pre_decoded_4_is_call) 
+                                                                         << 5U) 
+                                                                        | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_23_pre_decoded_4_is_call) 
+                                                                           << 4U))) 
+                                                                    | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_23_pre_decoded_4_is_call) 
+                                                                         << 3U) 
+                                                                        | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_23_pre_decoded_4_is_call) 
+                                                                           << 2U)) 
+                                                                       | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_23_pre_decoded_4_is_call) 
+                                                                           << 1U) 
+                                                                          | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_23_pre_decoded_4_is_call)))) 
+                                                                   >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)) 
+                                                                  << 0x17U)) 
+                                                              | (0x400000U 
+                                                                 & (((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_22_pre_decoded_4_is_call) 
+                                                                         << 7U) 
+                                                                        | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_22_pre_decoded_4_is_call) 
+                                                                           << 6U)) 
+                                                                       | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_22_pre_decoded_4_is_call) 
+                                                                           << 5U) 
+                                                                          | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_22_pre_decoded_4_is_call) 
+                                                                             << 4U))) 
+                                                                      | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_22_pre_decoded_4_is_call) 
+                                                                           << 3U) 
+                                                                          | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_22_pre_decoded_4_is_call) 
+                                                                             << 2U)) 
+                                                                         | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_22_pre_decoded_4_is_call) 
+                                                                             << 1U) 
+                                                                            | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_22_pre_decoded_4_is_call)))) 
+                                                                     >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)) 
+                                                                    << 0x16U))) 
+                                                             | ((0x200000U 
+                                                                 & (((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_21_pre_decoded_4_is_call) 
+                                                                         << 7U) 
+                                                                        | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_21_pre_decoded_4_is_call) 
+                                                                           << 6U)) 
+                                                                       | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_21_pre_decoded_4_is_call) 
+                                                                           << 5U) 
+                                                                          | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_21_pre_decoded_4_is_call) 
+                                                                             << 4U))) 
+                                                                      | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_21_pre_decoded_4_is_call) 
+                                                                           << 3U) 
+                                                                          | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_21_pre_decoded_4_is_call) 
+                                                                             << 2U)) 
+                                                                         | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_21_pre_decoded_4_is_call) 
+                                                                             << 1U) 
+                                                                            | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_21_pre_decoded_4_is_call)))) 
+                                                                     >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)) 
+                                                                    << 0x15U)) 
+                                                                | (0x100000U 
+                                                                   & (((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_20_pre_decoded_4_is_call) 
+                                                                           << 7U) 
+                                                                          | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_20_pre_decoded_4_is_call) 
+                                                                             << 6U)) 
+                                                                         | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_20_pre_decoded_4_is_call) 
+                                                                             << 5U) 
+                                                                            | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_20_pre_decoded_4_is_call) 
+                                                                               << 4U))) 
+                                                                        | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_20_pre_decoded_4_is_call) 
+                                                                             << 3U) 
+                                                                            | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_20_pre_decoded_4_is_call) 
+                                                                               << 2U)) 
+                                                                           | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_20_pre_decoded_4_is_call) 
+                                                                               << 1U) 
+                                                                              | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_20_pre_decoded_4_is_call)))) 
+                                                                       >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)) 
+                                                                      << 0x14U)))) 
+                                                            | (((0x80000U 
+                                                                 & (((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_19_pre_decoded_4_is_call) 
+                                                                         << 7U) 
+                                                                        | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_19_pre_decoded_4_is_call) 
+                                                                           << 6U)) 
+                                                                       | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_19_pre_decoded_4_is_call) 
+                                                                           << 5U) 
+                                                                          | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_19_pre_decoded_4_is_call) 
+                                                                             << 4U))) 
+                                                                      | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_19_pre_decoded_4_is_call) 
+                                                                           << 3U) 
+                                                                          | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_19_pre_decoded_4_is_call) 
+                                                                             << 2U)) 
+                                                                         | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_19_pre_decoded_4_is_call) 
+                                                                             << 1U) 
+                                                                            | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_19_pre_decoded_4_is_call)))) 
+                                                                     >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)) 
+                                                                    << 0x13U)) 
+                                                                | (0x40000U 
+                                                                   & (((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_18_pre_decoded_4_is_call) 
+                                                                           << 7U) 
+                                                                          | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_18_pre_decoded_4_is_call) 
+                                                                             << 6U)) 
+                                                                         | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_18_pre_decoded_4_is_call) 
+                                                                             << 5U) 
+                                                                            | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_18_pre_decoded_4_is_call) 
+                                                                               << 4U))) 
+                                                                        | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_18_pre_decoded_4_is_call) 
+                                                                             << 3U) 
+                                                                            | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_18_pre_decoded_4_is_call) 
+                                                                               << 2U)) 
+                                                                           | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_18_pre_decoded_4_is_call) 
+                                                                               << 1U) 
+                                                                              | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_18_pre_decoded_4_is_call)))) 
+                                                                       >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)) 
+                                                                      << 0x12U))) 
+                                                               | ((0x20000U 
+                                                                   & (((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_17_pre_decoded_4_is_call) 
+                                                                           << 7U) 
+                                                                          | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_17_pre_decoded_4_is_call) 
+                                                                             << 6U)) 
+                                                                         | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_17_pre_decoded_4_is_call) 
+                                                                             << 5U) 
+                                                                            | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_17_pre_decoded_4_is_call) 
+                                                                               << 4U))) 
+                                                                        | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_17_pre_decoded_4_is_call) 
+                                                                             << 3U) 
+                                                                            | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_17_pre_decoded_4_is_call) 
+                                                                               << 2U)) 
+                                                                           | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_17_pre_decoded_4_is_call) 
+                                                                               << 1U) 
+                                                                              | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_17_pre_decoded_4_is_call)))) 
+                                                                       >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)) 
+                                                                      << 0x11U)) 
+                                                                  | (0x10000U 
+                                                                     & (((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_16_pre_decoded_4_is_call) 
+                                                                             << 7U) 
+                                                                            | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_16_pre_decoded_4_is_call) 
+                                                                               << 6U)) 
+                                                                           | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_16_pre_decoded_4_is_call) 
+                                                                               << 5U) 
+                                                                              | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_16_pre_decoded_4_is_call) 
+                                                                                << 4U))) 
+                                                                          | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_16_pre_decoded_4_is_call) 
+                                                                               << 3U) 
+                                                                              | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_16_pre_decoded_4_is_call) 
+                                                                                << 2U)) 
+                                                                             | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_16_pre_decoded_4_is_call) 
+                                                                                << 1U) 
+                                                                                | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_16_pre_decoded_4_is_call)))) 
+                                                                         >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)) 
+                                                                        << 0x10U)))))) 
+                                                        | (((((0x8000U 
+                                                               & (((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_15_pre_decoded_4_is_call) 
+                                                                       << 7U) 
+                                                                      | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_15_pre_decoded_4_is_call) 
+                                                                         << 6U)) 
+                                                                     | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_15_pre_decoded_4_is_call) 
+                                                                         << 5U) 
+                                                                        | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_15_pre_decoded_4_is_call) 
+                                                                           << 4U))) 
+                                                                    | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_15_pre_decoded_4_is_call) 
+                                                                         << 3U) 
+                                                                        | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_15_pre_decoded_4_is_call) 
+                                                                           << 2U)) 
+                                                                       | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_15_pre_decoded_4_is_call) 
+                                                                           << 1U) 
+                                                                          | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_15_pre_decoded_4_is_call)))) 
+                                                                   >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)) 
+                                                                  << 0xfU)) 
+                                                              | (0x4000U 
+                                                                 & (((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_14_pre_decoded_4_is_call) 
+                                                                         << 7U) 
+                                                                        | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_14_pre_decoded_4_is_call) 
+                                                                           << 6U)) 
+                                                                       | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_14_pre_decoded_4_is_call) 
+                                                                           << 5U) 
+                                                                          | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_14_pre_decoded_4_is_call) 
+                                                                             << 4U))) 
+                                                                      | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_14_pre_decoded_4_is_call) 
+                                                                           << 3U) 
+                                                                          | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_14_pre_decoded_4_is_call) 
+                                                                             << 2U)) 
+                                                                         | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_14_pre_decoded_4_is_call) 
+                                                                             << 1U) 
+                                                                            | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_14_pre_decoded_4_is_call)))) 
+                                                                     >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)) 
+                                                                    << 0xeU))) 
+                                                             | ((0x2000U 
+                                                                 & (((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_13_pre_decoded_4_is_call) 
+                                                                         << 7U) 
+                                                                        | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_13_pre_decoded_4_is_call) 
+                                                                           << 6U)) 
+                                                                       | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_13_pre_decoded_4_is_call) 
+                                                                           << 5U) 
+                                                                          | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_13_pre_decoded_4_is_call) 
+                                                                             << 4U))) 
+                                                                      | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_13_pre_decoded_4_is_call) 
+                                                                           << 3U) 
+                                                                          | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_13_pre_decoded_4_is_call) 
+                                                                             << 2U)) 
+                                                                         | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_13_pre_decoded_4_is_call) 
+                                                                             << 1U) 
+                                                                            | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_13_pre_decoded_4_is_call)))) 
+                                                                     >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)) 
+                                                                    << 0xdU)) 
+                                                                | (0x1000U 
+                                                                   & (((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_12_pre_decoded_4_is_call) 
+                                                                           << 7U) 
+                                                                          | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_12_pre_decoded_4_is_call) 
+                                                                             << 6U)) 
+                                                                         | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_12_pre_decoded_4_is_call) 
+                                                                             << 5U) 
+                                                                            | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_12_pre_decoded_4_is_call) 
+                                                                               << 4U))) 
+                                                                        | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_12_pre_decoded_4_is_call) 
+                                                                             << 3U) 
+                                                                            | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_12_pre_decoded_4_is_call) 
+                                                                               << 2U)) 
+                                                                           | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_12_pre_decoded_4_is_call) 
+                                                                               << 1U) 
+                                                                              | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_12_pre_decoded_4_is_call)))) 
+                                                                       >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)) 
+                                                                      << 0xcU)))) 
+                                                            | (((0x800U 
+                                                                 & (((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_11_pre_decoded_4_is_call) 
+                                                                         << 7U) 
+                                                                        | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_11_pre_decoded_4_is_call) 
+                                                                           << 6U)) 
+                                                                       | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_11_pre_decoded_4_is_call) 
+                                                                           << 5U) 
+                                                                          | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_11_pre_decoded_4_is_call) 
+                                                                             << 4U))) 
+                                                                      | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_11_pre_decoded_4_is_call) 
+                                                                           << 3U) 
+                                                                          | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_11_pre_decoded_4_is_call) 
+                                                                             << 2U)) 
+                                                                         | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_11_pre_decoded_4_is_call) 
+                                                                             << 1U) 
+                                                                            | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_11_pre_decoded_4_is_call)))) 
+                                                                     >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)) 
+                                                                    << 0xbU)) 
+                                                                | (0x400U 
+                                                                   & (((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_10_pre_decoded_4_is_call) 
+                                                                           << 7U) 
+                                                                          | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_10_pre_decoded_4_is_call) 
+                                                                             << 6U)) 
+                                                                         | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_10_pre_decoded_4_is_call) 
+                                                                             << 5U) 
+                                                                            | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_10_pre_decoded_4_is_call) 
+                                                                               << 4U))) 
+                                                                        | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_10_pre_decoded_4_is_call) 
+                                                                             << 3U) 
+                                                                            | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_10_pre_decoded_4_is_call) 
+                                                                               << 2U)) 
+                                                                           | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_10_pre_decoded_4_is_call) 
+                                                                               << 1U) 
+                                                                              | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_10_pre_decoded_4_is_call)))) 
+                                                                       >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)) 
+                                                                      << 0xaU))) 
+                                                               | ((0x200U 
+                                                                   & (((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_9_pre_decoded_4_is_call) 
+                                                                           << 7U) 
+                                                                          | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_9_pre_decoded_4_is_call) 
+                                                                             << 6U)) 
+                                                                         | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_9_pre_decoded_4_is_call) 
+                                                                             << 5U) 
+                                                                            | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_9_pre_decoded_4_is_call) 
+                                                                               << 4U))) 
+                                                                        | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_9_pre_decoded_4_is_call) 
+                                                                             << 3U) 
+                                                                            | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_9_pre_decoded_4_is_call) 
+                                                                               << 2U)) 
+                                                                           | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_9_pre_decoded_4_is_call) 
+                                                                               << 1U) 
+                                                                              | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_9_pre_decoded_4_is_call)))) 
+                                                                       >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)) 
+                                                                      << 9U)) 
+                                                                  | (0x100U 
+                                                                     & (((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_8_pre_decoded_4_is_call) 
+                                                                             << 7U) 
+                                                                            | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_8_pre_decoded_4_is_call) 
+                                                                               << 6U)) 
+                                                                           | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_8_pre_decoded_4_is_call) 
+                                                                               << 5U) 
+                                                                              | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_8_pre_decoded_4_is_call) 
+                                                                                << 4U))) 
+                                                                          | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_8_pre_decoded_4_is_call) 
+                                                                               << 3U) 
+                                                                              | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_8_pre_decoded_4_is_call) 
+                                                                                << 2U)) 
+                                                                             | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_8_pre_decoded_4_is_call) 
+                                                                                << 1U) 
+                                                                                | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_8_pre_decoded_4_is_call)))) 
+                                                                         >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)) 
+                                                                        << 8U))))) 
+                                                           | ((((0x80U 
+                                                                 & (((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_7_pre_decoded_4_is_call) 
+                                                                         << 7U) 
+                                                                        | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_7_pre_decoded_4_is_call) 
+                                                                           << 6U)) 
+                                                                       | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_7_pre_decoded_4_is_call) 
+                                                                           << 5U) 
+                                                                          | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_7_pre_decoded_4_is_call) 
+                                                                             << 4U))) 
+                                                                      | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_7_pre_decoded_4_is_call) 
+                                                                           << 3U) 
+                                                                          | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_7_pre_decoded_4_is_call) 
+                                                                             << 2U)) 
+                                                                         | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_7_pre_decoded_4_is_call) 
+                                                                             << 1U) 
+                                                                            | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_7_pre_decoded_4_is_call)))) 
+                                                                     >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)) 
+                                                                    << 7U)) 
+                                                                | (0x40U 
+                                                                   & (((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_6_pre_decoded_4_is_call) 
+                                                                           << 7U) 
+                                                                          | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_6_pre_decoded_4_is_call) 
+                                                                             << 6U)) 
+                                                                         | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_6_pre_decoded_4_is_call) 
+                                                                             << 5U) 
+                                                                            | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_6_pre_decoded_4_is_call) 
+                                                                               << 4U))) 
+                                                                        | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_6_pre_decoded_4_is_call) 
+                                                                             << 3U) 
+                                                                            | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_6_pre_decoded_4_is_call) 
+                                                                               << 2U)) 
+                                                                           | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_6_pre_decoded_4_is_call) 
+                                                                               << 1U) 
+                                                                              | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_6_pre_decoded_4_is_call)))) 
+                                                                       >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)) 
+                                                                      << 6U))) 
+                                                               | ((0x20U 
+                                                                   & (((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_5_pre_decoded_4_is_call) 
+                                                                           << 7U) 
+                                                                          | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_5_pre_decoded_4_is_call) 
+                                                                             << 6U)) 
+                                                                         | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_5_pre_decoded_4_is_call) 
+                                                                             << 5U) 
+                                                                            | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_5_pre_decoded_4_is_call) 
+                                                                               << 4U))) 
+                                                                        | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_5_pre_decoded_4_is_call) 
+                                                                             << 3U) 
+                                                                            | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_5_pre_decoded_4_is_call) 
+                                                                               << 2U)) 
+                                                                           | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_5_pre_decoded_4_is_call) 
+                                                                               << 1U) 
+                                                                              | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_5_pre_decoded_4_is_call)))) 
+                                                                       >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)) 
+                                                                      << 5U)) 
+                                                                  | (0x10U 
+                                                                     & (((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_4_pre_decoded_4_is_call) 
+                                                                             << 7U) 
+                                                                            | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_4_pre_decoded_4_is_call) 
+                                                                               << 6U)) 
+                                                                           | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_4_pre_decoded_4_is_call) 
+                                                                               << 5U) 
+                                                                              | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_4_pre_decoded_4_is_call) 
+                                                                                << 4U))) 
+                                                                          | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_4_pre_decoded_4_is_call) 
+                                                                               << 3U) 
+                                                                              | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_4_pre_decoded_4_is_call) 
+                                                                                << 2U)) 
+                                                                             | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_4_pre_decoded_4_is_call) 
+                                                                                << 1U) 
+                                                                                | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_4_pre_decoded_4_is_call)))) 
+                                                                         >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)) 
+                                                                        << 4U)))) 
+                                                              | (((8U 
+                                                                   & (((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_3_pre_decoded_4_is_call) 
+                                                                           << 7U) 
+                                                                          | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_3_pre_decoded_4_is_call) 
+                                                                             << 6U)) 
+                                                                         | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_3_pre_decoded_4_is_call) 
+                                                                             << 5U) 
+                                                                            | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_3_pre_decoded_4_is_call) 
+                                                                               << 4U))) 
+                                                                        | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_3_pre_decoded_4_is_call) 
+                                                                             << 3U) 
+                                                                            | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_3_pre_decoded_4_is_call) 
+                                                                               << 2U)) 
+                                                                           | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_3_pre_decoded_4_is_call) 
+                                                                               << 1U) 
+                                                                              | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_3_pre_decoded_4_is_call)))) 
+                                                                       >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)) 
+                                                                      << 3U)) 
+                                                                  | (4U 
+                                                                     & (((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_2_pre_decoded_4_is_call) 
+                                                                             << 7U) 
+                                                                            | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_2_pre_decoded_4_is_call) 
+                                                                               << 6U)) 
+                                                                           | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_2_pre_decoded_4_is_call) 
+                                                                               << 5U) 
+                                                                              | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_2_pre_decoded_4_is_call) 
+                                                                                << 4U))) 
+                                                                          | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_2_pre_decoded_4_is_call) 
+                                                                               << 3U) 
+                                                                              | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_2_pre_decoded_4_is_call) 
+                                                                                << 2U)) 
+                                                                             | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_2_pre_decoded_4_is_call) 
+                                                                                << 1U) 
+                                                                                | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_2_pre_decoded_4_is_call)))) 
+                                                                         >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)) 
+                                                                        << 2U))) 
+                                                                 | ((2U 
+                                                                     & (((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_1_pre_decoded_4_is_call) 
+                                                                             << 7U) 
+                                                                            | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_1_pre_decoded_4_is_call) 
+                                                                               << 6U)) 
+                                                                           | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_1_pre_decoded_4_is_call) 
+                                                                               << 5U) 
+                                                                              | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_1_pre_decoded_4_is_call) 
+                                                                                << 4U))) 
+                                                                          | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_1_pre_decoded_4_is_call) 
+                                                                               << 3U) 
+                                                                              | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_1_pre_decoded_4_is_call) 
+                                                                                << 2U)) 
+                                                                             | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_1_pre_decoded_4_is_call) 
+                                                                                << 1U) 
+                                                                                | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_1_pre_decoded_4_is_call)))) 
+                                                                         >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)) 
+                                                                        << 1U)) 
+                                                                    | (1U 
+                                                                       & ((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_0_pre_decoded_4_is_call) 
+                                                                              << 7U) 
+                                                                             | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_0_pre_decoded_4_is_call) 
+                                                                                << 6U)) 
+                                                                            | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_0_pre_decoded_4_is_call) 
+                                                                                << 5U) 
+                                                                               | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_0_pre_decoded_4_is_call) 
+                                                                                << 4U))) 
+                                                                           | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_0_pre_decoded_4_is_call) 
+                                                                                << 3U) 
+                                                                               | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_0_pre_decoded_4_is_call) 
+                                                                                << 2U)) 
+                                                                              | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_0_pre_decoded_4_is_call) 
+                                                                                << 1U) 
+                                                                                | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_0_pre_decoded_4_is_call)))) 
+                                                                          >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay))))))))))) 
+                         >> (0x3fU & (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc 
+                                              >> 2U))))));
     vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__io_read_resp_data_pre_decoded_4_is_ret 
         = (1U & (IData)(((((QData)((IData)(((((((((
                                                    ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_63_pre_decoded_4_is_ret) 
@@ -18818,2773 +21058,4 @@ VL_ATTR_COLD void VZaqalSoCTop___024root___stl_sequent__TOP__10(VZaqalSoCTop___0
                                                                           >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay))))))))))) 
                          >> (0x3fU & (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc 
                                               >> 2U))))));
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__io_read_resp_data_pre_decoded_7_is_ret 
-        = (1U & (IData)(((((QData)((IData)(((((((((
-                                                   ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_63_pre_decoded_7_is_ret) 
-                                                      << 7U) 
-                                                     | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_63_pre_decoded_7_is_ret) 
-                                                        << 6U)) 
-                                                    | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_63_pre_decoded_7_is_ret) 
-                                                        << 5U) 
-                                                       | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_63_pre_decoded_7_is_ret) 
-                                                          << 4U))) 
-                                                   | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_63_pre_decoded_7_is_ret) 
-                                                        << 3U) 
-                                                       | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_63_pre_decoded_7_is_ret) 
-                                                          << 2U)) 
-                                                      | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_63_pre_decoded_7_is_ret) 
-                                                          << 1U) 
-                                                         | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_63_pre_decoded_7_is_ret)))) 
-                                                  >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)) 
-                                                 << 0x1fU) 
-                                                | (0x40000000U 
-                                                   & (((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_62_pre_decoded_7_is_ret) 
-                                                           << 7U) 
-                                                          | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_62_pre_decoded_7_is_ret) 
-                                                             << 6U)) 
-                                                         | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_62_pre_decoded_7_is_ret) 
-                                                             << 5U) 
-                                                            | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_62_pre_decoded_7_is_ret) 
-                                                               << 4U))) 
-                                                        | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_62_pre_decoded_7_is_ret) 
-                                                             << 3U) 
-                                                            | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_62_pre_decoded_7_is_ret) 
-                                                               << 2U)) 
-                                                           | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_62_pre_decoded_7_is_ret) 
-                                                               << 1U) 
-                                                              | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_62_pre_decoded_7_is_ret)))) 
-                                                       >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)) 
-                                                      << 0x1eU))) 
-                                               | ((0x20000000U 
-                                                   & (((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_61_pre_decoded_7_is_ret) 
-                                                           << 7U) 
-                                                          | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_61_pre_decoded_7_is_ret) 
-                                                             << 6U)) 
-                                                         | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_61_pre_decoded_7_is_ret) 
-                                                             << 5U) 
-                                                            | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_61_pre_decoded_7_is_ret) 
-                                                               << 4U))) 
-                                                        | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_61_pre_decoded_7_is_ret) 
-                                                             << 3U) 
-                                                            | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_61_pre_decoded_7_is_ret) 
-                                                               << 2U)) 
-                                                           | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_61_pre_decoded_7_is_ret) 
-                                                               << 1U) 
-                                                              | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_61_pre_decoded_7_is_ret)))) 
-                                                       >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)) 
-                                                      << 0x1dU)) 
-                                                  | (0x10000000U 
-                                                     & (((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_60_pre_decoded_7_is_ret) 
-                                                             << 7U) 
-                                                            | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_60_pre_decoded_7_is_ret) 
-                                                               << 6U)) 
-                                                           | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_60_pre_decoded_7_is_ret) 
-                                                               << 5U) 
-                                                              | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_60_pre_decoded_7_is_ret) 
-                                                                 << 4U))) 
-                                                          | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_60_pre_decoded_7_is_ret) 
-                                                               << 3U) 
-                                                              | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_60_pre_decoded_7_is_ret) 
-                                                                 << 2U)) 
-                                                             | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_60_pre_decoded_7_is_ret) 
-                                                                 << 1U) 
-                                                                | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_60_pre_decoded_7_is_ret)))) 
-                                                         >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)) 
-                                                        << 0x1cU)))) 
-                                              | (((0x8000000U 
-                                                   & (((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_59_pre_decoded_7_is_ret) 
-                                                           << 7U) 
-                                                          | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_59_pre_decoded_7_is_ret) 
-                                                             << 6U)) 
-                                                         | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_59_pre_decoded_7_is_ret) 
-                                                             << 5U) 
-                                                            | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_59_pre_decoded_7_is_ret) 
-                                                               << 4U))) 
-                                                        | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_59_pre_decoded_7_is_ret) 
-                                                             << 3U) 
-                                                            | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_59_pre_decoded_7_is_ret) 
-                                                               << 2U)) 
-                                                           | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_59_pre_decoded_7_is_ret) 
-                                                               << 1U) 
-                                                              | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_59_pre_decoded_7_is_ret)))) 
-                                                       >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)) 
-                                                      << 0x1bU)) 
-                                                  | (0x4000000U 
-                                                     & (((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_58_pre_decoded_7_is_ret) 
-                                                             << 7U) 
-                                                            | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_58_pre_decoded_7_is_ret) 
-                                                               << 6U)) 
-                                                           | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_58_pre_decoded_7_is_ret) 
-                                                               << 5U) 
-                                                              | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_58_pre_decoded_7_is_ret) 
-                                                                 << 4U))) 
-                                                          | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_58_pre_decoded_7_is_ret) 
-                                                               << 3U) 
-                                                              | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_58_pre_decoded_7_is_ret) 
-                                                                 << 2U)) 
-                                                             | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_58_pre_decoded_7_is_ret) 
-                                                                 << 1U) 
-                                                                | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_58_pre_decoded_7_is_ret)))) 
-                                                         >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)) 
-                                                        << 0x1aU))) 
-                                                 | ((0x2000000U 
-                                                     & (((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_57_pre_decoded_7_is_ret) 
-                                                             << 7U) 
-                                                            | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_57_pre_decoded_7_is_ret) 
-                                                               << 6U)) 
-                                                           | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_57_pre_decoded_7_is_ret) 
-                                                               << 5U) 
-                                                              | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_57_pre_decoded_7_is_ret) 
-                                                                 << 4U))) 
-                                                          | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_57_pre_decoded_7_is_ret) 
-                                                               << 3U) 
-                                                              | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_57_pre_decoded_7_is_ret) 
-                                                                 << 2U)) 
-                                                             | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_57_pre_decoded_7_is_ret) 
-                                                                 << 1U) 
-                                                                | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_57_pre_decoded_7_is_ret)))) 
-                                                         >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)) 
-                                                        << 0x19U)) 
-                                                    | (0x1000000U 
-                                                       & (((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_56_pre_decoded_7_is_ret) 
-                                                               << 7U) 
-                                                              | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_56_pre_decoded_7_is_ret) 
-                                                                 << 6U)) 
-                                                             | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_56_pre_decoded_7_is_ret) 
-                                                                 << 5U) 
-                                                                | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_56_pre_decoded_7_is_ret) 
-                                                                   << 4U))) 
-                                                            | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_56_pre_decoded_7_is_ret) 
-                                                                 << 3U) 
-                                                                | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_56_pre_decoded_7_is_ret) 
-                                                                   << 2U)) 
-                                                               | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_56_pre_decoded_7_is_ret) 
-                                                                   << 1U) 
-                                                                  | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_56_pre_decoded_7_is_ret)))) 
-                                                           >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)) 
-                                                          << 0x18U))))) 
-                                             | ((((0x800000U 
-                                                   & (((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_55_pre_decoded_7_is_ret) 
-                                                           << 7U) 
-                                                          | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_55_pre_decoded_7_is_ret) 
-                                                             << 6U)) 
-                                                         | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_55_pre_decoded_7_is_ret) 
-                                                             << 5U) 
-                                                            | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_55_pre_decoded_7_is_ret) 
-                                                               << 4U))) 
-                                                        | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_55_pre_decoded_7_is_ret) 
-                                                             << 3U) 
-                                                            | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_55_pre_decoded_7_is_ret) 
-                                                               << 2U)) 
-                                                           | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_55_pre_decoded_7_is_ret) 
-                                                               << 1U) 
-                                                              | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_55_pre_decoded_7_is_ret)))) 
-                                                       >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)) 
-                                                      << 0x17U)) 
-                                                  | (0x400000U 
-                                                     & (((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_54_pre_decoded_7_is_ret) 
-                                                             << 7U) 
-                                                            | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_54_pre_decoded_7_is_ret) 
-                                                               << 6U)) 
-                                                           | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_54_pre_decoded_7_is_ret) 
-                                                               << 5U) 
-                                                              | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_54_pre_decoded_7_is_ret) 
-                                                                 << 4U))) 
-                                                          | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_54_pre_decoded_7_is_ret) 
-                                                               << 3U) 
-                                                              | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_54_pre_decoded_7_is_ret) 
-                                                                 << 2U)) 
-                                                             | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_54_pre_decoded_7_is_ret) 
-                                                                 << 1U) 
-                                                                | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_54_pre_decoded_7_is_ret)))) 
-                                                         >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)) 
-                                                        << 0x16U))) 
-                                                 | ((0x200000U 
-                                                     & (((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_53_pre_decoded_7_is_ret) 
-                                                             << 7U) 
-                                                            | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_53_pre_decoded_7_is_ret) 
-                                                               << 6U)) 
-                                                           | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_53_pre_decoded_7_is_ret) 
-                                                               << 5U) 
-                                                              | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_53_pre_decoded_7_is_ret) 
-                                                                 << 4U))) 
-                                                          | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_53_pre_decoded_7_is_ret) 
-                                                               << 3U) 
-                                                              | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_53_pre_decoded_7_is_ret) 
-                                                                 << 2U)) 
-                                                             | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_53_pre_decoded_7_is_ret) 
-                                                                 << 1U) 
-                                                                | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_53_pre_decoded_7_is_ret)))) 
-                                                         >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)) 
-                                                        << 0x15U)) 
-                                                    | (0x100000U 
-                                                       & (((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_52_pre_decoded_7_is_ret) 
-                                                               << 7U) 
-                                                              | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_52_pre_decoded_7_is_ret) 
-                                                                 << 6U)) 
-                                                             | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_52_pre_decoded_7_is_ret) 
-                                                                 << 5U) 
-                                                                | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_52_pre_decoded_7_is_ret) 
-                                                                   << 4U))) 
-                                                            | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_52_pre_decoded_7_is_ret) 
-                                                                 << 3U) 
-                                                                | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_52_pre_decoded_7_is_ret) 
-                                                                   << 2U)) 
-                                                               | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_52_pre_decoded_7_is_ret) 
-                                                                   << 1U) 
-                                                                  | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_52_pre_decoded_7_is_ret)))) 
-                                                           >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)) 
-                                                          << 0x14U)))) 
-                                                | (((0x80000U 
-                                                     & (((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_51_pre_decoded_7_is_ret) 
-                                                             << 7U) 
-                                                            | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_51_pre_decoded_7_is_ret) 
-                                                               << 6U)) 
-                                                           | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_51_pre_decoded_7_is_ret) 
-                                                               << 5U) 
-                                                              | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_51_pre_decoded_7_is_ret) 
-                                                                 << 4U))) 
-                                                          | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_51_pre_decoded_7_is_ret) 
-                                                               << 3U) 
-                                                              | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_51_pre_decoded_7_is_ret) 
-                                                                 << 2U)) 
-                                                             | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_51_pre_decoded_7_is_ret) 
-                                                                 << 1U) 
-                                                                | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_51_pre_decoded_7_is_ret)))) 
-                                                         >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)) 
-                                                        << 0x13U)) 
-                                                    | (0x40000U 
-                                                       & (((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_50_pre_decoded_7_is_ret) 
-                                                               << 7U) 
-                                                              | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_50_pre_decoded_7_is_ret) 
-                                                                 << 6U)) 
-                                                             | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_50_pre_decoded_7_is_ret) 
-                                                                 << 5U) 
-                                                                | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_50_pre_decoded_7_is_ret) 
-                                                                   << 4U))) 
-                                                            | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_50_pre_decoded_7_is_ret) 
-                                                                 << 3U) 
-                                                                | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_50_pre_decoded_7_is_ret) 
-                                                                   << 2U)) 
-                                                               | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_50_pre_decoded_7_is_ret) 
-                                                                   << 1U) 
-                                                                  | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_50_pre_decoded_7_is_ret)))) 
-                                                           >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)) 
-                                                          << 0x12U))) 
-                                                   | ((0x20000U 
-                                                       & (((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_49_pre_decoded_7_is_ret) 
-                                                               << 7U) 
-                                                              | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_49_pre_decoded_7_is_ret) 
-                                                                 << 6U)) 
-                                                             | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_49_pre_decoded_7_is_ret) 
-                                                                 << 5U) 
-                                                                | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_49_pre_decoded_7_is_ret) 
-                                                                   << 4U))) 
-                                                            | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_49_pre_decoded_7_is_ret) 
-                                                                 << 3U) 
-                                                                | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_49_pre_decoded_7_is_ret) 
-                                                                   << 2U)) 
-                                                               | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_49_pre_decoded_7_is_ret) 
-                                                                   << 1U) 
-                                                                  | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_49_pre_decoded_7_is_ret)))) 
-                                                           >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)) 
-                                                          << 0x11U)) 
-                                                      | (0x10000U 
-                                                         & (((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_48_pre_decoded_7_is_ret) 
-                                                                 << 7U) 
-                                                                | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_48_pre_decoded_7_is_ret) 
-                                                                   << 6U)) 
-                                                               | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_48_pre_decoded_7_is_ret) 
-                                                                   << 5U) 
-                                                                  | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_48_pre_decoded_7_is_ret) 
-                                                                     << 4U))) 
-                                                              | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_48_pre_decoded_7_is_ret) 
-                                                                   << 3U) 
-                                                                  | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_48_pre_decoded_7_is_ret) 
-                                                                     << 2U)) 
-                                                                 | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_48_pre_decoded_7_is_ret) 
-                                                                     << 1U) 
-                                                                    | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_48_pre_decoded_7_is_ret)))) 
-                                                             >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)) 
-                                                            << 0x10U)))))) 
-                                            | (((((0x8000U 
-                                                   & (((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_47_pre_decoded_7_is_ret) 
-                                                           << 7U) 
-                                                          | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_47_pre_decoded_7_is_ret) 
-                                                             << 6U)) 
-                                                         | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_47_pre_decoded_7_is_ret) 
-                                                             << 5U) 
-                                                            | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_47_pre_decoded_7_is_ret) 
-                                                               << 4U))) 
-                                                        | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_47_pre_decoded_7_is_ret) 
-                                                             << 3U) 
-                                                            | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_47_pre_decoded_7_is_ret) 
-                                                               << 2U)) 
-                                                           | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_47_pre_decoded_7_is_ret) 
-                                                               << 1U) 
-                                                              | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_47_pre_decoded_7_is_ret)))) 
-                                                       >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)) 
-                                                      << 0xfU)) 
-                                                  | (0x4000U 
-                                                     & (((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_46_pre_decoded_7_is_ret) 
-                                                             << 7U) 
-                                                            | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_46_pre_decoded_7_is_ret) 
-                                                               << 6U)) 
-                                                           | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_46_pre_decoded_7_is_ret) 
-                                                               << 5U) 
-                                                              | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_46_pre_decoded_7_is_ret) 
-                                                                 << 4U))) 
-                                                          | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_46_pre_decoded_7_is_ret) 
-                                                               << 3U) 
-                                                              | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_46_pre_decoded_7_is_ret) 
-                                                                 << 2U)) 
-                                                             | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_46_pre_decoded_7_is_ret) 
-                                                                 << 1U) 
-                                                                | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_46_pre_decoded_7_is_ret)))) 
-                                                         >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)) 
-                                                        << 0xeU))) 
-                                                 | ((0x2000U 
-                                                     & (((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_45_pre_decoded_7_is_ret) 
-                                                             << 7U) 
-                                                            | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_45_pre_decoded_7_is_ret) 
-                                                               << 6U)) 
-                                                           | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_45_pre_decoded_7_is_ret) 
-                                                               << 5U) 
-                                                              | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_45_pre_decoded_7_is_ret) 
-                                                                 << 4U))) 
-                                                          | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_45_pre_decoded_7_is_ret) 
-                                                               << 3U) 
-                                                              | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_45_pre_decoded_7_is_ret) 
-                                                                 << 2U)) 
-                                                             | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_45_pre_decoded_7_is_ret) 
-                                                                 << 1U) 
-                                                                | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_45_pre_decoded_7_is_ret)))) 
-                                                         >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)) 
-                                                        << 0xdU)) 
-                                                    | (0x1000U 
-                                                       & (((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_44_pre_decoded_7_is_ret) 
-                                                               << 7U) 
-                                                              | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_44_pre_decoded_7_is_ret) 
-                                                                 << 6U)) 
-                                                             | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_44_pre_decoded_7_is_ret) 
-                                                                 << 5U) 
-                                                                | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_44_pre_decoded_7_is_ret) 
-                                                                   << 4U))) 
-                                                            | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_44_pre_decoded_7_is_ret) 
-                                                                 << 3U) 
-                                                                | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_44_pre_decoded_7_is_ret) 
-                                                                   << 2U)) 
-                                                               | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_44_pre_decoded_7_is_ret) 
-                                                                   << 1U) 
-                                                                  | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_44_pre_decoded_7_is_ret)))) 
-                                                           >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)) 
-                                                          << 0xcU)))) 
-                                                | (((0x800U 
-                                                     & (((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_43_pre_decoded_7_is_ret) 
-                                                             << 7U) 
-                                                            | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_43_pre_decoded_7_is_ret) 
-                                                               << 6U)) 
-                                                           | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_43_pre_decoded_7_is_ret) 
-                                                               << 5U) 
-                                                              | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_43_pre_decoded_7_is_ret) 
-                                                                 << 4U))) 
-                                                          | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_43_pre_decoded_7_is_ret) 
-                                                               << 3U) 
-                                                              | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_43_pre_decoded_7_is_ret) 
-                                                                 << 2U)) 
-                                                             | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_43_pre_decoded_7_is_ret) 
-                                                                 << 1U) 
-                                                                | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_43_pre_decoded_7_is_ret)))) 
-                                                         >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)) 
-                                                        << 0xbU)) 
-                                                    | (0x400U 
-                                                       & (((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_42_pre_decoded_7_is_ret) 
-                                                               << 7U) 
-                                                              | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_42_pre_decoded_7_is_ret) 
-                                                                 << 6U)) 
-                                                             | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_42_pre_decoded_7_is_ret) 
-                                                                 << 5U) 
-                                                                | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_42_pre_decoded_7_is_ret) 
-                                                                   << 4U))) 
-                                                            | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_42_pre_decoded_7_is_ret) 
-                                                                 << 3U) 
-                                                                | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_42_pre_decoded_7_is_ret) 
-                                                                   << 2U)) 
-                                                               | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_42_pre_decoded_7_is_ret) 
-                                                                   << 1U) 
-                                                                  | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_42_pre_decoded_7_is_ret)))) 
-                                                           >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)) 
-                                                          << 0xaU))) 
-                                                   | ((0x200U 
-                                                       & (((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_41_pre_decoded_7_is_ret) 
-                                                               << 7U) 
-                                                              | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_41_pre_decoded_7_is_ret) 
-                                                                 << 6U)) 
-                                                             | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_41_pre_decoded_7_is_ret) 
-                                                                 << 5U) 
-                                                                | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_41_pre_decoded_7_is_ret) 
-                                                                   << 4U))) 
-                                                            | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_41_pre_decoded_7_is_ret) 
-                                                                 << 3U) 
-                                                                | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_41_pre_decoded_7_is_ret) 
-                                                                   << 2U)) 
-                                                               | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_41_pre_decoded_7_is_ret) 
-                                                                   << 1U) 
-                                                                  | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_41_pre_decoded_7_is_ret)))) 
-                                                           >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)) 
-                                                          << 9U)) 
-                                                      | (0x100U 
-                                                         & (((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_40_pre_decoded_7_is_ret) 
-                                                                 << 7U) 
-                                                                | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_40_pre_decoded_7_is_ret) 
-                                                                   << 6U)) 
-                                                               | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_40_pre_decoded_7_is_ret) 
-                                                                   << 5U) 
-                                                                  | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_40_pre_decoded_7_is_ret) 
-                                                                     << 4U))) 
-                                                              | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_40_pre_decoded_7_is_ret) 
-                                                                   << 3U) 
-                                                                  | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_40_pre_decoded_7_is_ret) 
-                                                                     << 2U)) 
-                                                                 | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_40_pre_decoded_7_is_ret) 
-                                                                     << 1U) 
-                                                                    | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_40_pre_decoded_7_is_ret)))) 
-                                                             >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)) 
-                                                            << 8U))))) 
-                                               | ((((0x80U 
-                                                     & (((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_39_pre_decoded_7_is_ret) 
-                                                             << 7U) 
-                                                            | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_39_pre_decoded_7_is_ret) 
-                                                               << 6U)) 
-                                                           | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_39_pre_decoded_7_is_ret) 
-                                                               << 5U) 
-                                                              | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_39_pre_decoded_7_is_ret) 
-                                                                 << 4U))) 
-                                                          | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_39_pre_decoded_7_is_ret) 
-                                                               << 3U) 
-                                                              | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_39_pre_decoded_7_is_ret) 
-                                                                 << 2U)) 
-                                                             | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_39_pre_decoded_7_is_ret) 
-                                                                 << 1U) 
-                                                                | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_39_pre_decoded_7_is_ret)))) 
-                                                         >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)) 
-                                                        << 7U)) 
-                                                    | (0x40U 
-                                                       & (((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_38_pre_decoded_7_is_ret) 
-                                                               << 7U) 
-                                                              | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_38_pre_decoded_7_is_ret) 
-                                                                 << 6U)) 
-                                                             | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_38_pre_decoded_7_is_ret) 
-                                                                 << 5U) 
-                                                                | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_38_pre_decoded_7_is_ret) 
-                                                                   << 4U))) 
-                                                            | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_38_pre_decoded_7_is_ret) 
-                                                                 << 3U) 
-                                                                | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_38_pre_decoded_7_is_ret) 
-                                                                   << 2U)) 
-                                                               | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_38_pre_decoded_7_is_ret) 
-                                                                   << 1U) 
-                                                                  | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_38_pre_decoded_7_is_ret)))) 
-                                                           >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)) 
-                                                          << 6U))) 
-                                                   | ((0x20U 
-                                                       & (((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_37_pre_decoded_7_is_ret) 
-                                                               << 7U) 
-                                                              | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_37_pre_decoded_7_is_ret) 
-                                                                 << 6U)) 
-                                                             | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_37_pre_decoded_7_is_ret) 
-                                                                 << 5U) 
-                                                                | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_37_pre_decoded_7_is_ret) 
-                                                                   << 4U))) 
-                                                            | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_37_pre_decoded_7_is_ret) 
-                                                                 << 3U) 
-                                                                | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_37_pre_decoded_7_is_ret) 
-                                                                   << 2U)) 
-                                                               | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_37_pre_decoded_7_is_ret) 
-                                                                   << 1U) 
-                                                                  | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_37_pre_decoded_7_is_ret)))) 
-                                                           >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)) 
-                                                          << 5U)) 
-                                                      | (0x10U 
-                                                         & (((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_36_pre_decoded_7_is_ret) 
-                                                                 << 7U) 
-                                                                | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_36_pre_decoded_7_is_ret) 
-                                                                   << 6U)) 
-                                                               | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_36_pre_decoded_7_is_ret) 
-                                                                   << 5U) 
-                                                                  | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_36_pre_decoded_7_is_ret) 
-                                                                     << 4U))) 
-                                                              | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_36_pre_decoded_7_is_ret) 
-                                                                   << 3U) 
-                                                                  | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_36_pre_decoded_7_is_ret) 
-                                                                     << 2U)) 
-                                                                 | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_36_pre_decoded_7_is_ret) 
-                                                                     << 1U) 
-                                                                    | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_36_pre_decoded_7_is_ret)))) 
-                                                             >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)) 
-                                                            << 4U)))) 
-                                                  | (((8U 
-                                                       & (((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_35_pre_decoded_7_is_ret) 
-                                                               << 7U) 
-                                                              | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_35_pre_decoded_7_is_ret) 
-                                                                 << 6U)) 
-                                                             | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_35_pre_decoded_7_is_ret) 
-                                                                 << 5U) 
-                                                                | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_35_pre_decoded_7_is_ret) 
-                                                                   << 4U))) 
-                                                            | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_35_pre_decoded_7_is_ret) 
-                                                                 << 3U) 
-                                                                | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_35_pre_decoded_7_is_ret) 
-                                                                   << 2U)) 
-                                                               | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_35_pre_decoded_7_is_ret) 
-                                                                   << 1U) 
-                                                                  | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_35_pre_decoded_7_is_ret)))) 
-                                                           >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)) 
-                                                          << 3U)) 
-                                                      | (4U 
-                                                         & (((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_34_pre_decoded_7_is_ret) 
-                                                                 << 7U) 
-                                                                | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_34_pre_decoded_7_is_ret) 
-                                                                   << 6U)) 
-                                                               | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_34_pre_decoded_7_is_ret) 
-                                                                   << 5U) 
-                                                                  | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_34_pre_decoded_7_is_ret) 
-                                                                     << 4U))) 
-                                                              | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_34_pre_decoded_7_is_ret) 
-                                                                   << 3U) 
-                                                                  | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_34_pre_decoded_7_is_ret) 
-                                                                     << 2U)) 
-                                                                 | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_34_pre_decoded_7_is_ret) 
-                                                                     << 1U) 
-                                                                    | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_34_pre_decoded_7_is_ret)))) 
-                                                             >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)) 
-                                                            << 2U))) 
-                                                     | ((2U 
-                                                         & (((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_33_pre_decoded_7_is_ret) 
-                                                                 << 7U) 
-                                                                | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_33_pre_decoded_7_is_ret) 
-                                                                   << 6U)) 
-                                                               | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_33_pre_decoded_7_is_ret) 
-                                                                   << 5U) 
-                                                                  | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_33_pre_decoded_7_is_ret) 
-                                                                     << 4U))) 
-                                                              | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_33_pre_decoded_7_is_ret) 
-                                                                   << 3U) 
-                                                                  | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_33_pre_decoded_7_is_ret) 
-                                                                     << 2U)) 
-                                                                 | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_33_pre_decoded_7_is_ret) 
-                                                                     << 1U) 
-                                                                    | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_33_pre_decoded_7_is_ret)))) 
-                                                             >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)) 
-                                                            << 1U)) 
-                                                        | (1U 
-                                                           & ((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_32_pre_decoded_7_is_ret) 
-                                                                  << 7U) 
-                                                                 | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_32_pre_decoded_7_is_ret) 
-                                                                    << 6U)) 
-                                                                | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_32_pre_decoded_7_is_ret) 
-                                                                    << 5U) 
-                                                                   | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_32_pre_decoded_7_is_ret) 
-                                                                      << 4U))) 
-                                                               | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_32_pre_decoded_7_is_ret) 
-                                                                    << 3U) 
-                                                                   | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_32_pre_decoded_7_is_ret) 
-                                                                      << 2U)) 
-                                                                  | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_32_pre_decoded_7_is_ret) 
-                                                                      << 1U) 
-                                                                     | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_32_pre_decoded_7_is_ret)))) 
-                                                              >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)))))))))) 
-                           << 0x20U) | (QData)((IData)(
-                                                       ((((((((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_31_pre_decoded_7_is_ret) 
-                                                                  << 7U) 
-                                                                 | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_31_pre_decoded_7_is_ret) 
-                                                                    << 6U)) 
-                                                                | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_31_pre_decoded_7_is_ret) 
-                                                                    << 5U) 
-                                                                   | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_31_pre_decoded_7_is_ret) 
-                                                                      << 4U))) 
-                                                               | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_31_pre_decoded_7_is_ret) 
-                                                                    << 3U) 
-                                                                   | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_31_pre_decoded_7_is_ret) 
-                                                                      << 2U)) 
-                                                                  | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_31_pre_decoded_7_is_ret) 
-                                                                      << 1U) 
-                                                                     | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_31_pre_decoded_7_is_ret)))) 
-                                                              >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)) 
-                                                             << 0x1fU) 
-                                                            | (0x40000000U 
-                                                               & (((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_30_pre_decoded_7_is_ret) 
-                                                                       << 7U) 
-                                                                      | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_30_pre_decoded_7_is_ret) 
-                                                                         << 6U)) 
-                                                                     | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_30_pre_decoded_7_is_ret) 
-                                                                         << 5U) 
-                                                                        | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_30_pre_decoded_7_is_ret) 
-                                                                           << 4U))) 
-                                                                    | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_30_pre_decoded_7_is_ret) 
-                                                                         << 3U) 
-                                                                        | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_30_pre_decoded_7_is_ret) 
-                                                                           << 2U)) 
-                                                                       | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_30_pre_decoded_7_is_ret) 
-                                                                           << 1U) 
-                                                                          | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_30_pre_decoded_7_is_ret)))) 
-                                                                   >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)) 
-                                                                  << 0x1eU))) 
-                                                           | ((0x20000000U 
-                                                               & (((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_29_pre_decoded_7_is_ret) 
-                                                                       << 7U) 
-                                                                      | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_29_pre_decoded_7_is_ret) 
-                                                                         << 6U)) 
-                                                                     | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_29_pre_decoded_7_is_ret) 
-                                                                         << 5U) 
-                                                                        | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_29_pre_decoded_7_is_ret) 
-                                                                           << 4U))) 
-                                                                    | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_29_pre_decoded_7_is_ret) 
-                                                                         << 3U) 
-                                                                        | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_29_pre_decoded_7_is_ret) 
-                                                                           << 2U)) 
-                                                                       | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_29_pre_decoded_7_is_ret) 
-                                                                           << 1U) 
-                                                                          | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_29_pre_decoded_7_is_ret)))) 
-                                                                   >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)) 
-                                                                  << 0x1dU)) 
-                                                              | (0x10000000U 
-                                                                 & (((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_28_pre_decoded_7_is_ret) 
-                                                                         << 7U) 
-                                                                        | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_28_pre_decoded_7_is_ret) 
-                                                                           << 6U)) 
-                                                                       | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_28_pre_decoded_7_is_ret) 
-                                                                           << 5U) 
-                                                                          | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_28_pre_decoded_7_is_ret) 
-                                                                             << 4U))) 
-                                                                      | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_28_pre_decoded_7_is_ret) 
-                                                                           << 3U) 
-                                                                          | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_28_pre_decoded_7_is_ret) 
-                                                                             << 2U)) 
-                                                                         | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_28_pre_decoded_7_is_ret) 
-                                                                             << 1U) 
-                                                                            | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_28_pre_decoded_7_is_ret)))) 
-                                                                     >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)) 
-                                                                    << 0x1cU)))) 
-                                                          | (((0x8000000U 
-                                                               & (((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_27_pre_decoded_7_is_ret) 
-                                                                       << 7U) 
-                                                                      | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_27_pre_decoded_7_is_ret) 
-                                                                         << 6U)) 
-                                                                     | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_27_pre_decoded_7_is_ret) 
-                                                                         << 5U) 
-                                                                        | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_27_pre_decoded_7_is_ret) 
-                                                                           << 4U))) 
-                                                                    | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_27_pre_decoded_7_is_ret) 
-                                                                         << 3U) 
-                                                                        | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_27_pre_decoded_7_is_ret) 
-                                                                           << 2U)) 
-                                                                       | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_27_pre_decoded_7_is_ret) 
-                                                                           << 1U) 
-                                                                          | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_27_pre_decoded_7_is_ret)))) 
-                                                                   >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)) 
-                                                                  << 0x1bU)) 
-                                                              | (0x4000000U 
-                                                                 & (((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_26_pre_decoded_7_is_ret) 
-                                                                         << 7U) 
-                                                                        | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_26_pre_decoded_7_is_ret) 
-                                                                           << 6U)) 
-                                                                       | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_26_pre_decoded_7_is_ret) 
-                                                                           << 5U) 
-                                                                          | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_26_pre_decoded_7_is_ret) 
-                                                                             << 4U))) 
-                                                                      | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_26_pre_decoded_7_is_ret) 
-                                                                           << 3U) 
-                                                                          | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_26_pre_decoded_7_is_ret) 
-                                                                             << 2U)) 
-                                                                         | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_26_pre_decoded_7_is_ret) 
-                                                                             << 1U) 
-                                                                            | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_26_pre_decoded_7_is_ret)))) 
-                                                                     >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)) 
-                                                                    << 0x1aU))) 
-                                                             | ((0x2000000U 
-                                                                 & (((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_25_pre_decoded_7_is_ret) 
-                                                                         << 7U) 
-                                                                        | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_25_pre_decoded_7_is_ret) 
-                                                                           << 6U)) 
-                                                                       | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_25_pre_decoded_7_is_ret) 
-                                                                           << 5U) 
-                                                                          | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_25_pre_decoded_7_is_ret) 
-                                                                             << 4U))) 
-                                                                      | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_25_pre_decoded_7_is_ret) 
-                                                                           << 3U) 
-                                                                          | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_25_pre_decoded_7_is_ret) 
-                                                                             << 2U)) 
-                                                                         | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_25_pre_decoded_7_is_ret) 
-                                                                             << 1U) 
-                                                                            | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_25_pre_decoded_7_is_ret)))) 
-                                                                     >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)) 
-                                                                    << 0x19U)) 
-                                                                | (0x1000000U 
-                                                                   & (((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_24_pre_decoded_7_is_ret) 
-                                                                           << 7U) 
-                                                                          | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_24_pre_decoded_7_is_ret) 
-                                                                             << 6U)) 
-                                                                         | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_24_pre_decoded_7_is_ret) 
-                                                                             << 5U) 
-                                                                            | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_24_pre_decoded_7_is_ret) 
-                                                                               << 4U))) 
-                                                                        | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_24_pre_decoded_7_is_ret) 
-                                                                             << 3U) 
-                                                                            | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_24_pre_decoded_7_is_ret) 
-                                                                               << 2U)) 
-                                                                           | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_24_pre_decoded_7_is_ret) 
-                                                                               << 1U) 
-                                                                              | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_24_pre_decoded_7_is_ret)))) 
-                                                                       >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)) 
-                                                                      << 0x18U))))) 
-                                                         | ((((0x800000U 
-                                                               & (((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_23_pre_decoded_7_is_ret) 
-                                                                       << 7U) 
-                                                                      | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_23_pre_decoded_7_is_ret) 
-                                                                         << 6U)) 
-                                                                     | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_23_pre_decoded_7_is_ret) 
-                                                                         << 5U) 
-                                                                        | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_23_pre_decoded_7_is_ret) 
-                                                                           << 4U))) 
-                                                                    | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_23_pre_decoded_7_is_ret) 
-                                                                         << 3U) 
-                                                                        | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_23_pre_decoded_7_is_ret) 
-                                                                           << 2U)) 
-                                                                       | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_23_pre_decoded_7_is_ret) 
-                                                                           << 1U) 
-                                                                          | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_23_pre_decoded_7_is_ret)))) 
-                                                                   >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)) 
-                                                                  << 0x17U)) 
-                                                              | (0x400000U 
-                                                                 & (((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_22_pre_decoded_7_is_ret) 
-                                                                         << 7U) 
-                                                                        | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_22_pre_decoded_7_is_ret) 
-                                                                           << 6U)) 
-                                                                       | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_22_pre_decoded_7_is_ret) 
-                                                                           << 5U) 
-                                                                          | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_22_pre_decoded_7_is_ret) 
-                                                                             << 4U))) 
-                                                                      | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_22_pre_decoded_7_is_ret) 
-                                                                           << 3U) 
-                                                                          | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_22_pre_decoded_7_is_ret) 
-                                                                             << 2U)) 
-                                                                         | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_22_pre_decoded_7_is_ret) 
-                                                                             << 1U) 
-                                                                            | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_22_pre_decoded_7_is_ret)))) 
-                                                                     >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)) 
-                                                                    << 0x16U))) 
-                                                             | ((0x200000U 
-                                                                 & (((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_21_pre_decoded_7_is_ret) 
-                                                                         << 7U) 
-                                                                        | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_21_pre_decoded_7_is_ret) 
-                                                                           << 6U)) 
-                                                                       | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_21_pre_decoded_7_is_ret) 
-                                                                           << 5U) 
-                                                                          | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_21_pre_decoded_7_is_ret) 
-                                                                             << 4U))) 
-                                                                      | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_21_pre_decoded_7_is_ret) 
-                                                                           << 3U) 
-                                                                          | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_21_pre_decoded_7_is_ret) 
-                                                                             << 2U)) 
-                                                                         | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_21_pre_decoded_7_is_ret) 
-                                                                             << 1U) 
-                                                                            | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_21_pre_decoded_7_is_ret)))) 
-                                                                     >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)) 
-                                                                    << 0x15U)) 
-                                                                | (0x100000U 
-                                                                   & (((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_20_pre_decoded_7_is_ret) 
-                                                                           << 7U) 
-                                                                          | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_20_pre_decoded_7_is_ret) 
-                                                                             << 6U)) 
-                                                                         | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_20_pre_decoded_7_is_ret) 
-                                                                             << 5U) 
-                                                                            | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_20_pre_decoded_7_is_ret) 
-                                                                               << 4U))) 
-                                                                        | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_20_pre_decoded_7_is_ret) 
-                                                                             << 3U) 
-                                                                            | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_20_pre_decoded_7_is_ret) 
-                                                                               << 2U)) 
-                                                                           | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_20_pre_decoded_7_is_ret) 
-                                                                               << 1U) 
-                                                                              | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_20_pre_decoded_7_is_ret)))) 
-                                                                       >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)) 
-                                                                      << 0x14U)))) 
-                                                            | (((0x80000U 
-                                                                 & (((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_19_pre_decoded_7_is_ret) 
-                                                                         << 7U) 
-                                                                        | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_19_pre_decoded_7_is_ret) 
-                                                                           << 6U)) 
-                                                                       | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_19_pre_decoded_7_is_ret) 
-                                                                           << 5U) 
-                                                                          | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_19_pre_decoded_7_is_ret) 
-                                                                             << 4U))) 
-                                                                      | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_19_pre_decoded_7_is_ret) 
-                                                                           << 3U) 
-                                                                          | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_19_pre_decoded_7_is_ret) 
-                                                                             << 2U)) 
-                                                                         | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_19_pre_decoded_7_is_ret) 
-                                                                             << 1U) 
-                                                                            | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_19_pre_decoded_7_is_ret)))) 
-                                                                     >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)) 
-                                                                    << 0x13U)) 
-                                                                | (0x40000U 
-                                                                   & (((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_18_pre_decoded_7_is_ret) 
-                                                                           << 7U) 
-                                                                          | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_18_pre_decoded_7_is_ret) 
-                                                                             << 6U)) 
-                                                                         | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_18_pre_decoded_7_is_ret) 
-                                                                             << 5U) 
-                                                                            | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_18_pre_decoded_7_is_ret) 
-                                                                               << 4U))) 
-                                                                        | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_18_pre_decoded_7_is_ret) 
-                                                                             << 3U) 
-                                                                            | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_18_pre_decoded_7_is_ret) 
-                                                                               << 2U)) 
-                                                                           | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_18_pre_decoded_7_is_ret) 
-                                                                               << 1U) 
-                                                                              | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_18_pre_decoded_7_is_ret)))) 
-                                                                       >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)) 
-                                                                      << 0x12U))) 
-                                                               | ((0x20000U 
-                                                                   & (((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_17_pre_decoded_7_is_ret) 
-                                                                           << 7U) 
-                                                                          | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_17_pre_decoded_7_is_ret) 
-                                                                             << 6U)) 
-                                                                         | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_17_pre_decoded_7_is_ret) 
-                                                                             << 5U) 
-                                                                            | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_17_pre_decoded_7_is_ret) 
-                                                                               << 4U))) 
-                                                                        | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_17_pre_decoded_7_is_ret) 
-                                                                             << 3U) 
-                                                                            | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_17_pre_decoded_7_is_ret) 
-                                                                               << 2U)) 
-                                                                           | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_17_pre_decoded_7_is_ret) 
-                                                                               << 1U) 
-                                                                              | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_17_pre_decoded_7_is_ret)))) 
-                                                                       >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)) 
-                                                                      << 0x11U)) 
-                                                                  | (0x10000U 
-                                                                     & (((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_16_pre_decoded_7_is_ret) 
-                                                                             << 7U) 
-                                                                            | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_16_pre_decoded_7_is_ret) 
-                                                                               << 6U)) 
-                                                                           | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_16_pre_decoded_7_is_ret) 
-                                                                               << 5U) 
-                                                                              | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_16_pre_decoded_7_is_ret) 
-                                                                                << 4U))) 
-                                                                          | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_16_pre_decoded_7_is_ret) 
-                                                                               << 3U) 
-                                                                              | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_16_pre_decoded_7_is_ret) 
-                                                                                << 2U)) 
-                                                                             | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_16_pre_decoded_7_is_ret) 
-                                                                                << 1U) 
-                                                                                | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_16_pre_decoded_7_is_ret)))) 
-                                                                         >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)) 
-                                                                        << 0x10U)))))) 
-                                                        | (((((0x8000U 
-                                                               & (((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_15_pre_decoded_7_is_ret) 
-                                                                       << 7U) 
-                                                                      | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_15_pre_decoded_7_is_ret) 
-                                                                         << 6U)) 
-                                                                     | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_15_pre_decoded_7_is_ret) 
-                                                                         << 5U) 
-                                                                        | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_15_pre_decoded_7_is_ret) 
-                                                                           << 4U))) 
-                                                                    | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_15_pre_decoded_7_is_ret) 
-                                                                         << 3U) 
-                                                                        | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_15_pre_decoded_7_is_ret) 
-                                                                           << 2U)) 
-                                                                       | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_15_pre_decoded_7_is_ret) 
-                                                                           << 1U) 
-                                                                          | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_15_pre_decoded_7_is_ret)))) 
-                                                                   >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)) 
-                                                                  << 0xfU)) 
-                                                              | (0x4000U 
-                                                                 & (((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_14_pre_decoded_7_is_ret) 
-                                                                         << 7U) 
-                                                                        | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_14_pre_decoded_7_is_ret) 
-                                                                           << 6U)) 
-                                                                       | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_14_pre_decoded_7_is_ret) 
-                                                                           << 5U) 
-                                                                          | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_14_pre_decoded_7_is_ret) 
-                                                                             << 4U))) 
-                                                                      | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_14_pre_decoded_7_is_ret) 
-                                                                           << 3U) 
-                                                                          | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_14_pre_decoded_7_is_ret) 
-                                                                             << 2U)) 
-                                                                         | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_14_pre_decoded_7_is_ret) 
-                                                                             << 1U) 
-                                                                            | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_14_pre_decoded_7_is_ret)))) 
-                                                                     >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)) 
-                                                                    << 0xeU))) 
-                                                             | ((0x2000U 
-                                                                 & (((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_13_pre_decoded_7_is_ret) 
-                                                                         << 7U) 
-                                                                        | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_13_pre_decoded_7_is_ret) 
-                                                                           << 6U)) 
-                                                                       | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_13_pre_decoded_7_is_ret) 
-                                                                           << 5U) 
-                                                                          | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_13_pre_decoded_7_is_ret) 
-                                                                             << 4U))) 
-                                                                      | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_13_pre_decoded_7_is_ret) 
-                                                                           << 3U) 
-                                                                          | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_13_pre_decoded_7_is_ret) 
-                                                                             << 2U)) 
-                                                                         | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_13_pre_decoded_7_is_ret) 
-                                                                             << 1U) 
-                                                                            | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_13_pre_decoded_7_is_ret)))) 
-                                                                     >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)) 
-                                                                    << 0xdU)) 
-                                                                | (0x1000U 
-                                                                   & (((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_12_pre_decoded_7_is_ret) 
-                                                                           << 7U) 
-                                                                          | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_12_pre_decoded_7_is_ret) 
-                                                                             << 6U)) 
-                                                                         | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_12_pre_decoded_7_is_ret) 
-                                                                             << 5U) 
-                                                                            | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_12_pre_decoded_7_is_ret) 
-                                                                               << 4U))) 
-                                                                        | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_12_pre_decoded_7_is_ret) 
-                                                                             << 3U) 
-                                                                            | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_12_pre_decoded_7_is_ret) 
-                                                                               << 2U)) 
-                                                                           | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_12_pre_decoded_7_is_ret) 
-                                                                               << 1U) 
-                                                                              | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_12_pre_decoded_7_is_ret)))) 
-                                                                       >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)) 
-                                                                      << 0xcU)))) 
-                                                            | (((0x800U 
-                                                                 & (((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_11_pre_decoded_7_is_ret) 
-                                                                         << 7U) 
-                                                                        | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_11_pre_decoded_7_is_ret) 
-                                                                           << 6U)) 
-                                                                       | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_11_pre_decoded_7_is_ret) 
-                                                                           << 5U) 
-                                                                          | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_11_pre_decoded_7_is_ret) 
-                                                                             << 4U))) 
-                                                                      | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_11_pre_decoded_7_is_ret) 
-                                                                           << 3U) 
-                                                                          | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_11_pre_decoded_7_is_ret) 
-                                                                             << 2U)) 
-                                                                         | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_11_pre_decoded_7_is_ret) 
-                                                                             << 1U) 
-                                                                            | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_11_pre_decoded_7_is_ret)))) 
-                                                                     >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)) 
-                                                                    << 0xbU)) 
-                                                                | (0x400U 
-                                                                   & (((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_10_pre_decoded_7_is_ret) 
-                                                                           << 7U) 
-                                                                          | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_10_pre_decoded_7_is_ret) 
-                                                                             << 6U)) 
-                                                                         | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_10_pre_decoded_7_is_ret) 
-                                                                             << 5U) 
-                                                                            | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_10_pre_decoded_7_is_ret) 
-                                                                               << 4U))) 
-                                                                        | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_10_pre_decoded_7_is_ret) 
-                                                                             << 3U) 
-                                                                            | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_10_pre_decoded_7_is_ret) 
-                                                                               << 2U)) 
-                                                                           | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_10_pre_decoded_7_is_ret) 
-                                                                               << 1U) 
-                                                                              | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_10_pre_decoded_7_is_ret)))) 
-                                                                       >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)) 
-                                                                      << 0xaU))) 
-                                                               | ((0x200U 
-                                                                   & (((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_9_pre_decoded_7_is_ret) 
-                                                                           << 7U) 
-                                                                          | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_9_pre_decoded_7_is_ret) 
-                                                                             << 6U)) 
-                                                                         | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_9_pre_decoded_7_is_ret) 
-                                                                             << 5U) 
-                                                                            | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_9_pre_decoded_7_is_ret) 
-                                                                               << 4U))) 
-                                                                        | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_9_pre_decoded_7_is_ret) 
-                                                                             << 3U) 
-                                                                            | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_9_pre_decoded_7_is_ret) 
-                                                                               << 2U)) 
-                                                                           | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_9_pre_decoded_7_is_ret) 
-                                                                               << 1U) 
-                                                                              | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_9_pre_decoded_7_is_ret)))) 
-                                                                       >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)) 
-                                                                      << 9U)) 
-                                                                  | (0x100U 
-                                                                     & (((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_8_pre_decoded_7_is_ret) 
-                                                                             << 7U) 
-                                                                            | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_8_pre_decoded_7_is_ret) 
-                                                                               << 6U)) 
-                                                                           | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_8_pre_decoded_7_is_ret) 
-                                                                               << 5U) 
-                                                                              | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_8_pre_decoded_7_is_ret) 
-                                                                                << 4U))) 
-                                                                          | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_8_pre_decoded_7_is_ret) 
-                                                                               << 3U) 
-                                                                              | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_8_pre_decoded_7_is_ret) 
-                                                                                << 2U)) 
-                                                                             | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_8_pre_decoded_7_is_ret) 
-                                                                                << 1U) 
-                                                                                | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_8_pre_decoded_7_is_ret)))) 
-                                                                         >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)) 
-                                                                        << 8U))))) 
-                                                           | ((((0x80U 
-                                                                 & (((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_7_pre_decoded_7_is_ret) 
-                                                                         << 7U) 
-                                                                        | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_7_pre_decoded_7_is_ret) 
-                                                                           << 6U)) 
-                                                                       | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_7_pre_decoded_7_is_ret) 
-                                                                           << 5U) 
-                                                                          | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_7_pre_decoded_7_is_ret) 
-                                                                             << 4U))) 
-                                                                      | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_7_pre_decoded_7_is_ret) 
-                                                                           << 3U) 
-                                                                          | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_7_pre_decoded_7_is_ret) 
-                                                                             << 2U)) 
-                                                                         | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_7_pre_decoded_7_is_ret) 
-                                                                             << 1U) 
-                                                                            | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_7_pre_decoded_7_is_ret)))) 
-                                                                     >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)) 
-                                                                    << 7U)) 
-                                                                | (0x40U 
-                                                                   & (((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_6_pre_decoded_7_is_ret) 
-                                                                           << 7U) 
-                                                                          | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_6_pre_decoded_7_is_ret) 
-                                                                             << 6U)) 
-                                                                         | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_6_pre_decoded_7_is_ret) 
-                                                                             << 5U) 
-                                                                            | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_6_pre_decoded_7_is_ret) 
-                                                                               << 4U))) 
-                                                                        | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_6_pre_decoded_7_is_ret) 
-                                                                             << 3U) 
-                                                                            | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_6_pre_decoded_7_is_ret) 
-                                                                               << 2U)) 
-                                                                           | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_6_pre_decoded_7_is_ret) 
-                                                                               << 1U) 
-                                                                              | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_6_pre_decoded_7_is_ret)))) 
-                                                                       >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)) 
-                                                                      << 6U))) 
-                                                               | ((0x20U 
-                                                                   & (((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_5_pre_decoded_7_is_ret) 
-                                                                           << 7U) 
-                                                                          | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_5_pre_decoded_7_is_ret) 
-                                                                             << 6U)) 
-                                                                         | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_5_pre_decoded_7_is_ret) 
-                                                                             << 5U) 
-                                                                            | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_5_pre_decoded_7_is_ret) 
-                                                                               << 4U))) 
-                                                                        | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_5_pre_decoded_7_is_ret) 
-                                                                             << 3U) 
-                                                                            | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_5_pre_decoded_7_is_ret) 
-                                                                               << 2U)) 
-                                                                           | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_5_pre_decoded_7_is_ret) 
-                                                                               << 1U) 
-                                                                              | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_5_pre_decoded_7_is_ret)))) 
-                                                                       >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)) 
-                                                                      << 5U)) 
-                                                                  | (0x10U 
-                                                                     & (((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_4_pre_decoded_7_is_ret) 
-                                                                             << 7U) 
-                                                                            | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_4_pre_decoded_7_is_ret) 
-                                                                               << 6U)) 
-                                                                           | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_4_pre_decoded_7_is_ret) 
-                                                                               << 5U) 
-                                                                              | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_4_pre_decoded_7_is_ret) 
-                                                                                << 4U))) 
-                                                                          | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_4_pre_decoded_7_is_ret) 
-                                                                               << 3U) 
-                                                                              | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_4_pre_decoded_7_is_ret) 
-                                                                                << 2U)) 
-                                                                             | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_4_pre_decoded_7_is_ret) 
-                                                                                << 1U) 
-                                                                                | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_4_pre_decoded_7_is_ret)))) 
-                                                                         >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)) 
-                                                                        << 4U)))) 
-                                                              | (((8U 
-                                                                   & (((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_3_pre_decoded_7_is_ret) 
-                                                                           << 7U) 
-                                                                          | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_3_pre_decoded_7_is_ret) 
-                                                                             << 6U)) 
-                                                                         | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_3_pre_decoded_7_is_ret) 
-                                                                             << 5U) 
-                                                                            | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_3_pre_decoded_7_is_ret) 
-                                                                               << 4U))) 
-                                                                        | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_3_pre_decoded_7_is_ret) 
-                                                                             << 3U) 
-                                                                            | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_3_pre_decoded_7_is_ret) 
-                                                                               << 2U)) 
-                                                                           | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_3_pre_decoded_7_is_ret) 
-                                                                               << 1U) 
-                                                                              | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_3_pre_decoded_7_is_ret)))) 
-                                                                       >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)) 
-                                                                      << 3U)) 
-                                                                  | (4U 
-                                                                     & (((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_2_pre_decoded_7_is_ret) 
-                                                                             << 7U) 
-                                                                            | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_2_pre_decoded_7_is_ret) 
-                                                                               << 6U)) 
-                                                                           | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_2_pre_decoded_7_is_ret) 
-                                                                               << 5U) 
-                                                                              | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_2_pre_decoded_7_is_ret) 
-                                                                                << 4U))) 
-                                                                          | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_2_pre_decoded_7_is_ret) 
-                                                                               << 3U) 
-                                                                              | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_2_pre_decoded_7_is_ret) 
-                                                                                << 2U)) 
-                                                                             | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_2_pre_decoded_7_is_ret) 
-                                                                                << 1U) 
-                                                                                | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_2_pre_decoded_7_is_ret)))) 
-                                                                         >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)) 
-                                                                        << 2U))) 
-                                                                 | ((2U 
-                                                                     & (((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_1_pre_decoded_7_is_ret) 
-                                                                             << 7U) 
-                                                                            | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_1_pre_decoded_7_is_ret) 
-                                                                               << 6U)) 
-                                                                           | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_1_pre_decoded_7_is_ret) 
-                                                                               << 5U) 
-                                                                              | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_1_pre_decoded_7_is_ret) 
-                                                                                << 4U))) 
-                                                                          | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_1_pre_decoded_7_is_ret) 
-                                                                               << 3U) 
-                                                                              | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_1_pre_decoded_7_is_ret) 
-                                                                                << 2U)) 
-                                                                             | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_1_pre_decoded_7_is_ret) 
-                                                                                << 1U) 
-                                                                                | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_1_pre_decoded_7_is_ret)))) 
-                                                                         >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay)) 
-                                                                        << 1U)) 
-                                                                    | (1U 
-                                                                       & ((((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_0_pre_decoded_7_is_ret) 
-                                                                              << 7U) 
-                                                                             | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_0_pre_decoded_7_is_ret) 
-                                                                                << 6U)) 
-                                                                            | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_0_pre_decoded_7_is_ret) 
-                                                                                << 5U) 
-                                                                               | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_0_pre_decoded_7_is_ret) 
-                                                                                << 4U))) 
-                                                                           | ((((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_0_pre_decoded_7_is_ret) 
-                                                                                << 3U) 
-                                                                               | ((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_0_pre_decoded_7_is_ret) 
-                                                                                << 2U)) 
-                                                                              | (((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_0_pre_decoded_7_is_ret) 
-                                                                                << 1U) 
-                                                                                | (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_0_pre_decoded_7_is_ret)))) 
-                                                                          >> (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay))))))))))) 
-                         >> (0x3fU & (IData)((vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc 
-                                              >> 2U))))));
-    __Vtemp_1344[0U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_63_pre_decoded_7_expanded_inst;
-    __Vtemp_1344[1U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_63_pre_decoded_7_expanded_inst;
-    __Vtemp_1344[2U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_63_pre_decoded_7_expanded_inst;
-    __Vtemp_1344[3U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_63_pre_decoded_7_expanded_inst;
-    __Vtemp_1344[4U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_63_pre_decoded_7_expanded_inst;
-    __Vtemp_1344[5U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_63_pre_decoded_7_expanded_inst;
-    __Vtemp_1344[6U] = (IData)((((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_63_pre_decoded_7_expanded_inst)) 
-                                 << 0x20U) | (QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_63_pre_decoded_7_expanded_inst))));
-    __Vtemp_1344[7U] = (IData)(((((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_63_pre_decoded_7_expanded_inst)) 
-                                  << 0x20U) | (QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_63_pre_decoded_7_expanded_inst))) 
-                                >> 0x20U));
-    __Vtemp_1350[0U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_62_pre_decoded_7_expanded_inst;
-    __Vtemp_1350[1U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_62_pre_decoded_7_expanded_inst;
-    __Vtemp_1350[2U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_62_pre_decoded_7_expanded_inst;
-    __Vtemp_1350[3U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_62_pre_decoded_7_expanded_inst;
-    __Vtemp_1350[4U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_62_pre_decoded_7_expanded_inst;
-    __Vtemp_1350[5U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_62_pre_decoded_7_expanded_inst;
-    __Vtemp_1350[6U] = (IData)((((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_62_pre_decoded_7_expanded_inst)) 
-                                 << 0x20U) | (QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_62_pre_decoded_7_expanded_inst))));
-    __Vtemp_1350[7U] = (IData)(((((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_62_pre_decoded_7_expanded_inst)) 
-                                  << 0x20U) | (QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_62_pre_decoded_7_expanded_inst))) 
-                                >> 0x20U));
-    __Vtemp_1356[0U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_61_pre_decoded_7_expanded_inst;
-    __Vtemp_1356[1U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_61_pre_decoded_7_expanded_inst;
-    __Vtemp_1356[2U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_61_pre_decoded_7_expanded_inst;
-    __Vtemp_1356[3U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_61_pre_decoded_7_expanded_inst;
-    __Vtemp_1356[4U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_61_pre_decoded_7_expanded_inst;
-    __Vtemp_1356[5U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_61_pre_decoded_7_expanded_inst;
-    __Vtemp_1356[6U] = (IData)((((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_61_pre_decoded_7_expanded_inst)) 
-                                 << 0x20U) | (QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_61_pre_decoded_7_expanded_inst))));
-    __Vtemp_1356[7U] = (IData)(((((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_61_pre_decoded_7_expanded_inst)) 
-                                  << 0x20U) | (QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_61_pre_decoded_7_expanded_inst))) 
-                                >> 0x20U));
-    __Vtemp_1357[1U] = (IData)((((QData)((IData)(((
-                                                   (0U 
-                                                    == 
-                                                    (0x1fU 
-                                                     & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U)))
-                                                    ? 0U
-                                                    : 
-                                                   (__Vtemp_1344[
-                                                    (((IData)(0x1fU) 
-                                                      + 
-                                                      (0xffU 
-                                                       & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))) 
-                                                     >> 5U)] 
-                                                    << 
-                                                    ((IData)(0x20U) 
-                                                     - 
-                                                     (0x1fU 
-                                                      & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))))) 
-                                                  | (__Vtemp_1344[
-                                                     (7U 
-                                                      & (VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U) 
-                                                         >> 5U))] 
-                                                     >> 
-                                                     (0x1fU 
-                                                      & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U)))))) 
-                                 << 0x20U) | (QData)((IData)(
-                                                             (((0U 
-                                                                == 
-                                                                (0x1fU 
-                                                                 & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U)))
-                                                                ? 0U
-                                                                : 
-                                                               (__Vtemp_1350[
-                                                                (((IData)(0x1fU) 
-                                                                  + 
-                                                                  (0xffU 
-                                                                   & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))) 
-                                                                 >> 5U)] 
-                                                                << 
-                                                                ((IData)(0x20U) 
-                                                                 - 
-                                                                 (0x1fU 
-                                                                  & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))))) 
-                                                              | (__Vtemp_1350[
-                                                                 (7U 
-                                                                  & (VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U) 
-                                                                     >> 5U))] 
-                                                                 >> 
-                                                                 (0x1fU 
-                                                                  & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))))))));
-    __Vtemp_1357[2U] = (IData)(((((QData)((IData)((
-                                                   ((0U 
-                                                     == 
-                                                     (0x1fU 
-                                                      & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U)))
-                                                     ? 0U
-                                                     : 
-                                                    (__Vtemp_1344[
-                                                     (((IData)(0x1fU) 
-                                                       + 
-                                                       (0xffU 
-                                                        & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))) 
-                                                      >> 5U)] 
-                                                     << 
-                                                     ((IData)(0x20U) 
-                                                      - 
-                                                      (0x1fU 
-                                                       & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))))) 
-                                                   | (__Vtemp_1344[
-                                                      (7U 
-                                                       & (VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U) 
-                                                          >> 5U))] 
-                                                      >> 
-                                                      (0x1fU 
-                                                       & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U)))))) 
-                                  << 0x20U) | (QData)((IData)(
-                                                              (((0U 
-                                                                 == 
-                                                                 (0x1fU 
-                                                                  & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U)))
-                                                                 ? 0U
-                                                                 : 
-                                                                (__Vtemp_1350[
-                                                                 (((IData)(0x1fU) 
-                                                                   + 
-                                                                   (0xffU 
-                                                                    & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))) 
-                                                                  >> 5U)] 
-                                                                 << 
-                                                                 ((IData)(0x20U) 
-                                                                  - 
-                                                                  (0x1fU 
-                                                                   & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))))) 
-                                                               | (__Vtemp_1350[
-                                                                  (7U 
-                                                                   & (VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U) 
-                                                                      >> 5U))] 
-                                                                  >> 
-                                                                  (0x1fU 
-                                                                   & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))))))) 
-                                >> 0x20U));
-    __Vtemp_1363[0U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_60_pre_decoded_7_expanded_inst;
-    __Vtemp_1363[1U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_60_pre_decoded_7_expanded_inst;
-    __Vtemp_1363[2U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_60_pre_decoded_7_expanded_inst;
-    __Vtemp_1363[3U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_60_pre_decoded_7_expanded_inst;
-    __Vtemp_1363[4U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_60_pre_decoded_7_expanded_inst;
-    __Vtemp_1363[5U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_60_pre_decoded_7_expanded_inst;
-    __Vtemp_1363[6U] = (IData)((((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_60_pre_decoded_7_expanded_inst)) 
-                                 << 0x20U) | (QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_60_pre_decoded_7_expanded_inst))));
-    __Vtemp_1363[7U] = (IData)(((((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_60_pre_decoded_7_expanded_inst)) 
-                                  << 0x20U) | (QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_60_pre_decoded_7_expanded_inst))) 
-                                >> 0x20U));
-    __Vtemp_1370[0U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_59_pre_decoded_7_expanded_inst;
-    __Vtemp_1370[1U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_59_pre_decoded_7_expanded_inst;
-    __Vtemp_1370[2U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_59_pre_decoded_7_expanded_inst;
-    __Vtemp_1370[3U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_59_pre_decoded_7_expanded_inst;
-    __Vtemp_1370[4U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_59_pre_decoded_7_expanded_inst;
-    __Vtemp_1370[5U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_59_pre_decoded_7_expanded_inst;
-    __Vtemp_1370[6U] = (IData)((((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_59_pre_decoded_7_expanded_inst)) 
-                                 << 0x20U) | (QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_59_pre_decoded_7_expanded_inst))));
-    __Vtemp_1370[7U] = (IData)(((((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_59_pre_decoded_7_expanded_inst)) 
-                                  << 0x20U) | (QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_59_pre_decoded_7_expanded_inst))) 
-                                >> 0x20U));
-    __Vtemp_1377[0U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_58_pre_decoded_7_expanded_inst;
-    __Vtemp_1377[1U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_58_pre_decoded_7_expanded_inst;
-    __Vtemp_1377[2U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_58_pre_decoded_7_expanded_inst;
-    __Vtemp_1377[3U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_58_pre_decoded_7_expanded_inst;
-    __Vtemp_1377[4U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_58_pre_decoded_7_expanded_inst;
-    __Vtemp_1377[5U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_58_pre_decoded_7_expanded_inst;
-    __Vtemp_1377[6U] = (IData)((((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_58_pre_decoded_7_expanded_inst)) 
-                                 << 0x20U) | (QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_58_pre_decoded_7_expanded_inst))));
-    __Vtemp_1377[7U] = (IData)(((((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_58_pre_decoded_7_expanded_inst)) 
-                                  << 0x20U) | (QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_58_pre_decoded_7_expanded_inst))) 
-                                >> 0x20U));
-    __Vtemp_1384[0U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_57_pre_decoded_7_expanded_inst;
-    __Vtemp_1384[1U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_57_pre_decoded_7_expanded_inst;
-    __Vtemp_1384[2U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_57_pre_decoded_7_expanded_inst;
-    __Vtemp_1384[3U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_57_pre_decoded_7_expanded_inst;
-    __Vtemp_1384[4U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_57_pre_decoded_7_expanded_inst;
-    __Vtemp_1384[5U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_57_pre_decoded_7_expanded_inst;
-    __Vtemp_1384[6U] = (IData)((((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_57_pre_decoded_7_expanded_inst)) 
-                                 << 0x20U) | (QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_57_pre_decoded_7_expanded_inst))));
-    __Vtemp_1384[7U] = (IData)(((((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_57_pre_decoded_7_expanded_inst)) 
-                                  << 0x20U) | (QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_57_pre_decoded_7_expanded_inst))) 
-                                >> 0x20U));
-    __Vtemp_1391[0U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_56_pre_decoded_7_expanded_inst;
-    __Vtemp_1391[1U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_56_pre_decoded_7_expanded_inst;
-    __Vtemp_1391[2U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_56_pre_decoded_7_expanded_inst;
-    __Vtemp_1391[3U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_56_pre_decoded_7_expanded_inst;
-    __Vtemp_1391[4U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_56_pre_decoded_7_expanded_inst;
-    __Vtemp_1391[5U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_56_pre_decoded_7_expanded_inst;
-    __Vtemp_1391[6U] = (IData)((((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_56_pre_decoded_7_expanded_inst)) 
-                                 << 0x20U) | (QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_56_pre_decoded_7_expanded_inst))));
-    __Vtemp_1391[7U] = (IData)(((((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_56_pre_decoded_7_expanded_inst)) 
-                                  << 0x20U) | (QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_56_pre_decoded_7_expanded_inst))) 
-                                >> 0x20U));
-    __Vtemp_1398[0U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_55_pre_decoded_7_expanded_inst;
-    __Vtemp_1398[1U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_55_pre_decoded_7_expanded_inst;
-    __Vtemp_1398[2U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_55_pre_decoded_7_expanded_inst;
-    __Vtemp_1398[3U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_55_pre_decoded_7_expanded_inst;
-    __Vtemp_1398[4U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_55_pre_decoded_7_expanded_inst;
-    __Vtemp_1398[5U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_55_pre_decoded_7_expanded_inst;
-    __Vtemp_1398[6U] = (IData)((((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_55_pre_decoded_7_expanded_inst)) 
-                                 << 0x20U) | (QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_55_pre_decoded_7_expanded_inst))));
-    __Vtemp_1398[7U] = (IData)(((((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_55_pre_decoded_7_expanded_inst)) 
-                                  << 0x20U) | (QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_55_pre_decoded_7_expanded_inst))) 
-                                >> 0x20U));
-    __Vtemp_1405[0U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_54_pre_decoded_7_expanded_inst;
-    __Vtemp_1405[1U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_54_pre_decoded_7_expanded_inst;
-    __Vtemp_1405[2U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_54_pre_decoded_7_expanded_inst;
-    __Vtemp_1405[3U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_54_pre_decoded_7_expanded_inst;
-    __Vtemp_1405[4U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_54_pre_decoded_7_expanded_inst;
-    __Vtemp_1405[5U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_54_pre_decoded_7_expanded_inst;
-    __Vtemp_1405[6U] = (IData)((((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_54_pre_decoded_7_expanded_inst)) 
-                                 << 0x20U) | (QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_54_pre_decoded_7_expanded_inst))));
-    __Vtemp_1405[7U] = (IData)(((((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_54_pre_decoded_7_expanded_inst)) 
-                                  << 0x20U) | (QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_54_pre_decoded_7_expanded_inst))) 
-                                >> 0x20U));
-    __Vtemp_1412[0U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_53_pre_decoded_7_expanded_inst;
-    __Vtemp_1412[1U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_53_pre_decoded_7_expanded_inst;
-    __Vtemp_1412[2U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_53_pre_decoded_7_expanded_inst;
-    __Vtemp_1412[3U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_53_pre_decoded_7_expanded_inst;
-    __Vtemp_1412[4U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_53_pre_decoded_7_expanded_inst;
-    __Vtemp_1412[5U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_53_pre_decoded_7_expanded_inst;
-    __Vtemp_1412[6U] = (IData)((((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_53_pre_decoded_7_expanded_inst)) 
-                                 << 0x20U) | (QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_53_pre_decoded_7_expanded_inst))));
-    __Vtemp_1412[7U] = (IData)(((((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_53_pre_decoded_7_expanded_inst)) 
-                                  << 0x20U) | (QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_53_pre_decoded_7_expanded_inst))) 
-                                >> 0x20U));
-    __Vtemp_1419[0U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_52_pre_decoded_7_expanded_inst;
-    __Vtemp_1419[1U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_52_pre_decoded_7_expanded_inst;
-    __Vtemp_1419[2U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_52_pre_decoded_7_expanded_inst;
-    __Vtemp_1419[3U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_52_pre_decoded_7_expanded_inst;
-    __Vtemp_1419[4U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_52_pre_decoded_7_expanded_inst;
-    __Vtemp_1419[5U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_52_pre_decoded_7_expanded_inst;
-    __Vtemp_1419[6U] = (IData)((((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_52_pre_decoded_7_expanded_inst)) 
-                                 << 0x20U) | (QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_52_pre_decoded_7_expanded_inst))));
-    __Vtemp_1419[7U] = (IData)(((((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_52_pre_decoded_7_expanded_inst)) 
-                                  << 0x20U) | (QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_52_pre_decoded_7_expanded_inst))) 
-                                >> 0x20U));
-    __Vtemp_1426[0U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_51_pre_decoded_7_expanded_inst;
-    __Vtemp_1426[1U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_51_pre_decoded_7_expanded_inst;
-    __Vtemp_1426[2U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_51_pre_decoded_7_expanded_inst;
-    __Vtemp_1426[3U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_51_pre_decoded_7_expanded_inst;
-    __Vtemp_1426[4U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_51_pre_decoded_7_expanded_inst;
-    __Vtemp_1426[5U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_51_pre_decoded_7_expanded_inst;
-    __Vtemp_1426[6U] = (IData)((((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_51_pre_decoded_7_expanded_inst)) 
-                                 << 0x20U) | (QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_51_pre_decoded_7_expanded_inst))));
-    __Vtemp_1426[7U] = (IData)(((((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_51_pre_decoded_7_expanded_inst)) 
-                                  << 0x20U) | (QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_51_pre_decoded_7_expanded_inst))) 
-                                >> 0x20U));
-    __Vtemp_1433[0U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_50_pre_decoded_7_expanded_inst;
-    __Vtemp_1433[1U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_50_pre_decoded_7_expanded_inst;
-    __Vtemp_1433[2U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_50_pre_decoded_7_expanded_inst;
-    __Vtemp_1433[3U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_50_pre_decoded_7_expanded_inst;
-    __Vtemp_1433[4U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_50_pre_decoded_7_expanded_inst;
-    __Vtemp_1433[5U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_50_pre_decoded_7_expanded_inst;
-    __Vtemp_1433[6U] = (IData)((((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_50_pre_decoded_7_expanded_inst)) 
-                                 << 0x20U) | (QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_50_pre_decoded_7_expanded_inst))));
-    __Vtemp_1433[7U] = (IData)(((((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_50_pre_decoded_7_expanded_inst)) 
-                                  << 0x20U) | (QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_50_pre_decoded_7_expanded_inst))) 
-                                >> 0x20U));
-    __Vtemp_1440[0U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_49_pre_decoded_7_expanded_inst;
-    __Vtemp_1440[1U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_49_pre_decoded_7_expanded_inst;
-    __Vtemp_1440[2U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_49_pre_decoded_7_expanded_inst;
-    __Vtemp_1440[3U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_49_pre_decoded_7_expanded_inst;
-    __Vtemp_1440[4U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_49_pre_decoded_7_expanded_inst;
-    __Vtemp_1440[5U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_49_pre_decoded_7_expanded_inst;
-    __Vtemp_1440[6U] = (IData)((((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_49_pre_decoded_7_expanded_inst)) 
-                                 << 0x20U) | (QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_49_pre_decoded_7_expanded_inst))));
-    __Vtemp_1440[7U] = (IData)(((((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_49_pre_decoded_7_expanded_inst)) 
-                                  << 0x20U) | (QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_49_pre_decoded_7_expanded_inst))) 
-                                >> 0x20U));
-    __Vtemp_1447[0U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_48_pre_decoded_7_expanded_inst;
-    __Vtemp_1447[1U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_48_pre_decoded_7_expanded_inst;
-    __Vtemp_1447[2U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_48_pre_decoded_7_expanded_inst;
-    __Vtemp_1447[3U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_48_pre_decoded_7_expanded_inst;
-    __Vtemp_1447[4U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_48_pre_decoded_7_expanded_inst;
-    __Vtemp_1447[5U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_48_pre_decoded_7_expanded_inst;
-    __Vtemp_1447[6U] = (IData)((((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_48_pre_decoded_7_expanded_inst)) 
-                                 << 0x20U) | (QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_48_pre_decoded_7_expanded_inst))));
-    __Vtemp_1447[7U] = (IData)(((((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_48_pre_decoded_7_expanded_inst)) 
-                                  << 0x20U) | (QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_48_pre_decoded_7_expanded_inst))) 
-                                >> 0x20U));
-    __Vtemp_1454[0U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_47_pre_decoded_7_expanded_inst;
-    __Vtemp_1454[1U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_47_pre_decoded_7_expanded_inst;
-    __Vtemp_1454[2U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_47_pre_decoded_7_expanded_inst;
-    __Vtemp_1454[3U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_47_pre_decoded_7_expanded_inst;
-    __Vtemp_1454[4U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_47_pre_decoded_7_expanded_inst;
-    __Vtemp_1454[5U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_47_pre_decoded_7_expanded_inst;
-    __Vtemp_1454[6U] = (IData)((((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_47_pre_decoded_7_expanded_inst)) 
-                                 << 0x20U) | (QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_47_pre_decoded_7_expanded_inst))));
-    __Vtemp_1454[7U] = (IData)(((((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_47_pre_decoded_7_expanded_inst)) 
-                                  << 0x20U) | (QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_47_pre_decoded_7_expanded_inst))) 
-                                >> 0x20U));
-    __Vtemp_1461[0U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_46_pre_decoded_7_expanded_inst;
-    __Vtemp_1461[1U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_46_pre_decoded_7_expanded_inst;
-    __Vtemp_1461[2U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_46_pre_decoded_7_expanded_inst;
-    __Vtemp_1461[3U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_46_pre_decoded_7_expanded_inst;
-    __Vtemp_1461[4U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_46_pre_decoded_7_expanded_inst;
-    __Vtemp_1461[5U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_46_pre_decoded_7_expanded_inst;
-    __Vtemp_1461[6U] = (IData)((((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_46_pre_decoded_7_expanded_inst)) 
-                                 << 0x20U) | (QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_46_pre_decoded_7_expanded_inst))));
-    __Vtemp_1461[7U] = (IData)(((((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_46_pre_decoded_7_expanded_inst)) 
-                                  << 0x20U) | (QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_46_pre_decoded_7_expanded_inst))) 
-                                >> 0x20U));
-    __Vtemp_1468[0U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_45_pre_decoded_7_expanded_inst;
-    __Vtemp_1468[1U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_45_pre_decoded_7_expanded_inst;
-    __Vtemp_1468[2U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_45_pre_decoded_7_expanded_inst;
-    __Vtemp_1468[3U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_45_pre_decoded_7_expanded_inst;
-    __Vtemp_1468[4U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_45_pre_decoded_7_expanded_inst;
-    __Vtemp_1468[5U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_45_pre_decoded_7_expanded_inst;
-    __Vtemp_1468[6U] = (IData)((((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_45_pre_decoded_7_expanded_inst)) 
-                                 << 0x20U) | (QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_45_pre_decoded_7_expanded_inst))));
-    __Vtemp_1468[7U] = (IData)(((((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_45_pre_decoded_7_expanded_inst)) 
-                                  << 0x20U) | (QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_45_pre_decoded_7_expanded_inst))) 
-                                >> 0x20U));
-    __Vtemp_1475[0U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_44_pre_decoded_7_expanded_inst;
-    __Vtemp_1475[1U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_44_pre_decoded_7_expanded_inst;
-    __Vtemp_1475[2U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_44_pre_decoded_7_expanded_inst;
-    __Vtemp_1475[3U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_44_pre_decoded_7_expanded_inst;
-    __Vtemp_1475[4U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_44_pre_decoded_7_expanded_inst;
-    __Vtemp_1475[5U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_44_pre_decoded_7_expanded_inst;
-    __Vtemp_1475[6U] = (IData)((((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_44_pre_decoded_7_expanded_inst)) 
-                                 << 0x20U) | (QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_44_pre_decoded_7_expanded_inst))));
-    __Vtemp_1475[7U] = (IData)(((((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_44_pre_decoded_7_expanded_inst)) 
-                                  << 0x20U) | (QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_44_pre_decoded_7_expanded_inst))) 
-                                >> 0x20U));
-    __Vtemp_1482[0U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_43_pre_decoded_7_expanded_inst;
-    __Vtemp_1482[1U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_43_pre_decoded_7_expanded_inst;
-    __Vtemp_1482[2U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_43_pre_decoded_7_expanded_inst;
-    __Vtemp_1482[3U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_43_pre_decoded_7_expanded_inst;
-    __Vtemp_1482[4U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_43_pre_decoded_7_expanded_inst;
-    __Vtemp_1482[5U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_43_pre_decoded_7_expanded_inst;
-    __Vtemp_1482[6U] = (IData)((((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_43_pre_decoded_7_expanded_inst)) 
-                                 << 0x20U) | (QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_43_pre_decoded_7_expanded_inst))));
-    __Vtemp_1482[7U] = (IData)(((((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_43_pre_decoded_7_expanded_inst)) 
-                                  << 0x20U) | (QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_43_pre_decoded_7_expanded_inst))) 
-                                >> 0x20U));
-    __Vtemp_1489[0U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_42_pre_decoded_7_expanded_inst;
-    __Vtemp_1489[1U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_42_pre_decoded_7_expanded_inst;
-    __Vtemp_1489[2U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_42_pre_decoded_7_expanded_inst;
-    __Vtemp_1489[3U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_42_pre_decoded_7_expanded_inst;
-    __Vtemp_1489[4U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_42_pre_decoded_7_expanded_inst;
-    __Vtemp_1489[5U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_42_pre_decoded_7_expanded_inst;
-    __Vtemp_1489[6U] = (IData)((((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_42_pre_decoded_7_expanded_inst)) 
-                                 << 0x20U) | (QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_42_pre_decoded_7_expanded_inst))));
-    __Vtemp_1489[7U] = (IData)(((((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_42_pre_decoded_7_expanded_inst)) 
-                                  << 0x20U) | (QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_42_pre_decoded_7_expanded_inst))) 
-                                >> 0x20U));
-    __Vtemp_1496[0U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_41_pre_decoded_7_expanded_inst;
-    __Vtemp_1496[1U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_41_pre_decoded_7_expanded_inst;
-    __Vtemp_1496[2U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_41_pre_decoded_7_expanded_inst;
-    __Vtemp_1496[3U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_41_pre_decoded_7_expanded_inst;
-    __Vtemp_1496[4U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_41_pre_decoded_7_expanded_inst;
-    __Vtemp_1496[5U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_41_pre_decoded_7_expanded_inst;
-    __Vtemp_1496[6U] = (IData)((((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_41_pre_decoded_7_expanded_inst)) 
-                                 << 0x20U) | (QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_41_pre_decoded_7_expanded_inst))));
-    __Vtemp_1496[7U] = (IData)(((((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_41_pre_decoded_7_expanded_inst)) 
-                                  << 0x20U) | (QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_41_pre_decoded_7_expanded_inst))) 
-                                >> 0x20U));
-    __Vtemp_1503[0U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_40_pre_decoded_7_expanded_inst;
-    __Vtemp_1503[1U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_40_pre_decoded_7_expanded_inst;
-    __Vtemp_1503[2U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_40_pre_decoded_7_expanded_inst;
-    __Vtemp_1503[3U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_40_pre_decoded_7_expanded_inst;
-    __Vtemp_1503[4U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_40_pre_decoded_7_expanded_inst;
-    __Vtemp_1503[5U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_40_pre_decoded_7_expanded_inst;
-    __Vtemp_1503[6U] = (IData)((((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_40_pre_decoded_7_expanded_inst)) 
-                                 << 0x20U) | (QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_40_pre_decoded_7_expanded_inst))));
-    __Vtemp_1503[7U] = (IData)(((((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_40_pre_decoded_7_expanded_inst)) 
-                                  << 0x20U) | (QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_40_pre_decoded_7_expanded_inst))) 
-                                >> 0x20U));
-    __Vtemp_1510[0U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_39_pre_decoded_7_expanded_inst;
-    __Vtemp_1510[1U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_39_pre_decoded_7_expanded_inst;
-    __Vtemp_1510[2U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_39_pre_decoded_7_expanded_inst;
-    __Vtemp_1510[3U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_39_pre_decoded_7_expanded_inst;
-    __Vtemp_1510[4U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_39_pre_decoded_7_expanded_inst;
-    __Vtemp_1510[5U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_39_pre_decoded_7_expanded_inst;
-    __Vtemp_1510[6U] = (IData)((((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_39_pre_decoded_7_expanded_inst)) 
-                                 << 0x20U) | (QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_39_pre_decoded_7_expanded_inst))));
-    __Vtemp_1510[7U] = (IData)(((((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_39_pre_decoded_7_expanded_inst)) 
-                                  << 0x20U) | (QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_39_pre_decoded_7_expanded_inst))) 
-                                >> 0x20U));
-    __Vtemp_1517[0U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_38_pre_decoded_7_expanded_inst;
-    __Vtemp_1517[1U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_38_pre_decoded_7_expanded_inst;
-    __Vtemp_1517[2U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_38_pre_decoded_7_expanded_inst;
-    __Vtemp_1517[3U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_38_pre_decoded_7_expanded_inst;
-    __Vtemp_1517[4U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_38_pre_decoded_7_expanded_inst;
-    __Vtemp_1517[5U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_38_pre_decoded_7_expanded_inst;
-    __Vtemp_1517[6U] = (IData)((((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_38_pre_decoded_7_expanded_inst)) 
-                                 << 0x20U) | (QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_38_pre_decoded_7_expanded_inst))));
-    __Vtemp_1517[7U] = (IData)(((((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_38_pre_decoded_7_expanded_inst)) 
-                                  << 0x20U) | (QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_38_pre_decoded_7_expanded_inst))) 
-                                >> 0x20U));
-    __Vtemp_1524[0U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_37_pre_decoded_7_expanded_inst;
-    __Vtemp_1524[1U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_37_pre_decoded_7_expanded_inst;
-    __Vtemp_1524[2U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_37_pre_decoded_7_expanded_inst;
-    __Vtemp_1524[3U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_37_pre_decoded_7_expanded_inst;
-    __Vtemp_1524[4U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_37_pre_decoded_7_expanded_inst;
-    __Vtemp_1524[5U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_37_pre_decoded_7_expanded_inst;
-    __Vtemp_1524[6U] = (IData)((((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_37_pre_decoded_7_expanded_inst)) 
-                                 << 0x20U) | (QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_37_pre_decoded_7_expanded_inst))));
-    __Vtemp_1524[7U] = (IData)(((((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_37_pre_decoded_7_expanded_inst)) 
-                                  << 0x20U) | (QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_37_pre_decoded_7_expanded_inst))) 
-                                >> 0x20U));
-    __Vtemp_1531[0U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_36_pre_decoded_7_expanded_inst;
-    __Vtemp_1531[1U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_36_pre_decoded_7_expanded_inst;
-    __Vtemp_1531[2U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_36_pre_decoded_7_expanded_inst;
-    __Vtemp_1531[3U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_36_pre_decoded_7_expanded_inst;
-    __Vtemp_1531[4U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_36_pre_decoded_7_expanded_inst;
-    __Vtemp_1531[5U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_36_pre_decoded_7_expanded_inst;
-    __Vtemp_1531[6U] = (IData)((((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_36_pre_decoded_7_expanded_inst)) 
-                                 << 0x20U) | (QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_36_pre_decoded_7_expanded_inst))));
-    __Vtemp_1531[7U] = (IData)(((((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_36_pre_decoded_7_expanded_inst)) 
-                                  << 0x20U) | (QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_36_pre_decoded_7_expanded_inst))) 
-                                >> 0x20U));
-    __Vtemp_1538[0U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_35_pre_decoded_7_expanded_inst;
-    __Vtemp_1538[1U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_35_pre_decoded_7_expanded_inst;
-    __Vtemp_1538[2U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_35_pre_decoded_7_expanded_inst;
-    __Vtemp_1538[3U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_35_pre_decoded_7_expanded_inst;
-    __Vtemp_1538[4U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_35_pre_decoded_7_expanded_inst;
-    __Vtemp_1538[5U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_35_pre_decoded_7_expanded_inst;
-    __Vtemp_1538[6U] = (IData)((((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_35_pre_decoded_7_expanded_inst)) 
-                                 << 0x20U) | (QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_35_pre_decoded_7_expanded_inst))));
-    __Vtemp_1538[7U] = (IData)(((((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_35_pre_decoded_7_expanded_inst)) 
-                                  << 0x20U) | (QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_35_pre_decoded_7_expanded_inst))) 
-                                >> 0x20U));
-    __Vtemp_1545[0U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_34_pre_decoded_7_expanded_inst;
-    __Vtemp_1545[1U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_34_pre_decoded_7_expanded_inst;
-    __Vtemp_1545[2U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_34_pre_decoded_7_expanded_inst;
-    __Vtemp_1545[3U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_34_pre_decoded_7_expanded_inst;
-    __Vtemp_1545[4U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_34_pre_decoded_7_expanded_inst;
-    __Vtemp_1545[5U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_34_pre_decoded_7_expanded_inst;
-    __Vtemp_1545[6U] = (IData)((((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_34_pre_decoded_7_expanded_inst)) 
-                                 << 0x20U) | (QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_34_pre_decoded_7_expanded_inst))));
-    __Vtemp_1545[7U] = (IData)(((((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_34_pre_decoded_7_expanded_inst)) 
-                                  << 0x20U) | (QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_34_pre_decoded_7_expanded_inst))) 
-                                >> 0x20U));
-    __Vtemp_1552[0U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_33_pre_decoded_7_expanded_inst;
-    __Vtemp_1552[1U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_33_pre_decoded_7_expanded_inst;
-    __Vtemp_1552[2U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_33_pre_decoded_7_expanded_inst;
-    __Vtemp_1552[3U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_33_pre_decoded_7_expanded_inst;
-    __Vtemp_1552[4U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_33_pre_decoded_7_expanded_inst;
-    __Vtemp_1552[5U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_33_pre_decoded_7_expanded_inst;
-    __Vtemp_1552[6U] = (IData)((((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_33_pre_decoded_7_expanded_inst)) 
-                                 << 0x20U) | (QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_33_pre_decoded_7_expanded_inst))));
-    __Vtemp_1552[7U] = (IData)(((((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_33_pre_decoded_7_expanded_inst)) 
-                                  << 0x20U) | (QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_33_pre_decoded_7_expanded_inst))) 
-                                >> 0x20U));
-    __Vtemp_1559[0U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_32_pre_decoded_7_expanded_inst;
-    __Vtemp_1559[1U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_32_pre_decoded_7_expanded_inst;
-    __Vtemp_1559[2U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_32_pre_decoded_7_expanded_inst;
-    __Vtemp_1559[3U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_32_pre_decoded_7_expanded_inst;
-    __Vtemp_1559[4U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_32_pre_decoded_7_expanded_inst;
-    __Vtemp_1559[5U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_32_pre_decoded_7_expanded_inst;
-    __Vtemp_1559[6U] = (IData)((((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_32_pre_decoded_7_expanded_inst)) 
-                                 << 0x20U) | (QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_32_pre_decoded_7_expanded_inst))));
-    __Vtemp_1559[7U] = (IData)(((((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_32_pre_decoded_7_expanded_inst)) 
-                                  << 0x20U) | (QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_32_pre_decoded_7_expanded_inst))) 
-                                >> 0x20U));
-    __Vtemp_1566[0U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_31_pre_decoded_7_expanded_inst;
-    __Vtemp_1566[1U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_31_pre_decoded_7_expanded_inst;
-    __Vtemp_1566[2U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_31_pre_decoded_7_expanded_inst;
-    __Vtemp_1566[3U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_31_pre_decoded_7_expanded_inst;
-    __Vtemp_1566[4U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_31_pre_decoded_7_expanded_inst;
-    __Vtemp_1566[5U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_31_pre_decoded_7_expanded_inst;
-    __Vtemp_1566[6U] = (IData)((((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_31_pre_decoded_7_expanded_inst)) 
-                                 << 0x20U) | (QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_31_pre_decoded_7_expanded_inst))));
-    __Vtemp_1566[7U] = (IData)(((((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_31_pre_decoded_7_expanded_inst)) 
-                                  << 0x20U) | (QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_31_pre_decoded_7_expanded_inst))) 
-                                >> 0x20U));
-    __Vtemp_1573[0U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_30_pre_decoded_7_expanded_inst;
-    __Vtemp_1573[1U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_30_pre_decoded_7_expanded_inst;
-    __Vtemp_1573[2U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_30_pre_decoded_7_expanded_inst;
-    __Vtemp_1573[3U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_30_pre_decoded_7_expanded_inst;
-    __Vtemp_1573[4U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_30_pre_decoded_7_expanded_inst;
-    __Vtemp_1573[5U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_30_pre_decoded_7_expanded_inst;
-    __Vtemp_1573[6U] = (IData)((((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_30_pre_decoded_7_expanded_inst)) 
-                                 << 0x20U) | (QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_30_pre_decoded_7_expanded_inst))));
-    __Vtemp_1573[7U] = (IData)(((((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_30_pre_decoded_7_expanded_inst)) 
-                                  << 0x20U) | (QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_30_pre_decoded_7_expanded_inst))) 
-                                >> 0x20U));
-    __Vtemp_1580[0U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_29_pre_decoded_7_expanded_inst;
-    __Vtemp_1580[1U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_29_pre_decoded_7_expanded_inst;
-    __Vtemp_1580[2U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_29_pre_decoded_7_expanded_inst;
-    __Vtemp_1580[3U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_29_pre_decoded_7_expanded_inst;
-    __Vtemp_1580[4U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_29_pre_decoded_7_expanded_inst;
-    __Vtemp_1580[5U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_29_pre_decoded_7_expanded_inst;
-    __Vtemp_1580[6U] = (IData)((((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_29_pre_decoded_7_expanded_inst)) 
-                                 << 0x20U) | (QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_29_pre_decoded_7_expanded_inst))));
-    __Vtemp_1580[7U] = (IData)(((((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_29_pre_decoded_7_expanded_inst)) 
-                                  << 0x20U) | (QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_29_pre_decoded_7_expanded_inst))) 
-                                >> 0x20U));
-    __Vtemp_1587[0U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_28_pre_decoded_7_expanded_inst;
-    __Vtemp_1587[1U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_28_pre_decoded_7_expanded_inst;
-    __Vtemp_1587[2U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_28_pre_decoded_7_expanded_inst;
-    __Vtemp_1587[3U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_28_pre_decoded_7_expanded_inst;
-    __Vtemp_1587[4U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_28_pre_decoded_7_expanded_inst;
-    __Vtemp_1587[5U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_28_pre_decoded_7_expanded_inst;
-    __Vtemp_1587[6U] = (IData)((((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_28_pre_decoded_7_expanded_inst)) 
-                                 << 0x20U) | (QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_28_pre_decoded_7_expanded_inst))));
-    __Vtemp_1587[7U] = (IData)(((((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_28_pre_decoded_7_expanded_inst)) 
-                                  << 0x20U) | (QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_28_pre_decoded_7_expanded_inst))) 
-                                >> 0x20U));
-    __Vtemp_1594[0U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_27_pre_decoded_7_expanded_inst;
-    __Vtemp_1594[1U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_27_pre_decoded_7_expanded_inst;
-    __Vtemp_1594[2U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_27_pre_decoded_7_expanded_inst;
-    __Vtemp_1594[3U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_27_pre_decoded_7_expanded_inst;
-    __Vtemp_1594[4U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_27_pre_decoded_7_expanded_inst;
-    __Vtemp_1594[5U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_27_pre_decoded_7_expanded_inst;
-    __Vtemp_1594[6U] = (IData)((((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_27_pre_decoded_7_expanded_inst)) 
-                                 << 0x20U) | (QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_27_pre_decoded_7_expanded_inst))));
-    __Vtemp_1594[7U] = (IData)(((((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_27_pre_decoded_7_expanded_inst)) 
-                                  << 0x20U) | (QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_27_pre_decoded_7_expanded_inst))) 
-                                >> 0x20U));
-    __Vtemp_1601[0U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_26_pre_decoded_7_expanded_inst;
-    __Vtemp_1601[1U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_26_pre_decoded_7_expanded_inst;
-    __Vtemp_1601[2U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_26_pre_decoded_7_expanded_inst;
-    __Vtemp_1601[3U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_26_pre_decoded_7_expanded_inst;
-    __Vtemp_1601[4U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_26_pre_decoded_7_expanded_inst;
-    __Vtemp_1601[5U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_26_pre_decoded_7_expanded_inst;
-    __Vtemp_1601[6U] = (IData)((((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_26_pre_decoded_7_expanded_inst)) 
-                                 << 0x20U) | (QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_26_pre_decoded_7_expanded_inst))));
-    __Vtemp_1601[7U] = (IData)(((((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_26_pre_decoded_7_expanded_inst)) 
-                                  << 0x20U) | (QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_26_pre_decoded_7_expanded_inst))) 
-                                >> 0x20U));
-    __Vtemp_1608[0U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_25_pre_decoded_7_expanded_inst;
-    __Vtemp_1608[1U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_25_pre_decoded_7_expanded_inst;
-    __Vtemp_1608[2U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_25_pre_decoded_7_expanded_inst;
-    __Vtemp_1608[3U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_25_pre_decoded_7_expanded_inst;
-    __Vtemp_1608[4U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_25_pre_decoded_7_expanded_inst;
-    __Vtemp_1608[5U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_25_pre_decoded_7_expanded_inst;
-    __Vtemp_1608[6U] = (IData)((((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_25_pre_decoded_7_expanded_inst)) 
-                                 << 0x20U) | (QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_25_pre_decoded_7_expanded_inst))));
-    __Vtemp_1608[7U] = (IData)(((((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_25_pre_decoded_7_expanded_inst)) 
-                                  << 0x20U) | (QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_25_pre_decoded_7_expanded_inst))) 
-                                >> 0x20U));
-    __Vtemp_1615[0U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_24_pre_decoded_7_expanded_inst;
-    __Vtemp_1615[1U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_24_pre_decoded_7_expanded_inst;
-    __Vtemp_1615[2U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_24_pre_decoded_7_expanded_inst;
-    __Vtemp_1615[3U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_24_pre_decoded_7_expanded_inst;
-    __Vtemp_1615[4U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_24_pre_decoded_7_expanded_inst;
-    __Vtemp_1615[5U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_24_pre_decoded_7_expanded_inst;
-    __Vtemp_1615[6U] = (IData)((((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_24_pre_decoded_7_expanded_inst)) 
-                                 << 0x20U) | (QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_24_pre_decoded_7_expanded_inst))));
-    __Vtemp_1615[7U] = (IData)(((((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_24_pre_decoded_7_expanded_inst)) 
-                                  << 0x20U) | (QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_24_pre_decoded_7_expanded_inst))) 
-                                >> 0x20U));
-    __Vtemp_1622[0U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_23_pre_decoded_7_expanded_inst;
-    __Vtemp_1622[1U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_23_pre_decoded_7_expanded_inst;
-    __Vtemp_1622[2U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_23_pre_decoded_7_expanded_inst;
-    __Vtemp_1622[3U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_23_pre_decoded_7_expanded_inst;
-    __Vtemp_1622[4U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_23_pre_decoded_7_expanded_inst;
-    __Vtemp_1622[5U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_23_pre_decoded_7_expanded_inst;
-    __Vtemp_1622[6U] = (IData)((((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_23_pre_decoded_7_expanded_inst)) 
-                                 << 0x20U) | (QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_23_pre_decoded_7_expanded_inst))));
-    __Vtemp_1622[7U] = (IData)(((((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_23_pre_decoded_7_expanded_inst)) 
-                                  << 0x20U) | (QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_23_pre_decoded_7_expanded_inst))) 
-                                >> 0x20U));
-    __Vtemp_1629[0U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_22_pre_decoded_7_expanded_inst;
-    __Vtemp_1629[1U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_22_pre_decoded_7_expanded_inst;
-    __Vtemp_1629[2U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_22_pre_decoded_7_expanded_inst;
-    __Vtemp_1629[3U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_22_pre_decoded_7_expanded_inst;
-    __Vtemp_1629[4U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_22_pre_decoded_7_expanded_inst;
-    __Vtemp_1629[5U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_22_pre_decoded_7_expanded_inst;
-    __Vtemp_1629[6U] = (IData)((((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_22_pre_decoded_7_expanded_inst)) 
-                                 << 0x20U) | (QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_22_pre_decoded_7_expanded_inst))));
-    __Vtemp_1629[7U] = (IData)(((((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_22_pre_decoded_7_expanded_inst)) 
-                                  << 0x20U) | (QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_22_pre_decoded_7_expanded_inst))) 
-                                >> 0x20U));
-    __Vtemp_1636[0U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_21_pre_decoded_7_expanded_inst;
-    __Vtemp_1636[1U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_21_pre_decoded_7_expanded_inst;
-    __Vtemp_1636[2U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_21_pre_decoded_7_expanded_inst;
-    __Vtemp_1636[3U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_21_pre_decoded_7_expanded_inst;
-    __Vtemp_1636[4U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_21_pre_decoded_7_expanded_inst;
-    __Vtemp_1636[5U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_21_pre_decoded_7_expanded_inst;
-    __Vtemp_1636[6U] = (IData)((((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_21_pre_decoded_7_expanded_inst)) 
-                                 << 0x20U) | (QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_21_pre_decoded_7_expanded_inst))));
-    __Vtemp_1636[7U] = (IData)(((((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_21_pre_decoded_7_expanded_inst)) 
-                                  << 0x20U) | (QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_21_pre_decoded_7_expanded_inst))) 
-                                >> 0x20U));
-    __Vtemp_1643[0U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_20_pre_decoded_7_expanded_inst;
-    __Vtemp_1643[1U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_20_pre_decoded_7_expanded_inst;
-    __Vtemp_1643[2U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_20_pre_decoded_7_expanded_inst;
-    __Vtemp_1643[3U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_20_pre_decoded_7_expanded_inst;
-    __Vtemp_1643[4U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_20_pre_decoded_7_expanded_inst;
-    __Vtemp_1643[5U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_20_pre_decoded_7_expanded_inst;
-    __Vtemp_1643[6U] = (IData)((((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_20_pre_decoded_7_expanded_inst)) 
-                                 << 0x20U) | (QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_20_pre_decoded_7_expanded_inst))));
-    __Vtemp_1643[7U] = (IData)(((((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_20_pre_decoded_7_expanded_inst)) 
-                                  << 0x20U) | (QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_20_pre_decoded_7_expanded_inst))) 
-                                >> 0x20U));
-    __Vtemp_1650[0U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_19_pre_decoded_7_expanded_inst;
-    __Vtemp_1650[1U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_19_pre_decoded_7_expanded_inst;
-    __Vtemp_1650[2U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_19_pre_decoded_7_expanded_inst;
-    __Vtemp_1650[3U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_19_pre_decoded_7_expanded_inst;
-    __Vtemp_1650[4U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_19_pre_decoded_7_expanded_inst;
-    __Vtemp_1650[5U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_19_pre_decoded_7_expanded_inst;
-    __Vtemp_1650[6U] = (IData)((((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_19_pre_decoded_7_expanded_inst)) 
-                                 << 0x20U) | (QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_19_pre_decoded_7_expanded_inst))));
-    __Vtemp_1650[7U] = (IData)(((((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_19_pre_decoded_7_expanded_inst)) 
-                                  << 0x20U) | (QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_19_pre_decoded_7_expanded_inst))) 
-                                >> 0x20U));
-    __Vtemp_1657[0U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_18_pre_decoded_7_expanded_inst;
-    __Vtemp_1657[1U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_18_pre_decoded_7_expanded_inst;
-    __Vtemp_1657[2U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_18_pre_decoded_7_expanded_inst;
-    __Vtemp_1657[3U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_18_pre_decoded_7_expanded_inst;
-    __Vtemp_1657[4U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_18_pre_decoded_7_expanded_inst;
-    __Vtemp_1657[5U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_18_pre_decoded_7_expanded_inst;
-    __Vtemp_1657[6U] = (IData)((((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_18_pre_decoded_7_expanded_inst)) 
-                                 << 0x20U) | (QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_18_pre_decoded_7_expanded_inst))));
-    __Vtemp_1657[7U] = (IData)(((((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_18_pre_decoded_7_expanded_inst)) 
-                                  << 0x20U) | (QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_18_pre_decoded_7_expanded_inst))) 
-                                >> 0x20U));
-    __Vtemp_1664[0U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_17_pre_decoded_7_expanded_inst;
-    __Vtemp_1664[1U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_17_pre_decoded_7_expanded_inst;
-    __Vtemp_1664[2U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_17_pre_decoded_7_expanded_inst;
-    __Vtemp_1664[3U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_17_pre_decoded_7_expanded_inst;
-    __Vtemp_1664[4U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_17_pre_decoded_7_expanded_inst;
-    __Vtemp_1664[5U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_17_pre_decoded_7_expanded_inst;
-    __Vtemp_1664[6U] = (IData)((((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_17_pre_decoded_7_expanded_inst)) 
-                                 << 0x20U) | (QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_17_pre_decoded_7_expanded_inst))));
-    __Vtemp_1664[7U] = (IData)(((((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_17_pre_decoded_7_expanded_inst)) 
-                                  << 0x20U) | (QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_17_pre_decoded_7_expanded_inst))) 
-                                >> 0x20U));
-    __Vtemp_1671[0U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_16_pre_decoded_7_expanded_inst;
-    __Vtemp_1671[1U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_16_pre_decoded_7_expanded_inst;
-    __Vtemp_1671[2U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_16_pre_decoded_7_expanded_inst;
-    __Vtemp_1671[3U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_16_pre_decoded_7_expanded_inst;
-    __Vtemp_1671[4U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_16_pre_decoded_7_expanded_inst;
-    __Vtemp_1671[5U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_16_pre_decoded_7_expanded_inst;
-    __Vtemp_1671[6U] = (IData)((((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_16_pre_decoded_7_expanded_inst)) 
-                                 << 0x20U) | (QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_16_pre_decoded_7_expanded_inst))));
-    __Vtemp_1671[7U] = (IData)(((((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_16_pre_decoded_7_expanded_inst)) 
-                                  << 0x20U) | (QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_16_pre_decoded_7_expanded_inst))) 
-                                >> 0x20U));
-    __Vtemp_1678[0U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_15_pre_decoded_7_expanded_inst;
-    __Vtemp_1678[1U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_15_pre_decoded_7_expanded_inst;
-    __Vtemp_1678[2U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_15_pre_decoded_7_expanded_inst;
-    __Vtemp_1678[3U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_15_pre_decoded_7_expanded_inst;
-    __Vtemp_1678[4U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_15_pre_decoded_7_expanded_inst;
-    __Vtemp_1678[5U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_15_pre_decoded_7_expanded_inst;
-    __Vtemp_1678[6U] = (IData)((((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_15_pre_decoded_7_expanded_inst)) 
-                                 << 0x20U) | (QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_15_pre_decoded_7_expanded_inst))));
-    __Vtemp_1678[7U] = (IData)(((((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_15_pre_decoded_7_expanded_inst)) 
-                                  << 0x20U) | (QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_15_pre_decoded_7_expanded_inst))) 
-                                >> 0x20U));
-    __Vtemp_1685[0U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_14_pre_decoded_7_expanded_inst;
-    __Vtemp_1685[1U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_14_pre_decoded_7_expanded_inst;
-    __Vtemp_1685[2U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_14_pre_decoded_7_expanded_inst;
-    __Vtemp_1685[3U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_14_pre_decoded_7_expanded_inst;
-    __Vtemp_1685[4U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_14_pre_decoded_7_expanded_inst;
-    __Vtemp_1685[5U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_14_pre_decoded_7_expanded_inst;
-    __Vtemp_1685[6U] = (IData)((((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_14_pre_decoded_7_expanded_inst)) 
-                                 << 0x20U) | (QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_14_pre_decoded_7_expanded_inst))));
-    __Vtemp_1685[7U] = (IData)(((((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_14_pre_decoded_7_expanded_inst)) 
-                                  << 0x20U) | (QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_14_pre_decoded_7_expanded_inst))) 
-                                >> 0x20U));
-    __Vtemp_1692[0U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_13_pre_decoded_7_expanded_inst;
-    __Vtemp_1692[1U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_13_pre_decoded_7_expanded_inst;
-    __Vtemp_1692[2U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_13_pre_decoded_7_expanded_inst;
-    __Vtemp_1692[3U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_13_pre_decoded_7_expanded_inst;
-    __Vtemp_1692[4U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_13_pre_decoded_7_expanded_inst;
-    __Vtemp_1692[5U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_13_pre_decoded_7_expanded_inst;
-    __Vtemp_1692[6U] = (IData)((((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_13_pre_decoded_7_expanded_inst)) 
-                                 << 0x20U) | (QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_13_pre_decoded_7_expanded_inst))));
-    __Vtemp_1692[7U] = (IData)(((((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_13_pre_decoded_7_expanded_inst)) 
-                                  << 0x20U) | (QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_13_pre_decoded_7_expanded_inst))) 
-                                >> 0x20U));
-    __Vtemp_1699[0U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_12_pre_decoded_7_expanded_inst;
-    __Vtemp_1699[1U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_12_pre_decoded_7_expanded_inst;
-    __Vtemp_1699[2U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_12_pre_decoded_7_expanded_inst;
-    __Vtemp_1699[3U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_12_pre_decoded_7_expanded_inst;
-    __Vtemp_1699[4U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_12_pre_decoded_7_expanded_inst;
-    __Vtemp_1699[5U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_12_pre_decoded_7_expanded_inst;
-    __Vtemp_1699[6U] = (IData)((((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_12_pre_decoded_7_expanded_inst)) 
-                                 << 0x20U) | (QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_12_pre_decoded_7_expanded_inst))));
-    __Vtemp_1699[7U] = (IData)(((((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_12_pre_decoded_7_expanded_inst)) 
-                                  << 0x20U) | (QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_12_pre_decoded_7_expanded_inst))) 
-                                >> 0x20U));
-    __Vtemp_1706[0U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_11_pre_decoded_7_expanded_inst;
-    __Vtemp_1706[1U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_11_pre_decoded_7_expanded_inst;
-    __Vtemp_1706[2U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_11_pre_decoded_7_expanded_inst;
-    __Vtemp_1706[3U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_11_pre_decoded_7_expanded_inst;
-    __Vtemp_1706[4U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_11_pre_decoded_7_expanded_inst;
-    __Vtemp_1706[5U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_11_pre_decoded_7_expanded_inst;
-    __Vtemp_1706[6U] = (IData)((((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_11_pre_decoded_7_expanded_inst)) 
-                                 << 0x20U) | (QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_11_pre_decoded_7_expanded_inst))));
-    __Vtemp_1706[7U] = (IData)(((((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_11_pre_decoded_7_expanded_inst)) 
-                                  << 0x20U) | (QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_11_pre_decoded_7_expanded_inst))) 
-                                >> 0x20U));
-    __Vtemp_1713[0U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_10_pre_decoded_7_expanded_inst;
-    __Vtemp_1713[1U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_10_pre_decoded_7_expanded_inst;
-    __Vtemp_1713[2U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_10_pre_decoded_7_expanded_inst;
-    __Vtemp_1713[3U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_10_pre_decoded_7_expanded_inst;
-    __Vtemp_1713[4U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_10_pre_decoded_7_expanded_inst;
-    __Vtemp_1713[5U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_10_pre_decoded_7_expanded_inst;
-    __Vtemp_1713[6U] = (IData)((((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_10_pre_decoded_7_expanded_inst)) 
-                                 << 0x20U) | (QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_10_pre_decoded_7_expanded_inst))));
-    __Vtemp_1713[7U] = (IData)(((((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_10_pre_decoded_7_expanded_inst)) 
-                                  << 0x20U) | (QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_10_pre_decoded_7_expanded_inst))) 
-                                >> 0x20U));
-    __Vtemp_1720[0U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_9_pre_decoded_7_expanded_inst;
-    __Vtemp_1720[1U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_9_pre_decoded_7_expanded_inst;
-    __Vtemp_1720[2U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_9_pre_decoded_7_expanded_inst;
-    __Vtemp_1720[3U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_9_pre_decoded_7_expanded_inst;
-    __Vtemp_1720[4U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_9_pre_decoded_7_expanded_inst;
-    __Vtemp_1720[5U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_9_pre_decoded_7_expanded_inst;
-    __Vtemp_1720[6U] = (IData)((((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_9_pre_decoded_7_expanded_inst)) 
-                                 << 0x20U) | (QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_9_pre_decoded_7_expanded_inst))));
-    __Vtemp_1720[7U] = (IData)(((((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_9_pre_decoded_7_expanded_inst)) 
-                                  << 0x20U) | (QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_9_pre_decoded_7_expanded_inst))) 
-                                >> 0x20U));
-    __Vtemp_1727[0U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_8_pre_decoded_7_expanded_inst;
-    __Vtemp_1727[1U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_8_pre_decoded_7_expanded_inst;
-    __Vtemp_1727[2U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_8_pre_decoded_7_expanded_inst;
-    __Vtemp_1727[3U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_8_pre_decoded_7_expanded_inst;
-    __Vtemp_1727[4U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_8_pre_decoded_7_expanded_inst;
-    __Vtemp_1727[5U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_8_pre_decoded_7_expanded_inst;
-    __Vtemp_1727[6U] = (IData)((((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_8_pre_decoded_7_expanded_inst)) 
-                                 << 0x20U) | (QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_8_pre_decoded_7_expanded_inst))));
-    __Vtemp_1727[7U] = (IData)(((((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_8_pre_decoded_7_expanded_inst)) 
-                                  << 0x20U) | (QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_8_pre_decoded_7_expanded_inst))) 
-                                >> 0x20U));
-    __Vtemp_1734[0U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_7_pre_decoded_7_expanded_inst;
-    __Vtemp_1734[1U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_7_pre_decoded_7_expanded_inst;
-    __Vtemp_1734[2U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_7_pre_decoded_7_expanded_inst;
-    __Vtemp_1734[3U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_7_pre_decoded_7_expanded_inst;
-    __Vtemp_1734[4U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_7_pre_decoded_7_expanded_inst;
-    __Vtemp_1734[5U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_7_pre_decoded_7_expanded_inst;
-    __Vtemp_1734[6U] = (IData)((((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_7_pre_decoded_7_expanded_inst)) 
-                                 << 0x20U) | (QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_7_pre_decoded_7_expanded_inst))));
-    __Vtemp_1734[7U] = (IData)(((((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_7_pre_decoded_7_expanded_inst)) 
-                                  << 0x20U) | (QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_7_pre_decoded_7_expanded_inst))) 
-                                >> 0x20U));
-    __Vtemp_1741[0U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_6_pre_decoded_7_expanded_inst;
-    __Vtemp_1741[1U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_6_pre_decoded_7_expanded_inst;
-    __Vtemp_1741[2U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_6_pre_decoded_7_expanded_inst;
-    __Vtemp_1741[3U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_6_pre_decoded_7_expanded_inst;
-    __Vtemp_1741[4U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_6_pre_decoded_7_expanded_inst;
-    __Vtemp_1741[5U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_6_pre_decoded_7_expanded_inst;
-    __Vtemp_1741[6U] = (IData)((((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_6_pre_decoded_7_expanded_inst)) 
-                                 << 0x20U) | (QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_6_pre_decoded_7_expanded_inst))));
-    __Vtemp_1741[7U] = (IData)(((((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_6_pre_decoded_7_expanded_inst)) 
-                                  << 0x20U) | (QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_6_pre_decoded_7_expanded_inst))) 
-                                >> 0x20U));
-    __Vtemp_1748[0U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_5_pre_decoded_7_expanded_inst;
-    __Vtemp_1748[1U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_5_pre_decoded_7_expanded_inst;
-    __Vtemp_1748[2U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_5_pre_decoded_7_expanded_inst;
-    __Vtemp_1748[3U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_5_pre_decoded_7_expanded_inst;
-    __Vtemp_1748[4U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_5_pre_decoded_7_expanded_inst;
-    __Vtemp_1748[5U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_5_pre_decoded_7_expanded_inst;
-    __Vtemp_1748[6U] = (IData)((((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_5_pre_decoded_7_expanded_inst)) 
-                                 << 0x20U) | (QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_5_pre_decoded_7_expanded_inst))));
-    __Vtemp_1748[7U] = (IData)(((((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_5_pre_decoded_7_expanded_inst)) 
-                                  << 0x20U) | (QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_5_pre_decoded_7_expanded_inst))) 
-                                >> 0x20U));
-    __Vtemp_1755[0U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_4_pre_decoded_7_expanded_inst;
-    __Vtemp_1755[1U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_4_pre_decoded_7_expanded_inst;
-    __Vtemp_1755[2U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_4_pre_decoded_7_expanded_inst;
-    __Vtemp_1755[3U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_4_pre_decoded_7_expanded_inst;
-    __Vtemp_1755[4U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_4_pre_decoded_7_expanded_inst;
-    __Vtemp_1755[5U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_4_pre_decoded_7_expanded_inst;
-    __Vtemp_1755[6U] = (IData)((((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_4_pre_decoded_7_expanded_inst)) 
-                                 << 0x20U) | (QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_4_pre_decoded_7_expanded_inst))));
-    __Vtemp_1755[7U] = (IData)(((((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_4_pre_decoded_7_expanded_inst)) 
-                                  << 0x20U) | (QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_4_pre_decoded_7_expanded_inst))) 
-                                >> 0x20U));
-    __Vtemp_1762[0U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_3_pre_decoded_7_expanded_inst;
-    __Vtemp_1762[1U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_3_pre_decoded_7_expanded_inst;
-    __Vtemp_1762[2U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_3_pre_decoded_7_expanded_inst;
-    __Vtemp_1762[3U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_3_pre_decoded_7_expanded_inst;
-    __Vtemp_1762[4U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_3_pre_decoded_7_expanded_inst;
-    __Vtemp_1762[5U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_3_pre_decoded_7_expanded_inst;
-    __Vtemp_1762[6U] = (IData)((((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_3_pre_decoded_7_expanded_inst)) 
-                                 << 0x20U) | (QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_3_pre_decoded_7_expanded_inst))));
-    __Vtemp_1762[7U] = (IData)(((((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_3_pre_decoded_7_expanded_inst)) 
-                                  << 0x20U) | (QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_3_pre_decoded_7_expanded_inst))) 
-                                >> 0x20U));
-    __Vtemp_1769[0U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_2_pre_decoded_7_expanded_inst;
-    __Vtemp_1769[1U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_2_pre_decoded_7_expanded_inst;
-    __Vtemp_1769[2U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_2_pre_decoded_7_expanded_inst;
-    __Vtemp_1769[3U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_2_pre_decoded_7_expanded_inst;
-    __Vtemp_1769[4U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_2_pre_decoded_7_expanded_inst;
-    __Vtemp_1769[5U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_2_pre_decoded_7_expanded_inst;
-    __Vtemp_1769[6U] = (IData)((((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_2_pre_decoded_7_expanded_inst)) 
-                                 << 0x20U) | (QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_2_pre_decoded_7_expanded_inst))));
-    __Vtemp_1769[7U] = (IData)(((((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_2_pre_decoded_7_expanded_inst)) 
-                                  << 0x20U) | (QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_2_pre_decoded_7_expanded_inst))) 
-                                >> 0x20U));
-    __Vtemp_1776[0U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_1_pre_decoded_7_expanded_inst;
-    __Vtemp_1776[1U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_1_pre_decoded_7_expanded_inst;
-    __Vtemp_1776[2U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_1_pre_decoded_7_expanded_inst;
-    __Vtemp_1776[3U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_1_pre_decoded_7_expanded_inst;
-    __Vtemp_1776[4U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_1_pre_decoded_7_expanded_inst;
-    __Vtemp_1776[5U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_1_pre_decoded_7_expanded_inst;
-    __Vtemp_1776[6U] = (IData)((((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_1_pre_decoded_7_expanded_inst)) 
-                                 << 0x20U) | (QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_1_pre_decoded_7_expanded_inst))));
-    __Vtemp_1776[7U] = (IData)(((((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_1_pre_decoded_7_expanded_inst)) 
-                                  << 0x20U) | (QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_1_pre_decoded_7_expanded_inst))) 
-                                >> 0x20U));
-    __Vtemp_1783[0U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_0_0_pre_decoded_7_expanded_inst;
-    __Vtemp_1783[1U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_1_0_pre_decoded_7_expanded_inst;
-    __Vtemp_1783[2U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_2_0_pre_decoded_7_expanded_inst;
-    __Vtemp_1783[3U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_3_0_pre_decoded_7_expanded_inst;
-    __Vtemp_1783[4U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_4_0_pre_decoded_7_expanded_inst;
-    __Vtemp_1783[5U] = vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_5_0_pre_decoded_7_expanded_inst;
-    __Vtemp_1783[6U] = (IData)((((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_0_pre_decoded_7_expanded_inst)) 
-                                 << 0x20U) | (QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_0_pre_decoded_7_expanded_inst))));
-    __Vtemp_1783[7U] = (IData)(((((QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_7_0_pre_decoded_7_expanded_inst)) 
-                                  << 0x20U) | (QData)((IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__data_6_0_pre_decoded_7_expanded_inst))) 
-                                >> 0x20U));
-    __Vtemp_1784[0U] = (((0U == (0x1fU & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U)))
-                          ? 0U : (__Vtemp_1783[(((IData)(0x1fU) 
-                                                 + 
-                                                 (0xffU 
-                                                  & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))) 
-                                                >> 5U)] 
-                                  << ((IData)(0x20U) 
-                                      - (0x1fU & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))))) 
-                        | (__Vtemp_1783[(7U & (VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U) 
-                                               >> 5U))] 
-                           >> (0x1fU & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))));
-    __Vtemp_1784[1U] = (((0U == (0x1fU & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U)))
-                          ? 0U : (__Vtemp_1776[(((IData)(0x1fU) 
-                                                 + 
-                                                 (0xffU 
-                                                  & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))) 
-                                                >> 5U)] 
-                                  << ((IData)(0x20U) 
-                                      - (0x1fU & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))))) 
-                        | (__Vtemp_1776[(7U & (VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U) 
-                                               >> 5U))] 
-                           >> (0x1fU & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))));
-    __Vtemp_1784[2U] = (((0U == (0x1fU & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U)))
-                          ? 0U : (__Vtemp_1769[(((IData)(0x1fU) 
-                                                 + 
-                                                 (0xffU 
-                                                  & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))) 
-                                                >> 5U)] 
-                                  << ((IData)(0x20U) 
-                                      - (0x1fU & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))))) 
-                        | (__Vtemp_1769[(7U & (VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U) 
-                                               >> 5U))] 
-                           >> (0x1fU & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))));
-    __Vtemp_1784[3U] = (((0U == (0x1fU & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U)))
-                          ? 0U : (__Vtemp_1762[(((IData)(0x1fU) 
-                                                 + 
-                                                 (0xffU 
-                                                  & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))) 
-                                                >> 5U)] 
-                                  << ((IData)(0x20U) 
-                                      - (0x1fU & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))))) 
-                        | (__Vtemp_1762[(7U & (VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U) 
-                                               >> 5U))] 
-                           >> (0x1fU & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))));
-    __Vtemp_1784[4U] = (((0U == (0x1fU & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U)))
-                          ? 0U : (__Vtemp_1755[(((IData)(0x1fU) 
-                                                 + 
-                                                 (0xffU 
-                                                  & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))) 
-                                                >> 5U)] 
-                                  << ((IData)(0x20U) 
-                                      - (0x1fU & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))))) 
-                        | (__Vtemp_1755[(7U & (VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U) 
-                                               >> 5U))] 
-                           >> (0x1fU & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))));
-    __Vtemp_1784[5U] = (((0U == (0x1fU & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U)))
-                          ? 0U : (__Vtemp_1748[(((IData)(0x1fU) 
-                                                 + 
-                                                 (0xffU 
-                                                  & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))) 
-                                                >> 5U)] 
-                                  << ((IData)(0x20U) 
-                                      - (0x1fU & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))))) 
-                        | (__Vtemp_1748[(7U & (VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U) 
-                                               >> 5U))] 
-                           >> (0x1fU & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))));
-    __Vtemp_1784[6U] = (((0U == (0x1fU & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U)))
-                          ? 0U : (__Vtemp_1741[(((IData)(0x1fU) 
-                                                 + 
-                                                 (0xffU 
-                                                  & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))) 
-                                                >> 5U)] 
-                                  << ((IData)(0x20U) 
-                                      - (0x1fU & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))))) 
-                        | (__Vtemp_1741[(7U & (VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U) 
-                                               >> 5U))] 
-                           >> (0x1fU & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))));
-    __Vtemp_1784[7U] = (((0U == (0x1fU & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U)))
-                          ? 0U : (__Vtemp_1734[(((IData)(0x1fU) 
-                                                 + 
-                                                 (0xffU 
-                                                  & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))) 
-                                                >> 5U)] 
-                                  << ((IData)(0x20U) 
-                                      - (0x1fU & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))))) 
-                        | (__Vtemp_1734[(7U & (VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U) 
-                                               >> 5U))] 
-                           >> (0x1fU & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))));
-    __Vtemp_1784[8U] = (((0U == (0x1fU & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U)))
-                          ? 0U : (__Vtemp_1727[(((IData)(0x1fU) 
-                                                 + 
-                                                 (0xffU 
-                                                  & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))) 
-                                                >> 5U)] 
-                                  << ((IData)(0x20U) 
-                                      - (0x1fU & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))))) 
-                        | (__Vtemp_1727[(7U & (VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U) 
-                                               >> 5U))] 
-                           >> (0x1fU & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))));
-    __Vtemp_1784[9U] = (((0U == (0x1fU & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U)))
-                          ? 0U : (__Vtemp_1720[(((IData)(0x1fU) 
-                                                 + 
-                                                 (0xffU 
-                                                  & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))) 
-                                                >> 5U)] 
-                                  << ((IData)(0x20U) 
-                                      - (0x1fU & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))))) 
-                        | (__Vtemp_1720[(7U & (VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U) 
-                                               >> 5U))] 
-                           >> (0x1fU & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))));
-    __Vtemp_1784[0xaU] = (((0U == (0x1fU & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U)))
-                            ? 0U : (__Vtemp_1713[(((IData)(0x1fU) 
-                                                   + 
-                                                   (0xffU 
-                                                    & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))) 
-                                                  >> 5U)] 
-                                    << ((IData)(0x20U) 
-                                        - (0x1fU & 
-                                           VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))))) 
-                          | (__Vtemp_1713[(7U & (VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U) 
-                                                 >> 5U))] 
-                             >> (0x1fU & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))));
-    __Vtemp_1784[0xbU] = (((0U == (0x1fU & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U)))
-                            ? 0U : (__Vtemp_1706[(((IData)(0x1fU) 
-                                                   + 
-                                                   (0xffU 
-                                                    & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))) 
-                                                  >> 5U)] 
-                                    << ((IData)(0x20U) 
-                                        - (0x1fU & 
-                                           VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))))) 
-                          | (__Vtemp_1706[(7U & (VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U) 
-                                                 >> 5U))] 
-                             >> (0x1fU & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))));
-    __Vtemp_1784[0xcU] = (((0U == (0x1fU & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U)))
-                            ? 0U : (__Vtemp_1699[(((IData)(0x1fU) 
-                                                   + 
-                                                   (0xffU 
-                                                    & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))) 
-                                                  >> 5U)] 
-                                    << ((IData)(0x20U) 
-                                        - (0x1fU & 
-                                           VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))))) 
-                          | (__Vtemp_1699[(7U & (VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U) 
-                                                 >> 5U))] 
-                             >> (0x1fU & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))));
-    __Vtemp_1784[0xdU] = (((0U == (0x1fU & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U)))
-                            ? 0U : (__Vtemp_1692[(((IData)(0x1fU) 
-                                                   + 
-                                                   (0xffU 
-                                                    & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))) 
-                                                  >> 5U)] 
-                                    << ((IData)(0x20U) 
-                                        - (0x1fU & 
-                                           VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))))) 
-                          | (__Vtemp_1692[(7U & (VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U) 
-                                                 >> 5U))] 
-                             >> (0x1fU & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))));
-    __Vtemp_1784[0xeU] = (((0U == (0x1fU & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U)))
-                            ? 0U : (__Vtemp_1685[(((IData)(0x1fU) 
-                                                   + 
-                                                   (0xffU 
-                                                    & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))) 
-                                                  >> 5U)] 
-                                    << ((IData)(0x20U) 
-                                        - (0x1fU & 
-                                           VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))))) 
-                          | (__Vtemp_1685[(7U & (VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U) 
-                                                 >> 5U))] 
-                             >> (0x1fU & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))));
-    __Vtemp_1784[0xfU] = (((0U == (0x1fU & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U)))
-                            ? 0U : (__Vtemp_1678[(((IData)(0x1fU) 
-                                                   + 
-                                                   (0xffU 
-                                                    & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))) 
-                                                  >> 5U)] 
-                                    << ((IData)(0x20U) 
-                                        - (0x1fU & 
-                                           VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))))) 
-                          | (__Vtemp_1678[(7U & (VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U) 
-                                                 >> 5U))] 
-                             >> (0x1fU & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))));
-    __Vtemp_1784[0x10U] = (((0U == (0x1fU & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U)))
-                             ? 0U : (__Vtemp_1671[(
-                                                   ((IData)(0x1fU) 
-                                                    + 
-                                                    (0xffU 
-                                                     & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))) 
-                                                   >> 5U)] 
-                                     << ((IData)(0x20U) 
-                                         - (0x1fU & 
-                                            VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))))) 
-                           | (__Vtemp_1671[(7U & (VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U) 
-                                                  >> 5U))] 
-                              >> (0x1fU & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))));
-    __Vtemp_1784[0x11U] = (((0U == (0x1fU & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U)))
-                             ? 0U : (__Vtemp_1664[(
-                                                   ((IData)(0x1fU) 
-                                                    + 
-                                                    (0xffU 
-                                                     & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))) 
-                                                   >> 5U)] 
-                                     << ((IData)(0x20U) 
-                                         - (0x1fU & 
-                                            VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))))) 
-                           | (__Vtemp_1664[(7U & (VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U) 
-                                                  >> 5U))] 
-                              >> (0x1fU & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))));
-    __Vtemp_1784[0x12U] = (((0U == (0x1fU & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U)))
-                             ? 0U : (__Vtemp_1657[(
-                                                   ((IData)(0x1fU) 
-                                                    + 
-                                                    (0xffU 
-                                                     & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))) 
-                                                   >> 5U)] 
-                                     << ((IData)(0x20U) 
-                                         - (0x1fU & 
-                                            VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))))) 
-                           | (__Vtemp_1657[(7U & (VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U) 
-                                                  >> 5U))] 
-                              >> (0x1fU & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))));
-    __Vtemp_1784[0x13U] = (((0U == (0x1fU & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U)))
-                             ? 0U : (__Vtemp_1650[(
-                                                   ((IData)(0x1fU) 
-                                                    + 
-                                                    (0xffU 
-                                                     & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))) 
-                                                   >> 5U)] 
-                                     << ((IData)(0x20U) 
-                                         - (0x1fU & 
-                                            VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))))) 
-                           | (__Vtemp_1650[(7U & (VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U) 
-                                                  >> 5U))] 
-                              >> (0x1fU & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))));
-    __Vtemp_1784[0x14U] = (((0U == (0x1fU & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U)))
-                             ? 0U : (__Vtemp_1643[(
-                                                   ((IData)(0x1fU) 
-                                                    + 
-                                                    (0xffU 
-                                                     & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))) 
-                                                   >> 5U)] 
-                                     << ((IData)(0x20U) 
-                                         - (0x1fU & 
-                                            VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))))) 
-                           | (__Vtemp_1643[(7U & (VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U) 
-                                                  >> 5U))] 
-                              >> (0x1fU & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))));
-    __Vtemp_1784[0x15U] = (((0U == (0x1fU & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U)))
-                             ? 0U : (__Vtemp_1636[(
-                                                   ((IData)(0x1fU) 
-                                                    + 
-                                                    (0xffU 
-                                                     & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))) 
-                                                   >> 5U)] 
-                                     << ((IData)(0x20U) 
-                                         - (0x1fU & 
-                                            VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))))) 
-                           | (__Vtemp_1636[(7U & (VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U) 
-                                                  >> 5U))] 
-                              >> (0x1fU & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))));
-    __Vtemp_1784[0x16U] = (((0U == (0x1fU & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U)))
-                             ? 0U : (__Vtemp_1629[(
-                                                   ((IData)(0x1fU) 
-                                                    + 
-                                                    (0xffU 
-                                                     & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))) 
-                                                   >> 5U)] 
-                                     << ((IData)(0x20U) 
-                                         - (0x1fU & 
-                                            VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))))) 
-                           | (__Vtemp_1629[(7U & (VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U) 
-                                                  >> 5U))] 
-                              >> (0x1fU & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))));
-    __Vtemp_1784[0x17U] = (((0U == (0x1fU & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U)))
-                             ? 0U : (__Vtemp_1622[(
-                                                   ((IData)(0x1fU) 
-                                                    + 
-                                                    (0xffU 
-                                                     & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))) 
-                                                   >> 5U)] 
-                                     << ((IData)(0x20U) 
-                                         - (0x1fU & 
-                                            VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))))) 
-                           | (__Vtemp_1622[(7U & (VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U) 
-                                                  >> 5U))] 
-                              >> (0x1fU & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))));
-    __Vtemp_1784[0x18U] = (((0U == (0x1fU & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U)))
-                             ? 0U : (__Vtemp_1615[(
-                                                   ((IData)(0x1fU) 
-                                                    + 
-                                                    (0xffU 
-                                                     & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))) 
-                                                   >> 5U)] 
-                                     << ((IData)(0x20U) 
-                                         - (0x1fU & 
-                                            VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))))) 
-                           | (__Vtemp_1615[(7U & (VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U) 
-                                                  >> 5U))] 
-                              >> (0x1fU & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))));
-    __Vtemp_1784[0x19U] = (((0U == (0x1fU & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U)))
-                             ? 0U : (__Vtemp_1608[(
-                                                   ((IData)(0x1fU) 
-                                                    + 
-                                                    (0xffU 
-                                                     & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))) 
-                                                   >> 5U)] 
-                                     << ((IData)(0x20U) 
-                                         - (0x1fU & 
-                                            VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))))) 
-                           | (__Vtemp_1608[(7U & (VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U) 
-                                                  >> 5U))] 
-                              >> (0x1fU & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))));
-    __Vtemp_1784[0x1aU] = (((0U == (0x1fU & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U)))
-                             ? 0U : (__Vtemp_1601[(
-                                                   ((IData)(0x1fU) 
-                                                    + 
-                                                    (0xffU 
-                                                     & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))) 
-                                                   >> 5U)] 
-                                     << ((IData)(0x20U) 
-                                         - (0x1fU & 
-                                            VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))))) 
-                           | (__Vtemp_1601[(7U & (VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U) 
-                                                  >> 5U))] 
-                              >> (0x1fU & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))));
-    __Vtemp_1784[0x1bU] = (((0U == (0x1fU & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U)))
-                             ? 0U : (__Vtemp_1594[(
-                                                   ((IData)(0x1fU) 
-                                                    + 
-                                                    (0xffU 
-                                                     & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))) 
-                                                   >> 5U)] 
-                                     << ((IData)(0x20U) 
-                                         - (0x1fU & 
-                                            VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))))) 
-                           | (__Vtemp_1594[(7U & (VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U) 
-                                                  >> 5U))] 
-                              >> (0x1fU & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))));
-    __Vtemp_1784[0x1cU] = (((0U == (0x1fU & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U)))
-                             ? 0U : (__Vtemp_1587[(
-                                                   ((IData)(0x1fU) 
-                                                    + 
-                                                    (0xffU 
-                                                     & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))) 
-                                                   >> 5U)] 
-                                     << ((IData)(0x20U) 
-                                         - (0x1fU & 
-                                            VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))))) 
-                           | (__Vtemp_1587[(7U & (VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U) 
-                                                  >> 5U))] 
-                              >> (0x1fU & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))));
-    __Vtemp_1784[0x1dU] = (((0U == (0x1fU & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U)))
-                             ? 0U : (__Vtemp_1580[(
-                                                   ((IData)(0x1fU) 
-                                                    + 
-                                                    (0xffU 
-                                                     & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))) 
-                                                   >> 5U)] 
-                                     << ((IData)(0x20U) 
-                                         - (0x1fU & 
-                                            VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))))) 
-                           | (__Vtemp_1580[(7U & (VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U) 
-                                                  >> 5U))] 
-                              >> (0x1fU & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))));
-    __Vtemp_1784[0x1eU] = (((0U == (0x1fU & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U)))
-                             ? 0U : (__Vtemp_1573[(
-                                                   ((IData)(0x1fU) 
-                                                    + 
-                                                    (0xffU 
-                                                     & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))) 
-                                                   >> 5U)] 
-                                     << ((IData)(0x20U) 
-                                         - (0x1fU & 
-                                            VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))))) 
-                           | (__Vtemp_1573[(7U & (VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U) 
-                                                  >> 5U))] 
-                              >> (0x1fU & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))));
-    __Vtemp_1784[0x1fU] = (((0U == (0x1fU & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U)))
-                             ? 0U : (__Vtemp_1566[(
-                                                   ((IData)(0x1fU) 
-                                                    + 
-                                                    (0xffU 
-                                                     & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))) 
-                                                   >> 5U)] 
-                                     << ((IData)(0x20U) 
-                                         - (0x1fU & 
-                                            VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))))) 
-                           | (__Vtemp_1566[(7U & (VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U) 
-                                                  >> 5U))] 
-                              >> (0x1fU & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))));
-    __Vtemp_1784[0x20U] = (((0U == (0x1fU & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U)))
-                             ? 0U : (__Vtemp_1559[(
-                                                   ((IData)(0x1fU) 
-                                                    + 
-                                                    (0xffU 
-                                                     & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))) 
-                                                   >> 5U)] 
-                                     << ((IData)(0x20U) 
-                                         - (0x1fU & 
-                                            VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))))) 
-                           | (__Vtemp_1559[(7U & (VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U) 
-                                                  >> 5U))] 
-                              >> (0x1fU & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))));
-    __Vtemp_1784[0x21U] = (((0U == (0x1fU & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U)))
-                             ? 0U : (__Vtemp_1552[(
-                                                   ((IData)(0x1fU) 
-                                                    + 
-                                                    (0xffU 
-                                                     & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))) 
-                                                   >> 5U)] 
-                                     << ((IData)(0x20U) 
-                                         - (0x1fU & 
-                                            VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))))) 
-                           | (__Vtemp_1552[(7U & (VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U) 
-                                                  >> 5U))] 
-                              >> (0x1fU & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))));
-    __Vtemp_1784[0x22U] = (((0U == (0x1fU & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U)))
-                             ? 0U : (__Vtemp_1545[(
-                                                   ((IData)(0x1fU) 
-                                                    + 
-                                                    (0xffU 
-                                                     & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))) 
-                                                   >> 5U)] 
-                                     << ((IData)(0x20U) 
-                                         - (0x1fU & 
-                                            VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))))) 
-                           | (__Vtemp_1545[(7U & (VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U) 
-                                                  >> 5U))] 
-                              >> (0x1fU & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))));
-    __Vtemp_1784[0x23U] = (((0U == (0x1fU & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U)))
-                             ? 0U : (__Vtemp_1538[(
-                                                   ((IData)(0x1fU) 
-                                                    + 
-                                                    (0xffU 
-                                                     & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))) 
-                                                   >> 5U)] 
-                                     << ((IData)(0x20U) 
-                                         - (0x1fU & 
-                                            VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))))) 
-                           | (__Vtemp_1538[(7U & (VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U) 
-                                                  >> 5U))] 
-                              >> (0x1fU & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))));
-    __Vtemp_1784[0x24U] = (((0U == (0x1fU & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U)))
-                             ? 0U : (__Vtemp_1531[(
-                                                   ((IData)(0x1fU) 
-                                                    + 
-                                                    (0xffU 
-                                                     & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))) 
-                                                   >> 5U)] 
-                                     << ((IData)(0x20U) 
-                                         - (0x1fU & 
-                                            VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))))) 
-                           | (__Vtemp_1531[(7U & (VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U) 
-                                                  >> 5U))] 
-                              >> (0x1fU & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))));
-    __Vtemp_1784[0x25U] = (((0U == (0x1fU & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U)))
-                             ? 0U : (__Vtemp_1524[(
-                                                   ((IData)(0x1fU) 
-                                                    + 
-                                                    (0xffU 
-                                                     & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))) 
-                                                   >> 5U)] 
-                                     << ((IData)(0x20U) 
-                                         - (0x1fU & 
-                                            VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))))) 
-                           | (__Vtemp_1524[(7U & (VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U) 
-                                                  >> 5U))] 
-                              >> (0x1fU & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))));
-    __Vtemp_1784[0x26U] = (((0U == (0x1fU & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U)))
-                             ? 0U : (__Vtemp_1517[(
-                                                   ((IData)(0x1fU) 
-                                                    + 
-                                                    (0xffU 
-                                                     & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))) 
-                                                   >> 5U)] 
-                                     << ((IData)(0x20U) 
-                                         - (0x1fU & 
-                                            VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))))) 
-                           | (__Vtemp_1517[(7U & (VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U) 
-                                                  >> 5U))] 
-                              >> (0x1fU & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))));
-    __Vtemp_1784[0x27U] = (((0U == (0x1fU & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U)))
-                             ? 0U : (__Vtemp_1510[(
-                                                   ((IData)(0x1fU) 
-                                                    + 
-                                                    (0xffU 
-                                                     & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))) 
-                                                   >> 5U)] 
-                                     << ((IData)(0x20U) 
-                                         - (0x1fU & 
-                                            VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))))) 
-                           | (__Vtemp_1510[(7U & (VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U) 
-                                                  >> 5U))] 
-                              >> (0x1fU & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))));
-    __Vtemp_1784[0x28U] = (((0U == (0x1fU & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U)))
-                             ? 0U : (__Vtemp_1503[(
-                                                   ((IData)(0x1fU) 
-                                                    + 
-                                                    (0xffU 
-                                                     & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))) 
-                                                   >> 5U)] 
-                                     << ((IData)(0x20U) 
-                                         - (0x1fU & 
-                                            VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))))) 
-                           | (__Vtemp_1503[(7U & (VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U) 
-                                                  >> 5U))] 
-                              >> (0x1fU & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))));
-    __Vtemp_1784[0x29U] = (((0U == (0x1fU & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U)))
-                             ? 0U : (__Vtemp_1496[(
-                                                   ((IData)(0x1fU) 
-                                                    + 
-                                                    (0xffU 
-                                                     & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))) 
-                                                   >> 5U)] 
-                                     << ((IData)(0x20U) 
-                                         - (0x1fU & 
-                                            VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))))) 
-                           | (__Vtemp_1496[(7U & (VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U) 
-                                                  >> 5U))] 
-                              >> (0x1fU & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))));
-    __Vtemp_1784[0x2aU] = (((0U == (0x1fU & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U)))
-                             ? 0U : (__Vtemp_1489[(
-                                                   ((IData)(0x1fU) 
-                                                    + 
-                                                    (0xffU 
-                                                     & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))) 
-                                                   >> 5U)] 
-                                     << ((IData)(0x20U) 
-                                         - (0x1fU & 
-                                            VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))))) 
-                           | (__Vtemp_1489[(7U & (VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U) 
-                                                  >> 5U))] 
-                              >> (0x1fU & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))));
-    __Vtemp_1784[0x2bU] = (((0U == (0x1fU & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U)))
-                             ? 0U : (__Vtemp_1482[(
-                                                   ((IData)(0x1fU) 
-                                                    + 
-                                                    (0xffU 
-                                                     & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))) 
-                                                   >> 5U)] 
-                                     << ((IData)(0x20U) 
-                                         - (0x1fU & 
-                                            VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))))) 
-                           | (__Vtemp_1482[(7U & (VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U) 
-                                                  >> 5U))] 
-                              >> (0x1fU & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))));
-    __Vtemp_1784[0x2cU] = (((0U == (0x1fU & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U)))
-                             ? 0U : (__Vtemp_1475[(
-                                                   ((IData)(0x1fU) 
-                                                    + 
-                                                    (0xffU 
-                                                     & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))) 
-                                                   >> 5U)] 
-                                     << ((IData)(0x20U) 
-                                         - (0x1fU & 
-                                            VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))))) 
-                           | (__Vtemp_1475[(7U & (VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U) 
-                                                  >> 5U))] 
-                              >> (0x1fU & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))));
-    __Vtemp_1784[0x2dU] = (((0U == (0x1fU & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U)))
-                             ? 0U : (__Vtemp_1468[(
-                                                   ((IData)(0x1fU) 
-                                                    + 
-                                                    (0xffU 
-                                                     & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))) 
-                                                   >> 5U)] 
-                                     << ((IData)(0x20U) 
-                                         - (0x1fU & 
-                                            VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))))) 
-                           | (__Vtemp_1468[(7U & (VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U) 
-                                                  >> 5U))] 
-                              >> (0x1fU & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))));
-    __Vtemp_1784[0x2eU] = (((0U == (0x1fU & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U)))
-                             ? 0U : (__Vtemp_1461[(
-                                                   ((IData)(0x1fU) 
-                                                    + 
-                                                    (0xffU 
-                                                     & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))) 
-                                                   >> 5U)] 
-                                     << ((IData)(0x20U) 
-                                         - (0x1fU & 
-                                            VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))))) 
-                           | (__Vtemp_1461[(7U & (VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U) 
-                                                  >> 5U))] 
-                              >> (0x1fU & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))));
-    __Vtemp_1784[0x2fU] = (((0U == (0x1fU & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U)))
-                             ? 0U : (__Vtemp_1454[(
-                                                   ((IData)(0x1fU) 
-                                                    + 
-                                                    (0xffU 
-                                                     & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))) 
-                                                   >> 5U)] 
-                                     << ((IData)(0x20U) 
-                                         - (0x1fU & 
-                                            VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))))) 
-                           | (__Vtemp_1454[(7U & (VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U) 
-                                                  >> 5U))] 
-                              >> (0x1fU & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))));
-    __Vtemp_1784[0x30U] = (((0U == (0x1fU & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U)))
-                             ? 0U : (__Vtemp_1447[(
-                                                   ((IData)(0x1fU) 
-                                                    + 
-                                                    (0xffU 
-                                                     & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))) 
-                                                   >> 5U)] 
-                                     << ((IData)(0x20U) 
-                                         - (0x1fU & 
-                                            VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))))) 
-                           | (__Vtemp_1447[(7U & (VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U) 
-                                                  >> 5U))] 
-                              >> (0x1fU & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))));
-    __Vtemp_1784[0x31U] = (((0U == (0x1fU & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U)))
-                             ? 0U : (__Vtemp_1440[(
-                                                   ((IData)(0x1fU) 
-                                                    + 
-                                                    (0xffU 
-                                                     & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))) 
-                                                   >> 5U)] 
-                                     << ((IData)(0x20U) 
-                                         - (0x1fU & 
-                                            VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))))) 
-                           | (__Vtemp_1440[(7U & (VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U) 
-                                                  >> 5U))] 
-                              >> (0x1fU & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))));
-    __Vtemp_1784[0x32U] = (((0U == (0x1fU & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U)))
-                             ? 0U : (__Vtemp_1433[(
-                                                   ((IData)(0x1fU) 
-                                                    + 
-                                                    (0xffU 
-                                                     & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))) 
-                                                   >> 5U)] 
-                                     << ((IData)(0x20U) 
-                                         - (0x1fU & 
-                                            VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))))) 
-                           | (__Vtemp_1433[(7U & (VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U) 
-                                                  >> 5U))] 
-                              >> (0x1fU & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))));
-    __Vtemp_1784[0x33U] = (((0U == (0x1fU & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U)))
-                             ? 0U : (__Vtemp_1426[(
-                                                   ((IData)(0x1fU) 
-                                                    + 
-                                                    (0xffU 
-                                                     & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))) 
-                                                   >> 5U)] 
-                                     << ((IData)(0x20U) 
-                                         - (0x1fU & 
-                                            VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))))) 
-                           | (__Vtemp_1426[(7U & (VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U) 
-                                                  >> 5U))] 
-                              >> (0x1fU & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))));
-    __Vtemp_1784[0x34U] = (((0U == (0x1fU & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U)))
-                             ? 0U : (__Vtemp_1419[(
-                                                   ((IData)(0x1fU) 
-                                                    + 
-                                                    (0xffU 
-                                                     & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))) 
-                                                   >> 5U)] 
-                                     << ((IData)(0x20U) 
-                                         - (0x1fU & 
-                                            VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))))) 
-                           | (__Vtemp_1419[(7U & (VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U) 
-                                                  >> 5U))] 
-                              >> (0x1fU & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))));
-    __Vtemp_1784[0x35U] = (((0U == (0x1fU & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U)))
-                             ? 0U : (__Vtemp_1412[(
-                                                   ((IData)(0x1fU) 
-                                                    + 
-                                                    (0xffU 
-                                                     & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))) 
-                                                   >> 5U)] 
-                                     << ((IData)(0x20U) 
-                                         - (0x1fU & 
-                                            VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))))) 
-                           | (__Vtemp_1412[(7U & (VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U) 
-                                                  >> 5U))] 
-                              >> (0x1fU & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))));
-    __Vtemp_1784[0x36U] = (((0U == (0x1fU & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U)))
-                             ? 0U : (__Vtemp_1405[(
-                                                   ((IData)(0x1fU) 
-                                                    + 
-                                                    (0xffU 
-                                                     & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))) 
-                                                   >> 5U)] 
-                                     << ((IData)(0x20U) 
-                                         - (0x1fU & 
-                                            VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))))) 
-                           | (__Vtemp_1405[(7U & (VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U) 
-                                                  >> 5U))] 
-                              >> (0x1fU & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))));
-    __Vtemp_1784[0x37U] = (((0U == (0x1fU & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U)))
-                             ? 0U : (__Vtemp_1398[(
-                                                   ((IData)(0x1fU) 
-                                                    + 
-                                                    (0xffU 
-                                                     & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))) 
-                                                   >> 5U)] 
-                                     << ((IData)(0x20U) 
-                                         - (0x1fU & 
-                                            VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))))) 
-                           | (__Vtemp_1398[(7U & (VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U) 
-                                                  >> 5U))] 
-                              >> (0x1fU & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))));
-    __Vtemp_1784[0x38U] = (((0U == (0x1fU & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U)))
-                             ? 0U : (__Vtemp_1391[(
-                                                   ((IData)(0x1fU) 
-                                                    + 
-                                                    (0xffU 
-                                                     & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))) 
-                                                   >> 5U)] 
-                                     << ((IData)(0x20U) 
-                                         - (0x1fU & 
-                                            VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))))) 
-                           | (__Vtemp_1391[(7U & (VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U) 
-                                                  >> 5U))] 
-                              >> (0x1fU & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))));
-    __Vtemp_1784[0x39U] = (((0U == (0x1fU & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U)))
-                             ? 0U : (__Vtemp_1384[(
-                                                   ((IData)(0x1fU) 
-                                                    + 
-                                                    (0xffU 
-                                                     & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))) 
-                                                   >> 5U)] 
-                                     << ((IData)(0x20U) 
-                                         - (0x1fU & 
-                                            VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))))) 
-                           | (__Vtemp_1384[(7U & (VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U) 
-                                                  >> 5U))] 
-                              >> (0x1fU & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))));
-    __Vtemp_1784[0x3aU] = (((0U == (0x1fU & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U)))
-                             ? 0U : (__Vtemp_1377[(
-                                                   ((IData)(0x1fU) 
-                                                    + 
-                                                    (0xffU 
-                                                     & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))) 
-                                                   >> 5U)] 
-                                     << ((IData)(0x20U) 
-                                         - (0x1fU & 
-                                            VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))))) 
-                           | (__Vtemp_1377[(7U & (VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U) 
-                                                  >> 5U))] 
-                              >> (0x1fU & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))));
-    __Vtemp_1784[0x3bU] = (((0U == (0x1fU & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U)))
-                             ? 0U : (__Vtemp_1370[(
-                                                   ((IData)(0x1fU) 
-                                                    + 
-                                                    (0xffU 
-                                                     & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))) 
-                                                   >> 5U)] 
-                                     << ((IData)(0x20U) 
-                                         - (0x1fU & 
-                                            VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))))) 
-                           | (__Vtemp_1370[(7U & (VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U) 
-                                                  >> 5U))] 
-                              >> (0x1fU & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))));
-    __Vtemp_1784[0x3cU] = (((0U == (0x1fU & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U)))
-                             ? 0U : (__Vtemp_1363[(
-                                                   ((IData)(0x1fU) 
-                                                    + 
-                                                    (0xffU 
-                                                     & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))) 
-                                                   >> 5U)] 
-                                     << ((IData)(0x20U) 
-                                         - (0x1fU & 
-                                            VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))))) 
-                           | (__Vtemp_1363[(7U & (VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U) 
-                                                  >> 5U))] 
-                              >> (0x1fU & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))));
-    __Vtemp_1784[0x3dU] = (((0U == (0x1fU & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U)))
-                             ? 0U : (__Vtemp_1356[(
-                                                   ((IData)(0x1fU) 
-                                                    + 
-                                                    (0xffU 
-                                                     & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))) 
-                                                   >> 5U)] 
-                                     << ((IData)(0x20U) 
-                                         - (0x1fU & 
-                                            VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))))) 
-                           | (__Vtemp_1356[(7U & (VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U) 
-                                                  >> 5U))] 
-                              >> (0x1fU & VL_SHIFTL_III(8,8,32, (IData)(vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__hitWay), 5U))));
-    __Vtemp_1784[0x3eU] = __Vtemp_1357[1U];
-    __Vtemp_1784[0x3fU] = __Vtemp_1357[2U];
-    vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__uopCache__DOT__io_read_resp_data_pre_decoded_7_expanded_inst 
-        = (((0U == (0x1fU & VL_SHIFTL_III(11,11,32, 
-                                          (0x3fU & (IData)(
-                                                           (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc 
-                                                            >> 2U))), 5U)))
-             ? 0U : (__Vtemp_1784[(((IData)(0x1fU) 
-                                    + (0x7ffU & VL_SHIFTL_III(11,11,32, 
-                                                              (0x3fU 
-                                                               & (IData)(
-                                                                         (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc 
-                                                                          >> 2U))), 5U))) 
-                                   >> 5U)] << ((IData)(0x20U) 
-                                               - (0x1fU 
-                                                  & VL_SHIFTL_III(11,11,32, 
-                                                                  (0x3fU 
-                                                                   & (IData)(
-                                                                             (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc 
-                                                                              >> 2U))), 5U))))) 
-           | (__Vtemp_1784[(0x3fU & (VL_SHIFTL_III(11,11,32, 
-                                                   (0x3fU 
-                                                    & (IData)(
-                                                              (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc 
-                                                               >> 2U))), 5U) 
-                                     >> 5U))] >> (0x1fU 
-                                                  & VL_SHIFTL_III(11,11,32, 
-                                                                  (0x3fU 
-                                                                   & (IData)(
-                                                                             (vlSelfRef.ZaqalSoCTop__DOT__core__DOT__frontend__DOT__ftq_skid__DOT__slot0_data_pc 
-                                                                              >> 2U))), 5U))));
 }

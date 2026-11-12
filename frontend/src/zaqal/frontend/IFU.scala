@@ -40,8 +40,9 @@ class IFU(implicit val p: Parameters) extends Module with HasZaqalParameter {
   val slot0_inst = Mux(is_cross_match, Cat(raw_bits(15, 0), cross_half_reg), raw_bits(31, 0))
   val slot0_pc   = Mux(is_cross_match, io.fetch_req.bits.pc - 2.U, io.fetch_req.bits.pc)
 
+  val padded_raw = Cat(0.U(16.W), raw_bits)
   for (i <- 0 until predictWidth) {
-    val inst = if (i == 0) slot0_inst else (raw_bits >> (i.U * 16.U))(31, 0)
+    val inst = if (i == 0) slot0_inst else (padded_raw >> (i * 16))(31, 0)
     predecoders(i).io.inst := inst
     packet.instructions(i) := inst
     packet.pre_decoded(i)  := predecoders(i).io.out
@@ -84,6 +85,13 @@ class IFU(implicit val p: Parameters) extends Module with HasZaqalParameter {
       has_cross_half := true.B
     } .otherwise {
       has_cross_half := false.B
+    }
+  }
+
+  when(io.toIbuffer.fire && (io.fetch_req.bits.pc === "h800120c0".U || io.fetch_req.bits.pc === "h800120c8".U)) {
+    printf(p"[IFU FIRE pc=0x${Hexadecimal(io.fetch_req.bits.pc)}] in_mask=0x${Hexadecimal(io.fetch_req.bits.mask)} out_mask=0x${Hexadecimal(packet.mask)} cross=$is_cross_match\n")
+    for (i <- 0 until predictWidth) {
+      printf(p"  slot $i: pc=0x${Hexadecimal(packet.pc(i))} rvc=${is_rvc(i)} raw_mask=${raw_mask(i)} inst=0x${Hexadecimal(packet.instructions(i))}\n")
     }
   }
 
